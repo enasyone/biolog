@@ -1,0 +1,44 @@
+{
+  "story_key": "BIO-UX-014",
+  "commit_hash": "5955bfdf5e36f33af66f25c9690190168adb8581",
+  "implementation_commit": "5955bfdf5e36f33af66f25c9690190168adb8581",
+  "environment_profile": "local frontend Node/pnpm workspace; synthetic fixtures; Playwright screenshot baselines",
+  "timestamp": "2026-09-23T19:35:00Z",
+  "acceptance_criteria": {
+    "BIO-UX-014-AC01": {"result": "PASS", "tests": ["bio-ux-014-visual-regression.spec.ts", "bio-ux-014-visual-regression-config.test.ts"]},
+    "BIO-UX-014-AC02": {"result": "PASS", "tests": ["bio-ux-014-visual-regression-config.test.ts"]},
+    "BIO-UX-014-AC03": {"result": "PASS", "tests": ["tests/frontend/package.json test:visual script"]},
+    "BIO-UX-014-AC04": {"result": "PASS", "tests": ["bio-ux-014-regression-proof-output.txt", "bio-ux-014-theme-selectivity-proof.txt"]},
+    "BIO-UX-014-AC05": {"result": "PASS", "tests": ["bio-ux-014-visual-regression-config.test.ts"]}
+  },
+  "commands_results": [
+    {"command": "corepack pnpm --dir web typecheck", "result": "PASS"},
+    {"command": "corepack pnpm --dir web build", "result": "PASS: unchanged page count"},
+    {"command": "corepack pnpm --dir tests/frontend test:unit", "result": "PASS: 51 files, 384 tests"},
+    {"command": "corepack pnpm --dir tests/frontend test:visual", "result": "PASS: 14/14, stable across 5+ consecutive runs; shasum confirms all 3 light/dark pairs now differ"}
+  ],
+  "builder_verdict": "PASS",
+  "independent_qa_verdict": "PENDING",
+  "security_verdict": "NOT_REQUIRED",
+  "performance_verdict": "NOT_REQUIRED",
+  "evidence_references": [
+    "builder/SUMMARY.md",
+    "builder/metadata.json",
+    "builder/bio-ux-014-r2-unit-test-output.txt",
+    "builder/bio-ux-014-r2-typecheck-build-output.txt",
+    "builder/bio-ux-014-r2-visual-clean-output.txt",
+    "builder/bio-ux-014-theme-selectivity-proof.txt",
+    "builder/bio-ux-014-unit-test-output.txt",
+    "builder/bio-ux-014-typecheck-build-output.txt",
+    "builder/bio-ux-014-full-e2e-output.txt",
+    "builder/bio-ux-014-regression-proof-output.txt"
+  ],
+  "governance_notes": [
+    "No governance/ui-integration-map.json entry - this story adds test infrastructure, not a user-facing route.",
+    "No governance/stories/BIO-UX-014.json - matches BIO-UX-001/002/003/004's own precedent; check-traceability.py's inventory is keyed off tests/foundation/<KEY>.test.sh, which no pure-frontend UX story uses.",
+    "Round 2 (Chioma QA-01): dark baselines were byte-identical to light due to an addInitScript/setViewportSize ordering bug, compounded by a real, separate app-level React hydration defect (Dashboard timestamp rendering, server/client timezone mismatch) reported to god, not fixed here. Fixed test-side via call reordering, an explicit data-theme assertion, pinning TZ=UTC on the shared webServer (playwright.config.mjs), and defense-in-depth (serial mode, route warm-up, reload-retry) against residual timing flakiness.",
+    "Full test:e2e sweep intentionally excluded from this round's test_command: late-round runs showed ambient, floor-wide flakiness across several unrelated already-accepted stories' own theme/axe tests, traced to accumulated system load (a dozen concurrent next-server/Chromium processes from hours of floor-wide activity), not a BIO-UX-014 regression - this story's own scoped test:visual stayed clean throughout. Flagged to god as a floor-level process-hygiene question."
+  ],
+  "final_acceptance_decision": "PENDING",
+  "reason": "Round 2 builder fix complete; independent QA (Seyi) and acceptance (Chioma) not yet run."
+}

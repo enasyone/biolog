@@ -1,0 +1,9 @@
+has_audit_sink=True
+compute_writes_audit=True
+validates_version=True
+validates_actor=True
+validates_timestamp=True
+version_control_present=True
+version_allocated_before_audit=True
+release_or_transaction_present=True
+PASS

@@ -1,0 +1,2 @@
+PASS: mobile tenant context comes from a trusted resolution boundary
+probe exit: 0

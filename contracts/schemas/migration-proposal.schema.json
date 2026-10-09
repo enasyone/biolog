@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.biolog.local/migration-proposal.schema.json",
+  "title": "BIOLOG migration proposal",
+  "description": "ADR-0005 Decision 1.1. Written by any feature agent. Carries NO sequence number - a proposal is a request to join the history, never part of it. Deliberately a different shape from migration-record.schema.json so a proposal can never be mistaken for something ready to run. Examples are SYNTHETIC.",
+  "type": "object",
+  "required": [
+    "proposal_id",
+    "story_id",
+    "domain_conflict_group",
+    "description",
+    "up",
+    "reversibility",
+    "forward_safety",
+    "proofs"
+  ],
+  "properties": {
+    "proposal_id": {
+      "description": "Canonical evt_ identifier for this proposal (ADR-0001 section 1).",
+      "type": "string",
+      "pattern": "^evt_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "story_id": {
+      "description": "The Jira story this migration belongs to, e.g. BIO-IDN-003.",
+      "type": "string",
+      "pattern": "^BIO-[A-Z]+-[0-9]+$"
+    },
+    "domain_conflict_group": {
+      "description": "The conflict group the SCHEMA CHANGE belongs to (identity, credential, biometric, ...) - never 'migration-core', which is reserved for the sequencing process itself (ADR-0005 Decision 1.1).",
+      "type": "string",
+      "minLength": 1,
+      "not": {
+        "const": "migration-core"
+      }
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "up": {
+      "description": "The forward change. Opaque to this contract - a real SQL/DDL body or an equivalent script reference.",
+      "type": "string",
+      "minLength": 1
+    },
+    "reversibility": {
+      "$ref": "#/$defs/reversibility"
+    },
+    "forward_safety": {
+      "$ref": "#/$defs/forwardSafety"
+    },
+    "proofs": {
+      "$ref": "#/$defs/proofs"
+    }
+  },
+  "$defs": {
+    "reversibility": {
+      "description": "ADR-0005 Decision 3.2. Exactly one of down or (reversible:false + repair_procedure) - never neither.",
+      "type": "object",
+      "oneOf": [
+        {
+          "required": [
+            "down"
+          ],
+          "properties": {
+            "down": {
+              "type": "string",
+              "minLength": 1
+            },
+            "reversible": {
+              "const": true
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "required": [
+            "reversible",
+            "repair_procedure"
+          ],
+          "properties": {
+            "reversible": {
+              "const": false
+            },
+            "repair_procedure": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "forwardSafety": {
+      "description": "ADR-0005 Decision 3.1/3.4. A breaking change must name the earlier deprecating record its window depends on, and that record must itself declare deprecation_window - any other record at that sequence position is not a relevant dependency.",
+      "type": "object",
+      "required": [
+        "classification"
+      ],
+      "properties": {
+        "classification": {
+          "type": "string",
+          "enum": [
+            "additive",
+            "breaking"
+          ]
+        },
+        "depends_on_deprecation_sequence": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "deprecation_window": {
+          "description": "Present only on an additive record that deliberately opens a deprecation window a later breaking record may depend on (ADR-0005 Decision 3.3). Naming the target makes the dependency relevant, not merely present.",
+          "type": "object",
+          "required": [
+            "target"
+          ],
+          "properties": {
+            "target": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "breaks": {
+          "description": "Present on a breaking record: the exact target it removes, matched against the referenced record's deprecation_window.target (ADR-0005 Decision 3.5). An omitted breaks can never match a real target and is refused at assignment, the same as a wrongly-named one.",
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "if": {
+        "properties": {
+          "classification": {
+            "const": "breaking"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "classification",
+          "depends_on_deprecation_sequence"
+        ]
+      }
+    },
+    "proofs": {
+      "description": "ADR-0005 Decision 4. Both mandatory before sequence assignment.",
+      "type": "object",
+      "required": [
+        "fresh_create_state_hash",
+        "upgrade_from_previous_state_hash"
+      ],
+      "properties": {
+        "fresh_create_state_hash": {
+          "type": "string",
+          "minLength": 1
+        },
+        "upgrade_from_previous_state_hash": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  },
+  "not": {
+    "required": [
+      "sequence"
+    ]
+  }
+}

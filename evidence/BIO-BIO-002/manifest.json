@@ -1,0 +1,29 @@
+{
+  "story_key": "BIO-BIO-002",
+  "title": "Implement fingerprint enrolment - tenprint and single finger",
+  "implementation_commit": "6a6052c4042b01cd90573202a97c1a29c681713d",
+  "builder_head": "f3f1967",
+  "reviewed_head": "9484017bbbdec816bc141d7444e9a130196104e3",
+  "environment": {"profile": "local offline acceptance; synthetic fixtures only", "timestamp": "2026-09-22T20:59:29Z"},
+  "acceptance_criteria": {
+    "BIO-BIO-002-AC01": {"result": "PASS", "evidence": ["tenprint and single-finger target tests"]},
+    "BIO-BIO-002-AC02": {"result": "PASS", "evidence": ["finger identity and quality-scoring tests"]},
+    "BIO-BIO-002-AC03": {"result": "PASS", "evidence": ["recapture and missing/amputated terminal-state tests"]},
+    "BIO-BIO-002-AC04": {"result": "PASS", "evidence": ["discard-by-default and authorised-retention tests"]},
+    "BIO-BIO-002-AC05": {"result": "PASS_CURRENT_SINGLE_PROCESS_TIER", "evidence": ["audit-before-commit, ambiguity, cancellation and privacy tests"]}
+  },
+  "commands": [
+    {"command": "bash tests/features/bio-bio-002/BIO-BIO-002.test.sh", "result": "PASS (40/40)"},
+    {"command": "dotnet Biolog.Features.FingerprintEnrolment.Tests.dll", "result": "PASS (30/30)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (22 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS"}
+  ],
+  "builder_verdict": {"result": "PASS", "commit_hash": "6a6052c4042b01cd90573202a97c1a29c681713d", "feature_tests": "30/30 PASS", "structural_tests": "40/40 PASS", "metadata_sha256": "813953af1f41e7a237b633ab395e238948c5572b91da2702aea464bd5c365fae"},
+  "independent_qa": {"reviewer": "Seyi", "result": "PASS", "review_commit": "9484017", "evidence": "evidence/BIO-BIO-002/codex/REVIEW-Seyi-round1.md", "evidence_sha256": "04019a63b2fb526a88780ce8c2ede01a0582ac2ef20b5626b99a43338468be6c"},
+  "specialist_security_review": {"reviewer": "Zainab", "result": "PASS", "evidence": "evidence/BIO-BIO-002/codex/SECURITY-REVIEW-ZAINAB.md", "evidence_sha256": "46b882fbea5eeeec0b2eccf2a64f19ecb1a4aaeddb8e2e26d8a957e01fb32495"},
+  "category_verdicts": {"functional": "PASS", "security": "PASS", "tenant_isolation": "PASS", "offline_recovery": "PASS", "concurrency": "PASS_CURRENT_SINGLE_PROCESS_TIER", "regression": "PASS"},
+  "security_performance_reviews": {"security": "Zainab PASS: raw images discard by default, retained bytes clone at boundaries, audit excludes biometric payload, and cross-tenant lookup does not enumerate", "performance": "Not separately required for synthetic providers"},
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "All five acceptance criteria have executable builder, independent QA, and specialist security evidence."}
+}

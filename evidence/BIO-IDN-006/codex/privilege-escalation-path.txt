@@ -1,0 +1,4 @@
+api/features/bio-idn-006/Api/RoleAssignmentEndpoints.cs:32:    private static Task AssignAsync(HttpContext context, RoleAssignmentService service, string personId, string role) => Handle(context, async correlationId =>
+api/features/bio-idn-006/Api/RoleAssignmentEndpoints.cs:34:        var actor = ActorResolver.Resolve(context.Request);
+api/features/bio-idn-006/Api/RoleAssignmentEndpoints.cs:36:        var assignment = await service.AssignAsync(personId, parsedRole, actor, correlationId, context.RequestAborted);
+api/features/bio-idn-006/Api/RoleAssignmentEndpoints.cs:42:        var actor = ActorResolver.Resolve(context.Request);

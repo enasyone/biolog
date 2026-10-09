@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-PHO-002 owns api/features/bio-pho-002/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh)
+         and, deliberately, no ProjectReference to api/features/bio-idn-001's or
+         api/features/bio-pho-001's projects either: person existence and master promotion
+         are proven through this project's own narrow gateways
+         (Domain/IPersonExistenceGateway.cs, Domain/IPhotoMasterPromotionGateway.cs), the same
+         BIO-IDN-002-QA-01-derived shape every sibling story uses. Device existence
+         (BIO-DEV-001) is a public, in-host type (api/Biolog.Api/Features/DeviceRegistry) so
+         its own gateway (Domain/IDeviceExistenceGateway.cs) is wrapped the identical way.
+
+         This project's own module adapter lives in api/Biolog.Api/Modules/BioPho002Module.cs
+         from the start (never written here first), matching every prior story.
+
+         Namespace root is "PhotoBooth": the aggregate this project defines is BoothCapture
+         (a mutable, CAS-versioned staging record, ADR-0001 §3.1/§3.2 - promotion to the
+         immutable PhotoMaster, BIO-PHO-001's own aggregate, is a one-way, one-time gateway
+         call, never a shared type). No new ADR-0001 canonical identifier type is minted -
+         BoothCapture is keyed by a natural composite key against the already-registered
+         `per_` PersonId, the same choice PhotoMaster (BIO-PHO-001) made. -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Applying BIO-IDN-001-QA-01's lesson from the start: every aggregate's constructor and
+         its repository are internal - this grant is the explicit, auditable seam for
+         Biolog.Api (DI registration) and this project's own test assembly. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.PhotoBooth.Tests" />
+  </ItemGroup>
+
+</Project>

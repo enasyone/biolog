@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-FND-005",
+  "title": "Configure Munder office operating rules",
+  "owner": "Chinedu - Programme Orchestrator",
+  "requirement_ids": [
+    "BIO-FND-005-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-FND-005-AC01",
+      "requirement_ids": [
+        "BIO-FND-005-REQ-001"
+      ],
+      "text": "All twelve Nigerian-named agents have role prompts, engine/model assignments and permissions."
+    },
+    {
+      "id": "BIO-FND-005-AC02",
+      "requirement_ids": [
+        "BIO-FND-005-REQ-001"
+      ],
+      "text": "Chinedu assigns only eligible stories whose dependencies are complete."
+    },
+    {
+      "id": "BIO-FND-005-AC03",
+      "requirement_ids": [
+        "BIO-FND-005-REQ-001"
+      ],
+      "text": "Kemi alone may approve shared-contract changes and migration sequencing."
+    },
+    {
+      "id": "BIO-FND-005-AC04",
+      "requirement_ids": [
+        "BIO-FND-005-REQ-001"
+      ],
+      "text": "Builders cannot mark their own stories locally accepted."
+    },
+    {
+      "id": "BIO-FND-005-AC05",
+      "requirement_ids": [
+        "BIO-FND-005-REQ-001"
+      ],
+      "text": "No agent may create a GitHub remote or push code before W15."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-FND-005.test.sh",
+      "ac_ids": [
+        "BIO-FND-005-AC01",
+        "BIO-FND-005-AC02",
+        "BIO-FND-005-AC03",
+        "BIO-FND-005-AC04",
+        "BIO-FND-005-AC05"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-FND-005/manifest.json",
+      "ac_ids": [
+        "BIO-FND-005-AC01",
+        "BIO-FND-005-AC02",
+        "BIO-FND-005-AC03",
+        "BIO-FND-005-AC04",
+        "BIO-FND-005-AC05"
+      ]
+    }
+  ]
+}

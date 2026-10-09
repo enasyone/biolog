@@ -1,0 +1,49 @@
+PASS  AC01 a report is refused a second time while already Locked, not silently re-recorded
+PASS  AC01 reason_code is a plain, non-blank, tenant-configurable string, not a fixed enum
+PASS  AC01 lock state is this story's OWN layer, deliberately not BIO-CRD-005's own one-way CardIssueStatus.Deactivated
+PASS  a test proves reporting locks a card and records the configurable reason
+PASS  a test proves presentation of a Locked card is denied immediately and logged
+PASS  AC02 a real, tenant-scoped, per-reason-code recovery policy store exists (not a hardcoded always-true)
+PASS  AC02 RecoverAsync consults the policy store before reactivating
+PASS  a test proves recovery is refused by tenant policy for a given reason code
+PASS  a test proves recover transitions Locked to Recovered and presentation is allowed again
+PASS  a test proves recovery after a later replacement's permanent revocation is refused (the AC02 'before activation' boundary)
+PASS  AC03 ReplaceAsync is a passthrough to BIO-CRD-005's own IssueAsync via the gateway - no separate sequence logic of its own
+PASS  a test proves replacement uses the next sequence number
+PASS  AC04 a terminal PermanentlyRevoked lock state exists, distinct from the freely-reversible Locked/Recovered pair
+PASS  AC04 ActivateReplacementAsync sweeps every earlier sequence number, not only the currently active one
+PASS  AC04 an already PermanentlyRevoked record is skipped, making the sweep idempotent under a retried Idempotency-Key
+PASS  AC04 activate-replacement requires Idempotency-Key (ADR-0004 §4.3 names card activation explicitly)
+PASS  a test proves every earlier card is permanently revoked, not only the one that was Active
+PASS  a test proves two concurrent activation attempts for the same replacement never both succeed
+PASS  a test proves replaying the same activate-replacement idempotency key does not double-revoke
+PASS  BIO-CRD-006-QA-01 (Chioma's acceptance review round 1): every earlier card begins revocation strictly before the replacement is activated, not after
+PASS  BIO-CRD-006-QA-01 regression: a confirmed audit failure partway through the sweep leaves the replacement never activated
+PASS  BIO-CRD-006-QA-02 (Chioma's acceptance review round 2): the replacement's own precondition is validated strictly before the earlier-card sweep, not after
+PASS  BIO-CRD-006-QA-02: activate-replacement reserves its own Idempotency-Key at this story's own layer, independent of BIO-CRD-005's own claim
+PASS  BIO-CRD-006-QA-02 regression: a stale expected_version on the replacement never touches any earlier card
+PASS  BIO-CRD-006-QA-02 regression: reusing the activate-replacement idempotency key with different content never touches the second, distinct replacement
+PASS  BIO-CRD-006-QA-03 (Chioma's acceptance review round 3): a non-terminal RevocationPending lock state exists so the sweep can be compensated, not only committed
+PASS  BIO-CRD-006-QA-03: the prior lock state is durably recorded on the record itself, so a later, separate attempt can still compensate correctly
+PASS  BIO-CRD-006-QA-03: a failed authoritative activation triggers compensation of every pending record, not a silent leave-as-is
+PASS  BIO-CRD-006-QA-03: RevocationPending denies presentation conservatively, never Allowed
+PASS  BIO-CRD-006-QA-03 regression: a concurrent mutation that fails the authoritative activation compensates a previously-Locked earlier card back to Locked
+PASS  BIO-CRD-006-QA-03 regression: a compensated never-reported earlier card resolves to Unlocked, not PermanentlyRevoked or left dangling
+PASS  AC05 a durable, append-only presentation-event log exists, separate from the ordinary audit trail
+PASS  AC05 offline sync intake requires Idempotency-Key (ADR-0004 §4.3 names it explicitly)
+PASS  AC05 the deny-list feed includes Locked, RevocationPending and PermanentlyRevoked records
+PASS  AC05 offline intake never re-validates against this server's live state - the reader's own locally-cached decision is trusted
+PASS  a test proves an offline reader's decision is durably logged via the idempotent intake path
+PASS  a test proves the deny list includes a Locked card so an offline reader can cache it before going offline
+PASS  no new canonical identifier type minted - a lifecycle record reuses BIO-CRD-005's own natural composite key
+PASS  no ProjectReference to any other feature project, including bio-crd-005 (a genuine runtime dependency reached only through this project's own gateway interface)
+PASS  ICardIssueGateway is this project's own interface, not a reference to bio-crd-005's types
+PASS  backend module lives one-way in api/Biolog.Api/Modules, not back in the feature project
+PASS  registered in the packaged Program.cs module array, depending on Tenant and CardIssuance
+PASS  the module adapter translates BIO-CRD-005's own CardIssueError into this feature's own CardLifecycleError, never leaking a sibling's exception type
+PASS  backend unit/integration tests exist
+PASS  a real-packaged-host test exists proving the genuine BIO-CRD-005 dependency through the shipped host channel
+PASS  the host-channel test proves the real BIO-CRD-005 card issue is genuinely deactivated during the sweep, not only this story's own lock record
+PASS  builder evidence recorded
+==============================
+47 passed, 0 failed

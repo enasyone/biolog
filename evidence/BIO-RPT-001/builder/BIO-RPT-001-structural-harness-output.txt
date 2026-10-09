@@ -1,0 +1,25 @@
+PASS  AC01 feature project exists
+PASS  AC01 project targets the pinned .NET SDK's TFM
+PASS  AC01 feature project has no ProjectReference to Biolog.Api.csproj
+PASS  AC01 the event envelope mirrors the BIO-ARC-003 schema's required fields
+PASS  AC01 a pub/sub bus is the subscription mechanism
+PASS  AC01 a rule declares the schema-version range it understands
+PASS  AC01 matching excludes an out-of-range schema version, not just a different aggregate type
+PASS  AC02 one adapter file exists per named channel
+PASS  AC02 every adapter implements the one typed interface
+PASS  AC02 the dispatcher never branches on NotificationChannel itself (dictionary dispatch only)
+PASS  AC03 a delivery audit sink exists
+PASS  AC03 dedup checks (tenant, event, rule, channel) before sending
+PASS  AC03 retry is bounded, not infinite
+PASS  AC03 a permanent failure is never retried
+PASS  AC04 an allowlist projection exists (never a denylist)
+PASS  AC04 personal/sensitive classifications short-circuit to an empty projection
+PASS  AC04 SMS's allowlist is strictly narrower than Email's
+PASS  AC05 the primary-action endpoint matches web/features/reporting/live.ts's exact path
+PASS  AC05 the view-audit-trail endpoint matches web/features/reporting/live.ts's exact path
+PASS  AC05 this story does not modify BIO-UX-005/011's owned reporting UI (frontend surface unchanged)
+PASS  AC05 the live-connection design is documented
+PASS  builder evidence directory exists
+PASS  feature docs exist
+----
+PASS=23 FAIL=0

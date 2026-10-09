@@ -1,0 +1,109 @@
+{
+  "story_key": "BIO-FND-009",
+  "title": "Implement local observability baseline",
+  "implementation_commit": "539149930a0739f317c657b28abb4ba79e588b6b",
+  "reviewed_head": "477af11a47d36d1fdab3ead41a1cd1231f53c9bd",
+  "environment": {
+    "profile": "detached local acceptance replay at reviewer commit; synthetic fixtures only",
+    "timestamp": "2026-09-21T21:30:10Z",
+    "dotnet_test_replay": "Builder and reviewer executable evidence used because this sandbox denies vstest loopback sockets"
+  },
+  "acceptance_criteria": {
+    "BIO-FND-009-AC01": {
+      "result": "PASS",
+      "evidence": [
+        "evidence/BIO-FND-009/builder/dotnet-integration-test-output.txt",
+        "evidence/BIO-FND-009/builder/structural-test-output.txt"
+      ]
+    },
+    "BIO-FND-009-AC02": {
+      "result": "PASS",
+      "evidence": [
+        "evidence/BIO-FND-009/builder/dotnet-integration-test-output.txt",
+        "evidence/BIO-FND-009/builder/structural-test-output.txt"
+      ]
+    },
+    "BIO-FND-009-AC03": {
+      "result": "PASS",
+      "evidence": [
+        "docs/OBSERVABILITY.md",
+        "evidence/BIO-FND-009/builder/structural-test-output.txt"
+      ]
+    },
+    "BIO-FND-009-AC04": {
+      "result": "PASS",
+      "evidence": [
+        "evidence/BIO-FND-009/acceptance/QA-05.md",
+        "evidence/BIO-FND-009/codex/REREVIEW-ROUND-6.md",
+        "evidence/BIO-FND-009/codex/independent-review.sh",
+        "evidence/BIO-FND-009/builder/dotnet-unit-test-output.txt",
+        "evidence/BIO-FND-009/builder/dotnet-integration-test-output.txt"
+      ]
+    }
+  },
+  "commands": [
+    {
+      "command": "bash evidence/BIO-FND-009/codex/independent-review.sh",
+      "result": "PASS"
+    },
+    {
+      "command": "bash tests/foundation/BIO-FND-009.test.sh",
+      "result": "PASS (41/41)"
+    },
+    {
+      "command": "python3 scripts/check-traceability.py governance/stories/BIO-FND-009.json",
+      "result": "PASS (4 ACs)"
+    },
+    {
+      "command": "dotnet build api/Biolog.Api/Biolog.Api.csproj --no-restore --nologo",
+      "result": "PASS; fresh detached replay emitted NU1900 because advisory-source DNS was unavailable, while remediation-bound builder/reviewer builds were clean"
+    },
+    {
+      "command": "bash scripts/check-dotnet-vulnerabilities.sh api/Biolog.Api/Biolog.Api.csproj tests/dotnet/Biolog.UnitTests/Biolog.UnitTests.csproj tests/dotnet/Biolog.IntegrationTests/Biolog.IntegrationTests.csproj",
+      "result": "NETWORK-LIMITED in detached replay; remediation changed no package references and remediation-bound builder audit is PASS with no vulnerable packages"
+    },
+    {
+      "command": "bash scripts/secret-scan.sh --all",
+      "result": "PASS (clean)"
+    }
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "539149930a0739f317c657b28abb4ba79e588b6b",
+    "unit_tests": "56/56 PASS",
+    "integration_tests": "13/13 PASS",
+    "unit_transcript_sha256": "3fc2f36eec6c0cc25df0fbd760e4dcfde7bd40adca21585df813e8fa4bf60b94",
+    "integration_transcript_sha256": "ec7b6f351ab10c2da8b2eccff405ea90b32ae6a94c0c26101f81802ffe99c0e4",
+    "vulnerability_audit_sha256": "7d344a602a6f43dcad0ef03aaed66bfffcbcde5ed169a412e66ed5d5081cc2ac"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "initial_result": "FAIL (QA-01: name-based redaction and exception leak)",
+    "round_2_result": "FAIL (QA-02: arbitrary strings treated as safe)",
+    "round_3_result": "FAIL (QA-03: forgeable category/scope labels granted trust)",
+    "round_4_result": "FAIL (QA-04: custom formatter bypass)",
+    "round_5_result": "PASS before acceptance found QA-05",
+    "acceptance_result": "FAIL (QA-05: parallel unredacted providers)",
+    "round_6_result": "PASS",
+    "review_evidence": "evidence/BIO-FND-009/codex/REREVIEW-ROUND-6.md",
+    "review_evidence_sha256": "bb45b22bc0e8befde911bfb0eed29362703bd4375ab4a050c69cc60ddb39cab2"
+  },
+  "category_verdicts": {
+    "functional": "PASS",
+    "security": "PASS",
+    "tenant_isolation": "PASS",
+    "offline_recovery": "PASS",
+    "concurrency": "NOT_APPLICABLE",
+    "regression": "PASS"
+  },
+  "security_performance_reviews": {
+    "security": "PASS: QA-01 through QA-05 closed; only the redacting console provider remains registered",
+    "performance": "Not required for this local observability foundation story"
+  },
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "All four acceptance criteria have builder and independent evidence. QA-05 is closed at the provider topology: default providers are removed before the sole redacting console provider is registered, and the composed-host regression asserts that provider set. Detached replay passed the independent classified-payload probe, 41/41 foundation checks, traceability, compilation and secret scan."
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-OPS-009",
+  "title": "Run local backup/restore and disaster-recovery rehearsal",
+  "owner": "Emeka - Platform & Infrastructure Engineer",
+  "requirement_ids": [
+    "BIO-OPS-009-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-OPS-009-AC01",
+      "requirement_ids": [
+        "BIO-OPS-009-REQ-001"
+      ],
+      "text": "Control-plane and tenant backups are independently restorable."
+    },
+    {
+      "id": "BIO-OPS-009-AC02",
+      "requirement_ids": [
+        "BIO-OPS-009-REQ-001"
+      ],
+      "text": "Restore to new local containers is documented."
+    },
+    {
+      "id": "BIO-OPS-009-AC03",
+      "requirement_ids": [
+        "BIO-OPS-009-REQ-001"
+      ],
+      "text": "Photo/object evidence restore is verified."
+    },
+    {
+      "id": "BIO-OPS-009-AC04",
+      "requirement_ids": [
+        "BIO-OPS-009-REQ-001"
+      ],
+      "text": "Recovery evidence records achieved RPO/RTO locally without claiming production SLOs."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-OPS-009.test.sh",
+      "ac_ids": [
+        "BIO-OPS-009-AC01",
+        "BIO-OPS-009-AC02",
+        "BIO-OPS-009-AC03",
+        "BIO-OPS-009-AC04"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-OPS-009/builder/SUMMARY.md",
+      "ac_ids": [
+        "BIO-OPS-009-AC01",
+        "BIO-OPS-009-AC02",
+        "BIO-OPS-009-AC03",
+        "BIO-OPS-009-AC04"
+      ]
+    },
+    {
+      "path": "evidence/BIO-OPS-009/builder/metadata.json",
+      "stage": "builder",
+      "ac_ids": [
+        "BIO-OPS-009-AC01",
+        "BIO-OPS-009-AC02",
+        "BIO-OPS-009-AC03",
+        "BIO-OPS-009-AC04"
+      ]
+    }
+  ]
+}

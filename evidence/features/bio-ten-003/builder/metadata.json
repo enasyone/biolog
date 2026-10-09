@@ -1,0 +1,73 @@
+{
+  "story_key": "BIO-TEN-003",
+  "stage": "builder",
+  "commit_hash": "6ce66bf43d324b079570bd1fe9dfa0d30466ee5b",
+  "test_command": "dotnet test tests/features/bio-ten-003/Biolog.Features.TenantFeatureConfig.Tests.csproj && dotnet test tests/features/bio-bio-007/Biolog.Features.FaceSearch.Tests.csproj && dotnet test tests/dotnet/Biolog.IntegrationTests/Biolog.IntegrationTests.csproj && bash scripts/check-dotnet-vulnerabilities.sh api/features/bio-ten-003/Biolog.Features.TenantFeatureConfig.csproj tests/features/bio-ten-003/Biolog.Features.TenantFeatureConfig.Tests.csproj && bash scripts/check-module-project-references.sh && python3 scripts/check-contract-freeze.py && (cd web && pnpm run typecheck && pnpm run build)",
+  "result": "PASS",
+  "timestamp": "2026-10-06T16:24:03Z",
+  "reviewer": "Tunde",
+  "data_classification": "SYNTHETIC",
+  "summary": "New BIO-TEN-003 suite: 28/28 xunit tests pass (0 warnings) - 21 service/domain tests (AC01-AC04) + 7 HTTP-integration tests (AC05) in tests/features/bio-ten-003/. Zero regressions: BIO-BIO-007's own 23 tests pass unmodified; full tests/dotnet/Biolog.IntegrationTests suite (192 tests) passes unchanged. scripts/check-dotnet-vulnerabilities.sh PASS (no vulnerable packages in either new project). scripts/check-module-project-references.sh PASS (no feature project references Biolog.Api.csproj - the new bio-ten-003 csproj's only cross-feature ProjectReference is to BIO-BIO-007's own public IFaceSearchFeatureFlagPolicy, mirroring that project's own precedent reference to BIO-BIO-001). scripts/check-contract-freeze.py PASS (39 artifacts, 83 future stories - unchanged, no contracts/** or docs/adr/** file touched). web: pnpm run typecheck clean, pnpm run build succeeds (Next.js production build, /administration/tenants prerenders). First dotnet build on this worktree hit the documented sandbox loopback-socket flake (0 errors, 'Build FAILED'); retried once with sandbox disabled and it succeeded cleanly - treated as the known flake, not a real defect, per this repo's own agent notes.",
+  "files_changed": {
+    "new_feature_project": [
+      "api/features/bio-ten-003/Biolog.Features.TenantFeatureConfig.csproj",
+      "api/features/bio-ten-003/Identifiers/CanonicalId.cs",
+      "api/features/bio-ten-003/Identifiers/UtcInstant.cs",
+      "api/features/bio-ten-003/Domain/TenantModule.cs",
+      "api/features/bio-ten-003/Domain/DocumentVerifySubfeature.cs",
+      "api/features/bio-ten-003/Domain/TenantFeatureConfiguration.cs",
+      "api/features/bio-ten-003/Domain/TenantFeatureConfigurationError.cs",
+      "api/features/bio-ten-003/Domain/ITenantFeatureConfigurationStore.cs",
+      "api/features/bio-ten-003/Domain/InMemoryTenantFeatureConfigurationStore.cs",
+      "api/features/bio-ten-003/Domain/ITenantFeatureGateway.cs",
+      "api/features/bio-ten-003/Audit/AuditPrimitives.cs",
+      "api/features/bio-ten-003/Audit/TenantFeatureConfigurationAuditEvent.cs",
+      "api/features/bio-ten-003/Audit/TenantFeatureConfigurationAuditEventBuilder.cs",
+      "api/features/bio-ten-003/Audit/ITenantFeatureConfigurationAuditSink.cs",
+      "api/features/bio-ten-003/Audit/InMemoryTenantFeatureConfigurationAuditSink.cs",
+      "api/features/bio-ten-003/Api/ValidationErrorItem.cs",
+      "api/features/bio-ten-003/Api/CorrelationId.cs",
+      "api/features/bio-ten-003/Api/ProblemResponse.cs",
+      "api/features/bio-ten-003/Api/ActorResolver.cs",
+      "api/features/bio-ten-003/Api/TenantFeatureConfigurationRequests.cs",
+      "api/features/bio-ten-003/Api/TenantFeatureConfigurationResponse.cs",
+      "api/features/bio-ten-003/Api/TenantFeatureConfigurationEndpoints.cs",
+      "api/features/bio-ten-003/TenantFeatureConfigurationService.cs",
+      "api/features/bio-ten-003/Integration/TenantFeatureFlagPolicyAdapter.cs"
+    ],
+    "new_host_wiring": [
+      "api/Biolog.Api/Modules/BioTen003Module.cs"
+    ],
+    "edited_host_wiring": [
+      "api/Biolog.Api/Program.cs (added `new BioTen003Module(),` to the module array)",
+      "api/Biolog.Api/Biolog.Api.csproj (added ProjectReference to the new feature project, same pattern as every prior story)"
+    ],
+    "edited_cross_story_pre_approved": [
+      "api/Biolog.Api/Modules/BioBio007Module.cs (one using line, one registration-line type swap SyntheticFaceSearchFeatureFlagPolicy -> TenantFeatureFlagPolicyAdapter, one added doc-comment sentence - see docs/features/bio-ten-003/README.md 'AC02: the BIO-BIO-007 swap' for the full diff and the pre-approval record)"
+    ],
+    "new_tests": [
+      "tests/features/bio-ten-003/Biolog.Features.TenantFeatureConfig.Tests.csproj",
+      "tests/features/bio-ten-003/TenantFeatureConfigurationServiceTests.cs",
+      "tests/features/bio-ten-003/TenantFeatureConfigurationAuditTests.cs",
+      "tests/features/bio-ten-003/TenantFeatureFlagPolicyAdapterTests.cs",
+      "tests/features/bio-ten-003/TenantFeatureConfigurationEndpointsIntegrationTests.cs"
+    ],
+    "new_docs": [
+      "docs/features/bio-ten-003/README.md"
+    ],
+    "web_new": [
+      "web/features/tenants/types.ts",
+      "web/features/tenants/components/feature-configuration-console.tsx"
+    ],
+    "web_edited": [
+      "web/features/tenants/ports.ts (extended TenantsPort with getFeatureConfiguration/updateFeatureConfiguration)",
+      "web/features/tenants/live.ts (added real HTTP calls, additive to the existing primaryAction() base adapter)",
+      "web/features/tenants/mock.ts (added an in-memory per-tenant mock store, additive to the existing primaryAction() base adapter)",
+      "web/app/administration/tenants/page.tsx (replaced PlaceholderPage with FeatureConfigurationConsole)"
+    ],
+    "web_unchanged_by_decision": [
+      "web/app/settings/page.tsx (no feature-configuration-specific content; no HYBRID boundary to disclose - see docs/features/bio-ten-003/README.md AC05 section)"
+    ]
+  },
+  "notes": "Design decisions that deviated from or elaborated on the dispatch prompt, with reasoning: (1) IFaceSearchFeatureFlagPolicy adapter lives in the bio-ten-003 feature project itself (Integration/TenantFeatureFlagPolicyAdapter.cs), requiring a feature-to-feature ProjectReference to BIO-BIO-007's own csproj, rather than as a nested class inside BioBio007Module.cs - this keeps that file's edit to the smallest possible diff (one line + one using + one sentence) as the dispatch prompt explicitly required, and mirrors BIO-BIO-007's own precedent of a feature-to-feature reference to consume another feature's public contract (it references BIO-BIO-001 for the identical reason). (2) The end-to-end AC02/AC04 proof for FaceSearchService does not construct that internal type directly or call SearchAsync on it - it is internal to BIO-BIO-007's own assembly with InternalsVisibleTo granted only to Biolog.Api and its own test project, and widening that grant would mean editing a file owned by BIO-BIO-007's engineer, which was not pre-approved. Tests instead exercise the real resolved IFaceSearchFeatureFlagPolicy instance directly - disclosed in full in the README's AC04 section. (3) No bash .test.sh structural harness was added - judged unnecessary since every behavioural claim is already covered by the C# test suite; the one genuinely one-time structural fact (the BioBio007Module.cs registration swap) is recorded in this evidence file's diff instead of a repeatable check. (4) Evidence and docs paths used evidence/features/bio-ten-003/** and the existing docs/features/bio-ten-003/README.md path (matching governance/feature-path-ownership.json's actual owned_paths and this codebase's real precedent, e.g. evidence/features/bio-ten-001/builder/), rather than the evidence/BIO-TEN-003/builder/ path named in the dispatch prompt, which does not match any existing story's actual builder-evidence location in this repository."
+}

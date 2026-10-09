@@ -1,0 +1,85 @@
+commit 6bc27084ad9fc9eba6c2d298f1cf1c97eb252bb3
+Author: Emeka <enasyfoto@gmail.com>
+Date:   Wed Sep 30 13:40:10 2026 +0100
+
+    feat(BIO-MOB-004): mobile card/NFC/QR/face verification flows
+    
+    Implements online and permitted-offline identity verification for mobile
+    officers (AC01-AC05):
+    
+    - AC01: a sanitised VerificationDecisionResult (no biometric evidence/score
+      field at all) is the only shape a decision ever travels in, both over the
+      wire and in the mobile UI.
+    - AC02: online requests get a live, policy-evaluated decision from this
+      story's own backend; offline requests fall back to BIO-ACC-003's already-
+      built AccessCacheService revocation check - a genuine reduced-capability
+      path, not a new mechanism. The verify screen labels which path produced
+      each result and flags a stale cache.
+    - AC03 (approved by Kemi, hive thread conv-bio-mob-004-ac03, formalized as
+      an extension to ADR-0006's actor-identity/authorization-boundary scope for
+      the device-authenticated case): a closed VerificationDeviceRole
+      (Officer/Supervisor) attached to the already-authenticated device, not a
+      human actor mobile has no way to identify yet. Officer (default) may
+      execute a decision and read history; only Supervisor may override a
+      computed deny, always with a mandatory reason code. Role assignment is a
+      real human-actor-RBAC-gated write (ADR-0006 Decision 3 + BIO-IDN-006).
+    - AC04: the decision endpoint requires an Idempotency-Key header and passes
+      it straight through to BIO-ACC-002's own already-reviewed idempotency
+      guarantee - no duplicated store.
+    - AC05: mobile/lib/features/verify/verify_screen.dart (previously a
+      BIO-MOB-001 placeholder) is wired to real VerificationService/
+      VerificationSyncClient calls against this story's own
+      /api/v1/mobile-verification/* routes.
+    
+    Backend: new Biolog.Features.MobileVerification project
+    (api/features/bio-mob-004/), registered via BioMob004Module. Consumes
+    BIO-ACC-002's own internal AccessDecisionService in-process via a manual
+    factory that substitutes a device-resolved tenant provider (never the
+    reflection-based DI activator, never BIO-ACC-002's own HTTP layer or its
+    actor-provenance secret) - the same architectural shape already established
+    for DeviceRegistry's ICrossTenantDeviceLookup.
+    
+    No new canonical-id prefix minted (reuses evt_/per_, per the mobile
+    canonical_id.dart contract-ownership rule).
+    
+    Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+
+ api/Biolog.Api/Biolog.Api.csproj                   |   5 +
+ api/Biolog.Api/Modules/BioMob004Module.cs          | 204 +++++++++++++
+ api/Biolog.Api/Program.cs                          |   1 +
+ .../bio-mob-004/Api/ActorProvenanceGate.cs         |  81 ++++++
+ api/features/bio-mob-004/Api/ActorResolver.cs      |  37 +++
+ api/features/bio-mob-004/Api/CorrelationId.cs      |  16 +
+ .../bio-mob-004/Api/DeviceAuthenticator.cs         |  50 ++++
+ api/features/bio-mob-004/Api/ProblemResponse.cs    |  46 +++
+ .../bio-mob-004/Api/ValidationErrorItem.cs         |   9 +
+ api/features/bio-mob-004/Api/VerificationDtos.cs   | 159 ++++++++++
+ .../bio-mob-004/Api/VerificationEndpoints.cs       | 140 +++++++++
+ api/features/bio-mob-004/Audit/AuditPrimitives.cs  |  75 +++++
+ .../bio-mob-004/Audit/IVerificationAuditSink.cs    |  28 ++
+ .../Biolog.Features.MobileVerification.csproj      |  42 +++
+ .../bio-mob-004/Domain/DeviceCredentialStore.cs    |  49 ++++
+ .../bio-mob-004/Domain/IAccessDecisionGateway.cs   |  62 ++++
+ .../Domain/IDeviceTenantResolutionGateway.cs       |  25 ++
+ .../bio-mob-004/Domain/IPermissionGateway.cs       |   7 +
+ .../bio-mob-004/Domain/VerificationDeviceRole.cs   | 107 +++++++
+ .../bio-mob-004/Domain/VerificationError.cs        |  58 ++++
+ .../bio-mob-004/Domain/VerificationOverride.cs     |  36 +++
+ .../bio-mob-004/Identifiers/CanonicalId.cs         |  48 +++
+ api/features/bio-mob-004/Identifiers/UtcInstant.cs |  28 ++
+ .../bio-mob-004/Tenancy/ICurrentTenantProvider.cs  |   7 +
+ api/features/bio-mob-004/VerificationService.cs    | 247 ++++++++++++++++
+ mobile/lib/core/identifiers/canonical_id.dart      |   3 +-
+ .../core/verification/verification_outcome.dart    |  78 +++++
+ .../core/verification/verification_service.dart    |  55 ++++
+ .../verification/verification_sync_client.dart     | 230 +++++++++++++++
+ mobile/lib/features/verify/verify_screen.dart      | 322 ++++++++++++++++++++-
+ scripts/quality.sh                                 |   6 +-
+ ...Biolog.Features.MobileVerification.Tests.csproj |  21 ++
+ .../bio-mob-004/FakeAccessDecisionGateway.cs       |  49 ++++
+ .../FakeDeviceTenantResolutionGateway.cs           |  18 ++
+ .../VerificationEndpointsIntegrationTests.cs       | 317 ++++++++++++++++++++
+ ...io_mob_004_ac01_ac03_ac04_sync_client_test.dart | 179 ++++++++++++
+ ...bio_mob_004_ac02_verification_service_test.dart | 111 +++++++
+ tests/foundation/BIO-MOB-004.test.sh               |  84 ++++++
+ 38 files changed, 3027 insertions(+), 13 deletions(-)

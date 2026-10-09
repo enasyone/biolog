@@ -1,0 +1,29 @@
+{
+  "story_key": "BIO-BIO-003",
+  "title": "Implement face capture and quality assessment",
+  "implementation_commit": "ae0015dcbc195dbd28a4c95d9f25476b1886bde2",
+  "builder_head": "08b4b40",
+  "reviewed_head": "720c537174fcf98e9f03cad8b710d0943a413a15",
+  "environment": {"profile": "local offline acceptance; synthetic fixtures only", "timestamp": "2026-09-22T21:42:20Z"},
+  "acceptance_criteria": {
+    "BIO-BIO-003-AC01": {"result": "PASS", "evidence": ["zero/one/multiple face-count tests"]},
+    "BIO-BIO-003-AC02": {"result": "PASS", "evidence": ["seven closed quality-check tests"]},
+    "BIO-BIO-003-AC03": {"result": "PASS", "evidence": ["provider model/version and source-photo linkage tests"]},
+    "BIO-BIO-003-AC04": {"result": "PASS", "evidence": ["typed actionable recapture guidance tests"]},
+    "BIO-BIO-003-AC05": {"result": "PASS", "evidence": ["vendor-neutral liveness gate tests"]}
+  },
+  "commands": [
+    {"command": "bash tests/features/bio-bio-003/BIO-BIO-003.test.sh", "result": "PASS (35/35)"},
+    {"command": "dotnet Biolog.Features.FaceEnrolment.Tests.dll", "result": "PASS (31/31)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (23 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS"}
+  ],
+  "builder_verdict": {"result": "PASS", "commit_hash": "ae0015dcbc195dbd28a4c95d9f25476b1886bde2", "feature_tests": "31/31 PASS", "structural_tests": "35/35 PASS", "metadata_sha256": "18bf9d25939d7b26a57670ceaa30a23aa16bcb58ef29ab77915fcbd9ff849047"},
+  "independent_qa": {"reviewer": "Seyi", "result": "PASS", "review_commit": "720c537", "evidence": "evidence/BIO-BIO-003/codex/REVIEW-Seyi-round1.md", "evidence_sha256": "01c03f3c0fbfb0c06901c6dafc13aa23b7c251f6f07924c1f9f239206de248ed"},
+  "specialist_security_review": {"reviewer": "Zainab", "result": "PASS", "evidence": "evidence/BIO-BIO-003/codex/SECURITY-REVIEW-ZAINAB.md", "evidence_sha256": "002dde30a8612db7f305d426379de3a42b0067b3a6d51d00c10f04d36aa230ed"},
+  "category_verdicts": {"functional": "PASS", "security": "PASS", "tenant_isolation": "PASS", "offline_recovery": "PASS", "concurrency": "PASS_CURRENT_IN_MEMORY_TIER", "regression": "PASS"},
+  "security_performance_reviews": {"security": "Zainab PASS: quality and liveness gate approval, immutable source linkage, internal boundaries, non-enumerating tenant lookup, and no raw biometric or vendor bypass surface", "performance": "Not separately required for synthetic providers"},
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "All five acceptance criteria have executable builder, independent QA, and specialist security evidence."}
+}

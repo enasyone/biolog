@@ -1,0 +1,169 @@
+=== BIO-FND-003 live verification — 2026-09-20T16:23:23Z ===
+commit: 2a8ababab9f4663cf4d6f0751aa12829f1f105b4
+
+--- docker --version / compose version ---
+Docker version 29.3.1, build c2be9cc
+Docker Compose version v5.1.1
+
+NOTE: infrastructure/.env overrides REDIS_PORT=63790 for this run only.
+This shared machine already has an unrelated container (clipforge_redis,
+not part of this repo) bound to the default 6379, matching the known
+limitation documented in docs/LOCAL-INFRASTRUCTURE.md.
+
+--- scripts/infra-up.sh --multi-tenant --wait ---
+ Network biolog_default Creating 
+ Network biolog_default Created 
+ Volume biolog_mysql_tenant_grace Creating 
+ Volume biolog_mysql_tenant_grace Created 
+ Volume biolog_redis_data Creating 
+ Volume biolog_redis_data Created 
+ Volume biolog_rabbitmq_data Creating 
+ Volume biolog_rabbitmq_data Created 
+ Volume biolog_azurite_data Creating 
+ Volume biolog_azurite_data Created 
+ Volume biolog_mailpit_data Creating 
+ Volume biolog_mailpit_data Created 
+ Volume biolog_mysql_control Creating 
+ Volume biolog_mysql_control Created 
+ Volume biolog_mysql_tenant_asu Creating 
+ Volume biolog_mysql_tenant_asu Created 
+ Container biolog-rabbitmq-1 Creating 
+ Container biolog-mysql-tenant-asu-1 Creating 
+ Container biolog-azurite-1 Creating 
+ Container biolog-redis-1 Creating 
+ Container biolog-mysql-control-1 Creating 
+ Container biolog-mysql-tenant-grace-1 Creating 
+ Container biolog-mailpit-1 Creating 
+ Container biolog-mailpit-1 Created 
+ Container biolog-azurite-1 Created 
+ Container biolog-mysql-tenant-asu-1 Created 
+ Container biolog-mysql-tenant-grace-1 Created 
+ Container biolog-redis-1 Created 
+ Container biolog-mysql-control-1 Created 
+ Container biolog-rabbitmq-1 Created 
+ Container biolog-mailpit-1 Starting 
+ Container biolog-mysql-tenant-asu-1 Starting 
+ Container biolog-rabbitmq-1 Starting 
+ Container biolog-azurite-1 Starting 
+ Container biolog-mysql-control-1 Starting 
+ Container biolog-redis-1 Starting 
+ Container biolog-mysql-tenant-grace-1 Starting 
+ Container biolog-mysql-tenant-asu-1 Started 
+ Container biolog-mailpit-1 Started 
+ Container biolog-azurite-1 Started 
+ Container biolog-mysql-tenant-grace-1 Started 
+ Container biolog-redis-1 Started 
+ Container biolog-mysql-control-1 Started 
+ Container biolog-rabbitmq-1 Started 
+wait-for-infra: all services ready (azurite
+mailpit
+mysql-control
+mysql-tenant-asu
+mysql-tenant-grace
+rabbitmq
+redis)
+
+--- docker compose ps (AC01/AC02/AC03: all services healthy, second tenant present) ---
+NAME                          IMAGE                                     COMMAND                  SERVICE              CREATED         STATUS                   PORTS
+biolog-azurite-1              mcr.microsoft.com/azure-storage/azurite   "docker-entrypoint.s…"   azurite              7 seconds ago   Up 7 seconds (healthy)   0.0.0.0:10000-10001->10000-10001/tcp, [::]:10000-10001->10000-10001/tcp
+biolog-mailpit-1              axllent/mailpit                           "/mailpit"               mailpit              7 seconds ago   Up 6 seconds (healthy)   0.0.0.0:1025->1025/tcp, [::]:1025->1025/tcp, 0.0.0.0:8025->8025/tcp, [::]:8025->8025/tcp
+biolog-mysql-control-1        mysql:8.4                                 "docker-entrypoint.s…"   mysql-control        7 seconds ago   Up 6 seconds (healthy)   0.0.0.0:33061->3306/tcp, [::]:33061->3306/tcp
+biolog-mysql-tenant-asu-1     mysql:8.4                                 "docker-entrypoint.s…"   mysql-tenant-asu     7 seconds ago   Up 7 seconds (healthy)   0.0.0.0:33062->3306/tcp, [::]:33062->3306/tcp
+biolog-mysql-tenant-grace-1   mysql:8.4                                 "docker-entrypoint.s…"   mysql-tenant-grace   7 seconds ago   Up 7 seconds (healthy)   0.0.0.0:33063->3306/tcp, [::]:33063->3306/tcp
+biolog-rabbitmq-1             rabbitmq:3-management-alpine              "docker-entrypoint.s…"   rabbitmq             7 seconds ago   Up 7 seconds (healthy)   0.0.0.0:5672->5672/tcp, [::]:5672->5672/tcp, 0.0.0.0:15672->15672/tcp, [::]:15672->15672/tcp
+biolog-redis-1                redis:7-alpine                            "docker-entrypoint.s…"   redis                7 seconds ago   Up 7 seconds (healthy)   0.0.0.0:63790->6379/tcp, [::]:63790->6379/tcp
+
+--- AC02 cross-tenant isolation: databases present on each tenant instance ---
+$ docker exec biolog-mysql-tenant-asu-1 mysql -uroot -plocalroot -e 'SHOW DATABASES;'
+Database
+biolog_asu
+information_schema
+mysql
+performance_schema
+sys
+
+$ docker exec biolog-mysql-tenant-grace-1 mysql -uroot -plocalroot -e 'SHOW DATABASES;'
+Database
+biolog_grace
+information_schema
+mysql
+performance_schema
+sys
+
+--- write a marker table into biolog_asu only ---
+$ docker exec biolog-mysql-tenant-asu-1 mysql -uroot -plocalroot biolog_asu -e 'CREATE TABLE isolation_marker(x INT); INSERT INTO isolation_marker VALUES (1);'
+(no output = statement succeeded)
+
+$ docker exec biolog-mysql-tenant-asu-1 mysql -uroot -plocalroot biolog_asu -e 'SELECT * FROM isolation_marker;'
+x
+1
+
+--- confirm the marker table is NOT visible from the grace tenant (separate instance/volume) ---
+$ docker exec biolog-mysql-tenant-grace-1 mysql -uroot -plocalroot biolog_grace -e 'SHOW TABLES;'
+(empty output above confirms isolation_marker from mysql-tenant-asu is not visible in mysql-tenant-grace)
+
+--- AC04 targeted reset: wipe just the redis volume, everything else stays up ---
+$ scripts/infra-reset.sh redis
+infra-reset: stopping redis and removing its volume biolog_redis_data
+ Container biolog-redis-1 Stopping 
+ Container biolog-redis-1 Stopped 
+Going to remove biolog-redis-1
+ Container biolog-redis-1 Removing 
+ Container biolog-redis-1 Removed 
+biolog_redis_data
+infra-reset: done (1 service volume(s) removed)
+
+$ docker volume ls | grep biolog_redis_data (expect: gone)
+confirmed: biolog_redis_data removed
+
+$ docker compose ps (expect: other 6 services still healthy/up)
+NAME                          IMAGE                                     COMMAND                  SERVICE              CREATED          STATUS                    PORTS
+biolog-azurite-1              mcr.microsoft.com/azure-storage/azurite   "docker-entrypoint.s…"   azurite              30 seconds ago   Up 29 seconds (healthy)   0.0.0.0:10000-10001->10000-10001/tcp, [::]:10000-10001->10000-10001/tcp
+biolog-mailpit-1              axllent/mailpit                           "/mailpit"               mailpit              30 seconds ago   Up 29 seconds (healthy)   0.0.0.0:1025->1025/tcp, [::]:1025->1025/tcp, 0.0.0.0:8025->8025/tcp, [::]:8025->8025/tcp
+biolog-mysql-control-1        mysql:8.4                                 "docker-entrypoint.s…"   mysql-control        30 seconds ago   Up 29 seconds (healthy)   0.0.0.0:33061->3306/tcp, [::]:33061->3306/tcp
+biolog-mysql-tenant-asu-1     mysql:8.4                                 "docker-entrypoint.s…"   mysql-tenant-asu     30 seconds ago   Up 29 seconds (healthy)   0.0.0.0:33062->3306/tcp, [::]:33062->3306/tcp
+biolog-mysql-tenant-grace-1   mysql:8.4                                 "docker-entrypoint.s…"   mysql-tenant-grace   30 seconds ago   Up 29 seconds (healthy)   0.0.0.0:33063->3306/tcp, [::]:33063->3306/tcp
+biolog-rabbitmq-1             rabbitmq:3-management-alpine              "docker-entrypoint.s…"   rabbitmq             30 seconds ago   Up 29 seconds (healthy)   0.0.0.0:5672->5672/tcp, [::]:5672->5672/tcp, 0.0.0.0:15672->15672/tcp, [::]:15672->15672/tcp
+
+--- AC04 full reset: stop everything, wipe every volume ---
+$ scripts/infra-reset.sh
+infra-reset: stopping the stack and removing every named volume
+ Container biolog-mailpit-1 Stopping 
+ Container biolog-mysql-tenant-grace-1 Stopping 
+ Container biolog-mysql-tenant-asu-1 Stopping 
+ Container biolog-rabbitmq-1 Stopping 
+ Container biolog-mysql-control-1 Stopping 
+ Container biolog-azurite-1 Stopping 
+ Container biolog-azurite-1 Stopped 
+ Container biolog-azurite-1 Removing 
+ Container biolog-azurite-1 Removed 
+ Container biolog-mailpit-1 Stopped 
+ Container biolog-mailpit-1 Removing 
+ Container biolog-mailpit-1 Removed 
+ Container biolog-mysql-tenant-asu-1 Stopped 
+ Container biolog-mysql-tenant-asu-1 Removing 
+ Container biolog-mysql-tenant-asu-1 Removed 
+ Container biolog-mysql-control-1 Stopped 
+ Container biolog-mysql-control-1 Removing 
+ Container biolog-mysql-control-1 Removed 
+ Container biolog-mysql-tenant-grace-1 Stopped 
+ Container biolog-mysql-tenant-grace-1 Removing 
+ Container biolog-rabbitmq-1 Stopped 
+ Container biolog-rabbitmq-1 Removing 
+ Container biolog-mysql-tenant-grace-1 Removed 
+ Container biolog-rabbitmq-1 Removed 
+ Network biolog_default Removing 
+ Network biolog_default Removed 
+biolog_mysql_control
+biolog_mysql_tenant_asu
+biolog_mysql_tenant_grace
+biolog_rabbitmq_data
+biolog_azurite_data
+biolog_mailpit_data
+infra-reset: done (all volumes removed)
+
+$ docker volume ls | grep ^biolog_ (expect: none)
+confirmed: all biolog_ volumes removed
+
+$ docker compose ps (expect: empty)
+NAME      IMAGE     COMMAND   SERVICE   CREATED   STATUS    PORTS

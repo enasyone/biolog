@@ -1,0 +1,10 @@
+{
+  "story_key": "BIO-RPT-001",
+  "stage": "builder",
+  "commit_hash": "99964c6",
+  "test_command": "dotnet build api/Biolog.Api/Biolog.Api.csproj && dotnet test tests/features/bio-rpt-001/Biolog.Features.Notifications.Tests.csproj && dotnet test tests/dotnet/Biolog.IntegrationTests/Biolog.IntegrationTests.csproj && dotnet test tests/dotnet/Biolog.UnitTests/Biolog.UnitTests.csproj && bash tests/features/bio-rpt-001/BIO-RPT-001.test.sh && bash scripts/check-module-project-references.sh && python3 scripts/check-traceability.py --all && bash scripts/secret-scan.sh --all",
+  "result": "PASS",
+  "timestamp": "2026-09-24T04:00:00Z",
+  "reviewer": "Emeka",
+  "data_classification": "SYNTHETIC"
+}

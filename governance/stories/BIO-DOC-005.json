@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-DOC-005",
+  "title": "Implement barcode parser registry and tenant parser workflow",
+  "owner": "Ifeanyi - Document Intelligence Engineer",
+  "reviewed_commit": "1b2fcb413e0e227cbead4c22f0f4f2bb072efa46",
+  "required_acceptance_stages": ["builder", "adversarial", "acceptance"],
+  "requirement_ids": [
+    "BIO-DOC-005-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-DOC-005-AC01",
+      "requirement_ids": ["BIO-DOC-005-REQ-001"],
+      "text": "BTS and permitted tenants can define parsers."
+    },
+    {
+      "id": "BIO-DOC-005-AC02",
+      "requirement_ids": ["BIO-DOC-005-REQ-001"],
+      "text": "Parser definitions are versioned, tested and published through approval."
+    },
+    {
+      "id": "BIO-DOC-005-AC03",
+      "requirement_ids": ["BIO-DOC-005-REQ-001"],
+      "text": "A parser specifies document/issuer applicability, field mapping and validation."
+    },
+    {
+      "id": "BIO-DOC-005-AC04",
+      "requirement_ids": ["BIO-DOC-005-REQ-001"],
+      "text": "Published parser changes create a new version."
+    },
+    {
+      "id": "BIO-DOC-005-AC05",
+      "requirement_ids": ["BIO-DOC-005-REQ-001"],
+      "text": "Tenant parser cannot inspect another tenant."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-DOC-005.test.sh",
+      "ac_ids": [
+        "BIO-DOC-005-AC01",
+        "BIO-DOC-005-AC02",
+        "BIO-DOC-005-AC03",
+        "BIO-DOC-005-AC04",
+        "BIO-DOC-005-AC05"
+      ]
+    },
+    {
+      "path": "tests/features/bio-doc-005/Biolog.Features.ParserRegistry.Tests/ParserCatalogAuthorshipTests.cs",
+      "ac_ids": ["BIO-DOC-005-AC01"]
+    },
+    {
+      "path": "tests/features/bio-doc-005/Biolog.Features.ParserRegistry.Tests/ParserWorkflowTests.cs",
+      "ac_ids": ["BIO-DOC-005-AC02", "BIO-DOC-005-AC04"]
+    },
+    {
+      "path": "tests/features/bio-doc-005/Biolog.Features.ParserRegistry.Tests/ParserIsolationTests.cs",
+      "ac_ids": ["BIO-DOC-005-AC05"]
+    },
+    {
+      "path": "tests/features/bio-doc-005/Biolog.Features.ParserRegistry.Tests/ParserExecutorTests.cs",
+      "ac_ids": ["BIO-DOC-005-AC03"]
+    },
+    {
+      "path": "tests/features/bio-doc-005/Biolog.Features.ParserRegistry.Tests/ParserResultTypesAreLockedDownTests.cs",
+      "ac_ids": ["BIO-DOC-005-AC02"]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-DOC-005/builder/metadata.json",
+      "stage": "builder",
+      "ac_ids": [
+        "BIO-DOC-005-AC01",
+        "BIO-DOC-005-AC02",
+        "BIO-DOC-005-AC03",
+        "BIO-DOC-005-AC04",
+        "BIO-DOC-005-AC05"
+      ]
+    }
+  ]
+}

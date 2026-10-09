@@ -1,0 +1,91 @@
+{
+  "story_key": "BIO-TEN-003",
+  "title": "Implement tenant feature configuration",
+  "implementation_commit": "a38d603",
+  "builder_head": "c071e221a3073737ba6606f288b6a004596536ac",
+  "reviewed_head": "920f571dbb12d72688dd60fd4544f07636d08f7c",
+  "environment": {
+    "profile": "local acceptance on Darwin arm64; synthetic fixtures only",
+    "timestamp": "2026-10-07"
+  },
+  "acceptance_criteria": {
+    "BIO-TEN-003-AC01": {
+      "result": "PASS",
+      "evidence": ["api/features/bio-ten-003/Domain/TenantModule.cs", "api/features/bio-ten-003/Domain/DocumentVerifySubfeature.cs", "tests/features/bio-ten-003/TenantFeatureConfigurationServiceTests.cs"],
+      "finding": "The configuration models all six required modules and the Document Verify subfeatures with validated, independently selectable state."
+    },
+    "BIO-TEN-003-AC02": {
+      "result": "PASS",
+      "evidence": ["api/features/bio-ten-003/Integration/TenantFeatureFlagPolicyAdapter.cs", "tests/features/bio-ten-003/TenantFeatureFlagPolicyAdapterTests.cs"],
+      "finding": "Face 1:N requires both the biometrics parent module and its distinct child flag; the real BIO-BIO-007 consumer fails closed unless both are enabled."
+    },
+    "BIO-TEN-003-AC03": {
+      "result": "PASS",
+      "evidence": ["api/features/bio-ten-003/TenantFeatureConfigurationService.cs", "tests/features/bio-ten-003/TenantFeatureConfigurationAuditTests.cs"],
+      "finding": "Configuration updates are versioned, serialized per tenant and audit-gated before commit."
+    },
+    "BIO-TEN-003-AC04": {
+      "result": "PASS_WITH_DISCLOSED_SCOPE",
+      "evidence": ["api/features/bio-ten-003/Domain/ITenantFeatureGateway.cs", "docs/features/bio-ten-003/README.md", "evidence/BIO-TEN-003/codex/REVIEW-Seyi-round3.md"],
+      "finding": "Unknown state defaults disabled and Face 1:N is enforced end to end through its existing consumer. The other five modules have a fail-closed gateway but no pre-existing consuming seam; that cross-story enforcement boundary is explicitly disclosed."
+    },
+    "BIO-TEN-003-AC05": {
+      "result": "PASS_WITH_FOLLOW_UP",
+      "evidence": ["web/features/tenants/live.ts", "web/app/administration/tenants/page.tsx", "tests/frontend/playwright/bio-ten-003-feature-configuration-live.spec.ts", "evidence/BIO-TEN-003/codex/REVIEW-Seyi-round3.md"],
+      "finding": "The approved tenant page is connected through TenantsPort to the real secured backend. Current LIVE browser proof is deliberately negative: a browser without actor provenance receives 401 and no false success. A positive authenticated LIVE Playwright workflow is owed when the shared web provenance bridge lands."
+    }
+  },
+  "commands": [
+    {"command": "./tests/features/bio-ten-003/bin/Debug/net10.0/Biolog.Features.TenantFeatureConfig.Tests", "result": "PASS (46/46)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (35 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS (clean, fallback scanner)"}
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "c071e221a3073737ba6606f288b6a004596536ac",
+    "implementation_commit": "a38d603",
+    "feature_tests": "46/46 PASS",
+    "integration_tests": "192/192 PASS",
+    "round3_metadata_sha256": "558238505cae82b29d33506eb359569d0e2ca55a58978d54659f6ea0d718e23c"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "result": "PASS_WITH_TRACKED_FOLLOW_UP",
+    "builder_commit_reviewed": "c071e221a3073737ba6606f288b6a004596536ac",
+    "review_commit": "920f571dbb12d72688dd60fd4544f07636d08f7c",
+    "evidence": "evidence/BIO-TEN-003/codex/REVIEW-Seyi-round3.md",
+    "evidence_sha256": "ae311661ccd6691c62154fdd91142b5f89778042b3163cf803f772c829943593"
+  },
+  "security_review": {
+    "reviewer": "Zainab",
+    "result": "PASS",
+    "builder_commit_reviewed": "c071e221a3073737ba6606f288b6a004596536ac",
+    "review_commit": "9b9200eb4e310820df0877af8f120a5a59f1a61b",
+    "evidence": "evidence/features/bio-ten-003/codex/SECURITY-REVIEW-ZAINAB-ROUND-3.md",
+    "evidence_sha256": "f22c401e9e7dca4569e9769df86dc4f7108fec2c2e229140338e038b8b5412d3"
+  },
+  "category_verdicts": {
+    "functional": "PASS",
+    "security": "PASS",
+    "tenant_isolation": "PASS",
+    "concurrency_data_integrity": "PASS",
+    "regression": "PASS",
+    "positive_live_browser_workflow": "DEFERRED_TO_TD-WEB-PROVENANCE-BRIDGE-REVERIFY"
+  },
+  "open_follow_up_obligations": [
+    {
+      "id": "TD-WEB-PROVENANCE-BRIDGE-REVERIFY/BIO-TEN-003",
+      "status": "OPEN",
+      "trigger": "TD-WEB-PROVENANCE-BRIDGE ships",
+      "required_action": "Re-open and re-verify BIO-TEN-003 with positive authenticated LIVE Playwright: prove a provenance-bearing authorized tenant administrator can read and update feature configuration through the real browser and API servers, and confirm an unprivileged browser is denied.",
+      "current_negative_proof": "The real LIVE browser/API test proves a proof-less request is rejected with 401 before any read or mutation and the UI does not report false success."
+    }
+  ],
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "AC01-AC04 and the disclosed AC05 boundary map to exact-commit implementation, tests, builder evidence and independent QA/security PASS reviews. Fresh executable, traceability, module-direction and secret checks pass. Acceptance preserves the mandatory positive authenticated LIVE re-verification after the shared web provenance bridge ships."
+  }
+}

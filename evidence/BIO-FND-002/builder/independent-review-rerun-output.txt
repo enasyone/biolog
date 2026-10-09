@@ -1,0 +1,12 @@
+PASS AC01/02/04 exact synthetic baseline succeeds
+PASS AC04 tampered manifest pin is detected
+PASS AC03 missing web lock is rejected
+PASS AC03 missing mobile lock is rejected
+PASS AC03 missing API lock is rejected
+PASS AC04 malformed versions.json fails closed
+PASS AC04 partial versions.json fails closed
+PASS AC02/03/04 tampered .nvmrc is detected
+PASS AC02/03/04 tampered global.json is detected
+PASS AC02/03/04 tampered package.json pins are detected
+PASS AC04 unsupported MySQL 9.x is rejected
+exit 0

@@ -1,0 +1,10 @@
+66188f7 feat(bio-acc-003): implement offline deny-list and cached access decisions
+d5a44b2 Merge feature/BIO-VIS-001: visitor preregistration and host approval
+6ee46d4 evidence(BIO-VIS-001): record acceptance pass
+75b8640 review(BIO-VIS-001): pass visitor preregistration core
+bbc4ea4 evidence(BIO-VIS-001): record builder evidence
+---
+ M governance/stories/BIO-ACC-003.json
+?? evidence/BIO-ACC-003/
+---HEAD---
+66188f748a956717de77cb0ee1b77638372abe15

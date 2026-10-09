@@ -1,0 +1,10 @@
+{
+  "story_key": "BIO-UX-002",
+  "stage": "builder",
+  "commit_hash": "61a5ed4cec3b5414ee0c5c0fdad90b6b729da4c0",
+  "test_command": "(cd web && ./node_modules/.bin/tsc --noEmit && ./node_modules/.bin/next build) && (cd tests/frontend && ./node_modules/.bin/vitest run) && (cd tests/frontend && BIOLOG_BASE_URL=http://127.0.0.1:3212 ./node_modules/.bin/playwright test)",
+  "result": "PASS",
+  "timestamp": "2026-09-23T13:45:00Z",
+  "reviewer": "Damilola",
+  "data_classification": "SYNTHETIC"
+}

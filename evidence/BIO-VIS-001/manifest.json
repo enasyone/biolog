@@ -1,0 +1,70 @@
+{
+  "story_key": "BIO-VIS-001",
+  "title": "Implement visitor preregistration and host approval",
+  "implementation_commit": "b43bd6e7cfce71dccc5c6b8d8568c6d8bdfd85dd",
+  "reviewed_head": "75b86406e4ce839994cfd5f41ad7bfbb5936c4d6",
+  "environment": {
+    "profile": "local acceptance; synthetic fixtures only; GitHub push blocked",
+    "timestamp": "2026-09-24T05:00:33Z"
+  },
+  "acceptance_criteria": {
+    "BIO-VIS-001-AC01": {
+      "result": "PASS",
+      "evidence": ["person linkage is optional", "present person and host references are existence-checked"]
+    },
+    "BIO-VIS-001-AC02": {
+      "result": "PASS",
+      "evidence": ["pending approval is decided once", "approve, deny, check-in and check-out transitions are audited", "approval requires permission and verified provenance"]
+    },
+    "BIO-VIS-001-AC03": {
+      "result": "PASS",
+      "evidence": ["vehicle, NDA, safety briefing, watchlist and temporary credential fields are modeled", "tenant configuration is independently configurable and CAS-versioned", "check-in enforces configured requirements"]
+    },
+    "BIO-VIS-001-AC04": {
+      "result": "PASS",
+      "evidence": ["expiry is computed at read time without mutating the stored record", "expired preregistrations cannot check in"]
+    },
+    "BIO-VIS-001-AC05": {
+      "result": "PASS",
+      "evidence": ["existing VisitorService live routes map to the real visitor domain bridge", "approved visitor page, ports and mock files are unchanged", "HYBRID display-data boundary is documented"]
+    }
+  },
+  "commands": [
+    {"command": "tests/features/bio-vis-001/bin/Debug/net10.0/Biolog.Features.Visitors.Tests", "result": "PASS (25/25)"},
+    {"command": "bash tests/features/bio-vis-001/BIO-VIS-001.test.sh", "result": "PASS (31/31)"},
+    {"command": "dotnet build api/Biolog.Api/Biolog.Api.csproj --no-restore -m:1 /nodeReuse:false", "result": "UNAVAILABLE in acceptance sandbox (MSBuild pipe stall); commit-bound builder build PASS and compiled feature executable replay PASS"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (31 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS (built-in fallback scan clean)"}
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "b43bd6e7cfce71dccc5c6b8d8568c6d8bdfd85dd",
+    "feature_tests": "25/25 PASS",
+    "host_channel_tests": "6/6 PASS",
+    "integration_tests": "146/146 PASS on clean full run",
+    "structural_tests": "31/31 PASS",
+    "metadata_sha256": "a5d7824c1b76d2f086f7f1231afb503895edd63d21bad220b7823d2ec789cf75"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "result": "PASS",
+    "evidence": "evidence/features/bio-vis-001/codex/REVIEW-Seyi.md",
+    "evidence_sha256": "9ed47da80aee4412071fa7ba8e52375e6f7046a406d432aaa8e654d9917c4c0b"
+  },
+  "category_verdicts": {
+    "functional": "PASS",
+    "security": "PASS",
+    "tenant_isolation": "PASS",
+    "offline_recovery": "NOT_APPLICABLE",
+    "concurrency": "PASS",
+    "regression": "PASS"
+  },
+  "disclosures": ["BIO-FND-008 ObservabilityTests has a pre-existing Console.Out parallel race; isolated tests and a clean full 146/146 run confirm it is unrelated to BIO-VIS-001."],
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "All five acceptance criteria have commit-bound builder evidence, independent Seyi PASS, and successful focused acceptance replay; no unresolved Critical or High finding exists."
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-MOB-003",
+  "title": "Implement central/offline synchronization and conflict queue",
+  "owner": "Busola - Mobile & Edge Engineer",
+  "reviewed_commit": "8ebe1da5092e4bb7e53896a6240ca6a4ac698fe2",
+  "required_acceptance_stages": ["builder", "adversarial", "acceptance"],
+  "requirement_ids": [
+    "BIO-MOB-003-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-MOB-003-AC01",
+      "requirement_ids": ["BIO-MOB-003-REQ-001"],
+      "text": "Delta sync supports additions/updates/revocations."
+    },
+    {
+      "id": "BIO-MOB-003-AC02",
+      "requirement_ids": ["BIO-MOB-003-REQ-001"],
+      "text": "Server acknowledgements are idempotent."
+    },
+    {
+      "id": "BIO-MOB-003-AC03",
+      "requirement_ids": ["BIO-MOB-003-REQ-001"],
+      "text": "Critical conflicts enter Sync Resolution Queue."
+    },
+    {
+      "id": "BIO-MOB-003-AC04",
+      "requirement_ids": ["BIO-MOB-003-REQ-001"],
+      "text": "Last-write-wins is not used for security-sensitive data."
+    },
+    {
+      "id": "BIO-MOB-003-AC05",
+      "requirement_ids": ["BIO-MOB-003-REQ-001"],
+      "text": "Reconnect storms do not create duplicates."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-MOB-003.test.sh",
+      "ac_ids": [
+        "BIO-MOB-003-AC01",
+        "BIO-MOB-003-AC02",
+        "BIO-MOB-003-AC03",
+        "BIO-MOB-003-AC04",
+        "BIO-MOB-003-AC05"
+      ]
+    },
+    {
+      "path": "tests/flutter/test/bio_mob_003_ac01_delta_operations_test.dart",
+      "ac_ids": ["BIO-MOB-003-AC01"]
+    },
+    {
+      "path": "tests/flutter/test/bio_mob_003_ac02_idempotent_ack_test.dart",
+      "ac_ids": ["BIO-MOB-003-AC02"]
+    },
+    {
+      "path": "tests/flutter/test/bio_mob_003_ac03_ac04_conflict_test.dart",
+      "ac_ids": ["BIO-MOB-003-AC03", "BIO-MOB-003-AC04"]
+    },
+    {
+      "path": "tests/flutter/test/bio_mob_003_ac05_reconnect_storm_test.dart",
+      "ac_ids": ["BIO-MOB-003-AC05"]
+    },
+    {
+      "path": "tests/flutter/test/bio_mob_003_femi01_http_sync_transport_test.dart",
+      "ac_ids": ["BIO-MOB-003-AC01", "BIO-MOB-003-AC02"]
+    },
+    {
+      "path": "tests/flutter/test/bio_mob_003_femi01_session_wiring_test.dart",
+      "ac_ids": ["BIO-MOB-003-AC01", "BIO-MOB-003-AC05"]
+    },
+    {
+      "path": "tests/flutter/test/bio_mob_003_femi02_femi03_test.dart",
+      "ac_ids": ["BIO-MOB-003-AC01", "BIO-MOB-003-AC05"]
+    },
+    {
+      "path": "tests/features/bio-mob-003/BIO-MOB-003.test.sh",
+      "ac_ids": [
+        "BIO-MOB-003-AC01",
+        "BIO-MOB-003-AC02",
+        "BIO-MOB-003-AC03",
+        "BIO-MOB-003-AC04",
+        "BIO-MOB-003-AC05"
+      ]
+    },
+    {
+      "path": "tests/features/bio-mob-003/OfflineSyncEndpointsIntegrationTests.cs",
+      "ac_ids": [
+        "BIO-MOB-003-AC01",
+        "BIO-MOB-003-AC02",
+        "BIO-MOB-003-AC03",
+        "BIO-MOB-003-AC04",
+        "BIO-MOB-003-AC05"
+      ]
+    },
+    {
+      "path": "tests/dotnet/Biolog.IntegrationTests/OfflineSyncHostChannelTests.cs",
+      "ac_ids": ["BIO-MOB-003-AC01", "BIO-MOB-003-AC02"]
+    },
+    {
+      "path": "tests/features/bio-mob-003/OfflineSyncAuditAtomicityTests.cs",
+      "ac_ids": ["BIO-MOB-003-AC02", "BIO-MOB-003-AC03", "BIO-MOB-003-AC04"]
+    },
+    {
+      "path": "tests/features/bio-mob-003/OfflineMutationFingerprintTests.cs",
+      "ac_ids": ["BIO-MOB-003-AC02"]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-MOB-003/builder/metadata.json",
+      "stage": "builder",
+      "ac_ids": [
+        "BIO-MOB-003-AC01",
+        "BIO-MOB-003-AC02",
+        "BIO-MOB-003-AC03",
+        "BIO-MOB-003-AC04",
+        "BIO-MOB-003-AC05"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+branch:
+feature/BIO-FND-008
+
+remotes (expect none):
+
+log:
+8f14088 BIO-FND-008: create ASP.NET Core API/service shell
+31b1eb4 Merge feature/BIO-ARC-006: freeze W01 shared contract baseline
+4a98bb0 review: pass BIO-ARC-006 round 4
+cead834 BIO-ARC-006: record QA-04 remediation evidence
+089ba4c BIO-ARC-006: distinguish tamper rejection from setup failure

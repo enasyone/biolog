@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.biolog.local/problem-response.schema.json",
+  "title": "BIOLOG API problem response",
+  "description": "ADR-0004 Decision 2. The one HTTP error envelope for the whole platform: a direct serialisation of the (message, code, status, detail) shape TenantContextError, ConcurrencyError and AuditError already independently share. Served as application/problem+json. Examples are SYNTHETIC.",
+  "type": "object",
+  "required": ["code", "message", "status", "correlation_id"],
+  "properties": {
+    "code": {
+      "description": "Machine-readable reason. snake_case, matching the reason_code convention used across ADR-0001/0002/0003.",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "message": {
+      "description": "Human-readable explanation. Never parsed by a machine; code is what a caller branches on.",
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "description": "The HTTP status of this response, repeated in the body because some transports strip it.",
+      "type": "integer",
+      "minimum": 100,
+      "maximum": 599
+    },
+    "correlation_id": {
+      "description": "ADR-0004 Decision 3: the same evt_ identifier threaded into any audit/domain event this request produced. Never a second, HTTP-only id space.",
+      "type": "string",
+      "pattern": "^evt_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "detail": {
+      "description": "Optional. Built through contracts/js/audit.mjs redact(), never a raw internal object (ADR-0004 Decision 2.3).",
+      "type": "object"
+    },
+    "errors": {
+      "description": "Present only for a validation failure (ADR-0004 Decision 5.3). Never present alongside a non-validation code.",
+      "type": "array",
+      "items": { "$ref": "validation-error-item.schema.json" },
+      "minItems": 1
+    }
+  },
+  "examples": [
+    {
+      "code": "tenant_context_conflict",
+      "message": "tenant channels disagree: host=ten_0199e0c1-8b2f-7c31-9a4e-2f6b1d0c5a77, principal=ten_0199e0c2-1b24-7085-9c36-4e9f6a8b2d03",
+      "status": 403,
+      "correlation_id": "evt_0199e0c2-2c35-7196-ad47-5f0a7b9c3e14",
+      "detail": { "channels": ["host", "principal"] }
+    }
+  ]
+}

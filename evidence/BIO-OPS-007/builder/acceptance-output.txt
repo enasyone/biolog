@@ -1,0 +1,15 @@
+PASS  AC01 two distinct replacements race activation in a story-owned developer test
+PASS  AC01 proof asserts exactly one active card and one successful activation
+PASS  AC02 reconnect-storm proof races overlapping sync passes
+PASS  AC02 proof asserts one upload per event
+PASS  AC03 API/UI baseline evidence is machine-readable
+PASS  AC03 evidence separates controlled measurements from production claims
+PASS  AC04 database interruption has recovery and integrity assertions
+PASS  AC04 queue interruption has retry/no-loss/no-duplicate assertions
+PASS  AC04 network interruption is injected mid-request
+PASS  AC04 network recovery coalesces a follow-up pass
+PASS  AC05 16GB laptop profile documented
+PASS  AC05 32GB laptop profile documented
+PASS  AC05 64GB laptop profile documented
+==============================
+13 passed, 0 failed

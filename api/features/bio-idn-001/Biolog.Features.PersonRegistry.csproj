@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-IDN-001 owns api/features/bio-idn-001/** only. No ProjectReference to
+         Biolog.Api.csproj here: the dependency is one-way (Biolog.Api -> this project),
+         enforced by scripts/check-module-project-references.sh, learned from BIO-TEN-001's
+         circular-reference integration failure (dotnet build hangs at "Determining projects
+         to restore..." with no diagnostic text) and BIO-TEN-002's identical fix. This
+         project's own module adapter lives in api/Biolog.Api/Modules/BioIdn001Module.cs from
+         the start, matching DocumentModule.cs, DeviceRegistryModule.cs, BioTen001Module.cs
+         and BioTen002Module.cs - it was never written inside this project first.
+
+         Tenant context (ADR-0002) is consumed through this project's own
+         Tenancy/ICurrentTenantProvider.cs, not Biolog.Api.Tenancy.ITenantContextAccessor
+         directly - the same one-way constraint applies to that dependency too. See that
+         interface's header and docs/features/bio-idn-001/README.md "Tenant context seam"
+         for why.
+
+         Namespace root is "PersonRegistry", not "Person": the aggregate type this project
+         defines IS named Person (Domain/Person.cs), and C# allows but does not make pleasant
+         a namespace segment and a type sharing one identifier - mirrors BIO-TEN-001's
+         "entity: Tenant, project: TenantRegistry" and BIO-TEN-002's "entity: TenantDomain,
+         project: TenantDomainRegistry" convention. -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- BIO-IDN-001-QA-01 (Seyi round 1): Person's constructor and IPersonRepository/
+         InMemoryPersonRepository are internal, restricted to this assembly's own resolver
+         (PersonService). These two are the explicit, auditable test/host seam that grants the
+         same access - visible here in source control, not a reflection-based backdoor -
+         mirroring Biolog.Api.csproj's identical InternalsVisibleTo grant for
+         TenantContext/TenantContextAccessor (BIO-TEN-002-QA-03). Biolog.Api needs it for
+         BioIdn001Module's DI registration; the test project needs it to construct a Person
+         and drive IPersonRepository directly in unit/audit tests. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.PersonRegistry.Tests" />
+  </ItemGroup>
+
+</Project>

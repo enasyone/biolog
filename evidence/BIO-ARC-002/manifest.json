@@ -1,0 +1,102 @@
+{
+  "story_key": "BIO-ARC-002",
+  "story_title": "Define tenant context and database routing contract",
+  "implementation_commit": "8bd5c665aa85cdfaed2d875929ba1cf56b19eb8b",
+  "builder_head": "4840c993592e8f8443b25c7075c6902f5cf2606d",
+  "environment_profile": {
+    "operating_system": "macOS 26.4 (build 25E246)",
+    "kernel": "Darwin 25.4.0 arm64",
+    "node": "20.20.2",
+    "python": "3.14.3",
+    "git": "2.53.0",
+    "profile": "local offline acceptance; synthetic fixtures only"
+  },
+  "timestamp": "2026-09-20T21:05:46Z",
+  "acceptance_criteria": {
+    "BIO-ARC-002-AC01": {
+      "result": "PASS",
+      "evidence": ["builder/SUMMARY.md", "builder/developer-test-output.txt", "builder/contract-suite-output.txt", "codex/REREVIEW-ROUND-3.md", "codex/SECURITY-REVIEW-ZAINAB.md"]
+    },
+    "BIO-ARC-002-AC02": {
+      "result": "PASS",
+      "evidence": ["builder/SUMMARY.md", "builder/developer-test-output.txt", "builder/contract-suite-output.txt", "codex/REREVIEW-ROUND-3.md", "codex/SECURITY-REVIEW-ZAINAB.md"]
+    },
+    "BIO-ARC-002-AC03": {
+      "result": "PASS",
+      "evidence": ["builder/SUMMARY.md", "builder/developer-test-output.txt", "builder/contract-suite-output.txt", "codex/REREVIEW-ROUND-3.md", "codex/SECURITY-REVIEW-ZAINAB.md"]
+    },
+    "BIO-ARC-002-AC04": {
+      "result": "PASS",
+      "evidence": ["builder/SUMMARY.md", "builder/developer-test-output.txt", "builder/contract-suite-output.txt", "builder/reviewer-probes-awaited.txt", "codex/REREVIEW-ROUND-3.md", "codex/SECURITY-REVIEW-ZAINAB.md"]
+    }
+  },
+  "commands": [
+    {
+      "command": "tests/foundation/BIO-ARC-002.test.sh",
+      "result": "PASS (30/30; exit 0)",
+      "evidence": "builder/developer-test-output.txt",
+      "sha256": "47e6193e268781071df0015ce7be4fa8d5f82658d3481d9ca69db88101e06e82"
+    },
+    {
+      "command": "node --test contracts/js/",
+      "result": "PASS (121/121; exit 0)",
+      "evidence": "builder/contract-suite-output.txt",
+      "sha256": "faad8a9ad0b589ad1d76a4c8f1109d2b79a3099b02b2d09b9dfecc12f7820025"
+    },
+    {
+      "command": "bash evidence/BIO-ARC-002/codex/independent-review.sh",
+      "result": "PASS (builder suite and 8 independent probes; exit 0)",
+      "evidence": "codex/independent-review.sh",
+      "sha256": "ff6fed22f36f00d7b70aa56f2998688369f8fa6153d4c879c3f0490955ea20fd"
+    },
+    {
+      "command": "node evidence/BIO-ARC-002/builder/reviewer-probes-awaited.mjs",
+      "result": "PASS (5/5; exit 0)",
+      "evidence": "builder/reviewer-probes-awaited.txt",
+      "sha256": "0e5f69779f862f4275fd1c4de7a638951056969ba3ca369aeaff8370287d27e0"
+    },
+    {
+      "command": "scripts/secret-scan.sh --all",
+      "result": "PASS (clean; exit 0)",
+      "evidence": "builder/secret-scan-output.txt",
+      "sha256": "98b48f0b2f0d789cde914c04c249880176c350aa22d00361913b175b0d74346d"
+    }
+  ],
+  "builder_verdict": {
+    "reviewer": "Kemi",
+    "result": "PASS",
+    "implementation_commit": "8bd5c665aa85cdfaed2d875929ba1cf56b19eb8b",
+    "evidence_head": "4840c993592e8f8443b25c7075c6902f5cf2606d"
+  },
+  "independent_qa_verdicts": [
+    {
+      "reviewer": "Seyi",
+      "round": 3,
+      "result": "PASS",
+      "reviewed_implementation_commit": "8bd5c665aa85cdfaed2d875929ba1cf56b19eb8b",
+      "reviewed_builder_head": "4840c993592e8f8443b25c7075c6902f5cf2606d",
+      "evidence": "codex/REREVIEW-ROUND-3.md",
+      "sha256": "2e3ebbde6963caaa644d0ef6ed4fdcacd56aaffca1d8994998fe436c8c68c093"
+    },
+    {
+      "reviewer": "Zainab",
+      "round": 1,
+      "result": "PASS",
+      "reviewed_implementation_commit": "8bd5c665aa85cdfaed2d875929ba1cf56b19eb8b",
+      "reviewed_builder_head": "4840c993592e8f8443b25c7075c6902f5cf2606d",
+      "evidence": "codex/SECURITY-REVIEW-ZAINAB.md",
+      "sha256": "2ef63ff6c4e8bcdaf8994b92f7044027c711e7aee25948a004c9ecff18981c6a"
+    }
+  ],
+  "security_verdict": "PASS",
+  "tenant_isolation_verdict": "PASS",
+  "offline_recovery_verdict": "NOT_APPLICABLE",
+  "concurrency_verdict": "PASS",
+  "performance_verdict": "NOT_APPLICABLE",
+  "screenshots": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "AC01-AC04 have reproducible builder, adversarial and security evidence. QA-01, QA-02 and QA-03 are closed; cross-tenant access fails closed and is audited before denial. The malformed-thenable observation also fails closed and cannot yield an ordinary unaudited denial."
+  }
+}

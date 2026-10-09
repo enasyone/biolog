@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-CRD-004 owns api/features/bio-crd-004/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh)
+         and no ProjectReference to api/features/bio-crd-002 or api/features/bio-crd-003
+         either: this project needs nothing from either at runtime - the barcode profile
+         catalogue and validator are stateless, tenant-independent reference data (same
+         shape as BIO-CRD-002's own card-format catalogue), and signature-asset versioning
+         is a self-contained tenant-scoped aggregate keyed by a caller-supplied lineage id,
+         not a photo/person/card-designer-canvas concept. "Dependencies: BIO-CRD-002" in the
+         story's own metadata is build-wave sequencing (both stories share the
+         `card-designer` conflict group), not a runtime dependency.
+
+         Its own module adapter lives in api/Biolog.Api/Modules/BioCrd004Module.cs from the
+         start, matching every prior story.
+
+         Namespace root is "CardObjects". No new ADR-0001 canonical identifier type is
+         minted for a signature asset - it is keyed by (TenantId, LineageId, Version), the
+         same "no canonical id of its own kind" choice BIO-CRD-001's BrandAsset and
+         BIO-PHO-001's PhotoMaster both made for an identical reason (see
+         Domain/SignatureAsset.cs). The signature-asset repository follows BIO-CRD-001's
+         own BrandAsset precedent (tenant-scoped, in-memory, optimistic-retry versioning,
+         no audit sink or lock registry) rather than PhotoMaster's heavier
+         audit-atomicity/lock-registry apparatus, since this story's own AC04 text asks
+         only for versioning and no AC here asks for an audit trail, RBAC gate or
+         cross-story identity existence check. -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.CardObjects.Tests" />
+  </ItemGroup>
+
+</Project>

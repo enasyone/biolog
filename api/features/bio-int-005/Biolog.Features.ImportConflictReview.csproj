@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-INT-005 owns api/features/bio-int-005/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh)
+         and, deliberately, no ProjectReference to api/features/bio-int-002's project either:
+         this story reads BIO-INT-002's already-computed field-level conflicts through its own
+         narrow Domain/IImportConflictGateway.cs, never a shared store or BIO-INT-002's own
+         (internal) IImportBatchRepository - the same cross-story gateway pattern every sibling
+         story in this epic uses. "Dependencies: BIO-INT-002, BIO-IDN-005" in this story's
+         metadata is build-wave/conceptual sequencing (BIO-INT-002's own conflict detection must
+         exist first; BIO-IDN-005 is this story's structural precedent for a human-review
+         decision record), not a runtime service dependency.
+
+         This project's own module adapter lives in api/Biolog.Api/Modules/BioInt005Module.cs
+         from the start (never written here first), matching every prior story.
+
+         Namespace root is "ImportConflictReview": the aggregate this project defines is
+         ImportConflictReview (Domain/ImportConflictReview.cs), never a canonical ADR-0001
+         identifier type of its own (same "hostname/pair/triple as natural key" shape
+         BIO-TEN-002/BIO-IDN-002/BIO-IDN-003/BIO-IDN-005 all already use). -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Applying BIO-IDN-001-QA-01's lesson from the start: ImportConflictReview's constructor
+         and IImportConflictReviewRepository/InMemoryImportConflictReviewRepository are internal
+         - this grant is the explicit, auditable seam for Biolog.Api (DI registration) and this
+         project's own test assembly. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.ImportConflictReview.Tests" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,56 @@
+$ rg -n authorization gaps in mutation endpoints/services
+api/features/bio-idn-006/PermissionService.cs:21:/// one mutation (<see cref="SetGrantAsync"/>); <see cref="PermissionGrantLockRegistry"/>'s
+api/features/bio-idn-006/PermissionService.cs:37:    public async Task<RolePermissionGrant> SetGrantAsync(
+api/features/bio-idn-006/PermissionService.cs:42:        if (role == RoleType.SuperAdmin)
+api/features/bio-idn-006/MakerCheckerService.cs:40:    public async Task<SensitiveActionRule> SetActionRuleAsync(
+api/features/bio-idn-006/RoleAssignmentService.cs:87:        if (role == RoleType.SuperAdmin)
+api/features/bio-idn-006/RoleAssignmentService.cs:89:            await RequireSuperAdminMutationAuthorityAsync(tenantId, actor, SuperAdminAssignActionKey, personId, cancellationToken);
+api/features/bio-idn-006/RoleAssignmentService.cs:131:        if (role == RoleType.SuperAdmin)
+api/features/bio-idn-006/RoleAssignmentService.cs:133:            await RequireSuperAdminMutationAuthorityAsync(tenantId, actor, SuperAdminRevokeActionKey, personId, cancellationToken);
+api/features/bio-idn-006/RoleAssignmentService.cs:219:    private async Task RequireSuperAdminMutationAuthorityAsync(
+api/features/bio-idn-006/Api/MakerCheckerEndpoints.cs:32:            var actor = ActorResolver.Resolve(context.Request);
+api/features/bio-idn-006/Api/MakerCheckerEndpoints.cs:34:            var rule = await service.SetActionRuleAsync(actionKey, request, actor, correlationId, context.RequestAborted);
+api/features/bio-idn-006/Api/MakerCheckerEndpoints.cs:48:            var actor = ActorResolver.Resolve(context.Request);
+api/features/bio-idn-006/Api/MakerCheckerEndpoints.cs:66:            var actor = ActorResolver.Resolve(context.Request);
+api/features/bio-idn-006/Api/RoleAssignmentEndpoints.cs:34:        var actor = ActorResolver.Resolve(context.Request);
+api/features/bio-idn-006/Api/RoleAssignmentEndpoints.cs:42:        var actor = ActorResolver.Resolve(context.Request);
+api/features/bio-idn-006/Api/PermissionEndpoints.cs:21:        endpoints.MapPut(GrantsBasePath, SetGrantAsync);
+api/features/bio-idn-006/Api/PermissionEndpoints.cs:26:    private static Task SetGrantAsync(HttpContext context, PermissionService service, string role, string permissionKey) =>
+api/features/bio-idn-006/Api/PermissionEndpoints.cs:29:            var actor = ActorResolver.Resolve(context.Request);
+api/features/bio-idn-006/Api/PermissionEndpoints.cs:32:            var grant = await service.SetGrantAsync(parsedRole, permissionKey, request, actor, correlationId, context.RequestAborted);
+api/features/bio-idn-006/Api/PermissionDtos.cs:40:        Granted = role == RoleType.SuperAdmin || (grant?.Granted ?? false),
+api/features/bio-idn-006/Api/PermissionDtos.cs:41:        IsDefault = role == RoleType.SuperAdmin || grant is null,
+$ rg -n approval consumption/reuse
+docs/features/bio-idn-006/README.md:12:| **AC03** | Sensitive actions can require second approval | `SensitiveActionRule` (tenant-scoped opt-in) + `ApprovalRequest` (the maker-checker workflow itself, separation of duties structurally enforced); `RoleAssignmentService`'s own `SUPER_ADMIN` mutation is the real, owned consumer of `IsActionClearedAsync` (BIO-IDN-006-QA-02) | `MakerCheckerServiceTests` (AC03 + mandatory privilege-escalation tests), `RoleAssignmentServiceTests` (QA-02 clearance-gate tests) |
+docs/features/bio-idn-006/README.md:108:`MakerCheckerService.IsActionClearedAsync(actionKey, targetRef)` is the convenience gate a future
+docs/features/bio-idn-006/README.md:109:consumer would call: true when the tenant never required approval for this action, or when the
+docs/features/bio-idn-006/README.md:183:### BIO-IDN-006-QA-02 (Seyi round 1, High) - maker-checker clearance had no production consumer
+docs/features/bio-idn-006/README.md:185:**Finding.** `MakerCheckerService.IsActionClearedAsync` existed, was fully tested in isolation,
+docs/features/bio-idn-006/README.md:188:must consume the hook."
+docs/features/bio-idn-006/README.md:192:`IsActionClearedAsync`, using action keys `"rbac.super_admin_assign"`/`"rbac.super_admin_revoke"`
+api/features/bio-idn-006/MakerCheckerService.cs:159:            decision == ApprovalRequestStatus.Approved ? "approval_granted" : "approval_denied", correlationId, cancellationToken);
+api/features/bio-idn-006/MakerCheckerService.cs:180:    public async Task<bool> IsActionClearedAsync(string actionKey, string targetRef, CancellationToken cancellationToken = default)
+api/features/bio-idn-006/MakerCheckerService.cs:190:        return latest?.Status == ApprovalRequestStatus.Approved;
+api/features/bio-idn-006/MakerCheckerService.cs:294:            case "APPROVED": status = ApprovalRequestStatus.Approved; return true;
+tests/features/bio-idn-006/RbacGovernanceTests.cs:12:/// be inaccessible to ordinary production consumers. This test project has
+tests/features/bio-idn-006/RbacGovernanceTests.cs:121:        var notInitial = NewRequest(TenantA) with { Status = ApprovalRequestStatus.Approved };
+tests/features/bio-idn-006/RbacGovernanceTests.cs:149:            Status = ApprovalRequestStatus.Approved, RequestedByActorId = original.RequestedByActorId, RequestReason = original.RequestReason,
+tests/features/bio-idn-006/RbacGovernanceTests.cs:165:            original, original with { Status = ApprovalRequestStatus.Approved, DecidedByActorId = "checker_1", Version = 2 }, "checker_1", ct);
+tests/features/bio-idn-006/RbacGovernanceTests.cs:179:        await repository.ReplaceAsync(original, original with { Status = ApprovalRequestStatus.Approved, DecidedByActorId = "checker_1", Version = 2 }, "checker_1", ct);
+tests/features/bio-idn-006/MakerCheckerServiceTests.cs:44:        Assert.True(await service.IsActionClearedAsync(ActionKey, TargetRef, ct)); // nothing configured -> always cleared
+tests/features/bio-idn-006/MakerCheckerServiceTests.cs:57:        Assert.False(await service.IsActionClearedAsync(ActionKey, TargetRef, ct)); // required, but never requested -> not cleared
+tests/features/bio-idn-006/MakerCheckerServiceTests.cs:125:        Assert.Equal(ApprovalRequestStatus.Approved, decided.Status);
+tests/features/bio-idn-006/MakerCheckerServiceTests.cs:141:        Assert.True(await service.IsActionClearedAsync(ActionKey, TargetRef, ct));
+tests/features/bio-idn-006/MakerCheckerServiceTests.cs:156:        Assert.False(await service.IsActionClearedAsync(ActionKey, TargetRef, ct));
+tests/features/bio-idn-006/MakerCheckerServiceTests.cs:223:        var forged = original with { Status = ApprovalRequestStatus.Approved, DecidedByActorId = "someone_else", Version = 2 };
+tests/features/bio-idn-006/RoleAssignmentServiceTests.cs:24:    /// <summary>A fresh MakerCheckerService with no SensitiveActionRule ever configured - IsActionClearedAsync's own fail-open default means this always clears, so tests that do not care about maker-checker at all are unaffected.</summary>
+tests/features/bio-idn-006/BIO-IDN-006.test.sh:53:# --- BIO-IDN-006-QA-02 (Seyi round 1, High): maker-checker clearance had no production consumer ---
+tests/features/bio-idn-006/BIO-IDN-006.test.sh:54:check "QA-02 mutating SUPER_ADMIN is itself gated by MakerCheckerService.IsActionClearedAsync - a real, owned sensitive action" \
+tests/features/bio-idn-006/BIO-IDN-006.test.sh:55:  bash -c "grep -q 'makerCheckerService.IsActionClearedAsync' '$FEATURE/RoleAssignmentService.cs'"
+tests/features/bio-idn-006/BIO-IDN-006.test.sh:164:check "governance: reflection tests prove every repository/aggregate/service is inaccessible to ordinary production consumers" \
+api/features/bio-idn-006/Domain/ApprovalRequestStatus.cs:22:        ApprovalRequestStatus.Approved => "APPROVED",
+api/features/bio-idn-006/Domain/RolePermissionGrant.cs:20:/// security primitive with no real consumers yet is to grant nothing until asked.
+api/features/bio-idn-006/RoleAssignmentService.cs:53:/// <b>BIO-IDN-006-QA-02 (Seyi round 1, High).</b> <see cref="MakerCheckerService.IsActionClearedAsync"/>
+api/features/bio-idn-006/RoleAssignmentService.cs:54:/// existed but had no real production consumer - "the story supplies a
+api/features/bio-idn-006/RoleAssignmentService.cs:58:/// sensitive action, gated by <see cref="MakerCheckerService.IsActionClearedAsync"/> using action
+api/features/bio-idn-006/RoleAssignmentService.cs:227:        if (!await makerCheckerService.IsActionClearedAsync(actionKey, targetPersonId, cancellationToken))

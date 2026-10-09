@@ -1,0 +1,10 @@
+{
+  "story_key": "BIO-FND-007",
+  "stage": "builder",
+  "commit_hash": "12a14ded7736558cc7d465aed7d7f5c7db99e08b",
+  "test_command": "bash tests/foundation/BIO-FND-007.test.sh && (cd tests/frontend && ./node_modules/.bin/vitest run unit/bio-fnd-007-tokens.test.ts unit/bio-fnd-007-permissions.test.ts) && (cd web && ./node_modules/.bin/tsc --noEmit && ./node_modules/.bin/next build) && (cd tests/frontend && BIOLOG_BASE_URL=http://127.0.0.1:3100 ./node_modules/.bin/playwright test playwright/bio-fnd-007-shell.spec.ts)",
+  "result": "PASS",
+  "timestamp": "2026-09-21T17:36:47Z",
+  "reviewer": "Ngozi",
+  "data_classification": "SYNTHETIC"
+}

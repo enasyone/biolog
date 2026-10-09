@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-IDN-002 owns api/features/bio-idn-002/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh)
+         and, deliberately, no ProjectReference to api/features/bio-idn-001's project either:
+         each feature story owns exactly its own subtree and does not runtime-couple to a
+         sibling's actual store (mirrors BIO-TEN-002's identical choice not to call into
+         BIO-TEN-001's real registry - "Dependencies: BIO-TEN-001" in that story's metadata
+         was build-wave/conceptual sequencing, not a runtime service dependency; the same
+         applies here to "Dependencies: BIO-IDN-001"). PersonId is therefore validated for
+         SHAPE only (a well-formed per_ identifier), never for existence against BIO-IDN-001's
+         actual PersonService/repository - see Identifiers/CanonicalId.cs and
+         docs/features/bio-idn-002/README.md "Design decisions and scope boundaries".
+
+         This project's own module adapter lives in api/Biolog.Api/Modules/BioIdn002Module.cs
+         from the start (never written here first), matching every prior story.
+
+         Namespace root is "PersonProfileRegistry", not "PersonProfile": the aggregate type
+         this project defines IS named PersonProfile (Domain/PersonProfile.cs). -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Learned from BIO-IDN-001-QA-01 (Seyi round 1): applied from the start here, not after
+         a review round. PersonProfile's constructor and IPersonProfileRepository/
+         InMemoryPersonProfileRepository are internal - this grant is the explicit, auditable
+         seam for Biolog.Api (DI registration) and this project's own test assembly. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.PersonProfileRegistry.Tests" />
+  </ItemGroup>
+
+</Project>

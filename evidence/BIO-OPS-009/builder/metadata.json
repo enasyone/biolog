@@ -1,0 +1,11 @@
+{
+  "story_key": "BIO-OPS-009",
+  "stage": "builder",
+  "commit_hash": "a91b0c429b5b32352aabc95b37dd543f0c80f583",
+  "test_command": "bash tests/foundation/BIO-OPS-009.test.sh && bash scripts/disaster-recovery-rehearsal.sh --keep-artifacts && bash scripts/check-module-project-references.sh && python3 scripts/check-traceability.py --all && bash scripts/secret-scan.sh --staged && python3 evidence/BIO-OPS-009/codex/adversarial-rehearsal-check.py",
+  "result": "PASS",
+  "timestamp": "2026-10-08T07:55:00Z",
+  "reviewer": "Emeka",
+  "data_classification": "SYNTHETIC",
+  "notes": "Round 3: Seyi PASSed round 2 outright (SY-OPS009-01/02 fully closed). Femi's round-2 re-review found FEMI-OPS009-01 only partially closed (REVIEW-Femi-round2.md): the round-2 fix correctly covered the archive command returning a nonzero exit code, but backup-azurite.sh installed no EXIT/INT/TERM trap - a SIGINT/SIGTERM delivered between docker stop and the restart later in the script left Azurite stopped with no restart ever attempted. The round-2 live test only forced a nonzero mkdir/archive exit, never an actual signal, so it didn't catch this.\n\nFix: trap restart_on_exit_if_not_already_confirmed EXIT (+ trap 'exit N' INT/TERM, same reasoning as SY-OPS009-02's fix) installed before the container is ever stopped, so a signal at any point from then on is covered. A container_restart_confirmed flag disarms the handler once the normal restart path has confirmed readiness, so the happy path does no redundant work.\n\nVerified live: sent a real SIGTERM to the backup process immediately after its docker stop log line (well before the script's own restart code could run) - the trap caught it, restarted Azurite, and confirmed it healthy before the process exited.\n\ntests/foundation/BIO-OPS-009.test.sh: 2 new checks (1 structural + 1 live Docker-gated signal-injection test) - 21/21 total, up from 19/19. Full rehearsal run three more consecutive times, all PASS. Seyi's own reproduction script still 5/5 PASS (untouched by this file). check-module-project-references.sh PASS. secret-scan.sh --staged clean. check-traceability.py --all PASS. No application code, shared contract, migration or UI route touched. No GitHub remote added, no push performed."
+}

@@ -1,0 +1,8 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Biolog.Features.CardProduction -> <workspace>/biolog-worktrees/BIO-RPT-002/api/features/bio-crd-007/bin/Debug/net10.0/Biolog.Features.CardProduction.dll
+  Biolog.Features.CardProduction.Tests -> <workspace>/biolog-worktrees/BIO-RPT-002/tests/features/bio-crd-007/bin/Debug/net10.0/Biolog.Features.CardProduction.Tests.dll
+Test run for <workspace>/biolog-worktrees/BIO-RPT-002/tests/features/bio-crd-007/bin/Debug/net10.0/Biolog.Features.CardProduction.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:    52, Skipped:     0, Total:    52, Duration: 372 ms - Biolog.Features.CardProduction.Tests.dll (net10.0)

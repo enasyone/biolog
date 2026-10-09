@@ -1,0 +1,5 @@
+idempotency_reservation_offset=818
+precondition_validation_offset=2121
+revocation_offset=4761
+validation_and_reservation_precede_revocation=True
+PASS

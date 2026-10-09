@@ -1,0 +1,10 @@
+{
+  "story_key": "BIO-DOC-004",
+  "stage": "builder",
+  "commit_hash": "87daeb50fd26bd86570c519ee5bbaf6f0208003b",
+  "test_command": "dotnet test tests/features/bio-doc-004/Biolog.Features.OcrEngine.Tests/Biolog.Features.OcrEngine.Tests.csproj && bash tests/foundation/BIO-DOC-004.test.sh && bash scripts/quality.sh",
+  "result": "PASS",
+  "timestamp": "2026-09-22T21:45:00Z",
+  "reviewer": "Ifeanyi",
+  "data_classification": "SYNTHETIC"
+}

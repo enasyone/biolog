@@ -1,0 +1,26 @@
+{
+  "story_key": "BIO-ACC-002",
+  "title": "Implement online access decision service",
+  "implementation_commit": "11145d6",
+  "builder_commit": "d048646a29b06dedd3bc1ab7af2e83368d6462b8",
+  "reviewed_head": "c89a5a5",
+  "environment": {"profile": "local acceptance; synthetic fixtures only; GitHub push blocked", "timestamp": "2026-09-28T09:05:00Z"},
+  "acceptance_criteria": {
+    "AC01": {"result": "PASS", "evidence": ["biometric evidence derives assurance only; policy gateway is sole allow/deny authority"]},
+    "AC02": {"result": "PASS", "evidence": ["suspended/revoked denial remains delegated to BIO-ACC-001 deny precedence"]},
+    "AC03": {"result": "PASS", "evidence": ["policy version/reason/matched rule are recorded with audit-before-commit"]},
+    "AC04": {"result": "PASS", "evidence": ["pure combination and idempotency replay are deterministic"]},
+    "AC05": {"result": "PASS", "evidence": ["primary-action uses the real policy/decision bridge while BIO-ACC-003 route ownership remains isolated"]}
+  },
+  "commands": [
+    {"command": "bash tests/features/bio-acc-002/BIO-ACC-002.test.sh", "result": "PASS (36/36)"},
+    {"command": "tests/features/bio-acc-002/bin/Debug/net10.0/Biolog.Features.AccessDecisions.Tests", "result": "PASS (18/18)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (32 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"}
+  ],
+  "builder_verdict": {"result": "PASS", "commit_hash": "d048646a29b06dedd3bc1ab7af2e83368d6462b8", "unit": "18/18", "packaged_host": "3/3", "structural": "36/36", "build_secret_scan": "PASS"},
+  "independent_qa": [{"reviewer": "Seyi", "result": "PASS", "evidence": "evidence/features/bio-acc-002/codex/REVIEW-Seyi.md"}, {"reviewer": "Zainab", "result": "PASS", "evidence": "BIOLOG_Orchestration_Pack_v2.3/governance/runtime-state.json review record bound to d048646"}],
+  "category_verdicts": {"functional": "PASS", "security": "PASS", "tenant_isolation": "PASS", "offline_recovery": "NOT_APPLICABLE", "concurrency": "PASS", "regression": "PASS"},
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "All five criteria pass; required Seyi and Zainab reviews are governance-bound to the builder commit and focused replay is green."}
+}

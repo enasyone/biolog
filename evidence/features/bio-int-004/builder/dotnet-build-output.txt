@@ -1,0 +1,20 @@
+  Biolog.Features.Webhooks -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-int-004/bin/Debug/net10.0/Biolog.Features.Webhooks.dll
+  Biolog.Features.FaceVerification -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-bio-005/Biolog.Features.FaceVerification/bin/Debug/net10.0/Biolog.Features.FaceVerification.dll
+  Biolog.Features.TenantFeatureConfig -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-ten-003/bin/Debug/net10.0/Biolog.Features.TenantFeatureConfig.dll
+  Biolog.Features.Liveness -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-bio-008/Biolog.Features.Liveness/bin/Debug/net10.0/Biolog.Features.Liveness.dll
+  Biolog.Features.WorkforceAttendance -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-att-003/bin/Debug/net10.0/Biolog.Features.WorkforceAttendance.dll
+  Biolog.Features.OfflineEnrolment -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-mob-005/bin/Debug/net10.0/Biolog.Features.OfflineEnrolment.dll
+  Biolog.Features.VisitorCredentials -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-vis-002/bin/Debug/net10.0/Biolog.Features.VisitorCredentials.dll
+  Biolog.Features.ParserRegistry -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-doc-005/Biolog.Features.ParserRegistry/bin/Debug/net10.0/Biolog.Features.ParserRegistry.dll
+  Biolog.Features.DocumentClassifier -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-doc-006/Biolog.Features.DocumentClassifier/bin/Debug/net10.0/Biolog.Features.DocumentClassifier.dll
+  Biolog.Features.NfcReader -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-doc-007/Biolog.Features.NfcReader/bin/Debug/net10.0/Biolog.Features.NfcReader.dll
+  Biolog.Features.EvidenceComparison -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-doc-008/Biolog.Features.EvidenceComparison/bin/Debug/net10.0/Biolog.Features.EvidenceComparison.dll
+  Biolog.Features.AuthenticityAssessment -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-doc-009/Biolog.Features.AuthenticityAssessment/bin/Debug/net10.0/Biolog.Features.AuthenticityAssessment.dll
+  Biolog.Features.DocumentTemplatePack -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-doc-010/Biolog.Features.DocumentTemplatePack/bin/Debug/net10.0/Biolog.Features.DocumentTemplatePack.dll
+  Biolog.Api -> <workspace>/biolog-worktrees/BIO-INT-004/api/Biolog.Api/bin/Debug/net10.0/Biolog.Api.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:14.39

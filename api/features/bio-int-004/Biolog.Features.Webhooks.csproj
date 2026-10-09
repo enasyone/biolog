@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-INT-004 owns api/features/bio-int-004/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh)
+         and none to any sibling feature project either - not bio-rpt-001 (IDomainEventBus/
+         DomainEventEnvelope), not bio-idn-006 (permission grants), not bio-int-003 (actor-
+         provenance precedent this story's own Api/ActorProvenanceGate.cs duplicates by value).
+         api/Biolog.Api/Modules/BioInt004Module.cs is the one place that can see more than one
+         of these projects at once, and is where the real IDomainEventBus subscription and the
+         DomainEventEnvelope -> WebhookEventEnvelope translation both live (the same
+         host-module translation-boundary shape BioDev003Module's CertificationGateAdapter
+         already established for an analogous cross-feature-type boundary).
+
+         Domain/WebhookEventEnvelope.cs is this project's own documented copy of BIO-ARC-003's
+         event-envelope shape (contracts/schemas/event-envelope.schema.json) - a THIRD
+         independent duplicate after BIO-RPT-001's own DomainEventEnvelope.cs and BIO-DEV-003's
+         DeviceDescriptor, the same "duplicate the minimal shape" boundary pattern this
+         codebase already established, not an accidental drift risk.
+
+         No JWT/session ADR exists anywhere in this codebase (confirmed by search before
+         designing, same as every sibling story's own csproj comment). Webhook delivery
+         signatures here are a hand-rolled HMAC-SHA256 over the raw request body plus a
+         timestamp (Domain/WebhookSigner.cs), the same shape BIO-INT-001's
+         HmacSessionTokenCodec/BIO-IDN-006's ActorProvenanceGate/BIO-INT-003's
+         HmacApiAccessTokenCodec already established - not a JWT library dependency. -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.Webhooks.Tests" />
+  </ItemGroup>
+
+</Project>

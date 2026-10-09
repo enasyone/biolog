@@ -1,0 +1,25 @@
+PASS  AC01 the sanitised decision result type carries no raw biometric evidence/score property (declarations only, not the explanatory comments about their absence)
+PASS  AC01 the module adapter never reads BIO-ACC-002's own biometric evidence when translating a decision (code, not the explanatory comments about not doing so)
+PASS  AC01 the mobile outcome type declares no evidence/score field (code, not the explanatory comment header)
+PASS  AC02 VerificationService's path is driven by the caller's own connectivity state, never a hidden fallback
+PASS  AC02 the offline path reuses BIO-ACC-003's already-built revocation-cache check, not a new mechanism
+PASS  AC02 the verify screen labels which path produced the result and flags a stale cache
+PASS  AC03 a closed device-role enum exists, distinct from BIO-IDN-006's own human RoleType
+PASS  AC03 the default role for an unassigned device is Officer (least-privilege default)
+PASS  AC03 only Supervisor may override a computed deny; both roles may execute/read history
+PASS  AC03 an override requires a mandatory reason_code, mirroring BIO-MOB-005's DecisionReasonRequired
+PASS  AC03 the device-role assignment write is gated by real human RBAC (ADR-0006 Decision 3), not device auth
+PASS  AC03 the deviceId->role mapping lives entirely in this story's own owned path, DeviceRegistry's own Device record is never touched
+PASS  AC03 override/history buttons are hidden, not merely disabled, until this device's own role is known
+PASS  AC04 the decision endpoint requires an Idempotency-Key header, mirroring ADR-0001 S3.4
+PASS  AC04 the idempotency key is passed straight through to BIO-ACC-002's own already-reviewed idempotency guarantee, not duplicated
+PASS  AC04 the mobile sync client sends the same Idempotency-Key header convention every other write endpoint in this app uses
+PASS  AC05 no ProjectReference exists from this feature to BIO-ACC-002 or DeviceRegistry - consumed only through this feature's own gateway interfaces
+PASS  AC05 BIO-ACC-002's own internal AccessDecisionService is consumed via a manual factory, never the reflection-based DI activator
+PASS  AC05 the mobile verify screen (the approved MobileService surface) is wired to real VerificationService/VerificationSyncClient calls, not a placeholder
+PASS  AC05 the module is registered into the host and depends on DeviceRegistry, AccessDecisions, Tenant and Rbac
+PASS  unit/integration tests mapped to BIO-MOB-004 ACs exist (mobile)
+PASS  unit/integration tests mapped to BIO-MOB-004 ACs exist (backend)
+PASS  builder evidence recorded
+==============================
+23 passed, 0 failed

@@ -1,0 +1,27 @@
+PASS  AC01 Next.js app scaffolded at web/
+PASS  AC01 web depends on next/react
+PASS  AC01 web has a committed lock file
+PASS  AC01 theme script sets data-theme before paint
+PASS  AC01 theme toggle component exists
+PASS  AC01 globals.css declares light and dark token sets
+PASS  AC01 shell layout has a responsive breakpoint
+PASS  AC02 tokens.ts pins the approved brand orange
+PASS  AC02 tokens.ts pins the approved brand navy
+PASS  AC02 globals.css mirrors the same brand orange
+PASS  AC02 globals.css mirrors the same brand navy
+PASS  AC02 wordmark brand asset is present
+PASS  AC02 brand mark component renders the wordmark
+PASS  AC03 permission-filtering module exists
+PASS  AC03 permission filter is a pure, framework-agnostic function
+PASS  AC03 nav placeholder items declare requiredPermission
+PASS  AC03 the shell wires nav through the permission filter
+PASS  AC04 shell code does not import shared backend contracts
+PASS  AC04 nav items carry no computed/business fields (see unit test)
+PASS  AC05 skip link present for keyboard users
+PASS  AC05 axe devDependency present for the e2e harness
+PASS  AC05 axe smoke spec exists and covers light/dark/mobile-drawer
+PASS  unit tests mapped to BIO-FND-007 ACs exist
+PASS  e2e spec is auto-started against web/ (self-contained)
+PASS  builder evidence recorded
+==============================
+25 passed, 0 failed

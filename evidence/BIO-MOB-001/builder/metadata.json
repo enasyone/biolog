@@ -1,0 +1,10 @@
+{
+  "story_key": "BIO-MOB-001",
+  "stage": "builder",
+  "commit_hash": "50366628fdbbd34c88887dc990f03f7bacd6c280",
+  "test_command": "bash tests/foundation/BIO-MOB-001.test.sh && (cd mobile && flutter analyze) && (cd tests/flutter && flutter test)",
+  "result": "PASS",
+  "timestamp": "2026-09-23T02:50:00Z",
+  "reviewer": "Busola",
+  "data_classification": "SYNTHETIC"
+}

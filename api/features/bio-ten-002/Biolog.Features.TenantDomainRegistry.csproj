@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-TEN-002 owns api/features/bio-ten-002/** only. No ProjectReference to
+         Biolog.Api.csproj here: the dependency is one-way (Biolog.Api -> this project),
+         enforced by scripts/check-module-project-references.sh. This project's
+         BioTen002Module adapter used to live here and reference Biolog.Api.csproj back
+         just to see IBiologModule, which is exactly the circular-project-reference shape
+         BIO-TEN-001's integration hit (dotnet build hangs at "Determining projects to
+         restore..." with no diagnostic text) - the adapter now lives in
+         api/Biolog.Api/Modules/BioTen002Module.cs instead, matching DocumentModule.cs,
+         DeviceRegistryModule.cs and BioTen001Module.cs.
+
+         Namespace root is "TenantDomainRegistry", not "TenantDomain": the aggregate type
+         this project defines IS named TenantDomain (Domain/TenantDomain.cs), and C# allows
+         but does not make pleasant a namespace segment and a type sharing one identifier -
+         mirrors BIO-TEN-001's own "entity: Tenant, project: TenantRegistry" convention. -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+</Project>

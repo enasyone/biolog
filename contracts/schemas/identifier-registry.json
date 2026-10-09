@@ -1,0 +1,56 @@
+{
+  "$comment": "BIOLOG canonical identifier registry. Owner: Kemi (Chief Architect & Integrator). Source of truth for ADR-0001 Decision 1. Adding or changing an entry requires an amending ADR and recorded Kemi approval. Examples are SYNTHETIC.",
+  "contract": "biolog.identifier-registry",
+  "contract_version": 1,
+  "adr": "ADR-0001",
+  "uuid_version": 7,
+  "canonical_pattern": "^(ten|per|crd|dev|dcs|evt)_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+  "types": [
+    {
+      "type": "tenant",
+      "prefix": "ten",
+      "plane": "control",
+      "description": "A BIOLOG tenant. The tenant boundary itself; never a tenant-plane record.",
+      "example": "ten_0199e0c1-8b2f-7c31-9a4e-2f6b1d0c5a77"
+    },
+    {
+      "type": "person",
+      "prefix": "per",
+      "plane": "tenant",
+      "description": "The permanent PERSON aggregate. Profiles attach to it; it is never replaced by a profile id.",
+      "example": "per_0199e0c1-9d40-7e52-b103-7c9a4e2f6b1d"
+    },
+    {
+      "type": "credential",
+      "prefix": "crd",
+      "plane": "tenant",
+      "description": "A logical credential. A physical card issue is a child record of a credential, not this identifier.",
+      "example": "crd_0199e0c2-0a13-7f64-8b25-3d8e5f7a1c92"
+    },
+    {
+      "type": "device",
+      "prefix": "dev",
+      "plane": "tenant",
+      "description": "A reader, terminal, enrolment station, production station or mobile installation.",
+      "example": "dev_0199e0c2-1b24-7085-9c36-4e9f6a8b2d03"
+    },
+    {
+      "type": "document_session",
+      "prefix": "dcs",
+      "plane": "tenant",
+      "description": "One Document Verify session and the evidence captured within it.",
+      "example": "dcs_0199e0c2-2c35-7196-ad47-5f0a7b9c3e14"
+    },
+    {
+      "type": "event",
+      "prefix": "evt",
+      "plane": "tenant",
+      "description": "A domain event. Immutable fact; carries schema_version, never an aggregate version.",
+      "example": "evt_0199e0c2-3d46-72a7-be58-6a1b8c0d4f25"
+    }
+  ],
+  "business_identifiers": {
+    "$comment": "ADR-0001 Decision 1.6. These are attributes, never primary or foreign keys.",
+    "examples": ["institutional identifier", "matriculation number", "staff number", "per-person physical card sequence"]
+  }
+}

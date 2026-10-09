@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Matches api/Biolog.Api/Biolog.Api.csproj's pinned TFM (BIO-FND-008), same as sibling BIO-DOC-00x features. -->
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <!--
+    No ASP.NET Core dependency, no NuGet package references. Three ProjectReferences - BIO-DOC-002
+    (MrzEngine), BIO-DOC-003 (BarcodeEngine), BIO-DOC-004 (OcrEngine) - exactly this story's own
+    declared DEPENDENCIES line, deliberately NOT BIO-DOC-001 (not declared, even though all three
+    referenced projects themselves already reference it transitively - the same "reference exactly
+    the declared dependency, nothing more" discipline BIO-DOC-002/003/004 each documented in their
+    own csproj comments). This story classifies from evidence the three sibling engines already
+    produced; it does not decode/read/recognize anything itself.
+  -->
+  <ItemGroup>
+    <ProjectReference Include="../../bio-doc-002/Biolog.Features.MrzEngine/Biolog.Features.MrzEngine.csproj" />
+    <ProjectReference Include="../../bio-doc-003/Biolog.Features.BarcodeEngine/Biolog.Features.BarcodeEngine.csproj" />
+    <ProjectReference Include="../../bio-doc-004/Biolog.Features.OcrEngine/Biolog.Features.OcrEngine.csproj" />
+  </ItemGroup>
+
+</Project>

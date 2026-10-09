@@ -1,0 +1,22 @@
+=== Proof 1: AC03 - panel absent from a real production build, server-rendered and after hydration ===
+0
+post-hydration panel count (production): [33m0[39m
+
+=== Proof 2: AC02/AC04 - setting NEXT_PUBLIC_FEATURE_MODE_DEVICESERVICE=LIVE flips only that module, no page-component change ===
+/devices primary action result (LIVE mode, no backend built yet): Live request failed: HTTP 404
+panel row DeviceService: DeviceService | LIVE | primaryAction: LIVE
+panel row IdentityService (must stay SIMULATION - proves per-module independence, AC02): IdentityService | SIMULATION | primaryAction: SIMULATION
+
+=== Proof 3 (round 2, CHANGES_REQUIRED remediation e2dd368): AC02 HYBRID is genuinely reachable ===
+Server: NEXT_PUBLIC_FEATURE_MODE_REPORTINGSERVICE_VIEWAUDITTRAIL=LIVE pnpm dev -p 3221
+Feature-mode panel row for ReportingService: ReportingService | HYBRID | primaryAction: SIMULATION, viewAuditTrail: LIVE
+/audit primary action result (LIVE, no backend built yet): Live request failed: HTTP 404
+/reports primary action result (still SIMULATION, untouched): Reporting: simulated action failed — try again.
+
+ReportingService's two ports (/reports "Run report", /audit "View audit trail") are genuinely
+distinct actions already named in route-manifest.ts before this remediation, not a port invented
+solely to make getModuleStatus() return HYBRID. Setting only the audit-trail port's env var live
+leaves the report-run port in simulation on the same running app, and the dev panel correctly
+reports the module's aggregate status as HYBRID - confirmed in a real browser session, not only in
+unit tests (see bio-ux-005-feature-mode.test.ts's "reports HYBRID..." and "per-port env var alone"
+tests for the automated, CI-integrated version of this same proof).

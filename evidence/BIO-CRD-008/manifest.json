@@ -1,0 +1,28 @@
+{
+  "story_key": "BIO-CRD-008",
+  "title": "Implement published card-template lifecycle and provenance",
+  "implementation_commit": "60464fa",
+  "reviewed_head": "e02608d",
+  "environment": {"profile": "local acceptance; synthetic fixtures only; GitHub push blocked", "timestamp": "2026-09-24T12:00:00Z"},
+  "acceptance_criteria": {
+    "BIO-CRD-008-AC01": {"result": "PASS", "evidence": ["published and retired templates reject in-place editing at domain and HTTP boundaries"]},
+    "BIO-CRD-008-AC02": {"result": "PASS", "evidence": ["editing an immutable version creates a distinct next-version draft and preserves the source snapshot"]},
+    "BIO-CRD-008-AC03": {"result": "PASS", "evidence": ["snapshot round-trip retains format, orientation, objects, fonts, watermark, assets, photo, barcode and signature rules"]},
+    "BIO-CRD-008-AC04": {"result": "PASS", "evidence": ["production jobs optionally retain exact published template identity and BIO-CRD-007 regression remains green"]},
+    "BIO-CRD-008-AC05": {"result": "PASS", "evidence": ["dedicated CredentialService ports and routes connect the approved card-designer surface", "three existing canvases remain onChange-only and perform no I/O", "commit-bound LIVE Playwright evidence proves the real lifecycle"]}
+  },
+  "commands": [
+    {"command": "bash tests/features/bio-crd-008/BIO-CRD-008.test.sh", "result": "PASS (24/24)"},
+    {"command": "tests/features/bio-crd-008/bin/Debug/net10.0/Biolog.Features.CardTemplates.Tests", "result": "PASS (29/29); direct runner used because sandbox blocks VSTest sockets"},
+    {"command": "tests/features/bio-crd-007/bin/Debug/net10.0/Biolog.Features.CardProduction.Tests", "result": "PASS (54/54)"},
+    {"command": "dotnet build api/Biolog.Api/Biolog.Api.csproj --no-restore -m:1 /nodeReuse:false --disable-build-servers", "result": "PASS (0 warnings, 0 errors)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (32 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS in commit-bound builder evidence; local fallback replay was stopped after prolonged scan of generated build outputs"}
+  ],
+  "builder_verdict": {"result": "PASS", "commit_hash": "60464fa", "backend_tests": "29/29 PASS", "bio_crd_007_regression": "54/54 PASS", "frontend_unit": "413/413 PASS", "frontend_e2e": "413/413 PASS", "live_playwright": "3/3 PASS", "metadata_sha256": "9eb87bd688109f979a822fac58f8dbdd92ef555411ce6644e565445238ab803c"},
+  "independent_qa": {"reviewer": "Seyi", "result": "PASS", "evidence": "evidence/BIO-CRD-008/codex/REVIEW-Seyi.md", "evidence_sha256": "715bd60f2ab8299a3db708990578158a7f450ee62153a6809a2286be6f7e130e"},
+  "category_verdicts": {"functional": "PASS", "security": "PASS", "tenant_isolation": "PASS", "offline_recovery": "NOT_APPLICABLE", "concurrency": "PASS", "regression": "PASS"},
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "All five criteria have commit-bound builder evidence, Seyi PASS, focused backend replay, BIO-CRD-007 regression proof, structural/traceability/module gates and a clean host build; no unresolved Critical or High finding exists."}
+}

@@ -1,0 +1,38 @@
+# git state — BIO-ARC-003 builder (round 4: QA-04 fix)
+
+## branch
+feature/BIO-ARC-003
+
+## commits on this branch
+64d986f BIO-ARC-003: close dotted-key path collision (BIO-ARC-003-QA-04)
+581cdac BIO-ARC-003: record round-3 builder evidence
+3da43a3 BIO-ARC-003: align audit envelope's own causation_id (fourth instance closed)
+bc7797f BIO-ARC-003: record round-2 builder evidence
+82cb6b5 BIO-ARC-003: close the redaction, immutability and required-field gaps (QA-01..03)
+1a4d617 BIO-ARC-003: record final builder evidence
+0ed31d6 BIO-ARC-003: reshape a fixture the secret scanner reads as a credential
+e9aea7e BIO-ARC-003: record builder evidence
+8622cd8 BIO-ARC-003: define audit, evidence and domain-event envelopes
+
+## base
+develop @ 2b1e38d
+
+## remotes (must be empty)
+(none — no remote configured, nothing pushed)
+
+## working tree
+ M evidence/BIO-ARC-003/builder/git-state.txt
+
+## files changed by this round (64d986f)
+ contracts/js/audit.mjs                             |   99 +-
+ contracts/js/audit.test.mjs                        |   99 +-
+ .../ADR-0003-audit-evidence-and-event-envelopes.md |   33 +
+ evidence/BIO-ARC-003/builder/SUMMARY.md            |   90 +
+ .../BIO-ARC-003/builder/contract-suite-output.txt  |  667 +--
+ .../BIO-ARC-003/builder/developer-test-output.txt  | 2672 +++++------
+ evidence/BIO-ARC-003/builder/quality-output.txt    | 4673 +++++++++++---------
+ .../BIO-ARC-003/builder/reviewer-script-rerun.txt  | 2673 +++++------
+ evidence/BIO-ARC-003/codex/REREVIEW-ROUND-3.md     |   51 +
+ evidence/BIO-ARC-003/codex/independent-review.sh   |   10 +
+ tests/foundation/BIO-ARC-003.test.sh               |   13 +
+ 11 files changed, 6098 insertions(+), 4982 deletions(-)

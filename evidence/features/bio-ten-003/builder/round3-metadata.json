@@ -1,0 +1,21 @@
+{
+  "story_key": "BIO-TEN-003",
+  "stage": "builder",
+  "round": 3,
+  "commit_hash": "a38d603",
+  "test_command": "dotnet test tests/features/bio-ten-003/Biolog.Features.TenantFeatureConfig.Tests.csproj && dotnet test tests/dotnet/Biolog.IntegrationTests/Biolog.IntegrationTests.csproj",
+  "result": "PASS",
+  "timestamp": "2026-10-07T00:10:00Z",
+  "reviewer": "Tunde",
+  "data_classification": "SYNTHETIC",
+  "summary": "Round-3 remediation for F05 (Critical, Seyi + Zainab independently): HmacActorProvenanceStore.Configure() accepted any non-empty secret, so a short/typo'd real secret was a genuinely brute-forceable HMAC key. Ported the exact TD-PROVENANCE-DUMMYKEY-SWEEP shape already proven across 14 other files: MinimumSecretLength = 32, Configure nulls the key below that length, Verify opens with an explicit null check - no fallback key of any kind. New ActorProvenanceGateTests.cs (6 tests: 31-byte rejected, 32-byte accepted, never-configured, empty-secret, wrong-secret, malformed-hex). Updated TenantFeatureConfigurationEndpointsIntegrationTests.cs's own test secret to 32 bytes (was 23). Test results: BIO-TEN-003 own suite 46/46 (was 40/40), full Biolog.IntegrationTests 192/192 unchanged. dotnet build clean.",
+  "files_changed": {
+    "new": ["tests/features/bio-ten-003/ActorProvenanceGateTests.cs"],
+    "modified": [
+      "api/features/bio-ten-003/Api/ActorProvenanceGate.cs",
+      "docs/features/bio-ten-003/README.md",
+      "tests/features/bio-ten-003/TenantFeatureConfigurationEndpointsIntegrationTests.cs"
+    ]
+  },
+  "notes": "god's round-3 relay named the exact reference shape and rationale (TD-PROVENANCE-DUMMYKEY-SWEEP, 14 files already swept) before this fix was written, so this was ported directly rather than re-derived from the finding text alone. Round 2's F01/F02 fixes and the F03 AC04 scope-down held up through round 2 review unchanged - only F05 is new this round."
+}

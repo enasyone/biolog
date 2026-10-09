@@ -1,0 +1,8 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Biolog.Features.MobileVerification -> <workspace>/biolog-worktrees/BIO-MOB-004/api/features/bio-mob-004/bin/Debug/net10.0/Biolog.Features.MobileVerification.dll
+  Biolog.Features.MobileVerification.Tests -> <workspace>/biolog-worktrees/BIO-MOB-004/tests/features/bio-mob-004/bin/Debug/net10.0/Biolog.Features.MobileVerification.Tests.dll
+Test run for <workspace>/biolog-worktrees/BIO-MOB-004/tests/features/bio-mob-004/bin/Debug/net10.0/Biolog.Features.MobileVerification.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:    13, Skipped:     0, Total:    13, Duration: 230 ms - Biolog.Features.MobileVerification.Tests.dll (net10.0)

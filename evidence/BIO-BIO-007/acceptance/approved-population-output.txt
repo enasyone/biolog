@@ -1,0 +1,5 @@
+index_accepts_raw_sample=False
+index_extracts_template_directly=False
+index_checks_approval=True
+project_depends_on_bio_bio_003=False
+PASS

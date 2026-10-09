@@ -1,0 +1,10 @@
+{
+  "story_key": "BIO-DOC-003",
+  "stage": "builder",
+  "commit_hash": "a795c73fcb7bdd236f9882c41842244ad12d8fbf",
+  "test_command": "dotnet test tests/features/bio-doc-003/Biolog.Features.BarcodeEngine.Tests/Biolog.Features.BarcodeEngine.Tests.csproj && bash tests/foundation/BIO-DOC-003.test.sh && bash scripts/quality.sh",
+  "result": "PASS",
+  "timestamp": "2026-09-22T21:15:00Z",
+  "reviewer": "Ifeanyi",
+  "data_classification": "SYNTHETIC"
+}

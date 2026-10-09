@@ -1,0 +1,26 @@
+{
+  "story_key": "BIO-BIO-008",
+  "title": "Implement liveness provider contract and policy hooks",
+  "implementation_commit": "194a974638815406c91ddf16cfdbd274b617f8d5",
+  "builder_commit": "26c2d8e",
+  "reviewed_head": "d70d9c3",
+  "environment": {"profile": "local acceptance; synthetic fixtures only; GitHub push blocked", "timestamp": "2026-09-30T13:00:00Z"},
+  "acceptance_criteria": {
+    "AC01": {"result": "PASS", "evidence": ["provider-neutral evidence records provider, method, version, confidence and status"]},
+    "AC02": {"result": "PASS", "evidence": ["liveness status is structurally separate from face-match types and assemblies"]},
+    "AC03": {"result": "PASS", "evidence": ["policy is keyed by exact tenant/workflow tuple and defaults conservatively"]},
+    "AC04": {"result": "PASS", "evidence": ["replay, screen and photo presentation cases are deterministic test-interface inputs"]},
+    "AC05": {"result": "PASS", "evidence": ["independent checkLiveness port reaches the exact live backend route without changing other biometric actions"]}
+  },
+  "commands": [
+    {"command": "tests/features/bio-bio-008/bin/Debug/net10.0/Biolog.Features.Liveness.Tests", "result": "PASS (22/22)"},
+    {"command": "cd tests/frontend && pnpm exec vitest run unit/bio-bio-008-liveness-port.test.ts unit/bio-ux-005-feature-mode.test.ts", "result": "PASS (24/24)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (32 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"}
+  ],
+  "builder_verdict": {"result": "PASS", "commit_hash": "26c2d8e", "feature": "22/22", "endpoint": "4/4", "integration": "168/168", "unit": "200/200", "frontend": "419/419", "web_build_typecheck": "PASS"},
+  "independent_qa": [{"reviewer": "Seyi", "result": "PASS", "evidence": "evidence/features/bio-bio-008/codex/REVIEW-Seyi.md"}, {"reviewer": "Zainab", "result": "PASS", "evidence": "evidence/features/bio-bio-008/codex/REVIEW-Zainab.md"}],
+  "category_verdicts": {"functional": "PASS", "security": "PASS", "tenant_isolation": "PASS", "offline_recovery": "NOT_APPLICABLE", "concurrency": "PASS", "regression": "PASS"},
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "All five criteria have commit-bound evidence, both required reviews pass, and focused acceptance replay is green."}
+}

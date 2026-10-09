@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Matches api/Biolog.Api/Biolog.Api.csproj's pinned TFM (BIO-FND-008), same as sibling BIO-DOC-00x features. -->
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <!--
+    No ASP.NET Core dependency, no NuGet package references. Three ProjectReferences - exactly this
+    story's own declared DEPENDENCIES line (BIO-DOC-002, BIO-DOC-005, BIO-DOC-007), deliberately
+    NOT BIO-DOC-003/004 (raw barcode decode / OCR engines) or BIO-DOC-001/006. MRZ (002) and parsed
+    barcode fields (005) are consumed as genuine decoded field values via adapters
+    (SourceFieldValue.FromMrz/FromParsedBarcodeField); NFC (007) contributes an authenticity/
+    availability signal (NfcCorroboration), not a decoded field value - see
+    docs/features/bio-doc-008/EVIDENCE-COMPARISON.md for why. Visual/OCR evidence has no
+    corresponding ProjectReference (BIO-DOC-004 is not a declared dependency of this story) and is
+    taken as a plain caller-supplied SourceFieldValue instead, the same "plain domain parameter,
+    not a resolved dependency" pattern used throughout this epic wherever an undeclared dependency
+    would otherwise be needed.
+  -->
+  <ItemGroup>
+    <ProjectReference Include="../../bio-doc-002/Biolog.Features.MrzEngine/Biolog.Features.MrzEngine.csproj" />
+    <ProjectReference Include="../../bio-doc-005/Biolog.Features.ParserRegistry/Biolog.Features.ParserRegistry.csproj" />
+    <ProjectReference Include="../../bio-doc-007/Biolog.Features.NfcReader/Biolog.Features.NfcReader.csproj" />
+  </ItemGroup>
+
+</Project>

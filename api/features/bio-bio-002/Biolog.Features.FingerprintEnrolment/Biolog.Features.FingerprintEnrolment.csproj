@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Matches api/Biolog.Api/Biolog.Api.csproj's pinned TFM (BIO-FND-008), same as BIO-BIO-001. -->
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <!--
+    No ASP.NET Core dependency (no FrameworkReference, no ProjectReference to Biolog.Api) and no
+    NuGet package references. This project DOES reference BIO-BIO-001's provider-neutral
+    biometric library - a feature-to-feature ProjectReference, not a shared/common one - because
+    BIO-BIO-002 is declared dependent on BIO-BIO-001 in its own approved story and exists
+    specifically to drive BIO-BIO-001's IFingerprintProvider/BiometricTemplate contracts through
+    a guided, stateful tenprint/single-finger enrolment session (BIO-BIO-001's own docs describe
+    exactly this reuse seam). This mirrors BIO-DOC-002/BIO-DOC-003's identical, already-reviewed
+    "feature-to-feature ProjectReference to the foundation library it is declared dependent on"
+    shape for BIO-DOC-001 - not the bio-idn-family's DIFFERENT rule (avoid a ProjectReference to
+    another feature's TENANT-SCOPED, ACCESS-RESTRICTED aggregate/service; BIO-BIO-001 carries no
+    such aggregate - it is a plain, host-agnostic contracts library BIO-BIO-002 is written to
+    build on directly, same as bio-doc-002/003 build on bio-doc-001's DocumentVerify model).
+  -->
+  <ItemGroup>
+    <ProjectReference Include="../../bio-bio-001/Biolog.Features.Biometrics/Biolog.Features.Biometrics.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- IFingerprintEnrolmentRepository/InMemoryFingerprintEnrolmentRepository and
+         FingerprintEnrolmentService are internal (BIO-IDN-001-QA-01's governance shape). These
+         two are the explicit, auditable seam that grants Biolog.Api (DI registration in
+         Modules/BioBio002Module.cs) and this feature's own test project the same access. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.FingerprintEnrolment.Tests" />
+  </ItemGroup>
+
+</Project>

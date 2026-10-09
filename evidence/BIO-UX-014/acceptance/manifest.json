@@ -1,0 +1,39 @@
+{
+  "story_key": "BIO-UX-014",
+  "commit_hash": "07073d7",
+  "implementation_commit": "5955bfdf5e36f33af66f25c9690190168adb8581",
+  "builder_evidence_commit": "68847f0",
+  "environment_profile": "local frontend Node/pnpm workspace; committed Darwin screenshot baselines",
+  "timestamp": "2026-09-23T20:25:00Z",
+  "acceptance_criteria": {
+    "BIO-UX-014-AC01": {"result": "PASS", "tests": ["bio-ux-014-visual-regression.spec.ts", "bio-ux-014-visual-regression-config.test.ts"]},
+    "BIO-UX-014-AC02": {"result": "PASS", "tests": ["approved-viewports.ts", "explicit html[data-theme] assertion", "distinct light/dark baseline hashes"]},
+    "BIO-UX-014-AC03": {"result": "PASS", "tests": ["tests/frontend/package.json test:visual script"]},
+    "BIO-UX-014-AC04": {"result": "PASS", "tests": ["builder/bio-ux-014-regression-proof-output.txt", "builder/bio-ux-014-theme-selectivity-proof.txt"]},
+    "BIO-UX-014-AC05": {"result": "PASS", "tests": ["bio-ux-014-visual-regression-config.test.ts"]}
+  },
+  "commands_results": [
+    {"command": "corepack pnpm --dir tests/frontend test:unit", "result": "PASS: 51 files, 384 tests"},
+    {"command": "corepack pnpm --dir web typecheck", "result": "PASS"},
+    {"command": "clean archived checkout TypeScript", "result": "PASS"},
+    {"command": "SHA-256 comparison and visual inspection", "result": "PASS: all three light/dark pairs differ and dark palette is present"},
+    {"command": "corepack pnpm --dir tests/frontend test:visual", "result": "UNAVAILABLE locally: sandbox listen EPERM on 127.0.0.1:3000"},
+    {"command": "governance independent remediated visual runs", "result": "PASS: 14/14 on four consecutive runs"}
+  ],
+  "independent_qa_verdict": "PASS",
+  "security_verdict": "PASS",
+  "tenant_isolation_verdict": "NOT_APPLICABLE",
+  "offline_verdict": "NOT_APPLICABLE",
+  "concurrency_verdict": "NOT_APPLICABLE",
+  "regression_verdict": "PASS",
+  "evidence_references": [
+    "acceptance/REVIEW-Chioma-round1.md",
+    "acceptance/REVIEW-Chioma-round2.md",
+    "codex/REVIEW-Seyi-round2.md",
+    "builder/SUMMARY.md",
+    "builder/bio-ux-014-r2-visual-clean-output.txt",
+    "builder/bio-ux-014-theme-selectivity-proof.txt"
+  ],
+  "final_acceptance_decision": "PASS",
+  "reason": "QA-01 is closed: theme application is asserted, light/dark baselines differ, and bidirectional drift selectivity is proven."
+}

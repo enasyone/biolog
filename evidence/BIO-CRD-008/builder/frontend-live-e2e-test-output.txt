@@ -1,0 +1,8 @@
+
+[2mRunning [22m3[2m tests using [22m1[2m worker[22m
+
+  [32m✓[39m  [2m1 [22mplaywright/bio-crd-008-template-lifecycle-live.spec.ts:23:3 › BIO-CRD-008-AC05 the template lifecycle bar is connected to a real backend, not a placeholder › creating a draft produces a real tpl_ template id from the live backend[2m (530ms)[22m
+  [32m✓[39m  [2m2 [22mplaywright/bio-crd-008-template-lifecycle-live.spec.ts:44:3 › BIO-CRD-008-AC05 the template lifecycle bar is connected to a real backend, not a placeholder › the full lifecycle reaches a real published status via real HTTP round trips[2m (534ms)[22m
+  [32m✓[39m  [2m3 [22mplaywright/bio-crd-008-template-lifecycle-live.spec.ts:67:3 › BIO-CRD-008-AC05 the template lifecycle bar is connected to a real backend, not a placeholder › AC01: a published template genuinely refuses an edit attempt at the API level (real 409, not simulated)[2m (624ms)[22m
+
+[32m  3 passed[39m[2m (3.1s)[22m

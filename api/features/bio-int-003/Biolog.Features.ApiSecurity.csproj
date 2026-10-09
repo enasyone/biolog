@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-INT-003 owns api/features/bio-int-003/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh)
+         and none to bio-idn-006 either - BIO-IDN-006's PermissionService/RoleAssignmentService
+         are internal with InternalsVisibleTo granted only to Biolog.Api and its own test
+         assembly, and this project cannot reference a sibling feature project any more than
+         it can reference the host (same boundary BIO-INT-001 documented in its own csproj).
+         The closed 11-role catalogue this story uses as its OAuth2 scope vocabulary is
+         therefore this project's OWN documented copy of BIO-IDN-006's RoleType wire strings
+         (see Domain/KnownRoles.cs) - a duplicated value set, not a live reference, the same
+         "duplicate the minimal shape" boundary pattern BIO-DEV-003's DeviceDescriptor,
+         BIO-RPT-001's DomainEventEnvelope and BIO-INT-001's own KnownRoles.cs already
+         established (this is a third independent copy, not a refactor of BIO-INT-001's -
+         that project cannot be referenced either).
+
+         Tenant resolution: every method takes a plain string tenantId, same as BIO-INT-001 -
+         api/Biolog.Api/Modules/BioInt003Module.cs resolves the real ITenantContextAccessor and
+         passes the string down.
+
+         No JWT/session ADR exists anywhere in this codebase (confirmed by search before
+         designing - see BIO-INT-001's own csproj comment and docs/features/bio-crd-007's
+         README). Service-account access tokens here are a hand-rolled HMAC-signed opaque
+         string (Domain/ApiAccessTokenCodec.cs), the same shape as BIO-INT-001's
+         HmacSessionTokenCodec and BIO-IDN-006's own ActorProvenanceGate HMAC precedent - not a
+         JWT library dependency, so no new vulnerability-scan surface is introduced. -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.ApiSecurity.Tests" />
+  </ItemGroup>
+
+</Project>

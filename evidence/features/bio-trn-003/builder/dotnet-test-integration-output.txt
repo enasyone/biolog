@@ -1,0 +1,8 @@
+  Biolog.Features.AuthenticityAssessment -> <workspace>/biolog-worktrees/BIO-TRN-003/api/features/bio-doc-009/Biolog.Features.AuthenticityAssessment/bin/Debug/net10.0/Biolog.Features.AuthenticityAssessment.dll
+  Biolog.Features.DocumentTemplatePack -> <workspace>/biolog-worktrees/BIO-TRN-003/api/features/bio-doc-010/Biolog.Features.DocumentTemplatePack/bin/Debug/net10.0/Biolog.Features.DocumentTemplatePack.dll
+  Biolog.Api -> <workspace>/biolog-worktrees/BIO-TRN-003/api/Biolog.Api/bin/Debug/net10.0/Biolog.Api.dll
+  Biolog.IntegrationTests -> <workspace>/biolog-worktrees/BIO-TRN-003/tests/dotnet/Biolog.IntegrationTests/bin/Debug/net10.0/Biolog.IntegrationTests.dll
+Test run for <workspace>/biolog-worktrees/BIO-TRN-003/tests/dotnet/Biolog.IntegrationTests/bin/Debug/net10.0/Biolog.IntegrationTests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:   248, Skipped:     0, Total:   248, Duration: 42 s - Biolog.IntegrationTests.dll (net10.0)

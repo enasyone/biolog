@@ -1,0 +1,6 @@
+command: TMPDIR=/definitely/not/a/real/directory bash tests/foundation/BIO-ARC-006.test.sh
+expected_nonzero_exit: 1
+manifest_sha256_before: 73d8b6a85faca20c4d1d3d5645eb8f8833fafe84d72e698323fb9e4a3b200a3b
+manifest_sha256_after: 73d8b6a85faca20c4d1d3d5645eb8f8833fafe84d72e698323fb9e4a3b200a3b
+manifest_json_valid: yes
+manifest_unchanged: yes

@@ -1,0 +1,27 @@
+{
+  "story_key": "BIO-CRD-006",
+  "commit_hash": "937322851804a231cc9b2b84e0dd83781b1cee7a",
+  "implementation_commit": "0279e1f",
+  "environment_profile": "macOS arm64; repository structural and Python acceptance harnesses; production C# source inspected",
+  "timestamp": "2026-09-23T04:14:02Z",
+  "commands": [
+    {"command": "bash tests/features/bio-crd-006/BIO-CRD-006.test.sh", "result": "PASS (47/47)", "evidence": "acceptance/structural-output.txt"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (26 implemented stories)", "evidence": "acceptance/traceability-output.txt"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS", "evidence": "acceptance/module-output.txt"},
+    {"command": "python3 evidence/BIO-CRD-006/acceptance/activation_revocation_atomicity_probe.py", "result": "PASS", "evidence": "acceptance/activation-revocation-output.txt"},
+    {"command": "python3 evidence/BIO-CRD-006/acceptance/activation_precondition_side_effect_probe.py", "result": "PASS", "evidence": "acceptance/activation-precondition-side-effect-output.txt"},
+    {"command": "python3 evidence/BIO-CRD-006/acceptance/activation_gateway_toctou_probe.py", "result": "PASS", "evidence": "acceptance/activation-gateway-toctou-output.txt"}
+  ],
+  "builder_verdict": "PASS",
+  "independent_qa_verdict": "PASS (Seyi round four)",
+  "security_verdict": "PASS",
+  "performance_verdict": "NOT_APPLICABLE",
+  "screenshots_logs": ["builder/quality-round4-output.txt", "codex/REREVIEW-Seyi-round4.md", "acceptance/activation-gateway-toctou-output.txt"],
+  "final_acceptance_decision": "PASS",
+  "closed_findings": [
+    {"id": "BIO-CRD-006-QA-01", "status": "CLOSED", "evidence": "acceptance/activation-revocation-output.txt"},
+    {"id": "BIO-CRD-006-QA-02", "status": "CLOSED", "evidence": "acceptance/activation-precondition-side-effect-output.txt"},
+    {"id": "BIO-CRD-006-QA-03", "status": "CLOSED", "evidence": "acceptance/activation-gateway-toctou-output.txt"}
+  ],
+  "blocking_findings": []
+}

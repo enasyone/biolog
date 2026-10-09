@@ -1,0 +1,365 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.5" />
+    <!-- Microsoft.AspNetCore.OpenApi 10.0.5 pulls in Microsoft.OpenApi 2.0.0, which has a
+         known high-severity advisory (GHSA-v5pm-xwqc-g5wc). The advisory's affected range
+         ends at 2.7.4; 2.12.2 (the latest 2.x at the time of this pin) is patched, per
+         scripts/check-dotnet-vulnerabilities.sh reporting clean at this version. Upgrading
+         to the Microsoft.OpenApi 3.x major instead breaks the build (IOpenApiMediaType.Example
+         became read-only, incompatible with this source generator), so stay on the patched
+         2.x line rather than jumping majors. See docs/API-SHELL.md "Resolved: Microsoft.OpenApi
+         advisory" (BIO-FND-008-QA-01) for the full history, including an earlier wrong claim
+         that the whole 2.x line was unfixed. -->
+    <PackageReference Include="Microsoft.OpenApi" Version="2.12.2" />
+
+    <!-- BIO-FND-009-AC02: OpenTelemetry hooks. Pinned to the same 1.19.0 line across all
+         three packages - OpenTelemetry.Instrumentation.AspNetCore has no 1.19.1 release,
+         and mismatched minor versions across the SDK/instrumentation/exporter trio is a
+         known source of binding-redirect issues, so all three stay locked together. The
+         console exporter is a local-development default (BIO-FND-009-AC03); a later story
+         swaps it for an OTLP exporter pointed at a real collector without touching this
+         module's shape. -->
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.19.0" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.19.0" />
+    <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.19.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- BIO-DOC-001: Document Verify's provider-neutral session/evidence domain model, registered
+         into this host via Modules/DocumentModule.cs (README.md: "business feature endpoints...
+         register into this same module host rather than being added to this directory ad hoc").
+         The dependency is one-way (this project -> the feature project) precisely so the feature
+         project itself stays free of any ASP.NET Core dependency - see that project's own csproj
+         remarks and docs/features/bio-doc-001/DOCUMENT-VERIFY-FOUNDATION.md. -->
+    <ProjectReference Include="../features/bio-doc-001/Biolog.Features.DocumentVerify/Biolog.Features.DocumentVerify.csproj" />
+
+    <!-- BIO-TEN-001: control-plane tenant registry, registered into this host via
+         Biolog.Features.TenantRegistry.BioTen001Module (same IBiologModule shape). One-way
+         dependency, same rationale as BIO-DOC-001 above - see
+         docs/features/bio-ten-001/README.md "Integration seam". -->
+    <ProjectReference Include="../features/bio-ten-001/Biolog.Features.TenantRegistry.csproj" />
+
+    <!-- BIO-TEN-002: tenant domain mapping and host-channel resolution, registered into this
+         host via Modules/BioTen002Module.cs (same IBiologModule shape). One-way dependency,
+         same rationale as BIO-DOC-001 above - see
+         docs/features/bio-ten-002/README.md "Integration seam". -->
+    <ProjectReference Include="../features/bio-ten-002/Biolog.Features.TenantDomainRegistry.csproj" />
+
+    <!-- BIO-IDN-001: universal PERSON aggregate, registered into this host via
+         Modules/BioIdn001Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above - see docs/features/bio-idn-001/README.md
+         "Tenant context seam". -->
+    <ProjectReference Include="../features/bio-idn-001/Biolog.Features.PersonRegistry.csproj" />
+
+    <!-- BIO-IDN-002: configurable person profiles and hierarchy assignment, registered into
+         this host via Modules/BioIdn002Module.cs (same IBiologModule shape). One-way
+         dependency, same rationale as BIO-DOC-001 above - see
+         docs/features/bio-idn-002/README.md "Tenant context seam". -->
+    <ProjectReference Include="../features/bio-idn-002/Biolog.Features.PersonProfileRegistry.csproj" />
+
+    <!-- BIO-IDN-003: institutional identifiers, registered into this host via
+         Modules/BioIdn003Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above - see docs/features/bio-idn-003/README.md
+         "Tenant context seam". -->
+    <ProjectReference Include="../features/bio-idn-003/Biolog.Features.InstitutionalIdentifiers.csproj" />
+
+    <!-- BIO-IDN-004: identity lifecycle and emergency suspension, registered into this host via
+         Modules/BioIdn004Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above - see docs/features/bio-idn-004/README.md
+         "Tenant context seam". -->
+    <ProjectReference Include="../features/bio-idn-004/Biolog.Features.PersonLifecycle.csproj" />
+
+    <!-- BIO-IDN-005: duplicate review foundation, registered into this host via
+         Modules/BioIdn005Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above - see docs/features/bio-idn-005/README.md
+         "Tenant context seam". -->
+    <ProjectReference Include="../features/bio-idn-005/Biolog.Features.DuplicateReview.csproj" />
+
+    <!-- BIO-IDN-006: RBAC role catalogue and maker-checker hooks, registered into this host via
+         Modules/BioIdn006Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above - see docs/features/bio-idn-006/README.md
+         "Tenant context seam". -->
+    <ProjectReference Include="../features/bio-idn-006/Biolog.Features.Rbac.csproj" />
+
+    <!-- BIO-BIO-001: provider-neutral biometric service/provider abstraction, registered into
+         this host via Modules/BioBio001Module.cs (same IBiologModule shape). One-way
+         dependency, same rationale as BIO-DOC-001 above - see
+         docs/features/bio-bio-001/README.md. -->
+    <ProjectReference Include="../features/bio-bio-001/Biolog.Features.Biometrics/Biolog.Features.Biometrics.csproj" />
+
+    <!-- BIO-PHO-001: immutable photo master and derivatives, registered into this host via
+         Modules/BioPho001Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above - see docs/features/bio-pho-001/README.md
+         "Tenant context seam". -->
+    <ProjectReference Include="../features/bio-pho-001/Biolog.Features.Photography.csproj" />
+
+    <!-- BIO-PHO-002: Photo Booth integration contract, registered into this host via
+         Modules/BioPho002Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above - see docs/features/bio-pho-002/README.md. -->
+    <ProjectReference Include="../features/bio-pho-002/Biolog.Features.PhotoBooth.csproj" />
+
+    <!-- BIO-BIO-002: guided tenprint/single-finger enrolment session, registered into this host
+         via Modules/BioBio002Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above - see docs/features/bio-bio-002/README.md. -->
+    <ProjectReference Include="../features/bio-bio-002/Biolog.Features.FingerprintEnrolment/Biolog.Features.FingerprintEnrolment.csproj" />
+
+    <!-- BIO-CRD-002: WYSIWYG card canvas and physical card formats, registered into this host
+         via Modules/BioCrd002Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above - see docs/features/bio-crd-002/README.md. -->
+    <ProjectReference Include="../features/bio-crd-002/Biolog.Features.CardDesigner.csproj" />
+
+    <!-- BIO-BIO-003: quality-gated face capture, registered into this host via
+         Modules/BioBio003Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above - see docs/features/bio-bio-003/README.md. -->
+    <ProjectReference Include="../features/bio-bio-003/Biolog.Features.FaceEnrolment/Biolog.Features.FaceEnrolment.csproj" />
+
+    <!-- BIO-PHO-003: print quality and biometric suitability evaluation, registered into this
+         host via Modules/BioPho003Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above - see docs/features/bio-pho-003/README.md. -->
+    <ProjectReference Include="../features/bio-pho-003/Biolog.Features.PhotoQuality.csproj" />
+
+    <!-- BIO-CRD-003: card typography, name fields and watermarks, registered into this host via
+         Modules/BioCrd003Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above - see docs/features/bio-crd-003/README.md. -->
+    <ProjectReference Include="../features/bio-crd-003/Biolog.Features.CardTypography.csproj" />
+
+    <!-- BIO-CRD-004: dynamic barcode/QR/signature/card objects, registered into this host via
+         Modules/BioCrd004Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above - see docs/features/bio-crd-004/README.md. -->
+    <ProjectReference Include="../features/bio-crd-004/Biolog.Features.CardObjects.csproj" />
+
+    <!-- BIO-CRD-008: published card-template lifecycle and provenance, registered into this
+         host via Modules/BioCrd008Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above - see docs/features/bio-crd-008/README.md. -->
+    <ProjectReference Include="../features/bio-crd-008/Biolog.Features.CardTemplates.csproj" />
+
+    <!-- BIO-BIO-004: 1:1 fingerprint verification, registered into this host via
+         Modules/BioBio004Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above - see docs/features/bio-bio-004/README.md. -->
+    <ProjectReference Include="../features/bio-bio-004/Biolog.Features.FingerprintVerification/Biolog.Features.FingerprintVerification.csproj" />
+
+    <!-- BIO-CRD-005: physical card issue transaction, registered into this host via
+         Modules/BioCrd005Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above - see docs/features/bio-crd-005/README.md. -->
+    <ProjectReference Include="../features/bio-crd-005/Biolog.Features.CardIssuance.csproj" />
+
+    <!-- BIO-BIO-005: face 1:1 verification, registered into this host via
+         Modules/BioBio005Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above - see docs/features/bio-bio-005/README.md. -->
+    <ProjectReference Include="../features/bio-bio-005/Biolog.Features.FaceVerification/Biolog.Features.FaceVerification.csproj" />
+
+    <!-- BIO-BIO-006: 1:N fingerprint duplicate/identification search, registered into this host
+         via Modules/BioBio006Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above - see docs/features/bio-bio-006/README.md. -->
+    <ProjectReference Include="../features/bio-bio-006/Biolog.Features.FingerprintSearch/Biolog.Features.FingerprintSearch.csproj" />
+
+    <!-- BIO-CRD-006: report lost/missing/stolen/damaged and card replacement, registered into
+         this host via Modules/BioCrd006Module.cs (same IBiologModule shape). One-way
+         dependency, same rationale as BIO-DOC-001 above - see docs/features/bio-crd-006/README.md. -->
+    <ProjectReference Include="../features/bio-crd-006/Biolog.Features.CardLifecycle.csproj" />
+
+    <!-- BIO-BIO-007: 1:N face identification/duplicate search, registered into this host via
+         Modules/BioBio007Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above - see docs/features/bio-bio-007/README.md. -->
+    <ProjectReference Include="../features/bio-bio-007/Biolog.Features.FaceSearch/Biolog.Features.FaceSearch.csproj" />
+
+    <!-- BIO-ACC-001: access policy model and assurance levels, registered into this host via
+         Modules/BioAcc001Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above - see docs/features/bio-acc-001/README.md
+         "Integration seam". -->
+    <ProjectReference Include="../features/bio-acc-001/Biolog.Features.AccessPolicy.csproj" />
+
+    <!-- BIO-CRD-007: card production jobs and print/encode verification, registered into this
+         host via Modules/BioCrd007Module.cs (same IBiologModule shape). One-way dependency,
+         same rationale as BIO-DOC-001 above - see docs/features/bio-crd-007/README.md. -->
+    <ProjectReference Include="../features/bio-crd-007/Biolog.Features.CardProduction.csproj" />
+
+    <!-- BIO-MOB-003: central offline-sync intake, registered into this host via
+         Modules/BioMob003Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above - see Modules/BioMob003Module.cs's own header for the
+         architectural ruling (Kemi, 2026-09-23) this project implements. -->
+    <ProjectReference Include="../features/bio-mob-003/Biolog.Features.OfflineSync.csproj" />
+
+    <!-- BIO-DOC-009: automatic authenticity assessment orchestrator, registered into this host
+         via Modules/BioDoc009Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above. -->
+    <ProjectReference Include="../features/bio-doc-009/Biolog.Features.AuthenticityAssessment/Biolog.Features.AuthenticityAssessment.csproj" />
+
+    <!-- BIO-DOC-010: Nigeria Document Intelligence Pack v1, registered into this host via
+         Modules/BioDoc010Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above. -->
+    <ProjectReference Include="../features/bio-doc-010/Biolog.Features.DocumentTemplatePack/Biolog.Features.DocumentTemplatePack.csproj" />
+    <ProjectReference Include="../features/bio-doc-011/Biolog.Features.DocumentTemplateEditor/Biolog.Features.DocumentTemplateEditor.csproj" />
+
+    <!-- BIO-OPS-005 (Kemi's ruling): the Document Verify evidence coordinator genuinely composes
+         these four engine projects plus BIO-DOC-008's comparison engine - direct host references
+         now exist alongside the coordinator project's own, matching every sibling feature's own
+         convention of a direct Biolog.Api reference to every project any Modules/*.cs file
+         touches. Seyi's own BIO-OPS-005 acceptance probe checks for exactly these four. -->
+    <ProjectReference Include="../features/bio-doc-002/Biolog.Features.MrzEngine/Biolog.Features.MrzEngine.csproj" />
+    <ProjectReference Include="../features/bio-doc-003/Biolog.Features.BarcodeEngine/Biolog.Features.BarcodeEngine.csproj" />
+    <ProjectReference Include="../features/bio-doc-004/Biolog.Features.OcrEngine/Biolog.Features.OcrEngine.csproj" />
+    <ProjectReference Include="../features/bio-doc-007/Biolog.Features.NfcReader/Biolog.Features.NfcReader.csproj" />
+    <ProjectReference Include="../features/bio-doc-008/Biolog.Features.EvidenceComparison/Biolog.Features.EvidenceComparison.csproj" />
+    <ProjectReference Include="../features/bio-ops-005/Biolog.Features.DocumentVerifyCoordination/Biolog.Features.DocumentVerifyCoordination.csproj" />
+
+    <!-- BIO-DEV-003: vendor adapter framework for devices, registered into this host via
+         Modules/BioDev003Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above - see docs/features/bio-dev-003/README.md. -->
+    <ProjectReference Include="../features/bio-dev-003/Biolog.Features.DeviceAdapters.csproj" />
+
+    <!-- BIO-ATT-001: attendance event core, registered into this host via
+         Modules/BioAtt001Module.cs (same IBiologModule shape). One-way dependency, same rationale
+         as BIO-DOC-001 above. -->
+    <ProjectReference Include="../features/bio-att-001/Biolog.Features.Attendance.csproj" />
+
+    <!-- BIO-RPT-001: notification event/rule foundation, registered into this host via
+         Modules/BioRpt001Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above - see docs/features/bio-rpt-001/README.md. -->
+    <ProjectReference Include="../features/bio-rpt-001/Biolog.Features.Notifications.csproj" />
+
+    <!-- BIO-RPT-002: governed report builder foundation, registered into this host via
+         Modules/BioRpt002Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above - see docs/features/bio-rpt-002/README.md. -->
+    <ProjectReference Include="../features/bio-rpt-002/Biolog.Features.ReportBuilder.csproj" />
+
+    <!-- BIO-RPT-003: immutable audit investigation views, registered into this host via
+         Modules/BioRpt003Module.cs (same IBiologModule shape). One-way dependency, same rationale
+         as BIO-DOC-001 above - see docs/features/bio-rpt-003/README.md. -->
+    <ProjectReference Include="../features/bio-rpt-003/Biolog.Features.AuditInvestigation.csproj" />
+
+    <!-- BIO-VIS-001: visitor preregistration and host approval, registered into this host via
+         Modules/BioVis001Module.cs (same IBiologModule shape). One-way dependency, same rationale
+         as BIO-DOC-001 above. -->
+    <ProjectReference Include="../features/bio-vis-001/Biolog.Features.Visitors.csproj" />
+
+    <!-- BIO-RPT-004: operational dashboard and health views, registered into this host via
+         Modules/BioRpt004Module.cs (same IBiologModule shape). One-way dependency, same rationale
+         as BIO-DOC-001 above - see docs/features/bio-rpt-004/README.md. -->
+    <ProjectReference Include="../features/bio-rpt-004/Biolog.Features.OperationalDashboard.csproj" />
+
+    <!-- BIO-ACC-003: offline deny-list and cached access decisions, registered into this host
+         via Modules/BioAcc003Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above. -->
+    <ProjectReference Include="../features/bio-acc-003/Biolog.Features.AccessCache.csproj" />
+
+    <!-- BIO-TRN-001: routes, buses and person-assignment model, registered into this host via
+         Modules/BioTrn001Module.cs (same IBiologModule shape). One-way dependency, same rationale
+         as BIO-DOC-001 above. -->
+    <ProjectReference Include="../features/bio-trn-001/Biolog.Features.Transport.csproj" />
+
+    <!-- BIO-MOB-005: limited offline enrolment package, registered into this host via
+         Modules/BioMob005Module.cs (same IBiologModule shape). One-way dependency, same rationale
+         as BIO-DOC-001 above. -->
+    <ProjectReference Include="../features/bio-mob-005/Biolog.Features.OfflineEnrolment.csproj" />
+
+    <!-- BIO-TRN-002: boarding/alighting and bus-presence events, registered into this host via
+         Modules/BioTrn002Module.cs (same IBiologModule shape). One-way dependency, same rationale
+         as BIO-DOC-001 above. -->
+    <ProjectReference Include="../features/bio-trn-002/Biolog.Features.TransportEvents.csproj" />
+
+    <!-- BIO-ACC-002: online access decision service, registered into this host via
+         Modules/BioAcc002Module.cs (same IBiologModule shape). One-way dependency, same rationale
+         as BIO-DOC-001 above. -->
+    <ProjectReference Include="../features/bio-acc-002/Biolog.Features.AccessDecisions.csproj" />
+
+    <!-- BIO-BIO-008: provider-neutral liveness evidence, policy hooks and adversarial test
+         samples, registered into this host via Modules/BioBio008Module.cs (same IBiologModule
+         shape). One-way dependency, same rationale as BIO-DOC-001 above. -->
+    <ProjectReference Include="../features/bio-bio-008/Biolog.Features.Liveness/Biolog.Features.Liveness.csproj" />
+
+    <!-- BIO-INT-001: authentication provider abstraction, registered into this host via
+         Modules/BioInt001Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above - see docs/features/bio-int-001/README.md. -->
+    <ProjectReference Include="../features/bio-int-001/Biolog.Features.Authentication.csproj" />
+
+    <!-- BIO-ATT-002: education attendance policies (session/roster association, configurable
+         present/late/absent thresholds, audited manual adjustments), registered into this host via
+         Modules/BioAtt002Module.cs (same IBiologModule shape). One-way dependency, same rationale
+         as BIO-DOC-001 above. -->
+    <ProjectReference Include="../features/bio-att-002/Biolog.Features.AttendanceSessions.csproj" />
+
+    <!-- BIO-MOB-004: mobile identity/card/face verification flows, registered into this host via
+         Modules/BioMob004Module.cs (same IBiologModule shape). One-way dependency, same rationale
+         as BIO-DOC-001 above. -->
+    <ProjectReference Include="../features/bio-mob-004/Biolog.Features.MobileVerification.csproj" />
+
+    <!-- BIO-VIS-002: visitor check-in/out and temporary credentials (expiry+scope, backed by a
+         real BIO-CRD-005 card, revoked on checkout), registered into this host via
+         Modules/BioVis002Module.cs (same IBiologModule shape). One-way dependency, same rationale
+         as BIO-DOC-001 above. -->
+    <ProjectReference Include="../features/bio-vis-002/Biolog.Features.VisitorCredentials.csproj" />
+
+    <!-- BIO-INT-002: SIS/HR/ERP import framework (versioned source mappings, master/downstream
+         per integration, dry-run/conflict preview, idempotent apply), registered into this host
+         via Modules/BioInt002Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above. -->
+    <ProjectReference Include="../features/bio-int-002/Biolog.Features.Integrations.csproj" />
+
+    <!-- BIO-BIO-009: biometric retention policy, audited template deletion and raw-image
+         retention default-off, registered into this host via Modules/BioBio009Module.cs (same
+         IBiologModule shape). One-way dependency, same rationale as BIO-DOC-001 above. -->
+    <ProjectReference Include="../features/bio-bio-009/Biolog.Features.BiometricRetention/Biolog.Features.BiometricRetention.csproj" />
+
+    <!-- BIO-INT-003: API service accounts, OAuth2 client_credentials grant and per-route rate
+         limiting, registered into this host via Modules/BioInt003Module.cs (same IBiologModule
+         shape). One-way dependency, same rationale as BIO-DOC-001 above. -->
+    <ProjectReference Include="../features/bio-int-003/Biolog.Features.ApiSecurity.csproj" />
+
+    <!-- BIO-TEN-003: tenant feature-module configuration (biometrics incl. Face-1N,
+         card production, visitor, attendance, transport, Document Verify subfeatures),
+         registered into this host via Modules/BioTen003Module.cs (same IBiologModule shape).
+         One-way dependency, same rationale as BIO-DOC-001 above - see
+         docs/features/bio-ten-003/README.md. -->
+    <ProjectReference Include="../features/bio-ten-003/Biolog.Features.TenantFeatureConfig.csproj" />
+
+    <!-- BIO-INT-004: outbound webhooks (tenant-scoped subscriptions, signed/retryable
+         delivery), registered into this host via Modules/BioInt004Module.cs (same
+         IBiologModule shape). One-way dependency, same rationale as BIO-DOC-001 above. -->
+    <ProjectReference Include="../features/bio-int-004/Biolog.Features.Webhooks.csproj" />
+
+    <!-- BIO-ATT-003: workforce attendance policies (shift schedules, clock-pair validation,
+         derived overtime, audited exception adjustments), registered into this host via
+         Modules/BioAtt003Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above - see docs/features/bio-att-003/README.md. -->
+    <ProjectReference Include="../features/bio-att-003/Biolog.Features.WorkforceAttendance.csproj" />
+
+    <!-- BIO-INT-005: external import conflict review (routes BIO-INT-002's own already-detected
+         field-level disagreements to a human decision queue - keep/use-source/escalate), registered
+         into this host via Modules/BioInt005Module.cs (same IBiologModule shape). One-way
+         dependency, same rationale as BIO-DOC-001 above - see docs/features/bio-int-005/README.md. -->
+    <ProjectReference Include="../features/bio-int-005/Biolog.Features.ImportConflictReview.csproj" />
+
+    <!-- BIO-TRN-003: parent/system transport notifications (board/alight/missed-alight/exception
+         rules, minimized-payload delivery with visible retry/dead-letter), registered into this
+         host via Modules/BioTrn003Module.cs (same IBiologModule shape). One-way dependency, same
+         rationale as BIO-DOC-001 above - see docs/features/bio-trn-003/README.md. -->
+    <ProjectReference Include="../features/bio-trn-003/Biolog.Features.TransportNotifications.csproj" />
+
+    <!-- BIO-DEV-004: device health polling/heartbeat and capability-gated remote
+         configuration jobs, registered into this host via Modules/BioDev004Module.cs (same
+         IBiologModule shape). One-way dependency, same rationale as BIO-DOC-001 above - see
+         docs/features/bio-dev-004/README.md. -->
+    <ProjectReference Include="../features/bio-dev-004/Biolog.Features.DeviceOperations.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- BIO-TEN-002-QA-03 (Seyi round 3): TenantContext's constructor and
+         TenantContextAccessor.SetResolved are internal, restricted to this assembly's own
+         resolver (TenantContextMiddleware). These two test projects are the explicit,
+         auditable test seam that grants them the same access - visible here in source
+         control, not a reflection-based backdoor - so unit/integration tests can construct a
+         resolved context directly without going through a real HTTP request. -->
+    <InternalsVisibleTo Include="Biolog.UnitTests" />
+    <InternalsVisibleTo Include="Biolog.IntegrationTests" />
+  </ItemGroup>
+
+</Project>

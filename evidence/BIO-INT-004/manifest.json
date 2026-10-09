@@ -1,0 +1,86 @@
+{
+  "story_key": "BIO-INT-004",
+  "title": "Implement outbound webhooks",
+  "implementation_commit": "8f5fc00fc66a49462f739639add1bff4d22ebf9b",
+  "builder_head": "2d6ea5f2fe346b9ab20896b73a9877e7225b889c",
+  "reviewed_head": "657c2d23ff295fd18d75fe6f1e6110cae83b1208",
+  "environment": {
+    "profile": "local acceptance on Darwin arm64; synthetic fixtures only",
+    "timestamp": "2026-10-07"
+  },
+  "acceptance_criteria": {
+    "BIO-INT-004-AC01": {
+      "result": "PASS",
+      "evidence": ["tests/features/bio-int-004/WebhookSubscriptionServiceTests.cs", "tests/features/bio-int-004/WebhookDispatchServiceTests.cs", "tests/dotnet/Biolog.IntegrationTests/WebhookEndpointsTests.cs"],
+      "finding": "Subscriptions, permission checks, repository keys and event matching are tenant-scoped and event-type filtered."
+    },
+    "BIO-INT-004-AC02": {
+      "result": "PASS",
+      "evidence": ["api/features/bio-int-004/Biolog.Features.Webhooks/Domain/WebhookEventEnvelope.cs", "tests/features/bio-int-004/WebhookDispatchServiceTests.cs"],
+      "finding": "The outbound wire payload carries the versioned ADR-0003 envelope fields with explicit snake_case serialization."
+    },
+    "BIO-INT-004-AC03": {
+      "result": "PASS",
+      "evidence": ["tests/features/bio-int-004/WebhookSignerTests.cs", "tests/features/bio-int-004/WebhookDestinationPolicyTests.cs", "tests/features/bio-int-004/WebhookDispatchServiceTests.cs", "evidence/features/bio-int-004/codex/SECURITY-REVIEW-ZAINAB-ROUND5.md"],
+      "finding": "Timestamp-bound HMAC signing, atomic delivery claims, completed-result recovery, HTTPS defaults and connect-time destination enforcement protect delivery and replay boundaries."
+    },
+    "BIO-INT-004-AC04": {
+      "result": "PASS",
+      "evidence": ["tests/features/bio-int-004/WebhookDispatchServiceTests.cs", "evidence/features/bio-int-004/codex/REVIEW-Seyi-round6.md", "evidence/features/bio-int-004/codex/SECURITY-REVIEW-ZAINAB-ROUND5.md"],
+      "finding": "Bounded retries and dead-letter outcomes retain a convergent per-attempt audit trail; atomic create-if-absent prevents duplicate terminal rows during concurrent repair."
+    },
+    "BIO-INT-004-AC05": {
+      "result": "PASS",
+      "evidence": ["docs/features/bio-int-004/README.md", "tests/frontend/playwright/bio-int-004-webhooks.spec.ts", "evidence/features/bio-int-004/builder/playwright-webhooks-output.txt", "web/app/administration/integrations/page.tsx", "web/features/bio-int-004/WebhookSubscriptionsPanel.tsx"],
+      "finding": "The executable browser workflow proves the administration panel's empty, create, one-time-secret, enable/disable and genuine failed-create states, including an accessible alert and absence of a row or secret after failure. The authentication-settings route is explicitly documented as a HYBRID boundary because its actions remain in BIO-INT-001's sign-in/session-policy domain and none of this story's webhook ports route there."
+    }
+  },
+  "commands": [
+    {"command": "./tests/features/bio-int-004/bin/Debug/net10.0/Biolog.Features.Webhooks.Tests", "result": "PASS (103/103)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (36 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS (builder evidence; clean, fallback scanner)"},
+    {"command": "pnpm --dir tests/frontend exec playwright test playwright/bio-int-004-webhooks.spec.ts", "result": "PASS (builder evidence 6/6); acceptance replay blocked by managed sandbox EPERM on 127.0.0.1:3000"}
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "2d6ea5f2fe346b9ab20896b73a9877e7225b889c",
+    "implementation_commit": "8f5fc00fc66a49462f739639add1bff4d22ebf9b",
+    "feature_tests": "103/103 PASS",
+    "integration_tests": "241/241 PASS",
+    "shared_unit_tests": "210/210 PASS",
+    "browser_tests": "6/6 PASS (twice)",
+    "metadata_sha256": "259126b083f75d7a6ff5611c83292100bc53ea2f13cf6138d328e2fa9c06e55e"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "result": "PASS",
+    "builder_commit_reviewed": "2d6ea5f2fe346b9ab20896b73a9877e7225b889c",
+    "review_commit": "fe2379ab7f8b9e774e0e60aef153692e614e7a43",
+    "evidence": "evidence/features/bio-int-004/codex/REVIEW-Seyi-sy04-recheck.md",
+    "evidence_sha256": "033c9c9505c4548624c7c76e8debc0faf6f919a83ab2448127ef506a4c4ac46d"
+  },
+  "security_review": {
+    "reviewer": "Zainab",
+    "result": "PASS",
+    "builder_commit_reviewed": "2d6ea5f2fe346b9ab20896b73a9877e7225b889c",
+    "review_commit": "657c2d23ff295fd18d75fe6f1e6110cae83b1208",
+    "evidence": "evidence/features/bio-int-004/codex/SECURITY-REVIEW-ZAINAB-ROUND7.md",
+    "evidence_sha256": "d0481247b210e395028fb4f903204e752234858a0aadf8a7c18ec6d65e836a96"
+  },
+  "category_verdicts": {
+    "functional_backend": "PASS",
+    "security": "PASS",
+    "tenant_isolation": "PASS",
+    "recovery": "PASS",
+    "concurrency": "PASS",
+    "regression": "PASS",
+    "mapped_ui_workflow": "PASS"
+  },
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "AC01-AC05 pass. Fresh acceptance replay confirms 103/103 feature tests, traceability and module-boundary checks. The committed browser evidence proves 6/6 mapped workflows, including a genuine visible failure state; local replay was attempted but the managed sandbox denied the required loopback listener. Both required independent reviewers passed the exact remediation builder head, and the authentication-settings HYBRID boundary is explicit."
+  }
+}

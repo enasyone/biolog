@@ -1,0 +1,31 @@
+{
+  "story_key": "BIO-RPT-002",
+  "title": "Implement visual report builder foundation",
+  "implementation_commit": "dfcf525a4778e219f5ec5727fab0506ea6e839b2",
+  "reviewed_head": "a61683991873dba11aea5a38f9b3fe7b7079f0bb",
+  "environment": {"profile": "local acceptance; synthetic fixtures only; GitHub push blocked", "timestamp": "2026-09-24T06:23:25Z"},
+  "acceptance_criteria": {
+    "BIO-RPT-002-AC01": {"result": "PASS", "evidence": ["dataset dimensions and measures come from a static whitelist", "invalid combinations fail before data reads"]},
+    "BIO-RPT-002-AC02": {"result": "PASS", "evidence": ["CSV produces RFC 4180 bytes", "Excel and PDF hooks are reachable and explicitly return not implemented"]},
+    "BIO-RPT-002-AC03": {"result": "PASS", "evidence": ["tenant comes only from ICurrentTenantProvider", "cross-tenant job lookup returns indistinguishable 404"]},
+    "BIO-RPT-002-AC04": {"result": "PASS", "evidence": ["all reports use an asynchronous queued lifecycle", "cooperative deterministic cancellation is tested"]},
+    "BIO-RPT-002-AC05": {"result": "PASS", "evidence": ["generation, completion, cancellation and export are audited before commit"]},
+    "BIO-RPT-002-AC06": {"result": "PASS", "evidence": ["dedicated ReportingService ports avoid BIO-RPT-001 routes", "governed builder is mounted alongside the approved report UI", "real dual-server workflow passed 3/3"]}
+  },
+  "commands": [
+    {"command": "bash tests/features/bio-rpt-002/BIO-RPT-002.test.sh", "result": "PASS (32/32)"},
+    {"command": "tests/features/bio-rpt-002/bin/Debug/net10.0/Biolog.Features.ReportBuilder.Tests", "result": "PASS (35/35)"},
+    {"command": "bash tests/features/bio-rpt-001/BIO-RPT-001.test.sh", "result": "22/23; sole non-behavioural branch-diff guard expectedly detects BIO-RPT-002's approved additive report UI; BIO-RPT-001 routes/tests remain untouched and are covered post-merge"},
+    {"command": "dotnet build api/Biolog.Api/Biolog.Api.csproj --no-restore -m:1 /nodeReuse:false --disable-build-servers", "result": "PASS (builder and acceptance replay)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (31 implemented stories on reviewed branch)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS (built-in fallback scan clean)"}
+  ],
+  "builder_verdict": {
+    "result": "PASS", "commit_hash": "dfcf525a4778e219f5ec5727fab0506ea6e839b2", "backend_tests": "35/35 PASS", "card_production_regression": "52/52 PASS", "frontend_unit": "405/405 PASS", "frontend_simulation_e2e": "409/409 PASS", "frontend_live_e2e": "3/3 PASS", "metadata_sha256": "0d76f3cc3d1333903fb59ab7cb166b0dcfda7597f569159313de52648ddeba9e"
+  },
+  "independent_qa": {"reviewer": "Seyi", "result": "PASS", "evidence": "evidence/BIO-RPT-002/codex/REVIEW-Seyi.md", "evidence_sha256": "fed6bc6c40377b66ec44835ed58cbd9f304b2d777caf93fb41da1c986185a7d0"},
+  "category_verdicts": {"functional": "PASS", "security": "PASS", "tenant_isolation": "PASS", "offline_recovery": "NOT_APPLICABLE", "concurrency": "PASS", "regression": "PASS"},
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "All six acceptance criteria have commit-bound builder evidence, independent Seyi PASS, and successful focused acceptance replay. BIO-RPT-001 route separation is explicit and will be replayed again on merged develop."}
+}

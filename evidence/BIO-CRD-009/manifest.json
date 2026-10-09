@@ -1,0 +1,77 @@
+{
+  "story_key": "BIO-CRD-009",
+  "title": "Add photo element to the card designer canvas",
+  "implementation_commit": "981c4a718640cbcc6d8dc7ff530be3342af0e036",
+  "builder_head": "b60f55f603ae943b413ace10f05fdb1bd58fd6ae",
+  "reviewed_head": "446040a4b6a26c080fa629b579afd533aba9a88c",
+  "environment": {
+    "profile": "local acceptance on Darwin arm64; synthetic fixtures only",
+    "timestamp": "2026-10-06"
+  },
+  "acceptance_criteria": {
+    "BIO-CRD-009-AC01": {
+      "result": "PASS",
+      "evidence": ["tests/frontend/unit/bio-crd-009-photo-element.test.ts", "tests/frontend/playwright/bio-crd-009-card-photo.spec.ts"],
+      "finding": "PhotoElement uses the shared canvas operations for move, resize, rotate, layer and lock."
+    },
+    "BIO-CRD-009-AC02": {
+      "result": "PASS",
+      "evidence": ["tests/frontend/unit/bio-crd-009-photo-element.test.ts", "evidence/BIO-CRD-009/codex/REVIEW-Seyi.md"],
+      "finding": "Photo content remains an opaque reference and is never resolved into image bytes or an image source."
+    },
+    "BIO-CRD-009-AC03": {
+      "result": "PASS",
+      "evidence": ["tests/frontend/unit/bio-crd-009-photo-design-state.test.ts", "tests/frontend/playwright/bio-crd-009-card-photo.spec.ts"],
+      "finding": "Photo elements can be added and removed independently on the front and back."
+    },
+    "BIO-CRD-009-AC04": {
+      "result": "PASS",
+      "evidence": ["tests/frontend/unit/bio-crd-009-template-photo-capture.test.ts", "evidence/BIO-CRD-009/builder/backend-regression-test-output.txt"],
+      "finding": "BIO-CRD-008 template snapshots capture front and back photo elements with backward-compatible defaults."
+    },
+    "BIO-CRD-009-AC05": {
+      "result": "PASS",
+      "evidence": ["tests/frontend/playwright/bio-crd-009-card-photo.spec.ts", "evidence/BIO-CRD-009/builder/frontend-e2e-test-output.txt", "docs/features/bio-crd-009/README.md"],
+      "finding": "The existing card designer exposes an end-to-end add-photo control without redesigning the shared shell."
+    }
+  },
+  "commands": [
+    {"command": "node node_modules/vitest/vitest.mjs run unit/bio-crd-009-photo-element.test.ts unit/bio-crd-009-photo-design-state.test.ts unit/bio-crd-009-template-photo-capture.test.ts", "result": "PASS (21/21)"},
+    {"command": "node node_modules/vitest/vitest.mjs run", "result": "PASS (59 files, 447/447 tests)"},
+    {"command": "node node_modules/typescript/bin/tsc --noEmit --project tsconfig.json && node node_modules/next/dist/bin/next build", "result": "PASS"},
+    {"command": "dotnet test tests/features/bio-crd-008/Biolog.Features.CardTemplates.Tests.csproj --nologo -m:1 /nodeReuse:false", "result": "UNAVAILABLE in acceptance sandbox: VSTest loopback socket permission denied; commit-bound builder evidence records 29/29 PASS"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (33 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS (built-in fallback scanner)"}
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "b60f55f603ae943b413ace10f05fdb1bd58fd6ae",
+    "implementation_commit": "981c4a718640cbcc6d8dc7ff530be3342af0e036",
+    "frontend_unit_tests": "447/447 PASS",
+    "frontend_e2e_tests": "44/44 PASS",
+    "backend_regression_tests": "29/29 PASS",
+    "metadata_sha256": "7245b79451a25fa4e29d91d0098e8b4115b465a7a4c3bf875efc60fe3457bcda"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "result": "PASS",
+    "builder_commit_reviewed": "b60f55f603ae943b413ace10f05fdb1bd58fd6ae",
+    "review_commit": "446040a4b6a26c080fa629b579afd533aba9a88c",
+    "evidence": "evidence/BIO-CRD-009/codex/REVIEW-Seyi.md",
+    "evidence_sha256": "1decbe4a2a85fb3da614ce21a29336c38d27b5d0dcc71811803e036e967b871f"
+  },
+  "category_verdicts": {
+    "functional": "PASS",
+    "security_privacy": "PASS",
+    "snapshot_integrity": "PASS",
+    "ui_integration": "PASS",
+    "regression": "PASS"
+  },
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "All five acceptance criteria map to exact-commit builder and independent review evidence; focused and full frontend replays, production build, traceability, module direction and secret scan pass."
+  }
+}

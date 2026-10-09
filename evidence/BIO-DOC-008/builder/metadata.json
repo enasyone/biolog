@@ -1,0 +1,10 @@
+{
+  "story_key": "BIO-DOC-008",
+  "stage": "builder",
+  "commit_hash": "e145357fb7fdfaab2caee02293d57c6534e72ee2",
+  "test_command": "dotnet test tests/features/bio-doc-008/Biolog.Features.EvidenceComparison.Tests/Biolog.Features.EvidenceComparison.Tests.csproj && bash tests/foundation/BIO-DOC-008.test.sh && bash scripts/quality.sh --full",
+  "result": "PASS",
+  "timestamp": "2026-09-23T06:55:00Z",
+  "reviewer": "Ifeanyi",
+  "data_classification": "SYNTHETIC"
+}

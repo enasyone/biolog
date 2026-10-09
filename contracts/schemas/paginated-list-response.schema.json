@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.biolog.local/paginated-list-response.schema.json",
+  "title": "BIOLOG cursor-paginated list response",
+  "description": "ADR-0004 Decision 5.1. Cursor pagination is the default; the cursor is opaque and a client must not construct or parse it. Chosen over offset pagination, which degrades at the platform's stated capacity baseline (500k-2M identities per tenant).",
+  "type": "object",
+  "required": ["data", "page"],
+  "properties": {
+    "data": { "type": "array", "items": {} },
+    "page": {
+      "type": "object",
+      "required": ["next_cursor", "limit"],
+      "properties": {
+        "next_cursor": {
+          "description": "Opaque continuation token, or null when there is no further page. Never parsed or constructed by a client.",
+          "type": ["string", "null"]
+        },
+        "limit": { "type": "integer", "minimum": 1 },
+        "total_count": {
+          "description": "Optional. Present only when this specific query makes counting cheap; not a general requirement.",
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

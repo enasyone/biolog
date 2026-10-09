@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-CRD-003 owns api/features/bio-crd-003/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh)
+         and no ProjectReference to api/features/bio-crd-002 either: this project needs
+         nothing from it (the watermark preset catalogue is stateless, tenant-independent
+         reference data, same as BIO-CRD-002's own card-format catalogue) - "Dependencies:
+         BIO-CRD-002" in the story's own metadata is build-wave sequencing (both stories
+         share the `card-designer` conflict group), not a runtime dependency.
+
+         This project's own module adapter lives in api/Biolog.Api/Modules/BioCrd003Module.cs
+         from the start, matching every prior story.
+
+         Namespace root is "CardTypography". No new ADR-0001 canonical identifier type is
+         minted - this feature has no tenant-scoped aggregate, only a fixed reference
+         catalogue, the same "fixed baseline catalogue" shape BIO-CRD-002's own
+         CardFormatCatalog uses. -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Biolog.Features.CardTypography.Tests" />
+  </ItemGroup>
+
+</Project>

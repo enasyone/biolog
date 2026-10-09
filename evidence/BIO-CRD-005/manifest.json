@@ -1,0 +1,31 @@
+{
+  "story_key": "BIO-CRD-005",
+  "title": "Implement physical card issue transaction",
+  "implementation_commit": "9bf4cff781b4fbfd1984dcc9030001966a521a39",
+  "builder_head": "cc50f7f",
+  "reviewed_head": "734f998be6a84765c38a33a00df59f0660dac2f8",
+  "environment": {"profile": "local acceptance; synthetic fixtures only; VSTest socket unavailable in sandbox", "timestamp": "2026-09-23T00:15:39Z"},
+  "acceptance_criteria": {
+    "BIO-CRD-005-AC01": {"result": "PASS", "evidence": ["sequence allocation and concurrency tests"]},
+    "BIO-CRD-005-AC02": {"result": "PASS", "evidence": ["append-only sequence tests"]},
+    "BIO-CRD-005-AC03": {"result": "PASS", "evidence": ["independent encode/print/verify step tests"]},
+    "BIO-CRD-005-AC04": {"result": "PASS", "evidence": ["evidence/BIO-CRD-005/acceptance/audit-failure-probe/Program.cs", "evidence/BIO-CRD-005/acceptance/audit-order-probe.py", "evidence/BIO-CRD-005/codex/REREVIEW-Seyi-round2.md"], "finding": "BIO-CRD-005-QA-01 High closed: mandatory audit precedes creation and confirmed audit failure leaves no card row"},
+    "BIO-CRD-005-AC05": {"result": "PASS", "evidence": ["complete immutable provenance round-trip tests"]}
+  },
+  "commands": [
+    {"command": "dotnet run --project evidence/BIO-CRD-005/acceptance/audit-failure-probe/AuditFailureProbe.csproj -m:1 /nodeReuse:false", "result": "PASS: audit_unavailable returned and persisted-card-count is 0"},
+    {"command": "python3 evidence/BIO-CRD-005/acceptance/audit-order-probe.py", "result": "PASS: sequence compute precedes audit and commit follows audit"},
+    {"command": "bash tests/features/bio-crd-005/BIO-CRD-005.test.sh", "result": "PASS (34/34)"},
+    {"command": "dotnet build tests/features/bio-crd-005/Biolog.Features.CardIssuance.Tests.csproj --no-restore -m:1 /nodeReuse:false", "result": "PASS (0 warnings, 0 errors)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (24 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS"}
+  ],
+  "builder_verdict": {"result": "PASS", "commit_hash": "9bf4cff781b4fbfd1984dcc9030001966a521a39", "feature_tests": "31/31 PASS", "host_tests": "5/5 PASS", "structural_tests": "34/34 PASS", "base_quality": "PASS", "metadata_sha256": "33bc21615f65d74081b9ef74d22564516efe19f584cb360749dbeb153907a4e8"},
+  "independent_qa": {"reviewer": "Seyi", "result": "PASS", "review_commit": "734f998be6a84765c38a33a00df59f0660dac2f8", "evidence": "evidence/BIO-CRD-005/codex/REREVIEW-Seyi-round2.md", "evidence_sha256": "5774e12080accb5804756ebbbdca7bcfc6fe5ee0beeccdc74b789fa62fdad921"},
+  "category_verdicts": {"functional": "PASS", "security": "PASS", "tenant_isolation": "PASS", "offline_recovery": "PASS", "concurrency": "PASS", "regression": "PASS"},
+  "security_performance_verdicts": {"security": "PASS: confirmed audit outage leaves no issued card", "performance": "Not separately required"},
+  "screenshots_logs": [],
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "Every acceptance criterion is mapped to passing evidence; QA-01 is closed by audited-before-commit issuance and independent re-review."}
+}

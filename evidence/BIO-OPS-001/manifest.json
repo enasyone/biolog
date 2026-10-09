@@ -1,0 +1,78 @@
+{
+  "story_key": "BIO-OPS-001",
+  "title": "Run local end-to-end enrolment acceptance journey",
+  "implementation_commit": "779507f44f8016a1e953836c991b11cbe7ce8b1e",
+  "builder_head": "36c7bb5a98d3295ebf4d28e554f3ac965ed041f9",
+  "reviewed_head": "fa4df43",
+  "environment": {
+    "profile": "local acceptance on Darwin arm64; synthetic fixtures only",
+    "timestamp": "2026-10-06"
+  },
+  "acceptance_criteria": {
+    "BIO-OPS-001-AC01": {
+      "result": "PASS",
+      "evidence": ["tests/operations/BIO-OPS-001.test.sh", "evidence/BIO-OPS-001/codex/REVIEW-Seyi-round3.md"],
+      "finding": "Journey harness checks the repository has no configured remote dependency before any stage runs."
+    },
+    "BIO-OPS-001-AC02": {
+      "result": "PASS",
+      "evidence": ["tests/frontend/unit/bio-ops-001-enrolment-journey.test.ts", "web/features/bio-ops-001/enrolment-journey.ts"],
+      "finding": "Fresh-process synthetic journey completes person, photo, right-index fingerprint, face, document verification and card issue through existing module ports."
+    },
+    "BIO-OPS-001-AC03": {
+      "result": "PASS",
+      "evidence": ["evidence/BIO-OPS-001/codex/REVIEW-Seyi-round3.md", "evidence/BIO-OPS-001/codex/SECURITY-REVIEW-ZAINAB-ROUND3.md"],
+      "finding": "After two FAIL rounds (test-fabricated linkage, then a wrapper-only fix), the service itself now passes immutable tenant/PERSON/stage context into every stage callback and independently resolves/verifies returned artifact references through a separate LocalArtifactStore before persisting evidence. Cross-PERSON relabelling is rejected by the service, proven by a dedicated attack test, not just by test construction."
+    },
+    "BIO-OPS-001-AC04": {
+      "result": "PASS",
+      "evidence": ["tests/operations/BIO-OPS-001.test.sh"],
+      "finding": "No GitHub remote configured or used; all work committed locally only."
+    },
+    "BIO-OPS-001-AC05": {
+      "result": "PASS",
+      "evidence": ["tests/frontend/unit/bio-ops-001-enrolment-journey.test.ts", "evidence/BIO-OPS-001/codex/SECURITY-REVIEW-ZAINAB-ROUND3.md"],
+      "finding": "executeStage checks for an existing blocker before invoking any later stage callback, so a caller cannot catch a failure/offline outcome and still reach card issue; no retry remains. Proven by a dedicated catch-then-card attack test asserting the service itself rejects the call, not a test-side if-condition."
+    }
+  },
+  "commands": [
+    {"command": "bash tests/operations/BIO-OPS-001.test.sh", "result": "PASS (3/3)"},
+    {"command": "cd tests/frontend && pnpm exec vitest run unit/bio-ops-001-enrolment-journey.test.ts", "result": "PASS (4/4) - re-ran independently after installing tests/frontend's missing vitest dependency (worktree gap both reviewers had already flagged as non-contrary)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (32 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS (clean, fallback scanner)"}
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "36c7bb5a98d3295ebf4d28e554f3ac965ed041f9",
+    "implementation_commit": "779507f44f8016a1e953836c991b11cbe7ce8b1e",
+    "history": "3 remediation rounds. Round 1 (adb7e9e) fabricated AC03 linkage via test-copied personId and allowed catch-then-retry past a blocker - FAILed by both Seyi and Zainab. Round 2 (49cb5c1/125e99f) patched the wrapper and test assertions without moving enforcement into the service - FAILed again by both on the same root cause. Round 3 (779507f/36c7bb5) moved enforcement into EnrolmentJourneyService itself (immutable stage context, owning-store-verified references, blocker check before every callback) - PASSed by both."
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "result": "PASS",
+    "builder_commit_reviewed": "36c7bb5a98d3295ebf4d28e554f3ac965ed041f9",
+    "review_commit": "fa4df43",
+    "evidence": "evidence/BIO-OPS-001/codex/REVIEW-Seyi-round3.md"
+  },
+  "security_review": {
+    "reviewer": "Zainab",
+    "result": "PASS",
+    "review_commit": "1e499fc",
+    "evidence": "evidence/BIO-OPS-001/codex/SECURITY-REVIEW-ZAINAB-ROUND3.md"
+  },
+  "category_verdicts": {
+    "functional": "PASS",
+    "security_privacy": "PASS",
+    "tenant_isolation": "PASS",
+    "identity_linkage": "PASS",
+    "failure_handling": "PASS",
+    "regression": "PASS"
+  },
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chinedu",
+    "decision": "PASS",
+    "reason": "Routed to god for acceptance since Chioma is both owner and builder of this story (conflict of interest). Independently re-ran the full quality.sh suite after fixing a worktree-local missing vitest dependency (tests/frontend had no node_modules; installed via pnpm) - the real executable harness passes 4/4 including the new cross-PERSON-relabel and catch-then-card attack tests, not just commit-bound builder claims. Inspected the actual diff in 779507f: blocker check now runs before the stage callback is even invoked, and returned artifact references are independently verified against an owning store rather than trusted from the callback. Overall quality.sh reports QUALITY: FAIL, but confirmed by direct inspection this is driven entirely by unrelated pre-existing failures in BIO-ARC-006 and BIO-FND-008 caused by this sandbox blocking mktemp/dotnet absolute-path execution - not by anything in this story's changes. All five ACs map to exact-commit builder, independent QA and security evidence after two genuine FAIL rounds that correctly caught a real defect; traceability and module-direction checks pass; secret scan clean."
+  }
+}

@@ -1,0 +1,72 @@
+5036662 BIO-MOB-001: close the real store's self-issued-provenance forge path
+ mobile/lib/core/db/app_database.dart               | 12 +++++++
+ mobile/lib/core/db/sqlcipher_app_database.dart     | 29 +++++++++++------
+ ...c03_save_tenant_context_unimplemented_test.dart | 37 ++++++++++++++++++++++
+ tests/foundation/BIO-MOB-001.test.sh               |  4 +++
+ 4 files changed, 72 insertions(+), 10 deletions(-)
+4a05037 review(bio-mob-001): fail round-five provenance re-review
+ evidence/BIO-MOB-001/codex/REVIEW-Seyi-round5.md | 35 ++++++++++++++++++++++++
+ 1 file changed, 35 insertions(+)
+260ae88 BIO-MOB-001: record acceptance round-3 fix evidence for BIO-MOB-001-QA-03
+ evidence/BIO-MOB-001/builder/SUMMARY.md            | 78 ++++++++++++++++++++--
+ .../BIO-MOB-001/builder/flutter-analyze-output.txt |  2 +-
+ .../BIO-MOB-001/builder/flutter-test-output.txt    | 67 ++++++++++---------
+ .../builder/foundation-harness-output.txt          |  3 +-
+ evidence/BIO-MOB-001/builder/git-state.txt         | 58 ++++++++--------
+ evidence/BIO-MOB-001/builder/metadata.json         |  4 +-
+ .../qa03-legacy-forged-context-probe-output.txt    |  2 +
+ governance/stories/BIO-MOB-001.json                |  2 +-
+ 8 files changed, 146 insertions(+), 70 deletions(-)
+dfa95ee BIO-MOB-001: invalidate legacy caller-constructed tenant contexts on restore
+ mobile/lib/core/db/app_database.dart               | 21 +++++++-
+ mobile/lib/core/db/sqlcipher_app_database.dart     | 36 ++++++++++++--
+ mobile/lib/core/session/session_controller.dart    | 27 +++++-----
+ mobile/lib/core/tenant/tenant_context.dart         | 55 ++++++++++++++-------
+ ..._001_ac03_persisted_tenant_validation_test.dart | 44 ++++++++++-------
+ .../bio_mob_001_ac03_session_controller_test.dart  | 57 ++++++++++++++++++----
+ tests/flutter/test/support/fake_app_database.dart  | 51 +++++++++++++------
+ .../test/support/synthetic_tenant_context.dart     |  6 +--
+ tests/foundation/BIO-MOB-001.test.sh               | 10 +++-
+ 9 files changed, 223 insertions(+), 84 deletions(-)
+94c0800 evidence: reject BIO-MOB-001 legacy tenant trust
+ evidence/BIO-MOB-001/acceptance/ACCEPTANCE.md      | 27 +++++++++-------
+ .../legacy-forged-context-source-probe.py          | 34 ++++++++++++++++++++
+ evidence/BIO-MOB-001/manifest.json                 | 37 +++++++++++-----------
+ 3 files changed, 68 insertions(+), 30 deletions(-)
+b694fcc review(bio-mob-001): pass round-four re-review
+ evidence/BIO-MOB-001/codex/REREVIEW-Seyi-round4.md | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+a6c7945 BIO-MOB-001: record acceptance round-2 fix evidence for BIO-MOB-001-QA-02
+ evidence/BIO-MOB-001/builder/SUMMARY.md            |  96 +++++++++++++++++---
+ evidence/BIO-MOB-001/builder/directory-tree.txt    |   3 +-
+ .../builder/emulator-unbound-screen-round2.png     | Bin 0 -> 121759 bytes
+ .../BIO-MOB-001/builder/flutter-analyze-output.txt |   2 +-
+ .../BIO-MOB-001/builder/flutter-test-output.txt    | 101 ++++++++++-----------
+ .../builder/foundation-harness-output.txt          |   5 +-
+ evidence/BIO-MOB-001/builder/git-state.txt         |  53 +++++++----
+ evidence/BIO-MOB-001/builder/metadata.json         |   4 +-
+ .../qa02-caller-constructed-probe-output.txt       |   2 +
+ governance/stories/BIO-MOB-001.json                |   6 +-
+ 10 files changed, 174 insertions(+), 98 deletions(-)
+67445ac BIO-MOB-001: remove locally-fabricated tenant resolution shim
+ mobile/lib/core/actor/actor_context.dart           |  38 ------
+ mobile/lib/core/db/app_database.dart               |   7 +-
+ mobile/lib/core/session/session_controller.dart    |  42 +++----
+ mobile/lib/core/tenant/tenant_context.dart         |  63 +++++-----
+ .../tenant_select/tenant_select_screen.dart        | 135 +++++----------------
+ .../test/bio_mob_001_ac01_app_boot_test.dart       |  60 +++++----
+ ..._001_ac03_persisted_tenant_validation_test.dart |  36 ++++--
+ .../bio_mob_001_ac03_session_controller_test.dart  |  70 ++++-------
+ .../test/bio_mob_001_ac03_tenant_context_test.dart |  48 --------
+ .../test/support/synthetic_tenant_context.dart     |  29 +++++
+ tests/foundation/BIO-MOB-001.test.sh               |  11 +-
+ 11 files changed, 199 insertions(+), 340 deletions(-)
+
+ M evidence/BIO-MOB-001/builder/SUMMARY.md
+ M evidence/BIO-MOB-001/builder/directory-tree.txt
+ M evidence/BIO-MOB-001/builder/flutter-analyze-output.txt
+ M evidence/BIO-MOB-001/builder/flutter-test-output.txt
+ M evidence/BIO-MOB-001/builder/foundation-harness-output.txt
+ M evidence/BIO-MOB-001/builder/git-state.txt
+ M evidence/BIO-MOB-001/builder/metadata.json
+ M governance/stories/BIO-MOB-001.json

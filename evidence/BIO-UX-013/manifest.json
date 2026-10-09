@@ -1,0 +1,42 @@
+{
+  "story_key": "BIO-UX-013",
+  "commit_hash": "8cc2192e206983ea1917ea841faa5350125b0f78",
+  "implementation_commit": "48aeb49b21215eaad681ad44269d6c591229e0e9",
+  "builder_evidence_commit": "8cc2192e206983ea1917ea841faa5350125b0f78",
+  "environment_profile": "local frontend Node/pnpm workspace; synthetic fixtures; Chromium browser evidence",
+  "timestamp": "2026-09-23T16:46:30Z",
+  "acceptance_criteria": {
+    "BIO-UX-013-AC01": {"result": "PASS", "tests": ["bio-ux-013-breakpoints.spec.ts"]},
+    "BIO-UX-013-AC02": {"result": "PASS", "tests": ["bio-ux-013-keyboard-nav.spec.ts"]},
+    "BIO-UX-013-AC03": {"result": "PASS", "tests": ["bio-ux-013-axe-baseline.spec.ts"]},
+    "BIO-UX-013-AC04": {"result": "PASS", "tests": ["bio-ux-013-state-consistency.spec.ts"]},
+    "BIO-UX-013-AC05": {"result": "PASS", "tests": ["bio-ux-013-edge-case-data.spec.ts", "bio-ux-013-breakpoints.spec.ts"]},
+    "BIO-UX-013-AC06": {"result": "PASS", "tests": ["bio-ux-013-axe-baseline.spec.ts light/dark full-route coverage"]}
+  },
+  "commands_results": [
+    {"command": "corepack pnpm --dir tests/frontend test:unit", "result": "PASS: 50 files, 376 tests"},
+    {"command": "corepack pnpm --dir web typecheck", "result": "PASS"},
+    {"command": "corepack pnpm --dir web build", "result": "PASS: 34 routes plus dynamic person-detail route"},
+    {"command": "builder full Playwright suite", "result": "PASS: 348 tests"},
+    {"command": "governance independent full Playwright rerun", "result": "PASS: 348 tests"}
+  ],
+  "builder_verdict": "PASS",
+  "independent_qa_verdict": "PASS",
+  "security_verdict": "PASS",
+  "tenant_verdict": "PASS",
+  "offline_verdict": "PASS",
+  "concurrency_verdict": "NOT_APPLICABLE",
+  "regression_verdict": "PASS",
+  "evidence_references": [
+    "builder/metadata.json",
+    "builder/SUMMARY.md",
+    "builder/unit-test-output.txt",
+    "builder/typecheck-output.txt",
+    "builder/web-build-output.txt",
+    "builder/e2e-test-output.txt",
+    "codex/REVIEW-Seyi-round1.md",
+    "acceptance/REVIEW-Chioma-round1.md"
+  ],
+  "final_acceptance_decision": "PASS",
+  "reason": "AC01-AC06 have complete responsive, keyboard, accessibility, state, edge-case, and theme-parity evidence with full regression coverage."
+}

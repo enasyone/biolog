@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-DOC-010",
+  "title": "Implement Nigeria Document Intelligence Pack v1",
+  "owner": "Ifeanyi - Document Intelligence Engineer",
+  "reviewed_commit": "cfef942448006d324cb264b76ca63bf4868c06ef",
+  "required_acceptance_stages": ["builder", "adversarial", "acceptance"],
+  "requirement_ids": [
+    "BIO-DOC-010-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-DOC-010-AC01",
+      "requirement_ids": ["BIO-DOC-010-REQ-001"],
+      "text": "Pack entries include country, issuer, document type, series/version, sides, expected fields, MRZ/barcode/NFC/security metadata and validation rules."
+    },
+    {
+      "id": "BIO-DOC-010-AC02",
+      "requirement_ids": ["BIO-DOC-010-REQ-001"],
+      "text": "Templates are immutable once published."
+    },
+    {
+      "id": "BIO-DOC-010-AC03",
+      "requirement_ids": ["BIO-DOC-010-REQ-001"],
+      "text": "Reference/test samples are governed and synthetic where required."
+    },
+    {
+      "id": "BIO-DOC-010-AC04",
+      "requirement_ids": ["BIO-DOC-010-REQ-001"],
+      "text": "Pack version is recorded on every verification."
+    },
+    {
+      "id": "BIO-DOC-010-AC05",
+      "requirement_ids": ["BIO-DOC-010-REQ-001"],
+      "text": "The approved web surface (/document-verify) is connected through DocumentVerifyService to this story's live implementation or an explicitly documented HYBRID state, and the mapped end-to-end human workflow passes without an unapproved UI redesign."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-DOC-010.test.sh",
+      "ac_ids": [
+        "BIO-DOC-010-AC01",
+        "BIO-DOC-010-AC02",
+        "BIO-DOC-010-AC03",
+        "BIO-DOC-010-AC04",
+        "BIO-DOC-010-AC05"
+      ]
+    },
+    {
+      "path": "tests/features/bio-doc-010/Biolog.Features.DocumentTemplatePack.Tests/DocumentTemplatePackEntryTests.cs",
+      "ac_ids": ["BIO-DOC-010-AC01"]
+    },
+    {
+      "path": "tests/features/bio-doc-010/Biolog.Features.DocumentTemplatePack.Tests/DocumentTemplatePackTests.cs",
+      "ac_ids": ["BIO-DOC-010-AC02"]
+    },
+    {
+      "path": "tests/features/bio-doc-010/Biolog.Features.DocumentTemplatePack.Tests/DocumentTemplateSampleGovernanceTests.cs",
+      "ac_ids": ["BIO-DOC-010-AC03"]
+    },
+    {
+      "path": "tests/features/bio-doc-010/Biolog.Features.DocumentTemplatePack.Tests/DocumentTemplateVerificationTests.cs",
+      "ac_ids": ["BIO-DOC-010-AC04"]
+    },
+    {
+      "path": "tests/features/bio-doc-010/Biolog.Features.DocumentTemplatePack.Tests/DocumentTemplatePackResultTypesAreLockedDownTests.cs",
+      "ac_ids": ["BIO-DOC-010-AC01", "BIO-DOC-010-AC04"]
+    },
+    {
+      "path": "tests/features/bio-doc-010/Biolog.Features.DocumentTemplatePack.Tests/DocumentTemplatePackServiceTests.cs",
+      "ac_ids": ["BIO-DOC-010-AC01", "BIO-DOC-010-AC05"]
+    },
+    {
+      "path": "tests/features/bio-doc-010/Biolog.Features.DocumentTemplatePack.Tests/NigeriaDocumentPackV1Tests.cs",
+      "ac_ids": ["BIO-DOC-010-AC01", "BIO-DOC-010-AC03", "BIO-DOC-010-AC04"]
+    },
+    {
+      "path": "tests/frontend/unit/bio-doc-010-documents-document-identification-port.test.ts",
+      "ac_ids": ["BIO-DOC-010-AC05"]
+    },
+    {
+      "path": "tests/frontend/playwright/bio-doc-010-identify-live.spec.ts",
+      "ac_ids": ["BIO-DOC-010-AC05"]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-DOC-010/builder/metadata.json",
+      "stage": "builder",
+      "ac_ids": [
+        "BIO-DOC-010-AC01",
+        "BIO-DOC-010-AC02",
+        "BIO-DOC-010-AC03",
+        "BIO-DOC-010-AC04",
+        "BIO-DOC-010-AC05"
+      ]
+    }
+  ]
+}

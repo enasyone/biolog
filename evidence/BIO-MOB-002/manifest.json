@@ -1,0 +1,31 @@
+{
+  "story_key": "BIO-MOB-002",
+  "commit_hash": "dbcaa770550a7e54a0f787eb7d6fdda6c2d20dce",
+  "implementation_commit": "14341f53901d30bf2147bb83e5efedefa2785a76",
+  "environment_profile": "macOS arm64; Dart SDK from Flutter cache; repository foundation harness; SQLCipher production source inspected",
+  "timestamp": "2026-09-23T03:31:32Z",
+  "commands": [
+    {"command": "bash tests/foundation/BIO-MOB-002.test.sh", "result": "PASS (18/18)", "evidence": "acceptance/foundation-harness-output.txt"},
+    {"command": "python3 scripts/check-traceability.py governance/stories/BIO-MOB-002.json", "result": "PASS (4 ACs)", "evidence": "acceptance/traceability-output.txt"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS", "evidence": "acceptance/module-references-output.txt"},
+    {"command": "/opt/homebrew/share/flutter/bin/cache/dart-sdk/bin/dart --packages=tests/flutter/.dart_tool/package_config.json evidence/BIO-MOB-002/acceptance/stranded_uploading_restart_probe.dart", "result": "PASS: uploading_after_restart=0; due_after_restart=1", "evidence": "acceptance/stranded-uploading-restart-output.txt"}
+  ],
+  "builder_verdict": "PASS (Flutter 76/76; analyze PASS; foundation 18/18)",
+  "independent_qa_verdict": "PASS (Seyi round three)",
+  "security_verdict": "PASS",
+  "performance_verdict": "NOT_APPLICABLE",
+  "screenshots_logs": [
+    "builder/emulator-schema-migration-boot-screenshot.png",
+    "builder/emulator-migration-logcat.txt",
+    "builder/flutter-test-output.txt",
+    "builder/flutter-analyze-output.txt",
+    "codex/REREVIEW-Seyi-round3.md",
+    "acceptance/stranded-uploading-restart-output.txt"
+  ],
+  "final_acceptance_decision": "PASS",
+  "closed_findings": [
+    {"id": "BIO-MOB-002-QA-01", "status": "CLOSED", "evidence": "codex/REREVIEW-Seyi-round2.md"},
+    {"id": "BIO-MOB-002-QA-02", "status": "CLOSED", "evidence": "codex/REREVIEW-Seyi-round3.md"}
+  ],
+  "blocking_findings": []
+}

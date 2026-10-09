@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+# BIOLOG local-first guard (BIO-FND-001-AC03).
+# Blocks every push until governance/release-state.yaml explicitly sets
+# github_push_enabled: true. Installed via: git config core.hooksPath .githooks
+set -eu
+STATE_FILE="governance/release-state.yaml"
+if [ ! -f "$STATE_FILE" ] || ! grep -Eq '^github_push_enabled:[[:space:]]*true[[:space:]]*$' "$STATE_FILE"; then
+  echo "BIOLOG local-first guard: git push is disabled until W15 and explicit human approval." >&2
+  exit 1
+fi
+exit 0

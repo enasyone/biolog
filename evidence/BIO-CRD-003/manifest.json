@@ -1,0 +1,30 @@
+{
+  "story_key": "BIO-CRD-003",
+  "title": "Implement card typography, name fields and watermarks",
+  "implementation_commit": "28418d6d8685d15934606b03cbd2bcc56155e95f",
+  "builder_head": "4c013ee",
+  "reviewed_head": "c55d5e9a98d840ce05804ef66d828ba45aa500a0",
+  "environment": {"profile": "local acceptance; synthetic fixtures only", "timestamp": "2026-09-22T22:22:28Z"},
+  "acceptance_criteria": {
+    "BIO-CRD-003-AC01": {"result": "PASS", "evidence": ["six independent binding tests", "browser rendering tests"]},
+    "BIO-CRD-003-AC02": {"result": "PASS", "evidence": ["all ten typography attribute tests"]},
+    "BIO-CRD-003-AC03": {"result": "PASS", "evidence": ["binding-preserving style-copy tests"]},
+    "BIO-CRD-003-AC04": {"result": "PASS", "evidence": ["text/image watermark opacity, rotation and layer tests"]},
+    "BIO-CRD-003-AC05": {"result": "PASS", "evidence": ["STAFF/STUDENT/VISITOR catalogue and browser tests"]}
+  },
+  "commands": [
+    {"command": "bash tests/features/bio-crd-003/BIO-CRD-003.test.sh", "result": "PASS (28/28)"},
+    {"command": "dotnet Biolog.Features.CardTypography.Tests.dll", "result": "PASS (8/8)"},
+    {"command": "pnpm --dir tests/frontend test:unit", "result": "PASS (96/96)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (23 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS"}
+  ],
+  "builder_verdict": {"result": "PASS_FOR_STORY_SCOPE", "commit_hash": "28418d6d8685d15934606b03cbd2bcc56155e95f", "feature_tests": "8/8 PASS", "frontend_unit_tests": "96/96 PASS", "browser_tests": "42/42 PASS including BIO-CRD-003 12/12 and zero axe violations", "unit_tests": "200/200 PASS", "integration_tests": "104/104 PASS standalone", "base_quality": "PASS", "vulnerability_audit": "PASS", "metadata_sha256": "ce3628d162215ac79e1d862b89bbd2f437e68fdd24dd1e43268e328a50fac883"},
+  "independent_qa": {"reviewer": "Seyi", "result": "PASS", "review_commit": "c55d5e9", "evidence": "evidence/BIO-CRD-003/codex/REVIEW-Seyi-round1.md", "evidence_sha256": "e830eb4d41cf2dae7d2d6e7e53ca3ba1bae67c1d7a7d1e5099f47084e00f9aa2"},
+  "category_verdicts": {"functional": "PASS", "security": "PASS", "tenant_isolation": "NOT_APPLICABLE_STATELESS_DESIGNER", "offline_recovery": "PASS", "concurrency": "PASS_STATELESS_DESIGNER", "regression": "PASS"},
+  "security_performance_reviews": {"security": "PASS: stateless validated typography/watermark data with no actor-gated or sensitive persistence surface", "performance": "Not separately required"},
+  "known_unrelated_quality_failure": "Combined full-quality integration phase can hit the pre-existing BIO-FND-009 console-capture race; standalone integration 104/104 and every owned gate pass",
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "All five acceptance criteria have backend, frontend, browser, builder and independent evidence; fresh structural, feature and frontend-unit replay passes."}
+}

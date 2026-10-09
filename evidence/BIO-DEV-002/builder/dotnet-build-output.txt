@@ -1,0 +1,18 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Biolog.Features.DuplicateReview -> <workspace>/biolog-worktrees/BIO-DEV-002/api/features/bio-idn-005/bin/Debug/net10.0/Biolog.Features.DuplicateReview.dll
+  Biolog.Features.PersonLifecycle -> <workspace>/biolog-worktrees/BIO-DEV-002/api/features/bio-idn-004/bin/Debug/net10.0/Biolog.Features.PersonLifecycle.dll
+  Biolog.Features.Rbac -> <workspace>/biolog-worktrees/BIO-DEV-002/api/features/bio-idn-006/bin/Debug/net10.0/Biolog.Features.Rbac.dll
+  Biolog.Features.DocumentVerify -> <workspace>/biolog-worktrees/BIO-DEV-002/api/features/bio-doc-001/Biolog.Features.DocumentVerify/bin/Debug/net10.0/Biolog.Features.DocumentVerify.dll
+  Biolog.Features.InstitutionalIdentifiers -> <workspace>/biolog-worktrees/BIO-DEV-002/api/features/bio-idn-003/bin/Debug/net10.0/Biolog.Features.InstitutionalIdentifiers.dll
+  Biolog.Features.PersonRegistry -> <workspace>/biolog-worktrees/BIO-DEV-002/api/features/bio-idn-001/bin/Debug/net10.0/Biolog.Features.PersonRegistry.dll
+  Biolog.Features.PersonProfileRegistry -> <workspace>/biolog-worktrees/BIO-DEV-002/api/features/bio-idn-002/bin/Debug/net10.0/Biolog.Features.PersonProfileRegistry.dll
+  Biolog.Features.TenantRegistry -> <workspace>/biolog-worktrees/BIO-DEV-002/api/features/bio-ten-001/bin/Debug/net10.0/Biolog.Features.TenantRegistry.dll
+  Biolog.Features.TenantDomainRegistry -> <workspace>/biolog-worktrees/BIO-DEV-002/api/features/bio-ten-002/bin/Debug/net10.0/Biolog.Features.TenantDomainRegistry.dll
+  Biolog.Api -> <workspace>/biolog-worktrees/BIO-DEV-002/api/Biolog.Api/bin/Debug/net10.0/Biolog.Api.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.11

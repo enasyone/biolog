@@ -1,0 +1,20 @@
+{
+  "story_key": "BIO-ATT-003",
+  "stage": "builder",
+  "round": 3,
+  "commit_hash": "626fcb4",
+  "test_command": "dotnet test tests/features/bio-att-003/Biolog.Features.WorkforceAttendance.Tests.csproj && dotnet test tests/dotnet/Biolog.IntegrationTests/Biolog.IntegrationTests.csproj && bash scripts/check-module-project-references.sh && python3 scripts/check-contract-freeze.py && dotnet build api/Biolog.Api/Biolog.Api.csproj",
+  "result": "PASS",
+  "timestamp": "2026-10-07T03:15:00Z",
+  "reviewer": "Tunde",
+  "data_classification": "SYNTHETIC",
+  "summary": "Round-3 remediation for Seyi's round-2 finding SY-ATT003-03 (High, evidence 8a7a83b): AttendanceInterpretationEvaluator's round-2 fix applied an unconditional modulo-1440 to arrival-minus-start, so a genuinely early arrival (07:55 vs 08:00 start + 10 min grace, raw delta -5) wrapped to 1425 minutes 'late' instead of on time. Fixed by gating the wrap behind isOvernightShift (mirrors WorkforceShift.ExpectedDurationMinutes's own end<=start condition) and only applying it when the wrapped reading is genuinely closer to zero than the unwrapped one (equivalent to wrapping only when the raw delta is more negative than -720, half of 1440 - the exact crossover). This also correctly resolves a second, previously-untested ambiguity: an overnight shift's own early-same-evening arrival (21:50 vs a 22:00-06:00 shift, delta -10) is now recognised as on time rather than wrapped into a near-full-day-late reading, which the round-2 fix would have also gotten wrong had it been tested. Three new tests (now 14 total in AttendanceInterpretationEvaluatorTests.cs): the exact SY-ATT003-03 reproduction, a much-earlier same-day arrival, and the overnight-early-same-evening case. All prior overnight-late tests pass unchanged - the fix is strictly more correct, not a behaviour change for cases round 2 already proved.",
+  "files_changed": {
+    "modified": [
+      "api/features/bio-att-003/Domain/AttendanceInterpretationEvaluator.cs",
+      "tests/features/bio-att-003/AttendanceInterpretationEvaluatorTests.cs",
+      "docs/features/bio-att-003/README.md"
+    ]
+  },
+  "notes": "The crossover (-720, exactly half of 1440) is the mathematically correct threshold for 'which of the two readings (unwrapped delta, or delta+1440) is closer to zero' - verified by hand for both the reported case (-5, non-overnight so never even considered for wrapping) and the new overnight-early case (-10, overnight but not more negative than -720, so correctly left unwrapped) alongside the pre-existing overnight-late cases (-1300/-1420, both more negative than -720, correctly wrapped). No change needed to WorkforceAttendanceService, the API response shape, or the web UI - this is purely a Domain-layer evaluator correctness fix."
+}

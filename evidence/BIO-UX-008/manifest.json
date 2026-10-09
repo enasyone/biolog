@@ -1,0 +1,38 @@
+{
+  "story_key": "BIO-UX-008",
+  "commit_hash": "5ba6c476621c223a6b4a20bcbb7cda502ea55b44",
+  "implementation_commit": "d10534b43901a5f672657fb681631c3c0fb81283",
+  "builder_evidence_commit": "cc3e97b5bef56542855bbfa2b1fa392e50a19f46",
+  "environment_profile": "local frontend Node/pnpm workspace; synthetic biometric simulation only",
+  "timestamp": "2026-09-23T14:05:51Z",
+  "acceptance_criteria": {
+    "BIO-UX-008-AC01": {"result": "PASS", "tests": ["bio-ux-008-tenprint-state.test.ts", "bio-ux-008-biometrics-mock.test.ts", "bio-ux-008-biometric-journeys.spec.ts"]},
+    "BIO-UX-008-AC02": {"result": "PASS", "tests": ["bio-ux-008-biometrics-mock.test.ts", "bio-ux-008-biometric-journeys.spec.ts"]},
+    "BIO-UX-008-AC03": {"result": "PASS", "tests": ["bio-ux-008-scenario-options.test.ts", "bio-ux-008-biometric-journeys.spec.ts"]},
+    "BIO-UX-008-AC04": {"result": "PASS", "tests": ["bio-ux-008-formatters.test.ts", "bio-ux-008-biometrics-mock.test.ts", "security review"]},
+    "BIO-UX-008-AC05": {"result": "PASS", "tests": ["bio-ux-008-biometrics-live.test.ts", "browser primary-action coverage"]}
+  },
+  "commands_results": [
+    {"command": "corepack pnpm --dir tests/frontend test:unit", "result": "PASS: 38 files, 290 tests"},
+    {"command": "corepack pnpm --dir web typecheck", "result": "PASS"},
+    {"command": "corepack pnpm --dir web build", "result": "PASS: 34 static pages generated"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS: 30 implemented stories"},
+    {"command": "builder Playwright suite", "result": "PASS: 125 tests"}
+  ],
+  "builder_verdict": "PASS",
+  "independent_qa_verdict": "PASS",
+  "security_verdict": "PASS",
+  "performance_verdict": "NOT_REQUIRED",
+  "evidence_references": [
+    "builder/SUMMARY.md",
+    "builder/metadata.json",
+    "builder/frontend-unit-test-output.txt",
+    "builder/frontend-e2e-test-output.txt",
+    "builder/web-typecheck-build-output.txt",
+    "codex/REVIEW-Seyi-round1.md",
+    "codex/SECURITY-REVIEW-ZAINAB.md",
+    "acceptance/REVIEW-Chioma-round1.md"
+  ],
+  "final_acceptance_decision": "PASS",
+  "reason": "AC01-AC05 have functional, deterministic, explicitly synthetic, privacy-safe implementation and current functional/security evidence."
+}

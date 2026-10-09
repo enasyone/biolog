@@ -1,0 +1,8 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Biolog.Features.TransportNotifications -> <workspace>/biolog-worktrees/BIO-TRN-003/api/features/bio-trn-003/bin/Debug/net10.0/Biolog.Features.TransportNotifications.dll
+  Biolog.Features.TransportNotifications.Tests -> <workspace>/biolog-worktrees/BIO-TRN-003/tests/features/bio-trn-003/bin/Debug/net10.0/Biolog.Features.TransportNotifications.Tests.dll
+Test run for <workspace>/biolog-worktrees/BIO-TRN-003/tests/features/bio-trn-003/bin/Debug/net10.0/Biolog.Features.TransportNotifications.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:    21, Skipped:     0, Total:    21, Duration: 47 ms - Biolog.Features.TransportNotifications.Tests.dll (net10.0)

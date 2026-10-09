@@ -1,0 +1,29 @@
+{
+  "story_key": "BIO-DEV-002",
+  "title": "Implement device certification matrix",
+  "implementation_commit": "b90dab36f24f5a0c583c6813592aacd355f3c3a1",
+  "builder_head": "271e8a6",
+  "reviewed_head": "a79e27a02134a500c3d98151666286a8864914d2",
+  "environment": {"profile": "local acceptance; synthetic fixtures only", "timestamp": "2026-09-22T20:07:18Z"},
+  "acceptance_criteria": {
+    "BIO-DEV-002-AC01": {"result": "PASS", "evidence": ["record/version/evidence validation tests", "structural suite"]},
+    "BIO-DEV-002-AC02": {"result": "PASS", "evidence": ["global/status-filter listing tests"]},
+    "BIO-DEV-002-AC03": {"result": "PASS", "evidence": ["tenant override precedence and real-host isolation tests"]},
+    "BIO-DEV-002-AC04": {"result": "PASS_CURRENT_SINGLE_PROCESS_TIER", "evidence": ["audit-before-commit, ambiguity, cancellation, and concurrency tests"]}
+  },
+  "commands": [
+    {"command": "bash tests/foundation/BIO-DEV-002.test.sh", "result": "PASS (32/32)"},
+    {"command": "dotnet Biolog.UnitTests.dll", "result": "PASS (200/200)"},
+    {"command": "dotnet Biolog.IntegrationTests.dll", "result": "UNAVAILABLE: acceptor replay stalled after test start; builder transcript records 96/96 PASS"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (20 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS"}
+  ],
+  "builder_verdict": {"result": "PASS", "commit_hash": "b90dab36f24f5a0c583c6813592aacd355f3c3a1", "unit_tests": "200/200 PASS", "integration_tests": "96/96 PASS", "structural_tests": "32/32 PASS", "vulnerability_audit": "PASS", "metadata_sha256": "8d8b01f9736eec4f6c599d681e75ed17b7dc7fffab1ef8aaccd1efab87da25f6"},
+  "independent_qa": {"reviewer": "Seyi", "result": "PASS", "review_commit": "a79e27a", "evidence": "evidence/BIO-DEV-002/codex/REVIEW-Seyi-round1.md", "evidence_sha256": "c09dd1ae765680df7991e22d5839279b04876ec9e566847df1dcf3c405a1e519"},
+  "category_verdicts": {"functional": "PASS", "security": "PASS", "tenant_isolation": "PASS", "offline_recovery": "PASS", "concurrency": "PASS_CURRENT_SINGLE_PROCESS_TIER", "regression": "PASS"},
+  "security_performance_reviews": {"security": "PASS: composite-key separators are rejected at service and repository boundaries; tenant overrides use verified host context", "performance": "Not separately required for the in-memory matrix"},
+  "residual_boundaries": ["Listing endpoints are not yet authorization-restricted; AC02 proves admin visibility, not exclusivity, and future authenticated authorization owns access control", "Audit/repository crash atomicity must reopen before durable, remote, or multi-process stores"],
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "All four acceptance criteria have objective builder and independent evidence; fresh unit, structural, tenant-traceability and security gates pass."}
+}

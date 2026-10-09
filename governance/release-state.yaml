@@ -1,0 +1,7 @@
+# BIOLOG source repository release state.
+# Read by .githooks/pre-push. Do not set github_push_enabled to true before
+# W15 human approval (see 11-GITHUB-LATER/ in the control pack).
+github_push_enabled: false
+github_publication_approved_by: null
+github_publication_approved_at: null
+last_local_accepted_tag: null

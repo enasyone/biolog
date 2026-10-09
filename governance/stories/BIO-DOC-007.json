@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-DOC-007",
+  "title": "Build NFC electronic identity document reader and passive authentication foundation",
+  "owner": "Ifeanyi - Document Intelligence Engineer",
+  "reviewed_commit": "2cecb4ed8399ee67944e316cbdc48bc0569b643a",
+  "required_acceptance_stages": ["builder", "adversarial", "acceptance"],
+  "requirement_ids": [
+    "BIO-DOC-007-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-DOC-007-AC01",
+      "requirement_ids": ["BIO-DOC-007-REQ-001"],
+      "text": "NFC access keys are derived only from permitted document data/user interaction."
+    },
+    {
+      "id": "BIO-DOC-007-AC02",
+      "requirement_ids": ["BIO-DOC-007-REQ-001"],
+      "text": "Supported data groups are read through a standards-focused abstraction."
+    },
+    {
+      "id": "BIO-DOC-007-AC03",
+      "requirement_ids": ["BIO-DOC-007-REQ-001"],
+      "text": "Chip data is cross-linked to the document session."
+    },
+    {
+      "id": "BIO-DOC-007-AC04",
+      "requirement_ids": ["BIO-DOC-007-REQ-001"],
+      "text": "Passive authentication/certificate-chain results are explicit where supported."
+    },
+    {
+      "id": "BIO-DOC-007-AC05",
+      "requirement_ids": ["BIO-DOC-007-REQ-001"],
+      "text": "Failure to read NFC is distinct from authenticity failure."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-DOC-007.test.sh",
+      "ac_ids": [
+        "BIO-DOC-007-AC01",
+        "BIO-DOC-007-AC02",
+        "BIO-DOC-007-AC03",
+        "BIO-DOC-007-AC04",
+        "BIO-DOC-007-AC05"
+      ]
+    },
+    {
+      "path": "tests/features/bio-doc-007/Biolog.Features.NfcReader.Tests/ChipAccessKeyDerivationTests.cs",
+      "ac_ids": ["BIO-DOC-007-AC01"]
+    },
+    {
+      "path": "tests/features/bio-doc-007/Biolog.Features.NfcReader.Tests/ChipReadSessionTests.cs",
+      "ac_ids": ["BIO-DOC-007-AC02", "BIO-DOC-007-AC03", "BIO-DOC-007-AC04", "BIO-DOC-007-AC05"]
+    },
+    {
+      "path": "tests/features/bio-doc-007/Biolog.Features.NfcReader.Tests/PassiveAuthenticationTests.cs",
+      "ac_ids": ["BIO-DOC-007-AC04"]
+    },
+    {
+      "path": "tests/features/bio-doc-007/Biolog.Features.NfcReader.Tests/NfcResultTypesAreLockedDownTests.cs",
+      "ac_ids": ["BIO-DOC-007-AC01"]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-DOC-007/builder/metadata.json",
+      "stage": "builder",
+      "ac_ids": [
+        "BIO-DOC-007-AC01",
+        "BIO-DOC-007-AC02",
+        "BIO-DOC-007-AC03",
+        "BIO-DOC-007-AC04",
+        "BIO-DOC-007-AC05"
+      ]
+    }
+  ]
+}

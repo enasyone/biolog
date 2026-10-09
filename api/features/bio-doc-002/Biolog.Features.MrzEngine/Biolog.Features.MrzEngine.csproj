@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Matches api/Biolog.Api/Biolog.Api.csproj's pinned TFM (BIO-FND-008), same as BIO-DOC-001. -->
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <!--
+    No ASP.NET Core dependency, no NuGet package references, no image-decoding library (none
+    exists anywhere in this repo - see docs/features/bio-doc-002/MRZ-ENGINE.md "Why no image
+    library" for the precedent this follows: api/Biolog.Api/Features/BrandAssets's dependency-free
+    header-only PNG/JPEG reader). This project DOES reference BIO-DOC-001's evidence model - a
+    feature-to-feature ProjectReference, not a shared/common one - because BIO-DOC-002 is declared
+    dependent on BIO-DOC-001 in its own approved story and exists specifically to populate
+    DocumentFieldEvidence records via the FieldEvidenceSource.Mrz member BIO-DOC-001 already
+    reserved for it.
+  -->
+  <ItemGroup>
+    <ProjectReference Include="../../bio-doc-001/Biolog.Features.DocumentVerify/Biolog.Features.DocumentVerify.csproj" />
+  </ItemGroup>
+
+</Project>

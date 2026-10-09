@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-CRD-002 owns api/features/bio-crd-002/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh)
+         and no ProjectReference to any other feature project - this project needs none:
+         the card-format catalogue and custom-size validator are stateless, tenant-independent
+         reference data with no dependency on BIO-CRD-001 or BIO-PHO-001 at runtime
+         ("Dependencies" in the story's own metadata is build-wave sequencing, not coupling -
+         the same established precedent every sibling story documents when its own dependency
+         line names no genuine runtime call).
+
+         This project's own module adapter lives in api/Biolog.Api/Modules/BioCrd002Module.cs
+         from the start (never written here first), matching every prior story.
+
+         Namespace root is "CardDesigner". No new ADR-0001 canonical identifier type is minted -
+         this feature has no tenant-scoped aggregate at all, only a fixed reference catalogue
+         (the same "fixed baseline catalogue" shape BIO-IDN-006's RoleType and BIO-PHO-002's
+         CaptureSpecification use) and a pure validation function. -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Biolog.Features.CardDesigner.Tests" />
+  </ItemGroup>
+
+</Project>

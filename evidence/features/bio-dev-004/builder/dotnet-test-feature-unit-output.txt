@@ -1,0 +1,8 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Biolog.Features.DeviceOperations -> <workspace>/biolog-worktrees/BIO-DEV-004/api/features/bio-dev-004/bin/Debug/net10.0/Biolog.Features.DeviceOperations.dll
+  Biolog.Features.DeviceOperations.Tests -> <workspace>/biolog-worktrees/BIO-DEV-004/tests/features/bio-dev-004/bin/Debug/net10.0/Biolog.Features.DeviceOperations.Tests.dll
+Test run for <workspace>/biolog-worktrees/BIO-DEV-004/tests/features/bio-dev-004/bin/Debug/net10.0/Biolog.Features.DeviceOperations.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:    16, Skipped:     0, Total:    16, Duration: 41 ms - Biolog.Features.DeviceOperations.Tests.dll (net10.0)

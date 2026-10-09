@@ -1,0 +1,7 @@
+uploading_after_restart=0
+due_after_restart=1
+Unhandled exception:
+Bad state: expected restart recovery to make the interrupted mutation retryable
+#0      main (file:///<workspace>/biolog-worktrees/BIO-MOB-002/evidence/BIO-MOB-002/acceptance/stranded_uploading_restart_probe.dart:37:5)
+<asynchronous suspension>
+probe exit: 255

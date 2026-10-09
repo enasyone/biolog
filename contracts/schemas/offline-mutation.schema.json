@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.biolog.local/offline-mutation.schema.json",
+  "title": "BIOLOG queued offline mutation",
+  "description": "ADR-0001 Decisions 3.4 and 3.5. Every mutation queued on an offline client. base_version drives conflict detection on intake.",
+  "type": "object",
+  "required": ["mutation_id", "tenant_id", "device_id", "aggregate_id", "base_version", "idempotency_key", "occurred_at", "sync_state"],
+  "properties": {
+    "mutation_id": { "$ref": "canonical-id.schema.json" },
+    "tenant_id": {
+      "type": "string",
+      "pattern": "^ten_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "device_id": {
+      "type": "string",
+      "pattern": "^dev_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "aggregate_id": { "$ref": "canonical-id.schema.json" },
+    "base_version": {
+      "description": "Version the mutation was composed against. Mismatch on intake means CONFLICT for security-sensitive aggregates.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "idempotency_key": { "type": "string", "minLength": 1, "maxLength": 255 },
+    "occurred_at": { "$ref": "utc-instant.schema.json" },
+    "sync_state": {
+      "type": "string",
+      "enum": ["PENDING", "UPLOADING", "ACKNOWLEDGED", "SYNCED", "CONFLICT", "FAILED"]
+    }
+  }
+}

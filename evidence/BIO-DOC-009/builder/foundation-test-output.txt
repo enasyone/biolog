@@ -1,0 +1,56 @@
+PASS  AC01 AuthenticityCheckId names the six individual checks
+PASS  AC01 AuthenticityDisposition is the overall policy result
+PASS  AC01 AuthenticityAssessmentResult carries both Checks and PolicyDisposition
+PASS  AC01 test coverage exists
+PASS  AC02 DetermineDisposition never reads BarcodeDecode's own outcome
+PASS  AC02 promotion to DocumentAuthentic reads only CrossSourceFieldComparison and PassiveAuthentication
+PASS  AC02 fewer than two sources never reaches Passed on cross-source comparison (BIO-DOC-008's own rule is respected, not re-decided)
+PASS  AC02 test coverage exists, including a direct proof BarcodeDecode's outcome is never read
+PASS  AC03 AuthenticityCheckOutcome has a distinct NotPerformed value, ordered first (the safe default)
+PASS  AC03 every input outcome field defaults to NotPerformed, never Passed
+PASS  AC03 a dedicated NotPerformed factory exists so every 'not performed' report is constructed the same way
+PASS  AC03 test coverage exists
+PASS  AC04 AuthenticityAssessmentResult carries EvidenceVersion, TemplateId/TemplateVersionNumber, RulesetVersion
+PASS  AC04 EvidenceVersion is BIO-DOC-008's own already-controlled CrossComparisonResult.VersionNumber, not a second counter
+PASS  AC04 RulesetVersion is recorded from AuthenticityPolicyEngine's own named constant
+PASS  AC04 test coverage exists
+PASS  a real audit-sink pair exists (IAuthenticityAssessmentAuditSink + InMemory implementation)
+PASS  Compute durably writes an audit event before returning, never after
+PASS  a genuinely unavailable audit sink throws rather than returning a successful result
+PASS  an ambiguous write is resolved via ExistsAsync before treating the sink as unavailable
+PASS  computedAt is validated as a strict RFC 3339 timestamp, not accepted as an arbitrary string
+PASS  AC05 AuthenticityManualOverride exists as a layer ON TOP of the result, not a mutation of it
+PASS  AC05 the mutable aggregate exists (AuthenticityAssessment), CAS-versioned
+PASS  AC05 ApplyManualOverride never assigns to Result (structural proof: no 'Result =' assignment inside it)
+PASS  AC05 an override is durably audited before returning
+PASS  AC05 EffectiveDisposition falls back to the policy result when no override is active
+PASS  AC05 test coverage exists, including a same-reference proof the raw checks are untouched
+PASS  AC06 a real HTTP endpoint exists at POST /api/v1/documents/authenticity
+PASS  AC06 the module is registered into the host (Program.cs, one line, additive)
+PASS  AC06 the module adapter lives in api/Biolog.Api/Modules, not inside the feature project
+PASS  AC06 web/features/documents already targets this exact route (BIO-UX-009, unmodified contract)
+PASS  AC06 DocumentVerifyService gains an independent 'authenticity' port key (genuine HYBRID, not all-or-nothing)
+PASS  AC06 the Next.js rewrite forwards this story's own route family to the API host, scoped narrowly
+PASS  AC06 no unapproved UI redesign - DocumentVerifyApp.tsx is untouched by this story
+PASS  AC06 frontend test coverage exists for the new independent port key
+PASS  AC06 a Playwright test exercises the real HTTP endpoint end to end
+PASS  F01 GET /api/v1/documents/authenticity/{id} is not mapped (no session-id-driven read surface)
+PASS  F01 POST .../{id}/override is not mapped (no caller-supplied-identity override surface)
+PASS  F01 Map() registers exactly one route (the compute POST) on this endpoint class
+PASS  F01 the service-layer override/read capability is kept as a seam, not deleted outright
+PASS  F01 the kept service-layer seam has its own direct, non-HTTP test coverage
+PASS  F01 the demo fixtures no longer own a shared static version store/audit sink (the bug that coverage found)
+PASS  AuthenticityCheckResult/AuthenticityAssessmentResult/AuthenticityManualOverride properties are internal init, not public init
+PASS  AuthenticityAssessmentResult's list property uses AsReadOnly(), not a downcastable interface view
+PASS  standing reflection-based lockdown regression test exists
+PASS  AuthenticityAssessment references BIO-DOC-006's document classifier
+PASS  AuthenticityAssessment references BIO-DOC-008's evidence comparison engine
+PASS  AuthenticityAssessment does NOT reference BIO-DOC-001/002/003/004/005/007 directly (not declared dependencies)
+PASS  no sibling BIO-DOC-00x project takes a dependency back on this feature (no cycle)
+PASS  this feature project never references Biolog.Api.csproj (one-way dependency)
+PASS  ADR-0001-S1.2 the frozen identifier registry was not touched by this story
+PASS  feature test project exists
+PASS  story traceability spec exists
+PASS  feature design doc exists
+----
+BIO-DOC-009 structural checks: 54 passed, 0 failed

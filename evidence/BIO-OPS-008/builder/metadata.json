@@ -1,0 +1,11 @@
+{
+  "story_key": "BIO-OPS-008",
+  "stage": "builder",
+  "test_command": "bash tests/features/bio-ops-008/BIO-OPS-008.acceptance.sh",
+  "result": "PASS",
+  "tested_commit": "8dfe7cc69d38cb50bd958cfce2768a2fdfd15fac",
+  "runtime_result": "15 passed, 0 failed",
+  "timestamp": "2026-10-08T05:07:45Z",
+  "builder": "Chioma",
+  "data_classification": "SYNTHETIC"
+}

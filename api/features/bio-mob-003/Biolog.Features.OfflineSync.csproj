@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-MOB-003 owns api/features/bio-mob-003/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh)
+         and, deliberately, no ProjectReference to api/Biolog.Api/Features/DeviceRegistry
+         either, even though it is a public, in-host type this project COULD reference
+         directly: device resolution is proven through this project's own narrow gateway
+         (Domain/IDeviceTenantResolutionGateway.cs), the same discipline every sibling
+         feature's own device/person/tenant gateway uses.
+
+         This project's own module adapter lives in api/Biolog.Api/Modules/BioMob003Module.cs
+         from the start (never written here first), matching every prior story.
+
+         Namespace root is "OfflineSync": Kemi's architectural ruling on BIO-MOB-003's
+         acceptance FAIL (2026-09-23) - the central offline-intake endpoint AC01/AC02/AC03/AC05
+         require, mirroring api/features/bio-pho-002's shape (Api/Domain/Audit/IdempotencyStore)
+         with one addition specific to this story: tenant is resolved from the authenticated
+         device's own registered TenantId, never trusted from the request body
+         (ADR-0002 Decision 1.1 - a body field is not a channel). -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Applying BIO-IDN-001-QA-01's lesson from the start: the explicit, auditable seam for
+         Biolog.Api (DI registration) and this project's own test assembly. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.OfflineSync.Tests" />
+  </ItemGroup>
+
+</Project>

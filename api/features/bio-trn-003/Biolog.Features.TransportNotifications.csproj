@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-TRN-003 owns api/features/bio-trn-003/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh) and no
+         ProjectReference to any sibling feature project - not bio-trn-002 (board/alight/missing-
+         alight-exception source data), not bio-idn-006 (permission grants).
+
+         There is no AggregateType.Transport value in BIO-RPT-001's own frozen
+         contracts/schemas/event-envelope.schema.json (only Tenant/Person/Credential/Device/
+         DocumentSession - see bio-trn-002's own csproj comment for the same constraint that story
+         already hit), and bio-trn-002 deliberately does not publish to BIO-RPT-001's
+         IDomainEventBus at all. This story instead reads bio-trn-002's own disclosed, real
+         read-back seams directly - ITransportEventRepository.ListForTenantAsync (internal,
+         InternalsVisibleTo Biolog.Api) for raw board/alight facts and ITriggeredNotificationLog
+         (public) for the missing-alight-exception condition bio-trn-002's own README names as
+         "the real, disclosed handoff point for a future story that declares BIO-RPT-001 as an
+         actual dependency" - never bio-trn-002's own internal presence-evaluation logic, which
+         this project does not duplicate. Both are wrapped by an adapter living in
+         api/Biolog.Api/Modules/BioTrn003Module.cs (this story's own
+         Domain/ITransportEventFeedGateway.cs), the same host-module translation-boundary shape
+         BioInt004Module/BioAtt003Module already established for their own cross-story reads.
+
+         This story introduces its OWN notification-rule + delivery/audit domain rather than
+         reusing BIO-RPT-001's NotificationRule/NotificationDispatchService, because that
+         service's own rule matching is (tenantId, AggregateType, schemaVersion) only - no
+         sub-event-type filter - so a transport-specific rule would also match every other
+         Person-aggregate notification rule in the tenant. The same reasoning that led
+         BIO-INT-004 to build its own WebhookSubscription/EventTypes filter rather than reusing
+         NotificationRule directly, re-applied here. -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.TransportNotifications.Tests" />
+  </ItemGroup>
+
+</Project>

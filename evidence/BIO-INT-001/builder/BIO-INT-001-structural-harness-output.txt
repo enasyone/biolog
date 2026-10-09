@@ -1,0 +1,37 @@
+PASS  AC01 feature project exists
+PASS  AC01 project targets the pinned .NET SDK's TFM
+PASS  AC01 feature project has no ProjectReference to Biolog.Api.csproj
+PASS  AC01 feature project has no ProjectReference to bio-idn-006 (RBAC role model is duplicated by value, not by reference)
+PASS  AC01 every provider lookup/list/mutation is tenant-scoped by an explicit tenantId parameter
+PASS  AC01 GetAsync is not-found-not-forbidden across tenants (repository-level isolation test exists)
+PASS  AC02 an explicit claim-mapping rule type exists
+PASS  AC02 mapping is exact-match only, never a wildcard/regex path
+PASS  AC02 an unmapped claim contributing zero roles is proven, not just asserted
+PASS  AC02 mapped role names are validated against a closed, known role set at registration
+PASS  AC03 an MFA challenge hook interface exists
+PASS  AC03 a provider config carries its own MFA requirement
+PASS  AC03 a session is never issued before a required MFA challenge is verified (proven, not asserted)
+PASS  AC03 an MFA challenge is single-use
+PASS  AC03/F01 (Zainab, High, fixed) the MFA code is never derived from the challenge id - no ExpectedCodeFor-shaped helper exists
+PASS  AC03/F01 the code is generated with a cryptographic RNG, not a hash of the challenge id
+PASS  AC03/F01 an attacker-with-only-the-challenge-id regression test exists at the real HTTP layer
+PASS  AC03/F01 the demo-only code is internal, never public, on AuthenticationOutcome
+PASS  AC04 an authentication audit sink exists
+PASS  AC04 login failure is an audited action
+PASS  AC04 account linking is an audited action
+PASS  AC04 every audit write follows the write-then-existence-recheck discipline (never fire-and-forget)
+PASS  AC04 a first-time account link is audited exactly once, a repeat login does not duplicate it
+PASS  Six provider adapters exist, one per AuthProviderType
+PASS  Every adapter implements the one typed interface
+PASS  AuthenticationService dictionary-dispatches by provider type, never branches on the enum
+PASS  No JWT library dependency was introduced (hand-rolled HMAC token, matching this codebase's own precedent)
+PASS  AC05 the primary-action endpoint matches web/features/integrations/live.ts's exact path
+PASS  AC05 this story does not modify BIO-UX-005's owned Integrations frontend surface
+PASS  AC05 the live-connection design is documented
+PASS  AC05 the demo primary-action path is idempotent about the provider it seeds (proven, not asserted)
+PASS  This story documents that it does not retrofit BIO-TEN/BIO-IDN's existing ActorResolver-based endpoints
+PASS  This story does not touch any other story's own feature project
+PASS  builder evidence directory exists
+PASS  feature docs exist
+----
+PASS=35 FAIL=0

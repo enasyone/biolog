@@ -1,0 +1,95 @@
+{
+  "story_key": "BIO-FND-003",
+  "story_title": "Create local Docker development infrastructure",
+  "implementation_commit": "f6ae3fa8721432d24b41c4cb5500ab9de56b5ed6",
+  "live_run_commit": "2a8ababab9f4663cf4d6f0751aa12829f1f105b4",
+  "builder_head": "bd837d1882b60e23af06f1da3a2d80758989e811",
+  "environment_profile": {
+    "operating_system": "macOS 26.4 (build 25E246)",
+    "kernel": "Darwin 25.4.0 arm64",
+    "python": "3.14.3",
+    "git": "2.53.0",
+    "docker_live_run": "Docker 29.3.1; Docker Compose v5.1.1",
+    "profile": "local synthetic acceptance; no production data"
+  },
+  "timestamp": "2026-09-20T19:52:35Z",
+  "acceptance_criteria": {
+    "BIO-FND-003-AC01": {
+      "result": "PASS",
+      "evidence": ["builder/validate-infra-compose-output.txt", "builder/live-verification-2026-09-20.txt", "codex/REREVIEW-ROUND-4.md"]
+    },
+    "BIO-FND-003-AC02": {
+      "result": "PASS",
+      "evidence": ["builder/validate-infra-compose-output.txt", "builder/live-verification-2026-09-20.txt", "codex/REREVIEW-ROUND-4.md"]
+    },
+    "BIO-FND-003-AC03": {
+      "result": "PASS",
+      "evidence": ["builder/developer-test-output.txt", "builder/live-verification-2026-09-20.txt", "codex/REREVIEW-ROUND-4.md"]
+    },
+    "BIO-FND-003-AC04": {
+      "result": "PASS",
+      "evidence": ["builder/developer-test-output.txt", "builder/live-verification-2026-09-20.txt", "codex/REREVIEW-ROUND-4.md"]
+    },
+    "BIO-FND-003-AC05": {
+      "result": "PASS",
+      "evidence": ["builder/validate-infra-compose-output.txt", "builder/independent-review-rerun-output.txt", "codex/REREVIEW-ROUND-4.md"]
+    }
+  },
+  "commands": [
+    {
+      "command": "scripts/infra-up.sh --multi-tenant --wait",
+      "result": "PASS (7/7 services healthy)",
+      "evidence": "builder/live-verification-2026-09-20.txt",
+      "sha256": "5d39cbf700cdfc5e3516ba33487b6210b5e9ad82a81e42d2079b522b3eab65a6"
+    },
+    {
+      "command": "cross-tenant MySQL marker write/read isolation probe",
+      "result": "PASS (ASU marker absent from Grace tenant)",
+      "evidence": "builder/live-verification-2026-09-20.txt"
+    },
+    {
+      "command": "scripts/infra-reset.sh redis; scripts/infra-reset.sh",
+      "result": "PASS (targeted reset preserved six services; full reset removed all BIOLOG state)",
+      "evidence": "builder/live-verification-2026-09-20.txt"
+    },
+    {
+      "command": "tests/foundation/BIO-FND-003.test.sh",
+      "result": "PASS (12/12 structural/adversarial checks; live replay separately evidenced)",
+      "evidence": "builder/developer-test-output.txt",
+      "sha256": "cea0d40b469a4875103c81fef23a99675d13460e436dce86568592218e14d7c8"
+    },
+    {
+      "command": "bash evidence/BIO-FND-003/codex/independent-review.sh",
+      "result": "PASS (8/8 probes; exit 0)",
+      "evidence": "builder/independent-review-rerun-output.txt",
+      "sha256": "bdb29ef50a6da1971feca8092658eea87174b6dd4cadf73a6dc494b216101d4e"
+    }
+  ],
+  "builder_verdict": {
+    "reviewer": "Emeka",
+    "result": "PASS",
+    "implementation_commit": "f6ae3fa8721432d24b41c4cb5500ab9de56b5ed6",
+    "evidence_head": "bd837d1882b60e23af06f1da3a2d80758989e811"
+  },
+  "independent_qa_verdicts": [
+    {
+      "reviewer": "Seyi",
+      "round": 4,
+      "result": "PASS",
+      "reviewed_implementation_commit": "f6ae3fa8721432d24b41c4cb5500ab9de56b5ed6",
+      "reviewed_builder_head": "bd837d1882b60e23af06f1da3a2d80758989e811",
+      "evidence": "codex/REREVIEW-ROUND-4.md",
+      "sha256": "be79192ef392d25338e4735f63852357b813ebc49236b4114fa4b4d74e5f4387"
+    }
+  ],
+  "security_verdict": "PASS",
+  "tenant_isolation_verdict": "PASS",
+  "offline_recovery_verdict": "PASS",
+  "performance_verdict": "NOT_APPLICABLE",
+  "screenshots": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "AC01-AC05 now have commit-bound structural, adversarial and live runtime evidence; all seven services reached healthy, tenant isolation was demonstrated, reset behavior passed, and Seyi round-4 passed."
+  }
+}

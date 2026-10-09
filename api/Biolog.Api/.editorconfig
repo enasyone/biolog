@@ -1,0 +1,10 @@
+# BIO-FND-009-QA-04: a classified value baked into a log message via C# string
+# interpolation ($"...") arrives at Observability/BiologJsonConsoleFormatter already
+# resolved into a single literal string, with no separate placeholder or argument left for
+# Classify() to check - the interpolation happens in the caller's compiled code before any
+# ILogger method runs, so no runtime redaction control can catch it. CA2254 ("logging
+# message template should not vary between calls") also fires on an interpolated template
+# for this exact reason and is promoted from its default (silent/suggestion) severity to a
+# build error, since a compile-time control is the only one available here.
+[*.cs]
+dotnet_diagnostic.CA2254.severity = error

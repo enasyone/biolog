@@ -1,0 +1,22 @@
+PASS  AC01 RevocationEntry carries only person id and revoked-at
+PASS  AC01 the backend gateway maps down to person id + revoked-at only, not the full Person aggregate
+PASS  AC02 the local cache merge is additive (INSERT OR REPLACE), never a destructive rebuild
+PASS  AC02 the server delta feed is cursor-based and inclusive, matching the deny-list feed precedent
+PASS  AC02 device-authenticated revocation reads never trust the ambient/host tenant channel (ADR-0002 Decision 7 pattern)
+PASS  AC03 checkPresentation makes no network call - only AppDatabase reads/writes
+PASS  AC03 every presentation is durably logged locally regardless of outcome
+PASS  AC03 a cached revocation produces the DENIED_REVOKED_CACHED reason code
+PASS  AC04 a documented staleness threshold exists and is not buried inline
+PASS  AC04 staleness is recorded as an explicit, durable flag on every logged decision
+PASS  AC04 staleness never appears in the allow/deny outcome computation itself
+PASS  AC05 the presentation-event upload uses the event id as the Idempotency-Key header
+PASS  AC05 the server intake claims an idempotency record before committing, mirroring BIO-MOB-003
+PASS  AC05 a fingerprint mismatch on a reused key is rejected, not silently replayed
+PASS  AC06 the web live adapter route has a real matching backend endpoint
+PASS  AC06 web/next.config.mjs rewrites the connected route to the real API host
+PASS  AC06 the approved access-control page/route/ports remain in place, untouched by this story
+PASS  unit/integration tests mapped to BIO-ACC-003 ACs exist (mobile)
+PASS  unit/integration tests mapped to BIO-ACC-003 ACs exist (backend)
+PASS  builder evidence recorded
+==============================
+20 passed, 0 failed

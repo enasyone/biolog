@@ -1,0 +1,183 @@
+
+[1m[46m RUN [49m[22m [36mv3.2.4 [39m[90m<workspace>/biolog-worktrees/BIO-INT-004/tests/frontend[39m
+
+ [31m❯[39m unit/bio-ux-005-feature-mode.test.ts [2m([22m[2m18 tests[22m[2m | [22m[31m1 failed[39m[2m)[22m[32m 16[2mms[22m[39m
+   [32m✓[39m BIO-UX-005-AC06 getPortMode fails safe[2m > [22mdefaults to SIMULATION with nothing configured[32m 1[2mms[22m[39m
+   [32m✓[39m BIO-UX-005-AC06 getPortMode fails safe[2m > [22mfalls back to SIMULATION for an unknown port key on a known module[32m 0[2mms[22m[39m
+   [32m✓[39m BIO-UX-005-AC06 getPortMode fails safe[2m > [22mfalls back to SIMULATION for a module with no registered ports[32m 0[2mms[22m[39m
+   [32m✓[39m BIO-UX-005-AC06 getPortMode fails safe[2m > [22man invalid override value falls back to SIMULATION rather than propagating garbage[32m 0[2mms[22m[39m
+   [32m✓[39m BIO-UX-005-AC06 getPortMode fails safe[2m > [22man invalid NEXT_PUBLIC_FEATURE_MODE_* env value is ignored, not trusted[32m 2[2mms[22m[39m
+   [32m✓[39m BIO-UX-005-AC06 getPortMode fails safe[2m > [22ma valid env default is honoured when no override is set[32m 1[2mms[22m[39m
+   [32m✓[39m BIO-UX-005-AC06 getPortMode fails safe[2m > [22man explicit override takes precedence over the env default[32m 1[2mms[22m[39m
+   [32m✓[39m BIO-UX-005-AC02 getModuleStatus aggregates a module's ports[2m > [22mreports SIMULATION when every port is in simulation (the default)[32m 0[2mms[22m[39m
+   [32m✓[39m BIO-UX-005-AC02 getModuleStatus aggregates a module's ports[2m > [22mreports LIVE when every known port on the module is live[32m 0[2mms[22m[39m
+   [32m✓[39m BIO-UX-005-AC02 getModuleStatus aggregates a module's ports[2m > [22mreports SIMULATION for a module with no registered ports (nothing to be live about)[32m 0[2mms[22m[39m
+   [32m✓[39m BIO-UX-005-AC02 getModuleStatus aggregates a module's ports[2m > [22mreports HYBRID when a module's two ports are in different modes (BIO-UX-005-AC02 remediation)[32m 0[2mms[22m[39m
+   [32m✓[39m BIO-UX-005-AC02 getModuleStatus aggregates a module's ports[2m > [22mthe per-port env var alone (no override call) is enough to reach HYBRID[32m 1[2mms[22m[39m
+[31m   [31m×[31m BIO-UX-005-AC02 getModuleStatus aggregates a module's ports[2m > [22mevery module with more than one port key is a deliberate, noticed multi-port module[39m[32m 6[2mms[22m[39m
+[31m     → expected { VisitorService: [ …(3) ], …(9) } to deeply equal { CredentialService: [ …(18) ], …(8) }[39m
+   [32m✓[39m BIO-UX-005-AC01 resolvePort picks mock vs live from the registry[2m > [22mreturns the mock adapter in SIMULATION mode (the default)[32m 0[2mms[22m[39m
+   [32m✓[39m BIO-UX-005-AC01 resolvePort picks mock vs live from the registry[2m > [22mreturns the live adapter once the module is set to LIVE[32m 0[2mms[22m[39m
+   [32m✓[39m BIO-UX-005-AC03 auditFeatureModes is the read-only registry snapshot the dev panel renders[2m > [22mincludes every module that has at least one port, excludes those with none[32m 1[2mms[22m[39m
+   [32m✓[39m BIO-UX-005-AC03 auditFeatureModes is the read-only registry snapshot the dev panel renders[2m > [22mevery entry's status matches getModuleStatus for that module[32m 0[2mms[22m[39m
+   [32m✓[39m BIO-UX-005-AC06 setPortModeOverride is disabled in production[2m > [22mthrows when NODE_ENV is production, so a misplaced call can never flip a module live there[32m 0[2mms[22m[39m
+ [31m❯[39m unit/bio-ux-005-module-registry.test.ts [2m([22m[2m6 tests[22m[2m | [22m[31m1 failed[39m[2m)[22m[32m 8[2mms[22m[39m
+   [32m✓[39m BIO-UX-005-AC01 every module named in route-manifest.ts has a resolvable port[2m > [22mevery servicePort used by a real route resolves to a port map in MODULE_PORTS[32m 1[2mms[22m[39m
+[31m   [31m×[31m BIO-UX-005-AC01 every module named in route-manifest.ts has a resolvable port[2m > [22mevery module's registered port keys match MODULE_PORT_KEYS exactly (registry and feature-mode agree)[39m[32m 5[2mms[22m[39m
+[31m     → expected [ 'primaryAction' ] to deeply equal [ 'createServiceAccount', …(7) ][39m
+   [32m✓[39m BIO-UX-005-AC01 every module named in route-manifest.ts has a resolvable port[2m > [22mevery real domain module's default (primaryAction) port reports its own module name[32m 0[2mms[22m[39m
+   [32m✓[39m BIO-UX-005-AC01 every module named in route-manifest.ts has a resolvable port[2m > [22mReportingService's second port (viewAuditTrail) also reports the ReportingService module[32m 0[2mms[22m[39m
+   [32m✓[39m BIO-UX-005-AC01 every module named in route-manifest.ts has a resolvable port[2m > [22mUnassigned and FrontendRuntime both resolve to the shared UNASSIGNED_MOCK_PORT[32m 0[2mms[22m[39m
+   [32m✓[39m BIO-UX-005-AC01 every module named in route-manifest.ts has a resolvable port[2m > [22mevery port starts in mock mode (nothing is live by default)[32m 0[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-005-module-port.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 277[2mms[22m[39m
+ [32m✓[39m unit/td-web-provenance-bridge-revocation-store.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-004-privacy-markers.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m unit/td-web-provenance-bridge-session-token.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+ [32m✓[39m unit/bio-bio-009-retention-port.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 516[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-004-rng.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-011-dashboard-metrics.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-004-store.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-006-identity-live-port.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m unit/bio-ops-001-enrolment-journey.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 965[2mms[22m[39m
+   [33m[2m✓[22m[39m BIO-OPS-001 local end-to-end enrolment acceptance journey[2m > [22mAC01/AC02/AC03 persists every produced artifact against one tenant/PERSON [33m 962[2mms[22m[39m
+ [32m✓[39m unit/td-web-provenance-bridge-route-table.test.ts [2m([22m[2m37 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-001-tokens.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-004-scenarios.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-011-audit-rows.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m unit/bio-doc-009-documents-authenticity-port.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 1016[2mms[22m[39m
+   [33m[2m✓[22m[39m BIO-DOC-009-AC01/AC05 documentsAuthenticityPort exposes checkAuthenticity independently[2m > [22mthe authenticity mock port has its own independent call counter, unaffected by other steps [33m 1009[2mms[22m[39m
+ [32m✓[39m unit/bio-doc-010-documents-document-identification-port.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 1018[2mms[22m[39m
+   [33m[2m✓[22m[39m BIO-DOC-010-AC01/AC05 documentsDocumentIdentificationPort exposes identifyDocument independently[2m > [22mthe documentIdentification mock port has its own independent call counter, unaffected by other steps [33m 1011[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-010-scenarios.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+ [32m✓[39m unit/bio-bio-008-liveness-port.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-003-route-manifest.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-006-identity-data-store.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m unit/bio-rpt-002-reporting-mock.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-015-product-experience-gate.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+ [32m✓[39m unit/bio-fnd-007-permissions.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-008-template-lifecycle-mock.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-007-data-store.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-002-card-formats.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-003-name-fields.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-004-generators.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-003-typography.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-002-orientation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-004-barcode-objects.test.ts [2m([22m[2m24 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-011-report-rows.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-008-biometrics-live.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-002-card-design-state.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-004-signature-objects.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-014-visual-regression-config.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-001-css-sync.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-009-evidence.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-009-photo-element.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-003-canvas-element-ops.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-002-elements.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m unit/bio-rpt-004-operational-health-mock.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-002-nav-groups.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m unit/bio-rpt-003-audit-investigation-mock.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-003-watermarks.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-011-feature-flag-nav.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-001-iconography.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-010-module-ports.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 2780[2mms[22m[39m
+   [33m[2m✓[22m[39m BIO-UX-010-AC01, AC05: every operational module has its route-manifest-named ports[2m > [22mevery new port's first mock call resolves without throwing and returns a valid outcome [33m 2778[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-009-documents-port.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 3097[2mms[22m[39m
+   [33m[2m✓[22m[39m BIO-UX-009-AC01/AC05 documentsMockPort exposes one named method per interactive area[2m > [22mevery step method exists and returns a step-tagged result [33m 2042[2mms[22m[39m
+   [33m[2m✓[22m[39m BIO-UX-009-AC01/AC05 documentsMockPort exposes one named method per interactive area[2m > [22meach step method has its own independent, deterministic call counter [33m 1019[2mms[22m[39m
+ [32m✓[39m unit/td-web-provenance-bridge-identity.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-001-component-states.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-004-visibility.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-002-search-fixtures.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-009-template-photo-capture.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-009-photo-design-state.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-001-breakpoints.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-008-formatters.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-004-tenant-parity.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m unit/bio-fnd-007-tokens.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-012-test-scenario-params.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-008-scenario-options.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-008-tenprint-state.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-004-logo-objects.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-004-canvas-element-ops.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m unit/baseline.test.js [2m([22m[2m1 test[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-008-biometrics-mock.test.ts [2m([22m[2m11 tests[22m[2m)[22m[33m 6309[2mms[22m[39m
+   [33m[2m✓[22m[39m BIO-UX-008-AC03 an explicit hint deterministically forces the matching outcome[2m > [22mcaptureFingerprint("good") always returns a good-quality result [33m 756[2mms[22m[39m
+   [33m[2m✓[22m[39m BIO-UX-008-AC03 an explicit hint deterministically forces the matching outcome[2m > [22mverifyFace("match") and ("no_match") are both directly reachable, not just by chance [33m 507[2mms[22m[39m
+   [33m[2m✓[22m[39m BIO-UX-008-AC03 an explicit hint deterministically forces the matching outcome[2m > [22mcheckLiveness hints are both reachable and both explicitly marked simulated [33m 504[2mms[22m[39m
+   [33m[2m✓[22m[39m BIO-UX-008-AC03 an explicit hint deterministically forces the matching outcome[2m > [22mconnectDevice hints are both reachable for each device kind [33m 505[2mms[22m[39m
+   [33m[2m✓[22m[39m BIO-UX-008-AC01 each finger position cycles its own independent history[2m > [22ma never-yet-captured finger's first auto-cycled result is unaffected by another finger's call history [33m 1765[2mms[22m[39m
+   [33m[2m✓[22m[39m BIO-UX-008-AC04 every message clearly names itself as simulated[2m > [22mcapture, verify, identify and liveness messages all say SIMULATED [33m 1262[2mms[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 2 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m unit/bio-ux-005-feature-mode.test.ts[2m > [22mBIO-UX-005-AC02 getModuleStatus aggregates a module's ports[2m > [22mevery module with more than one port key is a deliberate, noticed multi-port module
+[31m[1mAssertionError[22m: expected { VisitorService: [ …(3) ], …(9) } to deeply equal { CredentialService: [ …(18) ], …(8) }[39m
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[33m@@ -41,10 +41,20 @@[39m
+[2m    "DocumentVerifyService": [[22m
+[2m      "primaryAction",[22m
+[2m      "authenticity",[22m
+[2m      "documentIdentification",[22m
+[2m    ],[22m
+[31m+   "IntegrationService": [[39m
+[31m+     "primaryAction",[39m
+[31m+     "listServiceAccounts",[39m
+[31m+     "createServiceAccount",[39m
+[31m+     "rotateServiceAccountSecret",[39m
+[31m+     "revokeServiceAccount",[39m
+[31m+     "listWebhookSubscriptions",[39m
+[31m+     "createWebhookSubscription",[39m
+[31m+     "setWebhookSubscriptionEnabled",[39m
+[31m+   ],[39m
+[2m    "ReportingService": [[22m
+[2m      "primaryAction",[22m
+[2m      "viewAuditTrail",[22m
+[2m      "generateReport",[22m
+[2m      "getReportStatus",[22m
+
+[36m [2m❯[22m unit/bio-ux-005-feature-mode.test.ts:[2m160:50[22m[39m
+    [90m158| [39m    [90m// ReportingService key - asserted explicitly for the same reason.[39m
+    [90m159| [39m    const multiPortModules = Object.entries(MODULE_PORT_KEYS).filter((…
+    [90m160| [39m    [34mexpect[39m([33mObject[39m[33m.[39m[34mfromEntries[39m(multiPortModules))[33m.[39m[34mtoEqual[39m({
+    [90m   | [39m                                                 [31m^[39m
+    [90m161| [39m      [33mCredentialService[39m[33m:[39m [
+    [90m162| [39m        [32m'primaryAction'[39m[33m,[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m unit/bio-ux-005-module-registry.test.ts[2m > [22mBIO-UX-005-AC01 every module named in route-manifest.ts has a resolvable port[2m > [22mevery module's registered port keys match MODULE_PORT_KEYS exactly (registry and feature-mode agree)
+[31m[1mAssertionError[22m: expected [ 'primaryAction' ] to deeply equal [ 'createServiceAccount', …(7) ][39m
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[2m  [[22m
+[32m-   "createServiceAccount",[39m
+[32m-   "createWebhookSubscription",[39m
+[32m-   "listServiceAccounts",[39m
+[32m-   "listWebhookSubscriptions",[39m
+[2m    "primaryAction",[22m
+[32m-   "revokeServiceAccount",[39m
+[32m-   "rotateServiceAccountSecret",[39m
+[32m-   "setWebhookSubscriptionEnabled",[39m
+[2m  ][22m
+
+[36m [2m❯[22m unit/bio-ux-005-module-registry.test.ts:[2m36:28[22m[39m
+    [90m 34| [39m      [35mconst[39m registryKeys [33m=[39m [33mObject[39m[33m.[39m[34mkeys[39m([33mMODULE_PORTS[39m[module])[33m.[39m[34msort[39m()[33m;[39m
+    [90m 35| [39m      [35mconst[39m featureModeKeys [33m=[39m [[33m...[39m[33mMODULE_PORT_KEYS[39m[module]][33m.[39m[34msort[39m()[33m;[39m
+    [90m 36| [39m      [34mexpect[39m(registryKeys)[33m.[39m[34mtoEqual[39m(featureModeKeys)[33m;[39m
+    [90m   | [39m                           [31m^[39m
+    [90m 37| [39m    }
+    [90m 38| [39m  })[33m;[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m2 failed[39m[22m[2m | [22m[1m[32m66 passed[39m[22m[90m (68)[39m
+[2m      Tests [22m [1m[31m2 failed[39m[22m[2m | [22m[1m[32m546 passed[39m[22m[90m (548)[39m
+[2m   Start at [22m 06:08:29
+[2m   Duration [22m 6.70s[2m (transform 1.31s, setup 0ms, collect 5.03s, tests 16.39s, environment 7ms, prepare 5.80s)[22m
+

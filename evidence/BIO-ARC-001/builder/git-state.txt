@@ -1,0 +1,36 @@
+# git state — BIO-ARC-001 builder (round 3, QA-02 fix)
+
+## branch
+feature/BIO-ARC-001
+
+## commits on this branch
+c6e2a26 BIO-ARC-001: agree on the year domain in code and schema (BIO-ARC-001-QA-02)
+e657f26 BIO-ARC-001: record round-2 builder evidence
+8e39e91 BIO-ARC-001: reject impossible calendar dates (BIO-ARC-001-QA-01)
+0560e38 BIO-ARC-001: record builder evidence
+fc2f7cd BIO-ARC-001: define canonical identifiers, clocks and versioning
+
+## base (develop)
+2224d4d9280f9cd8e717fb73fdbab0e1eb57aa9e
+
+## remotes (must be empty)
+(none — no remote configured, nothing pushed)
+
+## working tree
+ M evidence/BIO-ARC-001/builder/git-state.txt
+
+## files changed by the QA-02 fix (c6e2a26)
+ contracts/js/clock.mjs                             |  44 ++++-
+ contracts/js/contracts.test.mjs                    |  87 ++++++++-
+ contracts/schemas/calendar-date.schema.json        |   4 +-
+ contracts/schemas/utc-instant.schema.json          |   4 +-
+ ...-canonical-identifiers-clocks-and-versioning.md |  16 ++
+ evidence/BIO-ARC-001/builder/SUMMARY.md            |  74 ++++++++
+ .../BIO-ARC-001/builder/contract-suite-output.txt  | 195 +++++++++++---------
+ .../BIO-ARC-001/builder/developer-test-output.txt  | 197 +++++++++++---------
+ .../BIO-ARC-001/builder/reviewer-script-rerun.txt  | 200 ++++++++++++---------
+ evidence/BIO-ARC-001/builder/year-parity-sweep.txt |   4 +
+ evidence/BIO-ARC-001/codex/REREVIEW-ROUND-2.md     |  57 ++++++
+ evidence/BIO-ARC-001/codex/independent-review.sh   |  12 ++
+ tests/foundation/BIO-ARC-001.test.sh               |  22 +++
+ 13 files changed, 668 insertions(+), 248 deletions(-)

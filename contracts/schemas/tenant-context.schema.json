@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.biolog.local/tenant-context.schema.json",
+  "title": "BIOLOG resolved tenant context",
+  "description": "ADR-0002 Decisions 1 and 3. The result of resolution, frozen for the lifetime of one request or job. Records which channels agreed, so an audit can show what the decision rested on.",
+  "type": "object",
+  "required": ["kind", "tenant_id", "binding_key", "channels", "correlation_id", "resolved_at"],
+  "properties": {
+    "kind": { "const": "tenant" },
+    "tenant_id": { "type": "string", "pattern": "^ten_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$" },
+    "binding_key": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "channels": {
+      "description": "Every channel that supplied this tenant. All of them agreed; there is no precedence.",
+      "type": "array",
+      "items": { "type": "string", "enum": ["host", "principal", "service"] },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "correlation_id": {
+      "type": "string",
+      "pattern": "^evt_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "resolved_at": { "$ref": "utc-instant.schema.json" }
+  }
+}

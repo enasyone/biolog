@@ -1,0 +1,17 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Biolog.Features.DocumentVerify -> <workspace>/biolog-worktrees/BIO-DOC-010/api/features/bio-doc-001/Biolog.Features.DocumentVerify/bin/Debug/net10.0/Biolog.Features.DocumentVerify.dll
+  Biolog.Features.MrzEngine -> <workspace>/biolog-worktrees/BIO-DOC-010/api/features/bio-doc-002/Biolog.Features.MrzEngine/bin/Debug/net10.0/Biolog.Features.MrzEngine.dll
+  Biolog.Features.OcrEngine -> <workspace>/biolog-worktrees/BIO-DOC-010/api/features/bio-doc-004/Biolog.Features.OcrEngine/bin/Debug/net10.0/Biolog.Features.OcrEngine.dll
+  Biolog.Features.BarcodeEngine -> <workspace>/biolog-worktrees/BIO-DOC-010/api/features/bio-doc-003/Biolog.Features.BarcodeEngine/bin/Debug/net10.0/Biolog.Features.BarcodeEngine.dll
+  Biolog.Features.ParserRegistry -> <workspace>/biolog-worktrees/BIO-DOC-010/api/features/bio-doc-005/Biolog.Features.ParserRegistry/bin/Debug/net10.0/Biolog.Features.ParserRegistry.dll
+  Biolog.Features.DocumentClassifier -> <workspace>/biolog-worktrees/BIO-DOC-010/api/features/bio-doc-006/Biolog.Features.DocumentClassifier/bin/Debug/net10.0/Biolog.Features.DocumentClassifier.dll
+  Biolog.Features.NfcReader -> <workspace>/biolog-worktrees/BIO-DOC-010/api/features/bio-doc-007/Biolog.Features.NfcReader/bin/Debug/net10.0/Biolog.Features.NfcReader.dll
+  Biolog.Features.EvidenceComparison -> <workspace>/biolog-worktrees/BIO-DOC-010/api/features/bio-doc-008/Biolog.Features.EvidenceComparison/bin/Debug/net10.0/Biolog.Features.EvidenceComparison.dll
+  Biolog.Features.AuthenticityAssessment -> <workspace>/biolog-worktrees/BIO-DOC-010/api/features/bio-doc-009/Biolog.Features.AuthenticityAssessment/bin/Debug/net10.0/Biolog.Features.AuthenticityAssessment.dll
+  Biolog.Features.DocumentTemplatePack -> <workspace>/biolog-worktrees/BIO-DOC-010/api/features/bio-doc-010/Biolog.Features.DocumentTemplatePack/bin/Debug/net10.0/Biolog.Features.DocumentTemplatePack.dll
+  Biolog.Features.DocumentTemplatePack.Tests -> <workspace>/biolog-worktrees/BIO-DOC-010/tests/features/bio-doc-010/Biolog.Features.DocumentTemplatePack.Tests/bin/Debug/net10.0/Biolog.Features.DocumentTemplatePack.Tests.dll
+Test run for <workspace>/biolog-worktrees/BIO-DOC-010/tests/features/bio-doc-010/Biolog.Features.DocumentTemplatePack.Tests/bin/Debug/net10.0/Biolog.Features.DocumentTemplatePack.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:    41, Skipped:     0, Total:    41, Duration: 41 ms - Biolog.Features.DocumentTemplatePack.Tests.dll (net10.0)

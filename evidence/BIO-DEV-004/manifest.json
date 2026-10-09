@@ -1,0 +1,30 @@
+{
+  "story_key": "BIO-DEV-004",
+  "title": "Implement device health and configuration jobs",
+  "implementation_commit": "ea8e4ee63c20c86febaf9e7aa63276e9a2c4aa11",
+  "builder_head": "0e428f8c2f7e9d692faed8ec4464b28a39fa8786",
+  "reviewed_head": "a4d94b0ae465b2b2834a435e520e7ad8d1767ca1",
+  "environment": {"profile": "local acceptance on Darwin arm64; synthetic fixtures only", "timestamp": "2026-10-07"},
+  "acceptance_criteria": {
+    "BIO-DEV-004-AC01": {"result": "PASS", "evidence": ["api/Biolog.Api/DeviceRegistry/DeviceService.cs", "api/features/bio-dev-004/DeviceHealthPollingService.cs", "tests/features/bio-dev-004/DeviceHealthPollingServiceTests.cs", "tests/frontend/playwright/bio-dev-004-device-operations.spec.ts"], "finding": "Health polling updates the real device record's last-seen, status, health detail and check timestamp, and the web workflow renders the change."},
+    "BIO-DEV-004-AC02": {"result": "PASS", "evidence": ["api/features/bio-dev-004/DeviceRemoteJobService.cs", "api/Biolog.Api/Modules/BioDev004Module.cs", "tests/features/bio-dev-004/DeviceRemoteJobServiceTests.cs"], "finding": "Remote jobs are gated by certification, adapter availability, category capability and the separate execute permission before audit or execution."},
+    "BIO-DEV-004-AC03": {"result": "PASS", "evidence": ["api/features/bio-dev-004/DeviceRemoteJobService.cs", "tests/dotnet/Biolog.IntegrationTests/BioDev004EndpointsTests.cs"], "finding": "Configuration, firmware and reboot jobs write the shared audit event before execution, using only the provenance-verified header actor."},
+    "BIO-DEV-004-AC04": {"result": "PASS", "evidence": ["api/features/bio-dev-004/Domain/DeviceOperationsExceptions.cs", "tests/features/bio-dev-004/DeviceRemoteJobServiceTests.cs", "tests/frontend/playwright/bio-dev-004-device-operations.spec.ts"], "finding": "Uncertified combinations, missing adapters and unsupported job types fail with distinct explicit errors; unsupported options cannot be selected in the UI."},
+    "BIO-DEV-004-AC05": {"result": "PASS", "evidence": ["web/features/bio-dev-004/DeviceOperationsPanel.tsx", "tests/frontend/playwright/bio-dev-004-device-operations.spec.ts", "evidence/features/bio-dev-004/builder/playwright-device-operations-output.txt", "tests/dotnet/Biolog.IntegrationTests/BioDev004EndpointsTests.cs"], "finding": "The additive /devices panel covers list, poll, capabilities, supported job success and explicit failure; real-host tests cover the same backend path with authorization and audit."}
+  },
+  "commands": [
+    {"command": "./tests/features/bio-dev-004/bin/Debug/net10.0/Biolog.Features.DeviceOperations.Tests", "result": "PASS (16/16)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (36 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "pnpm --dir tests/frontend exec playwright test playwright/bio-dev-004-device-operations.spec.ts", "result": "PASS (builder evidence 6/6 three times); acceptance replay blocked by managed sandbox EPERM on 127.0.0.1:3000"}
+  ],
+  "builder_verdict": {"result": "PASS", "commit_hash": "0e428f8c2f7e9d692faed8ec4464b28a39fa8786", "implementation_commit": "ea8e4ee63c20c86febaf9e7aa63276e9a2c4aa11", "feature_tests": "16/16 PASS", "integration_tests": "279/279 PASS", "unit_tests": "210/210 PASS", "frontend_unit_tests": "550/550 PASS", "browser_tests": "6/6 PASS three times", "metadata_sha256": "3df9d76845539fecf498430312150d900f6601228efdf647e7a8cabba7b0cec8"},
+  "independent_qa": {"reviewer": "Seyi", "result": "PASS", "builder_commit_reviewed": "0e428f8c2f7e9d692faed8ec4464b28a39fa8786", "review_commit": "a4d94b0ae465b2b2834a435e520e7ad8d1767ca1", "evidence": "evidence/features/bio-dev-004/codex/REVIEW-Seyi-round2.md", "evidence_sha256": "ee179b60183814c9d3ba647f18212932e2e215cbeae2c667ab6ba853c376b15f", "closed_findings": ["SY-DEV004-01"]},
+  "category_verdicts": {"functional": "PASS", "security": "PASS", "tenant_isolation": "PASS", "audit": "PASS", "concurrency": "PASS", "regression": "PASS", "mapped_ui_workflow": "PASS"},
+  "acceptance_blockers": [],
+  "follow_ups": [
+    {"id": "BIO-DEV-001-003-AUTHORIZATION-DEBT", "status": "DISCLOSED_INHERITED_BOUNDARY", "summary": "BIO-DEV-001 registration and BIO-DEV-003 capability/health routes remain ungated inherited scope; this acceptance covers only DEV-004's four newly owned routes."},
+    {"id": "BIO-DEV-004-REAL-REMOTE-ADMIN", "status": "DISCLOSED_SCOPE_BOUNDARY", "summary": "Vendor adapters currently expose no remote-admin calls, so execution is deterministic simulation behind the production capability/audit seam."}
+  ],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "AC01-AC05 pass. The Critical unauthenticated remote-control gap is closed on all four story-owned routes by verified provenance, split tenant permissions and verified audit attribution, with exact-commit independent review."}
+}

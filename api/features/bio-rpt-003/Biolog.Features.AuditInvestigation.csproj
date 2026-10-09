@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-RPT-003 owns api/features/bio-rpt-003/** only. No ProjectReference to Biolog.Api.csproj
+         (one-way dependency, scripts/check-module-project-references.sh) and no ProjectReference to
+         any other feature either, despite this story's real job being a READ-ONLY fan-in over
+         several already-accepted sibling features' own audit sinks (BIO-IDN-006/Rbac,
+         BIO-CRD-008/CardTemplates, BIO-RPT-002/ReportBuilder, BIO-CRD-007/CardProduction). That
+         fan-in is composed entirely inside api/Biolog.Api/Modules/BioRpt003Module.cs (the one place
+         in this codebase allowed to see every feature at once), through this project's own narrow
+         Domain/IAuditEventSource.cs abstraction - the same shape every prior cross-story dependency
+         in this epic uses (BIO-CRD-007's ICardIssueGateway, BIO-CRD-008's ISignatureAssetGateway).
+
+         "Dependencies: BIO-ARC-003, BIO-IDN-006" in the approved story is build-wave GATING (what
+         must already exist before this story can start) - both are satisfied (ADR-0003 is Accepted;
+         Rbac/BIO-IDN-006 is fully built). The module's own DependsOn additionally names
+         CardTemplates/ReportBuilder/CardProduction: real, honest DI-graph edges for already-
+         accepted, earlier-wave features whose own audit sinks already expose a read helper
+         explicitly commented "exposed for tests and a future audit-read endpoint" (see
+         InMemoryProductionAuditSink.Events, InMemoryReportAuditSink.EventsForTenant) - this story IS
+         that future endpoint. Zero edits to any of their owned files. See docs/features/bio-rpt-003/
+         README.md "Which sources are wired, and why" for the full reasoning, disclosed rather than
+         silently assumed.
+
+         Namespace root is "AuditInvestigation". No new ADR-0001 canonical identifier is minted for
+         a searched record itself - every NormalizedAuditRecord reuses its SOURCE feature's own
+         evt_ event id verbatim (the whole point of ADR-0003's one envelope shape is that "everything
+         that touched this tenant" is a single query over identically-shaped records, not a second
+         id scheme layered on top). This project mints evt_ ids only for its OWN meta-audit trail
+         (the export action itself, AC03's "audited"). -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.AuditInvestigation.Tests" />
+  </ItemGroup>
+
+</Project>

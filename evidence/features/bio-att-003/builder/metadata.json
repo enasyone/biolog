@@ -1,0 +1,83 @@
+{
+  "story_key": "BIO-ATT-003",
+  "stage": "builder",
+  "commit_hash": "88c05fa",
+  "test_command": "dotnet test tests/features/bio-att-003/Biolog.Features.WorkforceAttendance.Tests.csproj && dotnet test tests/features/bio-att-001/Biolog.Features.Attendance.Tests.csproj && dotnet test tests/dotnet/Biolog.IntegrationTests/Biolog.IntegrationTests.csproj && bash scripts/check-module-project-references.sh && python3 scripts/check-contract-freeze.py && (cd web && pnpm run typecheck && pnpm run build)",
+  "result": "PASS",
+  "timestamp": "2026-10-07T01:30:00Z",
+  "reviewer": "Tunde",
+  "data_classification": "SYNTHETIC",
+  "summary": "New BIO-ATT-003 suite: 46/46 xunit tests pass (0 warnings) across ClockPairEvaluatorTests (8, AC02), OvertimeEvaluatorTests (6, AC03), WorkforceShiftServiceTests (9, AC01), WorkforceAttendanceServiceTests (8, AC02/AC03/AC04), ActorProvenanceGateTests (5), WorkforceAttendanceEndpointsIntegrationTests (10, AC01-AC05 real HTTP pipeline) in tests/features/bio-att-003/. Zero regressions: BIO-ATT-001's own 24 tests pass unmodified. Full tests/dotnet/Biolog.IntegrationTests suite: 215/217 - 2 pre-existing failures in AuthenticationEndpointsTests (AC02_end_to_end_authentication_only_grants_explicitly_mapped_roles, AC05_primary_action_runs_the_real_pipeline_including_mfa_and_reports_mapped_roles), verified directly (git stash push -u on this worktree, re-ran against the unmodified baseline commit 2677909, identical failure, then git stash apply + drop to restore) to be unrelated to and pre-existing before this story's changes - flagged to god separately for bisection/routing, not introduced here. scripts/check-module-project-references.sh PASS. scripts/check-contract-freeze.py PASS (39 artifacts, 83 future stories - unchanged, no contracts/** or docs/adr/** file touched). web: pnpm install + pnpm run typecheck clean, pnpm run build succeeds (Next.js production build, /attendance prerenders). dotnet build clean on first attempt in this session (no sandbox flake hit this round).",
+  "files_changed": {
+    "new_feature_project": [
+      "api/features/bio-att-003/Biolog.Features.WorkforceAttendance.csproj",
+      "api/features/bio-att-003/Identifiers/CanonicalId.cs",
+      "api/features/bio-att-003/Identifiers/UtcInstant.cs",
+      "api/features/bio-att-003/Tenancy/ICurrentTenantProvider.cs",
+      "api/features/bio-att-003/Domain/ClockMode.cs",
+      "api/features/bio-att-003/Domain/ClockPairStatus.cs",
+      "api/features/bio-att-003/Domain/WorkforceClockPair.cs",
+      "api/features/bio-att-003/Domain/ClockPairEvaluator.cs",
+      "api/features/bio-att-003/Domain/OvertimeEvaluator.cs",
+      "api/features/bio-att-003/Domain/WorkforceShift.cs",
+      "api/features/bio-att-003/Domain/IWorkforceShiftRepository.cs",
+      "api/features/bio-att-003/Domain/InMemoryWorkforceShiftRepository.cs",
+      "api/features/bio-att-003/Domain/WorkforceAttendanceAdjustment.cs",
+      "api/features/bio-att-003/Domain/IWorkforceAttendanceAdjustmentRepository.cs",
+      "api/features/bio-att-003/Domain/InMemoryWorkforceAttendanceAdjustmentRepository.cs",
+      "api/features/bio-att-003/Domain/IAttendanceEventGateway.cs",
+      "api/features/bio-att-003/Domain/IPersonExistenceGateway.cs",
+      "api/features/bio-att-003/Domain/IPermissionGateway.cs",
+      "api/features/bio-att-003/Domain/WorkforceAttendanceError.cs",
+      "api/features/bio-att-003/Audit/AuditPrimitives.cs",
+      "api/features/bio-att-003/Audit/WorkforceAttendanceAuditEvent.cs",
+      "api/features/bio-att-003/Audit/IWorkforceAttendanceAuditSink.cs",
+      "api/features/bio-att-003/Audit/InMemoryWorkforceAttendanceAuditSink.cs",
+      "api/features/bio-att-003/Audit/WorkforceAttendanceAuditEventBuilder.cs",
+      "api/features/bio-att-003/Api/ValidationErrorItem.cs",
+      "api/features/bio-att-003/Api/CorrelationId.cs",
+      "api/features/bio-att-003/Api/ProblemResponse.cs",
+      "api/features/bio-att-003/Api/ActorResolver.cs",
+      "api/features/bio-att-003/Api/ActorProvenanceGate.cs",
+      "api/features/bio-att-003/Api/WorkforceShiftRequests.cs",
+      "api/features/bio-att-003/Api/WorkforceShiftResponse.cs",
+      "api/features/bio-att-003/Api/WorkforceDailySummaryResponse.cs",
+      "api/features/bio-att-003/Api/WorkforceAttendanceEndpoints.cs",
+      "api/features/bio-att-003/WorkforceShiftLockRegistry.cs",
+      "api/features/bio-att-003/WorkforceShiftService.cs",
+      "api/features/bio-att-003/WorkforceAttendanceService.cs"
+    ],
+    "new_host_wiring": [
+      "api/Biolog.Api/Modules/BioAtt003Module.cs"
+    ],
+    "edited_host_wiring": [
+      "api/Biolog.Api/Program.cs (added `new BioAtt003Module(),` to the module array)",
+      "api/Biolog.Api/Biolog.Api.csproj (added ProjectReference to the new feature project)"
+    ],
+    "new_tests": [
+      "tests/features/bio-att-003/Biolog.Features.WorkforceAttendance.Tests.csproj",
+      "tests/features/bio-att-003/Fakes.cs",
+      "tests/features/bio-att-003/ClockPairEvaluatorTests.cs",
+      "tests/features/bio-att-003/OvertimeEvaluatorTests.cs",
+      "tests/features/bio-att-003/WorkforceShiftServiceTests.cs",
+      "tests/features/bio-att-003/WorkforceAttendanceServiceTests.cs",
+      "tests/features/bio-att-003/ActorProvenanceGateTests.cs",
+      "tests/features/bio-att-003/WorkforceAttendanceEndpointsIntegrationTests.cs",
+      "tests/frontend/playwright/bio-att-003-workforce-attendance-live.spec.ts"
+    ],
+    "new_docs": [
+      "docs/features/bio-att-003/README.md"
+    ],
+    "web_new": [],
+    "web_edited": [
+      "web/features/attendance/ports.ts (added WorkforceShift/WorkforceClockPair/WorkforceAttendanceAdjustment/WorkforceDailySummary types and the WorkforceAttendancePort interface, additive to the existing AttendancePort)",
+      "web/features/attendance/live.ts (added workforceAttendanceLivePort, additive to the existing two adapters)",
+      "web/features/attendance/mock.ts (added workforceAttendanceMockPort, additive)",
+      "web/features/attendance/index.ts (resolves workforceAttendancePort directly against getPortMode, since its shape is not ModulePort-compatible with the generic resolvePort helper)",
+      "web/features/attendance/attendance-page.tsx (added WorkforceAttendanceSection, rendered below the existing untouched section)",
+      "web/lib/feature-mode.ts (added a `workforceAttendance` port key under AttendanceService's own MODULE_PORT_KEYS/PER_PORT_ENV_DEFAULTS, the same per-port override shape every other multi-port module uses)",
+      "web/next.config.mjs (added the /api/v1/workforce-attendance/:path* rewrite entry, a deliberately separate prefix from BIO-ATT-001's own /api/v1/attendance/*)"
+    ]
+  },
+  "notes": "Design decisions worth recording: (1) WorkforceShift is a genuinely new, many-per-tenant aggregate, not a reinterpretation of BIO-ATT-001's own singleton AttendancePolicy - AC01's plural wording ('shift schedules') and BIO-ATT-001's own disclosed overtime-out-of-scope boundary both pointed here. (2) IAttendanceEventGateway returns this feature's own ClockEventView, never BIO-ATT-001's own internal AttendanceEvent type, since this project deliberately has no ProjectReference to that assembly (matches BIO-ATT-001's own 'no ProjectReference to any other feature project' discipline even more strictly than BIO-TEN-003's BIO-BIO-007 case, which needed one to implement a public interface). (3) AC05's write-path provenance gap is the same cross-cutting issue BIO-TEN-003's round-2 remediation first found and disclosed - applied the identical honest-disclosure resolution here rather than re-escalating, since god's prior decision on BIO-TEN-003 already established the pattern for any story pairing ActorProvenanceGate with a web surface. (4) Found and flagged (not fixed, outside this story's scope) 2 pre-existing failures in AuthenticationEndpointsTests, verified unrelated via stash/baseline/restore - god asked for a follow-up bisection across the recent merge chain, tracked separately from this story's own completion."
+}

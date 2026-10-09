@@ -1,0 +1,62 @@
+{
+  "story_key": "BIO-DOC-001",
+  "title": "Implement Document Verify session and evidence foundation",
+  "implementation_commit": "a2a03b3a49712abc0d3c3c306ae0cb37cd7bde2f",
+  "builder_head": "e65620a7c4d636ad555f54809797d0db5e0b6a63",
+  "reviewed_head": "59f57d0d1d1c63d8b6f64ce585001f0023c7388f",
+  "environment": {
+    "profile": "local acceptance; synthetic fixtures only",
+    "timestamp": "2026-09-22T01:07:04Z",
+    "dotnet_test_replay": "Feature assembly compiled; acceptor vstest execution was sandbox-blocked by loopback socket denial"
+  },
+  "acceptance_criteria": {
+    "BIO-DOC-001-AC01": {"result": "PASS", "evidence": ["round3-dotnet-unit-test-output.txt", "BIO-DOC-001.test.sh"]},
+    "BIO-DOC-001-AC02": {"result": "PASS", "evidence": ["InvalidEvidenceProbe", "ConstructionIsMandatoryTests", "REREVIEW-ROUND3.md"]},
+    "BIO-DOC-001-AC03": {"result": "PASS", "evidence": ["InvalidEvidenceProbe", "DocumentFieldEvidenceTests", "REREVIEW-ROUND3.md"]},
+    "BIO-DOC-001-AC04": {"result": "PASS", "evidence": ["PersonFieldChangeProposal factory boundary", "BIO-DOC-001.test.sh"]},
+    "BIO-DOC-001-AC05": {"result": "PASS", "evidence": ["independent-review.sh", "REREVIEW.md", "REREVIEW-ROUND3.md"]}
+  },
+  "commands": [
+    {"command": "dotnet run --no-restore --project evidence/BIO-DOC-001/acceptance/InvalidEvidenceProbe/InvalidEvidenceProbe.csproj --nologo", "result": "PASS BOUNDARY: compilation rejected with CS1729/CS0200"},
+    {"command": "bash evidence/BIO-DOC-001/codex/independent-review.sh", "result": "PASS (2/2)"},
+    {"command": "bash tests/foundation/BIO-DOC-001.test.sh", "result": "PASS (43/43)"},
+    {"command": "python3 scripts/check-traceability.py governance/stories/BIO-DOC-001.json", "result": "PASS (5 ACs)"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS (built-in fallback scan; gitleaks unavailable)"},
+    {"command": "dotnet test tests/features/bio-doc-001/Biolog.Features.DocumentVerify.Tests/Biolog.Features.DocumentVerify.Tests.csproj --no-restore --nologo", "result": "UNAVAILABLE after compilation: vstest SocketException permission denied"},
+    {"command": "bash scripts/check-dotnet-vulnerabilities.sh [API and feature projects]", "result": "PASS in commit-bound builder evidence"}
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "a2a03b3a49712abc0d3c3c306ae0cb37cd7bde2f",
+    "feature_tests": "77/77 PASS",
+    "foundation_tests": "43/43 PASS",
+    "quality": "PASS",
+    "feature_transcript_sha256": "ed9acc861cfeae570a60bde7d107dc1522712baf490b81114ede3dfd4f4369ce",
+    "quality_transcript_sha256": "600b82f986bd264a31267105ce0c35e52167cb6da8c7ec0bcd10b40ba77b6200"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "result": "PASS",
+    "review_commit": "59f57d0",
+    "review_evidence": "evidence/BIO-DOC-001/codex/REREVIEW-ROUND3.md",
+    "review_evidence_sha256": "11bd5c0786e5cd49b10d09e071bc66f909f98578b0d15bdb199b38176efeb3a5"
+  },
+  "category_verdicts": {
+    "functional": "PASS",
+    "security": "PASS",
+    "tenant_isolation": "PASS",
+    "offline_recovery": "NOT_APPLICABLE",
+    "concurrency": "PASS",
+    "regression": "PASS"
+  },
+  "security_performance_reviews": {
+    "security": "PASS: validated construction is mandatory and no direct PERSON mutation path exists",
+    "performance": "Not required for this in-memory domain foundation"
+  },
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "All five acceptance criteria have objective builder and independent evidence. QA-01 through QA-03 are closed, including compile-time prevention of invalid public evidence construction."
+  }
+}

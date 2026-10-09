@@ -1,0 +1,22 @@
+BIO-UX-015 builder verification
+Implementation: c276273a1511d52b09091bfd9437c061c8551b34
+
+PASS  ./node_modules/.bin/vitest run
+      Test Files 52 passed (52)
+      Tests      392 passed (392)
+
+PASS  ./node_modules/.bin/tsc --noEmit
+      TypeScript completed with no diagnostics.
+
+PASS  ./node_modules/.bin/next build
+      Compiled successfully; TypeScript completed; 34/34 static/dynamic page entries generated.
+
+PASS  TZ=UTC ./node_modules/.bin/playwright test bio-ux-015-product-experience-gate.spec.ts
+      Governance unsandboxed execution: 31 passed, 0 failed, 0 skipped.
+      Message: 2026-09-23T21-20-00-000Z-reply-chioma-015-gate-full-pass
+
+PASS  local-only/governance checks
+      git remote -v: no output
+      governance/release-state.yaml: github_push_enabled: false
+      governance/ui-approval.yaml: ui_product_experience_approved: false
+      automation/biolog.py: BIO-UX-015 PASS is rejected until ui_human_approved() is true

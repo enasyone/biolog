@@ -1,0 +1,11 @@
+{
+  "story_key": "BIO-CRD-005",
+  "stage": "builder",
+  "commit_hash": "8b6198f",
+  "test_command": "bash tests/features/bio-crd-005/BIO-CRD-005.test.sh && dotnet test tests/features/bio-crd-005/Biolog.Features.CardIssuance.Tests.csproj --nologo && dotnet build api/Biolog.Api/Biolog.Api.csproj --nologo",
+  "result": "PASS",
+  "timestamp": "2026-10-06T17:20:00Z",
+  "reviewer": "Ngozi (Zainab round 2 pending)",
+  "data_classification": "SYNTHETIC",
+  "notes": "TD-CRD-005-IDEMPOTENCY-RACE (High, ad-hoc technical-debt fix outside the biolog.py governance engine, tracked in hive/tasks.json as TD-IDEMPOTENCY-RACE-NGOZI, not runtime-state.json). Round 1 (commit e681ac1): production fix ported from Tunde's BIO-INT-002-F01, confirmed sound by Zainab round 1, but CHANGES_REQUIRED on test proof - the regression test used only a shared start-of-task gate, not a real Claim()-boundary barrier, so it couldn't discriminate from the old State-only bug. Round 2 (commit 8b6198f, this one): ported BIO-VIS-002's own fix for the identical gap (rounds 9-10) - ClaimBarrierIdempotencyStore holds the real winner blocked right after its claim becomes durably InFlight until the test confirms the loser has itself observed that same InFlight record. Added a mutant-discrimination test (minimal Barrier-forced two-caller race) and the ONE representative bounded-timeout test for the whole TD-IDEMPOTENCY-RACE-NGOZI remediation (Zainab's own concession - one proof suffices across all 5 call sites). See docs/features/bio-crd-005/README.md 'Post-acceptance fix: TD-CRD-005-IDEMPOTENCY-RACE' for the full record. Verified: dotnet build clean, feature tests 34/34 (zero regression, round-1's 1 test replaced by 3 new ones), structural harness 40/40 (6 new checks total), full API host build clean, re-ran 3x with no flakiness. Awaiting Zainab's round-2 re-review."
+}

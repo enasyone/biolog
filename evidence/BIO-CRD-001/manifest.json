@@ -1,0 +1,50 @@
+{
+  "story_key": "BIO-CRD-001",
+  "title": "Implement versioned tenant brand asset library",
+  "implementation_commit": "d267988c0db304ae55036e74c8b3b007a2a4910b",
+  "builder_head": "189d4e9",
+  "reviewed_head": "5048b0d9defaf1848a477b749e0a28fb72d3d4cb",
+  "environment": {"profile": "local acceptance; synthetic fixtures only", "timestamp": "2026-09-22T05:41:22Z", "dotnet_replay": "assemblies compiled; local vstest runner was sandbox-limited"},
+  "acceptance_criteria": {
+    "BIO-CRD-001-AC01": {"result": "PASS", "evidence": ["BIO-CRD-001.test.sh", "builder integration transcript"]},
+    "BIO-CRD-001-AC02": {"result": "PASS", "evidence": ["BIO-CRD-001.test.sh", "builder unit transcript"]},
+    "BIO-CRD-001-AC03": {"result": "PASS", "evidence": ["BIO-CRD-001.test.sh", "builder unit transcript"]},
+    "BIO-CRD-001-AC04": {"result": "PASS", "evidence": ["BIO-CRD-001.test.sh", "builder unit transcript"]},
+    "BIO-CRD-001-AC05": {"result": "PASS", "evidence": ["independent-review.sh", "remediation-review.sh", "REREVIEW-ROUND3.md"]}
+  },
+  "commands": [
+    {"command": "bash evidence/BIO-CRD-001/codex/independent-review.sh", "result": "PASS: tenant authority is not caller-controlled"},
+    {"command": "bash evidence/BIO-CRD-001/codex/remediation-review.sh", "result": "PASS: production host provisions tenant credentials"},
+    {"command": "bash tests/foundation/BIO-CRD-001.test.sh", "result": "PASS (26/26)"},
+    {"command": "python3 scripts/check-traceability.py governance/stories/BIO-CRD-001.json", "result": "PASS (5 ACs)"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS (built-in fallback scan; gitleaks unavailable)"},
+    {"command": "dotnet test unit/integration --no-restore", "result": "UNAVAILABLE after compilation in acceptor sandbox; commit-bound transcripts record 106/106 and 35/35 PASS"},
+    {"command": "bash scripts/check-dotnet-vulnerabilities.sh [API/unit/integration projects]", "result": "PASS in commit-bound builder evidence"}
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "d267988c0db304ae55036e74c8b3b007a2a4910b",
+    "unit_tests": "106/106 PASS",
+    "integration_tests": "35/35 PASS",
+    "foundation_tests": "26/26 PASS",
+    "unit_sha256": "4782dee9be9d3b02c1046ce81b7a8bc9e9131943d62a7b87fd3925bf142ae2d7",
+    "integration_sha256": "d14d3c7652dc710061919634b96de233112ea8ef64f8a81d6419cd3d0ea676e0"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "result": "PASS",
+    "review_commit": "5048b0d",
+    "evidence": "evidence/BIO-CRD-001/codex/REREVIEW-ROUND3.md",
+    "evidence_sha256": "b791d1c1d76b819993abca581232d1d7988474291b36a0fb4fdd0d491a115508"
+  },
+  "required_security_review": {
+    "reviewer": "Zainab",
+    "result": "HUMAN_AUTHORIZED_WAIVER_NOT_A_COMPLETED_REVIEW",
+    "authorized_at": "2026-09-22T05:39:07Z",
+    "reason": "Two reviewer launch attempts crashed before execution with unknown option -a. The human authorized acceptance to proceed; a real security review remains tracked follow-up debt."
+  },
+  "category_verdicts": {"functional": "PASS", "security": "PASS", "tenant_isolation": "PASS", "offline_recovery": "NOT_APPLICABLE", "concurrency": "PASS", "regression": "PASS"},
+  "security_performance_reviews": {"security": "PASS: request-selected tenant authority removed; credentials provisioned from trusted configuration", "performance": "Not required for this in-memory foundation"},
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS_WITH_HUMAN_AUTHORIZED_SECURITY_REVIEW_WAIVER", "reason": "All five acceptance criteria have builder and Seyi evidence; no unresolved reproduced Critical or High finding remains. Zainab's required review was explicitly waived by the human after two launch crashes and remains follow-up debt."}
+}

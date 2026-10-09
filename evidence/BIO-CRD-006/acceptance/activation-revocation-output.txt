@@ -1,0 +1,5 @@
+activation_offset=5096
+begin_revocation_offset=4761
+confirm_revocation_offset=6721
+two_phase_revocation_surrounds_activation=True
+PASS

@@ -1,0 +1,53 @@
+{
+  "story_key": "BIO-TEN-002",
+  "title": "Implement tenant domain mapping and verification",
+  "implementation_commit": "5e771b3a75b517f24bd10396ee641c9f03ada3a3",
+  "builder_head": "97eaf7d350529211be19acecc01f02696a4a4e4a",
+  "reviewed_head": "195d0f387ffb5f8fc57e169151ed776ff839890a",
+  "environment": {"profile": "local acceptance; synthetic fixtures only", "timestamp": "2026-09-22T09:03:44Z"},
+  "acceptance_criteria": {
+    "BIO-TEN-002-AC01": {"result": "PASS", "tests": ["TenantDomainRegistry.Tests", "BIO-TEN-002.test.sh"]},
+    "BIO-TEN-002-AC02": {"result": "PASS", "tests": ["HostNormalizer tests", "HostExactnessProbe", "BIO-TEN-002.test.sh"]},
+    "BIO-TEN-002-AC03": {"result": "PASS", "tests": ["packaged-host integration tests", "tenant middleware tests"]},
+    "BIO-TEN-002-AC04": {"result": "PASS_CURRENT_SINGLE_PROCESS_TIER", "tests": ["duplicate-host concurrency tests", "TenantDomainRegistry.Tests"]},
+    "BIO-TEN-002-AC05": {"result": "PASS", "tests": ["BIO-TEN-002.test.sh structural omission check"]}
+  },
+  "commands": [
+    {"command": "bash tests/features/bio-ten-002/BIO-TEN-002.test.sh", "result": "PASS (37/37)"},
+    {"command": "bash tests/foundation/BIO-FND-008.test.sh", "result": "PASS (39/39)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (19 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS (built-in fallback scan; gitleaks unavailable)"},
+    {"command": "dotnet tests/features/bio-ten-002/bin/Debug/net10.0/Biolog.Features.TenantDomainRegistry.Tests.dll", "result": "PASS (90/90)"},
+    {"command": "dotnet tests/dotnet/Biolog.UnitTests/bin/Debug/net10.0/Biolog.UnitTests.dll", "result": "PASS (154/154)"},
+    {"command": "dotnet tests/features/bio-ten-001/bin/Debug/net10.0/Biolog.Features.TenantRegistry.Tests.dll", "result": "PASS (51/51)"},
+    {"command": "dotnet tests/dotnet/Biolog.IntegrationTests/bin/Debug/net10.0/Biolog.IntegrationTests.dll", "result": "UNAVAILABLE: acceptor replay stalled after discovery/start; builder evidence records 49/49 PASS"},
+    {"command": "bash scripts/check-dotnet-vulnerabilities.sh [API/feature/test projects]", "result": "UNAVAILABLE in acceptance replay; builder full-quality evidence records PASS and no package reference changed after the reviewed remediation"}
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "5e771b3a75b517f24bd10396ee641c9f03ada3a3",
+    "feature_tests": "90/90 PASS",
+    "unit_tests": "154/154 PASS",
+    "integration_tests": "49/49 PASS",
+    "tenant_registry_regression": "51/51 PASS",
+    "full_quality": "PASS",
+    "metadata_sha256": "340d21af523abe9835cb84b9e4c5757af8e6b1946362d67638fbaacbfbe94d76"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "result": "PASS",
+    "review_commit": "195d0f3",
+    "evidence": "evidence/features/bio-ten-002/codex/REREVIEW-ROUND4.md",
+    "evidence_sha256": "11375fa754be079d64b7442a37aaa307e33f814145afaa2b22045a2383e217c7"
+  },
+  "required_security_review": {
+    "reviewer": "Zainab",
+    "result": "HUMAN_AUTHORIZED_WAIVER_NOT_A_COMPLETED_REVIEW",
+    "reason": "Three reviewer launch attempts crashed before execution with unknown option -a. The human reconfirmed acceptance may proceed; TD-ZAINAB-SECURITY-REVIEW tracks the real review as follow-up debt."
+  },
+  "category_verdicts": {"functional": "PASS", "security": "PASS_WITH_HUMAN_AUTHORIZED_REVIEW_WAIVER", "tenant_isolation": "PASS", "offline_recovery": "NOT_APPLICABLE", "concurrency": "PASS_CURRENT_SINGLE_PROCESS_TIER", "regression": "PASS"},
+  "security_performance_reviews": {"security": "Seyi PASS; Zainab review waived by human and retained as TD-ZAINAB-SECURITY-REVIEW", "performance": "Not required for this in-memory routing foundation"},
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS_WITH_HUMAN_AUTHORIZED_SECURITY_REVIEW_WAIVER", "reason": "All five acceptance criteria have executable and independent evidence; host exactness, real packaged-host resolution, and immutable tenant context pass. The unavailable specialist review is honestly recorded as waived debt."}
+}

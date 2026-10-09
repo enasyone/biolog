@@ -1,0 +1,244 @@
+ce recorded
+==============================
+43 passed, 0 failed
+PASS  BIO-BIO-006 fingerprint search harness
+== BIO-CRD-006 card lifecycle harness ==
+PASS  AC01 a report is refused a second time while already Locked, not silently re-recorded
+PASS  AC01 reason_code is a plain, non-blank, tenant-configurable string, not a fixed enum
+PASS  AC01 lock state is this story's OWN layer, deliberately not BIO-CRD-005's own one-way CardIssueStatus.Deactivated
+PASS  a test proves reporting locks a card and records the configurable reason
+PASS  a test proves presentation of a Locked card is denied immediately and logged
+PASS  AC02 a real, tenant-scoped, per-reason-code recovery policy store exists (not a hardcoded always-true)
+PASS  AC02 RecoverAsync consults the policy store before reactivating
+PASS  a test proves recovery is refused by tenant policy for a given reason code
+PASS  a test proves recover transitions Locked to Recovered and presentation is allowed again
+PASS  a test proves recovery after a later replacement's permanent revocation is refused (the AC02 'before activation' boundary)
+PASS  AC03 ReplaceAsync is a passthrough to BIO-CRD-005's own IssueAsync via the gateway - no separate sequence logic of its own
+PASS  a test proves replacement uses the next sequence number
+PASS  AC04 a terminal PermanentlyRevoked lock state exists, distinct from the freely-reversible Locked/Recovered pair
+PASS  AC04 ActivateReplacementAsync sweeps every earlier sequence number, not only the currently active one
+PASS  AC04 an already PermanentlyRevoked record is skipped, making the sweep idempotent under a retried Idempotency-Key
+PASS  AC04 activate-replacement requires Idempotency-Key (ADR-0004 §4.3 names card activation explicitly)
+PASS  a test proves every earlier card is permanently revoked, not only the one that was Active
+PASS  a test proves two concurrent activation attempts for the same replacement never both succeed
+PASS  a test proves replaying the same activate-replacement idempotency key does not double-revoke
+PASS  BIO-CRD-006-QA-01 (Chioma's acceptance review round 1): every earlier card begins revocation strictly before the replacement is activated, not after
+PASS  BIO-CRD-006-QA-01 regression: a confirmed audit failure partway through the sweep leaves the replacement never activated
+PASS  BIO-CRD-006-QA-02 (Chioma's acceptance review round 2): the replacement's own precondition is validated strictly before the earlier-card sweep, not after
+PASS  BIO-CRD-006-QA-02: activate-replacement reserves its own Idempotency-Key at this story's own layer, independent of BIO-CRD-005's own claim
+PASS  BIO-CRD-006-QA-02 regression: a stale expected_version on the replacement never touches any earlier card
+PASS  BIO-CRD-006-QA-02 regression: reusing the activate-replacement idempotency key with different content never touches the second, distinct replacement
+PASS  BIO-CRD-006-QA-03 (Chioma's acceptance review round 3): a non-terminal RevocationPending lock state exists so the sweep can be compensated, not only committed
+PASS  BIO-CRD-006-QA-03: the prior lock state is durably recorded on the record itself, so a later, separate attempt can still compensate correctly
+PASS  BIO-CRD-006-QA-03: a failed authoritative activation triggers compensation of every pending record, not a silent leave-as-is
+PASS  BIO-CRD-006-QA-03: RevocationPending denies presentation conservatively, never Allowed
+PASS  BIO-CRD-006-QA-03 regression: a concurrent mutation that fails the authoritative activation compensates a previously-Locked earlier card back to Locked
+PASS  BIO-CRD-006-QA-03 regression: a compensated never-reported earlier card resolves to Unlocked, not PermanentlyRevoked or left dangling
+PASS  AC05 a durable, append-only presentation-event log exists, separate from the ordinary audit trail
+PASS  AC05 offline sync intake requires Idempotency-Key (ADR-0004 §4.3 names it explicitly)
+PASS  AC05 the deny-list feed includes Locked, RevocationPending and PermanentlyRevoked records
+PASS  AC05 offline intake never re-validates against this server's live state - the reader's own locally-cached decision is trusted
+PASS  a test proves an offline reader's decision is durably logged via the idempotent intake path
+PASS  a test proves the deny list includes a Locked card so an offline reader can cache it before going offline
+PASS  no new canonical identifier type minted - a lifecycle record reuses BIO-CRD-005's own natural composite key
+PASS  no ProjectReference to any other feature project, including bio-crd-005 (a genuine runtime dependency reached only through this project's own gateway interface)
+PASS  ICardIssueGateway is this project's own interface, not a reference to bio-crd-005's types
+PASS  backend module lives one-way in api/Biolog.Api/Modules, not back in the feature project
+PASS  registered in the packaged Program.cs module array, depending on Tenant and CardIssuance
+PASS  the module adapter translates BIO-CRD-005's own CardIssueError into this feature's own CardLifecycleError, never leaking a sibling's exception type
+PASS  backend unit/integration tests exist
+PASS  a real-packaged-host test exists proving the genuine BIO-CRD-005 dependency through the shipped host channel
+PASS  the host-channel test proves the real BIO-CRD-005 card issue is genuinely deactivated during the sweep, not only this story's own lock record
+PASS  builder evidence recorded
+==============================
+47 passed, 0 failed
+PASS  BIO-CRD-006 card lifecycle harness
+== BIO-BIO-007 face search harness ==
+PASS  AC01 feature project exists
+PASS  AC01 project targets the pinned .NET SDK's TFM
+PASS  AC01 a ranked search result type exists carrying candidates and similarity
+PASS  AC01 candidates are ordered by score descending and capped at the caller-requested count
+PASS  AC01 a structural test proves ranking order
+PASS  QA-01 a narrow approval gateway exists, not a call into BIO-BIO-003's internal service
+PASS  QA-01 IndexAsync takes no raw BiometricSample parameter
+PASS  QA-01 IndexAsync resolves the approved reference through the gateway before indexing anything
+PASS  QA-01 a missing approved reference is a precondition failure, not a routine outcome
+PASS  QA-01 regression tests prove no raw-sample overload exists and an unapproved person cannot be indexed
+PASS  AC02 a tenant feature-flag policy contract exists, separate from the service
+PASS  AC02 the feature flag is checked before the gallery is read, fail-closed by default
+PASS  AC02 a structural test proves search is rejected for a tenant that never enabled the feature
+PASS  AC02 a structural test proves enabling one tenant does not enable another
+PASS  AC03 the result and candidate types carry no decision/authorization field
+PASS  AC03 the service exposes no decide/authorize method
+PASS  AC03 a structural test proves no decision/authorization field or method exists
+PASS  AC04 no ProjectReference to BIO-IDN-001 exists
+PASS  AC04 a structural test proves this assembly has no reference to BIO-IDN-001's own assembly
+PASS  AC05 the gallery store is keyed by tenant and never returns another tenant's templates
+PASS  AC05 the search result names the population scope and size explicitly
+PASS  AC05 an explicit audit sink/event exists and every search writes to it
+PASS  AC05 an audit write that cannot be confirmed durable fails the search
+PASS  AC05 a structural test proves the population scope/size are recorded
+PASS  AC05 a structural test proves every search writes an audit event
+PASS  AC05 a structural test proves cross-tenant gallery isolation
+PASS  AC05 a structural test proves cross-tenant audit isolation
+PASS  governance: the gallery store and its implementation are internal, not public
+PASS  governance: the audit sink and its implementation are internal, not public
+PASS  governance: the service is internal too
+PASS  governance: the InternalsVisibleTo seam is explicit and auditable in source control
+PASS  governance: reflection tests prove the gallery/audit/service are inaccessible to ordinary production consumers
+PASS  this project references BIO-BIO-001's provider-neutral biometric library
+PASS  no ProjectReference to BIO-BIO-003 (reached via this story's own independent gallery design)
+PASS  module project references stay one-way (no ProjectReference back to Biolog.Api)
+PASS  module lives one-way in api/Biolog.Api/Modules, not back in the feature project
+PASS  registered in the packaged Program.cs module array
+PASS  no HTTP endpoints are mapped (AC01-AC05 are about the search/population/audit model, matching every prior BIO-BIO story's deferred-integration call)
+PASS  unit tests reference the feature project
+PASS  docs/features/bio-bio-007/README.md documents the feature
+PASS  builder evidence recorded
+==============================
+41 passed, 0 failed
+PASS  BIO-BIO-007 face search harness
+== BIO-ACC-001 access policy harness ==
+PASS  feature project exists
+PASS  project targets the pinned .NET SDK's TFM
+PASS  module lives one-way in api/Biolog.Api/Modules, not back in the feature project
+PASS  registered in the packaged Program.cs module array
+PASS  Biolog.Api.csproj references the feature project
+PASS  no ProjectReference from the feature project to any other feature project or Biolog.Api
+PASS  AC01 SubjectMatch supports ANY_PERSON, SPECIFIC_PERSON and PROFILE_KEY
+PASS  AC01 CredentialClassMatch exists
+PASS  AC01 LocationMatch exists
+PASS  AC01 ScheduleMatch supports recurring weekly windows
+PASS  AC01 IdentityStatusMatch and CardStatusMatch both exist
+PASS  AC01 AssuranceLevel is a three-level ordered enum
+PASS  AC01 a specific-person subject is existence-checked at authoring time
+PASS  AC01 identity status is resolved live via a gateway, never accepted as a caller-supplied evaluation input
+PASS  AC01 a test proves a rule can name every AC01 dimension at once
+PASS  AC02 AccessPolicyStatus is a Draft/Published workflow
+PASS  AC02 revising a draft edits in place while Draft, starts a new version once Published
+PASS  AC02 publish requires a different actor from the draft's own author (maker-checker)
+PASS  AC02 publish requires the caller to hold a distinct permission from draft management
+PASS  AC02 a test proves revising in place keeps the same version number
+PASS  AC02 a test proves revising a published policy starts a new draft version, leaving the published one untouched
+PASS  AC02 a test proves self-approval is rejected
+PASS  AC03 PolicyRule.Effect is ALLOW or DENY, a per-rule field
+PASS  AC03 the evaluator checks every DENY match before considering any ALLOW match
+PASS  AC03 the default outcome with no matching rule is DENY (fail-closed)
+PASS  AC03 insufficient assurance on a matching ALLOW rule is its own distinct, auditable reason
+PASS  AC03 a test proves deny wins even when the deny rule appears after the allow rule in the list
+PASS  AC03 a test proves deny wins even when it appears before the allow rule too (order genuinely does not matter)
+PASS  AC03 a test proves the default-deny fail-closed outcome
+PASS  AC04 an audit sink exists, mirroring ADR-0003's append-only audit envelope
+PASS  AC04 PolicyEvaluationService audits every evaluation before returning, following ADR-0003 Decision 7
+PASS  AC04 AccessPolicyService audits every mutation the same way
+PASS  AC04 the pure evaluator is independently testable with no service/gateway dependency
+PASS  AC04 a test proves a confirmed audit-sink failure prevents the mutation from ever committing
+PASS  AC04 a test proves the evaluation audit outcome matches the decision
+PASS  RBAC: every authoring/publishing/evaluating method checks a permission via IPermissionGateway
+PASS  ADR-0006: ActorProvenanceGate exists and is referenced against the accepted ADR
+PASS  ADR-0006: the provenance store uses constant-time comparison
+PASS  ADR-0006: every endpoint (mutating, evaluating AND read - QA-01) calls the provenance gate immediately after resolving the actor
+PASS  ADR-0006: no provenance secret is committed to source
+PASS  a real-host test proves the provenance gate runs before authority is ever checked
+PASS  QA-01 a dedicated ReadPermission exists, distinct from Manage/Publish
+PASS  QA-01 GetAsync and ListAsync both require an actor and check the read permission
+PASS  QA-01 both read endpoint handlers pass the resolved actor through to the service (not an unauthenticated read)
+PASS  QA-01 a service-level test proves GET is rejected without the read permission, even for the policy's own author
+PASS  QA-01 a service-level test proves LIST is rejected without the read permission
+PASS  QA-01 a positive-path test proves a read-only permission holder can read but not author or publish
+PASS  QA-01 a real-host test proves an unprivileged actor cannot list policies through the shipped endpoint
+PASS  governance test file exists
+PASS  the feature project has no assembly reference to any sibling feature project (test-enforced)
+PASS  feature-path-ownership.json declares this story's owned paths
+----
+BIO-ACC-001 structural checks: 51 passed, 0 failed
+PASS  BIO-ACC-001 access policy harness
+== BIO-CRD-007 card production harness ==
+PASS  AC01 a job status enum exists with InProgress/Passed/Failed/Rejected/Cancelled
+PASS  AC01 job sequence numbers start at 1 and never reused - the same pure-read-then-Create split BIO-CRD-005/006 already established
+PASS  AC01 job status is derived from all three step outcomes, never set directly by a caller
+PASS  a test proves all three passing steps resolve the job to Passed
+PASS  a test proves any one failing step resolves the job to Failed even if the others passed
+PASS  a test proves a job can be explicitly cancelled
+PASS  AC02 activation is gated - ActivateAfterProductionAsync exists and checks AllowsActivation before any delegate call
+PASS  AC02 only Passed allows activation - not InProgress, Failed, Rejected or Cancelled
+PASS  a test proves activation is refused when no production job has ever been created
+PASS  a test proves activation is refused when the latest job Failed
+PASS  a test proves activation is refused when the latest job was explicitly Rejected even though it mechanically passed
+PASS  a test proves the real card issue stays untouched (never Active) when a gated activation is refused
+PASS  AC03 packages are signed with HMAC-SHA256 using a tenant-scoped key, never a shared or hardcoded secret
+PASS  AC03 signature verification uses constant-time comparison
+PASS  AC03 packages carry an explicit expiry and completion checks it
+PASS  AC03 a package can only ever be consumed once
+PASS  AC03 offline-complete requires Idempotency-Key (ADR-0004 §4.3 names offline sync intake explicitly)
+PASS  AC03 the consumed-check and job creation happen under the same per-card lock that serialises every other mutation on this card, closing the concurrent-double-consumption race
+PASS  a test proves a tampered token is rejected
+PASS  a test proves an expired package is rejected
+PASS  a test proves a package cannot be consumed twice
+PASS  a test proves a token signed for a different tenant is rejected
+PASS  a real-packaged-host test proves the full offline package round trip produces and activates a real card
+PASS  AC04 a job records printer, a structured operator actor, and workstation
+PASS  AC04 a reprint (job sequence > 1) requires a recorded reason; a first attempt must not carry one
+PASS  AC04 a rejection records its own reason
+PASS  AC04 the card issue's own identifiers (person/card class/sequence) are the job's own natural key, never a separate copy that could drift
+PASS  a test proves a reprint without a reason is refused and a reprint with one is recorded
+PASS  a test proves ListJobsAsync returns the full production report for a card
+PASS  AC05 activation delegates to BIO-CRD-005's own real, authoritative ActivateAsync - never a competing local implementation of the invariant
+PASS  a test proves BIO-CRD-005's own one-active-card invariant still refuses a second activation even after this story's own gate passes
+PASS  no new canonical identifier type minted - a job reuses BIO-CRD-005's own natural composite key plus this project's own job sequence number
+PASS  a production package id is disclosed as an opaque bearer token, not a canonical identifier of its own kind
+PASS  no ProjectReference to any other feature project, including bio-crd-005 (a genuine runtime dependency reached only through this project's own gateway interface)
+PASS  ICardIssueGateway is this project's own interface, not a reference to bio-crd-005's types
+PASS  backend module lives one-way in api/Biolog.Api/Modules, not back in the feature project
+PASS  registered in the packaged Program.cs module array, depending on Tenant and CardIssuance
+PASS  the module adapter translates BIO-CRD-005's own CardIssueError into this feature's own ProductionError, never leaking a sibling's exception type
+PASS  backend unit/integration tests exist
+PASS  a real-packaged-host test exists proving the genuine BIO-CRD-005 dependency through the shipped host channel
+PASS  builder evidence recorded
+==============================
+41 passed, 0 failed
+PASS  BIO-CRD-007 card production harness
+== BIO-MOB-003 offline sync central intake harness ==
+PASS  a central offline-sync feature project exists
+PASS  project targets the pinned .NET SDK's TFM
+PASS  module lives one-way in api/Biolog.Api/Modules, not back in the feature project
+PASS  registered in the packaged Program.cs module array
+PASS  the intake route matches what the mobile-side HttpSyncTransport already targets
+PASS  the request DTO accepts operation and the arbitrary payload, matching toSyncDeltaJson()
+PASS  a real end-to-end test proves an addition, an update and a revocation are each accepted centrally
+PASS  an idempotency store with claim/complete/release/get semantics exists
+PASS  the endpoint requires Idempotency-Key, fail-closed
+PASS  a real test proves a replay returns the original stored result with Idempotency-Replayed: true
+PASS  a real test proves reusing a key with different content is rejected, not executed again
+PASS  a generic per-aggregate version ledger implements ADR-0001 §3.2 compare-and-set
+PASS  a conflict is never merged - no merge/resolve path exists anywhere in this feature
+PASS  a real test proves a stale base_version is rejected with the current version echoed back
+PASS  a real test proves a conflict never advances the ledger or commits anything
+PASS  a real test proves two racing updates against the same aggregate do not both succeed
+PASS  device authentication resolves the tenant, never trusting a request-supplied one
+PASS  the service cross-validates the payload's tenant_id claim against the independently resolved tenant
+PASS  a real test proves a forged payload tenant_id is rejected, not routed
+PASS  device authentication requires both a device id and a verified device secret
+PASS  a device must also be ACTIVE, resolved via the shared device registry, not a per-feature fake in production
+PASS  the cross-tenant device lookup this endpoint depends on is internal, not a public escape hatch
+PASS  no device secret is committed to checked-in app configuration
+PASS  no ProjectReference to any other feature project (all cross-feature access is through this project's own gateways)
+PASS  unit-level integration tests exist for the real HTTP endpoint
+PASS  a real packaged-host channel test exists (real device registration, not merely an injected test double)
+PASS  all fixtures marked SYNTHETIC
+PASS  builder evidence recorded
+==============================
+28 passed, 0 failed
+PASS  BIO-MOB-003 offline sync central intake harness
+== implemented-story traceability inventory ==
+TRACEABILITY INVENTORY: PASS (30 implemented stories)
+PASS  implemented-story traceability inventory
+== module project reference direction ==
+MODULE PROJECT REFERENCES: PASS
+PASS  module project reference direction
+== tracked secret scan ==
+secret-scan: gitleaks not installed, using built-in fallback pattern scan
+secret-scan: clean
+PASS  tracked secret scan
+QUALITY: FAIL
+---

@@ -1,0 +1,103 @@
+$ bash tests/features/bio-idn-006/BIO-IDN-006.test.sh
+PASS  AC01 feature project exists
+PASS  AC01 project targets the pinned .NET SDK's TFM
+PASS  AC01 all eleven baseline roles are named verbatim
+PASS  AC01 module lives one-way in api/Biolog.Api/Modules, not back in the feature project
+PASS  AC01 registered in the packaged Program.cs module array
+PASS  AC01 a role catalogue listing endpoint exists
+PASS  AC01 a test proves the catalogue lists all eleven roles
+PASS  AC01 a test proves a person can hold several roles at once
+PASS  QA-01 mutating SUPER_ADMIN requires the caller to already hold an active SUPER_ADMIN assignment
+PASS  QA-01 both AssignAsync and RevokeAsync call the SUPER_ADMIN authority gate
+PASS  QA-01 the authority gate runs before any other validation, existence check or lock
+PASS  QA-01 the actor id must itself be a well-formed canonical per_ id to satisfy the check - free-form actor ids can never qualify
+PASS  QA-01 no bootstrap exception exists in code - the gate is unconditional (excluding explanatory doc-comment prose)
+PASS  QA-01 Seyi's own adversarial reproduction is checked in and now passes
+PASS  QA-01 a service-level test proves the same rejection for both assign and revoke
+PASS  QA-01 a test proves a free-form non-person actor id (the codebase's own disclosed pre-auth convention) can never satisfy the check
+PASS  QA-01 a positive-path test proves a legitimate SUPER_ADMIN can still assign and revoke SUPER_ADMIN
+PASS  QA-01 a real-host test proves the rejection through the actual shipped endpoint, with no seeding backdoor available
+PASS  QA-02 mutating SUPER_ADMIN is itself gated by MakerCheckerService (QA-05 upgraded this from a read-only check to atomic single-use consumption) - a real, owned sensitive action
+PASS  QA-02 distinct action keys are used for assign vs revoke
+PASS  QA-02 the authority gate runs before the maker-checker clearance gate (an unprivileged caller learns nothing about rule configuration)
+PASS  QA-02 a test proves maker-checker genuinely BLOCKS a legitimate SUPER_ADMIN when the tenant requires second approval
+PASS  QA-02 a test proves the mutation succeeds once a real second approval is obtained
+PASS  QA-02 an endpoint-level test proves the clearance gate blocks even a legitimate SUPER_ADMIN through the full HTTP pipeline
+PASS  AC02 a tenant-scoped RolePermissionGrant aggregate exists, keyed (TenantId, Role, PermissionKey)
+PASS  AC02 a fail-closed default: an absent grant is treated as not granted
+PASS  AC02 the real permission-check surface exists (HasPermissionAsync)
+PASS  AC02 a test proves granting a permission to a held role makes HasPermission true
+PASS  AC02 a test proves revoking the underlying role immediately removes the permission (live check, never cached)
+PASS  AC02 a test proves a grant configured in tenant A never applies in tenant B
+PASS  AC02 a real-host test proves a tenant-B caller learns nothing about a real tenant-A person, never leaking cross-tenant state
+PASS  QA-03 assigning/revoking any role other than SUPER_ADMIN requires rbac.role_assign/rbac.role_revoke
+PASS  QA-03 the permission check is resolved through PermissionService.ActorHasPermissionAsync, the same general mechanism as every other gate
+PASS  QA-03 configuring a permission grant for any role other than SUPER_ADMIN requires rbac.permission_grant_manage
+PASS  QA-03 a malformed or nonexistent actor id never throws from the internal gate - it simply reports not granted
+PASS  QA-03 service-level tests prove an unprivileged actor cannot assign or revoke any other role
+PASS  QA-03 a service-level test proves a role explicitly delegated the permission can assign/configure without holding SUPER_ADMIN
+PASS  QA-03 endpoint-level and real-host tests prove the same rejection through the full HTTP pipeline
+PASS  QA-04 configuring a sensitive-action rule requires rbac.sensitive_action_rule_manage, checked before any other validation
+PASS  QA-04 a service-level test proves an unprivileged actor cannot configure or disable the rule
+PASS  QA-04 a service-level test proves a role explicitly delegated the permission can configure the rule without holding SUPER_ADMIN
+PASS  QA-04 endpoint-level and real-host tests prove the same rejection through the full HTTP pipeline
+PASS  QA-05 ApprovalRequest carries a separate ConsumedAt fact, distinct from Status
+PASS  QA-05 the repository exposes a genuinely separate ConsumeAsync method, independently re-validating Approved and not-yet-consumed at the persistence boundary
+PASS  QA-05 MakerCheckerService exposes an atomic, single-use TryConsumeApprovalAsync, and IsActionClearedAsync remains a separate, unchanged read-only check
+PASS  QA-05 the SUPER_ADMIN mutation gate now consumes the approval rather than merely reading its status
+PASS  QA-05 a test proves the first mutation consumes the approval and a second mutation cannot reuse it
+PASS  QA-05 a test proves a fresh approval is required for, and does clear, a second mutation of the same target
+PASS  QA-05 governance tests independently re-prove the repository-boundary consumption checks
+PASS  SUPER_ADMIN short-circuits HasPermissionAsync to granted, before any grant lookup
+PASS  PRIVILEGE ESCALATION: a grant can never be configured for SUPER_ADMIN
+PASS  a test proves SUPER_ADMIN holds every permission with no grant ever configured
+PASS  PRIVILEGE ESCALATION test: a grant can never be set for SUPER_ADMIN
+PASS  PRIVILEGE ESCALATION test: an unrelated role's own grant never implies SUPER_ADMIN-level authority
+PASS  AC03 a tenant-scoped SensitiveActionRule aggregate exists
+PASS  AC03 a maker-checker ApprovalRequest aggregate exists with a Pending/Approved/Rejected lifecycle
+PASS  AC03 at most one Pending request per target is a structural invariant, checked in the service and the repository
+PASS  AC03 endpoints exist for the rule and the full request/decide workflow
+PASS  AC03 a test proves an approved request clears the action for that target
+PASS  AC03 a test proves a rejected request never clears the action
+PASS  the checker's actor id is checked against the maker's actor id BEFORE any write is attempted
+PASS  the repository independently re-checks separation of duties at the persistence boundary against the ACTUAL deciding actor, not the caller-supplied record
+PASS  PRIVILEGE ESCALATION test: approving one's own request is rejected
+PASS  PRIVILEGE ESCALATION test: rejecting one's own request is ALSO forbidden, not only approving
+PASS  PRIVILEGE ESCALATION test: self-approval is rejected before any state change
+PASS  PRIVILEGE ESCALATION test: a forged replacement record cannot smuggle a different decider past the repository boundary
+PASS  PRIVILEGE ESCALATION test: self-approval is rejected through the real packaged host
+PASS  PRIVILEGE ESCALATION test: the maker cannot approve their own request through the endpoint
+PASS  a test proves an already-decided request is rejected, never silently absorbed
+PASS  AC04 role assignment/revocation is a governed transition, never a delete
+PASS  AC04 assign and revoke both write an audit event before committing
+PASS  AC04 a test proves assign records exactly one allowed audit event
+PASS  AC04 a test proves revoke records an audit event
+PASS  AC04 a test proves revoking preserves the record rather than deleting it
+PASS  a narrow, read-only IPersonExistenceGateway interface exists, owned by this feature
+PASS  AssignAsync and HasPermissionAsync both call the gateway before anything else
+PASS  a missing or foreign-tenant person is rejected as person_not_found (404)
+PASS  the real adapter wraps BIO-IDN-001's own tenant-scoped PersonService.GetAsync
+PASS  real-packaged-host tests prove an unknown person and a real tenant-A person via tenant-B's host both fail identically
+PASS  governance: every repository and its implementation are internal, not public
+PASS  governance: every aggregate's constructor is internal, not a public object-initializer surface
+PASS  governance: every service is internal too
+PASS  governance: the InternalsVisibleTo seam is explicit and auditable in source control
+PASS  governance: every repository independently re-validates identity immutability and initial state at the persistence boundary
+PASS  governance: reflection tests prove every repository/aggregate/service is inaccessible to ordinary production consumers
+PASS  governance: no ProjectReference to BIO-IDN-001's project (existence is proven through a narrow gateway)
+PASS  every mutating/reading service reads the resolved tenant, never a caller-supplied id
+PASS  a missing tenant context fails closed (tenant_context_missing, 400)
+PASS  real shipped-host positive-path test exists (ADR-0002 Decision 6 obligation)
+PASS  Decision 7 element 1: four per-aggregate locks exist, each in its own singleton-safe class
+PASS  the locks live in their own classes because every service must be Scoped (captive-dependency avoidance)
+PASS  Decision 7 element 3: ExistsAsync verification on an ambiguous audit-write throw
+PASS  Decision 7 element 4: CancellationToken.None on the commit once the audit is confirmed
+PASS  a same-target concurrency race for approval decisions is proven, never producing two decided outcomes
+PASS  audit sink failure never leaves a committed-but-unaudited record (assign/revoke/request/decide)
+PASS  two different lock scopes are used deliberately: (TenantId, ActionKey) for the rule, (TenantId, ActionKey, TargetRef) for the request history
+PASS  unit/audit/scope tests reference the feature project
+PASS  feature-local integration tests exist and reference TestHost
+PASS  docs/features/bio-idn-006/README.md documents the feature
+PASS  builder evidence recorded
+==============================
+100 passed, 0 failed

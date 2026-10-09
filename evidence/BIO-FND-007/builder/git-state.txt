@@ -1,0 +1,38 @@
+$ git status
+On branch feature/BIO-FND-007
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   scripts/quality.sh
+	modified:   tests/frontend/package.json
+	modified:   tests/frontend/playwright.config.mjs
+	modified:   tests/frontend/vitest.config.mjs
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	evidence/BIO-FND-007/
+	tests/foundation/BIO-FND-007.test.sh
+	tests/frontend/playwright/bio-fnd-007-shell.spec.ts
+	tests/frontend/pnpm-lock.yaml
+	tests/frontend/unit/bio-fnd-007-permissions.test.ts
+	tests/frontend/unit/bio-fnd-007-tokens.test.ts
+	web/app/
+	web/components/
+	web/context/
+	web/lib/
+	web/next-env.d.ts
+	web/next.config.mjs
+	web/package.json
+	web/pnpm-lock.yaml
+	web/public/
+	web/tsconfig.json
+	web/tsconfig.tsbuildinfo
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+$ git log --oneline -5
+31b1eb4 Merge feature/BIO-ARC-006: freeze W01 shared contract baseline
+4a98bb0 review: pass BIO-ARC-006 round 4
+cead834 BIO-ARC-006: record QA-04 remediation evidence
+089ba4c BIO-ARC-006: distinguish tamper rejection from setup failure
+c63b034 BIO-ARC-006: record round-3 review failure

@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-ARC-005",
+  "title": "Define migration ownership and sequencing policy",
+  "owner": "Kemi - Chief Architect & Integrator",
+  "requirement_ids": [
+    "BIO-ARC-005-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-ARC-005-AC01",
+      "requirement_ids": [
+        "BIO-ARC-005-REQ-001"
+      ],
+      "text": "Feature agents may propose migrations but Kemi assigns sequence numbers."
+    },
+    {
+      "id": "BIO-ARC-005-AC02",
+      "requirement_ids": [
+        "BIO-ARC-005-REQ-001"
+      ],
+      "text": "Only one migration conflict group may be active at a time."
+    },
+    {
+      "id": "BIO-ARC-005-AC03",
+      "requirement_ids": [
+        "BIO-ARC-005-REQ-001"
+      ],
+      "text": "Forward-safe and rollback/repair rules are documented."
+    },
+    {
+      "id": "BIO-ARC-005-AC04",
+      "requirement_ids": [
+        "BIO-ARC-005-REQ-001"
+      ],
+      "text": "Fresh-create and upgrade-from-previous tests are mandatory."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-ARC-005.test.sh",
+      "ac_ids": [
+        "BIO-ARC-005-AC01",
+        "BIO-ARC-005-AC02",
+        "BIO-ARC-005-AC03",
+        "BIO-ARC-005-AC04"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-ARC-005/acceptance/manifest.json",
+      "ac_ids": [
+        "BIO-ARC-005-AC01",
+        "BIO-ARC-005-AC02",
+        "BIO-ARC-005-AC03",
+        "BIO-ARC-005-AC04"
+      ]
+    }
+  ]
+}

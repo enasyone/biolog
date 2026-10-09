@@ -1,0 +1,1918 @@
+{
+  "schema_version": 1,
+  "contract_snapshot_version": "1.1.12",
+  "rule": "Each future story exclusively owns its story-keyed feature subtrees; frozen shared contracts are read-only.",
+  "expected_story_keys": [
+    "BIO-FND-007",
+    "BIO-FND-008",
+    "BIO-FND-009",
+    "BIO-FND-010",
+    "BIO-CRD-001",
+    "BIO-DEV-001",
+    "BIO-DOC-001",
+    "BIO-TEN-001",
+    "BIO-TEN-002",
+    "BIO-IDN-001",
+    "BIO-IDN-002",
+    "BIO-IDN-003",
+    "BIO-IDN-004",
+    "BIO-IDN-005",
+    "BIO-IDN-006",
+    "BIO-BIO-001",
+    "BIO-DEV-002",
+    "BIO-DOC-002",
+    "BIO-DOC-003",
+    "BIO-PHO-001",
+    "BIO-PHO-002",
+    "BIO-BIO-002",
+    "BIO-BIO-003",
+    "BIO-CRD-002",
+    "BIO-CRD-003",
+    "BIO-CRD-004",
+    "BIO-DOC-004",
+    "BIO-DOC-005",
+    "BIO-BIO-004",
+    "BIO-BIO-005",
+    "BIO-CRD-005",
+    "BIO-DOC-006",
+    "BIO-MOB-001",
+    "BIO-BIO-006",
+    "BIO-BIO-007",
+    "BIO-CRD-006",
+    "BIO-DOC-007",
+    "BIO-MOB-002",
+    "BIO-ACC-001",
+    "BIO-CRD-007",
+    "BIO-DOC-008",
+    "BIO-DOC-009",
+    "BIO-MOB-003",
+    "BIO-ATT-001",
+    "BIO-DEV-003",
+    "BIO-RPT-001",
+    "BIO-VIS-001",
+    "BIO-ACC-002",
+    "BIO-ACC-003",
+    "BIO-ATT-002",
+    "BIO-MOB-004",
+    "BIO-RPT-002",
+    "BIO-TRN-001",
+    "BIO-TRN-002",
+    "BIO-VIS-002",
+    "BIO-ATT-003",
+    "BIO-BIO-008",
+    "BIO-BIO-009",
+    "BIO-CRD-008",
+    "BIO-DEV-004",
+    "BIO-DOC-010",
+    "BIO-DOC-011",
+    "BIO-INT-001",
+    "BIO-INT-002",
+    "BIO-INT-003",
+    "BIO-INT-004",
+    "BIO-INT-005",
+    "BIO-MOB-005",
+    "BIO-PHO-003",
+    "BIO-RPT-003",
+    "BIO-RPT-004",
+    "BIO-TEN-003",
+    "BIO-TRN-003",
+    "BIO-OPS-001",
+    "BIO-OPS-002",
+    "BIO-OPS-003",
+    "BIO-OPS-004",
+    "BIO-OPS-005",
+    "BIO-OPS-006",
+    "BIO-OPS-007",
+    "BIO-OPS-008",
+    "BIO-OPS-009",
+    "BIO-OPS-010"
+  ],
+  "features": [
+    {
+      "story_key": "BIO-FND-007",
+      "wave": "W02",
+      "owner": "Ngozi",
+      "conflict_group": "web-shell",
+      "owned_paths": [
+        "api/features/bio-fnd-007/**",
+        "web/features/bio-fnd-007/**",
+        "mobile/features/bio-fnd-007/**",
+        "tests/features/bio-fnd-007/**",
+        "docs/features/bio-fnd-007/**",
+        "evidence/features/bio-fnd-007/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-FND-008",
+      "wave": "W02",
+      "owner": "Emeka",
+      "conflict_group": "api-shell",
+      "owned_paths": [
+        "api/features/bio-fnd-008/**",
+        "web/features/bio-fnd-008/**",
+        "mobile/features/bio-fnd-008/**",
+        "tests/features/bio-fnd-008/**",
+        "docs/features/bio-fnd-008/**",
+        "evidence/features/bio-fnd-008/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-FND-009",
+      "wave": "W02",
+      "owner": "Emeka",
+      "conflict_group": "observability",
+      "owned_paths": [
+        "api/features/bio-fnd-009/**",
+        "web/features/bio-fnd-009/**",
+        "mobile/features/bio-fnd-009/**",
+        "tests/features/bio-fnd-009/**",
+        "docs/features/bio-fnd-009/**",
+        "evidence/features/bio-fnd-009/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-FND-010",
+      "wave": "W02",
+      "owner": "Chioma",
+      "conflict_group": "traceability-tooling",
+      "owned_paths": [
+        "api/features/bio-fnd-010/**",
+        "web/features/bio-fnd-010/**",
+        "mobile/features/bio-fnd-010/**",
+        "tests/features/bio-fnd-010/**",
+        "docs/features/bio-fnd-010/**",
+        "evidence/features/bio-fnd-010/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-CRD-001",
+      "wave": "W03",
+      "owner": "Ngozi",
+      "conflict_group": "brand-assets",
+      "owned_paths": [
+        "api/features/bio-crd-001/**",
+        "web/features/bio-crd-001/**",
+        "mobile/features/bio-crd-001/**",
+        "tests/features/bio-crd-001/**",
+        "docs/features/bio-crd-001/**",
+        "evidence/features/bio-crd-001/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-DEV-001",
+      "wave": "W03",
+      "owner": "Emeka",
+      "conflict_group": "device-registry",
+      "owned_paths": [
+        "api/features/bio-dev-001/**",
+        "web/features/bio-dev-001/**",
+        "mobile/features/bio-dev-001/**",
+        "tests/features/bio-dev-001/**",
+        "docs/features/bio-dev-001/**",
+        "evidence/features/bio-dev-001/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-DOC-001",
+      "wave": "W03",
+      "owner": "Ifeanyi",
+      "conflict_group": "document-session",
+      "owned_paths": [
+        "api/features/bio-doc-001/**",
+        "web/features/bio-doc-001/**",
+        "mobile/features/bio-doc-001/**",
+        "tests/features/bio-doc-001/**",
+        "docs/features/bio-doc-001/**",
+        "evidence/features/bio-doc-001/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-TEN-001",
+      "wave": "W03",
+      "owner": "Tunde",
+      "conflict_group": "tenant-registry",
+      "owned_paths": [
+        "api/features/bio-ten-001/**",
+        "web/features/bio-ten-001/**",
+        "mobile/features/bio-ten-001/**",
+        "tests/features/bio-ten-001/**",
+        "docs/features/bio-ten-001/**",
+        "evidence/features/bio-ten-001/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-TEN-002",
+      "wave": "W03",
+      "owner": "Tunde",
+      "conflict_group": "tenant-domain",
+      "owned_paths": [
+        "api/features/bio-ten-002/**",
+        "web/features/bio-ten-002/**",
+        "mobile/features/bio-ten-002/**",
+        "tests/features/bio-ten-002/**",
+        "docs/features/bio-ten-002/**",
+        "evidence/features/bio-ten-002/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-IDN-001",
+      "wave": "W04",
+      "owner": "Tunde",
+      "conflict_group": "person-core",
+      "owned_paths": [
+        "api/features/bio-idn-001/**",
+        "web/features/bio-idn-001/**",
+        "mobile/features/bio-idn-001/**",
+        "tests/features/bio-idn-001/**",
+        "docs/features/bio-idn-001/**",
+        "evidence/features/bio-idn-001/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-IDN-002",
+      "wave": "W04",
+      "owner": "Tunde",
+      "conflict_group": "person-core",
+      "owned_paths": [
+        "api/features/bio-idn-002/**",
+        "web/features/bio-idn-002/**",
+        "mobile/features/bio-idn-002/**",
+        "tests/features/bio-idn-002/**",
+        "docs/features/bio-idn-002/**",
+        "evidence/features/bio-idn-002/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-IDN-003",
+      "wave": "W04",
+      "owner": "Tunde",
+      "conflict_group": "person-core",
+      "owned_paths": [
+        "api/features/bio-idn-003/**",
+        "web/features/bio-idn-003/**",
+        "mobile/features/bio-idn-003/**",
+        "tests/features/bio-idn-003/**",
+        "docs/features/bio-idn-003/**",
+        "evidence/features/bio-idn-003/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-IDN-004",
+      "wave": "W04",
+      "owner": "Tunde",
+      "conflict_group": "person-core",
+      "owned_paths": [
+        "api/features/bio-idn-004/**",
+        "web/features/bio-idn-004/**",
+        "mobile/features/bio-idn-004/**",
+        "tests/features/bio-idn-004/**",
+        "docs/features/bio-idn-004/**",
+        "evidence/features/bio-idn-004/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-IDN-005",
+      "wave": "W04",
+      "owner": "Tunde",
+      "conflict_group": "duplicate-review",
+      "owned_paths": [
+        "api/features/bio-idn-005/**",
+        "web/features/bio-idn-005/**",
+        "mobile/features/bio-idn-005/**",
+        "tests/features/bio-idn-005/**",
+        "docs/features/bio-idn-005/**",
+        "evidence/features/bio-idn-005/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-IDN-006",
+      "wave": "W04",
+      "owner": "Tunde",
+      "conflict_group": "rbac-core",
+      "owned_paths": [
+        "api/features/bio-idn-006/**",
+        "web/features/bio-idn-006/**",
+        "mobile/features/bio-idn-006/**",
+        "tests/features/bio-idn-006/**",
+        "docs/features/bio-idn-006/**",
+        "evidence/features/bio-idn-006/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-BIO-001",
+      "wave": "W05",
+      "owner": "Amina",
+      "conflict_group": "biometric-core",
+      "owned_paths": [
+        "api/features/bio-bio-001/**",
+        "web/features/bio-bio-001/**",
+        "mobile/features/bio-bio-001/**",
+        "tests/features/bio-bio-001/**",
+        "docs/features/bio-bio-001/**",
+        "evidence/features/bio-bio-001/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-DEV-002",
+      "wave": "W05",
+      "owner": "Emeka",
+      "conflict_group": "device-cert",
+      "owned_paths": [
+        "api/features/bio-dev-002/**",
+        "web/features/bio-dev-002/**",
+        "mobile/features/bio-dev-002/**",
+        "tests/features/bio-dev-002/**",
+        "docs/features/bio-dev-002/**",
+        "evidence/features/bio-dev-002/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-DOC-002",
+      "wave": "W05",
+      "owner": "Ifeanyi",
+      "conflict_group": "doc-mrz",
+      "owned_paths": [
+        "api/features/bio-doc-002/**",
+        "web/features/bio-doc-002/**",
+        "mobile/features/bio-doc-002/**",
+        "tests/features/bio-doc-002/**",
+        "docs/features/bio-doc-002/**",
+        "evidence/features/bio-doc-002/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-DOC-003",
+      "wave": "W05",
+      "owner": "Ifeanyi",
+      "conflict_group": "doc-barcode",
+      "owned_paths": [
+        "api/features/bio-doc-003/**",
+        "web/features/bio-doc-003/**",
+        "mobile/features/bio-doc-003/**",
+        "tests/features/bio-doc-003/**",
+        "docs/features/bio-doc-003/**",
+        "evidence/features/bio-doc-003/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-PHO-001",
+      "wave": "W05",
+      "owner": "Ngozi",
+      "conflict_group": "photo-core",
+      "owned_paths": [
+        "api/features/bio-pho-001/**",
+        "web/features/bio-pho-001/**",
+        "mobile/features/bio-pho-001/**",
+        "tests/features/bio-pho-001/**",
+        "docs/features/bio-pho-001/**",
+        "evidence/features/bio-pho-001/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-PHO-002",
+      "wave": "W05",
+      "owner": "Ngozi",
+      "conflict_group": "photo-booth",
+      "owned_paths": [
+        "api/features/bio-pho-002/**",
+        "web/features/bio-pho-002/**",
+        "mobile/features/bio-pho-002/**",
+        "tests/features/bio-pho-002/**",
+        "docs/features/bio-pho-002/**",
+        "evidence/features/bio-pho-002/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-BIO-002",
+      "wave": "W06",
+      "owner": "Amina",
+      "conflict_group": "fingerprint-enrol",
+      "owned_paths": [
+        "api/features/bio-bio-002/**",
+        "web/features/bio-bio-002/**",
+        "mobile/features/bio-bio-002/**",
+        "tests/features/bio-bio-002/**",
+        "docs/features/bio-bio-002/**",
+        "evidence/features/bio-bio-002/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-BIO-003",
+      "wave": "W06",
+      "owner": "Amina",
+      "conflict_group": "face-enrol",
+      "owned_paths": [
+        "api/features/bio-bio-003/**",
+        "web/features/bio-bio-003/**",
+        "mobile/features/bio-bio-003/**",
+        "tests/features/bio-bio-003/**",
+        "docs/features/bio-bio-003/**",
+        "evidence/features/bio-bio-003/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-CRD-002",
+      "wave": "W06",
+      "owner": "Ngozi",
+      "conflict_group": "card-designer",
+      "owned_paths": [
+        "api/features/bio-crd-002/**",
+        "web/features/bio-crd-002/**",
+        "mobile/features/bio-crd-002/**",
+        "tests/features/bio-crd-002/**",
+        "docs/features/bio-crd-002/**",
+        "evidence/features/bio-crd-002/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-CRD-003",
+      "wave": "W06",
+      "owner": "Ngozi",
+      "conflict_group": "card-designer",
+      "owned_paths": [
+        "api/features/bio-crd-003/**",
+        "web/features/bio-crd-003/**",
+        "mobile/features/bio-crd-003/**",
+        "tests/features/bio-crd-003/**",
+        "docs/features/bio-crd-003/**",
+        "evidence/features/bio-crd-003/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-CRD-004",
+      "wave": "W06",
+      "owner": "Ngozi",
+      "conflict_group": "card-designer",
+      "owned_paths": [
+        "api/features/bio-crd-004/**",
+        "web/features/bio-crd-004/**",
+        "mobile/features/bio-crd-004/**",
+        "tests/features/bio-crd-004/**",
+        "docs/features/bio-crd-004/**",
+        "evidence/features/bio-crd-004/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-DOC-004",
+      "wave": "W06",
+      "owner": "Ifeanyi",
+      "conflict_group": "doc-ocr",
+      "owned_paths": [
+        "api/features/bio-doc-004/**",
+        "web/features/bio-doc-004/**",
+        "mobile/features/bio-doc-004/**",
+        "tests/features/bio-doc-004/**",
+        "docs/features/bio-doc-004/**",
+        "evidence/features/bio-doc-004/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-DOC-005",
+      "wave": "W06",
+      "owner": "Ifeanyi",
+      "conflict_group": "doc-parser",
+      "owned_paths": [
+        "api/features/bio-doc-005/**",
+        "web/features/bio-doc-005/**",
+        "mobile/features/bio-doc-005/**",
+        "tests/features/bio-doc-005/**",
+        "docs/features/bio-doc-005/**",
+        "evidence/features/bio-doc-005/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-BIO-004",
+      "wave": "W07",
+      "owner": "Amina",
+      "conflict_group": "fingerprint-match",
+      "owned_paths": [
+        "api/features/bio-bio-004/**",
+        "web/features/bio-bio-004/**",
+        "mobile/features/bio-bio-004/**",
+        "tests/features/bio-bio-004/**",
+        "docs/features/bio-bio-004/**",
+        "evidence/features/bio-bio-004/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-BIO-005",
+      "wave": "W07",
+      "owner": "Amina",
+      "conflict_group": "face-match",
+      "owned_paths": [
+        "api/features/bio-bio-005/**",
+        "web/features/bio-bio-005/**",
+        "mobile/features/bio-bio-005/**",
+        "tests/features/bio-bio-005/**",
+        "docs/features/bio-bio-005/**",
+        "evidence/features/bio-bio-005/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-CRD-005",
+      "wave": "W07",
+      "owner": "Ngozi",
+      "conflict_group": "card-lifecycle",
+      "owned_paths": [
+        "api/features/bio-crd-005/**",
+        "web/features/bio-crd-005/**",
+        "mobile/features/bio-crd-005/**",
+        "tests/features/bio-crd-005/**",
+        "docs/features/bio-crd-005/**",
+        "evidence/features/bio-crd-005/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-DOC-006",
+      "wave": "W07",
+      "owner": "Ifeanyi",
+      "conflict_group": "doc-classify",
+      "owned_paths": [
+        "api/features/bio-doc-006/**",
+        "web/features/bio-doc-006/**",
+        "mobile/features/bio-doc-006/**",
+        "tests/features/bio-doc-006/**",
+        "docs/features/bio-doc-006/**",
+        "evidence/features/bio-doc-006/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-MOB-001",
+      "wave": "W07",
+      "owner": "Busola",
+      "conflict_group": "mobile-shell",
+      "owned_paths": [
+        "api/features/bio-mob-001/**",
+        "web/features/bio-mob-001/**",
+        "mobile/features/bio-mob-001/**",
+        "tests/features/bio-mob-001/**",
+        "docs/features/bio-mob-001/**",
+        "evidence/features/bio-mob-001/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-BIO-006",
+      "wave": "W08",
+      "owner": "Amina",
+      "conflict_group": "fingerprint-search",
+      "owned_paths": [
+        "api/features/bio-bio-006/**",
+        "web/features/bio-bio-006/**",
+        "mobile/features/bio-bio-006/**",
+        "tests/features/bio-bio-006/**",
+        "docs/features/bio-bio-006/**",
+        "evidence/features/bio-bio-006/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-BIO-007",
+      "wave": "W08",
+      "owner": "Amina",
+      "conflict_group": "face-search",
+      "owned_paths": [
+        "api/features/bio-bio-007/**",
+        "web/features/bio-bio-007/**",
+        "mobile/features/bio-bio-007/**",
+        "tests/features/bio-bio-007/**",
+        "docs/features/bio-bio-007/**",
+        "evidence/features/bio-bio-007/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-CRD-006",
+      "wave": "W08",
+      "owner": "Ngozi",
+      "conflict_group": "card-lifecycle",
+      "owned_paths": [
+        "api/features/bio-crd-006/**",
+        "web/features/bio-crd-006/**",
+        "mobile/features/bio-crd-006/**",
+        "tests/features/bio-crd-006/**",
+        "docs/features/bio-crd-006/**",
+        "evidence/features/bio-crd-006/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-DOC-007",
+      "wave": "W08",
+      "owner": "Ifeanyi",
+      "conflict_group": "doc-nfc",
+      "owned_paths": [
+        "api/features/bio-doc-007/**",
+        "web/features/bio-doc-007/**",
+        "mobile/features/bio-doc-007/**",
+        "tests/features/bio-doc-007/**",
+        "docs/features/bio-doc-007/**",
+        "evidence/features/bio-doc-007/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-MOB-002",
+      "wave": "W08",
+      "owner": "Busola",
+      "conflict_group": "offline-core",
+      "owned_paths": [
+        "api/features/bio-mob-002/**",
+        "web/features/bio-mob-002/**",
+        "mobile/features/bio-mob-002/**",
+        "tests/features/bio-mob-002/**",
+        "docs/features/bio-mob-002/**",
+        "evidence/features/bio-mob-002/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-ACC-001",
+      "wave": "W09",
+      "owner": "Tunde",
+      "conflict_group": "access-policy",
+      "owned_paths": [
+        "api/features/bio-acc-001/**",
+        "web/features/bio-acc-001/**",
+        "mobile/features/bio-acc-001/**",
+        "tests/features/bio-acc-001/**",
+        "docs/features/bio-acc-001/**",
+        "evidence/features/bio-acc-001/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-CRD-007",
+      "wave": "W09",
+      "owner": "Ngozi",
+      "conflict_group": "card-production",
+      "owned_paths": [
+        "api/features/bio-crd-007/**",
+        "web/features/bio-crd-007/**",
+        "mobile/features/bio-crd-007/**",
+        "tests/features/bio-crd-007/**",
+        "docs/features/bio-crd-007/**",
+        "evidence/features/bio-crd-007/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-DOC-008",
+      "wave": "W09",
+      "owner": "Ifeanyi",
+      "conflict_group": "doc-auth",
+      "owned_paths": [
+        "api/features/bio-doc-008/**",
+        "web/features/bio-doc-008/**",
+        "mobile/features/bio-doc-008/**",
+        "tests/features/bio-doc-008/**",
+        "docs/features/bio-doc-008/**",
+        "evidence/features/bio-doc-008/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-DOC-009",
+      "wave": "W09",
+      "owner": "Ifeanyi",
+      "conflict_group": "doc-auth",
+      "owned_paths": [
+        "api/features/bio-doc-009/**",
+        "web/features/bio-doc-009/**",
+        "mobile/features/bio-doc-009/**",
+        "tests/features/bio-doc-009/**",
+        "docs/features/bio-doc-009/**",
+        "evidence/features/bio-doc-009/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-MOB-003",
+      "wave": "W09",
+      "owner": "Busola",
+      "conflict_group": "offline-sync",
+      "owned_paths": [
+        "api/features/bio-mob-003/**",
+        "web/features/bio-mob-003/**",
+        "mobile/features/bio-mob-003/**",
+        "tests/features/bio-mob-003/**",
+        "docs/features/bio-mob-003/**",
+        "evidence/features/bio-mob-003/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-ATT-001",
+      "wave": "W10",
+      "owner": "Tunde",
+      "conflict_group": "attendance-core",
+      "owned_paths": [
+        "api/features/bio-att-001/**",
+        "web/features/bio-att-001/**",
+        "mobile/features/bio-att-001/**",
+        "tests/features/bio-att-001/**",
+        "docs/features/bio-att-001/**",
+        "evidence/features/bio-att-001/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-DEV-003",
+      "wave": "W10",
+      "owner": "Emeka",
+      "conflict_group": "device-adapters",
+      "owned_paths": [
+        "api/features/bio-dev-003/**",
+        "web/features/bio-dev-003/**",
+        "mobile/features/bio-dev-003/**",
+        "tests/features/bio-dev-003/**",
+        "docs/features/bio-dev-003/**",
+        "evidence/features/bio-dev-003/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-RPT-001",
+      "wave": "W10",
+      "owner": "Emeka",
+      "conflict_group": "notification-core",
+      "owned_paths": [
+        "api/features/bio-rpt-001/**",
+        "web/features/bio-rpt-001/**",
+        "mobile/features/bio-rpt-001/**",
+        "tests/features/bio-rpt-001/**",
+        "docs/features/bio-rpt-001/**",
+        "evidence/features/bio-rpt-001/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-VIS-001",
+      "wave": "W10",
+      "owner": "Tunde",
+      "conflict_group": "visitor-core",
+      "owned_paths": [
+        "api/features/bio-vis-001/**",
+        "web/features/bio-vis-001/**",
+        "mobile/features/bio-vis-001/**",
+        "tests/features/bio-vis-001/**",
+        "docs/features/bio-vis-001/**",
+        "evidence/features/bio-vis-001/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-ACC-002",
+      "wave": "W11",
+      "owner": "Tunde",
+      "conflict_group": "access-decision",
+      "owned_paths": [
+        "api/features/bio-acc-002/**",
+        "web/features/bio-acc-002/**",
+        "mobile/features/bio-acc-002/**",
+        "tests/features/bio-acc-002/**",
+        "docs/features/bio-acc-002/**",
+        "evidence/features/bio-acc-002/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-ACC-003",
+      "wave": "W11",
+      "owner": "Busola",
+      "conflict_group": "offline-access",
+      "owned_paths": [
+        "api/features/bio-acc-003/**",
+        "web/features/bio-acc-003/**",
+        "mobile/features/bio-acc-003/**",
+        "tests/features/bio-acc-003/**",
+        "docs/features/bio-acc-003/**",
+        "evidence/features/bio-acc-003/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-ATT-002",
+      "wave": "W11",
+      "owner": "Tunde",
+      "conflict_group": "attendance-policy",
+      "owned_paths": [
+        "api/features/bio-att-002/**",
+        "web/features/bio-att-002/**",
+        "mobile/features/bio-att-002/**",
+        "tests/features/bio-att-002/**",
+        "docs/features/bio-att-002/**",
+        "evidence/features/bio-att-002/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-MOB-004",
+      "wave": "W11",
+      "owner": "Busola",
+      "conflict_group": "mobile-verify",
+      "owned_paths": [
+        "api/features/bio-mob-004/**",
+        "web/features/bio-mob-004/**",
+        "mobile/features/bio-mob-004/**",
+        "tests/features/bio-mob-004/**",
+        "docs/features/bio-mob-004/**",
+        "evidence/features/bio-mob-004/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-RPT-002",
+      "wave": "W11",
+      "owner": "Ngozi",
+      "conflict_group": "report-builder",
+      "owned_paths": [
+        "api/features/bio-rpt-002/**",
+        "web/features/bio-rpt-002/**",
+        "mobile/features/bio-rpt-002/**",
+        "tests/features/bio-rpt-002/**",
+        "docs/features/bio-rpt-002/**",
+        "evidence/features/bio-rpt-002/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-TRN-001",
+      "wave": "W11",
+      "owner": "Tunde",
+      "conflict_group": "transport-core",
+      "owned_paths": [
+        "api/features/bio-trn-001/**",
+        "web/features/bio-trn-001/**",
+        "mobile/features/bio-trn-001/**",
+        "tests/features/bio-trn-001/**",
+        "docs/features/bio-trn-001/**",
+        "evidence/features/bio-trn-001/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-TRN-002",
+      "wave": "W11",
+      "owner": "Tunde",
+      "conflict_group": "transport-core",
+      "owned_paths": [
+        "api/features/bio-trn-002/**",
+        "web/features/bio-trn-002/**",
+        "mobile/features/bio-trn-002/**",
+        "tests/features/bio-trn-002/**",
+        "docs/features/bio-trn-002/**",
+        "evidence/features/bio-trn-002/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-VIS-002",
+      "wave": "W11",
+      "owner": "Tunde",
+      "conflict_group": "visitor-core",
+      "owned_paths": [
+        "api/features/bio-vis-002/**",
+        "web/features/bio-vis-002/**",
+        "mobile/features/bio-vis-002/**",
+        "tests/features/bio-vis-002/**",
+        "docs/features/bio-vis-002/**",
+        "evidence/features/bio-vis-002/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-ATT-003",
+      "wave": "W12",
+      "owner": "Tunde",
+      "conflict_group": "attendance-policy",
+      "owned_paths": [
+        "api/features/bio-att-003/**",
+        "web/features/bio-att-003/**",
+        "mobile/features/bio-att-003/**",
+        "tests/features/bio-att-003/**",
+        "docs/features/bio-att-003/**",
+        "evidence/features/bio-att-003/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-BIO-008",
+      "wave": "W12",
+      "owner": "Amina",
+      "conflict_group": "biometric-liveness",
+      "owned_paths": [
+        "api/features/bio-bio-008/**",
+        "web/features/bio-bio-008/**",
+        "mobile/features/bio-bio-008/**",
+        "tests/features/bio-bio-008/**",
+        "docs/features/bio-bio-008/**",
+        "evidence/features/bio-bio-008/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-BIO-009",
+      "wave": "W12",
+      "owner": "Amina",
+      "conflict_group": "biometric-privacy",
+      "owned_paths": [
+        "api/features/bio-bio-009/**",
+        "web/features/bio-bio-009/**",
+        "mobile/features/bio-bio-009/**",
+        "tests/features/bio-bio-009/**",
+        "docs/features/bio-bio-009/**",
+        "evidence/features/bio-bio-009/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-CRD-008",
+      "wave": "W12",
+      "owner": "Ngozi",
+      "conflict_group": "card-template-publish",
+      "owned_paths": [
+        "api/features/bio-crd-008/**",
+        "web/features/bio-crd-008/**",
+        "mobile/features/bio-crd-008/**",
+        "tests/features/bio-crd-008/**",
+        "docs/features/bio-crd-008/**",
+        "evidence/features/bio-crd-008/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-DEV-004",
+      "wave": "W12",
+      "owner": "Emeka",
+      "conflict_group": "device-health",
+      "owned_paths": [
+        "api/features/bio-dev-004/**",
+        "web/features/bio-dev-004/**",
+        "mobile/features/bio-dev-004/**",
+        "tests/features/bio-dev-004/**",
+        "docs/features/bio-dev-004/**",
+        "evidence/features/bio-dev-004/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-DOC-010",
+      "wave": "W12",
+      "owner": "Ifeanyi",
+      "conflict_group": "doc-pack",
+      "owned_paths": [
+        "api/features/bio-doc-010/**",
+        "web/features/bio-doc-010/**",
+        "mobile/features/bio-doc-010/**",
+        "tests/features/bio-doc-010/**",
+        "docs/features/bio-doc-010/**",
+        "evidence/features/bio-doc-010/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-DOC-011",
+      "wave": "W12",
+      "owner": "Ifeanyi",
+      "conflict_group": "doc-template-editor",
+      "owned_paths": [
+        "api/features/bio-doc-011/**",
+        "web/features/bio-doc-011/**",
+        "mobile/features/bio-doc-011/**",
+        "tests/features/bio-doc-011/**",
+        "docs/features/bio-doc-011/**",
+        "evidence/features/bio-doc-011/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-INT-001",
+      "wave": "W12",
+      "owner": "Emeka",
+      "conflict_group": "auth-providers",
+      "owned_paths": [
+        "api/features/bio-int-001/**",
+        "web/features/bio-int-001/**",
+        "mobile/features/bio-int-001/**",
+        "tests/features/bio-int-001/**",
+        "docs/features/bio-int-001/**",
+        "evidence/features/bio-int-001/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-INT-002",
+      "wave": "W12",
+      "owner": "Tunde",
+      "conflict_group": "enterprise-import",
+      "owned_paths": [
+        "api/features/bio-int-002/**",
+        "web/features/bio-int-002/**",
+        "mobile/features/bio-int-002/**",
+        "tests/features/bio-int-002/**",
+        "docs/features/bio-int-002/**",
+        "evidence/features/bio-int-002/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-INT-003",
+      "wave": "W12",
+      "owner": "Emeka",
+      "conflict_group": "api-security",
+      "owned_paths": [
+        "api/features/bio-int-003/**",
+        "web/features/bio-int-003/**",
+        "mobile/features/bio-int-003/**",
+        "tests/features/bio-int-003/**",
+        "docs/features/bio-int-003/**",
+        "evidence/features/bio-int-003/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-INT-004",
+      "wave": "W12",
+      "owner": "Emeka",
+      "conflict_group": "webhooks",
+      "owned_paths": [
+        "api/features/bio-int-004/**",
+        "web/features/bio-int-004/**",
+        "mobile/features/bio-int-004/**",
+        "tests/features/bio-int-004/**",
+        "docs/features/bio-int-004/**",
+        "evidence/features/bio-int-004/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-INT-005",
+      "wave": "W12",
+      "owner": "Tunde",
+      "conflict_group": "enterprise-import",
+      "owned_paths": [
+        "api/features/bio-int-005/**",
+        "web/features/bio-int-005/**",
+        "mobile/features/bio-int-005/**",
+        "tests/features/bio-int-005/**",
+        "docs/features/bio-int-005/**",
+        "evidence/features/bio-int-005/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-MOB-005",
+      "wave": "W12",
+      "owner": "Busola",
+      "conflict_group": "offline-enrol",
+      "owned_paths": [
+        "api/features/bio-mob-005/**",
+        "web/features/bio-mob-005/**",
+        "mobile/features/bio-mob-005/**",
+        "tests/features/bio-mob-005/**",
+        "docs/features/bio-mob-005/**",
+        "evidence/features/bio-mob-005/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-PHO-003",
+      "wave": "W12",
+      "owner": "Ngozi",
+      "conflict_group": "photo-quality",
+      "owned_paths": [
+        "api/features/bio-pho-003/**",
+        "web/features/bio-pho-003/**",
+        "mobile/features/bio-pho-003/**",
+        "tests/features/bio-pho-003/**",
+        "docs/features/bio-pho-003/**",
+        "evidence/features/bio-pho-003/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-RPT-003",
+      "wave": "W12",
+      "owner": "Ngozi",
+      "conflict_group": "audit-ui",
+      "owned_paths": [
+        "api/features/bio-rpt-003/**",
+        "web/features/bio-rpt-003/**",
+        "mobile/features/bio-rpt-003/**",
+        "tests/features/bio-rpt-003/**",
+        "docs/features/bio-rpt-003/**",
+        "evidence/features/bio-rpt-003/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-RPT-004",
+      "wave": "W12",
+      "owner": "Ngozi",
+      "conflict_group": "dashboard",
+      "owned_paths": [
+        "api/features/bio-rpt-004/**",
+        "web/features/bio-rpt-004/**",
+        "mobile/features/bio-rpt-004/**",
+        "tests/features/bio-rpt-004/**",
+        "docs/features/bio-rpt-004/**",
+        "evidence/features/bio-rpt-004/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-TEN-003",
+      "wave": "W12",
+      "owner": "Tunde",
+      "conflict_group": "tenant-config",
+      "owned_paths": [
+        "api/features/bio-ten-003/**",
+        "web/features/bio-ten-003/**",
+        "mobile/features/bio-ten-003/**",
+        "tests/features/bio-ten-003/**",
+        "docs/features/bio-ten-003/**",
+        "evidence/features/bio-ten-003/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-TRN-003",
+      "wave": "W12",
+      "owner": "Emeka",
+      "conflict_group": "transport-notify",
+      "owned_paths": [
+        "api/features/bio-trn-003/**",
+        "web/features/bio-trn-003/**",
+        "mobile/features/bio-trn-003/**",
+        "tests/features/bio-trn-003/**",
+        "docs/features/bio-trn-003/**",
+        "evidence/features/bio-trn-003/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-OPS-001",
+      "wave": "W13",
+      "owner": "Chioma",
+      "conflict_group": "acceptance-only",
+      "owned_paths": [
+        "api/features/bio-ops-001/**",
+        "web/features/bio-ops-001/**",
+        "mobile/features/bio-ops-001/**",
+        "tests/features/bio-ops-001/**",
+        "docs/features/bio-ops-001/**",
+        "evidence/features/bio-ops-001/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-OPS-002",
+      "wave": "W13",
+      "owner": "Seyi",
+      "conflict_group": "acceptance-only",
+      "owned_paths": [
+        "api/features/bio-ops-002/**",
+        "web/features/bio-ops-002/**",
+        "mobile/features/bio-ops-002/**",
+        "tests/features/bio-ops-002/**",
+        "docs/features/bio-ops-002/**",
+        "evidence/features/bio-ops-002/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-OPS-003",
+      "wave": "W13",
+      "owner": "Seyi",
+      "conflict_group": "acceptance-only",
+      "owned_paths": [
+        "api/features/bio-ops-003/**",
+        "web/features/bio-ops-003/**",
+        "mobile/features/bio-ops-003/**",
+        "tests/features/bio-ops-003/**",
+        "docs/features/bio-ops-003/**",
+        "evidence/features/bio-ops-003/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-OPS-004",
+      "wave": "W13",
+      "owner": "Seyi",
+      "conflict_group": "acceptance-only",
+      "owned_paths": [
+        "api/features/bio-ops-004/**",
+        "web/features/bio-ops-004/**",
+        "mobile/features/bio-ops-004/**",
+        "tests/features/bio-ops-004/**",
+        "docs/features/bio-ops-004/**",
+        "evidence/features/bio-ops-004/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-OPS-005",
+      "wave": "W13",
+      "owner": "Seyi",
+      "conflict_group": "acceptance-only",
+      "owned_paths": [
+        "api/features/bio-ops-005/**",
+        "web/features/bio-ops-005/**",
+        "mobile/features/bio-ops-005/**",
+        "tests/features/bio-ops-005/**",
+        "docs/features/bio-ops-005/**",
+        "evidence/features/bio-ops-005/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-OPS-006",
+      "wave": "W14",
+      "owner": "Zainab",
+      "conflict_group": "hardening",
+      "owned_paths": [
+        "api/features/bio-ops-006/**",
+        "web/features/bio-ops-006/**",
+        "mobile/features/bio-ops-006/**",
+        "tests/features/bio-ops-006/**",
+        "docs/features/bio-ops-006/**",
+        "evidence/features/bio-ops-006/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-OPS-007",
+      "wave": "W14",
+      "owner": "Femi",
+      "conflict_group": "hardening",
+      "owned_paths": [
+        "api/features/bio-ops-007/**",
+        "web/features/bio-ops-007/**",
+        "mobile/features/bio-ops-007/**",
+        "tests/features/bio-ops-007/**",
+        "docs/features/bio-ops-007/**",
+        "evidence/features/bio-ops-007/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-OPS-008",
+      "wave": "W14",
+      "owner": "Chioma",
+      "conflict_group": "hardening",
+      "owned_paths": [
+        "api/features/bio-ops-008/**",
+        "web/features/bio-ops-008/**",
+        "mobile/features/bio-ops-008/**",
+        "tests/features/bio-ops-008/**",
+        "docs/features/bio-ops-008/**",
+        "evidence/features/bio-ops-008/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-OPS-009",
+      "wave": "W14",
+      "owner": "Emeka",
+      "conflict_group": "hardening",
+      "owned_paths": [
+        "api/features/bio-ops-009/**",
+        "web/features/bio-ops-009/**",
+        "mobile/features/bio-ops-009/**",
+        "tests/features/bio-ops-009/**",
+        "docs/features/bio-ops-009/**",
+        "evidence/features/bio-ops-009/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    },
+    {
+      "story_key": "BIO-OPS-010",
+      "wave": "W15",
+      "owner": "Chinedu",
+      "conflict_group": "github-gate",
+      "owned_paths": [
+        "api/features/bio-ops-010/**",
+        "web/features/bio-ops-010/**",
+        "mobile/features/bio-ops-010/**",
+        "tests/features/bio-ops-010/**",
+        "docs/features/bio-ops-010/**",
+        "evidence/features/bio-ops-010/**"
+      ],
+      "read_only_shared_contracts": [
+        "contracts/**",
+        "docs/adr/**",
+        "governance/contract-freeze/**",
+        "governance/feature-path-ownership.json",
+        "scripts/check-contract-freeze.py",
+        "docs/architecture/SHARED-CONTRACT-FREEZE.md"
+      ]
+    }
+  ]
+}

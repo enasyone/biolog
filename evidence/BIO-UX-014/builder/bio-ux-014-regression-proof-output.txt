@@ -1,0 +1,41 @@
+=== BASELINE (clean, before injection) ===
+  [32m✓[39m  [2m13 [22mplaywright/bio-ux-014-visual-regression.spec.ts:84:5 › BIO-UX-014-AC01 representative page from every major module (desktop, light theme) › /administration[2m (620ms)[22m
+  [32m✓[39m  [2m14 [22mplaywright/bio-ux-014-visual-regression.spec.ts:84:5 › BIO-UX-014-AC01 representative page from every major module (desktop, light theme) › /reports[2m (579ms)[22m
+  [32m✓[39m  [2m12 [22mplaywright/bio-ux-014-visual-regression.spec.ts:84:5 › BIO-UX-014-AC01 representative page from every major module (desktop, light theme) › /access-control[2m (1.4s)[22m
+
+[32m  14 passed[39m[2m (5.6s)[22m
+
+=== injecting a deliberate visual change (dashboard h1 color: red) ===
+29:      <h1 style={{color: 'red'}}>Dashboard</h1>
+
+=== EXPECTED FAILURE (change detected) ===
+    [2m    at captureBaseline (<workspace>/biolog-worktrees/BIO-UX-014/tests/frontend/playwright/bio-ux-014-visual-regression.spec.ts:58:22)[22m
+    [2m    at <workspace>/biolog-worktrees/BIO-UX-014/tests/frontend/playwright/bio-ux-014-visual-regression.spec.ts:75:9[22m
+
+[2m    attachment #1: [1mdashboard-desktop-dark[2m (image/png) [2m──────────────────────────────────────────────[2m[22m
+[2m    Expected: playwright/bio-ux-014-visual-regression.spec.ts-snapshots/dashboard-desktop-dark-darwin.png[22m
+[2m    Received: test-results/bio-ux-014-visual-regressi-0447e-t-desktop-1280px-dark-theme/dashboard-desktop-dark-actual.png[22m
+[2m    Diff:     test-results/bio-ux-014-visual-regressi-0447e-t-desktop-1280px-dark-theme/dashboard-desktop-dark-diff.png[22m
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[2m    Error Context: test-results/bio-ux-014-visual-regressi-0447e-t-desktop-1280px-dark-theme/error-context.md[22m
+
+[31m  6 failed[39m
+[31m    playwright/bio-ux-014-visual-regression.spec.ts:74:7 › BIO-UX-014-AC01/AC02 shell baseline across every approved viewport and theme › dashboard at mobile (375px), light theme [39m
+[31m    playwright/bio-ux-014-visual-regression.spec.ts:74:7 › BIO-UX-014-AC01/AC02 shell baseline across every approved viewport and theme › dashboard at mobile (375px), dark theme [39m
+[31m    playwright/bio-ux-014-visual-regression.spec.ts:74:7 › BIO-UX-014-AC01/AC02 shell baseline across every approved viewport and theme › dashboard at tablet (768px), light theme [39m
+[31m    playwright/bio-ux-014-visual-regression.spec.ts:74:7 › BIO-UX-014-AC01/AC02 shell baseline across every approved viewport and theme › dashboard at tablet (768px), dark theme [39m
+[31m    playwright/bio-ux-014-visual-regression.spec.ts:74:7 › BIO-UX-014-AC01/AC02 shell baseline across every approved viewport and theme › dashboard at desktop (1280px), light theme [39m
+[31m    playwright/bio-ux-014-visual-regression.spec.ts:74:7 › BIO-UX-014-AC01/AC02 shell baseline across every approved viewport and theme › dashboard at desktop (1280px), dark theme [39m
+[32m  8 passed[39m[2m (6.6s)[22m
+[41m[30m ELIFECYCLE [39m[49m [31mCommand failed with exit code 1.[39m
+
+=== reverting the injected change ===
+29:      <h1>Dashboard</h1>
+
+=== CONFIRMED CLEAN AGAIN (after revert) ===
+  [32m✓[39m  [2m12 [22mplaywright/bio-ux-014-visual-regression.spec.ts:84:5 › BIO-UX-014-AC01 representative page from every major module (desktop, light theme) › /access-control[2m (541ms)[22m
+  [32m✓[39m  [2m13 [22mplaywright/bio-ux-014-visual-regression.spec.ts:84:5 › BIO-UX-014-AC01 representative page from every major module (desktop, light theme) › /administration[2m (584ms)[22m
+  [32m✓[39m  [2m14 [22mplaywright/bio-ux-014-visual-regression.spec.ts:84:5 › BIO-UX-014-AC01 representative page from every major module (desktop, light theme) › /reports[2m (1.4s)[22m
+
+[32m  14 passed[39m[2m (4.0s)[22m

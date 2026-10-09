@@ -1,0 +1,11 @@
+{
+  "story_key": "BIO-INT-001",
+  "stage": "builder",
+  "commit_hash": "03cba7b",
+  "test_command": "dotnet build api/Biolog.Api/Biolog.Api.csproj && dotnet test tests/features/bio-int-001/Biolog.Features.Authentication.Tests.csproj && dotnet test tests/dotnet/Biolog.IntegrationTests/Biolog.IntegrationTests.csproj && dotnet test tests/dotnet/Biolog.UnitTests/Biolog.UnitTests.csproj && bash tests/features/bio-int-001/BIO-INT-001.test.sh && bash scripts/check-module-project-references.sh && python3 scripts/check-traceability.py --all && bash scripts/secret-scan.sh --all && bash scripts/check-dotnet-vulnerabilities.sh api/features/bio-int-001/Biolog.Features.Authentication.csproj tests/features/bio-int-001/Biolog.Features.Authentication.Tests.csproj",
+  "result": "PASS",
+  "remediation_of": {"finding": "BIO-INT-001-F01", "reviewer": "Zainab", "severity": "High", "prior_commit": "2b46883"},
+  "timestamp": "2026-09-30T00:00:00Z",
+  "reviewer": "Emeka",
+  "data_classification": "SYNTHETIC"
+}

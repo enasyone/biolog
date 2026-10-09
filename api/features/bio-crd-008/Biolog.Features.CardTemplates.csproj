@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-CRD-008 owns api/features/bio-crd-008/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh) and
+         no ProjectReference to api/features/bio-crd-004 either, despite a real runtime need
+         (AC03's "signature rules" must check a referenced signature asset actually exists):
+         that need goes through a narrow gateway interface THIS project defines
+         (Domain/ISignatureAssetGateway.cs) implemented by an adapter in
+         api/Biolog.Api/Modules/BioCrd008Module.cs, the same shape every prior story in this
+         epic already established (see BioCrd007Module's ICardIssueGateway for the precedent).
+
+         Card format/orientation, watermark-preset and barcode-profile vocabulary (BIO-CRD-002/
+         003/004's own wire values) are mirrored here as this project's own small whitelists
+         rather than gatewayed - BIO-RPT-002's own precedent for a non-declared-dependency
+         vocabulary (see Domain/CardFormatKind.cs, WatermarkPresetKind.cs, BarcodeProfileKind.cs
+         for the exact reasoning). BIO-CRD-003/004 are this story's ONLY declared dependencies,
+         and only BIO-CRD-004's SignatureAsset existence check is a genuine runtime read - the
+         rest is vocabulary, not state.
+
+         Namespace root is "CardTemplates". New ADR-0001 canonical identifier: tpl_ (a published
+         card template lineage has no pre-existing natural key in this codebase - unlike a
+         production job, which reuses BIO-CRD-005's own card-issue key). -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.CardTemplates.Tests" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,10 @@
+story=BIO-ARC-006
+branch=feature/BIO-ARC-006
+implementation_commit=064941a72cef94101510b759deea8df642233567
+baseline_parent=a28830e0cb8a0e21006b20942ab7e2d9c686b662
+evidence_parent=064941a72cef94101510b759deea8df642233567
+remotes_begin
+remotes_end
+status_before_evidence_commit_begin
+?? evidence/BIO-ARC-006/
+status_before_evidence_commit_end

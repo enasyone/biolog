@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-CRD-005 owns api/features/bio-crd-005/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh)
+         and no ProjectReference to api/features/bio-idn-001 either, despite that being a real
+         runtime dependency (person existence must be checked before issuing a card): every
+         cross-feature runtime need in this codebase goes through a narrow gateway interface
+         THIS project defines (see Domain/IPersonExistenceGateway.cs) implemented by an adapter
+         living in api/Biolog.Api/Modules/BioCrd005Module.cs, the same shape BIO-PHO-001's own
+         IPersonExistenceGateway already established for an identical dependency.
+
+         Its own module adapter lives in api/Biolog.Api/Modules/BioCrd005Module.cs from the
+         start, matching every prior story.
+
+         Namespace root is "CardIssuance". No new ADR-0001 canonical identifier type is minted
+         for a physical card issue - ADR-0001's own identifier registry table already
+         anticipates this exact shape ("Credential | crd | ... A physical card issue is a
+         child record, not this id."). No story that mints a crd_ Credential id is a declared
+         dependency here, so this story models a card issue via its own natural composite key
+         (TenantId, PersonId, CardClass, SequenceNumber) rather than assuming a Credential
+         aggregate this story has no access to - see Domain/CardIssue.cs's own header. -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.CardIssuance.Tests" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,10 @@
+{
+  "story_key": "BIO-DOC-005",
+  "stage": "builder",
+  "commit_hash": "1b2fcb413e0e227cbead4c22f0f4f2bb072efa46",
+  "test_command": "dotnet test tests/features/bio-doc-005/Biolog.Features.ParserRegistry.Tests/Biolog.Features.ParserRegistry.Tests.csproj && bash tests/foundation/BIO-DOC-005.test.sh && bash scripts/quality.sh",
+  "result": "PASS",
+  "timestamp": "2026-09-22T22:35:00Z",
+  "reviewer": "Ifeanyi",
+  "data_classification": "SYNTHETIC"
+}

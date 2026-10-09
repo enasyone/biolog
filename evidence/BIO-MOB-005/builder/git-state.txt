@@ -1,0 +1,5 @@
+e97e9b2a394f33424c446c75c8ba57fc266a218b 2026-09-27 10:35:34 +0100 feat(BIO-MOB-005): limited offline enrolment package
+2feffb5212bc43b97dc9561c171d720f8f818e19 2026-09-24 11:34:47 +0100 Merge feature/BIO-CRD-008: published card-template lifecycle and provenance
+ce7bc9099663d48d13c6e75dbe414e7fe57d7f26 2026-09-24 11:34:30 +0100 evidence(BIO-CRD-008): record acceptance pass
+ M governance/stories/BIO-MOB-005.json
+?? evidence/BIO-MOB-005/

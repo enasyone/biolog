@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.biolog.local/canonical-id.schema.json",
+  "title": "BIOLOG canonical identifier",
+  "description": "ADR-0001 Decision 1. Typed identifier: <prefix>_<UUIDv7, lowercase, dashed>. The wire form. Storage uses the 16 raw UUID bytes without the prefix.",
+  "type": "string",
+  "pattern": "^(ten|per|crd|dev|dcs|evt)_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+  "minLength": 40,
+  "maxLength": 40,
+  "examples": ["per_0199e0c1-9d40-7e52-b103-7c9a4e2f6b1d"]
+}

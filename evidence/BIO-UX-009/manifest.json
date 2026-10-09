@@ -1,0 +1,41 @@
+{
+  "story_key": "BIO-UX-009",
+  "commit_hash": "382f644d",
+  "implementation_commit": "9b01031e45b8a599e3b69acf5490e39faab984ce",
+  "builder_evidence_commit": "382f644d",
+  "environment_profile": "local frontend Node/pnpm workspace; synthetic fixtures",
+  "timestamp": "2026-09-23T15:11:59Z",
+  "acceptance_criteria": {
+    "BIO-UX-009-AC01": {"result": "PASS", "tests": ["bio-ux-009-document-verify.spec.ts"]},
+    "BIO-UX-009-AC02": {"result": "PASS", "tests": ["bio-ux-009-evidence.test.ts", "bio-ux-009-document-verify.spec.ts"]},
+    "BIO-UX-009-AC03": {"result": "PASS", "tests": ["bio-ux-009-document-verify.spec.ts human-review coverage"]},
+    "BIO-UX-009-AC04": {"result": "PASS", "tests": ["bio-ux-009-document-verify.spec.ts simulated-selfie coverage"]},
+    "BIO-UX-009-AC05": {"result": "PASS", "tests": ["bio-ux-009-documents-port.test.ts", "bio-ux-009-document-verify.spec.ts"]}
+  },
+  "commands_results": [
+    {"command": "corepack pnpm --dir tests/frontend test:unit", "result": "PASS: 44 files, 328 tests"},
+    {"command": "corepack pnpm --dir web typecheck", "result": "PASS"},
+    {"command": "corepack pnpm --dir web build", "result": "PASS: 34 static routes"},
+    {"command": "builder Document Verify Playwright suite", "result": "PASS: 13 tests including accessibility"},
+    {"command": "review-binding inspection", "result": "PASS: builder, Seyi and Zainab all bound to retrofit candidate 382f644d"}
+  ],
+  "builder_verdict": "PASS",
+  "independent_qa_verdict": "PASS",
+  "security_verdict": "PASS",
+  "tenant_verdict": "PASS",
+  "offline_verdict": "PASS",
+  "concurrency_verdict": "NOT_APPLICABLE",
+  "regression_verdict": "PASS",
+  "evidence_references": [
+    "builder/metadata.json",
+    "builder/SUMMARY.md",
+    "codex/REVIEW-Seyi-round1.md",
+    "codex/REVIEW-Seyi-restamp.md",
+    "codex/SECURITY-REVIEW-ZAINAB.md",
+    "codex/SECURITY-REVIEW-ZAINAB-ROUND2.md",
+    "acceptance/REVIEW-Chioma-round1.md",
+    "acceptance/REVIEW-Chioma-round2.md"
+  ],
+  "final_acceptance_decision": "PASS",
+  "reason": "AC01-AC05 are complete; the canonical badge/table retrofit and corrected story-specific functional and security reviews are all bound to candidate 382f644d."
+}

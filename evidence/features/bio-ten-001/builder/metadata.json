@@ -1,0 +1,12 @@
+{
+  "story_key": "BIO-TEN-001",
+  "stage": "builder",
+  "commit_hash": "a91d1168eb71d98534f120ad9e645720e40352c2",
+  "test_command": "dotnet test tests/features/bio-ten-001/Biolog.Features.TenantRegistry.Tests.csproj && bash scripts/check-dotnet-vulnerabilities.sh api/features/bio-ten-001/Biolog.Features.TenantRegistry.csproj tests/features/bio-ten-001/Biolog.Features.TenantRegistry.Tests.csproj && bash tests/features/bio-ten-001/BIO-TEN-001.test.sh",
+  "result": "PASS",
+  "timestamp": "2026-09-22T09:20:00Z",
+  "reviewer": "Tunde",
+  "data_classification": "SYNTHETIC",
+  "summary": "51/51 xunit tests pass (0 warnings), including one new regression test (A_cancellation_arriving_right_after_the_audit_write_succeeds_does_not_abort_the_commit). 29/29 offline structural checks pass (2 new). No vulnerable NuGet packages. contract-freeze still PASS (38 artifacts, 83 future stories). Round 4's fix (e3217c7) is unchanged; this round is additive hardening only.",
+  "notes": "Proactively closes a heads-up from Kemi (2026-09-22, cross-referencing Seyi's QA-03 finding in Emeka's BIO-DEV-001): once AuditAsync confirms an audit event is durable, the caller's live cancellation token must not be allowed to abort the immediately-following registry commit, or a durable ALLOWED event could outlive a change that never reached the store. InMemoryTenantRegistry does not check its token today, so this was not a live bug here - Kemi explicitly flagged it as an accident of the current implementation rather than a deliberate guarantee, and recommended closing it pre-emptively before it silently reappears (e.g. once the registry gains real cancellation support against a DB-backed store). Fix: all four mutating methods (CreateAsync, UpdateAsync, UpdateStatusAsync, SoftDeleteAsync) now pass CancellationToken.None to their final registry.CreateAsync/ReplaceAsync call, matching the fix Emeka already made for the identical shape in BIO-DEV-001. This does not touch or resolve the previously-flagged crash-consistency residual (process failure between confirmed audit write and commit) - that remains the open, explicitly-escalated boundary awaiting god/Kemi/Seyi's cross-cutting decision, unaffected by this change."
+}

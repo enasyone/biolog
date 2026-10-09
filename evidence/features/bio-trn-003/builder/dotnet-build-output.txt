@@ -1,0 +1,8 @@
+  Biolog.Features.DocumentTemplatePack -> <workspace>/biolog-worktrees/BIO-TRN-003/api/features/bio-doc-010/Biolog.Features.DocumentTemplatePack/bin/Debug/net10.0/Biolog.Features.DocumentTemplatePack.dll
+  Biolog.Api -> <workspace>/biolog-worktrees/BIO-TRN-003/api/Biolog.Api/bin/Debug/net10.0/Biolog.Api.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:13.04

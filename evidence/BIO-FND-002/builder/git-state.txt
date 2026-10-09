@@ -1,0 +1,11 @@
+branch:
+feature/BIO-FND-002
+
+remotes (expect none):
+
+log:
+d88f07e BIO-FND-002: fix native-pin drift bypass and unsupported MySQL major (QA-01, QA-02)
+29e57a1 BIO-FND-002: record builder evidence
+2d4c740 BIO-FND-002: pin local toolchain and dependency policy
+2224d4d BIO-FND-001: update builder evidence for BIO-FND-001-QA-01 fix
+5dc09e6 BIO-FND-001: fix whitespace secret-scan bypass (BIO-FND-001-QA-01)

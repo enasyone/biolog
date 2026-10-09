@@ -1,0 +1,11 @@
+{
+  "story_key": "BIO-RPT-004",
+  "stage": "builder",
+  "commit_hash": "fd854cc",
+  "test_command": "dotnet test tests/features/bio-rpt-004/Biolog.Features.OperationalDashboard.Tests.csproj && dotnet build api/Biolog.Api/Biolog.Api.csproj && bash tests/features/bio-rpt-004/BIO-RPT-004.test.sh && (cd web && pnpm exec tsc --noEmit) && (cd tests/frontend && pnpm exec vitest run && pnpm exec playwright test bio-rpt-004-operational-health.spec.ts)",
+  "result": "PASS",
+  "timestamp": "2026-10-06T22:00:00Z",
+  "reviewer": "Ngozi",
+  "data_classification": "SYNTHETIC",
+  "notes": "Round 3: fixes Seyi round-2 FAIL (commit 92291f0, see evidence/BIO-RPT-004/codex/REVIEW-Seyi-round2.md). F03 (Critical): round 2's real permission check trusted a raw, caller-asserted X-Actor-Id with no provenance verification - an attacker who knew a privileged PERSON id could assert it and inherit their grant. Added ActorProvenanceGate, hand-ported from the CURRENT canonical ADR-0006 Decision 3 shape (BIO-INT-003 commit c5e2f9d - MinimumSecretLength, '_key is null => false', no fallback/dummy key of any kind - per god's explicit instruction, not the earlier superseded dummy-key version several other stories still carry). Runs BEFORE the permission check in DashboardEndpoints. Proven: no proof, a bogus proof, and a proof for a mismatched actor id are all refused (401); gate ordering itself proven (401 not 403 for an unproven unprivileged actor). F04 (High): a failed read fabricated a zero-valued Stale panel stamped with the failure's own time. Added LastKnownHealthCache (process-lifetime singleton) recording every successful read per tenant per domain; a failure now retains and returns those real values and their TRUE observation time instead of a fresh fabricated zero. Panel counts are now nullable end to end (domain/DTOs/frontend) - a tenant with no successful read ever reports null, never zero. Verified: backend tests 30/30 (+8 new), dotnet build clean, structural harness 45/45 (+8 new), tsc clean, frontend vitest 470/470 (unchanged - mock mode unaffected by either finding), SIMULATION Playwright 7/7, dashboard-touching shell/axe/visual-regression specs re-checked clean (one unrelated /settings flake confirmed pre-existing via isolated re-run). See docs/features/bio-rpt-004/README.md 'Round 3' section for full record."
+}

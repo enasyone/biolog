@@ -1,0 +1,114 @@
+{
+  "story_key": "BIO-OPS-009",
+  "title": "Run local backup/restore and disaster-recovery rehearsal",
+  "implementation_commit": "a91b0c429b5b32352aabc95b37dd543f0c80f583",
+  "builder_evidence_commit": "5f5d3d93f353ea15fd71ebcf55d78314451f04af",
+  "reviewed_head": "0057b821098af5de158c59cbe0547c4e579f214c",
+  "environment": {
+    "profile": "local Docker disaster-recovery rehearsal; synthetic data only",
+    "timestamp": "2026-10-08"
+  },
+  "acceptance_criteria": {
+    "BIO-OPS-009-AC01": {
+      "result": "PASS",
+      "evidence": [
+        "scripts/backup-mysql.sh",
+        "scripts/restore-mysql.sh",
+        "evidence/BIO-OPS-009/builder/round3-rehearsal-run3-output.txt"
+      ],
+      "finding": "Control-plane and tenant databases are backed up separately and restored into distinct fresh containers and volumes; complete restored rows match independent pre-backup snapshots exactly."
+    },
+    "BIO-OPS-009-AC02": {
+      "result": "PASS",
+      "evidence": [
+        "docs/BACKUP-RESTORE-REHEARSAL.md",
+        "scripts/restore-mysql.sh",
+        "scripts/restore-azurite.sh",
+        "evidence/BIO-OPS-009/builder/round3-developer-test-output.txt"
+      ],
+      "finding": "The documented rehearsal creates fresh standalone containers and refuses pre-existing restore volume names; interruption tests prove cleanup removes partial restore resources."
+    },
+    "BIO-OPS-009-AC03": {
+      "result": "PASS",
+      "evidence": [
+        "scripts/backup-azurite.sh",
+        "scripts/azurite-rest.py",
+        "evidence/BIO-OPS-009/builder/round3-rehearsal-run3-output.txt"
+      ],
+      "finding": "Azurite photo/object fixtures restore byte-exactly by SHA-256, post-backup blobs remain absent, archive failures and real SIGTERM restore the source service to health."
+    },
+    "BIO-OPS-009-AC04": {
+      "result": "PASS",
+      "evidence": [
+        "scripts/disaster-recovery-rehearsal.sh",
+        "evidence/BIO-OPS-009/builder/round3-rehearsal-run1-output.txt",
+        "evidence/BIO-OPS-009/builder/round3-rehearsal-run2-output.txt",
+        "evidence/BIO-OPS-009/builder/round3-rehearsal-run3-output.txt"
+      ],
+      "finding": "Three final live rehearsals record measured per-store recovery point objective windows, exact lost row/blob identifiers and local recovery time objective, explicitly disclaimed as non-production service levels."
+    }
+  },
+  "commands": [
+    {
+      "command": "bash tests/foundation/BIO-OPS-009.test.sh",
+      "result": "PASS (21/21 unrestricted; acceptance sandbox replay 17/17 structural with 4 Docker checks skipped because the daemon is unavailable)"
+    },
+    {
+      "command": "python3 evidence/BIO-OPS-009/codex/adversarial-rehearsal-check.py",
+      "result": "PASS (5/5)"
+    },
+    {
+      "command": "bash scripts/check-module-project-references.sh",
+      "result": "PASS"
+    },
+    {
+      "command": "python3 scripts/check-traceability.py --all",
+      "result": "PASS (37 implemented stories)"
+    },
+    {
+      "command": "bash scripts/secret-scan.sh --staged",
+      "result": "PASS (gitleaks; no staged secrets)"
+    }
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "implementation_commit": "a91b0c429b5b32352aabc95b37dd543f0c80f583",
+    "evidence_commit": "5f5d3d93f353ea15fd71ebcf55d78314451f04af",
+    "foundation_suite": "21/21 PASS unrestricted",
+    "live_rehearsals": "3/3 PASS"
+  },
+  "independent_reviews": [
+    {
+      "reviewer": "Seyi",
+      "result": "PASS",
+      "implementation_commit": "a91b0c429b5b32352aabc95b37dd543f0c80f583",
+      "evidence": "evidence/BIO-OPS-009/codex/REVIEW-Seyi-round3.md",
+      "sha256": "c4841fb7fe210d993ba47f1e096196c7aea023fa762834bdca6f3984808060e1"
+    },
+    {
+      "reviewer": "Femi",
+      "result": "PASS",
+      "implementation_commit": "a91b0c429b5b32352aabc95b37dd543f0c80f583",
+      "evidence": "evidence/BIO-OPS-009/codex/REVIEW-Femi-round3.md",
+      "sha256": "f6635aae4efdb4f3592c7bc9fab0f0363700b42d0f8cff5d421519e762dd343c"
+    }
+  ],
+  "category_verdicts": {
+    "functional_and_data_integrity": "PASS",
+    "tenant_isolation": "PASS",
+    "offline_and_recovery": "PASS",
+    "regression": "PASS",
+    "security": "NOT_APPLICABLE",
+    "concurrency": "NOT_APPLICABLE"
+  },
+  "disclosures": [
+    "The rehearsal uses synthetic seed rows and blobs because current application repositories remain in memory and are not wired to these local stores.",
+    "Measured recovery point and recovery time figures are single-laptop local observations, not production service-level objectives or capacity claims."
+  ],
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "All four acceptance criteria map to executable tests and retained exact-commit evidence. Independent review closed full-row integrity, cleanup/reuse, archive-failure, signal-interruption and measured-RPO gaps; final live Docker evidence passes 21/21 with clean teardown."
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "story_key": "BIO-IDN-004",
+  "title": "Implement identity lifecycle and emergency suspension",
+  "implementation_commit": "d01b3a3af0b5470a83346cd5c87aeee4cb59bd24",
+  "builder_head": "1af6c4d",
+  "reviewed_head": "7b463b434d574ba3f37ab45e274e5751e04db55e",
+  "environment": {"profile": "local acceptance; synthetic fixtures only", "timestamp": "2026-09-22T14:08:34Z"},
+  "acceptance_criteria": {
+    "BIO-IDN-004-AC01": {"result": "PASS", "evidence": ["explicit transition-policy tests", "structural suite"]},
+    "BIO-IDN-004-AC02": {"result": "PASS_CURRENT_SINGLE_PROCESS_TIER", "evidence": ["revocation tests", "RevocationAtomicityProbe", "REREVIEW-ROUND5.md"]},
+    "BIO-IDN-004-AC03": {"result": "PASS", "evidence": ["permission and audit-reason tests"]},
+    "BIO-IDN-004-AC04": {"result": "PASS", "evidence": ["archived snapshot and lifecycle-history tests"]}
+  },
+  "commands": [
+    {"command": "bash tests/features/bio-idn-004/BIO-IDN-004.test.sh", "result": "PASS (59/59)"},
+    {"command": "dotnet run --project evidence/BIO-IDN-004/codex/RevocationAtomicityProbe/RevocationAtomicityProbe.csproj", "result": "PASS (3/3 invariants)"},
+    {"command": "dotnet Biolog.Features.PersonLifecycle.Tests.dll", "result": "PASS (70/70)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (19 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS"}
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "d01b3a3af0b5470a83346cd5c87aeee4cb59bd24",
+    "feature_tests": "70/70 PASS",
+    "unit_tests": "160/160 PASS",
+    "integration_tests": "70/70 PASS",
+    "structural_tests": "59/59 PASS",
+    "full_quality": "PASS",
+    "metadata_sha256": "541b9226f97a6d1fbc32a0f7131f1a089a7c7ad55bfcd2b4a5a73f0d62fd7db7"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "result": "PASS",
+    "review_commit": "7b463b4",
+    "evidence": "evidence/BIO-IDN-004/codex/REREVIEW-ROUND5.md",
+    "evidence_sha256": "c90f1b4f94e04eedacb135745c187aa58a3340810ed5e611ea2b2e28ab96b725"
+  },
+  "category_verdicts": {"functional": "PASS", "security": "PASS", "tenant_isolation": "PASS", "offline_recovery": "PASS_CURRENT_SINGLE_PROCESS_TIER", "concurrency": "PASS", "regression": "PASS"},
+  "security_performance_reviews": {"security": "PASS: committed suspension creates durable pending work before fallible audit or revocation writes, and rejected suspension emits no revocation", "performance": "Not required for the current in-memory tier"},
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "All four acceptance criteria have objective builder and independent evidence; the suspension/revocation split-state paths are closed for the current singleton same-process tier."}
+}

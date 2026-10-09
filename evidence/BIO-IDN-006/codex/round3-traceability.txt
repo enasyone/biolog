@@ -1,0 +1,2 @@
+$ python3 scripts/check-traceability.py --all
+TRACEABILITY INVENTORY: PASS (19 implemented stories)

@@ -1,0 +1,10 @@
+{
+  "story_key": "BIO-MOB-004",
+  "stage": "builder",
+  "commit_hash": "6bc27084ad9fc9eba6c2d298f1cf1c97eb252bb3",
+  "test_command": "bash tests/foundation/BIO-MOB-004.test.sh && dotnet test tests/features/bio-mob-004/Biolog.Features.MobileVerification.Tests.csproj && (cd tests/flutter && flutter test) && dotnet build api/Biolog.Api/Biolog.Api.csproj && bash scripts/check-module-project-references.sh && bash scripts/secret-scan.sh --all",
+  "result": "PASS",
+  "timestamp": "2026-09-30T13:45:00Z",
+  "reviewer": "Busola",
+  "data_classification": "SYNTHETIC"
+}

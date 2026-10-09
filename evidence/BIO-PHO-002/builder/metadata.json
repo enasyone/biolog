@@ -1,0 +1,11 @@
+{
+  "story_key": "BIO-PHO-002",
+  "stage": "builder",
+  "commit_hash": "7c7c11e",
+  "test_command": "bash tests/features/bio-pho-002/BIO-PHO-002.test.sh && dotnet test tests/features/bio-pho-002/Biolog.Features.PhotoBooth.Tests.csproj --nologo && dotnet build api/Biolog.Api/Biolog.Api.csproj --nologo",
+  "result": "PASS",
+  "timestamp": "2026-10-06T17:50:00Z",
+  "reviewer": "Ngozi (Zainab round 2 pending)",
+  "data_classification": "SYNTHETIC",
+  "notes": "TD-PHO-002-IDEMPOTENCY-RACE (High, ad-hoc technical-debt fix outside the biolog.py governance engine, tracked in hive/tasks.json as TD-IDEMPOTENCY-RACE-NGOZI, not runtime-state.json). Round 1 (commit fd53b7e): production fix ported from Tunde's BIO-INT-002-F01, confirmed sound by Zainab round 1, but CHANGES_REQUIRED on test proof - the regression test used only a shared start-of-task gate, not a real Claim()-boundary barrier, so it couldn't discriminate from the old State-only bug. Round 2 (commit 7c7c11e, this one): ported BIO-VIS-002's own fix for the identical gap (rounds 9-10) - ClaimBarrierIdempotencyStore holds the real winner blocked right after its claim becomes durably InFlight until the test confirms the loser has itself observed that same InFlight record. Added a mutant-discrimination test (minimal Barrier-forced two-caller race) proving the real IsNewClaim decision converges to one execution while a reinstated State-only mutant does not. See docs/features/bio-pho-002/README.md 'Post-acceptance fix: TD-PHO-002-IDEMPOTENCY-RACE' for the full record. Verified: dotnet build clean, feature tests 63/63 (zero regression, round-1's 1 race test replaced by 2 new ones), structural harness 40/40 (5 new checks total), full API host build clean, re-ran 3x with no flakiness. This is the fourth and final story in TD-IDEMPOTENCY-RACE-NGOZI's round-2 remediation (BIO-CRD-005/006/007 fixed earlier the same session). Awaiting Zainab's round-2 re-review of all four."
+}

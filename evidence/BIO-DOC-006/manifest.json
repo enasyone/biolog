@@ -1,0 +1,33 @@
+{
+  "story_key": "BIO-DOC-006",
+  "title": "Build automatic document type identification",
+  "implementation_commit": "3345e8962f53a778a71833589d9ec78a0b3ec045",
+  "builder_head": "18973d27460192985d07a95a9fbf7918b2f2d677",
+  "reviewed_head": "e24f42494024cf7b473884cd06852bfa91ad105c",
+  "environment": {"profile": "local re-acceptance; synthetic fixtures only", "timestamp": "2026-09-23T00:32:01Z"},
+  "acceptance_criteria": {
+    "BIO-DOC-006-AC01": {"result": "PASS", "evidence": ["ranked candidate tests"]},
+    "BIO-DOC-006-AC02": {"result": "PASS", "evidence": ["unknown/unsupported tests"]},
+    "BIO-DOC-006-AC03": {"result": "PASS", "evidence": ["QA-01 stale-template probes PASS", "evidence/BIO-DOC-006/acceptance/duplicate-template-source-probe.py", "evidence/BIO-DOC-006/acceptance/duplicate-template-probe/Program.cs", "evidence/BIO-DOC-006/codex/REREVIEW-Seyi-round3.md"], "finding": "QA-01 and QA-02 closed: current identity and reverse template indexes remain consistent through version upgrades and ownership transfer"},
+    "BIO-DOC-006-AC04": {"result": "PASS", "evidence": ["side mismatch tests"]},
+    "BIO-DOC-006-AC05": {"result": "PASS", "evidence": ["low-confidence and ambiguity confirmation tests"]}
+  },
+  "commands": [
+    {"command": "python3 evidence/BIO-DOC-006/acceptance/stale-template-source-probe.py", "result": "PASS: QA-01 closed"},
+    {"command": "python3 evidence/BIO-DOC-006/acceptance/duplicate-template-source-probe.py", "result": "PASS: duplicate TemplateId ownership is guarded"},
+    {"command": "dotnet run --project evidence/BIO-DOC-006/acceptance/stale-template-probe/StaleTemplateProbe.csproj", "result": "PASS: current entry v2; retired template absent"},
+    {"command": "dotnet run --project evidence/BIO-DOC-006/acceptance/duplicate-template-probe/DuplicateTemplateProbe.csproj", "result": "PASS: former identity absent; new identity and reverse lookup agree"},
+    {"command": "bash tests/foundation/BIO-DOC-006.test.sh", "result": "PASS (36/36)"},
+    {"command": "dotnet build tests/features/bio-doc-006/Biolog.Features.DocumentClassifier.Tests/Biolog.Features.DocumentClassifier.Tests.csproj --no-restore -m:1 /nodeReuse:false", "result": "PASS (0 warnings, 0 errors)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (25 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS"}
+  ],
+  "builder_verdict": {"result": "PASS", "commit_hash": "3345e8962f53a778a71833589d9ec78a0b3ec045", "feature_tests": "26/26 PASS", "structural_tests": "36/36 PASS", "metadata_sha256": "da6dbf23e7c46d7a99f13d4b07a7d61b9c86328a005621cd5121e00296aac9d3"},
+  "independent_qa": {"reviewer": "Seyi", "result": "PASS", "review_commit": "e24f42494024cf7b473884cd06852bfa91ad105c", "evidence": "evidence/BIO-DOC-006/codex/REREVIEW-Seyi-round3.md", "evidence_sha256": "f13c92db5df2e947e9707d80a90d92f52d1e72bc60f338eb45528b188c99ae14"},
+  "category_verdicts": {"functional": "PASS", "security": "PASS", "tenant_isolation": "PASS_STATELESS_CLASSIFIER", "offline_recovery": "PASS", "concurrency": "PASS", "regression": "PASS"},
+  "security_performance_verdicts": {"security": "PASS: no security-specific blocker found", "performance": "Not separately required"},
+  "screenshots_logs": [],
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "Every acceptance criterion has passing objective evidence; both registry consistency findings are closed and independently re-reviewed."}
+}

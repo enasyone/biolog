@@ -1,0 +1,67 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-DEV-004 owns api/features/bio-dev-004/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh)
+         and, deliberately, no ProjectReference to api/features/bio-dev-003's own
+         Biolog.Features.DeviceAdapters.csproj, or to api/Biolog.Api/Features/DeviceRegistry
+         or api/Biolog.Api/Features/DeviceCertification either (both public, in-host types
+         this project COULD reference directly, since they live inside Biolog.Api itself -
+         referencing either would still mean referencing Biolog.Api.csproj, forbidden
+         regardless): a real device's identity/health/version is passed in as this project's
+         own DeviceSnapshot (see Domain/DeviceSnapshot.cs), and every cross-feature read/
+         write - directory lookup, health check, heartbeat write, certification/adapter
+         capability gate, audit - goes through this project's own narrow gateway interfaces
+         (see Gateways/**), the same "narrow gateway, not a direct reference" discipline
+         BIO-DEV-003's own ICertificationGate and BIO-MOB-003's own
+         IDeviceTenantResolutionGateway already established for an identical problem shape.
+
+         This project's own module adapter lives in api/Biolog.Api/Modules/BioDev004Module.cs
+         from the start (never written here first), matching every prior story - it is the
+         one place that bridges this project's gateways to the real DeviceService
+         (BIO-DEV-001), DeviceCertificationService (BIO-DEV-002) and DeviceAdapterService/
+         IDeviceAdapterRegistry (BIO-DEV-003).
+
+         Namespace root is "DeviceOperations": BIO-DEV-004 - "health polling/heartbeat and
+         controlled configuration jobs where vendor APIs permit."
+
+         SY-DEV004-01 (Seyi, round 1, Critical): round 1 deliberately omitted an RBAC/actor-
+         provenance gate, reasoning that BIO-DEV-001/002/003 (the direct dependency chain this
+         story extends) have none either. Seyi's review correctly rejected that reasoning:
+         "their documented missing authorization is inherited debt, not an authorization grant,
+         and BIO-DEV-004 materially expands the surface from registry/diagnostic operations to
+         remote reboot/configuration/firmware control." This project now carries the same
+         Api/ActorProvenanceGate.cs + Api/ActorResolver.cs + Domain/IPermissionGateway.cs seam
+         every other ActorProvenanceGate-bearing story in this codebase uses (BIO-TRN-003,
+         BIO-INT-004, BIO-ATT-003 - ADR-0006 Decision 3), with two distinct, least-privilege
+         permission keys: DeviceHealthPollingService.ReadPermission (list/poll/capabilities) and
+         DeviceRemoteJobService.ExecutePermission (actually running a remote job) - see each
+         service's own header for why the split. -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Biolog.Api needs this for DI registration of the internal types below (the concrete
+         InMemory*/Simulated* implementations are internal; BioDev004Module constructs them
+         directly rather than resolving them through a public factory - the same shape
+         BIO-TRN-003's InMemoryTransportNotificationRuleRepository etc. already use).
+         Biolog.IntegrationTests needs this to implement the internal IPermissionGateway as a
+         controllable test double (same shape BIO-ATT-003's own WorkforceAttendanceEndpoints-
+         IntegrationTests uses) rather than re-proving BIO-IDN-006's own PermissionService,
+         already proven elsewhere (BioTrn003EndpointsTests). -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.DeviceOperations.Tests" />
+    <InternalsVisibleTo Include="Biolog.IntegrationTests" />
+  </ItemGroup>
+
+</Project>

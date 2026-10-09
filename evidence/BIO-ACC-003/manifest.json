@@ -1,0 +1,44 @@
+{
+  "story_key": "BIO-ACC-003",
+  "title": "Implement offline deny-list and cached access decisions",
+  "implementation_commit": "66188f748a956717de77cb0ee1b77638372abe15",
+  "reviewed_head": "71e8e11b83400a7a2034ce7af66d82f0f4eaa2d4",
+  "environment": {
+    "profile": "local acceptance; synthetic fixtures only; GitHub push blocked",
+    "timestamp": "2026-09-24T05:57:47Z"
+  },
+  "acceptance_criteria": {
+    "BIO-ACC-003-AC01": {"result": "PASS", "evidence": ["edge revocation entries contain only person ID and revocation time", "gateway maps down from the Person aggregate"]},
+    "BIO-ACC-003-AC02": {"result": "PASS", "evidence": ["revocation merges are additive and monotonic", "device-authenticated delta reads are cursor-based and tenant-scoped"]},
+    "BIO-ACC-003-AC03": {"result": "PASS", "evidence": ["offline presentation always logs locally", "cached identity revocation yields DENIED_REVOKED_CACHED"]},
+    "BIO-ACC-003-AC04": {"result": "PASS", "evidence": ["24-hour stale threshold is explicit", "staleness is durably recorded without changing allow or deny outcome"]},
+    "BIO-ACC-003-AC05": {"result": "PASS", "evidence": ["event ID is the idempotency key", "identical replay returns the original result", "fingerprint mismatch is rejected"]},
+    "BIO-ACC-003-AC06": {"result": "PASS", "evidence": ["existing AccessService event-view action maps to a real fixed-synthetic-tenant bridge", "policy creation remains documented SIMULATION", "approved access-control page is unchanged"]}
+  },
+  "commands": [
+    {"command": "bash tests/foundation/BIO-ACC-003.test.sh", "result": "PASS (20/20)"},
+    {"command": "tests/features/bio-acc-003/bin/Debug/net10.0/Biolog.Features.AccessCache.Tests", "result": "PASS (13/13)"},
+    {"command": "dotnet build api/Biolog.Api/Biolog.Api.csproj --no-restore -m:1 /nodeReuse:false --disable-build-servers", "result": "PASS (0 warnings, 0 errors)"},
+    {"command": "flutter test", "result": "UNAVAILABLE in acceptance sandbox (Flutter SDK cache is read-only); commit-bound builder replay PASS (119/119)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (32 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS (built-in fallback scan clean)"}
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "66188f748a956717de77cb0ee1b77638372abe15",
+    "backend_tests": "13/13 PASS",
+    "person_registry_regression": "70/70 PASS",
+    "flutter_tests": "119/119 PASS",
+    "structural_tests": "20/20 PASS",
+    "metadata_sha256": "1d088c3d83dec56603d48138edef26e002de7ce5c1d3e90ff1c5c4c317a80ea2"
+  },
+  "independent_qa": [
+    {"reviewer": "Seyi", "result": "PASS", "evidence": "evidence/BIO-ACC-003/codex/REVIEW-Seyi.md", "evidence_sha256": "68d1704eddbedf3a160b9f2368291b8a8efdefabe9334a20cc058319f1cdb91a"},
+    {"reviewer": "Zainab", "result": "PASS", "evidence": "evidence/BIO-ACC-003/codex/SECURITY-REVIEW-ZAINAB.md", "evidence_sha256": "ad4d82ee529a8ff11ab17da95ada2c2b2d0c7626d5687fda8420d6eac698fa89"}
+  ],
+  "category_verdicts": {"functional": "PASS", "security": "PASS", "tenant_isolation": "PASS", "offline_recovery": "PASS", "concurrency": "PASS", "regression": "PASS"},
+  "disclosures": ["Card-level revocation from BIO-CRD-006 is deliberately out of scope and tracked separately as TD-CRD-006-DENY-LIST-DEVICE-AUTH; this story implements identity-level revocation."],
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "All six acceptance criteria have commit-bound builder evidence, independent Seyi and Zainab PASS verdicts, and successful focused acceptance replay; no unresolved Critical or High finding exists."}
+}

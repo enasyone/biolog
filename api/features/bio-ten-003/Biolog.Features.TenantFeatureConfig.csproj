@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <!--
+    BIO-TEN-003-AC02: the one real consuming seam for this story's Face-1N flag is
+    BIO-BIO-007's own IFaceSearchFeatureFlagPolicy extension point
+    (api/features/bio-bio-007/Biolog.Features.FaceSearch/Domain/IFaceSearchFeatureFlagPolicy.cs),
+    whose own doc comment explicitly invites "a later story implementing a real, persisted,
+    RBAC-gated tenant feature-flag administration surface" to implement it - this IS that
+    story. IFaceSearchFeatureFlagPolicy and SyntheticFaceSearchFeatureFlagPolicy are both
+    public types, so this reference needs no InternalsVisibleTo grant from BIO-BIO-007 (unlike
+    FaceSearchService itself, which stays internal to that project and is never touched here).
+    This mirrors BIO-BIO-007's own precedent of a feature-to-feature ProjectReference for
+    exactly this reason (its own csproj references BIO-BIO-001 to implement/consume its public
+    biometric contracts) - not a new pattern invented for this story.
+  -->
+  <ItemGroup>
+    <ProjectReference Include="../bio-bio-007/Biolog.Features.FaceSearch/Biolog.Features.FaceSearch.csproj" />
+  </ItemGroup>
+
+</Project>

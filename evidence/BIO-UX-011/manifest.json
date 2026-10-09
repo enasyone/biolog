@@ -1,0 +1,42 @@
+{
+  "story_key": "BIO-UX-011",
+  "commit_hash": "3e62ff2187ad65e89df120f50b84ee7ad322df03",
+  "implementation_commit": "acbbcf788381000eb0beb51db5ff5c79d3d2dcd5",
+  "builder_evidence_commit": "bdedf7e4bf6837b5d6024a108d673c4ae33951ca",
+  "environment_profile": "local frontend Node/pnpm workspace; synthetic fixtures",
+  "timestamp": "2026-09-23T14:08:22Z",
+  "acceptance_criteria": {
+    "BIO-UX-011-AC01": {"result": "PASS", "tests": ["bio-ux-011-admin-journeys.spec.ts interactive page coverage"]},
+    "BIO-UX-011-AC02": {"result": "PASS", "tests": ["bio-ux-011-admin-journeys.spec.ts six-section coverage"]},
+    "BIO-UX-011-AC03": {"result": "PASS", "tests": ["bio-ux-011-dashboard-metrics.test.ts"]},
+    "BIO-UX-011-AC04": {"result": "PASS", "tests": ["bio-ux-011-feature-flag-nav.test.ts", "bio-ux-011-admin-journeys.spec.ts feature navigation coverage"]},
+    "BIO-UX-011-AC05": {"result": "PASS", "tests": ["bio-ux-011-admin-journeys.spec.ts Reset restoration and adapter outcome"]},
+    "BIO-UX-011-AC06": {"result": "PASS", "tests": ["brand-token and axe coverage"]}
+  },
+  "commands_results": [
+    {"command": "corepack pnpm --dir tests/frontend test:unit", "result": "PASS: 37 files, 277 tests"},
+    {"command": "corepack pnpm --dir web typecheck", "result": "PASS"},
+    {"command": "corepack pnpm --dir web build", "result": "PASS: 34 static pages generated"},
+    {"command": "builder round-two Playwright suite", "result": "PASS: 127 tests including feature navigation and Reset adapter behavior"}
+  ],
+  "builder_verdict": "PASS",
+  "independent_qa_verdict": "PASS",
+  "security_verdict": "NOT_REQUIRED",
+  "performance_verdict": "NOT_REQUIRED",
+  "evidence_references": [
+    "builder/SUMMARY.md",
+    "builder/metadata.json",
+    "builder/frontend-unit-test-output.txt",
+    "builder/frontend-e2e-test-output.txt",
+    "builder/web-typecheck-build-output.txt",
+    "builder/round2-frontend-unit-test-output.txt",
+    "builder/round2-frontend-e2e-test-output.txt",
+    "builder/round2-web-build-output.txt",
+    "codex/REVIEW-Seyi-round1.md",
+    "codex/REVIEW-Seyi-round2.md",
+    "acceptance/REVIEW-Chioma-round1.md",
+    "acceptance/REVIEW-Chioma-round2.md"
+  ],
+  "final_acceptance_decision": "PASS",
+  "reason": "AC01-AC06 are complete; feature flags alter real navigation and Settings Reset restores defaults through the TenantService mock adapter."
+}

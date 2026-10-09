@@ -1,0 +1,9 @@
+gateway_read_offset=1613
+begin_revocation_offset=4761
+authoritative_activation_offset=5096
+compensation_offset=5809
+confirmation_offset=6721
+durable_prior_state=True
+pending_state_denies_presentation=True
+two_phase_order=True
+PASS

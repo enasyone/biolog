@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-CRD-007 owns api/features/bio-crd-007/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh)
+         and no ProjectReference to api/features/bio-crd-005 either, despite that being a real
+         runtime dependency (gating activation on a passed production job still needs to read
+         and finally activate a real BIO-CRD-005 card issue): every cross-feature runtime need
+         in this codebase goes through a narrow gateway interface THIS project defines (see
+         Domain/ICardIssueGateway.cs) implemented by an adapter in
+         api/Biolog.Api/Modules/BioCrd007Module.cs, the same shape every prior story in this
+         epic already established.
+
+         "Dependencies: BIO-CRD-006, BIO-CRD-004" in the approved story is build-wave
+         sequencing, not runtime coupling, matching this epic's established precedent - no AC
+         here names report/recover/replace or a card-designer canvas object; BIO-CRD-004's own
+         template/barcode/signature outputs are referenced only as opaque strings in this
+         project's own ProductionJob, never resolved here, the same shape BIO-CRD-005's own
+         CardIssueProvenance already established.
+
+         Namespace root is "CardProduction". No new ADR-0001 canonical identifier type is
+         minted - a production job is keyed by its own natural composite
+         (TenantId, PersonId, CardClass, SequenceNumber, JobSequenceNumber), reusing BIO-CRD-005's
+         own card-issue key plus a job-attempt number this project owns. -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.CardProduction.Tests" />
+  </ItemGroup>
+
+</Project>

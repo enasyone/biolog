@@ -1,0 +1,9 @@
+iconography-probe.sh requires ripgrep (rg), which is not installed in this Claude Code sandbox session.
+Equivalent check using grep -E (same regex, same target paths):
+$ grep -rlE 'icon(Size|Stroke|Weight|Optical|Alignment)|iconography\s*=|export const icons' web/design-system tests/frontend/unit/bio-ux-001-*
+web/design-system/iconography.ts
+tests/frontend/unit/bio-ux-001-css-sync.test.ts
+tests/frontend/unit/bio-ux-001-iconography.test.ts
+web/design-system/README.md
+
+Non-empty match list above -> PASS AC02 iconography is tokenised and tested (grep-equivalent)

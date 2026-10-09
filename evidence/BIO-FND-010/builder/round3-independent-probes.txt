@@ -1,0 +1,4 @@
+PASS missing evidence blocks acceptance
+PASS failed/stale/builder-only evidence cannot authorize acceptance
+PASS every implemented story is inventoried (implemented=13, story_specs=13)
+PASS story cannot remove its own independent-review requirement

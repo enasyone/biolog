@@ -1,0 +1,23 @@
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Known synthetic test credentials and scanner mutation fixtures"
+regexTarget = "secret"
+regexes = [
+  '''CorrectHorseBatteryStaple42''',
+  '''this-is-a-synthetic-bio009-provenance-secret-32c''',
+  '''this-is-a-synthetic-att003-provenance-secret-32c''',
+  '''this-is-a-synthetic-ten003-provenance-secret-32c''',
+  '''this-is-a-synthetic-test-secret-32chars-plus''',
+  '''ten_bio009_dummykey''',
+  '''test-provenance-secret-32chars-min''',
+  '''test-provenance-secret-1a2b3c-32ok''',
+  '''test-provenance-secret-9f8e7d-32ok''',
+  '''test-provenance-secret-9f8e7d''',
+  '''test-provenance-secret-1a2b3c''',
+  '''test-operator-secret-1a2b3c''',
+  '''evt_018f2e5a-0003-7abc-89ab-0123456789ab''',
+  '''provenance/RBAC''',
+  '''empty/unknown/duplicate''',
+]

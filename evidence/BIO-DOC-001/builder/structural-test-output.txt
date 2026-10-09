@@ -1,0 +1,45 @@
+PASS  AC01 DocumentSession model exists
+PASS  AC01 PersonId is nullable (pre-person onboarding representable)
+PASS  AC01 Open accepts a null personId
+PASS  AC01 LinkPerson transitions a session to a person
+PASS  AC01 relinking to a different person is refused, not silently overwritten
+PASS  ADR-0001-D3 DocumentSession starts at version 1
+PASS  ADR-0001-D3 a stale expected version raises a dedicated ConcurrencyException
+PASS  AC02 DocumentEvidence model exists
+PASS  AC02 DocumentEvidence is an immutable record (no mutator methods, init-only)
+PASS  AC02 carries a SHA-256 hash
+PASS  AC02 carries page number and side metadata
+PASS  AC02 DocumentSide enum exists with page/side values
+PASS  AC02 device-claim vs server-authoritative receipt time are both recorded (ADR-0001 S2.4)
+PASS  AC02/ADR-0001 no bare version field on the append-only evidence record
+PASS  AC03 DocumentFieldEvidence model exists
+PASS  AC03 preserves RawValue and NormalizedValue separately
+PASS  AC03 carries a Confidence score
+PASS  AC03 carries which engine sourced the value
+PASS  AC03 carries a nullable bounding box
+PASS  AC03 BoundingBox value object exists
+PASS  AC03 confidence is validated into [0.0, 1.0]
+PASS  AC04 PersonFieldChangeProposal model exists
+PASS  AC04 a freshly proposed change has no applied timestamp/actor
+PASS  AC04 Accept requires a non-empty actor, no anonymous acceptance
+PASS  AC04 Accept returns a new record rather than mutating in place ('this with')
+PASS  AC04 no method in this feature writes to a Person aggregate (no such type exists here)
+PASS  AC05 ManualReviewState enum exists
+PASS  AC05 DocumentConflict model exists
+PASS  AC05 a conflict requires at least two disagreeing evidence records
+PASS  AC05 DocumentSession has a ManualReviewPending status
+PASS  AC05 the in-memory store moves a session into manual review when a conflict is raised
+PASS  AC04/AC05 a proposal for a conflicted field is flagged as requiring manual review
+PASS  ADR-0002-S4.3 a dedicated not-found exception exists (never a 403-shaped one)
+PASS  ADR-0002-S4.3 the store's resolver checks tenant ownership before returning a session
+PASS  ADR-0001-S1.2 the frozen identifier registry was not touched by this story
+PASS  DocumentModule adapter exists in the API shell
+PASS  DocumentModule implements IBiologModule
+PASS  Program.cs registers DocumentModule through the host
+PASS  Biolog.Api references the feature project (one-way; feature has no ASP.NET Core dependency)
+PASS  the feature project itself takes no ProjectReference back to Biolog.Api (no cycle)
+PASS  feature test project exists
+PASS  story traceability spec exists
+PASS  feature foundation doc exists
+----
+BIO-DOC-001 structural checks: 43 passed, 0 failed

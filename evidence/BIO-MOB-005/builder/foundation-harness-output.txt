@@ -1,0 +1,22 @@
+PASS  AC01 a fresh, tenant-scoped capture-policy aggregate exists (not a bare constant)
+PASS  AC01 the story's own conservative default is text-only fields, no photo, no biometrics
+PASS  AC01 package submission is rejected server-side when a field/photo/biometric is not policy-permitted (defense-in-depth)
+PASS  AC01 the mobile enrolment screen renders only the fields/toggles the current policy allows
+PASS  AC02 enrolment packages are persisted through AppDatabase, the same interface SqlCipherAppDatabase's real SQLCipher-encrypted store implements
+PASS  AC02 the enrolment tables live in the same encrypted database file as every other offline queue (no separate unencrypted store)
+PASS  AC03 a central duplicate-review service scans already-accepted packages, independent of BIO-IDN-005/BIO-BIO-006
+PASS  AC03 the scan runs synchronously within package intake, not deferred to a later job
+PASS  AC03 no cross-project ProjectReference to bio-idn-005 or bio-bio-006 exists in this feature's own project file
+PASS  AC04 a raised duplicate candidate holds the package in PENDING_REVIEW, never auto-resolved
+PASS  AC04 a human decision requires a mandatory reason_code
+PASS  AC04 the decision endpoint is gated by tenant/actor/provenance/permission (ADR-0006 Decision 3), not device auth
+PASS  AC05 the package upload uses the package id as the Idempotency-Key header
+PASS  AC05 the server intake claims an idempotency record before committing, mirroring BIO-MOB-003/BIO-ACC-003
+PASS  AC05 a fingerprint mismatch on a reused key is rejected, not silently replayed
+PASS  AC05 the mobile enrolment screen (the approved MobileService surface) is wired to real EnrolmentService/EnrolmentSyncClient calls, not a placeholder
+PASS  AC05 checkPresentation-equivalent capture makes no network call - only AppDatabase reads/writes
+PASS  unit/integration tests mapped to BIO-MOB-005 ACs exist (mobile)
+PASS  unit/integration tests mapped to BIO-MOB-005 ACs exist (backend)
+PASS  builder evidence recorded
+==============================
+20 passed, 0 failed

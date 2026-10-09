@@ -1,0 +1,11 @@
+{
+  "story_key": "BIO-UX-008",
+  "stage": "builder",
+  "commit_hash": "d10534b43901a5f672657fb681631c3c0fb81283",
+  "test_command": "(cd web && ./node_modules/.bin/tsc --noEmit && ./node_modules/.bin/next build) && (cd tests/frontend && ./node_modules/.bin/vitest run) && (cd tests/frontend && BIOLOG_BASE_URL=http://127.0.0.1:3233 ./node_modules/.bin/playwright test) && python3 scripts/check-traceability.py --all",
+  "result": "PASS",
+  "timestamp": "2026-09-23T15:05:00Z",
+  "reviewer": "Amina",
+  "data_classification": "SYNTHETIC",
+  "notes": "web typecheck/build: 0 errors, 34 static routes generated. tests/frontend test:unit: 290/290 passing (38 files, 5 new BIO-UX-008 files). tests/frontend test:e2e: 125/125 passing (15 new BIO-UX-008 tests, zero regressions in any other story's suite) - run against a manually started `next dev` server since this sandbox denies a fresh listen() from inside a sandboxed process; the server was started with the sandbox disabled for that one command only, the same documented exception dotnet test/vstest already needs on this floor. check-traceability.py --all: PASS. Also corrected governance/runtime-state.json and governance/review-routing.json: BIO-UX-008's required_reviewers/reviewers list was missing Zainab despite handling biometric UI simulation data, the same class of risk BIO-UX-005 was already routed to Zainab for - god's own dispatch message asked this to be checked before routing to review; added Zainab and set security_review:true to match BIO-UX-005's precedent."
+}

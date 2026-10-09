@@ -1,0 +1,4 @@
+PASS permission-filtered navigation is wired into the shell
+PASS light and dark token selectors exist
+PASS closed mobile navigation is removed from keyboard/accessibility interaction
+PASS axe smoke tests reject every reported violation

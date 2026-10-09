@@ -1,0 +1,17 @@
+{
+  "name": "@biolog/baseline-tests",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:unit": "vitest run",
+    "test:e2e": "playwright test",
+    "test:product-gate": "TZ=UTC playwright test bio-ux-015-product-experience-gate.spec.ts",
+    "test:visual": "TZ=UTC playwright test bio-ux-014-visual-regression.spec.ts",
+    "test:visual:update": "TZ=UTC playwright test bio-ux-014-visual-regression.spec.ts --update-snapshots"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.55.0",
+    "vitest": "3.2.4"
+  }
+}

@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-MOB-004 owns api/features/bio-mob-004/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh) and,
+         deliberately, no ProjectReference to api/Biolog.Api/Features/DeviceRegistry or
+         api/features/bio-acc-002 - both are consumed only through this project's own narrow
+         gateway interfaces (Domain/IDeviceTenantResolutionGateway.cs,
+         Domain/IAccessDecisionGateway.cs), the same discipline every sibling device-facing
+         feature's gateway already uses.
+
+         This project's own module adapter lives in api/Biolog.Api/Modules/BioMob004Module.cs
+         from the start (never written here first), matching every prior story. It is the module
+         adapter (InternalsVisibleTo Biolog.Api) - not this project - that manually constructs
+         BIO-ACC-002's own internal AccessDecisionService with a device-resolved tenant provider
+         substituted in, reusing every other one of its already-registered Scoped/Singleton
+         dependencies unchanged. See BioMob004Module.cs's own header for the full reasoning.
+
+         Device authentication (Api/DeviceAuthenticator.cs, Domain credential store) and human
+         actor resolution (Api/ActorResolver.cs, Api/ActorProvenanceGate.cs) are both fresh,
+         project-local copies of the same shape BIO-MOB-003/BIO-ACC-003/BIO-MOB-005 each already
+         establish - "each feature project owns its own small primitives rather than a
+         cross-feature reference" is this repository's own established convention. -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.MobileVerification.Tests" />
+  </ItemGroup>
+
+</Project>

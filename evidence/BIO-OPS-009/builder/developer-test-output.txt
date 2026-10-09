@@ -1,0 +1,13 @@
+PASS  AC01-AC04: all BIO-OPS-009 scripts exist, are executable and parse under bash 3.2
+PASS  AC03: scripts/azurite-rest.py exists, is executable and compiles
+PASS  AC02: docs/BACKUP-RESTORE-REHEARSAL.md documents all four ACs and the rehearsal command
+PASS  AC01: backup-mysql.sh dumps exactly one database per invocation (independent backups)
+PASS  AC02: restore-mysql.sh and restore-azurite.sh always create a fresh named volume
+PASS  AC02/AC03: restore-azurite.sh passes --location /data explicitly to the fresh container
+PASS  AC03: backup-azurite.sh stops the Azurite container before snapshotting its volume
+PASS  AC04: the rehearsal result JSON explicitly disclaims production SLO status
+PASS  AC04: the rehearsal runs under its own isolated compose project name
+PASS  AC03: azurite-rest.py Shared Key signing matches a known-good vector from a real Azurite accept
+PASS  AC01-AC04 (live): full disaster-recovery rehearsal passes end to end
+==============================
+11/11 checks passed, 0 skipped

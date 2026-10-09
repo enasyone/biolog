@@ -1,0 +1,8 @@
+
+[2mRunning [22m3[2m tests using [22m3[2m workers[22m
+
+  [32m✓[39m  [2m2 [22mplaywright/bio-rpt-002-reporting-live.spec.ts:29:3 › BIO-RPT-002-AC06 the report-builder card is connected to a real backend, not a placeholder › generating a card-production report produces a real completed job with a live result table[2m (459ms)[22m
+  [32m✓[39m  [2m3 [22mplaywright/bio-rpt-002-reporting-live.spec.ts:48:3 › BIO-RPT-002-AC06 the report-builder card is connected to a real backend, not a placeholder › the underlying job eventually reaches a real terminal status via polling, not a canned client-side result[2m (2.3s)[22m
+  [32m✓[39m  [2m1 [22mplaywright/bio-rpt-002-reporting-live.spec.ts:59:3 › BIO-RPT-002-AC06 the report-builder card is connected to a real backend, not a placeholder › exporting a completed report fetches real CSV bytes from the live export endpoint[2m (2.4s)[22m
+
+[32m  3 passed[39m[2m (33.0s)[22m

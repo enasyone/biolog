@@ -1,0 +1,31 @@
+NOTE: BIOLOG_BASE_URL pinned to an ad hoc scratch port (127.0.0.1:3100) for this
+evidence run only, because an unrelated pre-existing Next.js dev server (v15.2.4,
+a different prototype) was already bound to the harness's default 127.0.0.1:3000
+on this shared development machine. playwright.config.mjs's committed default
+(port 3000, auto-started web/) is unchanged and is what CI/other machines use.
+
+
+> @biolog/baseline-tests@ test:e2e <workspace>/biolog-worktrees/BIO-FND-007/tests/frontend
+> playwright test
+
+
+[2mRunning [22m16[2m tests using [22m5[2m workers[22m
+
+  [32m✓[39m  [2m 1 [22mplaywright/baseline.spec.js:3:1 › playwright harness loads a synthetic document[2m (464ms)[22m
+  [32m✓[39m  [2m 3 [22mplaywright/bio-fnd-007-shell.spec.ts:23:3 › BIO-FND-007-AC01 responsive shell, light and dark mode › primary navigation is always visible at desktop width[2m (920ms)[22m
+  [32m✓[39m  [2m 5 [22mplaywright/bio-fnd-007-shell.spec.ts:6:3 › BIO-FND-007-AC01 responsive shell, light and dark mode › renders the shell at a mobile viewport with the nav closed by default[2m (934ms)[22m
+  [32m✓[39m  [2m 4 [22mplaywright/bio-fnd-007-shell.spec.ts:30:3 › BIO-FND-007-AC01 responsive shell, light and dark mode › applies the OS dark colour scheme on first load with no saved preference[2m (928ms)[22m
+  [32m✓[39m  [2m 2 [22mplaywright/bio-fnd-007-shell.spec.ts:15:3 › BIO-FND-007-AC01 responsive shell, light and dark mode › opening the nav toggle reveals primary navigation on mobile[2m (1.0s)[22m
+  [32m✓[39m  [2m 6 [22mplaywright/bio-fnd-007-shell.spec.ts:36:3 › BIO-FND-007-AC01 responsive shell, light and dark mode › applies the OS light colour scheme on first load with no saved preference[2m (615ms)[22m
+  [32m✓[39m  [2m 9 [22mplaywright/bio-fnd-007-shell.spec.ts:68:3 › BIO-FND-007-AC02 brand assets and palette are tokenised › the BIOLOG wordmark is rendered with an accessible name[2m (519ms)[22m
+  [32m✓[39m  [2m 8 [22mplaywright/bio-fnd-007-shell.spec.ts:54:3 › BIO-FND-007-AC02 brand assets and palette are tokenised › brand orange and navy custom properties are present on the light theme[2m (551ms)[22m
+  [32m✓[39m  [2m10 [22mplaywright/bio-fnd-007-shell.spec.ts:75:3 › BIO-FND-007-AC03 navigation supports permission-based visibility › the default (staff) demo session hides items it has no permission for[2m (505ms)[22m
+  [32m✓[39m  [2m 7 [22mplaywright/bio-fnd-007-shell.spec.ts:42:3 › BIO-FND-007-AC01 responsive shell, light and dark mode › the theme toggle switches theme and persists it across reload[2m (711ms)[22m
+  [32m✓[39m  [2m11 [22mplaywright/bio-fnd-007-shell.spec.ts:84:3 › BIO-FND-007-AC03 navigation supports permission-based visibility › the viewer demo session shows only unrestricted items plus its one granted item[2m (566ms)[22m
+  [32m✓[39m  [2m12 [22mplaywright/bio-fnd-007-shell.spec.ts:97:3 › BIO-FND-007-AC03 navigation supports permission-based visibility › the admin demo session shows every nav item[2m (485ms)[22m
+  [32m✓[39m  [2m16 [22mplaywright/bio-fnd-007-shell.spec.ts:139:3 › BIO-FND-007-AC05 accessibility baseline › closed mobile nav links are absent from the accessibility tree and cannot receive keyboard focus (BIO-FND-007-QA-01)[2m (422ms)[22m
+  [32m✓[39m  [2m13 [22mplaywright/bio-fnd-007-shell.spec.ts:117:3 › BIO-FND-007-AC05 accessibility baseline › has no axe violations in light mode[2m (845ms)[22m
+  [32m✓[39m  [2m14 [22mplaywright/bio-fnd-007-shell.spec.ts:124:3 › BIO-FND-007-AC05 accessibility baseline › has no axe violations in dark mode[2m (820ms)[22m
+  [32m✓[39m  [2m15 [22mplaywright/bio-fnd-007-shell.spec.ts:131:3 › BIO-FND-007-AC05 accessibility baseline › has no axe violations with the nav drawer open on mobile[2m (859ms)[22m
+
+[32m  16 passed[39m[2m (3.8s)[22m

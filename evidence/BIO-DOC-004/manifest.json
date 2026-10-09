@@ -1,0 +1,30 @@
+{
+  "story_key": "BIO-DOC-004",
+  "title": "Build template-driven and generic visual OCR",
+  "implementation_commit": "87daeb50fd26bd86570c519ee5bbaf6f0208003b",
+  "builder_head": "cb3f930",
+  "reviewed_head": "b670a4ad4417283fe77b3531378bc505f4202b8a",
+  "environment": {"profile": "local offline acceptance; synthetic fixtures only", "timestamp": "2026-09-22T21:08:13Z"},
+  "acceptance_criteria": {
+    "BIO-DOC-004-AC01": {"result": "PASS", "evidence": ["template field/raw/normalized/confidence/coordinate tests"]},
+    "BIO-DOC-004-AC02": {"result": "PASS", "evidence": ["generic detection and semantic-omission tests"]},
+    "BIO-DOC-004-AC03": {"result": "PASS", "evidence": ["English default and French registration-seam tests"]},
+    "BIO-DOC-004-AC04": {"result": "PASS", "evidence": ["critical-field confidence review tests"]},
+    "BIO-DOC-004-AC05": {"result": "PASS", "evidence": ["best-match confidence and no-rewrite tests"]}
+  },
+  "commands": [
+    {"command": "bash tests/foundation/BIO-DOC-004.test.sh", "result": "PASS (28/28)"},
+    {"command": "dotnet Biolog.Features.OcrEngine.Tests.dll", "result": "PASS (34/34)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (23 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS"}
+  ],
+  "builder_verdict": {"result": "PASS_FOR_STORY_SCOPE", "commit_hash": "87daeb50fd26bd86570c519ee5bbaf6f0208003b", "feature_tests": "34/34 PASS", "structural_tests": "28/28 PASS", "vulnerability_audit": "PASS", "metadata_sha256": "38f0fb522ecda2d7cfcc0c165e995ae37e4c2e7063335fb0edd4fa0de2956f94"},
+  "independent_qa": {"reviewer": "Seyi", "result": "PASS", "review_commit": "b670a4a", "evidence": "evidence/BIO-DOC-004/codex/REVIEW-Seyi-round1.md", "evidence_sha256": "132980b33074bcf87d4be6814703d2c818349d9d06edae553b5f91e71a02f1bf"},
+  "category_verdicts": {"functional": "PASS", "security": "PASS", "tenant_isolation": "NOT_APPLICABLE_STATELESS_ENGINE", "offline_recovery": "PASS", "concurrency": "PASS_STATELESS_ENGINE", "regression": "PASS"},
+  "scope_boundary": "English uppercase identity-document visual zones are the production baseline. French is architected and tested as a replaceable language-pack seam but its glyph pack is not shipped by AC03.",
+  "security_performance_reviews": {"security": "PASS: unreadable characters are never generatively filled, confidence/review state is engine-controlled, and input pixels are cloned", "performance": "Not separately required for the dependency-free offline engine"},
+  "known_unrelated_quality_failure": "Full quality reports missing frontend dependencies and the pre-existing BIO-FND-009 observability race; all BIO-DOC-004 gates pass",
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "All five acceptance criteria have executable builder and independent evidence; fresh feature, structural and repository gates pass."}
+}

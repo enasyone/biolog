@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Matches api/Biolog.Api/Biolog.Api.csproj's pinned TFM (BIO-FND-008), same as BIO-DOC-001/002/003. -->
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <!--
+    No ASP.NET Core dependency, no NuGet package references, no OCR/image-decoding/CV library
+    (none exists anywhere in this repo - docs/features/bio-doc-004/OCR-ENGINE.md "Why no OCR
+    library"). Only ProjectReference is BIO-DOC-001's evidence model, this story's one declared
+    dependency - deliberately NOT BIO-DOC-002's MrzEngine or BIO-DOC-003's BarcodeEngine (neither
+    is a declared dependency; this feature defines its own small raster/glyph-font types rather
+    than reaching for a sibling feature's, matching the precedent BIO-DOC-003 already set for the
+    identical situation).
+  -->
+  <ItemGroup>
+    <ProjectReference Include="../../bio-doc-001/Biolog.Features.DocumentVerify/Biolog.Features.DocumentVerify.csproj" />
+  </ItemGroup>
+
+</Project>

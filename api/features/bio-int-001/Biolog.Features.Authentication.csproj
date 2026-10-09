@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-INT-001 owns api/features/bio-int-001/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh)
+         and none to bio-idn-006 either - BIO-IDN-006's RoleAssignmentService/PermissionService
+         are internal with InternalsVisibleTo granted only to Biolog.Api and its own test
+         assembly, and this project cannot reference a sibling feature project any more than
+         it can reference the host. Role names this project's ClaimMappingRule may target are
+         therefore this project's OWN closed, documented copy of BIO-IDN-006's RoleType wire
+         strings (see Domain/KnownRoles.cs) - a duplicated value set, not a live reference,
+         the same "duplicate the minimal shape" boundary pattern BIO-DEV-003's
+         DeviceDescriptor and BIO-RPT-001's DomainEventEnvelope already established.
+
+         Tenant resolution: every method takes a plain string tenantId, same as
+         BIO-RPT-001 - api/Biolog.Api/Modules/BioInt001Module.cs resolves the real
+         ITenantContextAccessor and passes the string down.
+
+         No JWT/session ADR exists anywhere in this codebase (confirmed by search before
+         designing - docs/features/bio-crd-007/README.md already states this explicitly for
+         its own signed-package feature). Session tokens here are a hand-rolled HMAC-signed
+         opaque string (Domain/SessionToken.cs), the same shape as BIO-IDN-006's own
+         ActorProvenanceGate HMAC precedent - not a JWT library dependency, so no new
+         vulnerability-scan surface is introduced for a foundation story. -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.Authentication.Tests" />
+  </ItemGroup>
+
+</Project>

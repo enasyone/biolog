@@ -1,0 +1,125 @@
+{
+  "story_key": "BIO-OPS-007",
+  "title": "Performance, concurrency and resilience hardening",
+  "implementation_commit": "93bd24ac3dcb6c2ced8bb2a523f1016702bfa9cb",
+  "production_race_fix_commit": "a2537e9f14308491a76b7a1072fa6a4010992505",
+  "builder_head": "43305743d28d66efc9a8e29044617680ac34e642",
+  "reviewed_head": "e82a11fe0c3302ac97d6e213d782d94df6537b72",
+  "environment": {
+    "profile": "local controlled acceptance on Darwin arm64; synthetic data only",
+    "timestamp": "2026-10-08"
+  },
+  "acceptance_criteria": {
+    "BIO-OPS-007-AC01": {
+      "result": "PASS",
+      "evidence": [
+        "api/features/bio-crd-006/CardLifecycleService.cs",
+        "tests/features/bio-ops-007/ConcurrentReplacementHardeningTests.cs",
+        "evidence/BIO-OPS-007/builder/unrestricted-ac01-result.md"
+      ],
+      "finding": "Two distinct replacement activations are serialized and only the latest live sequence can activate; exactly one attempt succeeds and one card remains active."
+    },
+    "BIO-OPS-007-AC02": {
+      "result": "PASS",
+      "evidence": [
+        "tests/flutter/test/bio_mob_003_ac05_reconnect_storm_test.dart",
+        "tests/flutter/test/bio_ops_004_sy_ops004_01_access_cache_reconnect_test.dart",
+        "evidence/BIO-OPS-007/builder/remediation-runtime-results.md"
+      ],
+      "finding": "Overlapping reconnect passes preserve single-flight and atomic claims, upload each mutation once, and coalesce a recovery pass after an in-flight network failure."
+    },
+    "BIO-OPS-007-AC03": {
+      "result": "PASS",
+      "evidence": [
+        "evidence/BIO-OPS-007/builder/latency-baseline.json",
+        "tests/features/bio-ops-007/latency-probe.py",
+        "evidence/BIO-OPS-007/codex/adversarial-evidence-check.py"
+      ],
+      "finding": "Thirty-one post-warmup loopback HTTP samples were retained for a live API endpoint and production-built approved UI page, with raw values and median/p95/p99 statistics."
+    },
+    "BIO-OPS-007-AC04": {
+      "result": "PASS",
+      "evidence": [
+        "tests/features/bio-ops-007/ConcurrentReplacementHardeningTests.cs",
+        "tests/flutter/test/bio_ops_004_sy_ops004_01_access_cache_reconnect_test.dart",
+        "evidence/BIO-OPS-007/builder/remediation-runtime-results.md"
+      ],
+      "finding": "Executable database-create, queue-append and mid-request network interruptions prove recovery, integrity, retry, no loss and no duplicate effects."
+    },
+    "BIO-OPS-007-AC05": {
+      "result": "PASS",
+      "evidence": [
+        "docs/features/bio-ops-007/RESOURCE-PROFILES.md",
+        "tests/features/bio-ops-007/BIO-OPS-007.acceptance.sh"
+      ],
+      "finding": "Bounded local workload, parallelism, memory-headroom, duration and recovery recommendations are documented for 16, 32 and 64 GB laptops."
+    }
+  },
+  "commands": [
+    {
+      "command": "bash tests/features/bio-ops-007/BIO-OPS-007.acceptance.sh",
+      "result": "PASS (13/13)"
+    },
+    {
+      "command": "tests/features/bio-ops-007/bin/Debug/net10.0/Biolog.Features.CardLifecycle.Tests",
+      "result": "PASS (3/3)"
+    },
+    {
+      "command": "python3 evidence/BIO-OPS-007/codex/adversarial-evidence-check.py",
+      "result": "PASS (5/5)"
+    },
+    {
+      "command": "python3 tests/features/bio-ops-007/latency-probe.py --validate evidence/BIO-OPS-007/builder/latency-baseline.json",
+      "result": "PASS"
+    },
+    {
+      "command": "selected Flutter reconnect/retry/network suite",
+      "result": "PASS unrestricted (15/15); local Flutter SDK cache is sandbox read-only"
+    },
+    {
+      "command": "python3 scripts/check-traceability.py --all",
+      "result": "PASS (36 implemented stories)"
+    },
+    {
+      "command": "bash scripts/check-module-project-references.sh",
+      "result": "PASS"
+    },
+    {
+      "command": "bash scripts/secret-scan.sh --all",
+      "result": "PASS (gitleaks; 1,284 commits / 134.42 MB; no leaks)"
+    }
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "43305743d28d66efc9a8e29044617680ac34e642",
+    "story_suite": "3/3 PASS",
+    "flutter_resilience_suite": "15/15 PASS unrestricted",
+    "acceptance_gate": "13/13 PASS",
+    "latency_evidence_validator": "PASS"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "result": "PASS",
+    "builder_commit_reviewed": "43305743d28d66efc9a8e29044617680ac34e642",
+    "review_commit": "e82a11fe0c3302ac97d6e213d782d94df6537b72",
+    "evidence": "evidence/BIO-OPS-007/codex/REVIEW-Seyi-round2.md",
+    "evidence_sha256": "7a9feb4d0a984c27698fea9ee3288edda21f3a91e5099cd830444938b28b23a3"
+  },
+  "category_verdicts": {
+    "functional": "PASS",
+    "offline_resilience": "PASS",
+    "concurrency": "PASS",
+    "performance_evidence": "PASS",
+    "regression": "PASS"
+  },
+  "disclosures": [
+    "Latency figures are single-client loopback baselines for comparison on one laptop, not production service-level objectives or capacity claims.",
+    "The accepted production fix is also present on the owning feature/BIO-CRD-006 branch; integration into develop remains the orchestrator's responsibility."
+  ],
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "AC01-AC05 map to executable tests and retained evidence. The replacement-card race is fixed and discriminated, database/queue/network interruptions exercise the correct boundaries, and latency data measures real local HTTP requests rather than build or runner time."
+  }
+}

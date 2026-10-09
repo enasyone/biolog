@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-VIS-001 owns api/features/bio-vis-001/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh)
+         and no ProjectReference to any other feature project - PersonId/HostPersonId existence
+         is proven through this project's own narrow Domain/IPersonExistenceGateway.cs, and the
+         approve/deny and config-management permission checks through Domain/IPermissionGateway.cs,
+         both implemented by adapters in api/Biolog.Api/Modules/BioVis001Module.cs wrapping
+         BIO-IDN-001's PersonService and BIO-IDN-006's PermissionService directly - the same
+         gateway pattern every identity-wave story in this codebase already uses.
+
+         Namespace root is "Visitors". Two aggregates: VisitorRecord (Domain/VisitorRecord.cs, a
+         mutable CAS-versioned lifecycle aggregate - AC01/AC02/AC03/AC04, no canonical vis_
+         identifier prefix - see Identifiers/CanonicalId.cs's own header) and
+         VisitorTenantConfig (Domain/VisitorTenantConfig.cs, a per-tenant CAS-versioned mutable
+         record - AC03's configurable feature controls). Automatic expiry is never persisted; it
+         is computed at read time from the record plus the current time
+         (Domain/VisitorStatusEvaluator.cs), the same "refuse auto-flip, compute in effect at
+         read time" discipline BIO-IDN-002/BIO-ATT-001 established. -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Every aggregate's constructor and its repository are internal - the explicit, auditable
+         seam for Biolog.Api (DI registration) and this project's own test assembly. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.Visitors.Tests" />
+  </ItemGroup>
+
+</Project>

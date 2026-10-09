@@ -1,0 +1,91 @@
+{
+  "story_key": "BIO-FND-002",
+  "story_title": "Pin local toolchain and dependency policy",
+  "implementation_commit": "d88f07e5782234337d5ccad2a4e94e630ffda669",
+  "builder_head": "6a4432d085c18bc70130310a6d250006ce79087a",
+  "environment_profile": {
+    "operating_system": "macOS 26.4 (build 25E246)",
+    "kernel": "Darwin 25.4.0 arm64",
+    "python": "3.14.3",
+    "git": "2.53.0",
+    "profile": "local synthetic acceptance; no production data"
+  },
+  "timestamp": "2026-09-20T15:12:40Z",
+  "acceptance_criteria": {
+    "BIO-FND-002-AC01": {
+      "result": "PASS",
+      "evidence": [
+        "builder/SUMMARY.md",
+        "builder/developer-test-output.txt",
+        "codex/REREVIEW-ROUND-2.md"
+      ]
+    },
+    "BIO-FND-002-AC02": {
+      "result": "PASS",
+      "evidence": [
+        "builder/developer-test-output.txt",
+        "builder/independent-review-rerun-output.txt",
+        "codex/REREVIEW-ROUND-2.md"
+      ]
+    },
+    "BIO-FND-002-AC03": {
+      "result": "PASS",
+      "evidence": [
+        "builder/developer-test-output.txt",
+        "builder/independent-review-rerun-output.txt",
+        "codex/REREVIEW-ROUND-2.md"
+      ]
+    },
+    "BIO-FND-002-AC04": {
+      "result": "PASS",
+      "evidence": [
+        "builder/check-toolchain-output.txt",
+        "builder/developer-test-output.txt",
+        "builder/independent-review-rerun-output.txt",
+        "codex/REREVIEW-ROUND-2.md"
+      ]
+    }
+  },
+  "commands": [
+    {
+      "command": "tests/foundation/BIO-FND-002.test.sh",
+      "result": "PASS (16/16)",
+      "evidence": "builder/developer-test-output.txt",
+      "sha256": "c756c0d0a572ebd87ec7ad7aa37e83b23b2729d88664f8c6b5c2be67191facd3"
+    },
+    {
+      "command": "bash evidence/BIO-FND-002/codex/independent-review.sh",
+      "result": "PASS (11 independent probes; exit 0)",
+      "evidence": "builder/independent-review-rerun-output.txt",
+      "sha256": "0803a669a2ff82323fde00d3b95d91bd5682f202d7d823f5ee766471034c9504"
+    },
+    {
+      "command": "scripts/check-toolchain.sh",
+      "result": "EXPECTED DRIFT (exit 1; unavailable local tools explicitly reported)",
+      "evidence": "builder/check-toolchain-output.txt"
+    }
+  ],
+  "builder_verdict": {
+    "reviewer": "Emeka",
+    "result": "PASS",
+    "commit": "6a4432d085c18bc70130310a6d250006ce79087a"
+  },
+  "independent_qa_verdicts": [
+    {
+      "reviewer": "Seyi",
+      "result": "PASS",
+      "reviewed_implementation_commit": "d88f07e5782234337d5ccad2a4e94e630ffda669",
+      "reviewed_builder_head": "6a4432d085c18bc70130310a6d250006ce79087a",
+      "evidence": "codex/REREVIEW-ROUND-2.md",
+      "sha256": "0ffd1779aac36648558f0ac4210582eb253d608f9ccf3d4af3432aff5a04944b"
+    }
+  ],
+  "security_verdict": "NOT_APPLICABLE",
+  "performance_verdict": "NOT_APPLICABLE",
+  "screenshots": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "All four acceptance criteria have builder and independent evidence; Seyi re-review passed and both prior findings are closed."
+  }
+}

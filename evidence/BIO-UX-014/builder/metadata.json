@@ -1,0 +1,10 @@
+{
+  "story_key": "BIO-UX-014",
+  "stage": "builder",
+  "commit_hash": "5955bfdf5e36f33af66f25c9690190168adb8581",
+  "test_command": "(cd web && ./node_modules/.bin/tsc --noEmit && ./node_modules/.bin/next build) && (cd tests/frontend && ./node_modules/.bin/vitest run) && (cd tests/frontend && TZ=UTC ./node_modules/.bin/playwright test bio-ux-014-visual-regression.spec.ts)",
+  "result": "PASS",
+  "timestamp": "2026-09-23T19:30:00Z",
+  "reviewer": "Emeka",
+  "data_classification": "SYNTHETIC"
+}

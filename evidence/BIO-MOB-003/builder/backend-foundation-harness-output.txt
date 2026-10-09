@@ -1,0 +1,30 @@
+PASS  a central offline-sync feature project exists
+PASS  project targets the pinned .NET SDK's TFM
+PASS  module lives one-way in api/Biolog.Api/Modules, not back in the feature project
+PASS  registered in the packaged Program.cs module array
+PASS  the intake route matches what the mobile-side HttpSyncTransport already targets
+PASS  the request DTO accepts operation and the arbitrary payload, matching toSyncDeltaJson()
+PASS  a real end-to-end test proves an addition, an update and a revocation are each accepted centrally
+PASS  an idempotency store with claim/complete/release/get semantics exists
+PASS  the endpoint requires Idempotency-Key, fail-closed
+PASS  a real test proves a replay returns the original stored result with Idempotency-Replayed: true
+PASS  a real test proves reusing a key with different content is rejected, not executed again
+PASS  a generic per-aggregate version ledger implements ADR-0001 §3.2 compare-and-set
+PASS  a conflict is never merged - no merge/resolve path exists anywhere in this feature
+PASS  a real test proves a stale base_version is rejected with the current version echoed back
+PASS  a real test proves a conflict never advances the ledger or commits anything
+PASS  a real test proves two racing updates against the same aggregate do not both succeed
+PASS  device authentication resolves the tenant, never trusting a request-supplied one
+PASS  the service cross-validates the payload's tenant_id claim against the independently resolved tenant
+PASS  a real test proves a forged payload tenant_id is rejected, not routed
+PASS  device authentication requires both a device id and a verified device secret
+PASS  a device must also be ACTIVE, resolved via the shared device registry, not a per-feature fake in production
+PASS  the cross-tenant device lookup this endpoint depends on is internal, not a public escape hatch
+PASS  no device secret is committed to checked-in app configuration
+PASS  no ProjectReference to any other feature project (all cross-feature access is through this project's own gateways)
+PASS  unit-level integration tests exist for the real HTTP endpoint
+PASS  a real packaged-host channel test exists (real device registration, not merely an injected test double)
+PASS  all fixtures marked SYNTHETIC
+PASS  builder evidence recorded
+==============================
+28 passed, 0 failed

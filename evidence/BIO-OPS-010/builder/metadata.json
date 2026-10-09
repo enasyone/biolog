@@ -1,0 +1,12 @@
+{
+  "story": "BIO-OPS-010",
+  "tested_commit": "a9864e9f24f2de9ea8aa7881718d1353cb9f6aef",
+  "result": "BLOCKED_HISTORICAL_PATH_REWRITE_AND_HUMAN_APPROVAL",
+  "ac01": "PARTIAL_PASS_WITH_GOVERNANCE_POINTER_CORRECTION_REQUIRED",
+  "ac02": "PASS",
+  "ac03": "CURRENT_TREE_PASS_HISTORY_FAIL_LOCAL_PATHS_IN_105_COMMITS",
+  "ac06": "DRAFT_ONLY_NOT_APPLIED",
+  "remote_added": false,
+  "push_performed": false,
+  "tag_created": false
+}

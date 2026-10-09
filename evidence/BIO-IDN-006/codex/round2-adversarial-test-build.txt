@@ -1,0 +1,9 @@
+$ dotnet build tests/features/bio-idn-006/Biolog.Features.Rbac.Tests.csproj --no-restore --nologo
+  Biolog.Features.Rbac -> <workspace>/biolog-worktrees/BIO-IDN-006/api/features/bio-idn-006/bin/Debug/net10.0/Biolog.Features.Rbac.dll
+  Biolog.Features.Rbac.Tests -> <workspace>/biolog-worktrees/BIO-IDN-006/tests/features/bio-idn-006/bin/Debug/net10.0/Biolog.Features.Rbac.Tests.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:04.56

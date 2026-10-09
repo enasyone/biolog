@@ -1,0 +1,57 @@
+PASS  AC01 DocumentTemplateReferenceLayout carries width/height/content hash
+PASS  AC01 field regions reuse BIO-DOC-004's own OcrTemplateField directly (zero translation layer)
+PASS  AC01 graphic regions are this story's own named, non-OCR region type
+PASS  AC01 DefineRegions refuses before a reference layout exists to validate bounds against
+PASS  AC01 DefineRegions rejects duplicate region names and out-of-bounds geometry
+PASS  AC01 test coverage exists
+PASS  AC02 DocumentTemplateDraftStatus is the exact four-stage draft/test/approval/publish lifecycle
+PASS  AC02 SubmitForTest moves Draft to Test
+PASS  AC02 RecordCorpusRun moves Test to Approval on pass, back to Draft on fail
+PASS  AC02 Publish moves Approval to Published
+PASS  AC02 test coverage exists for every transition
+PASS  AC03 a real synthetic-corpus runner exists that calls BIO-DOC-004's actual TemplateOcrEngine
+PASS  AC03 the corpus run result is computed internally, never a caller-supplied boolean
+PASS  AC03 an empty corpus can never satisfy the gate
+PASS  AC03 test coverage proves both a genuine pass and a genuine (deliberately corrupted) fail
+PASS  AC04 TenantId is required and resolved server-side only, never caller-supplied
+PASS  AC04 PublicReference carries a tenant-prefixed identifier distinct from any global pack entry id
+PASS  AC04 construction validates a well-formed canonical tenant id (ADR-0001), the same discipline BIO-CRD-008 established
+PASS  AC04 this is a wholly separate aggregate/store from BIO-DOC-010's own global pack - no shared type
+PASS  AC04 test coverage exists, including the structural tenant-id-cannot-be-bypassed proof
+PASS  AC05 IsImmutable is true only for Published
+PASS  AC05 there is no method to remove/replace/update a region or layout in place once published - only CreateNextDraftVersion
+PASS  AC05 every content mutator checks Draft status explicitly before applying
+PASS  AC05 test coverage exists proving every mutator refuses once Published
+PASS  AC06 the module is registered into the host (Program.cs, one line, additive)
+PASS  AC06 the module adapter lives in api/Biolog.Api/Modules, not inside the feature project
+PASS  AC06 no unapproved UI redesign - no web/ file is touched by this story
+PASS  AC06 BIO-DOC-010's own /document-verify DocumentVerifyService wiring is untouched (regression check)
+PASS  AC06 the design doc explicitly discloses why no new admin UI route was built for this story
+PASS  No ProjectReference to Biolog.Api.csproj from this feature project
+PASS  The only declared ProjectReference is BIO-DOC-004's OcrEngine
+PASS  No ProjectReference to BIO-IDN-006 (internal-locked, authorization-decision wall - see module header)
+PASS  Tenant context seam is the zero-reference pattern, adapted only in the host module
+PASS  InternalsVisibleTo is scoped to Biolog.Api and this project's own test assembly only
+PASS  Audit integrity: a lost concurrency race audits Denied, never a false Allowed
+PASS  Service test coverage exists, including concurrency-conflict and tenant-isolation proofs
+PASS  ZB-DOC011-01 a provenance gate exists using the current Kemi-ruled canonical (fail-closed, no fallback key) shape
+PASS  ZB-DOC011-01 the provenance gate uses its own feature-local configuration key
+PASS  ZB-DOC011-01 every mutation route requires a verified provenance proof
+PASS  ZB-DOC011-01 read routes also require a verified provenance proof, not just a resolved actor
+PASS  ZB-DOC011-01 a missing/invalid provenance proof maps to HTTP 401
+PASS  ZB-DOC011-01 a live IPermissionGateway check guards every mutation
+PASS  ZB-DOC011-01 publishing requires a distinct, higher-impact permission from every other mutation
+PASS  ZB-DOC011-01 the permission gateway is wrapped in the host module, not referenced directly from this feature project
+PASS  ZB-DOC011-01 maker-checker separation for publish is explicitly disclaimed, not silently skipped
+PASS  ZB-DOC011-02 every mutation to a lineage is serialized through a lock registry
+PASS  ZB-DOC011-02 the repository no longer does its own compare-and-set (the lock is now the serialization authority)
+PASS  ZB-DOC011-02 CreateNextVersionAsync computes the next version number and adds it under the same lock (no Max()+1 race)
+PASS  ZB-DOC011-02 an ambiguous audit write-throw is resolved via ExistsAsync, not assumed to be a failure
+PASS  ZB-DOC011-02 test coverage proves the ambiguous-write, genuine-failure, permission-denial, and concurrent-next-version cases
+PASS  F01/ZB-DOC011-03 a dedicated read permission exists, distinct from manage/publish
+PASS  F01/ZB-DOC011-03 all three read methods require a permission before touching the repository
+PASS  F01/ZB-DOC011-03 the read permission check accepts read OR either mutation permission (manage/publish implies view)
+PASS  F01/ZB-DOC011-03 endpoints await the now-async, permission-checked read methods
+PASS  F01/ZB-DOC011-03 test coverage proves unprivileged reads are refused, manage implies read, and cross-tenant reads stay isolated
+
+RESULT: 55 passed, 0 failed

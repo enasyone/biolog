@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.biolog.local/migration-registry.schema.json",
+  "title": "BIOLOG migration registry",
+  "description": "ADR-0005 Decision 2. The single ordered ledger of assigned migration records. Writes to this registry are gated by holding the migration-core lock (automation/locks/migration-core.lock.json) first - the same mechanism every shared-contract story in this wave has used since ARC-001. Examples are SYNTHETIC.",
+  "type": "object",
+  "required": ["records"],
+  "properties": {
+    "records": {
+      "type": "array",
+      "items": { "$ref": "migration-record.schema.json" }
+    }
+  }
+}

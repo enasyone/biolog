@@ -1,0 +1,25 @@
+PASS  AC01 feature project exists
+PASS  AC01 project targets the pinned .NET SDK's TFM
+PASS  AC01 feature project has no ProjectReference to Biolog.Api.csproj
+PASS  AC01 the typed adapter interface exists
+PASS  AC01 an adapter exists for each of the four named device kinds
+PASS  AC01 every adapter implements the one typed interface, not four separate ad-hoc shapes
+PASS  AC01 a registry resolves the right adapter by vendor/model
+PASS  AC02 capability discovery domain type exists
+PASS  AC02 health domain type exists
+PASS  AC02 the orchestration service exposes both discovery and health
+PASS  AC02 endpoints are mapped for capabilities and health
+PASS  AC03 a typed exception carries the certification status
+PASS  AC03 the certification gate is checked before the adapter registry is resolved
+PASS  AC03 the module bridges the real certification service, translating Unsupported to a failed gate
+PASS  AC03 an unsupported combination maps to a 409 with certification_status
+PASS  AC04 vendor SDK simulator types exist, isolated in their own namespace
+PASS  AC04 every vendor SDK type is declared internal, not public
+PASS  AC04 a reflection test enforces the isolation boundary at the assembly level
+PASS  AC04 the domain capability/health types reference no VendorSdks type
+PASS  AC05 the HYBRID decision and its reasoning are documented
+PASS  AC05 this story does not modify BIO-UX-010's owned devices UI (frontend surface unchanged, per feature-path-ownership.json)
+PASS  builder evidence directory exists
+PASS  feature docs exist
+----
+PASS=23 FAIL=0

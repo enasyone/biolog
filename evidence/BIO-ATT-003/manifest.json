@@ -1,0 +1,79 @@
+{
+  "story_key": "BIO-ATT-003",
+  "title": "Implement workforce attendance policies",
+  "implementation_commit": "626fcb465e37a1adbee67e29c8c677c57ccf5a4e",
+  "builder_head": "202eb86c91a44e10d417921e8c0022b8df73a853",
+  "reviewed_head": "a3092ae90719e021f6844caa8727e8424bfcefdb",
+  "environment": {
+    "profile": "local acceptance on Darwin arm64; synthetic fixtures only",
+    "timestamp": "2026-10-07"
+  },
+  "acceptance_criteria": {
+    "BIO-ATT-003-AC01": {
+      "result": "PASS",
+      "evidence": ["api/features/bio-att-003/Domain/WorkforceShift.cs", "tests/features/bio-att-003/WorkforceShiftServiceTests.cs"],
+      "finding": "Tenant-scoped named shifts expose configurable start, end and grace periods with compare-and-swap versioning."
+    },
+    "BIO-ATT-003-AC02": {
+      "result": "PASS",
+      "evidence": ["api/features/bio-att-003/Domain/ClockPairEvaluator.cs", "tests/features/bio-att-003/ClockPairEvaluatorTests.cs"],
+      "finding": "Clock events derive explicit complete, open, unmatched and overlapping pair states without guessing irregular durations."
+    },
+    "BIO-ATT-003-AC03": {
+      "result": "PASS",
+      "evidence": ["api/features/bio-att-003/Domain/OvertimeEvaluator.cs", "tests/features/bio-att-003/OvertimeEvaluatorTests.cs", "tests/features/bio-att-003/AttendanceInterpretationEvaluatorTests.cs"],
+      "finding": "Overtime, lateness and absence are derived from immutable events and shift policy. Same-day early arrivals and overnight boundary cases are classified without the prior 24-hour wrap error."
+    },
+    "BIO-ATT-003-AC04": {
+      "result": "PASS",
+      "evidence": ["api/features/bio-att-003/Domain/WorkforceAttendanceAdjustment.cs", "tests/features/bio-att-003/WorkforceAttendanceServiceTests.cs"],
+      "finding": "Exceptions are separate append-only adjustments requiring a validated audit reason; computed overtime remains visible and unchanged."
+    },
+    "BIO-ATT-003-AC05": {
+      "result": "PASS",
+      "evidence": ["tests/dotnet/Biolog.IntegrationTests/BioAtt003ReverifyEndpointsTests.cs", "tests/frontend/playwright/bio-att-003-workforce-attendance-live.spec.ts", "evidence/features/bio-att-003/builder/round2-metadata.json", "evidence/features/bio-att-003/codex/REVIEW-Seyi-round2.md"],
+      "finding": "The approved /attendance surface uses the AttendanceService workforce port. Real-host and LIVE browser evidence prove an authenticated administrator loads and creates a shift, persistence is confirmed by a follow-up read, and a signed unprivileged viewer receives 403 with visible failure and no false success."
+    }
+  },
+  "commands": [
+    {"command": "./tests/features/bio-att-003/bin/Debug/net10.0/Biolog.Features.WorkforceAttendance.Tests", "result": "PASS (64/64)"},
+    {"command": "cd tests/frontend && node node_modules/vitest/vitest.mjs run unit/td-web-provenance-bridge-route-table.test.ts unit/bio-ux-005-feature-mode.test.ts unit/bio-ux-010-module-ports.test.ts", "result": "54/55 PASS; one known unrelated TD-BIO-UX-005-MODULE-REGISTRY-FIXTURE-GAP failure for IntegrationService; ATT-003 route and operational port checks PASS"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (36 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS (clean, fallback scanner)"}
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "202eb86c91a44e10d417921e8c0022b8df73a853",
+    "implementation_commit": "626fcb465e37a1adbee67e29c8c677c57ccf5a4e",
+    "feature_tests": "64/64 PASS",
+    "integration_tests": "230/230 PASS",
+    "bio_att_001_regression": "24/24 PASS",
+    "live_playwright": "4 consecutive manual real-server runs PASS at round-2 remediation",
+    "round3_metadata_sha256": "e0f3f5838d94bf5d4e6024fa7adea80c9c69a3aed296127f64a30be412f8fb22"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "result": "PASS",
+    "builder_commit_reviewed": "202eb86c91a44e10d417921e8c0022b8df73a853",
+    "review_commit": "a3092ae90719e021f6844caa8727e8424bfcefdb",
+    "evidence": "evidence/features/bio-att-003/codex/REVIEW-Seyi-round3.md",
+    "evidence_sha256": "ce6d6c7710556c2f54ebf56376c5d0cdcd44d54f281410addbb72fcb8893db",
+    "prior_ac05_closure_evidence": "evidence/features/bio-att-003/codex/REVIEW-Seyi-round2.md"
+  },
+  "category_verdicts": {
+    "functional": "PASS",
+    "security": "PASS",
+    "tenant_isolation": "PASS",
+    "authorization": "PASS",
+    "concurrency": "PASS",
+    "regression": "PASS",
+    "live_browser_workflow": "PASS"
+  },
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "AC01-AC05 map to exact-commit implementation, executable tests, real-host and real-browser workflow evidence, and the required independent QA PASS. Fresh feature, traceability, module-direction and secret checks pass; the one focused frontend failure is the pre-existing unrelated IntegrationService fixture gap."
+  }
+}

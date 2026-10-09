@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-FND-004",
+  "title": "Create local acceptance evidence structure",
+  "owner": "Chioma - Acceptance & Traceability Auditor",
+  "requirement_ids": [
+    "BIO-FND-004-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-FND-004-AC01",
+      "requirement_ids": [
+        "BIO-FND-004-REQ-001"
+      ],
+      "text": "Each story has an evidence folder convention containing builder, adversarial, security and acceptance evidence."
+    },
+    {
+      "id": "BIO-FND-004-AC02",
+      "requirement_ids": [
+        "BIO-FND-004-REQ-001"
+      ],
+      "text": "Evidence metadata records story key, commit hash, test command, result, timestamp and reviewer."
+    },
+    {
+      "id": "BIO-FND-004-AC03",
+      "requirement_ids": [
+        "BIO-FND-004-REQ-001"
+      ],
+      "text": "A traceability check identifies stories with missing evidence."
+    },
+    {
+      "id": "BIO-FND-004-AC04",
+      "requirement_ids": [
+        "BIO-FND-004-REQ-001"
+      ],
+      "text": "Synthetic test data is clearly marked."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-FND-004.test.sh",
+      "ac_ids": [
+        "BIO-FND-004-AC01",
+        "BIO-FND-004-AC02",
+        "BIO-FND-004-AC03",
+        "BIO-FND-004-AC04"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-FND-004/manifest.json",
+      "ac_ids": [
+        "BIO-FND-004-AC01",
+        "BIO-FND-004-AC02",
+        "BIO-FND-004-AC03",
+        "BIO-FND-004-AC04"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1420 @@
+/*
+ * BIOLOG design tokens as CSS custom properties (BIO-FND-007-AC01, AC02).
+ * Colour values must match web/lib/tokens.ts exactly — see that file's header
+ * comment. Status colour/typography/spacing/radii/shadow/iconography values
+ * must match web/design-system/tokens.ts and iconography.ts exactly
+ * (BIO-UX-001-AC02) — bio-ux-001-css-sync.test.ts pins the two together the
+ * same way bio-fnd-007-tokens.test.ts pins the original colour set.
+ */
+:root,
+:root[data-theme='light'] {
+  --biolog-color-bg: #f7f8fa;
+  --biolog-color-surface: #ffffff;
+  --biolog-color-text: #161b22;
+  --biolog-color-text-muted: #5b6570;
+  --biolog-color-border: #dde2e8;
+  --biolog-color-accent: #f4502a;
+  --biolog-color-accent-contrast: #ffffff;
+  --biolog-color-brand-navy: #0b2341;
+  --biolog-color-on-navy: #ffffff;
+  --biolog-color-success: #1e8e5a;
+  --biolog-color-success-on: #ffffff;
+  --biolog-color-success-bg: #e6f5ec;
+  --biolog-color-warning: #b7791f;
+  --biolog-color-warning-on: #ffffff;
+  --biolog-color-warning-bg: #fbf0dd;
+  --biolog-color-error: #c4321e;
+  --biolog-color-error-on: #ffffff;
+  --biolog-color-error-bg: #fbe6e2;
+  --biolog-color-info: #2364aa;
+  --biolog-color-info-on: #ffffff;
+  --biolog-color-info-bg: #e4eef9;
+  --biolog-color-offline: #5b6570;
+  --biolog-color-offline-on: #ffffff;
+  --biolog-color-offline-bg: #eaecef;
+  --biolog-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.08);
+  --biolog-shadow-md: 0 4px 10px rgba(15, 23, 42, 0.1);
+  --biolog-shadow-lg: 0 12px 24px rgba(15, 23, 42, 0.14);
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --biolog-color-bg: #11151b;
+  --biolog-color-surface: #181d25;
+  --biolog-color-text: #edeff2;
+  --biolog-color-text-muted: #98a2ae;
+  --biolog-color-border: #2a313c;
+  --biolog-color-accent: #ff7a52;
+  --biolog-color-accent-contrast: #161200;
+  --biolog-color-brand-navy: #132a4a;
+  --biolog-color-on-navy: #f2f5f9;
+  --biolog-color-success: #3fc17e;
+  --biolog-color-success-on: #0b1f14;
+  --biolog-color-success-bg: #132a1e;
+  --biolog-color-warning: #e0a83f;
+  --biolog-color-warning-on: #241a05;
+  --biolog-color-warning-bg: #2c2410;
+  --biolog-color-error: #f0604a;
+  --biolog-color-error-on: #2a0b05;
+  --biolog-color-error-bg: #2e1512;
+  --biolog-color-info: #5b9be0;
+  --biolog-color-info-on: #081726;
+  --biolog-color-info-bg: #152232;
+  --biolog-color-offline: #98a2ae;
+  --biolog-color-offline-on: #14181d;
+  --biolog-color-offline-bg: #20252c;
+  --biolog-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.32);
+  --biolog-shadow-md: 0 4px 10px rgba(0, 0, 0, 0.4);
+  --biolog-shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.48);
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  /* No-JS fallback: matches the inline theme script's own preference order. */
+  :root:not([data-theme='light']):not([data-theme='dark']) {
+    --biolog-color-bg: #11151b;
+    --biolog-color-surface: #181d25;
+    --biolog-color-text: #edeff2;
+    --biolog-color-text-muted: #98a2ae;
+    --biolog-color-border: #2a313c;
+    --biolog-color-accent: #ff7a52;
+    --biolog-color-accent-contrast: #161200;
+    --biolog-color-brand-navy: #132a4a;
+    --biolog-color-on-navy: #f2f5f9;
+    --biolog-color-success: #3fc17e;
+    --biolog-color-success-on: #0b1f14;
+    --biolog-color-success-bg: #132a1e;
+    --biolog-color-warning: #e0a83f;
+    --biolog-color-warning-on: #241a05;
+    --biolog-color-warning-bg: #2c2410;
+    --biolog-color-error: #f0604a;
+    --biolog-color-error-on: #2a0b05;
+    --biolog-color-error-bg: #2e1512;
+    --biolog-color-info: #5b9be0;
+    --biolog-color-info-on: #081726;
+    --biolog-color-info-bg: #152232;
+    --biolog-color-offline: #98a2ae;
+    --biolog-color-offline-on: #14181d;
+    --biolog-color-offline-bg: #20252c;
+    --biolog-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.32);
+    --biolog-shadow-md: 0 4px 10px rgba(0, 0, 0, 0.4);
+    --biolog-shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.48);
+    color-scheme: dark;
+  }
+}
+
+/*
+ * Typography/spacing/radii tokens (BIO-UX-001-AC02). Theme-independent, so
+ * declared once on :root rather than duplicated per theme block above.
+ */
+:root {
+  --biolog-font-family:
+    Satoshi, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --biolog-font-size-xs: 0.75rem;
+  --biolog-line-height-xs: 1.05rem;
+  --biolog-font-size-sm: 0.8125rem;
+  --biolog-line-height-sm: 1.2rem;
+  --biolog-font-size-base: 0.9375rem;
+  --biolog-line-height-base: 1.4rem;
+  --biolog-font-size-lg: 1.0625rem;
+  --biolog-line-height-lg: 1.55rem;
+  --biolog-font-size-xl: 1.25rem;
+  --biolog-line-height-xl: 1.75rem;
+  --biolog-font-size-2xl: 1.5rem;
+  --biolog-line-height-2xl: 2rem;
+  --biolog-font-size-3xl: 1.875rem;
+  --biolog-line-height-3xl: 2.375rem;
+  --biolog-font-weight-regular: 400;
+  --biolog-font-weight-medium: 500;
+  --biolog-font-weight-semibold: 600;
+  --biolog-font-weight-bold: 700;
+  --biolog-space-0: 0;
+  --biolog-space-1: 0.25rem;
+  --biolog-space-2: 0.5rem;
+  --biolog-space-3: 0.75rem;
+  --biolog-space-4: 1rem;
+  --biolog-space-5: 1.5rem;
+  --biolog-space-6: 2rem;
+  --biolog-space-7: 3rem;
+  --biolog-space-8: 4rem;
+  --biolog-radius-sm: 0.25rem;
+  --biolog-radius-md: 0.5rem;
+  --biolog-radius-lg: 0.75rem;
+  --biolog-radius-pill: 999px;
+  --biolog-icon-size-sm: 1rem;
+  --biolog-icon-size-md: 1.25rem;
+  --biolog-icon-size-lg: 1.5rem;
+  --biolog-icon-stroke-regular: 1.5;
+  --biolog-icon-stroke-bold: 2;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: var(--biolog-color-bg);
+  color: var(--biolog-color-text);
+  /* Kept equal to --biolog-font-family; not switched to the var itself so this
+     rule's rendered output is provably unchanged by BIO-UX-001 (no font-size/
+     line-height override here — see design-system/README.md "why body's font
+     stack stays literal"). */
+  font-family:
+    Satoshi,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--biolog-color-accent);
+  outline-offset: 2px;
+}
+
+.biolog-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.biolog-skip-link {
+  position: absolute;
+  top: -3rem;
+  left: 0.5rem;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  background: var(--biolog-color-accent);
+  color: var(--biolog-color-accent-contrast);
+  border-radius: 0 0 0.25rem 0.25rem;
+  transition: top 0.15s ease-in-out;
+}
+
+.biolog-skip-link:focus {
+  top: 0;
+}
+
+/* Shell layout: mobile-first single column; nav becomes a sidebar at >= 768px. */
+.biolog-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+}
+
+/* TD-SHELL-NAVY-INVERSION: the top bar is WHITE/surface-coloured, confined to
+   the content column at >= 768px (see the .biolog-shell grid rule below) —
+   .biolog-primary-nav is the full-height NAVY sidebar. These two were
+   swapped from BIO-FND-007's original shell onward; every on-navy-tuned
+   child style below (search input, tenant/role selects) is updated to its
+   on-light equivalent to match. */
+.biolog-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--biolog-color-surface);
+  color: var(--biolog-color-text);
+  border-bottom: 1px solid var(--biolog-color-border);
+  min-width: 0;
+}
+
+.biolog-brand-plate {
+  display: inline-flex;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 6px;
+  padding: 4px 10px;
+  line-height: 0;
+}
+
+.biolog-brand-plate img {
+  display: block;
+  height: 32px;
+  width: auto;
+}
+
+.biolog-brand-link {
+  display: inline-flex;
+  text-decoration: none;
+}
+
+.biolog-nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: transparent;
+  color: inherit;
+  border: 1px solid currentColor;
+  border-radius: 0.375rem;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.biolog-search {
+  position: relative;
+  flex: 1 1 16rem;
+  min-width: 10rem;
+  max-width: 28rem;
+}
+
+.biolog-search-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--biolog-radius-md);
+  border: 1px solid var(--biolog-color-border);
+  background: var(--biolog-color-bg);
+  color: var(--biolog-color-text);
+  font: inherit;
+}
+
+.biolog-search-input::placeholder {
+  color: currentColor;
+  opacity: 0.7;
+}
+
+.biolog-search-input:focus-visible {
+  background: var(--biolog-color-surface);
+  color: var(--biolog-color-text);
+}
+
+.biolog-search-results {
+  position: absolute;
+  inset: calc(100% + 0.25rem) 0 auto 0;
+  background: var(--biolog-color-surface);
+  color: var(--biolog-color-text);
+  border: 1px solid var(--biolog-color-border);
+  border-radius: var(--biolog-radius-md);
+  box-shadow: var(--biolog-shadow-md);
+  z-index: 60;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.biolog-search-results ul {
+  list-style: none;
+  margin: 0;
+  padding: 0.25rem;
+}
+
+.biolog-search-results a {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  padding: 0.5rem 0.6rem;
+  border-radius: var(--biolog-radius-sm);
+  text-decoration: none;
+}
+
+.biolog-search-results a:hover {
+  background: var(--biolog-color-bg);
+}
+
+.biolog-search-result-category {
+  font-size: var(--biolog-font-size-xs);
+  color: var(--biolog-color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.biolog-search-empty {
+  margin: 0;
+  padding: 0.75rem;
+  font-size: var(--biolog-font-size-sm);
+  color: var(--biolog-color-text-muted);
+}
+
+.biolog-session-context {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* TD-UX-FIDELITY-FIXES-BATCH1: reference/BIOLOG_Prototype_Full_PNG_Reference_Pack shows the
+   label and its dropdown grouped inside one bordered box — was a plain label above a
+   separately-bordered select, two visual units instead of one. */
+.biolog-context-select {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  font-size: var(--biolog-font-size-xs);
+  line-height: 1.2;
+  border: 1px solid var(--biolog-color-border);
+  border-radius: var(--biolog-radius-sm);
+  padding: 0.2rem 0.4rem;
+}
+
+.biolog-context-select-label {
+  color: var(--biolog-color-text-muted);
+}
+
+.biolog-context-select select {
+  background: transparent;
+  color: var(--biolog-color-text);
+  border: none;
+  padding: 0;
+  font: inherit;
+  /* Narrower than before (11rem) to make room for the box's own new border/padding
+     at mobile widths (BIO-UX-013-AC01) — the value already truncates well before
+     11rem on real tenant/role names, so this loses no more information. */
+  max-width: 8rem;
+}
+
+.biolog-user-menu {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.biolog-user-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--biolog-radius-pill);
+  /* TD-UX-BUTTON-AVATAR-NAVY: every reference screenshot shows the user avatar as a solid navy
+     circle with white initials, not accent orange — see .biolog-button-primary's own comment
+     above for the same change/reasoning. --biolog-color-on-navy is already a real, frozen,
+     accessible pairing for --biolog-color-brand-navy (used throughout the shell), so the old
+     "on-accent text contrast" workaround this rule needed is no longer relevant here. */
+  background: var(--biolog-color-brand-navy);
+  color: var(--biolog-color-on-navy);
+  border: none;
+  cursor: pointer;
+  font-weight: var(--biolog-font-weight-semibold);
+}
+
+.biolog-user-menu-panel {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 12rem;
+  background: var(--biolog-color-surface);
+  color: var(--biolog-color-text);
+  border: 1px solid var(--biolog-color-border);
+  border-radius: var(--biolog-radius-md);
+  box-shadow: var(--biolog-shadow-md);
+  padding: 0.75rem;
+  z-index: 60;
+}
+
+.biolog-user-menu-name {
+  margin: 0;
+  font-weight: var(--biolog-font-weight-semibold);
+}
+
+.biolog-user-menu-role {
+  margin: 0 0 0.5rem;
+  color: var(--biolog-color-text-muted);
+  font-size: var(--biolog-font-size-sm);
+}
+
+.biolog-user-menu-action {
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--biolog-radius-sm);
+  border: 1px solid var(--biolog-color-border);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+
+.biolog-user-menu-action:hover {
+  background: var(--biolog-color-bg);
+}
+
+.biolog-signed-out-label {
+  font-size: var(--biolog-font-size-sm);
+  opacity: 0.85;
+}
+
+.biolog-user-menu > .biolog-user-menu-action {
+  width: auto;
+}
+
+.biolog-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: transparent;
+  color: inherit;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+/* TD-SHELL-NAVY-INVERSION: full-height NAVY sidebar — see .biolog-header's own
+   comment above. No border-right: the colour contrast against the (now
+   white/surface) content column is the boundary, matching the reference
+   screenshots, which show no visible seam line. */
+.biolog-primary-nav {
+  background: var(--biolog-color-brand-navy);
+  color: var(--biolog-color-on-navy);
+  position: fixed;
+  inset: 0 25% 0 auto;
+  left: 0;
+  width: 80vw;
+  max-width: 280px;
+  transform: translateX(-100%);
+  /* Closed on mobile: not just moved off screen. `visibility: hidden` also
+     removes the drawer (and its links) from the tab order and the
+     accessibility tree, so a keyboard/screen-reader user can't reach links
+     that are not visibly present (BIO-FND-007-QA-01). The visibility
+     transition is delayed on close so the slide-out animation still plays;
+     on open there is no delay, so it becomes reachable immediately. */
+  visibility: hidden;
+  transition:
+    transform 0.2s ease-in-out,
+    visibility 0s linear 0.2s;
+  overflow-y: auto;
+  padding-bottom: 0.5rem;
+  z-index: 50;
+}
+
+.biolog-shell[data-nav-open='true'] .biolog-primary-nav {
+  transform: translateX(0);
+  visibility: visible;
+  transition: transform 0.2s ease-in-out;
+}
+
+.biolog-nav-group {
+  padding: 0 0.5rem;
+}
+
+.biolog-nav-group-label {
+  margin: 0.75rem 0.25rem 0.25rem;
+  font-size: var(--biolog-font-size-xs);
+  font-weight: var(--biolog-font-weight-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  /* On-navy muted text: no dedicated token exists for this (only
+     --biolog-color-on-navy itself), so reduced opacity on the on-navy colour
+     — the same convention .biolog-context-select-label already used before
+     this fix (there replaced by a real muted token now that its own
+     background is light; here the background is navy, so the opacity
+     approach is still the right one). */
+  color: var(--biolog-color-on-navy);
+  opacity: 0.65;
+}
+
+.biolog-nav-group:first-child .biolog-nav-group-label {
+  margin-top: 0.5rem;
+}
+
+.biolog-primary-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.biolog-primary-nav li + li {
+  margin-top: 0.25rem;
+}
+
+.biolog-primary-nav a {
+  display: block;
+  padding: 0.6rem 0.75rem;
+  border-radius: 0.375rem;
+  text-decoration: none;
+  color: var(--biolog-color-on-navy);
+}
+
+.biolog-primary-nav a:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.biolog-nav-brand {
+  display: flex;
+  align-items: center;
+  padding: 0.85rem 0.75rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.biolog-main {
+  padding: 1.5rem 1rem;
+}
+
+/* Placeholder page shell (BIO-UX-002-AC04) — shared by every not-yet-built route. */
+.biolog-placeholder-page h1 {
+  margin: 0 0 0.25rem;
+  font-size: var(--biolog-font-size-3xl);
+}
+
+.biolog-placeholder-description {
+  margin: 0 0 1.5rem;
+  color: var(--biolog-color-text-muted);
+}
+
+.biolog-placeholder-cards {
+  display: grid;
+  /* minmax(0, 1fr), not a bare 1fr (BIO-UX-013-AC01/AC05): a bare 1fr track's automatic minimum
+     is its content's min-content size, so a card with wide-enough content (e.g. Audit's table)
+     can force this whole grid - and the page - wider than the viewport. Same fix, same reason as
+     .biolog-shell's own grid below. */
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.biolog-card {
+  background: var(--biolog-color-surface);
+  border: 1px solid var(--biolog-color-border);
+  border-radius: var(--biolog-radius-lg);
+  box-shadow: var(--biolog-shadow-sm);
+  padding: 1.5rem;
+}
+
+.biolog-card h2 {
+  margin-top: 0;
+}
+
+.biolog-button-primary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6rem 1.25rem;
+  border-radius: var(--biolog-radius-md);
+  border: none;
+  /* TD-UX-BUTTON-AVATAR-NAVY: reference/BIOLOG_Prototype_Full_PNG_Reference_Pack shows every
+     primary action as a solid navy fill, never orange — orange is reserved for the brand mark,
+     badges and active-state outlines (out of scope for this fix, per the human's own decision).
+     --biolog-color-on-navy already exists with correct light/dark-mode values (same pairing the
+     TD-SHELL-NAVY-INVERSION shell fix used), so no new token was needed. */
+  background: var(--biolog-color-brand-navy);
+  color: var(--biolog-color-on-navy);
+  font: inherit;
+  font-weight: var(--biolog-font-weight-semibold);
+  cursor: pointer;
+  /* TD-UX-BUTTON-LINK-UNDERLINE: this class is also applied to <Link>s (e.g.
+     person-list-view.tsx's "New Enrolment", enrolment-wizard.tsx's post-submit
+     "View profile") — <button> is never underlined regardless, but an <a> is
+     by default, and no reference screenshot shows an underlined button. */
+  text-decoration: none;
+}
+
+.biolog-button-primary:hover {
+  filter: brightness(0.95);
+}
+
+.biolog-placeholder-status {
+  margin: 0.75rem 0 0;
+  font-size: var(--biolog-font-size-sm);
+}
+
+.biolog-placeholder-status--loading {
+  color: var(--biolog-color-text-muted);
+}
+
+.biolog-placeholder-status--success {
+  color: var(--biolog-color-success);
+}
+
+.biolog-placeholder-status--failure {
+  color: var(--biolog-color-error);
+}
+
+.biolog-placeholder-status--offline {
+  color: var(--biolog-color-offline);
+}
+
+.biolog-placeholder-related {
+  margin-top: 1rem;
+}
+
+.biolog-placeholder-related ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.biolog-placeholder-related a {
+  display: inline-flex;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--biolog-color-border);
+  border-radius: var(--biolog-radius-pill);
+  text-decoration: none;
+  font-size: var(--biolog-font-size-sm);
+}
+
+.biolog-placeholder-related a:hover {
+  background: var(--biolog-color-bg);
+}
+
+.biolog-placeholder-notes ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--biolog-color-text-muted);
+}
+
+.biolog-placeholder-notes li + li {
+  margin-top: 0.4rem;
+}
+
+@media (min-width: 1024px) {
+  .biolog-placeholder-cards {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  /* TD-SHELL-NAVY-INVERSION: the sidebar (nav) is its own full-height column,
+     spanning both grid rows — the header sits in the top-right cell only,
+     confined to the content column, exactly as reference/ui/
+     INITIAL_PROTOTYPE_REFERENCE.png and APPROVED_SYSTEM_SETTINGS_DIRECTION.png
+     show it. Previously 'header header' / 'nav main' put the header across
+     the FULL width above both the sidebar and the content — wrong structure,
+     not just wrong colours (see .biolog-header/.biolog-primary-nav below). */
+  .biolog-shell {
+    grid-template-columns: 240px minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 'nav header' 'nav main';
+  }
+
+  .biolog-header {
+    grid-area: header;
+  }
+
+  .biolog-nav-toggle {
+    display: none;
+  }
+
+  /* The header's own brand link (needed on mobile, where the sidebar is an
+     off-canvas drawer with nothing visible by default) is redundant once the
+     sidebar is a permanent, always-visible column with its own brand block
+     at its top (.biolog-nav-brand, in the nav's own base rule below). */
+  .biolog-header .biolog-brand-link {
+    display: none;
+  }
+
+  .biolog-primary-nav {
+    grid-area: nav;
+    position: static;
+    transform: none;
+    visibility: visible;
+    width: auto;
+    max-width: none;
+  }
+
+  .biolog-main {
+    grid-area: main;
+    padding: 2rem;
+  }
+}
+
+/* Development-only feature-mode panel (BIO-UX-005-AC03). Never present in a production build. */
+.biolog-feature-mode-panel {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 80;
+  font-size: var(--biolog-font-size-xs);
+}
+
+.biolog-feature-mode-toggle {
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--biolog-radius-pill);
+  border: 1px solid var(--biolog-color-border);
+  background: var(--biolog-color-surface);
+  color: var(--biolog-color-text-muted);
+  box-shadow: var(--biolog-shadow-md);
+  cursor: pointer;
+  font: inherit;
+}
+
+.biolog-feature-mode-list {
+  margin-top: 0.5rem;
+  max-height: 60vh;
+  overflow-y: auto;
+  background: var(--biolog-color-surface);
+  border: 1px solid var(--biolog-color-border);
+  border-radius: var(--biolog-radius-md);
+  box-shadow: var(--biolog-shadow-md);
+  padding: 0.5rem;
+}
+
+.biolog-feature-mode-list table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.biolog-feature-mode-list th,
+.biolog-feature-mode-list td {
+  text-align: left;
+  padding: 0.3rem 0.5rem;
+  border-bottom: 1px solid var(--biolog-color-border);
+  white-space: nowrap;
+}
+
+/*
+ * Human Test Console (BIO-UX-012-AC04). Never present in a production
+ * build (same dead-code-elimination technique as .biolog-feature-mode-panel
+ * above). Fixed to the opposite corner so the two dev-only widgets never
+ * overlap.
+ */
+.biolog-test-console {
+  position: fixed;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 80;
+  font-size: var(--biolog-font-size-xs);
+}
+
+.biolog-test-console-toggle {
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--biolog-radius-pill);
+  border: 1px solid var(--biolog-color-border);
+  background: var(--biolog-color-surface);
+  color: var(--biolog-color-text-muted);
+  box-shadow: var(--biolog-shadow-md);
+  cursor: pointer;
+  font: inherit;
+}
+
+.biolog-test-console-panel {
+  margin-top: 0.5rem;
+  max-height: 70vh;
+  width: 22rem;
+  max-width: calc(100vw - 2rem);
+  overflow-y: auto;
+  background: var(--biolog-color-surface);
+  border: 1px solid var(--biolog-color-border);
+  border-radius: var(--biolog-radius-md);
+  box-shadow: var(--biolog-shadow-md);
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.biolog-test-console-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.biolog-test-console-row label {
+  color: var(--biolog-color-text-muted);
+  font-weight: var(--biolog-font-weight-semibold);
+}
+
+.biolog-test-console-row select {
+  font: inherit;
+  padding: 0.35rem 0.5rem;
+  border-radius: var(--biolog-radius-sm);
+  border: 1px solid var(--biolog-color-border);
+  background: var(--biolog-color-bg);
+  color: var(--biolog-color-text);
+}
+
+.biolog-test-console-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.biolog-test-console-links a {
+  /* --biolog-color-text (near-black), not --biolog-color-accent: the brand orange on white at
+     this row's small text size measures 3.48:1 via axe-core, under WCAG AA's 4.5:1 - orange is
+     meant for solid-fill buttons/accents, not small link text on a light surface. Underline
+     alone still gives the link affordance. */
+  color: var(--biolog-color-text);
+  text-decoration: underline;
+}
+
+/*
+ * Text stays --biolog-color-text (neutral), not the tone colour: at this
+ * badge's size, colorSuccess/colorWarning/colorOffline on their own -bg
+ * tint fall under WCAG AA's 4.5:1 (the same defect found and fixed the
+ * same way in .biolog-status-badge below - see its comment for the
+ * numbers). Status is conveyed by the tinted background plus a solid
+ * left-border accent instead of by colouring the text itself.
+ */
+.biolog-feature-mode-badge {
+  display: inline-flex;
+  padding: 0.1rem 0.5rem;
+  border-radius: var(--biolog-radius-pill);
+  font-weight: var(--biolog-font-weight-semibold);
+  color: var(--biolog-color-text);
+  border-left: 3px solid transparent;
+}
+
+.biolog-feature-mode-badge--simulation {
+  background: var(--biolog-color-offline-bg);
+  border-left-color: var(--biolog-color-offline);
+}
+
+.biolog-feature-mode-badge--hybrid {
+  background: var(--biolog-color-warning-bg);
+  border-left-color: var(--biolog-color-warning);
+}
+
+.biolog-feature-mode-badge--live {
+  background: var(--biolog-color-success-bg);
+  border-left-color: var(--biolog-color-success);
+}
+
+/* BIO-UX-011: Dashboard metrics, activity, settings forms, tables. */
+.biolog-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: var(--biolog-space-3);
+  margin: var(--biolog-space-4) 0;
+}
+
+.biolog-metric-tile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--biolog-space-1);
+  background: var(--biolog-color-surface);
+  border: 1px solid var(--biolog-color-border);
+  border-radius: var(--biolog-radius-lg);
+  box-shadow: var(--biolog-shadow-sm);
+  padding: var(--biolog-space-4);
+}
+
+.biolog-metric-value {
+  font-size: var(--biolog-font-size-3xl);
+  font-weight: var(--biolog-font-weight-bold);
+  /* TD-UX-FIDELITY-FIXES-BATCH1: reference/BIOLOG_Prototype_Full_PNG_Reference_Pack's
+     dashboard.png shows a small label above a large dark number — was
+     --biolog-color-accent (orange), reversed order, matching neither. */
+  color: var(--biolog-color-text);
+}
+
+.biolog-metric-label {
+  color: var(--biolog-color-text-muted);
+  font-size: var(--biolog-font-size-sm);
+}
+
+.biolog-activity-list {
+  list-style: none;
+  margin: 0 0 var(--biolog-space-4);
+  padding: 0;
+}
+
+.biolog-activity-list li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--biolog-space-2);
+  padding: var(--biolog-space-2) 0;
+  border-bottom: 1px solid var(--biolog-color-border);
+  font-size: var(--biolog-font-size-sm);
+}
+
+.biolog-activity-label {
+  font-weight: var(--biolog-font-weight-semibold);
+}
+
+.biolog-activity-detail {
+  color: var(--biolog-color-text-muted);
+}
+
+.biolog-activity-time {
+  margin-left: auto;
+  color: var(--biolog-color-text-muted);
+}
+
+.biolog-empty-state {
+  color: var(--biolog-color-text-muted);
+  font-style: italic;
+}
+
+/* BIO-RPT-004: a grid item's default min-width is `auto` (its content's own min-content size),
+   not its `minmax()` track's lower bound - a long, slash-joined identifier with no natural break
+   point (e.g. an interface name in a disclosed-gap reason string) can blow the grid track past the
+   viewport at mobile width even though the track itself asks for only 10rem. Scoped to this
+   story's own reason text only, not a change to the shared `.biolog-empty-state`/`.biolog-card`
+   classes every other feature already relies on. */
+.biolog-health-reason {
+  overflow-wrap: anywhere;
+}
+
+/* BIO-RPT-004: same visual treatment as `.biolog-placeholder-description`, but a distinct class -
+   the Dashboard page already has its own `.biolog-placeholder-description` paragraph
+   (BIO-UX-011), and a SECOND element sharing that exact class made
+   `bio-ux-011-admin-journeys.spec.ts`'s own `page.locator('.biolog-placeholder-description')`
+   ambiguous (a real, self-caught regression - that test's own locator predates this story and
+   should not have to change because of it). */
+.biolog-health-description {
+  margin: 0 0 1.5rem;
+  color: var(--biolog-color-text-muted);
+}
+
+.biolog-settings-section {
+  margin-bottom: var(--biolog-space-4);
+}
+
+.biolog-field-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--biolog-space-1);
+  margin-bottom: var(--biolog-space-3);
+  max-width: 24rem;
+}
+
+.biolog-field-row label {
+  font-weight: var(--biolog-font-weight-medium);
+  font-size: var(--biolog-font-size-sm);
+}
+
+.biolog-field-row input[type='text'],
+.biolog-field-row select {
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--biolog-color-border);
+  border-radius: var(--biolog-radius-sm);
+  background: var(--biolog-color-surface);
+  color: var(--biolog-color-text);
+  font: inherit;
+}
+
+.biolog-toggle-row {
+  margin-bottom: var(--biolog-space-2);
+  font-size: var(--biolog-font-size-sm);
+}
+
+.biolog-toggle-row label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.biolog-field-note {
+  margin: 0.25rem 0 0 1.5rem;
+  color: var(--biolog-color-text-muted);
+  font-size: var(--biolog-font-size-xs);
+}
+
+.biolog-settings-actions {
+  display: flex;
+  gap: var(--biolog-space-2);
+  margin-top: var(--biolog-space-3);
+}
+
+.biolog-button-secondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6rem 1.25rem;
+  border-radius: var(--biolog-radius-md);
+  border: 1px solid var(--biolog-color-border);
+  background: transparent;
+  color: var(--biolog-color-text);
+  font: inherit;
+  font-weight: var(--biolog-font-weight-semibold);
+  cursor: pointer;
+}
+
+.biolog-button-secondary:hover {
+  background: var(--biolog-color-bg);
+}
+
+.biolog-button-primary:disabled,
+.biolog-button-secondary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.biolog-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--biolog-space-3) 0;
+  font-size: var(--biolog-font-size-sm);
+  /* display: block + overflow-x: auto directly on the table (BIO-UX-013-AC01/AC05), not just
+     width: 100%: a page that puts .biolog-table straight inside a card with no wrapping element
+     of its own (e.g. Audit) had no scroll boundary at narrow widths, so a table needing more
+     width than the viewport pushed the whole table past the edge instead of scrolling within its
+     own bounds. Cards.module.css's own .tableWrap already did this at the page level; fixing it
+     here too means every OTHER consumer of the shared class gets it for free. */
+  display: block;
+  overflow-x: auto;
+}
+
+.biolog-table caption {
+  text-align: left;
+  font-weight: var(--biolog-font-weight-semibold);
+  margin-bottom: 0.5rem;
+}
+
+.biolog-table th,
+.biolog-table td {
+  text-align: left;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--biolog-color-border);
+}
+
+.biolog-table th {
+  color: var(--biolog-color-text-muted);
+  font-weight: var(--biolog-font-weight-semibold);
+}
+
+/*
+ * Canonical status-badge pattern (design-system consolidation, 2026-09-23):
+ * text stays --biolog-color-text (neutral), not the tone colour, because at
+ * this badge's small (12px, semibold) size colorSuccess/-warning/-error on
+ * their own -bg tint measure only ~3.67-4.4:1 in light mode - under WCAG
+ * AA's 4.5:1 for normal text. This exact defect was independently found and
+ * fixed five times across the W01.5 wave (BIO-UX-006/007/009/010/011) plus
+ * once more already shipped in BIO-UX-008 before anyone noticed. Status is
+ * conveyed by the tinted background plus a solid left-border accent instead
+ * of by colouring the text - passes AA by a wide margin regardless of hue,
+ * and needs no new custom properties (replaces the now-removed
+ * --biolog-decision-success-fg/-error-fg, which this pattern makes
+ * unnecessary). Use the <StatusBadge> component (web/components/
+ * status-badge.tsx) rather than these classes directly in new code.
+ */
+.biolog-status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.1rem 0.55rem;
+  border-radius: var(--biolog-radius-pill);
+  font-weight: var(--biolog-font-weight-semibold);
+  font-size: var(--biolog-font-size-xs);
+  color: var(--biolog-color-text);
+  border-left: 3px solid transparent;
+}
+
+.biolog-status-badge--neutral {
+  background: var(--biolog-color-offline-bg);
+  border-left-color: var(--biolog-color-offline);
+}
+
+.biolog-status-badge--info {
+  background: var(--biolog-color-info-bg);
+  border-left-color: var(--biolog-color-info);
+}
+
+.biolog-status-badge--success {
+  background: var(--biolog-color-success-bg);
+  border-left-color: var(--biolog-color-success);
+}
+
+.biolog-status-badge--warning {
+  background: var(--biolog-color-warning-bg);
+  border-left-color: var(--biolog-color-warning);
+}
+
+.biolog-status-badge--error {
+  background: var(--biolog-color-error-bg);
+  border-left-color: var(--biolog-color-error);
+}
+
+/* Identity domain screens (BIO-UX-006): People/Students/Staff/Alumni/Contractors
+   lists+detail, New Enrolment wizard, Duplicate Review. */
+.biolog-identity-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.biolog-identity-filter-input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--biolog-color-border);
+  border-radius: var(--biolog-radius-md);
+  background: var(--biolog-color-bg);
+  color: var(--biolog-color-text);
+  font: inherit;
+}
+
+.biolog-identity-row-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.biolog-identity-status {
+  margin: 0.75rem 0 0;
+  font-size: var(--biolog-font-size-sm);
+}
+
+.biolog-identity-status--loading {
+  color: var(--biolog-color-text-muted);
+}
+
+.biolog-identity-status--empty {
+  /* Matches .biolog-empty-state/.biolog-op-empty's own empty-state treatment (BIO-UX-013-AC04) -
+     this one was missing the italic before, the only visible difference between three otherwise
+     identical "empty" patterns across the app. */
+  color: var(--biolog-color-text-muted);
+  font-style: italic;
+}
+
+.biolog-identity-status--error {
+  color: var(--biolog-color-error);
+}
+
+.biolog-identity-status--offline {
+  /* --biolog-color-offline, not -error (BIO-UX-013-AC04): offline and error are different
+     concepts with their own frozen token - .biolog-placeholder-status--offline already gets this
+     right, this was the one place in the app still colouring "offline" as if it were a failure. */
+  color: var(--biolog-color-offline);
+}
+
+.biolog-identity-status--ready {
+  color: var(--biolog-color-success);
+}
+
+.biolog-identity-status--inline {
+  margin: 0.5rem 0 0;
+  font-size: var(--biolog-font-size-sm);
+  color: var(--biolog-color-text-muted);
+}
+
+.biolog-identity-back-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: var(--biolog-color-text-muted);
+  text-decoration: none;
+}
+
+.biolog-identity-back-link:hover {
+  text-decoration: underline;
+}
+
+.biolog-identity-detail-grid {
+  /* minmax(0, 1fr), not a bare 1fr - see .biolog-shell's own comment (BIO-UX-013-AC01/AC05). */
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.biolog-identity-dl {
+  display: grid;
+  /* minmax(0, 1fr), not a bare 1fr (BIO-UX-013-AC01/AC05) - same fix as .biolog-shell/
+     .biolog-placeholder-cards above: without it, a long enough value (e.g. Enrolment's Review
+     step showing a long typed name) can force this column, and the page, wider than the
+     viewport. */
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.4rem 1rem;
+  margin: 0;
+}
+
+.biolog-identity-dl dt {
+  color: var(--biolog-color-text-muted);
+}
+
+.biolog-identity-dl dd {
+  margin: 0;
+  /* A genuinely long, unbroken value (no spaces to wrap at - BIO-UX-013-AC05's own "long
+     Nigerian names" case) still needs somewhere to break, even once the column itself is
+     properly bounded above. */
+  overflow-wrap: break-word;
+}
+
+.biolog-identity-wizard-steps ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+}
+
+.biolog-identity-wizard-steps li {
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--biolog-radius-pill);
+  border: 1px solid var(--biolog-color-border);
+  color: var(--biolog-color-text-muted);
+  font-size: var(--biolog-font-size-sm);
+}
+
+.biolog-identity-wizard-step--current {
+  border-color: var(--biolog-color-accent);
+  color: var(--biolog-color-text);
+  font-weight: var(--biolog-font-weight-semibold);
+}
+
+.biolog-identity-duplicate-group + .biolog-identity-duplicate-group {
+  margin-top: 1rem;
+}
+
+.biolog-identity-duplicate-candidates {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.biolog-identity-duplicate-candidates li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--biolog-color-border);
+}
+
+@media (min-width: 1024px) {
+  .biolog-identity-detail-grid {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  }
+}
+/*
+ * Operational journeys shared styles (BIO-UX-010-AC01..AC05) — Access,
+ * Attendance, Visitors, Transport, Devices. Additive and scoped to these
+ * five pages' own content (the `biolog-op-` prefix); reuses `.biolog-card`,
+ * `.biolog-button-primary` and `.biolog-placeholder-status--*` unchanged
+ * rather than re-defining them. Not a shared-shell/design-system change.
+ * `.biolog-button-secondary`/`.biolog-table`/`.biolog-status-badge` are the
+ * canonical shared blocks (design-system consolidation, 2026-09-23) already
+ * defined above — used here, not redefined.
+ */
+.biolog-op-page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.biolog-op-scenario-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: var(--biolog-font-size-sm);
+  color: var(--biolog-color-text-muted);
+}
+
+.biolog-op-scenario-picker select {
+  font: inherit;
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--biolog-radius-md);
+  border: 1px solid var(--biolog-color-border);
+  background: var(--biolog-color-surface);
+  color: var(--biolog-color-text);
+}
+
+.biolog-op-grid {
+  /* minmax(0, 1fr), not a bare 1fr - see .biolog-shell's own comment (BIO-UX-013-AC01/AC05). */
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .biolog-op-grid {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  }
+}
+
+.biolog-op-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.biolog-op-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: var(--biolog-font-size-sm);
+}
+
+.biolog-op-field input,
+.biolog-op-field select {
+  font: inherit;
+  padding: 0.5rem 0.6rem;
+  border-radius: var(--biolog-radius-md);
+  border: 1px solid var(--biolog-color-border);
+  background: var(--biolog-color-surface);
+  color: var(--biolog-color-text);
+}
+
+.biolog-op-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.biolog-op-empty {
+  color: var(--biolog-color-text-muted);
+  font-style: italic;
+  margin-top: 0.75rem;
+}
+
+.biolog-op-history-list {
+  margin: 0.75rem 0 0;
+  padding-left: 1.1rem;
+  font-size: var(--biolog-font-size-sm);
+}
+
+.biolog-op-history-list li + li {
+  margin-top: 0.3rem;
+}
+
+.biolog-op-notifications {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--biolog-radius-md);
+  border: 1px solid var(--biolog-color-border);
+  background: var(--biolog-color-surface);
+}
+
+.biolog-op-notifications h2 {
+  margin: 0 0 0.5rem;
+  font-size: var(--biolog-font-size-base);
+}
+
+.biolog-op-notifications ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.biolog-op-notification {
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--biolog-radius-md);
+  font-size: var(--biolog-font-size-sm);
+}
+
+.biolog-op-notification--info {
+  background: var(--biolog-color-info-bg);
+  color: var(--biolog-color-info);
+}
+
+.biolog-op-notification--warning {
+  background: var(--biolog-color-warning-bg);
+  color: var(--biolog-color-warning);
+}
+
+.biolog-op-notification--critical {
+  background: var(--biolog-color-error-bg);
+  color: var(--biolog-color-error);
+}

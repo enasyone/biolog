@@ -1,0 +1,946 @@
+scripts/quality.sh --full — summary lines only (PASS/FAIL/section headers/final
+verdict). The full run also includes verbose per-assertion TAP output from every
+other story's contract test suite (BIO-ARC-001 through BIO-ARC-006, 300+ node
+subtests) which is not reproduced here to keep this evidence file reviewable;
+re-run `scripts/quality.sh --full` directly for the complete transcript.
+================================================================================
+== BIO-FND-006 foundation harness ==
+PASS  AC01 .NET unit test project
+PASS  AC01 .NET integration test project
+PASS  AC01 .NET projects marked as test projects
+PASS  AC02 frontend unit project and test
+PASS  AC02 Playwright project and test
+PASS  AC03 Flutter scaffold
+PASS  AC04 security commands documented
+PASS  AC04 all fixtures marked synthetic
+PASS  AC05 single quality command executable
+PASS  AC05 quality command orchestrates every ecosystem
+==============================
+PASS  BIO-FND-006 foundation harness
+== BIO-ARC-001 contract harness ==
+PASS  AC01 ADR-0001 exists and is accepted
+PASS  AC01 ADR documents every required entity type
+PASS  AC01 identifier registry lists exactly the six registered types
+PASS  AC01 canonical-id schema published
+PASS  AC01 identifier implementation published
+PASS  AC01 business identifiers excluded from primary keys
+PASS  AC02 UTC instant schema published
+PASS  AC02 ADR mandates RFC 3339 UTC with literal Z
+PASS  AC02 ADR requires an explicit IANA zone for local rendering
+PASS  AC02 ADR forbids MySQL TIMESTAMP in favour of DATETIME(3) UTC
+PASS  AC02 clock implementation published
+PASS  AC02 ADR requires real calendar dates (QA-01)
+PASS  AC02 ADR states the supported year range (QA-02)
+PASS  AC04 QA-02 code and schema agree on every four-digit year
+PASS  AC02 QA-01 impossible dates rejected by code and schema
+PASS  AC03 ADR defines the compare-and-set outcomes
+PASS  AC03 ADR forbids silent last-write-wins on sync
+PASS  AC03 versioned-resource and offline-mutation schemas published
+PASS  AC03 concurrency implementation published
+PASS  AC04 every published schema is valid JSON
+PASS  AC04 contracts are documented for consumers
+PASS  AC04 ADR index lists ADR-0001
+PASS  AC04 fixtures are marked synthetic
+PASS  AC04 contract behaviour suite passes
+==============================
+PASS  BIO-ARC-001 contract harness
+== BIO-ARC-002 contract harness ==
+PASS  AC01 ADR-0002 exists and is accepted
+PASS  AC01 ADR defines all three channels
+PASS  AC01 ADR states channels are not ranked
+PASS  AC01 ADR requires resolution before data access
+PASS  AC01 tenant-context and tenant-domain schemas published
+PASS  AC01 tenant context implementation published
+PASS  AC02 ADR forbids a default tenant
+PASS  AC02 ADR forbids a development-only fallback
+PASS  AC02 ADR forbids a caller-supplied database binding
+PASS  AC02 no default tenant constant anywhere in the contract code
+PASS  AC03 ADR states the context is frozen for the request
+PASS  AC03 mutation is refused at runtime
+PASS  AC04 ADR requires 404 rather than 403 on a cross-tenant read
+PASS  AC04 ADR requires the audit before the response
+PASS  AC04 denial event schema published
+PASS  AC04 cross-tenant read is denied and audited at runtime
+PASS  AC01 QA-01 ADR requires provable resolution provenance
+PASS  AC01 QA-01 a forged context cannot select a binding
+PASS  AC04 QA-02 ADR makes the audit sink a hard dependency
+PASS  AC04 QA-02 a denial without an audit sink fails closed
+PASS  AC04 QA-03 ADR requires the audit write to have settled
+PASS  AC04 QA-03 an async sink persists before the denial is returned
+PASS  AC04 QA-03 an async sink that rejects fails the denial closed
+PASS  AC04 QA-03 a sink that never settles times out and fails closed
+PASS  every published schema is valid JSON
+PASS  ADR index lists ADR-0002
+PASS  contracts README documents the tenant contract
+PASS  fixtures are marked synthetic
+PASS  AC01 ADR-0001 exists and is accepted
+PASS  AC01 ADR documents every required entity type
+PASS  AC01 identifier registry lists exactly the six registered types
+PASS  AC01 canonical-id schema published
+PASS  AC01 identifier implementation published
+PASS  AC01 business identifiers excluded from primary keys
+PASS  AC02 UTC instant schema published
+PASS  AC02 ADR mandates RFC 3339 UTC with literal Z
+PASS  AC02 ADR requires an explicit IANA zone for local rendering
+PASS  AC02 ADR forbids MySQL TIMESTAMP in favour of DATETIME(3) UTC
+PASS  AC02 clock implementation published
+PASS  AC02 ADR requires real calendar dates (QA-01)
+PASS  AC02 ADR states the supported year range (QA-02)
+PASS  AC04 QA-02 code and schema agree on every four-digit year
+PASS  AC02 QA-01 impossible dates rejected by code and schema
+PASS  AC03 ADR defines the compare-and-set outcomes
+PASS  AC03 ADR forbids silent last-write-wins on sync
+PASS  AC03 versioned-resource and offline-mutation schemas published
+PASS  AC03 concurrency implementation published
+PASS  AC04 every published schema is valid JSON
+PASS  AC04 contracts are documented for consumers
+PASS  AC04 ADR index lists ADR-0001
+PASS  AC04 fixtures are marked synthetic
+PASS  AC04 contract behaviour suite passes
+==============================
+PASS  BIO-ARC-001 contracts still green (no regression)
+PASS  contract behaviour suite passes
+==============================
+PASS  BIO-ARC-002 contract harness
+== BIO-ARC-003 contract harness ==
+PASS  AC01 ADR-0003 exists and is accepted
+PASS  AC01 audit-event schema published
+PASS  AC01 audit envelope requires every field the criterion names
+PASS  AC01 ADR requires a structured actor
+PASS  AC01 ADR requires outcome and reason on success too
+PASS  AC01 the ARC-002 denial event is a profile of the audit envelope
+PASS  AC01 audit implementation published
+PASS  AC02 event envelope requires id, aggregate, version, tenant, correlation, time
+PASS  AC02 a bare version on an event is still refused
+PASS  AC02 ADR explains version vs schema version
+PASS  AC03 classification registry published with five levels
+PASS  AC03 ADR mandates an allowlist, not a denylist
+PASS  AC03 ADR forbids hashing low-entropy personal data as redaction
+PASS  AC03 a secret is never emitted even when allowlisted
+PASS  AC03 a field added later is withheld by default
+PASS  AC03 QA-01 ADR requires a recursive path allowlist
+PASS  AC03 QA-01 a nested secret cannot cross an allowlist boundary
+PASS  AC03 QA-01 an unregistered classification is withheld and never becomes the level
+PASS  AC03 QA-04 ADR requires the dotted-key collision rule
+PASS  AC03 QA-04 a flat dotted key aliasing a real nested value is withheld on both sides
+PASS  AC03 QA-02 ADR requires deep immutability
+PASS  AC03 QA-02 mutating the source cannot change a built event
+PASS  AC01/AC02 QA-03 device and causation_id are schema-required
+PASS  AC01 audit envelope's own causation_id is also required and nullable
+PASS  AC01 causation_id shape is validated at construction, like correlation_id
+PASS  AC04 ADR defines the dedupe key and the conflict rule
+PASS  AC04 duplicate is ignored and a reused id with new content conflicts
+PASS  every published schema is valid JSON
+PASS  ADR index lists ADR-0003
+PASS  contracts README documents the audit contract
+PASS  fixtures are marked synthetic
+PASS  AC01 ADR-0001 exists and is accepted
+PASS  AC01 ADR documents every required entity type
+PASS  AC01 identifier registry lists exactly the six registered types
+PASS  AC01 canonical-id schema published
+PASS  AC01 identifier implementation published
+PASS  AC01 business identifiers excluded from primary keys
+PASS  AC02 UTC instant schema published
+PASS  AC02 ADR mandates RFC 3339 UTC with literal Z
+PASS  AC02 ADR requires an explicit IANA zone for local rendering
+PASS  AC02 ADR forbids MySQL TIMESTAMP in favour of DATETIME(3) UTC
+PASS  AC02 clock implementation published
+PASS  AC02 ADR requires real calendar dates (QA-01)
+PASS  AC02 ADR states the supported year range (QA-02)
+PASS  AC04 QA-02 code and schema agree on every four-digit year
+PASS  AC02 QA-01 impossible dates rejected by code and schema
+PASS  AC03 ADR defines the compare-and-set outcomes
+PASS  AC03 ADR forbids silent last-write-wins on sync
+PASS  AC03 versioned-resource and offline-mutation schemas published
+PASS  AC03 concurrency implementation published
+PASS  AC04 every published schema is valid JSON
+PASS  AC04 contracts are documented for consumers
+PASS  AC04 ADR index lists ADR-0001
+PASS  AC04 fixtures are marked synthetic
+PASS  AC04 contract behaviour suite passes
+==============================
+PASS  BIO-ARC-001 contracts still green (no regression)
+PASS  AC01 ADR-0002 exists and is accepted
+PASS  AC01 ADR defines all three channels
+PASS  AC01 ADR states channels are not ranked
+PASS  AC01 ADR requires resolution before data access
+PASS  AC01 tenant-context and tenant-domain schemas published
+PASS  AC01 tenant context implementation published
+PASS  AC02 ADR forbids a default tenant
+PASS  AC02 ADR forbids a development-only fallback
+PASS  AC02 ADR forbids a caller-supplied database binding
+PASS  AC02 no default tenant constant anywhere in the contract code
+PASS  AC03 ADR states the context is frozen for the request
+PASS  AC03 mutation is refused at runtime
+PASS  AC04 ADR requires 404 rather than 403 on a cross-tenant read
+PASS  AC04 ADR requires the audit before the response
+PASS  AC04 denial event schema published
+PASS  AC04 cross-tenant read is denied and audited at runtime
+PASS  AC01 QA-01 ADR requires provable resolution provenance
+PASS  AC01 QA-01 a forged context cannot select a binding
+PASS  AC04 QA-02 ADR makes the audit sink a hard dependency
+PASS  AC04 QA-02 a denial without an audit sink fails closed
+PASS  AC04 QA-03 ADR requires the audit write to have settled
+PASS  AC04 QA-03 an async sink persists before the denial is returned
+PASS  AC04 QA-03 an async sink that rejects fails the denial closed
+PASS  AC04 QA-03 a sink that never settles times out and fails closed
+PASS  every published schema is valid JSON
+PASS  ADR index lists ADR-0002
+PASS  contracts README documents the tenant contract
+PASS  fixtures are marked synthetic
+PASS  AC01 ADR-0001 exists and is accepted
+PASS  AC01 ADR documents every required entity type
+PASS  AC01 identifier registry lists exactly the six registered types
+PASS  AC01 canonical-id schema published
+PASS  AC01 identifier implementation published
+PASS  AC01 business identifiers excluded from primary keys
+PASS  AC02 UTC instant schema published
+PASS  AC02 ADR mandates RFC 3339 UTC with literal Z
+PASS  AC02 ADR requires an explicit IANA zone for local rendering
+PASS  AC02 ADR forbids MySQL TIMESTAMP in favour of DATETIME(3) UTC
+PASS  AC02 clock implementation published
+PASS  AC02 ADR requires real calendar dates (QA-01)
+PASS  AC02 ADR states the supported year range (QA-02)
+PASS  AC04 QA-02 code and schema agree on every four-digit year
+PASS  AC02 QA-01 impossible dates rejected by code and schema
+PASS  AC03 ADR defines the compare-and-set outcomes
+PASS  AC03 ADR forbids silent last-write-wins on sync
+PASS  AC03 versioned-resource and offline-mutation schemas published
+PASS  AC03 concurrency implementation published
+PASS  AC04 every published schema is valid JSON
+PASS  AC04 contracts are documented for consumers
+PASS  AC04 ADR index lists ADR-0001
+PASS  AC04 fixtures are marked synthetic
+PASS  AC04 contract behaviour suite passes
+==============================
+PASS  BIO-ARC-001 contracts still green (no regression)
+PASS  contract behaviour suite passes
+==============================
+PASS  BIO-ARC-002 contracts still green (no regression)
+PASS  contract behaviour suite passes
+==============================
+PASS  BIO-ARC-003 contract harness
+== BIO-ARC-004 contract harness ==
+PASS  AC01 ADR-0004 exists and is accepted
+PASS  AC01 API_PATH_PREFIX is /api/v1
+PASS  AC01 ADR distinguishes API path version from schema_version/aggregate_version
+PASS  AC02 problem-response and validation-error schemas published
+PASS  AC02 api.mjs implementation published
+PASS  AC02 toProblemResponse serialises existing error classes unchanged
+PASS  AC02 a detail field cannot shadow a reserved top-level field
+PASS  AC02 QA-03r2 a non-string message and malformed errors[] items are refused
+PASS  AC03 ADR reuses ADR-0001 idempotency primitives rather than reimplementing
+PASS  AC03 ADR states the 24-hour retention floor and the distinct machine code
+PASS  AC03 a retried write replays without re-executing
+PASS  AC03 concurrent identical retries execute exactly once (QA-01)
+PASS  AC03 a required idempotency key that is missing fails closed before executing
+PASS  AC03 QA-04 a malformed tenantId cannot alias the control-plane scope
+PASS  AC04 ADR states cursor pagination is the default, with the capacity reason
+PASS  AC04 ADR reconciles the API correlation id with ADR-0003's audit correlation id
+PASS  ACC-01 ADR states the ADR-0003 event-idempotency relationship and answers the interaction question
+PASS  AC04 pagination schema published
+PASS  AC04 validation error path reuses ADR-0003's escapeSegment, not a second scheme
+PASS  AC04 a validation error path from a nested field and a literal dotted field never collide
+PASS  AC04 an unrecognised filter field is a validation error, not a silent drop
+PASS  every published schema is valid JSON
+PASS  ADR index lists ADR-0004
+PASS  contracts README documents the API contract
+PASS  fixtures are marked synthetic
+PASS  AC01 ADR-0001 exists and is accepted
+PASS  AC01 ADR documents every required entity type
+PASS  AC01 identifier registry lists exactly the six registered types
+PASS  AC01 canonical-id schema published
+PASS  AC01 identifier implementation published
+PASS  AC01 business identifiers excluded from primary keys
+PASS  AC02 UTC instant schema published
+PASS  AC02 ADR mandates RFC 3339 UTC with literal Z
+PASS  AC02 ADR requires an explicit IANA zone for local rendering
+PASS  AC02 ADR forbids MySQL TIMESTAMP in favour of DATETIME(3) UTC
+PASS  AC02 clock implementation published
+PASS  AC02 ADR requires real calendar dates (QA-01)
+PASS  AC02 ADR states the supported year range (QA-02)
+PASS  AC04 QA-02 code and schema agree on every four-digit year
+PASS  AC02 QA-01 impossible dates rejected by code and schema
+PASS  AC03 ADR defines the compare-and-set outcomes
+PASS  AC03 ADR forbids silent last-write-wins on sync
+PASS  AC03 versioned-resource and offline-mutation schemas published
+PASS  AC03 concurrency implementation published
+PASS  AC04 every published schema is valid JSON
+PASS  AC04 contracts are documented for consumers
+PASS  AC04 ADR index lists ADR-0001
+PASS  AC04 fixtures are marked synthetic
+PASS  AC04 contract behaviour suite passes
+==============================
+PASS  BIO-ARC-001 contracts still green (no regression)
+PASS  AC01 ADR-0002 exists and is accepted
+PASS  AC01 ADR defines all three channels
+PASS  AC01 ADR states channels are not ranked
+PASS  AC01 ADR requires resolution before data access
+PASS  AC01 tenant-context and tenant-domain schemas published
+PASS  AC01 tenant context implementation published
+PASS  AC02 ADR forbids a default tenant
+PASS  AC02 ADR forbids a development-only fallback
+PASS  AC02 ADR forbids a caller-supplied database binding
+PASS  AC02 no default tenant constant anywhere in the contract code
+PASS  AC03 ADR states the context is frozen for the request
+PASS  AC03 mutation is refused at runtime
+PASS  AC04 ADR requires 404 rather than 403 on a cross-tenant read
+PASS  AC04 ADR requires the audit before the response
+PASS  AC04 denial event schema published
+PASS  AC04 cross-tenant read is denied and audited at runtime
+PASS  AC01 QA-01 ADR requires provable resolution provenance
+PASS  AC01 QA-01 a forged context cannot select a binding
+PASS  AC04 QA-02 ADR makes the audit sink a hard dependency
+PASS  AC04 QA-02 a denial without an audit sink fails closed
+PASS  AC04 QA-03 ADR requires the audit write to have settled
+PASS  AC04 QA-03 an async sink persists before the denial is returned
+PASS  AC04 QA-03 an async sink that rejects fails the denial closed
+PASS  AC04 QA-03 a sink that never settles times out and fails closed
+PASS  every published schema is valid JSON
+PASS  ADR index lists ADR-0002
+PASS  contracts README documents the tenant contract
+PASS  fixtures are marked synthetic
+PASS  AC01 ADR-0001 exists and is accepted
+PASS  AC01 ADR documents every required entity type
+PASS  AC01 identifier registry lists exactly the six registered types
+PASS  AC01 canonical-id schema published
+PASS  AC01 identifier implementation published
+PASS  AC01 business identifiers excluded from primary keys
+PASS  AC02 UTC instant schema published
+PASS  AC02 ADR mandates RFC 3339 UTC with literal Z
+PASS  AC02 ADR requires an explicit IANA zone for local rendering
+PASS  AC02 ADR forbids MySQL TIMESTAMP in favour of DATETIME(3) UTC
+PASS  AC02 clock implementation published
+PASS  AC02 ADR requires real calendar dates (QA-01)
+PASS  AC02 ADR states the supported year range (QA-02)
+PASS  AC04 QA-02 code and schema agree on every four-digit year
+PASS  AC02 QA-01 impossible dates rejected by code and schema
+PASS  AC03 ADR defines the compare-and-set outcomes
+PASS  AC03 ADR forbids silent last-write-wins on sync
+PASS  AC03 versioned-resource and offline-mutation schemas published
+PASS  AC03 concurrency implementation published
+PASS  AC04 every published schema is valid JSON
+PASS  AC04 contracts are documented for consumers
+PASS  AC04 ADR index lists ADR-0001
+PASS  AC04 fixtures are marked synthetic
+PASS  AC04 contract behaviour suite passes
+==============================
+PASS  BIO-ARC-001 contracts still green (no regression)
+PASS  contract behaviour suite passes
+==============================
+PASS  BIO-ARC-002 contracts still green (no regression)
+PASS  AC01 ADR-0003 exists and is accepted
+PASS  AC01 audit-event schema published
+PASS  AC01 audit envelope requires every field the criterion names
+PASS  AC01 ADR requires a structured actor
+PASS  AC01 ADR requires outcome and reason on success too
+PASS  AC01 the ARC-002 denial event is a profile of the audit envelope
+PASS  AC01 audit implementation published
+PASS  AC02 event envelope requires id, aggregate, version, tenant, correlation, time
+PASS  AC02 a bare version on an event is still refused
+PASS  AC02 ADR explains version vs schema version
+PASS  AC03 classification registry published with five levels
+PASS  AC03 ADR mandates an allowlist, not a denylist
+PASS  AC03 ADR forbids hashing low-entropy personal data as redaction
+PASS  AC03 a secret is never emitted even when allowlisted
+PASS  AC03 a field added later is withheld by default
+PASS  AC03 QA-01 ADR requires a recursive path allowlist
+PASS  AC03 QA-01 a nested secret cannot cross an allowlist boundary
+PASS  AC03 QA-01 an unregistered classification is withheld and never becomes the level
+PASS  AC03 QA-04 ADR requires the dotted-key collision rule
+PASS  AC03 QA-04 a flat dotted key aliasing a real nested value is withheld on both sides
+PASS  AC03 QA-02 ADR requires deep immutability
+PASS  AC03 QA-02 mutating the source cannot change a built event
+PASS  AC01/AC02 QA-03 device and causation_id are schema-required
+PASS  AC01 audit envelope's own causation_id is also required and nullable
+PASS  AC01 causation_id shape is validated at construction, like correlation_id
+PASS  AC04 ADR defines the dedupe key and the conflict rule
+PASS  AC04 duplicate is ignored and a reused id with new content conflicts
+PASS  every published schema is valid JSON
+PASS  ADR index lists ADR-0003
+PASS  contracts README documents the audit contract
+PASS  fixtures are marked synthetic
+PASS  AC01 ADR-0001 exists and is accepted
+PASS  AC01 ADR documents every required entity type
+PASS  AC01 identifier registry lists exactly the six registered types
+PASS  AC01 canonical-id schema published
+PASS  AC01 identifier implementation published
+PASS  AC01 business identifiers excluded from primary keys
+PASS  AC02 UTC instant schema published
+PASS  AC02 ADR mandates RFC 3339 UTC with literal Z
+PASS  AC02 ADR requires an explicit IANA zone for local rendering
+PASS  AC02 ADR forbids MySQL TIMESTAMP in favour of DATETIME(3) UTC
+PASS  AC02 clock implementation published
+PASS  AC02 ADR requires real calendar dates (QA-01)
+PASS  AC02 ADR states the supported year range (QA-02)
+PASS  AC04 QA-02 code and schema agree on every four-digit year
+PASS  AC02 QA-01 impossible dates rejected by code and schema
+PASS  AC03 ADR defines the compare-and-set outcomes
+PASS  AC03 ADR forbids silent last-write-wins on sync
+PASS  AC03 versioned-resource and offline-mutation schemas published
+PASS  AC03 concurrency implementation published
+PASS  AC04 every published schema is valid JSON
+PASS  AC04 contracts are documented for consumers
+PASS  AC04 ADR index lists ADR-0001
+PASS  AC04 fixtures are marked synthetic
+PASS  AC04 contract behaviour suite passes
+==============================
+PASS  BIO-ARC-001 contracts still green (no regression)
+PASS  AC01 ADR-0002 exists and is accepted
+PASS  AC01 ADR defines all three channels
+PASS  AC01 ADR states channels are not ranked
+PASS  AC01 ADR requires resolution before data access
+PASS  AC01 tenant-context and tenant-domain schemas published
+PASS  AC01 tenant context implementation published
+PASS  AC02 ADR forbids a default tenant
+PASS  AC02 ADR forbids a development-only fallback
+PASS  AC02 ADR forbids a caller-supplied database binding
+PASS  AC02 no default tenant constant anywhere in the contract code
+PASS  AC03 ADR states the context is frozen for the request
+PASS  AC03 mutation is refused at runtime
+PASS  AC04 ADR requires 404 rather than 403 on a cross-tenant read
+PASS  AC04 ADR requires the audit before the response
+PASS  AC04 denial event schema published
+PASS  AC04 cross-tenant read is denied and audited at runtime
+PASS  AC01 QA-01 ADR requires provable resolution provenance
+PASS  AC01 QA-01 a forged context cannot select a binding
+PASS  AC04 QA-02 ADR makes the audit sink a hard dependency
+PASS  AC04 QA-02 a denial without an audit sink fails closed
+PASS  AC04 QA-03 ADR requires the audit write to have settled
+PASS  AC04 QA-03 an async sink persists before the denial is returned
+PASS  AC04 QA-03 an async sink that rejects fails the denial closed
+PASS  AC04 QA-03 a sink that never settles times out and fails closed
+PASS  every published schema is valid JSON
+PASS  ADR index lists ADR-0002
+PASS  contracts README documents the tenant contract
+PASS  fixtures are marked synthetic
+PASS  AC01 ADR-0001 exists and is accepted
+PASS  AC01 ADR documents every required entity type
+PASS  AC01 identifier registry lists exactly the six registered types
+PASS  AC01 canonical-id schema published
+PASS  AC01 identifier implementation published
+PASS  AC01 business identifiers excluded from primary keys
+PASS  AC02 UTC instant schema published
+PASS  AC02 ADR mandates RFC 3339 UTC with literal Z
+PASS  AC02 ADR requires an explicit IANA zone for local rendering
+PASS  AC02 ADR forbids MySQL TIMESTAMP in favour of DATETIME(3) UTC
+PASS  AC02 clock implementation published
+PASS  AC02 ADR requires real calendar dates (QA-01)
+PASS  AC02 ADR states the supported year range (QA-02)
+PASS  AC04 QA-02 code and schema agree on every four-digit year
+PASS  AC02 QA-01 impossible dates rejected by code and schema
+PASS  AC03 ADR defines the compare-and-set outcomes
+PASS  AC03 ADR forbids silent last-write-wins on sync
+PASS  AC03 versioned-resource and offline-mutation schemas published
+PASS  AC03 concurrency implementation published
+PASS  AC04 every published schema is valid JSON
+PASS  AC04 contracts are documented for consumers
+PASS  AC04 ADR index lists ADR-0001
+PASS  AC04 fixtures are marked synthetic
+PASS  AC04 contract behaviour suite passes
+==============================
+PASS  BIO-ARC-001 contracts still green (no regression)
+PASS  contract behaviour suite passes
+==============================
+PASS  BIO-ARC-002 contracts still green (no regression)
+PASS  contract behaviour suite passes
+==============================
+PASS  BIO-ARC-003 contracts still green (no regression)
+PASS  contract behaviour suite passes
+==============================
+PASS  BIO-ARC-004 contract harness
+== BIO-ARC-005 contract harness ==
+PASS  AC01 ADR-0005 exists and is accepted
+PASS  AC01 proposal and record schemas published
+PASS  AC01 migrations.mjs implementation published
+PASS  AC01 a proposal carries no sequence number; only assignSequence adds one
+PASS  AC02 ADR states the rule precisely and pre-empts the three rationalisations
+PASS  AC02 assignment is refused without the lock explicitly held by Kemi
+PASS  QA-01 assignSequence refuses a plain object that never went through openMigrationRegistry
+PASS  QA-01 assignSequence refuses a JSON round-trip of a real handle
+PASS  QA-01 openMigrationRegistry() takes no id — there is no parameter left to alias
+PASS  QA-01 two openMigrationRegistry() calls always return the SAME live handle
+PASS  QA-01 the codex round-4 alias attack cannot reach the real registry, even under the SAME id text, via the test-only factory
+PASS  AC03 ADR reuses ADR-0004's additive-vs-breaking split explicitly
+PASS  AC03 a breaking migration without a named deprecation dependency is refused
+PASS  AC03 reversibility must be exactly one of down or reversible:false+repair_procedure
+PASS  AC03 an assigned record is immutable — editing it in place is refused
+PASS  QA-03 a breaking migration cannot depend on an unrelated record that never declared a deprecation window
+PASS  QA-03 a deprecation window for one target does not authorise dropping a different one
+PASS  QA-03 a breaking migration assigns cleanly once its target genuinely matches the declared window
+PASS  AC04 ADR requires a real priorState, refusing the tautological default
+PASS  AC04 verifyFreshCreateMatchesUpgrade refuses a missing priorState
+PASS  AC04/QA-02 verifyFreshCreateMatchesUpgrade itself refuses a migration reading accumulated data, called directly
+PASS  QA-02 assignSequence refuses to assign without applyUp/hashState
+PASS  QA-02 a caller-forged, perfectly verifier-shaped proof is irrelevant to assignment
+PASS  QA-02 assignSequence computes the proof itself; a genuine match assigns cleanly
+PASS  QA-02 the ADR documents the honest, narrower guarantee as an explicit accepted scope boundary
+PASS  every published schema is valid JSON
+PASS  ADR index lists ADR-0005
+PASS  contracts README documents the migration contract
+PASS  fixtures are marked synthetic
+PASS  AC01 ADR-0001 exists and is accepted
+PASS  AC01 ADR documents every required entity type
+PASS  AC01 identifier registry lists exactly the six registered types
+PASS  AC01 canonical-id schema published
+PASS  AC01 identifier implementation published
+PASS  AC01 business identifiers excluded from primary keys
+PASS  AC02 UTC instant schema published
+PASS  AC02 ADR mandates RFC 3339 UTC with literal Z
+PASS  AC02 ADR requires an explicit IANA zone for local rendering
+PASS  AC02 ADR forbids MySQL TIMESTAMP in favour of DATETIME(3) UTC
+PASS  AC02 clock implementation published
+PASS  AC02 ADR requires real calendar dates (QA-01)
+PASS  AC02 ADR states the supported year range (QA-02)
+PASS  AC04 QA-02 code and schema agree on every four-digit year
+PASS  AC02 QA-01 impossible dates rejected by code and schema
+PASS  AC03 ADR defines the compare-and-set outcomes
+PASS  AC03 ADR forbids silent last-write-wins on sync
+PASS  AC03 versioned-resource and offline-mutation schemas published
+PASS  AC03 concurrency implementation published
+PASS  AC04 every published schema is valid JSON
+PASS  AC04 contracts are documented for consumers
+PASS  AC04 ADR index lists ADR-0001
+PASS  AC04 fixtures are marked synthetic
+PASS  AC04 contract behaviour suite passes
+==============================
+PASS  BIO-ARC-001 contracts still green (no regression)
+PASS  AC01 ADR-0002 exists and is accepted
+PASS  AC01 ADR defines all three channels
+PASS  AC01 ADR states channels are not ranked
+PASS  AC01 ADR requires resolution before data access
+PASS  AC01 tenant-context and tenant-domain schemas published
+PASS  AC01 tenant context implementation published
+PASS  AC02 ADR forbids a default tenant
+PASS  AC02 ADR forbids a development-only fallback
+PASS  AC02 ADR forbids a caller-supplied database binding
+PASS  AC02 no default tenant constant anywhere in the contract code
+PASS  AC03 ADR states the context is frozen for the request
+PASS  AC03 mutation is refused at runtime
+PASS  AC04 ADR requires 404 rather than 403 on a cross-tenant read
+PASS  AC04 ADR requires the audit before the response
+PASS  AC04 denial event schema published
+PASS  AC04 cross-tenant read is denied and audited at runtime
+PASS  AC01 QA-01 ADR requires provable resolution provenance
+PASS  AC01 QA-01 a forged context cannot select a binding
+PASS  AC04 QA-02 ADR makes the audit sink a hard dependency
+PASS  AC04 QA-02 a denial without an audit sink fails closed
+PASS  AC04 QA-03 ADR requires the audit write to have settled
+PASS  AC04 QA-03 an async sink persists before the denial is returned
+PASS  AC04 QA-03 an async sink that rejects fails the denial closed
+PASS  AC04 QA-03 a sink that never settles times out and fails closed
+PASS  every published schema is valid JSON
+PASS  ADR index lists ADR-0002
+PASS  contracts README documents the tenant contract
+PASS  fixtures are marked synthetic
+PASS  AC01 ADR-0001 exists and is accepted
+PASS  AC01 ADR documents every required entity type
+PASS  AC01 identifier registry lists exactly the six registered types
+PASS  AC01 canonical-id schema published
+PASS  AC01 identifier implementation published
+PASS  AC01 business identifiers excluded from primary keys
+PASS  AC02 UTC instant schema published
+PASS  AC02 ADR mandates RFC 3339 UTC with literal Z
+PASS  AC02 ADR requires an explicit IANA zone for local rendering
+PASS  AC02 ADR forbids MySQL TIMESTAMP in favour of DATETIME(3) UTC
+PASS  AC02 clock implementation published
+PASS  AC02 ADR requires real calendar dates (QA-01)
+PASS  AC02 ADR states the supported year range (QA-02)
+PASS  AC04 QA-02 code and schema agree on every four-digit year
+PASS  AC02 QA-01 impossible dates rejected by code and schema
+PASS  AC03 ADR defines the compare-and-set outcomes
+PASS  AC03 ADR forbids silent last-write-wins on sync
+PASS  AC03 versioned-resource and offline-mutation schemas published
+PASS  AC03 concurrency implementation published
+PASS  AC04 every published schema is valid JSON
+PASS  AC04 contracts are documented for consumers
+PASS  AC04 ADR index lists ADR-0001
+PASS  AC04 fixtures are marked synthetic
+PASS  AC04 contract behaviour suite passes
+==============================
+PASS  BIO-ARC-001 contracts still green (no regression)
+PASS  contract behaviour suite passes
+==============================
+PASS  BIO-ARC-002 contracts still green (no regression)
+PASS  AC01 ADR-0003 exists and is accepted
+PASS  AC01 audit-event schema published
+PASS  AC01 audit envelope requires every field the criterion names
+PASS  AC01 ADR requires a structured actor
+PASS  AC01 ADR requires outcome and reason on success too
+PASS  AC01 the ARC-002 denial event is a profile of the audit envelope
+PASS  AC01 audit implementation published
+PASS  AC02 event envelope requires id, aggregate, version, tenant, correlation, time
+PASS  AC02 a bare version on an event is still refused
+PASS  AC02 ADR explains version vs schema version
+PASS  AC03 classification registry published with five levels
+PASS  AC03 ADR mandates an allowlist, not a denylist
+PASS  AC03 ADR forbids hashing low-entropy personal data as redaction
+PASS  AC03 a secret is never emitted even when allowlisted
+PASS  AC03 a field added later is withheld by default
+PASS  AC03 QA-01 ADR requires a recursive path allowlist
+PASS  AC03 QA-01 a nested secret cannot cross an allowlist boundary
+PASS  AC03 QA-01 an unregistered classification is withheld and never becomes the level
+PASS  AC03 QA-04 ADR requires the dotted-key collision rule
+PASS  AC03 QA-04 a flat dotted key aliasing a real nested value is withheld on both sides
+PASS  AC03 QA-02 ADR requires deep immutability
+PASS  AC03 QA-02 mutating the source cannot change a built event
+PASS  AC01/AC02 QA-03 device and causation_id are schema-required
+PASS  AC01 audit envelope's own causation_id is also required and nullable
+PASS  AC01 causation_id shape is validated at construction, like correlation_id
+PASS  AC04 ADR defines the dedupe key and the conflict rule
+PASS  AC04 duplicate is ignored and a reused id with new content conflicts
+PASS  every published schema is valid JSON
+PASS  ADR index lists ADR-0003
+PASS  contracts README documents the audit contract
+PASS  fixtures are marked synthetic
+PASS  AC01 ADR-0001 exists and is accepted
+PASS  AC01 ADR documents every required entity type
+PASS  AC01 identifier registry lists exactly the six registered types
+PASS  AC01 canonical-id schema published
+PASS  AC01 identifier implementation published
+PASS  AC01 business identifiers excluded from primary keys
+PASS  AC02 UTC instant schema published
+PASS  AC02 ADR mandates RFC 3339 UTC with literal Z
+PASS  AC02 ADR requires an explicit IANA zone for local rendering
+PASS  AC02 ADR forbids MySQL TIMESTAMP in favour of DATETIME(3) UTC
+PASS  AC02 clock implementation published
+PASS  AC02 ADR requires real calendar dates (QA-01)
+PASS  AC02 ADR states the supported year range (QA-02)
+PASS  AC04 QA-02 code and schema agree on every four-digit year
+PASS  AC02 QA-01 impossible dates rejected by code and schema
+PASS  AC03 ADR defines the compare-and-set outcomes
+PASS  AC03 ADR forbids silent last-write-wins on sync
+PASS  AC03 versioned-resource and offline-mutation schemas published
+PASS  AC03 concurrency implementation published
+PASS  AC04 every published schema is valid JSON
+PASS  AC04 contracts are documented for consumers
+PASS  AC04 ADR index lists ADR-0001
+PASS  AC04 fixtures are marked synthetic
+PASS  AC04 contract behaviour suite passes
+==============================
+PASS  BIO-ARC-001 contracts still green (no regression)
+PASS  AC01 ADR-0002 exists and is accepted
+PASS  AC01 ADR defines all three channels
+PASS  AC01 ADR states channels are not ranked
+PASS  AC01 ADR requires resolution before data access
+PASS  AC01 tenant-context and tenant-domain schemas published
+PASS  AC01 tenant context implementation published
+PASS  AC02 ADR forbids a default tenant
+PASS  AC02 ADR forbids a development-only fallback
+PASS  AC02 ADR forbids a caller-supplied database binding
+PASS  AC02 no default tenant constant anywhere in the contract code
+PASS  AC03 ADR states the context is frozen for the request
+PASS  AC03 mutation is refused at runtime
+PASS  AC04 ADR requires 404 rather than 403 on a cross-tenant read
+PASS  AC04 ADR requires the audit before the response
+PASS  AC04 denial event schema published
+PASS  AC04 cross-tenant read is denied and audited at runtime
+PASS  AC01 QA-01 ADR requires provable resolution provenance
+PASS  AC01 QA-01 a forged context cannot select a binding
+PASS  AC04 QA-02 ADR makes the audit sink a hard dependency
+PASS  AC04 QA-02 a denial without an audit sink fails closed
+PASS  AC04 QA-03 ADR requires the audit write to have settled
+PASS  AC04 QA-03 an async sink persists before the denial is returned
+PASS  AC04 QA-03 an async sink that rejects fails the denial closed
+PASS  AC04 QA-03 a sink that never settles times out and fails closed
+PASS  every published schema is valid JSON
+PASS  ADR index lists ADR-0002
+PASS  contracts README documents the tenant contract
+PASS  fixtures are marked synthetic
+PASS  AC01 ADR-0001 exists and is accepted
+PASS  AC01 ADR documents every required entity type
+PASS  AC01 identifier registry lists exactly the six registered types
+PASS  AC01 canonical-id schema published
+PASS  AC01 identifier implementation published
+PASS  AC01 business identifiers excluded from primary keys
+PASS  AC02 UTC instant schema published
+PASS  AC02 ADR mandates RFC 3339 UTC with literal Z
+PASS  AC02 ADR requires an explicit IANA zone for local rendering
+PASS  AC02 ADR forbids MySQL TIMESTAMP in favour of DATETIME(3) UTC
+PASS  AC02 clock implementation published
+PASS  AC02 ADR requires real calendar dates (QA-01)
+PASS  AC02 ADR states the supported year range (QA-02)
+PASS  AC04 QA-02 code and schema agree on every four-digit year
+PASS  AC02 QA-01 impossible dates rejected by code and schema
+PASS  AC03 ADR defines the compare-and-set outcomes
+PASS  AC03 ADR forbids silent last-write-wins on sync
+PASS  AC03 versioned-resource and offline-mutation schemas published
+PASS  AC03 concurrency implementation published
+PASS  AC04 every published schema is valid JSON
+PASS  AC04 contracts are documented for consumers
+PASS  AC04 ADR index lists ADR-0001
+PASS  AC04 fixtures are marked synthetic
+PASS  AC04 contract behaviour suite passes
+==============================
+PASS  BIO-ARC-001 contracts still green (no regression)
+PASS  contract behaviour suite passes
+==============================
+PASS  BIO-ARC-002 contracts still green (no regression)
+PASS  contract behaviour suite passes
+==============================
+PASS  BIO-ARC-003 contracts still green (no regression)
+PASS  AC01 ADR-0004 exists and is accepted
+PASS  AC01 API_PATH_PREFIX is /api/v1
+PASS  AC01 ADR distinguishes API path version from schema_version/aggregate_version
+PASS  AC02 problem-response and validation-error schemas published
+PASS  AC02 api.mjs implementation published
+PASS  AC02 toProblemResponse serialises existing error classes unchanged
+PASS  AC02 a detail field cannot shadow a reserved top-level field
+PASS  AC02 QA-03r2 a non-string message and malformed errors[] items are refused
+PASS  AC03 ADR reuses ADR-0001 idempotency primitives rather than reimplementing
+PASS  AC03 ADR states the 24-hour retention floor and the distinct machine code
+PASS  AC03 a retried write replays without re-executing
+PASS  AC03 concurrent identical retries execute exactly once (QA-01)
+PASS  AC03 a required idempotency key that is missing fails closed before executing
+PASS  AC03 QA-04 a malformed tenantId cannot alias the control-plane scope
+PASS  AC04 ADR states cursor pagination is the default, with the capacity reason
+PASS  AC04 ADR reconciles the API correlation id with ADR-0003's audit correlation id
+PASS  ACC-01 ADR states the ADR-0003 event-idempotency relationship and answers the interaction question
+PASS  AC04 pagination schema published
+PASS  AC04 validation error path reuses ADR-0003's escapeSegment, not a second scheme
+PASS  AC04 a validation error path from a nested field and a literal dotted field never collide
+PASS  AC04 an unrecognised filter field is a validation error, not a silent drop
+PASS  every published schema is valid JSON
+PASS  ADR index lists ADR-0004
+PASS  contracts README documents the API contract
+PASS  fixtures are marked synthetic
+PASS  AC01 ADR-0001 exists and is accepted
+PASS  AC01 ADR documents every required entity type
+PASS  AC01 identifier registry lists exactly the six registered types
+PASS  AC01 canonical-id schema published
+PASS  AC01 identifier implementation published
+PASS  AC01 business identifiers excluded from primary keys
+PASS  AC02 UTC instant schema published
+PASS  AC02 ADR mandates RFC 3339 UTC with literal Z
+PASS  AC02 ADR requires an explicit IANA zone for local rendering
+PASS  AC02 ADR forbids MySQL TIMESTAMP in favour of DATETIME(3) UTC
+PASS  AC02 clock implementation published
+PASS  AC02 ADR requires real calendar dates (QA-01)
+PASS  AC02 ADR states the supported year range (QA-02)
+PASS  AC04 QA-02 code and schema agree on every four-digit year
+PASS  AC02 QA-01 impossible dates rejected by code and schema
+PASS  AC03 ADR defines the compare-and-set outcomes
+PASS  AC03 ADR forbids silent last-write-wins on sync
+PASS  AC03 versioned-resource and offline-mutation schemas published
+PASS  AC03 concurrency implementation published
+PASS  AC04 every published schema is valid JSON
+PASS  AC04 contracts are documented for consumers
+PASS  AC04 ADR index lists ADR-0001
+PASS  AC04 fixtures are marked synthetic
+PASS  AC04 contract behaviour suite passes
+==============================
+PASS  BIO-ARC-001 contracts still green (no regression)
+PASS  AC01 ADR-0002 exists and is accepted
+PASS  AC01 ADR defines all three channels
+PASS  AC01 ADR states channels are not ranked
+PASS  AC01 ADR requires resolution before data access
+PASS  AC01 tenant-context and tenant-domain schemas published
+PASS  AC01 tenant context implementation published
+PASS  AC02 ADR forbids a default tenant
+PASS  AC02 ADR forbids a development-only fallback
+PASS  AC02 ADR forbids a caller-supplied database binding
+PASS  AC02 no default tenant constant anywhere in the contract code
+PASS  AC03 ADR states the context is frozen for the request
+PASS  AC03 mutation is refused at runtime
+PASS  AC04 ADR requires 404 rather than 403 on a cross-tenant read
+PASS  AC04 ADR requires the audit before the response
+PASS  AC04 denial event schema published
+PASS  AC04 cross-tenant read is denied and audited at runtime
+PASS  AC01 QA-01 ADR requires provable resolution provenance
+PASS  AC01 QA-01 a forged context cannot select a binding
+PASS  AC04 QA-02 ADR makes the audit sink a hard dependency
+PASS  AC04 QA-02 a denial without an audit sink fails closed
+PASS  AC04 QA-03 ADR requires the audit write to have settled
+PASS  AC04 QA-03 an async sink persists before the denial is returned
+PASS  AC04 QA-03 an async sink that rejects fails the denial closed
+PASS  AC04 QA-03 a sink that never settles times out and fails closed
+PASS  every published schema is valid JSON
+PASS  ADR index lists ADR-0002
+PASS  contracts README documents the tenant contract
+PASS  fixtures are marked synthetic
+PASS  AC01 ADR-0001 exists and is accepted
+PASS  AC01 ADR documents every required entity type
+PASS  AC01 identifier registry lists exactly the six registered types
+PASS  AC01 canonical-id schema published
+PASS  AC01 identifier implementation published
+PASS  AC01 business identifiers excluded from primary keys
+PASS  AC02 UTC instant schema published
+PASS  AC02 ADR mandates RFC 3339 UTC with literal Z
+PASS  AC02 ADR requires an explicit IANA zone for local rendering
+PASS  AC02 ADR forbids MySQL TIMESTAMP in favour of DATETIME(3) UTC
+PASS  AC02 clock implementation published
+PASS  AC02 ADR requires real calendar dates (QA-01)
+PASS  AC02 ADR states the supported year range (QA-02)
+PASS  AC04 QA-02 code and schema agree on every four-digit year
+PASS  AC02 QA-01 impossible dates rejected by code and schema
+PASS  AC03 ADR defines the compare-and-set outcomes
+PASS  AC03 ADR forbids silent last-write-wins on sync
+PASS  AC03 versioned-resource and offline-mutation schemas published
+PASS  AC03 concurrency implementation published
+PASS  AC04 every published schema is valid JSON
+PASS  AC04 contracts are documented for consumers
+PASS  AC04 ADR index lists ADR-0001
+PASS  AC04 fixtures are marked synthetic
+PASS  AC04 contract behaviour suite passes
+==============================
+PASS  BIO-ARC-001 contracts still green (no regression)
+PASS  contract behaviour suite passes
+==============================
+PASS  BIO-ARC-002 contracts still green (no regression)
+PASS  AC01 ADR-0003 exists and is accepted
+PASS  AC01 audit-event schema published
+PASS  AC01 audit envelope requires every field the criterion names
+PASS  AC01 ADR requires a structured actor
+PASS  AC01 ADR requires outcome and reason on success too
+PASS  AC01 the ARC-002 denial event is a profile of the audit envelope
+PASS  AC01 audit implementation published
+PASS  AC02 event envelope requires id, aggregate, version, tenant, correlation, time
+PASS  AC02 a bare version on an event is still refused
+PASS  AC02 ADR explains version vs schema version
+PASS  AC03 classification registry published with five levels
+PASS  AC03 ADR mandates an allowlist, not a denylist
+PASS  AC03 ADR forbids hashing low-entropy personal data as redaction
+PASS  AC03 a secret is never emitted even when allowlisted
+PASS  AC03 a field added later is withheld by default
+PASS  AC03 QA-01 ADR requires a recursive path allowlist
+PASS  AC03 QA-01 a nested secret cannot cross an allowlist boundary
+PASS  AC03 QA-01 an unregistered classification is withheld and never becomes the level
+PASS  AC03 QA-04 ADR requires the dotted-key collision rule
+PASS  AC03 QA-04 a flat dotted key aliasing a real nested value is withheld on both sides
+PASS  AC03 QA-02 ADR requires deep immutability
+PASS  AC03 QA-02 mutating the source cannot change a built event
+PASS  AC01/AC02 QA-03 device and causation_id are schema-required
+PASS  AC01 audit envelope's own causation_id is also required and nullable
+PASS  AC01 causation_id shape is validated at construction, like correlation_id
+PASS  AC04 ADR defines the dedupe key and the conflict rule
+PASS  AC04 duplicate is ignored and a reused id with new content conflicts
+PASS  every published schema is valid JSON
+PASS  ADR index lists ADR-0003
+PASS  contracts README documents the audit contract
+PASS  fixtures are marked synthetic
+PASS  AC01 ADR-0001 exists and is accepted
+PASS  AC01 ADR documents every required entity type
+PASS  AC01 identifier registry lists exactly the six registered types
+PASS  AC01 canonical-id schema published
+PASS  AC01 identifier implementation published
+PASS  AC01 business identifiers excluded from primary keys
+PASS  AC02 UTC instant schema published
+PASS  AC02 ADR mandates RFC 3339 UTC with literal Z
+PASS  AC02 ADR requires an explicit IANA zone for local rendering
+PASS  AC02 ADR forbids MySQL TIMESTAMP in favour of DATETIME(3) UTC
+PASS  AC02 clock implementation published
+PASS  AC02 ADR requires real calendar dates (QA-01)
+PASS  AC02 ADR states the supported year range (QA-02)
+PASS  AC04 QA-02 code and schema agree on every four-digit year
+PASS  AC02 QA-01 impossible dates rejected by code and schema
+PASS  AC03 ADR defines the compare-and-set outcomes
+PASS  AC03 ADR forbids silent last-write-wins on sync
+PASS  AC03 versioned-resource and offline-mutation schemas published
+PASS  AC03 concurrency implementation published
+PASS  AC04 every published schema is valid JSON
+PASS  AC04 contracts are documented for consumers
+PASS  AC04 ADR index lists ADR-0001
+PASS  AC04 fixtures are marked synthetic
+PASS  AC04 contract behaviour suite passes
+==============================
+PASS  BIO-ARC-001 contracts still green (no regression)
+PASS  AC01 ADR-0002 exists and is accepted
+PASS  AC01 ADR defines all three channels
+PASS  AC01 ADR states channels are not ranked
+PASS  AC01 ADR requires resolution before data access
+PASS  AC01 tenant-context and tenant-domain schemas published
+PASS  AC01 tenant context implementation published
+PASS  AC02 ADR forbids a default tenant
+PASS  AC02 ADR forbids a development-only fallback
+PASS  AC02 ADR forbids a caller-supplied database binding
+PASS  AC02 no default tenant constant anywhere in the contract code
+PASS  AC03 ADR states the context is frozen for the request
+PASS  AC03 mutation is refused at runtime
+PASS  AC04 ADR requires 404 rather than 403 on a cross-tenant read
+PASS  AC04 ADR requires the audit before the response
+PASS  AC04 denial event schema published
+PASS  AC04 cross-tenant read is denied and audited at runtime
+PASS  AC01 QA-01 ADR requires provable resolution provenance
+PASS  AC01 QA-01 a forged context cannot select a binding
+PASS  AC04 QA-02 ADR makes the audit sink a hard dependency
+PASS  AC04 QA-02 a denial without an audit sink fails closed
+PASS  AC04 QA-03 ADR requires the audit write to have settled
+PASS  AC04 QA-03 an async sink persists before the denial is returned
+PASS  AC04 QA-03 an async sink that rejects fails the denial closed
+PASS  AC04 QA-03 a sink that never settles times out and fails closed
+PASS  every published schema is valid JSON
+PASS  ADR index lists ADR-0002
+PASS  contracts README documents the tenant contract
+PASS  fixtures are marked synthetic
+PASS  AC01 ADR-0001 exists and is accepted
+PASS  AC01 ADR documents every required entity type
+PASS  AC01 identifier registry lists exactly the six registered types
+PASS  AC01 canonical-id schema published
+PASS  AC01 identifier implementation published
+PASS  AC01 business identifiers excluded from primary keys
+PASS  AC02 UTC instant schema published
+PASS  AC02 ADR mandates RFC 3339 UTC with literal Z
+PASS  AC02 ADR requires an explicit IANA zone for local rendering
+PASS  AC02 ADR forbids MySQL TIMESTAMP in favour of DATETIME(3) UTC
+PASS  AC02 clock implementation published
+PASS  AC02 ADR requires real calendar dates (QA-01)
+PASS  AC02 ADR states the supported year range (QA-02)
+PASS  AC04 QA-02 code and schema agree on every four-digit year
+PASS  AC02 QA-01 impossible dates rejected by code and schema
+PASS  AC03 ADR defines the compare-and-set outcomes
+PASS  AC03 ADR forbids silent last-write-wins on sync
+PASS  AC03 versioned-resource and offline-mutation schemas published
+PASS  AC03 concurrency implementation published
+PASS  AC04 every published schema is valid JSON
+PASS  AC04 contracts are documented for consumers
+PASS  AC04 ADR index lists ADR-0001
+PASS  AC04 fixtures are marked synthetic
+PASS  AC04 contract behaviour suite passes
+==============================
+PASS  BIO-ARC-001 contracts still green (no regression)
+PASS  contract behaviour suite passes
+==============================
+PASS  BIO-ARC-002 contracts still green (no regression)
+PASS  contract behaviour suite passes
+==============================
+PASS  BIO-ARC-003 contracts still green (no regression)
+PASS  contract behaviour suite passes
+==============================
+PASS  BIO-ARC-004 contracts still green (no regression)
+PASS  contract behaviour suite passes
+==============================
+PASS  BIO-ARC-005 contract harness
+== BIO-ARC-006 contract freeze harness ==
+PASS  AC01 versioned snapshot validates every frozen artifact
+PASS  AC01 snapshot version is semantic and baseline is commit-bound
+PASS  AC01 a nonexistent baseline commit fails closed
+PASS  AC01 a tampered snapshot hash fails closed
+PASS  AC04 a rewritten contract and regenerated v1 manifest fail closed
+PASS  AC04 clone/setup failure cannot masquerade as tamper rejection
+PASS  AC02 conflict definition includes contradictions, ownership, findings and overclaims
+PASS  AC02 ADR-0005 runner fidelity boundary is preserved, not flattened
+PASS  AC02 conflict ledger declares zero open only with resolutions
+PASS  AC03 all 83 W02-W15 stories have unique declarations
+PASS  AC03 deleting a story from both self-declared lists still fails closed
+PASS  AC03 every story declares owned paths and all frozen roots read-only
+PASS  AC03 no future story owns a frozen shared path
+PASS  AC04 freeze requires ADR, impact review, new version and independent acceptance
+PASS  AC04 existing snapshots are immutable, never rewritten
+PASS  every published schema remains valid JSON
+PASS  contract behavior suite passes
+PASS  tracked secret scan stays clean
+==============================
+PASS  BIO-ARC-006 contract freeze harness
+== tracked secret scan ==
+PASS  tracked secret scan
+== .NET unit tests ==
+PASS  .NET unit tests
+== .NET integration tests ==
+PASS  .NET integration tests
+== frontend unit tests ==
+FAIL  frontend unit tests
+== Playwright tests ==
+FAIL  Playwright tests
+== Flutter tests ==
+PASS  Flutter tests
+QUALITY: FAIL

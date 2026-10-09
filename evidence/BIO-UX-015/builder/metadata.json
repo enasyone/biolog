@@ -1,0 +1,10 @@
+{
+  "story_key": "BIO-UX-015",
+  "stage": "builder",
+  "commit_hash": "c276273a1511d52b09091bfd9437c061c8551b34",
+  "test_command": "(cd web && ./node_modules/.bin/tsc --noEmit && ./node_modules/.bin/next build) && (cd tests/frontend && ./node_modules/.bin/vitest run && TZ=UTC ./node_modules/.bin/playwright test bio-ux-015-product-experience-gate.spec.ts)",
+  "result": "PASS_READY_FOR_INDEPENDENT_REVIEW_AC04_PENDING_HUMAN",
+  "timestamp": "2026-09-23T21:25:00Z",
+  "reviewer": "Chioma",
+  "data_classification": "SYNTHETIC"
+}

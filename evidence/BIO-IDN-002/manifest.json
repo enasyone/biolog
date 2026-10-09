@@ -1,0 +1,28 @@
+{
+  "story_key": "BIO-IDN-002",
+  "title": "Implement configurable person profiles and hierarchy assignment",
+  "implementation_commit": "bf7264990a5eb0f446fb8da2ec9a0375853d4288",
+  "builder_head": "e654a49",
+  "reviewed_head": "2f159213cddee69015e80b937fd96ea4a256661d",
+  "environment": {"profile": "local acceptance; synthetic fixtures only", "timestamp": "2026-09-22T11:17:36Z"},
+  "acceptance_criteria": {
+    "BIO-IDN-002-AC01": {"result": "PASS", "evidence": ["feature tests", "structural suite"]},
+    "BIO-IDN-002-AC02": {"result": "PASS", "evidence": ["hierarchy round-trip tests"]},
+    "BIO-IDN-002-AC03": {"result": "PASS", "evidence": ["activation/expiry independence tests"]},
+    "BIO-IDN-002-AC04": {"result": "PASS", "evidence": ["person-existence gateway tests", "packaged-host cross-tenant tests", "REREVIEW-ROUND2.md"]}
+  },
+  "commands": [
+    {"command": "bash tests/features/bio-idn-002/BIO-IDN-002.test.sh", "result": "PASS (48/48)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (19 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS"},
+    {"command": "dotnet PersonProfileRegistry.Tests.dll", "result": "PASS (47/47)"},
+    {"command": "dotnet Biolog.UnitTests.dll", "result": "PASS (154/154)"}
+  ],
+  "builder_verdict": {"result": "PASS", "feature_tests": "47/47", "unit_tests": "154/154", "integration_tests": "59/59", "foundation_tests": "48/48", "full_quality": "PASS", "metadata_sha256": "d50580aab6c9707203a70398576a0b669f41c0a985647599acaf3860cc7352ea"},
+  "independent_qa": {"reviewer": "Seyi", "result": "PASS", "review_commit": "2f15921", "evidence": "evidence/BIO-IDN-002/codex/REREVIEW-ROUND2.md", "evidence_sha256": "83d6df2d6ba2291a70346ba37eeda966090102eb6760b8149e8884efb92032f5"},
+  "category_verdicts": {"functional": "PASS", "security": "PASS", "tenant_isolation": "PASS", "offline_recovery": "NOT_APPLICABLE", "concurrency": "PASS", "regression": "PASS"},
+  "security_performance_reviews": {"security": "PASS: missing and foreign-tenant PERSON references fail identically before lock, audit or commit", "performance": "Not required"},
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "All four acceptance criteria have objective builder and independent evidence; orphan and cross-tenant profile assignment is closed."}
+}

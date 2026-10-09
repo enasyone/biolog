@@ -1,0 +1,116 @@
+{
+  "story_key": "BIO-ATT-002",
+  "title": "Implement education attendance policies",
+  "implementation_commit": "4144b908c724c46dc4a0f3e720b6cf81855f00ef",
+  "builder_head": "012eb03a0172e12eb5111bd785d2f27a01fbfd57",
+  "reviewed_head": "4643284ea76c155716f31fce20a443af00109d00",
+  "environment": {
+    "profile": "local acceptance on Darwin arm64; synthetic fixtures only",
+    "timestamp": "2026-10-06"
+  },
+  "acceptance_criteria": {
+    "BIO-ATT-002-AC01": {
+      "result": "PASS",
+      "evidence": [
+        "tests/features/bio-att-002/SessionServiceTests.cs",
+        "tests/features/bio-att-002/BIO-ATT-002.test.sh",
+        "evidence/features/bio-att-002/builder/metadata.json"
+      ],
+      "finding": "Sessions carry a session type and roster; person existence is checked and roster revisions use compare-and-set versioning."
+    },
+    "BIO-ATT-002-AC02": {
+      "result": "PASS",
+      "evidence": [
+        "tests/features/bio-att-002/SessionAttendanceClassifierTests.cs",
+        "tests/features/bio-att-002/SessionAttendancePolicyServiceTests.cs",
+        "tests/features/bio-att-002/BIO-ATT-002.test.sh"
+      ],
+      "finding": "Tenant and session-type policies configure Present, Late and Absent classification at read time; policy writes require permission and verified provenance."
+    },
+    "BIO-ATT-002-AC03": {
+      "result": "PASS",
+      "evidence": [
+        "tests/features/bio-att-002/SessionAttendanceClassifierTests.cs",
+        "tests/features/bio-att-002/BIO-ATT-002.test.sh",
+        "evidence/features/bio-att-002/codex/REVIEW-Seyi.md"
+      ],
+      "finding": "Roster reads preserve the source event, time, mode, and verification details grounding each classification."
+    },
+    "BIO-ATT-002-AC04": {
+      "result": "PASS",
+      "evidence": [
+        "tests/features/bio-att-002/AttendanceAdjustmentServiceTests.cs",
+        "tests/features/bio-att-002/SessionAttendanceQueryServiceTests.cs",
+        "evidence/features/bio-att-002/codex/REVIEW-Seyi.md"
+      ],
+      "finding": "Manual adjustments are append-only, authorization-gated and audited before commit; computed and effective status remain separately visible."
+    },
+    "BIO-ATT-002-AC05": {
+      "result": "PASS",
+      "evidence": [
+        "tests/features/bio-att-002/BIO-ATT-002.test.sh",
+        "tests/dotnet/Biolog.IntegrationTests/AttendanceSessionsHostChannelTests.cs",
+        "docs/features/bio-att-002/README.md"
+      ],
+      "finding": "The existing AttendanceService routes are served by the real BIO-ATT-002 bridge without an attendance UI redesign or duplicate BIO-ATT-001 handlers."
+    }
+  },
+  "commands": [
+    {
+      "command": "bash tests/features/bio-att-002/BIO-ATT-002.test.sh",
+      "result": "PASS (39/39)"
+    },
+    {
+      "command": "dotnet run --project tests/features/bio-att-002/Biolog.Features.AttendanceSessions.Tests.csproj",
+      "result": "PASS (26/26)"
+    },
+    {
+      "command": "dotnet run --project tests/features/bio-att-001/Biolog.Features.Attendance.Tests.csproj",
+      "result": "PASS (24/24 regression)"
+    },
+    {
+      "command": "python3 scripts/check-traceability.py --all",
+      "result": "PASS (33 implemented stories)"
+    },
+    {
+      "command": "bash scripts/check-module-project-references.sh",
+      "result": "PASS"
+    },
+    {
+      "command": "bash scripts/quality.sh",
+      "result": "PASS (QUALITY: PASS; tracked secret scan clean)"
+    }
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "012eb03a0172e12eb5111bd785d2f27a01fbfd57",
+    "implementation_commit": "4144b908c724c46dc4a0f3e720b6cf81855f00ef",
+    "feature_tests": "26/26 PASS",
+    "bio_att_001_regression": "24/24 PASS",
+    "integration_tests": "172/172 PASS",
+    "structural_tests": "39/39 PASS",
+    "metadata_sha256": "19036b6ad502642779f95d13dac94b6aa0a9ea3baf61d3ecfb271cfda42089f7"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "result": "PASS",
+    "builder_commit_reviewed": "012eb03a0172e12eb5111bd785d2f27a01fbfd57",
+    "review_commit": "4643284ea76c155716f31fce20a443af00109d00",
+    "evidence": "evidence/features/bio-att-002/codex/REVIEW-Seyi.md",
+    "evidence_sha256": "1dec74f8fd77256a06f14484de81af775252447d6b8e7afd0e58db8acfd0a773"
+  },
+  "category_verdicts": {
+    "functional": "PASS",
+    "security": "PASS",
+    "tenant_isolation": "PASS",
+    "offline_recovery": "NOT APPLICABLE",
+    "concurrency": "PASS",
+    "regression": "PASS"
+  },
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "All five acceptance criteria map to commit-bound builder evidence, independent QA, focused executable checks, regression coverage, traceability and a clean full repository quality gate."
+  }
+}

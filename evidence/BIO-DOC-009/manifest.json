@@ -1,0 +1,112 @@
+{
+  "story_key": "BIO-DOC-009",
+  "title": "Build automatic authenticity assessment orchestrator",
+  "implementation_commit": "6cd77a6ffea51925de782d981ed5e3b13d18a8c7",
+  "reviewed_head": "0e2c6bf4ec049f3c0ead725ed9d5f1080aa94485",
+  "environment": {
+    "profile": "local acceptance; synthetic fixtures only; GitHub push blocked",
+    "timestamp": "2026-09-24T01:13:19Z"
+  },
+  "acceptance_criteria": {
+    "BIO-DOC-009-AC01": {
+      "result": "PASS",
+      "evidence": ["six individually reported checks and overall policy disposition", "feature tests", "structural checks"]
+    },
+    "BIO-DOC-009-AC02": {
+      "result": "PASS",
+      "evidence": ["DetermineDisposition excludes BarcodeDecode from authentic promotion", "barcode-only live scenario is inconclusive"]
+    },
+    "BIO-DOC-009-AC03": {
+      "result": "PASS",
+      "evidence": ["NotPerformed is the safe default", "unsupported and absent checks never default to Passed"]
+    },
+    "BIO-DOC-009-AC04": {
+      "result": "PASS",
+      "evidence": ["result records evidence, template and ruleset versions", "live HTTP evidence asserts version fields"]
+    },
+    "BIO-DOC-009-AC05": {
+      "result": "PASS",
+      "evidence": ["manual override is a separately audited aggregate field", "same-reference tests prove raw result and checks are unchanged"]
+    },
+    "BIO-DOC-009-AC06": {
+      "result": "PASS",
+      "evidence": ["DocumentVerifyService authenticity port is independently LIVE-capable in HYBRID mode", "builder live Playwright 4/4", "approved Document Verify component and styling were not redesigned"]
+    }
+  },
+  "commands": [
+    {
+      "command": "bash tests/foundation/BIO-DOC-009.test.sh",
+      "result": "PASS (54/54)"
+    },
+    {
+      "command": "pnpm --dir tests/frontend test:unit",
+      "result": "PASS (53 files, 398 tests)"
+    },
+    {
+      "command": "pnpm --dir web typecheck",
+      "result": "PASS"
+    },
+    {
+      "command": "python3 scripts/check-traceability.py --all",
+      "result": "PASS (31 implemented stories)"
+    },
+    {
+      "command": "bash scripts/check-module-project-references.sh",
+      "result": "PASS"
+    },
+    {
+      "command": "bash scripts/secret-scan.sh --all",
+      "result": "PASS (built-in fallback scan clean)"
+    },
+    {
+      "command": "dotnet test tests/features/bio-doc-009/Biolog.Features.AuthenticityAssessment.Tests/Biolog.Features.AuthenticityAssessment.Tests.csproj --no-restore",
+      "result": "UNAVAILABLE locally: sandbox denied MSBuild named-pipe bind; commit-bound builder transcript records PASS (54/54)"
+    }
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "6cd77a6ffea51925de782d981ed5e3b13d18a8c7",
+    "feature_tests": "54/54 PASS",
+    "structural_tests": "54/54 PASS",
+    "frontend_live": "4/4 PASS",
+    "metadata_sha256": "23022f0273c569e249b939f1b82d1de80d5773f0d17b5633765be4c38eff38cd"
+  },
+  "independent_reviews": [
+    {
+      "reviewer": "Seyi",
+      "result": "PASS",
+      "round": 2,
+      "evidence": "evidence/BIO-DOC-009/codex/REVIEW-Seyi-round2.md",
+      "evidence_sha256": "8be42a9db40de6b383f412a377b15e133d96c9715e5a36b169671bc3ff9e2646"
+    },
+    {
+      "reviewer": "Zainab",
+      "result": "PASS",
+      "round": 2,
+      "evidence": "evidence/BIO-DOC-009/codex/SECURITY-REVIEW-ZAINAB-ROUND2.md",
+      "evidence_sha256": "c50dfabfee1ed691c2515f1c8d090b962c09efbc89db710b1539a4ad2eeea9b9"
+    }
+  ],
+  "category_verdicts": {
+    "functional": "PASS",
+    "security": "PASS",
+    "tenant_isolation": "PASS_BY_NON_EXPOSURE: caller-addressable read and override routes removed pending a trusted tenant/RBAC boundary",
+    "offline_recovery": "NOT_APPLICABLE",
+    "concurrency": "PASS",
+    "regression": "PASS"
+  },
+  "closed_findings": [
+    {
+      "id": "BIO-DOC-009-F01",
+      "severity": "High",
+      "status": "CLOSED",
+      "evidence": "unauthenticated GET-by-id and override HTTP routes removed; direct service seams remain tested but unreachable over HTTP"
+    }
+  ],
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "All six acceptance criteria have commit-bound objective evidence; both required round-two reviewers pass remediation 6cd77a6 and the prior High authorization finding is closed by non-exposure."
+  }
+}

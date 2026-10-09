@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Matches api/Biolog.Api/Biolog.Api.csproj's pinned TFM (BIO-FND-008), same as every prior
+         BIO-BIO story. -->
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <!--
+    No ASP.NET Core dependency, no NuGet package references. ProjectReference to BIO-BIO-001
+    only, for BiometricSample - the same "direct reference to a plain, host-agnostic contracts
+    library" shape every prior BIO-BIO story established.
+
+    The approved story also names BIO-BIO-003 (face capture/quality/its own internal liveness
+    hook) and BIO-BIO-005 (face 1:1 verification) as dependencies, but deliberately NO
+    ProjectReference exists to either here. This story defines its own, richer, provider-neutral
+    liveness contract (LivenessEvidence: provider/method/version/confidence/status - AC01) rather
+    than reusing BIO-BIO-003's own internal ILivenessDetector/LivenessResult (that pair is
+    BIO-BIO-003's own owned, internal, enrolment-capture-only hook - reaching into or extending it
+    is out of this story's write scope, and its LivenessResult shape does not carry Method/
+    ProviderVersion/Status at all). Neither BIO-BIO-003 nor BIO-BIO-005 exposes a query this
+    story's own policy/evaluation surface needs to call into - the dependency is architectural
+    (reuse the same narrow-gateway/evidence-separation PATTERNS those stories established), not a
+    data dependency, and is documented as such in docs/features/bio-bio-008/README.md.
+  -->
+  <ItemGroup>
+    <ProjectReference Include="../../bio-bio-001/Biolog.Features.Biometrics/Biolog.Features.Biometrics.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- ILivenessPolicy/InMemoryLivenessPolicy, ILivenessProvider/SyntheticLivenessProvider and
+         LivenessEvaluationService are internal (BIO-IDN-001-QA-01's governance shape, mirrored by
+         every prior BIO-BIO story). This is the explicit, auditable seam that grants Biolog.Api
+         (DI registration + endpoint mapping in Modules/BioBio008Module.cs) and this feature's own
+         test project the same access. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.Liveness.Tests" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,311 @@
+TAP version 13
+# Subtest: AC01: every entity named by the story is registered with a distinct prefix
+ok 1 - AC01: every entity named by the story is registered with a distinct prefix
+  ---
+  duration_ms: 1.20725
+  ...
+# Subtest: AC01: the tenant is the only control-plane identifier
+ok 2 - AC01: the tenant is the only control-plane identifier
+  ---
+  duration_ms: 0.092458
+  ...
+# Subtest: AC01: minted identifiers are typed, well formed and round-trip through parse
+ok 3 - AC01: minted identifiers are typed, well formed and round-trip through parse
+  ---
+  duration_ms: 0.548667
+  ...
+# Subtest: AC01: minted identifiers are UUIDv7 — version and RFC 9562 variant are pinned
+ok 4 - AC01: minted identifiers are UUIDv7 — version and RFC 9562 variant are pinned
+  ---
+  duration_ms: 1.459125
+  ...
+# Subtest: AC01: identifiers sort in creation order, which is why UUIDv7 was chosen
+ok 5 - AC01: identifiers sort in creation order, which is why UUIDv7 was chosen
+  ---
+  duration_ms: 0.134458
+  ...
+# Subtest: AC01: identifiers are mintable offline with no coordination and do not collide
+ok 6 - AC01: identifiers are mintable offline with no coordination and do not collide
+  ---
+  duration_ms: 14.291125
+  ...
+# Subtest: AC01: a wrong-type identifier is rejected at the boundary
+ok 7 - AC01: a wrong-type identifier is rejected at the boundary
+  ---
+  duration_ms: 0.453584
+  ...
+# Subtest: AC01: malformed, foreign and unregistered identifiers are refused
+ok 8 - AC01: malformed, foreign and unregistered identifiers are refused
+  ---
+  duration_ms: 0.209
+  ...
+# Subtest: AC01: an unregistered type cannot be minted locally by a feature module
+ok 9 - AC01: an unregistered type cannot be minted locally by a feature module
+  ---
+  duration_ms: 0.145333
+  ...
+# Subtest: AC01: storage form is 16 bytes without the prefix and round-trips exactly
+ok 10 - AC01: storage form is 16 bytes without the prefix and round-trips exactly
+  ---
+  duration_ms: 0.269541
+  ...
+# Subtest: AC01: stored bytes carry no type, so the column type must be reasserted on read
+ok 11 - AC01: stored bytes carry no type, so the column type must be reasserted on read
+  ---
+  duration_ms: 0.103083
+  ...
+# Subtest: AC01: the embedded timestamp is ordering metadata, and the ADR says not to trust it
+ok 12 - AC01: the embedded timestamp is ordering metadata, and the ADR says not to trust it
+  ---
+  duration_ms: 0.132875
+  ...
+# Subtest: AC01: registry examples satisfy the published canonical-id schema pattern
+ok 13 - AC01: registry examples satisfy the published canonical-id schema pattern
+  ---
+  duration_ms: 0.34975
+  ...
+# Subtest: AC01: business identifiers are documented as attributes, never keys
+ok 14 - AC01: business identifiers are documented as attributes, never keys
+  ---
+  duration_ms: 0.162583
+  ...
+# Subtest: AC02: the canonical instant is RFC 3339 UTC, literal Z, three fractional digits
+ok 15 - AC02: the canonical instant is RFC 3339 UTC, literal Z, three fractional digits
+  ---
+  duration_ms: 1.626041
+  ...
+# Subtest: AC02: instants are fixed width, so string comparison equals chronological order
+ok 16 - AC02: instants are fixed width, so string comparison equals chronological order
+  ---
+  duration_ms: 0.287167
+  ...
+# Subtest: AC02: naive, offset and low-precision timestamps are rejected, not guessed at
+ok 17 - AC02: naive, offset and low-precision timestamps are rejected, not guessed at
+  ---
+  duration_ms: 0.220333
+  ...
+# Subtest: AC02: a valid instant parses back to the same point on the timeline
+ok 18 - AC02: a valid instant parses back to the same point on the timeline
+  ---
+  duration_ms: 0.225833
+  ...
+# Subtest: AC02: local rendering requires an explicit IANA zone and is never implicit
+ok 19 - AC02: local rendering requires an explicit IANA zone and is never implicit
+  ---
+  duration_ms: 11.714167
+  ...
+# Subtest: AC02: a rendered local time carries its zone and offset, so it stays reversible
+ok 20 - AC02: a rendered local time carries its zone and offset, so it stays reversible
+  ---
+  duration_ms: 1.951333
+  ...
+# Subtest: AC02: one instant renders differently per zone while the stored value never changes
+ok 21 - AC02: one instant renders differently per zone while the stored value never changes
+  ---
+  duration_ms: 0.344125
+  ...
+# Subtest: AC02: daylight-saving transitions resolve from the zone rules, not a stored offset
+ok 22 - AC02: daylight-saving transitions resolve from the zone rules, not a stored offset
+  ---
+  duration_ms: 0.186875
+  ...
+# Subtest: AC02/QA-01: impossible calendar instants are rejected, never normalized
+ok 23 - AC02/QA-01: impossible calendar instants are rejected, never normalized
+  ---
+  duration_ms: 0.133583
+  ...
+# Subtest: AC02/QA-01: the rejected values are exactly the ones Date.parse would have moved
+ok 24 - AC02/QA-01: the rejected values are exactly the ones Date.parse would have moved
+  ---
+  duration_ms: 0.089625
+  ...
+# Subtest: AC02/QA-01: genuine leap days are still accepted, including the 400-year rule
+ok 25 - AC02/QA-01: genuine leap days are still accepted, including the 400-year rule
+  ---
+  duration_ms: 0.076792
+  ...
+# Subtest: AC02/QA-01: impossible calendar dates are rejected and real ones kept
+ok 26 - AC02/QA-01: impossible calendar dates are rejected and real ones kept
+  ---
+  duration_ms: 0.147917
+  ...
+# Subtest: AC02/QA-01: the leap rule is the proleptic Gregorian one
+ok 27 - AC02/QA-01: the leap rule is the proleptic Gregorian one
+  ---
+  duration_ms: 0.048959
+  ...
+# Subtest: AC02/QA-01: every day of a leap year and a non-leap year is classified correctly
+ok 28 - AC02/QA-01: every day of a leap year and a non-leap year is classified correctly
+  ---
+  duration_ms: 0.672
+  ...
+# Subtest: AC02/QA-01: clock-skew assessment refuses an impossible claimed time
+ok 29 - AC02/QA-01: clock-skew assessment refuses an impossible claimed time
+  ---
+  duration_ms: 0.110041
+  ...
+# Subtest: AC04/QA-01: schema patterns and code agree on impossible dates
+ok 30 - AC04/QA-01: schema patterns and code agree on impossible dates
+  ---
+  duration_ms: 0.746667
+  ...
+# Subtest: AC02/QA-02: the supported year range is 1000..9999 and both ends hold
+ok 31 - AC02/QA-02: the supported year range is 1000..9999 and both ends hold
+  ---
+  duration_ms: 0.066667
+  ...
+# Subtest: AC02/QA-02: year zero is rejected everywhere, including its leap day
+ok 32 - AC02/QA-02: year zero is rejected everywhere, including its leap day
+  ---
+  duration_ms: 0.132041
+  ...
+# Subtest: AC02/QA-02: years below the range are rejected whether or not they are leap years
+ok 33 - AC02/QA-02: years below the range are rejected whether or not they are leap years
+  ---
+  duration_ms: 0.167542
+  ...
+# Subtest: AC02/QA-02: formatting cannot produce a value that parsing would refuse
+ok 34 - AC02/QA-02: formatting cannot produce a value that parsing would refuse
+  ---
+  duration_ms: 0.135875
+  ...
+# Subtest: AC02/QA-02: an out-of-range year is reported differently from an impossible day
+ok 35 - AC02/QA-02: an out-of-range year is reported differently from an impossible day
+  ---
+  duration_ms: 0.068459
+  ...
+# Subtest: AC04/QA-02: code and schema agree on every four-digit year, exhaustively
+ok 36 - AC04/QA-02: code and schema agree on every four-digit year, exhaustively
+  ---
+  duration_ms: 1983.993167
+  ...
+# Subtest: AC04/QA-02: the schema patterns avoid lookahead so generated bindings can use them
+ok 37 - AC04/QA-02: the schema patterns avoid lookahead so generated bindings can use them
+  ---
+  duration_ms: 0.521083
+  ...
+# Subtest: AC02: calendar dates are a separate type from instants
+ok 38 - AC02: calendar dates are a separate type from instants
+  ---
+  duration_ms: 0.102875
+  ...
+# Subtest: AC02: a device clock is a claim; received_at stays authoritative
+ok 39 - AC02: a device clock is a claim; received_at stays authoritative
+  ---
+  duration_ms: 0.079166
+  ...
+# Subtest: AC02: the event envelope requires both the claimed and the received instant
+ok 40 - AC02: the event envelope requires both the claimed and the received instant
+  ---
+  duration_ms: 0.162625
+  ...
+# Subtest: AC03: versions start at 1 and advance by exactly one
+ok 41 - AC03: versions start at 1 and advance by exactly one
+  ---
+  duration_ms: 0.156666
+  ...
+# Subtest: AC03: a matching precondition commits and yields the next version
+ok 42 - AC03: a matching precondition commits and yields the next version
+  ---
+  duration_ms: 0.074166
+  ...
+# Subtest: AC03: a stale writer is rejected with 409 and told the current version
+ok 43 - AC03: a stale writer is rejected with 409 and told the current version
+  ---
+  duration_ms: 0.062542
+  ...
+# Subtest: AC03: a missing precondition fails closed with 428 rather than last-write-wins
+ok 44 - AC03: a missing precondition fails closed with 428 rather than last-write-wins
+  ---
+  duration_ms: 0.099292
+  ...
+# Subtest: AC03: two concurrent writers from the same read — exactly one wins
+ok 45 - AC03: two concurrent writers from the same read — exactly one wins
+  ---
+  duration_ms: 0.066292
+  ...
+# Subtest: AC03: append-only records reject updates instead of carrying a version
+ok 46 - AC03: append-only records reject updates instead of carrying a version
+  ---
+  duration_ms: 0.142041
+  ...
+# Subtest: AC03: the mutable-aggregate envelope requires id, tenant, version and both instants
+ok 47 - AC03: the mutable-aggregate envelope requires id, tenant, version and both instants
+  ---
+  duration_ms: 0.086375
+  ...
+# Subtest: AC03: an idempotent retry replays the stored result without executing again
+ok 48 - AC03: an idempotent retry replays the stored result without executing again
+  ---
+  duration_ms: 0.427959
+  ...
+# Subtest: AC03: request fingerprints ignore key order but not values
+ok 49 - AC03: request fingerprints ignore key order but not values
+  ---
+  duration_ms: 0.084167
+  ...
+# Subtest: AC03: reusing an idempotency key with a different body is surfaced, not absorbed
+ok 50 - AC03: reusing an idempotency key with a different body is surfaced, not absorbed
+  ---
+  duration_ms: 0.163
+  ...
+# Subtest: AC03: offline sync applies only on an exact base-version match
+ok 51 - AC03: offline sync applies only on an exact base-version match
+  ---
+  duration_ms: 0.077833
+  ...
+# Subtest: AC03: security-sensitive sync conflicts go to the human queue, never last-write-wins
+ok 52 - AC03: security-sensitive sync conflicts go to the human queue, never last-write-wins
+  ---
+  duration_ms: 0.056042
+  ...
+# Subtest: AC03: without a declared merge rule, any version mismatch defaults to CONFLICT
+ok 53 - AC03: without a declared merge rule, any version mismatch defaults to CONFLICT
+  ---
+  duration_ms: 0.042458
+  ...
+# Subtest: AC03: sync states match the offline architecture
+ok 54 - AC03: sync states match the offline architecture
+  ---
+  duration_ms: 0.085333
+  ...
+# Subtest: AC03: event schema versioning is separate from aggregate versioning
+ok 55 - AC03: event schema versioning is separate from aggregate versioning
+  ---
+  duration_ms: 0.043666
+  ...
+# Subtest: AC04: every published schema is valid JSON Schema 2020-12 with an id and title
+ok 56 - AC04: every published schema is valid JSON Schema 2020-12 with an id and title
+  ---
+  duration_ms: 0.233666
+  ...
+# Subtest: AC04: code and schema share one definition of a canonical identifier
+ok 57 - AC04: code and schema share one definition of a canonical identifier
+  ---
+  duration_ms: 0.354041
+  ...
+# Subtest: AC04: code and schema share one definition of a UTC instant
+ok 58 - AC04: code and schema share one definition of a UTC instant
+  ---
+  duration_ms: 0.0935
+  ...
+# Subtest: AC04: the ADR is the recorded decision and names its owner and freeze policy
+ok 59 - AC04: the ADR is the recorded decision and names its owner and freeze policy
+  ---
+  duration_ms: 0.05275
+  ...
+# Subtest: AC04: a full envelope built from the contracts validates against its schema shape
+ok 60 - AC04: a full envelope built from the contracts validates against its schema shape
+  ---
+  duration_ms: 0.226125
+  ...
+1..60
+# tests 60
+# suites 0
+# pass 60
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2096.73075
+exit=0

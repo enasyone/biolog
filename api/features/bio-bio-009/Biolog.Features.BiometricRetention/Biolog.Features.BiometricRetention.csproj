@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Matches api/Biolog.Api/Biolog.Api.csproj's pinned TFM (BIO-FND-008), same as every prior
+         BIO-BIO story. -->
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <!--
+    No ProjectReference to BIO-BIO-002/003/006/007 (the stories owning the actual fingerprint/face
+    template and gallery stores this feature's deletion workflow targets) - the same "no runtime
+    coupling to a sibling's actual store" convention BIO-IDN-004 established for the identical
+    shape of problem (a write-capable gateway onto another story's aggregate). Domain/
+    ITemplateDeletionGateway.cs is a narrow, Result-shaped interface this project owns;
+    api/Biolog.Api/Modules/BioBio009Module.cs (which already references all four sibling projects
+    for its own module registration) implements it by wrapping their existing services directly.
+
+    The approved story also names BIO-BIO-001 as a dependency, but deliberately no
+    ProjectReference exists to it either: this feature defines its own local
+    Domain/BiometricRecordKind.cs rather than reusing BIO-BIO-001's BiometricModality, so this
+    project's dependency footprint stays at zero sibling ProjectReferences - documented as such in
+    docs/features/bio-bio-009/README.md.
+  -->
+
+  <ItemGroup>
+    <!-- Api/ActorResolver.cs and Api/ActorProvenanceGate.cs read HttpRequest headers (ADR-0006
+         Decisions 1 and 3) - the same reason BIO-MOB-005's own csproj takes this
+         FrameworkReference. -->
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Every domain/service type here is internal (BIO-IDN-001-QA-01's governance shape,
+         mirrored by every prior BIO-BIO story). This is the explicit, auditable seam that grants
+         Biolog.Api (DI registration + endpoint mapping in Modules/BioBio009Module.cs) and this
+         feature's own test project the same access. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.BiometricRetention.Tests" />
+  </ItemGroup>
+
+</Project>

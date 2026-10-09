@@ -1,0 +1,27 @@
+{
+  "story_key": "BIO-OPS-003",
+  "title": "Card issue-replace-produce local acceptance",
+  "implementation_commit": "9e09b63d2f7328f92ed9b6c61ea17815cfd99d38",
+  "builder_head": "918bccd15084c6606cd59c0e927a774044c9d329",
+  "reviewed_head": "66fdffb6bf67e5f78977c90a6f19d05361426c98",
+  "environment": {"profile": "local acceptance on Darwin arm64; synthetic fixtures only", "timestamp": "2026-10-07"},
+  "acceptance_criteria": {
+    "BIO-OPS-003-AC01": {"result": "PASS", "evidence": ["tests/features/bio-crd-005", "tests/features/bio-crd-007", "evidence/features/bio-ops-003/builder/ROUND3-PASS.md"], "finding": "The accepted card-issuance dependency issues Card 001 and permits activation only through its authoritative one-active-card invariant."},
+    "BIO-OPS-003-AC02": {"result": "PASS", "evidence": ["api/features/bio-crd-006/CardLifecycleService.cs", "tests/features/bio-crd-006", "evidence/features/bio-ops-003/builder/ROUND3-PASS.md"], "finding": "Reporting and replacement issue the next card sequence through the canonical card-issuance gateway without duplicating sequence logic."},
+    "BIO-OPS-003-AC03": {"result": "PASS", "evidence": ["api/features/bio-crd-006/CardLifecycleService.cs", "tests/features/bio-crd-006/BIO-CRD-006.test.sh", "tests/features/bio-ops-003/BIO-OPS-003.acceptance.sh"], "finding": "Replacement activation permanently revokes every earlier card with compensation protection before activating the replacement, so the prior card cannot reactivate."},
+    "BIO-OPS-003-AC04": {"result": "PASS", "evidence": ["api/Biolog.Api/Cards/CardActivationBarrierLockRegistry.cs", "api/features/bio-crd-006/CardLifecycleService.cs", "api/features/bio-crd-007/ProductionService.cs", "tests/features/bio-ops-003/BIO-OPS-003.acceptance.sh", "tests/dotnet/Biolog.IntegrationTests"], "finding": "The canonical replacement path checks the latest production result and holds one shared per-card barrier through activation. Every production mutation takes the same barrier, eliminating the stale passed-production snapshot race."},
+    "BIO-OPS-003-AC05": {"result": "PASS", "evidence": ["api/features/bio-crd-005", "api/features/bio-crd-006/CardLifecycleService.cs", "api/features/bio-crd-007/ProductionService.cs", "evidence/features/bio-ops-003/codex/SECURITY-REVIEW-ZAINAB.md"], "finding": "The composed path retains BIO-CRD-005's authoritative one-active-card invariant while production and lifecycle mutations are serialized across feature boundaries."}
+  },
+  "commands": [
+    {"command": "bash tests/features/bio-ops-003/BIO-OPS-003.acceptance.sh", "result": "PASS (4/4 integrated invariants)"},
+    {"command": "bash tests/features/bio-crd-006/BIO-CRD-006.test.sh", "result": "PASS (82/82)"},
+    {"command": "bash tests/features/bio-crd-007/BIO-CRD-007.test.sh", "result": "PASS (51/51)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (36 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"}
+  ],
+  "builder_verdict": {"result": "PASS", "commit_hash": "918bccd15084c6606cd59c0e927a774044c9d329", "implementation_commit": "9e09b63d2f7328f92ed9b6c61ea17815cfd99d38", "integration_tests": "295/295 PASS", "unit_tests": "211/211 PASS", "crd006_feature_tests": "81/81 PASS", "crd007_feature_tests": "56/56 PASS", "acceptance_harness": "4/4 PASS", "evidence": "evidence/features/bio-ops-003/builder/ROUND3-PASS.md", "evidence_sha256": "1451619dd1b98b84f0724e4886fd7fc1a375b89ffb0a956f951dcdf68b7dc6fb"},
+  "security_review": {"reviewer": "Zainab", "result": "PASS", "builder_commit_reviewed": "918bccd15084c6606cd59c0e927a774044c9d329", "review_commit": "66fdffb6bf67e5f78977c90a6f19d05361426c98", "evidence": "evidence/features/bio-ops-003/codex/SECURITY-REVIEW-ZAINAB.md", "evidence_sha256": "8e1005c8d8ab88360c740acec73e39bd3b4ec247c783f8bd90d000e09e0b8dd7"},
+  "category_verdicts": {"functional": "PASS", "security": "PASS", "tenant_isolation": "PASS", "offline_recovery": "PASS", "concurrency": "PASS", "regression": "PASS"},
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "AC01-AC05 pass. The sequential composition gap and cross-feature time-of-check/time-of-use race are closed by production-gated replacement activation under a single host-layer barrier, registered once and verified by barrier-controlled tests with mutant discrimination."}
+}

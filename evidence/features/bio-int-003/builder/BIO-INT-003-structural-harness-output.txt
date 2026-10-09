@@ -1,0 +1,66 @@
+PASS  AC01 feature project exists
+PASS  AC01 project targets the pinned .NET SDK's TFM
+PASS  AC01 feature project has no ProjectReference to Biolog.Api.csproj
+PASS  AC01 feature project has no ProjectReference to bio-idn-006 (RBAC role model is duplicated by value, not by reference)
+PASS  AC01 feature project has no ProjectReference to bio-int-001 (role catalogue is its own third duplicate, not a shared reference)
+PASS  AC01 every service-account lookup/list/mutation is tenant-scoped by an explicit tenantId parameter
+PASS  AC01 cross-tenant isolation is proven, not just asserted
+PASS  AC02 a closed scope catalogue exists (this project's own duplicate of BIO-IDN-006's role model)
+PASS  AC02 an OAuth2 client_credentials token endpoint exists
+PASS  AC02 granted scopes are validated against the closed catalogue at creation time
+PASS  AC02 a token cannot be granted a scope the account itself was never granted (proven, not asserted)
+PASS  AC02 a real client_credentials grant is proven at the real HTTP layer
+PASS  AC03 a rate limiter exists
+PASS  AC03 the rate limit bucket key is a value-equality type, not a joined string (BIO-INT-002's own collision lesson applied)
+PASS  AC03 an API audit sink exists
+PASS  AC03 rate-limit rejection is itself an audited action
+PASS  AC03 exceeding the limit is proven to return 429 with Retry-After, not just asserted
+PASS  AC03 a protected resource endpoint validates a bearer token end to end
+PASS  AC04 a secret hasher exists
+PASS  AC04 the stored field is named SecretHash, never Secret/PlaintextSecret
+PASS  AC04 ApiAuditEvent has no field capable of holding a raw secret or token (proven, not asserted)
+PASS  AC04 a rotate-secret endpoint exists
+PASS  AC04 rotation invalidates the old secret (proven, not asserted)
+PASS  AC04 a revoked account cannot obtain a new token (proven, not asserted)
+PASS  AC04 secrets are cryptographically random, never derived from a public value (BIO-INT-001-F01's own lesson applied)
+PASS  The access-token signing key and the secret-hash pepper use distinct configuration keys
+PASS  No JWT library dependency was introduced (hand-rolled HMAC token, matching this codebase's own precedent)
+PASS  AC05 a new, additive API-credentials panel exists
+PASS  AC05 the panel is mounted on /administration/integrations
+PASS  AC05 BIO-INT-002's own ImportConsole is still mounted, not replaced
+PASS  AC05 four new, independently mode-switchable IntegrationService port keys are registered
+PASS  AC05 the live adapter calls this story's own real backend path
+PASS  AC05 the live-connection design is documented
+PASS  /settings/authentication is documented as deliberately untouched (not this story's domain)
+PASS  This story documents that real RBAC enforcement of token scopes is a named follow-up
+PASS  ZB01 the access-token codec has no dummy-key fallback - Issue()/TryValidate() fail closed when unconfigured
+PASS  ZB01 a minimum secret length is enforced for both the token codec and the secret hasher
+PASS  ZB01 two independently-unconfigured codecs can no longer forge/accept each other's tokens (proven, not asserted)
+PASS  ZB02 an actor resolver and provenance gate exist (same seam BIO-ACC-001/BIO-IDN-006 already established)
+PASS  ZB02 a permission gateway seam exists and service management methods require it before anything else
+PASS  ZB02 BioInt003Module wires a real PermissionGatewayAdapter over BIO-IDN-006's own PermissionService
+PASS  ZB02 an unprivileged-but-provenance-verified actor is denied at the real HTTP layer (proven, not asserted)
+PASS  ZB02 a missing actor header and a forged provenance proof are both proven to fail at the real HTTP layer
+PASS  ZB04 audit now runs before the repository mutation on create/rotate/revoke (point-of-no-return discipline)
+PASS  ZB04 the repository mutation after a successful audit write is non-cancellable
+PASS  ZB05 the provenance store has no dummy-key fallback - Verify() fails closed when unconfigured
+PASS  ZB05 the former public dummy-key proof is proven rejected against an unconfigured host (proven, not asserted)
+PASS  ZB03 AuthorizeAsync re-reads live account state (revocation + current scopes), not just the token's embedded claims
+PASS  ZB03 a revoked account's still-unexpired token is proven rejected at the real HTTP layer (proven, not asserted)
+PASS  ZB03 a scope withdrawn from the account after token issuance stops being honored (proven, not asserted)
+PASS  ZB06 rotate/revoke check existence/version BEFORE writing any audit event (no false completion events on 404/409)
+PASS  ZB03 (round 3) a role-permission gateway seam exists - resolves ROLES against BIO-IDN-006's real tenant-scoped grants
+PASS  ZB03 (round 3) whoami requires a namespaced domain permission key, never a bare role-label string
+PASS  ZB03 (round 3) BioInt003Module wires a real adapter over BIO-IDN-006's own IRolePermissionGrantRepository, bypassing PermissionService's ambient tenant resolution
+PASS  ZB03 (round 3) the same role label produces a different result when the tenant grant is revoked (proven, not asserted)
+PASS  ZB03 (round 3) a grant in one tenant does not satisfy a token for a different tenant (proven, not asserted)
+PASS  ZB03 (round 3) a scope with no real tenant grant is denied at the real HTTP layer, not merely a fake (proven, not asserted)
+PASS  ZB07 KnownRoles excludes SuperAdmin from the issuable scope catalogue
+PASS  ZB07 RolePermissionGatewayAdapter has no SuperAdmin implicit-grant short-circuit left in production code
+PASS  ZB07 creating an account with scope SuperAdmin is rejected at the root (proven, not asserted)
+PASS  ZB07 a service-account manager cannot mint a token for a permission they were never authorised to delegate (proven, not asserted)
+PASS  ZB07 SuperAdmin is rejected as a service-account scope at the real HTTP layer (proven, not asserted)
+PASS  builder evidence directory exists
+PASS  feature docs exist
+----
+PASS=64 FAIL=0

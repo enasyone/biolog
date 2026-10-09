@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-TRN-002 owns api/features/bio-trn-002/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh) and no
+         ProjectReference to any other feature project - PersonId existence is proven through this
+         project's own narrow Domain/IPersonExistenceGateway.cs, and Route/Vehicle/Stop
+         existence/active-status through this project's own narrow
+         Domain/ITransportRegistryGateway.cs - both implemented by adapters in
+         api/Biolog.Api/Modules/BioTrn002Module.cs wrapping BIO-IDN-001's PersonService and
+         BIO-TRN-001's own already-registered (internal, InternalsVisibleTo Biolog.Api)
+         IRouteRepository/IVehicleRepository/IStopRepository directly - the same gateway pattern
+         every story in this codebase already uses.
+
+         Namespace root is "TransportEvents". One aggregate, TransportEvent (Domain/TransportEvent.cs -
+         AC01's raw board/alight fact, AC02's idempotent capture), a read-time-only pure evaluator
+         (Domain/TransportPresenceEvaluator.cs - AC03's missing-alight exception, never persisted,
+         the same "refuse auto-flip, compute in effect at read time" discipline BIO-IDN-002/
+         BIO-ATT-001/BIO-TRN-001 established), and a feature-local, CAS-versioned
+         TransportNotificationConfig + append-only TriggeredNotification log (AC04 - deliberately
+         NOT integrated with BIO-RPT-001's IDomainEventBus/DomainEventEnvelope, which is not a
+         declared dependency of this story and is hard-constrained by the real, frozen
+         contracts/schemas/event-envelope.schema.json to five aggregate_type values with no sixth
+         for a transport event - see docs/features/bio-trn-002/README.md "AC04: a feature-local
+         notification trigger, not a BIO-RPT-001 integration"). -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Aggregate constructors and repositories are internal - the explicit, auditable seam for
+         Biolog.Api (DI registration) and this project's own test assembly. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.TransportEvents.Tests" />
+  </ItemGroup>
+
+</Project>

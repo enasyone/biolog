@@ -1,0 +1,11 @@
+PASS  AC01: template contains builder/adversarial/security/acceptance stages
+PASS  AC02: template records all mandated metadata fields
+PASS  AC03: checker reports a missing story directory
+PASS  AC03: checker reports a missing required stage
+PASS  AC03: checker reports missing stage metadata
+PASS  AC02/AC03 regressions: stale commits and FAIL results are rejected
+PASS  AC04: template explicitly marks synthetic test data
+PASS  AC04: checker enforces the permitted data classifications
+==============================
+8/8 checks passed
+exit 0

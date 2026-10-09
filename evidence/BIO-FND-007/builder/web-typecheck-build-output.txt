@@ -1,0 +1,34 @@
+$ pnpm run typecheck
+
+> @biolog/web@0.0.0 typecheck <workspace>/biolog-worktrees/BIO-FND-007/web
+> tsc --noEmit
+
+
+$ pnpm run build
+
+> @biolog/web@0.0.0 build <workspace>/biolog-worktrees/BIO-FND-007/web
+> next build
+
+[1m[38;2;173;127;168m▲ Next.js 16.3.5[39m[22m (Turbopack)
+[32m[1m✓[22m[39m Running next.config.mjs took 13ms
+
+[37m[1m [22m[39m Creating an optimized production build ...
+[32m[1m✓[22m[39m Compiled successfully in 311ms
+[37m[1m [22m[39m Running TypeScript ...
+[37m[1m [22m[39m Finished TypeScript in 204ms ...
+[37m[1m [22m[39m Collecting page data using 5 workers ...
+[37m[1m [22m[39m Generating static pages using 5 workers (0/4) ...
+[37m[1m [22m[39m Generating static pages using 5 workers (1/4) 
+[37m[1m [22m[39m Generating static pages using 5 workers (2/4) 
+[37m[1m [22m[39m Generating static pages using 5 workers (3/4) 
+[32m[1m✓[22m[39m Generating static pages using 5 workers (4/4) in 333ms
+[37m[1m [22m[39m Finalizing page optimization ...
+
+[4mRoute (app)[24m
+┌ ○ /
+├ ○ /_not-found
+└ ○ /icon.png
+
+
+○  (Static)  prerendered as static content
+

@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <!-- BIO-CRD-006 intentionally exposes its internal service only to this established
+         friend-assembly name. Reuse it so this hardening test exercises the real service
+         without widening production visibility. -->
+    <AssemblyName>Biolog.Features.CardLifecycle.Tests</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="xunit.v3" Version="3.0.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../../api/features/bio-crd-006/Biolog.Features.CardLifecycle.csproj" />
+    <Compile Include="../bio-crd-006/FakeCardIssueGateway.cs" Link="Fakes/FakeCardIssueGateway.cs" />
+    <Compile Include="../bio-crd-006/FakeCurrentTenantProvider.cs" Link="Fakes/FakeCurrentTenantProvider.cs" />
+    <Compile Include="../bio-crd-006/FakeProductionStatusGateway.cs" Link="Fakes/FakeProductionStatusGateway.cs" />
+    <Compile Include="../bio-crd-006/FakeCardActivationBarrier.cs" Link="Fakes/FakeCardActivationBarrier.cs" />
+  </ItemGroup>
+</Project>

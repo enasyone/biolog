@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.biolog.local/event-envelope.schema.json",
+  "title": "BIOLOG domain event envelope",
+  "description": "ADR-0001 Decisions 2.4 and 3.6, extended by ADR-0003 Decision 2. Events are immutable facts: they carry schema_version and the aggregate_version they describe, never a version of their own.",
+  "type": "object",
+  "required": [
+    "event_id",
+    "schema_version",
+    "tenant_id",
+    "aggregate_type",
+    "aggregate_id",
+    "aggregate_version",
+    "correlation_id",
+    "causation_id",
+    "occurred_at",
+    "received_at",
+    "producer",
+    "payload_classification",
+    "payload"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "pattern": "^evt_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "schema_version": {
+      "description": "Shape of payload. Additive changes keep it; breaking changes create a new version.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "tenant_id": {
+      "type": "string",
+      "pattern": "^ten_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "aggregate_type": {
+      "type": "string",
+      "enum": [
+        "tenant",
+        "person",
+        "credential",
+        "device",
+        "document_session"
+      ]
+    },
+    "aggregate_id": {
+      "$ref": "canonical-id.schema.json"
+    },
+    "correlation_id": {
+      "$ref": "canonical-id.schema.json"
+    },
+    "causation_id": {
+      "description": "What caused this event. REQUIRED (AC02) and explicitly null for a root event, so an unstated cause cannot be confused with no cause.",
+      "anyOf": [
+        {
+          "$ref": "canonical-id.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "occurred_at": {
+      "description": "Claimed by the producer. At the edge this is a device clock claim, not a fact. Never used for security ordering.",
+      "$ref": "utc-instant.schema.json"
+    },
+    "received_at": {
+      "description": "Stamped by the server on intake. Authoritative for ordering.",
+      "$ref": "utc-instant.schema.json"
+    },
+    "producer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "payload_classification": {
+      "type": "string",
+      "enum": [
+        "public",
+        "internal",
+        "personal",
+        "sensitive"
+      ]
+    },
+    "payload": {
+      "type": "object"
+    },
+    "aggregate_version": {
+      "description": "Version of the aggregate this event describes (ADR-0001 3.1). A fact about the state, not a version OF the event - so it does not make the event mutable. Lets a consumer order two events about one aggregate without trusting a clock.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "idempotency_key": {
+      "description": "Optional. For the retry-prone writes in ADR-0001 3.4; scoped to tenant plus operation.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    }
+  },
+  "not": {
+    "required": [
+      "version"
+    ],
+    "$comment": "An event is a fact. A bare `version` would imply it can be updated; the version of the AGGREGATE it describes is carried as aggregate_version instead (ADR-0003 Decision 2)."
+  }
+}

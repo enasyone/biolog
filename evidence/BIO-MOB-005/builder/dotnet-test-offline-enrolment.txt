@@ -1,0 +1,8 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Biolog.Features.OfflineEnrolment -> <workspace>/biolog-worktrees/BIO-MOB-005/api/features/bio-mob-005/bin/Debug/net10.0/Biolog.Features.OfflineEnrolment.dll
+  Biolog.Features.OfflineEnrolment.Tests -> <workspace>/biolog-worktrees/BIO-MOB-005/tests/features/bio-mob-005/bin/Debug/net10.0/Biolog.Features.OfflineEnrolment.Tests.dll
+Test run for <workspace>/biolog-worktrees/BIO-MOB-005/tests/features/bio-mob-005/bin/Debug/net10.0/Biolog.Features.OfflineEnrolment.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:    17, Skipped:     0, Total:    17, Duration: 314 ms - Biolog.Features.OfflineEnrolment.Tests.dll (net10.0)

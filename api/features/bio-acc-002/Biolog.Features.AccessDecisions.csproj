@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-ACC-002 owns api/features/bio-acc-002/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh) and no
+         ProjectReference to any other feature project. Person existence is proven through this
+         project's own narrow Domain/IPersonExistenceGateway.cs; BIO-ACC-001's policy evaluation
+         through Domain/IPolicyDecisionGateway.cs; BIO-BIO-004's fingerprint verification through
+         Domain/IFingerprintEvidenceGateway.cs; BIO-BIO-005's face verification through
+         Domain/IFaceEvidenceGateway.cs - all four implemented by adapters in
+         api/Biolog.Api/Modules/BioAcc002Module.cs wrapping each sibling's own already-registered
+         (internal, InternalsVisibleTo Biolog.Api) service directly, the same gateway pattern every
+         story in this codebase already uses.
+
+         Namespace root is "AccessDecisions". One append-only aggregate, AccessDecisionEvent
+         (Domain/AccessDecisionEvent.cs) - a historical fact, never mutated, mirroring
+         BIO-ATT-001's AttendanceEvent/BIO-TRN-002's TransportEvent shape. AC01's evidence-vs-decision
+         split: biometric comparison outcomes are collected as evidence and folded into a derived
+         PresentedAssuranceLevel (Domain/AccessDecisionCombiner.cs, pure) BEFORE the policy gateway
+         is ever called; the gateway's own Decision/ReasonCode is the ONLY source of ALLOW/DENY. -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Aggregate constructors and repositories are internal - the explicit, auditable seam for
+         Biolog.Api (DI registration) and this project's own test assembly. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.AccessDecisions.Tests" />
+  </ItemGroup>
+
+</Project>

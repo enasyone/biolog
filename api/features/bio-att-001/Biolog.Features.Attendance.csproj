@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-ATT-001 owns api/features/bio-att-001/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh)
+         and no ProjectReference to any other feature project - PersonId existence is proven
+         through this project's own narrow Domain/IPersonExistenceGateway.cs, and the
+         policy-management permission check through Domain/IPermissionGateway.cs, both
+         implemented by adapters in api/Biolog.Api/Modules/BioAtt001Module.cs wrapping
+         BIO-IDN-001's PersonService and BIO-IDN-006's PermissionService directly - the same
+         gateway pattern every identity-wave story in this codebase already uses.
+
+         Namespace root is "Attendance". Two aggregates: AttendanceEvent (Domain/AttendanceEvent.cs,
+         an immutable raw fact - ADR-0001 event-plane discipline, AC01/AC02) and AttendancePolicy
+         (Domain/AttendancePolicy.cs, a per-tenant CAS-versioned mutable record - AC04). Derived
+         attendance status is never persisted; it is computed at read time from raw events plus the
+         tenant's current policy (Domain/AttendanceStatusEvaluator.cs), the same "refuse auto-flip,
+         compute in effect at read time" discipline BIO-IDN-002 established for time-based status. -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Every aggregate's constructor and its repository are internal - the explicit, auditable
+         seam for Biolog.Api (DI registration) and this project's own test assembly. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.Attendance.Tests" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,10 @@
+{
+  "story_key": "BIO-UX-005",
+  "stage": "builder",
+  "commit_hash": "c5a96e1249d45759e70f66a25fddbef2a8b3be2b",
+  "test_command": "(cd web && ./node_modules/.bin/tsc --noEmit && ./node_modules/.bin/next build) && (cd tests/frontend && ./node_modules/.bin/vitest run) && (cd tests/frontend && BIOLOG_BASE_URL=http://127.0.0.1:3223 ./node_modules/.bin/playwright test) && manual verification: cd web && rm -rf .next && pnpm build && pnpm start -p 3219 (AC03 production-exclusion), NEXT_PUBLIC_FEATURE_MODE_DEVICESERVICE=LIVE pnpm dev -p 3220 (AC02/AC04 live-mode switch), and NEXT_PUBLIC_FEATURE_MODE_REPORTINGSERVICE_VIEWAUDITTRAIL=LIVE pnpm dev -p 3221 (AC02 HYBRID remediation) - see evidence/BIO-UX-005/builder/ac03-ac04-manual-verification.txt",
+  "result": "PASS",
+  "timestamp": "2026-09-23T14:35:00Z",
+  "reviewer": "Damilola",
+  "data_classification": "SYNTHETIC"
+}

@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-MOB-002",
+  "title": "Implement offline event queue and idempotency foundation",
+  "owner": "Busola - Mobile & Edge Engineer",
+  "reviewed_commit": "14341f53901d30bf2147bb83e5efedefa2785a76",
+  "required_acceptance_stages": ["builder", "adversarial", "acceptance"],
+  "requirement_ids": [
+    "BIO-MOB-002-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-MOB-002-AC01",
+      "requirement_ids": ["BIO-MOB-002-REQ-001"],
+      "text": "Queued records have global IDs, device IDs, version and idempotency keys."
+    },
+    {
+      "id": "BIO-MOB-002-AC02",
+      "requirement_ids": ["BIO-MOB-002-REQ-001"],
+      "text": "States include pending/uploading/acknowledged/synced/conflict/failed."
+    },
+    {
+      "id": "BIO-MOB-002-AC03",
+      "requirement_ids": ["BIO-MOB-002-REQ-001"],
+      "text": "Retry is exponential and bounded."
+    },
+    {
+      "id": "BIO-MOB-002-AC04",
+      "requirement_ids": ["BIO-MOB-002-REQ-001"],
+      "text": "Security-sensitive conflicts are never silently overwritten."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-MOB-002.test.sh",
+      "ac_ids": [
+        "BIO-MOB-002-AC01",
+        "BIO-MOB-002-AC02",
+        "BIO-MOB-002-AC03",
+        "BIO-MOB-002-AC04"
+      ]
+    },
+    {
+      "path": "tests/flutter/test/bio_mob_002_ac01_retry_fields_test.dart",
+      "ac_ids": ["BIO-MOB-002-AC01"]
+    },
+    {
+      "path": "tests/flutter/test/bio_mob_002_ac03_retry_policy_test.dart",
+      "ac_ids": ["BIO-MOB-002-AC03"]
+    },
+    {
+      "path": "tests/flutter/test/bio_mob_002_ac03_retry_queue_test.dart",
+      "ac_ids": ["BIO-MOB-002-AC02", "BIO-MOB-002-AC03"]
+    },
+    {
+      "path": "tests/flutter/test/bio_mob_002_ac04_conflict_test.dart",
+      "ac_ids": ["BIO-MOB-002-AC04"]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-MOB-002/builder/metadata.json",
+      "stage": "builder",
+      "ac_ids": [
+        "BIO-MOB-002-AC01",
+        "BIO-MOB-002-AC02",
+        "BIO-MOB-002-AC03",
+        "BIO-MOB-002-AC04"
+      ]
+    }
+  ]
+}

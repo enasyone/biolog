@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-CRD-006 owns api/features/bio-crd-006/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh)
+         and no ProjectReference to api/features/bio-crd-005 either, despite BIO-CRD-005 being
+         a real runtime dependency (reporting/replacing/activating a physical card requires
+         reading and mutating that story's own CardIssue rows): every cross-feature runtime
+         need in this codebase goes through a narrow gateway interface THIS project defines
+         (see Domain/ICardIssueGateway.cs) implemented by an adapter living in
+         api/Biolog.Api/Modules/BioCrd006Module.cs, the same shape BIO-CRD-005's own
+         IPersonExistenceGateway already established for an identical dependency.
+
+         Namespace root is "CardLifecycle". No new ADR-0001 canonical identifier type is
+         minted - this feature's own CardLifecycleRecord reuses BIO-CRD-005's own natural
+         composite key (TenantId, PersonId, CardClass, SequenceNumber), never a new id of its
+         own kind. -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.CardLifecycle.Tests" />
+  </ItemGroup>
+
+</Project>

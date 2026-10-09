@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.biolog.local/tenant-access-denial-event.schema.json",
+  "title": "BIOLOG tenant access denial audit event",
+  "description": "ADR-0002 Decision 5, re-profiled onto the audit envelope by ADR-0003 Decision 6.2. A conforming audit-event.schema.json document with outcome DENIED plus one denial-specific field, attempted_tenant_id. Guarantees unchanged: written before the response, both tenants recorded, no payload.",
+  "allOf": [
+    {
+      "$ref": "audit-event.schema.json"
+    }
+  ],
+  "type": "object",
+  "required": [
+    "event_id",
+    "schema_version",
+    "tenant_id",
+    "actor",
+    "action",
+    "target",
+    "outcome",
+    "reason_code",
+    "correlation_id",
+    "occurred_at",
+    "received_at",
+    "classification",
+    "attempted_tenant_id"
+  ],
+  "properties": {
+    "outcome": {
+      "const": "DENIED"
+    },
+    "reason_code": {
+      "description": "Reasons an access was refused AND recorded. audit_unavailable is deliberately absent: it is the failure to write an event, so no event carries it.",
+      "type": "string",
+      "enum": [
+        "tenant_context_missing",
+        "tenant_context_conflict",
+        "host_not_recognised",
+        "tenant_binding_unavailable",
+        "cross_tenant_access_denied",
+        "tenant_context_not_resolved",
+        "control_plane_context_misuse",
+        "tenant_context_immutable"
+      ]
+    },
+    "attempted_tenant_id": {
+      "description": "Tenant that was reached for. Null only when no tenant could be determined at all. Recording it beside tenant_id is the whole signal: without the pair, a cross-tenant attempt is indistinguishable from an ordinary miss.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^ten_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    }
+  },
+  "not": {
+    "anyOf": [
+      {
+        "required": [
+          "payload"
+        ]
+      },
+      {
+        "required": [
+          "record"
+        ]
+      },
+      {
+        "required": [
+          "version"
+        ]
+      },
+      {
+        "required": [
+          "evidence"
+        ]
+      }
+    ],
+    "$comment": "No payload or embedded record (Decision 3), no aggregate version (append-only, ADR-0001 3.3), no inlined evidence (Decision 5)."
+  }
+}

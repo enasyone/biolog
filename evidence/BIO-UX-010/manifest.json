@@ -1,0 +1,41 @@
+{
+  "story_key": "BIO-UX-010",
+  "commit_hash": "ce79df09f90785c2d28b94ab48bde4d58af72a5a",
+  "implementation_commit": "44eb3bcbff7aa9676fc21a6cee46355915708cd5",
+  "builder_evidence_commit": "ce79df09f90785c2d28b94ab48bde4d58af72a5a",
+  "environment_profile": "local frontend Node/pnpm workspace; synthetic fixtures",
+  "timestamp": "2026-09-23T15:04:20Z",
+  "acceptance_criteria": {
+    "BIO-UX-010-AC01": {"result": "PASS", "tests": ["bio-ux-010-operational-journeys.spec.ts"]},
+    "BIO-UX-010-AC02": {"result": "PASS", "tests": ["bio-ux-010-scenarios.test.ts", "bio-ux-010-operational-journeys.spec.ts"]},
+    "BIO-UX-010-AC03": {"result": "PASS", "tests": ["bio-ux-010-operational-journeys.spec.ts policy-builder coverage"]},
+    "BIO-UX-010-AC04": {"result": "PASS", "tests": ["bio-ux-010-operational-journeys.spec.ts visitor and transport events"]},
+    "BIO-UX-010-AC05": {"result": "PASS", "tests": ["bio-ux-010-module-ports.test.ts", "bio-ux-010-operational-journeys.spec.ts"]}
+  },
+  "commands_results": [
+    {"command": "corepack pnpm --dir tests/frontend test:unit", "result": "PASS: 35 files, 267 tests"},
+    {"command": "corepack pnpm --dir web typecheck", "result": "PASS"},
+    {"command": "corepack pnpm --dir web build", "result": "PASS: 34 static routes"},
+    {"command": "builder Playwright suite", "result": "PASS: 126 tests"}
+  ],
+  "builder_verdict": "PASS",
+  "independent_qa_verdict": "PASS",
+  "security_verdict": "PASS",
+  "tenant_verdict": "PASS",
+  "offline_verdict": "PASS",
+  "concurrency_verdict": "NOT_APPLICABLE",
+  "regression_verdict": "PASS",
+  "evidence_references": [
+    "builder/metadata.json",
+    "builder/SUMMARY.md",
+    "builder/frontend-unit-test-output.txt",
+    "builder/frontend-e2e-test-output.txt",
+    "builder/web-typecheck-build-output.txt",
+    "builder/manual-verification.txt",
+    "codex/REVIEW-Seyi-round1.md",
+    "codex/SECURITY-REVIEW-ZAINAB.md",
+    "acceptance/REVIEW-Chioma-round1.md"
+  ],
+  "final_acceptance_decision": "PASS",
+  "reason": "AC01-AC05 have complete implementation, executable coverage, and required commit-bound functional and security review."
+}

@@ -1,0 +1,26 @@
+{
+  "story_key": "BIO-RPT-003",
+  "title": "Implement immutable audit investigation views",
+  "implementation_commit": "db78d58",
+  "builder_commit": "b9099cbb108f5f5ba7489305e283e4e441901fc2",
+  "reviewed_head": "43bff70",
+  "environment": {"profile": "local acceptance; synthetic fixtures only; GitHub push blocked", "timestamp": "2026-09-28T08:55:00Z"},
+  "acceptance_criteria": {
+    "AC01": {"result": "PASS", "evidence": ["actor/person/action/time/device/reason filters are implemented and tested"]},
+    "AC02": {"result": "PASS", "evidence": ["service and route surface expose no audit mutation"]},
+    "AC03": {"result": "PASS", "evidence": ["CSV export is permission-gated and audited before bytes return"]},
+    "AC04": {"result": "PASS", "evidence": ["view-time redaction is independent of capture classification; secret detail always hidden"]},
+    "AC05": {"result": "PASS", "evidence": ["dedicated ReportingService ports and live audit-investigation routes connect the approved panel"]}
+  },
+  "commands": [
+    {"command": "bash tests/features/bio-rpt-003/BIO-RPT-003.test.sh", "result": "PASS (23/23)"},
+    {"command": "tests/features/bio-rpt-003/bin/Debug/net10.0/Biolog.Features.AuditInvestigation.Tests", "result": "PASS (37/37)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (32 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"}
+  ],
+  "builder_verdict": {"result": "PASS", "commit_hash": "b9099cbb108f5f5ba7489305e283e4e441901fc2", "backend": "37/37", "frontend_unit": "426/426", "frontend_e2e": "419/419", "live": "3/3"},
+  "independent_qa": [{"reviewer": "Seyi", "result": "PASS", "evidence": "evidence/BIO-RPT-003/codex/REVIEW-Seyi.md"}, {"reviewer": "Zainab", "result": "PASS", "evidence": "evidence/BIO-RPT-003/codex/SECURITY-REVIEW-ZAINAB.md"}],
+  "category_verdicts": {"functional": "PASS", "security": "PASS", "tenant_isolation": "PASS", "offline_recovery": "NOT_APPLICABLE", "concurrency": "PASS", "regression": "PASS"},
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "All five criteria have commit-bound evidence, both required reviews pass, and focused acceptance replay is green."}
+}

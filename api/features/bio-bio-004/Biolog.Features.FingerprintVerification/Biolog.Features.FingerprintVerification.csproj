@@ -1,0 +1,56 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Matches api/Biolog.Api/Biolog.Api.csproj's pinned TFM (BIO-FND-008), same as BIO-BIO-001/002/003. -->
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <!--
+    No ASP.NET Core dependency, no NuGet package references. This project DOES reference
+    BIO-BIO-001's provider-neutral biometric library directly - a feature-to-feature
+    ProjectReference, not a shared/common one - because 1:1 verification reuses BIO-BIO-001's own
+    IBiometricTemplateStore/IFingerprintProvider/IBiometricMatcher seams exactly as
+    Service.BiometricService.VerifyAsync already established them (BIO-BIO-001-AC03), rather than
+    re-deriving an equivalent contract. Same accepted shape as BIO-BIO-002/003/BIO-DOC-002/003
+    referencing their own foundation library directly.
+
+    The approved story also names BIO-BIO-002 (guided tenprint/single-finger enrolment) as a
+    dependency, but deliberately NO ProjectReference exists to it here: BIO-BIO-002's own
+    IFingerprintEnrolmentRepository/FingerprintEnrolmentService are internal, Singleton-registered,
+    and expose no "resolve by claimed identity" query at all (only get-by-session-id) - captured
+    fingerprint templates live embedded in its own FingerprintEnrolmentSession aggregate, never
+    published to BIO-BIO-001's IBiometricTemplateStore. Reaching into BIO-BIO-002's owned paths to
+    add such a query is out of this story's write scope (governance/feature-path-ownership.json
+    grants this story only api|web|mobile|tests|docs|evidence/features/bio-bio-004/**). This
+    story instead verifies against BIO-BIO-001's own IBiometricTemplateStore - the SAME seam
+    BiometricService.EnrollAsync/VerifyAsync already define for exactly this purpose - and
+    documents the BIO-BIO-002-does-not-populate-that-store gap explicitly rather than silently
+    working around it (see docs/features/bio-bio-004/README.md "Design decisions").
+
+    Deliberately NO ProjectReference to BIO-IDN-001 either (AC04's suspended/revoked gate):
+    PersonRegistry's PersonService is a tenant-scoped, Scoped-registered aggregate service (the
+    same shape BIO-PHO-001/BIO-BIO-003 already document for why THEY have no direct
+    ProjectReference to their own upstream dependency). This project defines its own narrow
+    Domain/IIdentityStatusGateway.cs instead; the real implementation is an adapter in
+    Biolog.Api.Modules.BioBio004Module wrapping BIO-IDN-001's already-registered
+    PersonService.GetAsync, the identical pattern BioIdn002-006Module/BioPho001-002Module/
+    BioBio003Module already use for their own read-only gateways.
+  -->
+  <ItemGroup>
+    <ProjectReference Include="../../bio-bio-001/Biolog.Features.Biometrics/Biolog.Features.Biometrics.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- IFingerprintVerificationRecordStore/InMemoryFingerprintVerificationRecordStore and
+         FingerprintVerificationService are internal (BIO-IDN-001-QA-01's governance shape,
+         mirrored by BIO-BIO-002/003). This is the explicit, auditable seam that grants
+         Biolog.Api (DI registration in Modules/BioBio004Module.cs) and this feature's own test
+         project the same access. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.FingerprintVerification.Tests" />
+  </ItemGroup>
+
+</Project>

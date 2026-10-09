@@ -1,0 +1,8 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Biolog.Features.Notifications -> <workspace>/biolog-worktrees/BIO-RPT-001/api/features/bio-rpt-001/bin/Debug/net10.0/Biolog.Features.Notifications.dll
+  Biolog.Features.Notifications.Tests -> <workspace>/biolog-worktrees/BIO-RPT-001/tests/features/bio-rpt-001/bin/Debug/net10.0/Biolog.Features.Notifications.Tests.dll
+Test run for <workspace>/biolog-worktrees/BIO-RPT-001/tests/features/bio-rpt-001/bin/Debug/net10.0/Biolog.Features.Notifications.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:    31, Skipped:     0, Total:    31, Duration: 38 ms - Biolog.Features.Notifications.Tests.dll (net10.0)

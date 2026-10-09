@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Matches api/Biolog.Api/Biolog.Api.csproj's pinned TFM (BIO-FND-008), same as sibling BIO-DOC-00x features. -->
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <!--
+    No ASP.NET Core dependency, no NuGet package references - every cryptographic primitive this
+    feature needs (SHA-1 for the ICAO 9303 key-derivation function, X509Chain/CertificateRequest
+    for passive-authentication certificate-chain validation) ships in the .NET base class library
+    (System.Security.Cryptography[.X509Certificates]), the same "no external library" discipline
+    every BIO-DOC-00x native engine this epic has kept. One ProjectReference to BIO-DOC-006's
+    DocumentClassifier - this story's one declared dependency - so a chip-read session can carry
+    which classified document identity it belongs to (AC03) without re-deriving classification
+    itself.
+  -->
+  <ItemGroup>
+    <ProjectReference Include="../../bio-doc-006/Biolog.Features.DocumentClassifier/Biolog.Features.DocumentClassifier.csproj" />
+  </ItemGroup>
+
+</Project>

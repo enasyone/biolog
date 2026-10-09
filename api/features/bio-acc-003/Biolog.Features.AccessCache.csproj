@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-ACC-003 owns api/features/bio-acc-003/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh) and,
+         deliberately, no ProjectReference to api/Biolog.Api/Features/DeviceRegistry or
+         api/features/bio-idn-001 either, even though both expose types this project could
+         reference directly: device and person-revocation resolution are each proven through
+         this project's own narrow gateway (Domain/IDeviceTenantResolutionGateway.cs,
+         Domain/IIdentityRevocationFeedGateway.cs), the same discipline every sibling feature's
+         device/person/tenant gateway already uses.
+
+         This project's own module adapter lives in api/Biolog.Api/Modules/BioAcc003Module.cs
+         from the start (never written here first), matching every prior story.
+
+         Device authentication (Api/DeviceAuthenticator.cs, Domain credential store) and human
+         actor resolution (Api/ActorResolver.cs, Api/ActorProvenanceGate.cs) are both fresh,
+         project-local copies of the same shape BIO-MOB-003 and BIO-ACC-001 each already
+         establish - "each feature project owns its own small primitives rather than a
+         cross-feature reference" is this repository's own established convention
+         (see api/features/bio-mob-003/Domain/IdempotencyStore.cs's header). This story needs
+         both: device auth for its offline-facing revocation-delta/presentation-event routes,
+         actor/provenance auth for its one human-facing (browser AccessService) route. -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.AccessCache.Tests" />
+  </ItemGroup>
+
+</Project>

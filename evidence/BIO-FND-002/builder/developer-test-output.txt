@@ -1,0 +1,19 @@
+PASS  AC01: toolchain/versions.json declares all 6 required categories
+PASS  AC01: every category has a non-empty pinned version
+PASS  AC02: global.json sdk.version matches manifest and rollForward=disable
+PASS  AC02: .nvmrc matches manifest pinned Node version
+PASS  AC02: package.json packageManager pins the manifest's pnpm version
+PASS  AC02/QA-01: .nvmrc edited to disagree with the manifest fails the check
+PASS  AC02/QA-01: global.json sdk.version edited to disagree with the manifest fails the check
+PASS  AC02/QA-01: package.json pnpm/node pins edited to disagree with the manifest fail the check
+PASS  AC03: web/package.json without pnpm-lock.yaml fails the check
+PASS  AC03: web/package.json with pnpm-lock.yaml passes that check
+PASS  AC03/AC04: a manifest edited to an uninstalled version is reported as drift
+PASS  AC04/QA-02: MySQL client major 9.x is rejected even though 9 >= 8.4.0 numerically
+PASS  AC04/QA-02: MySQL client 8.5.0 (same major, higher patch) still passes
+PASS  AC04: checker reports pnpm and MySQL client as not installed
+PASS  AC04: checker reports installed, matching tools as PASS
+PASS  AC04: overall check exits non-zero while a required tool is missing/drifted
+==============================
+16/16 checks passed
+exit 0

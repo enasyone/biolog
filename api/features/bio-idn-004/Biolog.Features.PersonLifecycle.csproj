@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-IDN-004 owns api/features/bio-idn-004/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh)
+         and, deliberately, no ProjectReference to api/features/bio-idn-001's project either -
+         the same "each feature story owns exactly its own subtree, no runtime coupling to a
+         sibling's actual store" convention BIO-IDN-002 and BIO-IDN-003 already established.
+
+         Unlike those two stories (which only ever READ BIO-IDN-001's store, via
+         IPersonExistenceGateway), this story also WRITES it - PERSON's own Status field is the
+         entire subject of this story. Domain/IPersonLifecycleGateway.cs is the write-capable
+         extension of that same seam: a narrow, Result-shaped interface this project owns,
+         implemented in api/Biolog.Api/Modules/BioIdn004Module.cs by wrapping BIO-IDN-001's own
+         already-registered, tenant-scoped PersonService.UpdateStatusAsync directly. See that
+         interface's header for why it returns a Result record rather than throwing BIO-IDN-001's
+         own PersonError - a cross-project exception type cannot be referenced or caught here
+         without a ProjectReference this project deliberately does not have.
+
+         This project's own module adapter lives in api/Biolog.Api/Modules/BioIdn004Module.cs
+         from the start (never written here first), matching every prior story. -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Applying BIO-IDN-001-QA-01's lesson from the start: this project has no aggregate of
+         its own to protect the way PersonProfile/InstitutionalIdentifier do (PERSON's identity
+         is owned entirely by BIO-IDN-001), so there is no repository to make internal here -
+         but the small domain types this project DOES own (Domain/LifecycleTransitionPolicy.cs,
+         the CredentialAccessRevocationEvent stack) are still internal, restricted to this
+         assembly, Biolog.Api (DI registration) and this project's own test assembly. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.PersonLifecycle.Tests" />
+  </ItemGroup>
+
+</Project>

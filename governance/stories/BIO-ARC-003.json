@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-ARC-003",
+  "title": "Define audit, evidence and domain-event envelopes",
+  "owner": "Kemi - Chief Architect & Integrator",
+  "requirement_ids": [
+    "BIO-ARC-003-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-ARC-003-AC01",
+      "requirement_ids": [
+        "BIO-ARC-003-REQ-001"
+      ],
+      "text": "Audit envelope includes tenant, actor, device/workstation, action, target, reason, correlation and time."
+    },
+    {
+      "id": "BIO-ARC-003-AC02",
+      "requirement_ids": [
+        "BIO-ARC-003-REQ-001"
+      ],
+      "text": "Domain event envelope includes id, version, aggregate, tenant, correlation/causation, occurred-at and schema version."
+    },
+    {
+      "id": "BIO-ARC-003-AC03",
+      "requirement_ids": [
+        "BIO-ARC-003-REQ-001"
+      ],
+      "text": "Sensitive fields are classified and redaction rules defined."
+    },
+    {
+      "id": "BIO-ARC-003-AC04",
+      "requirement_ids": [
+        "BIO-ARC-003-REQ-001"
+      ],
+      "text": "Events are idempotency-capable."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-ARC-003.test.sh",
+      "ac_ids": [
+        "BIO-ARC-003-AC01",
+        "BIO-ARC-003-AC02",
+        "BIO-ARC-003-AC03",
+        "BIO-ARC-003-AC04"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-ARC-003/acceptance/manifest.json",
+      "ac_ids": [
+        "BIO-ARC-003-AC01",
+        "BIO-ARC-003-AC02",
+        "BIO-ARC-003-AC03",
+        "BIO-ARC-003-AC04"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+branches:
+  develop 5dc09e6 BIO-FND-001: fix whitespace secret-scan bypass (BIO-FND-001-QA-01)
+* main    5dc09e6 BIO-FND-001: fix whitespace secret-scan bypass (BIO-FND-001-QA-01)
+
+remotes (expect none):
+
+core.hooksPath:
+.githooks
+
+log:
+5dc09e6 BIO-FND-001: fix whitespace secret-scan bypass (BIO-FND-001-QA-01)
+314fcfe BIO-FND-001: record builder evidence
+2a459bc BIO-FND-001: use mktemp under TMPDIR for pre-push guard check
+fe64f51 BIO-FND-001: initialise local-only repository and directory structure

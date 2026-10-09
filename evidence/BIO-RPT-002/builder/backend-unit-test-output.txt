@@ -1,0 +1,8 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Biolog.Features.ReportBuilder -> <workspace>/biolog-worktrees/BIO-RPT-002/api/features/bio-rpt-002/bin/Debug/net10.0/Biolog.Features.ReportBuilder.dll
+  Biolog.Features.ReportBuilder.Tests -> <workspace>/biolog-worktrees/BIO-RPT-002/tests/features/bio-rpt-002/bin/Debug/net10.0/Biolog.Features.ReportBuilder.Tests.dll
+Test run for <workspace>/biolog-worktrees/BIO-RPT-002/tests/features/bio-rpt-002/bin/Debug/net10.0/Biolog.Features.ReportBuilder.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:    35, Skipped:     0, Total:    35, Duration: 191 ms - Biolog.Features.ReportBuilder.Tests.dll (net10.0)

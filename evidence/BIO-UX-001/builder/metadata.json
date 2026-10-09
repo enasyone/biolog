@@ -1,0 +1,10 @@
+{
+  "story_key": "BIO-UX-001",
+  "stage": "builder",
+  "commit_hash": "a6d8999225490ace79f73899fc502fb4cf240d67",
+  "test_command": "(cd web && ./node_modules/.bin/tsc --noEmit && ./node_modules/.bin/next build) && (cd tests/frontend && ./node_modules/.bin/vitest run unit/bio-ux-001-tokens.test.ts unit/bio-ux-001-iconography.test.ts unit/bio-ux-001-breakpoints.test.ts unit/bio-ux-001-component-states.test.ts unit/bio-ux-001-css-sync.test.ts) && (cd tests/frontend && ./node_modules/.bin/vitest run)",
+  "result": "PASS",
+  "timestamp": "2026-09-23T13:10:00Z",
+  "reviewer": "Damilola",
+  "data_classification": "SYNTHETIC"
+}

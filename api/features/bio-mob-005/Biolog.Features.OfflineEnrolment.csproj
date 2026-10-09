@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-MOB-005 owns api/features/bio-mob-005/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh) and,
+         deliberately, no ProjectReference to api/Biolog.Api/Features/DeviceRegistry - device
+         resolution is proven through this project's own narrow gateway
+         (Domain/IDeviceTenantResolutionGateway.cs), the same discipline every sibling
+         device-facing feature's gateway already uses.
+
+         Duplicate detection (AC03) and the human resolution queue (AC04) are deliberately
+         self-contained within this project, scanning only this feature's own EnrolmentPackage
+         records - not a ProjectReference to bio-idn-005 (BIO-IDN-005's DuplicateReviewService is
+         internal to that project and not a declared dependency of this story) or bio-bio-006
+         (same reasoning). This mirrors BIO-BIO-006's own precedent exactly: when the closest
+         existing dedup/review construct is internal and undeclared, build an independent,
+         project-local one rather than reach into a sibling story's owned files.
+
+         This project's own module adapter lives in api/Biolog.Api/Modules/BioMob005Module.cs
+         from the start (never written here first), matching every prior story.
+
+         Device authentication (Api/DeviceAuthenticator.cs, Domain credential store) and human
+         actor resolution (Api/ActorResolver.cs, Api/ActorProvenanceGate.cs) are both fresh,
+         project-local copies of the same shape BIO-MOB-003/BIO-ACC-003 each already establish -
+         "each feature project owns its own small primitives rather than a cross-feature
+         reference" is this repository's own established convention. -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.OfflineEnrolment.Tests" />
+  </ItemGroup>
+
+</Project>

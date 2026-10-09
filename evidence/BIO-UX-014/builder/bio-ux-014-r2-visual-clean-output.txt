@@ -1,0 +1,751 @@
+
+> @biolog/baseline-tests@ test:visual <workspace>/biolog-worktrees/BIO-UX-014/tests/frontend
+> TZ=UTC playwright test bio-ux-014-visual-regression.spec.ts
+
+
+[2mRunning [22m14[2m tests using [22m1[2m worker[22m
+
+[2m[WebServer] [22m[36m[browser][39m A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[2m[WebServer] [22m
+[2m[WebServer] [22m- A server/client branch `if (typeof window !== 'undefined')`.
+[2m[WebServer] [22m- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+[2m[WebServer] [22m- Date formatting in a user's locale which doesn't match the server.
+[2m[WebServer] [22m- External changing data without sending a snapshot of it along with the HTML.
+[2m[WebServer] [22m- Invalid HTML tag nesting.
+[2m[WebServer] [22m
+[2m[WebServer] [22mIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+[2m[WebServer] [22m
+[2m[WebServer] [22mhttps://react.dev/link/hydration-mismatch
+[2m[WebServer] [22m
+[2m[WebServer] [22m  ...
+[2m[WebServer] [22m    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+[2m[WebServer] [22m      <AppDevOverlayErrorBoundary globalError={[...]}>
+[2m[WebServer] [22m        <ReplaySsrOnlyErrors>
+[2m[WebServer] [22m        <DevRootHTTPAccessFallbackBoundary>
+[2m[WebServer] [22m          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+[2m[WebServer] [22m            <HTTPAccessFallbackErrorBoundary pathname="/people" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+[2m[WebServer] [22m              <RedirectBoundary>
+[2m[WebServer] [22m                <RedirectErrorBoundary router={{...}}>
+[2m[WebServer] [22m                  <Head>
+[2m[WebServer] [22m                  <__next_root_layout_boundary__>
+[2m[WebServer] [22m                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+[2m[WebServer] [22m                      <SegmentTrieNode>
+[2m[WebServer] [22m                      <link>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <RootLayout>
+[2m[WebServer] [22m                        <html
+[2m[WebServer] [22m                          lang="en"
+[2m[WebServer] [22m-                         data-theme="light"
+[2m[WebServer] [22m                        >
+[2m[WebServer] [22m                  ...
+[2m[WebServer] [22m 
+[2m[WebServer] [22m[36m[browser][39m A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[2m[WebServer] [22m
+[2m[WebServer] [22m- A server/client branch `if (typeof window !== 'undefined')`.
+[2m[WebServer] [22m- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+[2m[WebServer] [22m- Date formatting in a user's locale which doesn't match the server.
+[2m[WebServer] [22m- External changing data without sending a snapshot of it along with the HTML.
+[2m[WebServer] [22m- Invalid HTML tag nesting.
+[2m[WebServer] [22m
+[2m[WebServer] [22mIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+[2m[WebServer] [22m
+[2m[WebServer] [22mhttps://react.dev/link/hydration-mismatch
+[2m[WebServer] [22m
+[2m[WebServer] [22m  ...
+[2m[WebServer] [22m    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+[2m[WebServer] [22m      <AppDevOverlayErrorBoundary globalError={[...]}>
+[2m[WebServer] [22m        <ReplaySsrOnlyErrors>
+[2m[WebServer] [22m        <DevRootHTTPAccessFallbackBoundary>
+[2m[WebServer] [22m          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+[2m[WebServer] [22m            <HTTPAccessFallbackErrorBoundary pathname="/enrolment" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+[2m[WebServer] [22m              <RedirectBoundary>
+[2m[WebServer] [22m                <RedirectErrorBoundary router={{...}}>
+[2m[WebServer] [22m                  <Head>
+[2m[WebServer] [22m                  <__next_root_layout_boundary__>
+[2m[WebServer] [22m                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+[2m[WebServer] [22m                      <SegmentTrieNode>
+[2m[WebServer] [22m                      <link>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <RootLayout>
+[2m[WebServer] [22m                        <html
+[2m[WebServer] [22m                          lang="en"
+[2m[WebServer] [22m-                         data-theme="light"
+[2m[WebServer] [22m                        >
+[2m[WebServer] [22m                  ...
+[2m[WebServer] [22m 
+[2m[WebServer] [22m[36m[browser][39m A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[2m[WebServer] [22m
+[2m[WebServer] [22m- A server/client branch `if (typeof window !== 'undefined')`.
+[2m[WebServer] [22m- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+[2m[WebServer] [22m- Date formatting in a user's locale which doesn't match the server.
+[2m[WebServer] [22m- External changing data without sending a snapshot of it along with the HTML.
+[2m[WebServer] [22m- Invalid HTML tag nesting.
+[2m[WebServer] [22m
+[2m[WebServer] [22mIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+[2m[WebServer] [22m
+[2m[WebServer] [22mhttps://react.dev/link/hydration-mismatch
+[2m[WebServer] [22m
+[2m[WebServer] [22m  ...
+[2m[WebServer] [22m    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+[2m[WebServer] [22m      <AppDevOverlayErrorBoundary globalError={[...]}>
+[2m[WebServer] [22m        <ReplaySsrOnlyErrors>
+[2m[WebServer] [22m        <DevRootHTTPAccessFallbackBoundary>
+[2m[WebServer] [22m          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+[2m[WebServer] [22m            <HTTPAccessFallbackErrorBoundary pathname="/settings" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+[2m[WebServer] [22m              <RedirectBoundary>
+[2m[WebServer] [22m                <RedirectErrorBoundary router={{...}}>
+[2m[WebServer] [22m                  <Head>
+[2m[WebServer] [22m                  <__next_root_layout_boundary__>
+[2m[WebServer] [22m                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+[2m[WebServer] [22m                      <SegmentTrieNode>
+[2m[WebServer] [22m                      <link>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <RootLayout>
+[2m[WebServer] [22m                        <html
+[2m[WebServer] [22m                          lang="en"
+[2m[WebServer] [22m-                         data-theme="light"
+[2m[WebServer] [22m                        >
+[2m[WebServer] [22m                  ...
+[2m[WebServer] [22m 
+[2m[WebServer] [22m[36m[browser][39m A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[2m[WebServer] [22m
+[2m[WebServer] [22m- A server/client branch `if (typeof window !== 'undefined')`.
+[2m[WebServer] [22m- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+[2m[WebServer] [22m- Date formatting in a user's locale which doesn't match the server.
+[2m[WebServer] [22m- External changing data without sending a snapshot of it along with the HTML.
+[2m[WebServer] [22m- Invalid HTML tag nesting.
+[2m[WebServer] [22m
+[2m[WebServer] [22mIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+[2m[WebServer] [22m
+[2m[WebServer] [22mhttps://react.dev/link/hydration-mismatch
+[2m[WebServer] [22m
+[2m[WebServer] [22m  ...
+[2m[WebServer] [22m    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+[2m[WebServer] [22m      <AppDevOverlayErrorBoundary globalError={[...]}>
+[2m[WebServer] [22m        <ReplaySsrOnlyErrors>
+[2m[WebServer] [22m        <DevRootHTTPAccessFallbackBoundary>
+[2m[WebServer] [22m          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+[2m[WebServer] [22m            <HTTPAccessFallbackErrorBoundary pathname="/document-..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+[2m[WebServer] [22m              <RedirectBoundary>
+[2m[WebServer] [22m                <RedirectErrorBoundary router={{...}}>
+[2m[WebServer] [22m                  <Head>
+[2m[WebServer] [22m                  <__next_root_layout_boundary__>
+[2m[WebServer] [22m                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+[2m[WebServer] [22m                      <SegmentTrieNode>
+[2m[WebServer] [22m                      <link>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <RootLayout>
+[2m[WebServer] [22m                        <html
+[2m[WebServer] [22m                          lang="en"
+[2m[WebServer] [22m-                         data-theme="light"
+[2m[WebServer] [22m                        >
+[2m[WebServer] [22m                  ...
+[2m[WebServer] [22m 
+[2m[WebServer] [22m[36m[browser][39m A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[2m[WebServer] [22m
+[2m[WebServer] [22m- A server/client branch `if (typeof window !== 'undefined')`.
+[2m[WebServer] [22m- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+[2m[WebServer] [22m- Date formatting in a user's locale which doesn't match the server.
+[2m[WebServer] [22m- External changing data without sending a snapshot of it along with the HTML.
+[2m[WebServer] [22m- Invalid HTML tag nesting.
+[2m[WebServer] [22m
+[2m[WebServer] [22mIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+[2m[WebServer] [22m
+[2m[WebServer] [22mhttps://react.dev/link/hydration-mismatch
+[2m[WebServer] [22m
+[2m[WebServer] [22m  ...
+[2m[WebServer] [22m    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+[2m[WebServer] [22m      <AppDevOverlayErrorBoundary globalError={[...]}>
+[2m[WebServer] [22m        <ReplaySsrOnlyErrors>
+[2m[WebServer] [22m        <DevRootHTTPAccessFallbackBoundary>
+[2m[WebServer] [22m          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+[2m[WebServer] [22m            <HTTPAccessFallbackErrorBoundary pathname="/access-co..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+[2m[WebServer] [22m              <RedirectBoundary>
+[2m[WebServer] [22m                <RedirectErrorBoundary router={{...}}>
+[2m[WebServer] [22m                  <Head>
+[2m[WebServer] [22m                  <__next_root_layout_boundary__>
+[2m[WebServer] [22m                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+[2m[WebServer] [22m                      <SegmentTrieNode>
+[2m[WebServer] [22m                      <link>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <RootLayout>
+[2m[WebServer] [22m                        <html
+[2m[WebServer] [22m                          lang="en"
+[2m[WebServer] [22m-                         data-theme="light"
+[2m[WebServer] [22m                        >
+[2m[WebServer] [22m                  ...
+[2m[WebServer] [22m 
+[2m[WebServer] [22m[36m[browser][39m A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[2m[WebServer] [22m
+[2m[WebServer] [22m- A server/client branch `if (typeof window !== 'undefined')`.
+[2m[WebServer] [22m- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+[2m[WebServer] [22m- Date formatting in a user's locale which doesn't match the server.
+[2m[WebServer] [22m- External changing data without sending a snapshot of it along with the HTML.
+[2m[WebServer] [22m- Invalid HTML tag nesting.
+[2m[WebServer] [22m
+[2m[WebServer] [22mIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+[2m[WebServer] [22m
+[2m[WebServer] [22mhttps://react.dev/link/hydration-mismatch
+[2m[WebServer] [22m
+[2m[WebServer] [22m  ...
+[2m[WebServer] [22m    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+[2m[WebServer] [22m      <AppDevOverlayErrorBoundary globalError={[...]}>
+[2m[WebServer] [22m        <ReplaySsrOnlyErrors>
+[2m[WebServer] [22m        <DevRootHTTPAccessFallbackBoundary>
+[2m[WebServer] [22m          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+[2m[WebServer] [22m            <HTTPAccessFallbackErrorBoundary pathname="/administr..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+[2m[WebServer] [22m              <RedirectBoundary>
+[2m[WebServer] [22m                <RedirectErrorBoundary router={{...}}>
+[2m[WebServer] [22m                  <Head>
+[2m[WebServer] [22m                  <__next_root_layout_boundary__>
+[2m[WebServer] [22m                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+[2m[WebServer] [22m                      <SegmentTrieNode>
+[2m[WebServer] [22m                      <link>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <RootLayout>
+[2m[WebServer] [22m                        <html
+[2m[WebServer] [22m                          lang="en"
+[2m[WebServer] [22m-                         data-theme="light"
+[2m[WebServer] [22m                        >
+[2m[WebServer] [22m                  ...
+[2m[WebServer] [22m 
+[2m[WebServer] [22m[36m[browser][39m A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[2m[WebServer] [22m
+[2m[WebServer] [22m- A server/client branch `if (typeof window !== 'undefined')`.
+[2m[WebServer] [22m- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+[2m[WebServer] [22m- Date formatting in a user's locale which doesn't match the server.
+[2m[WebServer] [22m- External changing data without sending a snapshot of it along with the HTML.
+[2m[WebServer] [22m- Invalid HTML tag nesting.
+[2m[WebServer] [22m
+[2m[WebServer] [22mIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+[2m[WebServer] [22m
+[2m[WebServer] [22mhttps://react.dev/link/hydration-mismatch
+[2m[WebServer] [22m
+[2m[WebServer] [22m  ...
+[2m[WebServer] [22m    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+[2m[WebServer] [22m      <AppDevOverlayErrorBoundary globalError={[...]}>
+[2m[WebServer] [22m        <ReplaySsrOnlyErrors>
+[2m[WebServer] [22m        <DevRootHTTPAccessFallbackBoundary>
+[2m[WebServer] [22m          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+[2m[WebServer] [22m            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+[2m[WebServer] [22m              <RedirectBoundary>
+[2m[WebServer] [22m                <RedirectErrorBoundary router={{...}}>
+[2m[WebServer] [22m                  <Head>
+[2m[WebServer] [22m                  <__next_root_layout_boundary__>
+[2m[WebServer] [22m                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+[2m[WebServer] [22m                      <SegmentTrieNode>
+[2m[WebServer] [22m                      <link>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <RootLayout>
+[2m[WebServer] [22m                        <html
+[2m[WebServer] [22m                          lang="en"
+[2m[WebServer] [22m-                         data-theme="light"
+[2m[WebServer] [22m                        >
+[2m[WebServer] [22m                  ...
+[2m[WebServer] [22m 
+  [32m✓[39m  [2m 1 [22mplaywright/bio-ux-014-visual-regression.spec.ts:120:7 › BIO-UX-014-AC01/AC02 shell baseline across every approved viewport and theme › dashboard at mobile (375px), light theme[2m (380ms)[22m
+[2m[WebServer] [22m[36m[browser][39m A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[2m[WebServer] [22m
+[2m[WebServer] [22m- A server/client branch `if (typeof window !== 'undefined')`.
+[2m[WebServer] [22m- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+[2m[WebServer] [22m- Date formatting in a user's locale which doesn't match the server.
+[2m[WebServer] [22m- External changing data without sending a snapshot of it along with the HTML.
+[2m[WebServer] [22m- Invalid HTML tag nesting.
+[2m[WebServer] [22m
+[2m[WebServer] [22mIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+[2m[WebServer] [22m
+[2m[WebServer] [22mhttps://react.dev/link/hydration-mismatch
+[2m[WebServer] [22m
+[2m[WebServer] [22m  ...
+[2m[WebServer] [22m    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+[2m[WebServer] [22m      <AppDevOverlayErrorBoundary globalError={[...]}>
+[2m[WebServer] [22m        <ReplaySsrOnlyErrors>
+[2m[WebServer] [22m        <DevRootHTTPAccessFallbackBoundary>
+[2m[WebServer] [22m          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+[2m[WebServer] [22m            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+[2m[WebServer] [22m              <RedirectBoundary>
+[2m[WebServer] [22m                <RedirectErrorBoundary router={{...}}>
+[2m[WebServer] [22m                  <Head>
+[2m[WebServer] [22m                  <__next_root_layout_boundary__>
+[2m[WebServer] [22m                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+[2m[WebServer] [22m                      <SegmentTrieNode>
+[2m[WebServer] [22m                      <link>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <RootLayout>
+[2m[WebServer] [22m                        <html
+[2m[WebServer] [22m                          lang="en"
+[2m[WebServer] [22m-                         data-theme="dark"
+[2m[WebServer] [22m                        >
+[2m[WebServer] [22m                  ...
+[2m[WebServer] [22m 
+  [32m✓[39m  [2m 2 [22mplaywright/bio-ux-014-visual-regression.spec.ts:120:7 › BIO-UX-014-AC01/AC02 shell baseline across every approved viewport and theme › dashboard at mobile (375px), dark theme[2m (362ms)[22m
+[2m[WebServer] [22m[36m[browser][39m A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[2m[WebServer] [22m
+[2m[WebServer] [22m- A server/client branch `if (typeof window !== 'undefined')`.
+[2m[WebServer] [22m- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+[2m[WebServer] [22m- Date formatting in a user's locale which doesn't match the server.
+[2m[WebServer] [22m- External changing data without sending a snapshot of it along with the HTML.
+[2m[WebServer] [22m- Invalid HTML tag nesting.
+[2m[WebServer] [22m
+[2m[WebServer] [22mIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+[2m[WebServer] [22m
+[2m[WebServer] [22mhttps://react.dev/link/hydration-mismatch
+[2m[WebServer] [22m
+[2m[WebServer] [22m  ...
+[2m[WebServer] [22m    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+[2m[WebServer] [22m      <AppDevOverlayErrorBoundary globalError={[...]}>
+[2m[WebServer] [22m        <ReplaySsrOnlyErrors>
+[2m[WebServer] [22m        <DevRootHTTPAccessFallbackBoundary>
+[2m[WebServer] [22m          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+[2m[WebServer] [22m            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+[2m[WebServer] [22m              <RedirectBoundary>
+[2m[WebServer] [22m                <RedirectErrorBoundary router={{...}}>
+[2m[WebServer] [22m                  <Head>
+[2m[WebServer] [22m                  <__next_root_layout_boundary__>
+[2m[WebServer] [22m                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+[2m[WebServer] [22m                      <SegmentTrieNode>
+[2m[WebServer] [22m                      <link>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <RootLayout>
+[2m[WebServer] [22m                        <html
+[2m[WebServer] [22m                          lang="en"
+[2m[WebServer] [22m-                         data-theme="light"
+[2m[WebServer] [22m                        >
+[2m[WebServer] [22m                  ...
+[2m[WebServer] [22m 
+  [32m✓[39m  [2m 3 [22mplaywright/bio-ux-014-visual-regression.spec.ts:120:7 › BIO-UX-014-AC01/AC02 shell baseline across every approved viewport and theme › dashboard at tablet (768px), light theme[2m (381ms)[22m
+[2m[WebServer] [22m[36m[browser][39m A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[2m[WebServer] [22m
+[2m[WebServer] [22m- A server/client branch `if (typeof window !== 'undefined')`.
+[2m[WebServer] [22m- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+[2m[WebServer] [22m- Date formatting in a user's locale which doesn't match the server.
+[2m[WebServer] [22m- External changing data without sending a snapshot of it along with the HTML.
+[2m[WebServer] [22m- Invalid HTML tag nesting.
+[2m[WebServer] [22m
+[2m[WebServer] [22mIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+[2m[WebServer] [22m
+[2m[WebServer] [22mhttps://react.dev/link/hydration-mismatch
+[2m[WebServer] [22m
+[2m[WebServer] [22m  ...
+[2m[WebServer] [22m    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+[2m[WebServer] [22m      <AppDevOverlayErrorBoundary globalError={[...]}>
+[2m[WebServer] [22m        <ReplaySsrOnlyErrors>
+[2m[WebServer] [22m        <DevRootHTTPAccessFallbackBoundary>
+[2m[WebServer] [22m          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+[2m[WebServer] [22m            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+[2m[WebServer] [22m              <RedirectBoundary>
+[2m[WebServer] [22m                <RedirectErrorBoundary router={{...}}>
+[2m[WebServer] [22m                  <Head>
+[2m[WebServer] [22m                  <__next_root_layout_boundary__>
+[2m[WebServer] [22m                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+[2m[WebServer] [22m                      <SegmentTrieNode>
+[2m[WebServer] [22m                      <link>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <RootLayout>
+[2m[WebServer] [22m                        <html
+[2m[WebServer] [22m                          lang="en"
+[2m[WebServer] [22m-                         data-theme="dark"
+[2m[WebServer] [22m                        >
+[2m[WebServer] [22m                  ...
+[2m[WebServer] [22m 
+  [32m✓[39m  [2m 4 [22mplaywright/bio-ux-014-visual-regression.spec.ts:120:7 › BIO-UX-014-AC01/AC02 shell baseline across every approved viewport and theme › dashboard at tablet (768px), dark theme[2m (370ms)[22m
+[2m[WebServer] [22m[36m[browser][39m A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[2m[WebServer] [22m
+[2m[WebServer] [22m- A server/client branch `if (typeof window !== 'undefined')`.
+[2m[WebServer] [22m- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+[2m[WebServer] [22m- Date formatting in a user's locale which doesn't match the server.
+[2m[WebServer] [22m- External changing data without sending a snapshot of it along with the HTML.
+[2m[WebServer] [22m- Invalid HTML tag nesting.
+[2m[WebServer] [22m
+[2m[WebServer] [22mIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+[2m[WebServer] [22m
+[2m[WebServer] [22mhttps://react.dev/link/hydration-mismatch
+[2m[WebServer] [22m
+[2m[WebServer] [22m  ...
+[2m[WebServer] [22m    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+[2m[WebServer] [22m      <AppDevOverlayErrorBoundary globalError={[...]}>
+[2m[WebServer] [22m        <ReplaySsrOnlyErrors>
+[2m[WebServer] [22m        <DevRootHTTPAccessFallbackBoundary>
+[2m[WebServer] [22m          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+[2m[WebServer] [22m            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+[2m[WebServer] [22m              <RedirectBoundary>
+[2m[WebServer] [22m                <RedirectErrorBoundary router={{...}}>
+[2m[WebServer] [22m                  <Head>
+[2m[WebServer] [22m                  <__next_root_layout_boundary__>
+[2m[WebServer] [22m                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+[2m[WebServer] [22m                      <SegmentTrieNode>
+[2m[WebServer] [22m                      <link>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <RootLayout>
+[2m[WebServer] [22m                        <html
+[2m[WebServer] [22m                          lang="en"
+[2m[WebServer] [22m-                         data-theme="light"
+[2m[WebServer] [22m                        >
+[2m[WebServer] [22m                  ...
+[2m[WebServer] [22m 
+  [32m✓[39m  [2m 5 [22mplaywright/bio-ux-014-visual-regression.spec.ts:120:7 › BIO-UX-014-AC01/AC02 shell baseline across every approved viewport and theme › dashboard at desktop (1280px), light theme[2m (408ms)[22m
+[2m[WebServer] [22m[36m[browser][39m A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[2m[WebServer] [22m
+[2m[WebServer] [22m- A server/client branch `if (typeof window !== 'undefined')`.
+[2m[WebServer] [22m- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+[2m[WebServer] [22m- Date formatting in a user's locale which doesn't match the server.
+[2m[WebServer] [22m- External changing data without sending a snapshot of it along with the HTML.
+[2m[WebServer] [22m- Invalid HTML tag nesting.
+[2m[WebServer] [22m
+[2m[WebServer] [22mIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+[2m[WebServer] [22m
+[2m[WebServer] [22mhttps://react.dev/link/hydration-mismatch
+[2m[WebServer] [22m
+[2m[WebServer] [22m  ...
+[2m[WebServer] [22m    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+[2m[WebServer] [22m      <AppDevOverlayErrorBoundary globalError={[...]}>
+[2m[WebServer] [22m        <ReplaySsrOnlyErrors>
+[2m[WebServer] [22m        <DevRootHTTPAccessFallbackBoundary>
+[2m[WebServer] [22m          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+[2m[WebServer] [22m            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+[2m[WebServer] [22m              <RedirectBoundary>
+[2m[WebServer] [22m                <RedirectErrorBoundary router={{...}}>
+[2m[WebServer] [22m                  <Head>
+[2m[WebServer] [22m                  <__next_root_layout_boundary__>
+[2m[WebServer] [22m                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+[2m[WebServer] [22m                      <SegmentTrieNode>
+[2m[WebServer] [22m                      <link>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <RootLayout>
+[2m[WebServer] [22m                        <html
+[2m[WebServer] [22m                          lang="en"
+[2m[WebServer] [22m-                         data-theme="dark"
+[2m[WebServer] [22m                        >
+[2m[WebServer] [22m                  ...
+[2m[WebServer] [22m 
+  [32m✓[39m  [2m 6 [22mplaywright/bio-ux-014-visual-regression.spec.ts:120:7 › BIO-UX-014-AC01/AC02 shell baseline across every approved viewport and theme › dashboard at desktop (1280px), dark theme[2m (386ms)[22m
+[2m[WebServer] [22m[36m[browser][39m A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[2m[WebServer] [22m
+[2m[WebServer] [22m- A server/client branch `if (typeof window !== 'undefined')`.
+[2m[WebServer] [22m- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+[2m[WebServer] [22m- Date formatting in a user's locale which doesn't match the server.
+[2m[WebServer] [22m- External changing data without sending a snapshot of it along with the HTML.
+[2m[WebServer] [22m- Invalid HTML tag nesting.
+[2m[WebServer] [22m
+[2m[WebServer] [22mIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+[2m[WebServer] [22m
+[2m[WebServer] [22mhttps://react.dev/link/hydration-mismatch
+[2m[WebServer] [22m
+[2m[WebServer] [22m  ...
+[2m[WebServer] [22m    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+[2m[WebServer] [22m      <AppDevOverlayErrorBoundary globalError={[...]}>
+[2m[WebServer] [22m        <ReplaySsrOnlyErrors>
+[2m[WebServer] [22m        <DevRootHTTPAccessFallbackBoundary>
+[2m[WebServer] [22m          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+[2m[WebServer] [22m            <HTTPAccessFallbackErrorBoundary pathname="/people" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+[2m[WebServer] [22m              <RedirectBoundary>
+[2m[WebServer] [22m                <RedirectErrorBoundary router={{...}}>
+[2m[WebServer] [22m                  <Head>
+[2m[WebServer] [22m                  <__next_root_layout_boundary__>
+[2m[WebServer] [22m                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+[2m[WebServer] [22m                      <SegmentTrieNode>
+[2m[WebServer] [22m                      <link>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <RootLayout>
+[2m[WebServer] [22m                        <html
+[2m[WebServer] [22m                          lang="en"
+[2m[WebServer] [22m-                         data-theme="light"
+[2m[WebServer] [22m                        >
+[2m[WebServer] [22m                  ...
+[2m[WebServer] [22m 
+  [32m✓[39m  [2m 7 [22mplaywright/bio-ux-014-visual-regression.spec.ts:130:5 › BIO-UX-014-AC01 representative page from every major module (desktop, light theme) › /people?as=admin[2m (768ms)[22m
+[2m[WebServer] [22m[36m[browser][39m A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[2m[WebServer] [22m
+[2m[WebServer] [22m- A server/client branch `if (typeof window !== 'undefined')`.
+[2m[WebServer] [22m- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+[2m[WebServer] [22m- Date formatting in a user's locale which doesn't match the server.
+[2m[WebServer] [22m- External changing data without sending a snapshot of it along with the HTML.
+[2m[WebServer] [22m- Invalid HTML tag nesting.
+[2m[WebServer] [22m
+[2m[WebServer] [22mIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+[2m[WebServer] [22m
+[2m[WebServer] [22mhttps://react.dev/link/hydration-mismatch
+[2m[WebServer] [22m
+[2m[WebServer] [22m  ...
+[2m[WebServer] [22m    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+[2m[WebServer] [22m      <AppDevOverlayErrorBoundary globalError={[...]}>
+[2m[WebServer] [22m        <ReplaySsrOnlyErrors>
+[2m[WebServer] [22m        <DevRootHTTPAccessFallbackBoundary>
+[2m[WebServer] [22m          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+[2m[WebServer] [22m            <HTTPAccessFallbackErrorBoundary pathname="/enrolment" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+[2m[WebServer] [22m              <RedirectBoundary>
+[2m[WebServer] [22m                <RedirectErrorBoundary router={{...}}>
+[2m[WebServer] [22m                  <Head>
+[2m[WebServer] [22m                  <__next_root_layout_boundary__>
+[2m[WebServer] [22m                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+[2m[WebServer] [22m                      <SegmentTrieNode>
+[2m[WebServer] [22m                      <link>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <RootLayout>
+[2m[WebServer] [22m                        <html
+[2m[WebServer] [22m                          lang="en"
+[2m[WebServer] [22m-                         data-theme="light"
+[2m[WebServer] [22m                        >
+[2m[WebServer] [22m                  ...
+[2m[WebServer] [22m 
+  [32m✓[39m  [2m 8 [22mplaywright/bio-ux-014-visual-regression.spec.ts:130:5 › BIO-UX-014-AC01 representative page from every major module (desktop, light theme) › /enrolment[2m (376ms)[22m
+[2m[WebServer] [22m[36m[browser][39m A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[2m[WebServer] [22m
+[2m[WebServer] [22m- A server/client branch `if (typeof window !== 'undefined')`.
+[2m[WebServer] [22m- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+[2m[WebServer] [22m- Date formatting in a user's locale which doesn't match the server.
+[2m[WebServer] [22m- External changing data without sending a snapshot of it along with the HTML.
+[2m[WebServer] [22m- Invalid HTML tag nesting.
+[2m[WebServer] [22m
+[2m[WebServer] [22mIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+[2m[WebServer] [22m
+[2m[WebServer] [22mhttps://react.dev/link/hydration-mismatch
+[2m[WebServer] [22m
+[2m[WebServer] [22m  ...
+[2m[WebServer] [22m    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+[2m[WebServer] [22m      <AppDevOverlayErrorBoundary globalError={[...]}>
+[2m[WebServer] [22m        <ReplaySsrOnlyErrors>
+[2m[WebServer] [22m        <DevRootHTTPAccessFallbackBoundary>
+[2m[WebServer] [22m          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+[2m[WebServer] [22m            <HTTPAccessFallbackErrorBoundary pathname="/settings" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+[2m[WebServer] [22m              <RedirectBoundary>
+[2m[WebServer] [22m                <RedirectErrorBoundary router={{...}}>
+[2m[WebServer] [22m                  <Head>
+[2m[WebServer] [22m                  <__next_root_layout_boundary__>
+[2m[WebServer] [22m                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+[2m[WebServer] [22m                      <SegmentTrieNode>
+[2m[WebServer] [22m                      <link>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <RootLayout>
+[2m[WebServer] [22m                        <html
+[2m[WebServer] [22m                          lang="en"
+[2m[WebServer] [22m-                         data-theme="light"
+[2m[WebServer] [22m                        >
+[2m[WebServer] [22m                  ...
+[2m[WebServer] [22m 
+  [32m✓[39m  [2m 9 [22mplaywright/bio-ux-014-visual-regression.spec.ts:130:5 › BIO-UX-014-AC01 representative page from every major module (desktop, light theme) › /settings?as=admin[2m (525ms)[22m
+[2m[WebServer] [22m[36m[browser][39m A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[2m[WebServer] [22m
+[2m[WebServer] [22m- A server/client branch `if (typeof window !== 'undefined')`.
+[2m[WebServer] [22m- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+[2m[WebServer] [22m- Date formatting in a user's locale which doesn't match the server.
+[2m[WebServer] [22m- External changing data without sending a snapshot of it along with the HTML.
+[2m[WebServer] [22m- Invalid HTML tag nesting.
+[2m[WebServer] [22m
+[2m[WebServer] [22mIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+[2m[WebServer] [22m
+[2m[WebServer] [22mhttps://react.dev/link/hydration-mismatch
+[2m[WebServer] [22m
+[2m[WebServer] [22m  ...
+[2m[WebServer] [22m    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+[2m[WebServer] [22m      <AppDevOverlayErrorBoundary globalError={[...]}>
+[2m[WebServer] [22m        <ReplaySsrOnlyErrors>
+[2m[WebServer] [22m        <DevRootHTTPAccessFallbackBoundary>
+[2m[WebServer] [22m          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+[2m[WebServer] [22m            <HTTPAccessFallbackErrorBoundary pathname="/document-..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+[2m[WebServer] [22m              <RedirectBoundary>
+[2m[WebServer] [22m                <RedirectErrorBoundary router={{...}}>
+[2m[WebServer] [22m                  <Head>
+[2m[WebServer] [22m                  <__next_root_layout_boundary__>
+[2m[WebServer] [22m                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+[2m[WebServer] [22m                      <SegmentTrieNode>
+[2m[WebServer] [22m                      <link>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <RootLayout>
+[2m[WebServer] [22m                        <html
+[2m[WebServer] [22m                          lang="en"
+[2m[WebServer] [22m-                         data-theme="light"
+[2m[WebServer] [22m                        >
+[2m[WebServer] [22m                  ...
+[2m[WebServer] [22m 
+  [32m✓[39m  [2m10 [22mplaywright/bio-ux-014-visual-regression.spec.ts:130:5 › BIO-UX-014-AC01 representative page from every major module (desktop, light theme) › /document-verify[2m (514ms)[22m
+[2m[WebServer] [22m[36m[browser][39m Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). 
+[2m[WebServer] [22m[36m[browser][39m [31mUncaught Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+[2m[WebServer] [22m
+[2m[WebServer] [22m- A server/client branch `if (typeof window !== 'undefined')`.
+[2m[WebServer] [22m- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+[2m[WebServer] [22m- Date formatting in a user's locale which doesn't match the server.
+[2m[WebServer] [22m- External changing data without sending a snapshot of it along with the HTML.
+[2m[WebServer] [22m- Invalid HTML tag nesting.
+[2m[WebServer] [22m
+[2m[WebServer] [22mIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+[2m[WebServer] [22m
+[2m[WebServer] [22mhttps://react.dev/link/hydration-mismatch
+[2m[WebServer] [22m
+[2m[WebServer] [22m  ...
+[2m[WebServer] [22m    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+[2m[WebServer] [22m      <AppDevOverlayErrorBoundary globalError={[...]}>
+[2m[WebServer] [22m        <ReplaySsrOnlyErrors>
+[2m[WebServer] [22m        <DevRootHTTPAccessFallbackBoundary>
+[2m[WebServer] [22m          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+[2m[WebServer] [22m            <HTTPAccessFallbackErrorBoundary pathname="/cards" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+[2m[WebServer] [22m              <RedirectBoundary>
+[2m[WebServer] [22m                <RedirectErrorBoundary router={{...}}>
+[2m[WebServer] [22m                  <Head>
+[2m[WebServer] [22m                  <__next_root_layout_boundary__>
+[2m[WebServer] [22m                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+[2m[WebServer] [22m                      <SegmentTrieNode>
+[2m[WebServer] [22m                      <link>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <RootLayout>
+[2m[WebServer] [22m                        <html
+[2m[WebServer] [22m                          lang="en"
+[2m[WebServer] [22m-                         data-theme="light"
+[2m[WebServer] [22m                        >
+[2m[WebServer] [22m                          <head>
+[2m[WebServer] [22m                          ...
+[2m[WebServer] [22m                            <table className="cards-modu...">
+[2m[WebServer] [22m                              <thead>
+[2m[WebServer] [22m                              <tbody>
+[2m[WebServer] [22m                                <tr>
+[2m[WebServer] [22m                                  <td>
+[2m[WebServer] [22m                                  <td>
+[2m[WebServer] [22m                                  <td>
+[2m[WebServer] [22m                                  <td>
+[2m[WebServer] [22m+                                   15/01/2026
+[2m[WebServer] [22m-                                   1/15/2026
+[2m[WebServer] [22m                                  ...
+[2m[WebServer] [22m                                ...
+[2m[WebServer] [22m                  ...
+[2m[WebServer] [22m[39m
+[2m[WebServer] [22m[31m    at <unknown> (https://react.dev/link/hydration-mismatch)
+[2m[WebServer] [22m    at td (<anonymous>)
+[2m[WebServer] [22m    at <unknown> (features/cards/CardsRegistryApp.tsx:111:21)
+[2m[WebServer] [22m    at Array.map (<anonymous>)
+[2m[WebServer] [22m    at CardsRegistryApp (features/cards/CardsRegistryApp.tsx:101:28)
+[2m[WebServer] [22m    at CardsPage (app/cards/page.tsx:10:10)[39m
+[2m[WebServer] [22m  109 |                       {credential.statusReason && <div className={styles.evidenceRef}>{credential.statusReason}</div>}
+[2m[WebServer] [22m  110 |                     </td>
+[2m[WebServer] [22m> 111 |                     <td>{new Date(credential.issuedAt).toLocaleDateString()}</td>
+[2m[WebServer] [22m      |                     ^
+[2m[WebServer] [22m  112 |                     <td>
+[2m[WebServer] [22m  113 |                       <div className={styles.rowActions}>
+[2m[WebServer] [22m  114 |                         {(credential.status === 'active' || credential.status === 'recovered') && (
+  [32m✓[39m  [2m11 [22mplaywright/bio-ux-014-visual-regression.spec.ts:130:5 › BIO-UX-014-AC01 representative page from every major module (desktop, light theme) › /cards[2m (1.3s)[22m
+[2m[WebServer] [22m[36m[browser][39m A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[2m[WebServer] [22m
+[2m[WebServer] [22m- A server/client branch `if (typeof window !== 'undefined')`.
+[2m[WebServer] [22m- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+[2m[WebServer] [22m- Date formatting in a user's locale which doesn't match the server.
+[2m[WebServer] [22m- External changing data without sending a snapshot of it along with the HTML.
+[2m[WebServer] [22m- Invalid HTML tag nesting.
+[2m[WebServer] [22m
+[2m[WebServer] [22mIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+[2m[WebServer] [22m
+[2m[WebServer] [22mhttps://react.dev/link/hydration-mismatch
+[2m[WebServer] [22m
+[2m[WebServer] [22m  ...
+[2m[WebServer] [22m    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+[2m[WebServer] [22m      <AppDevOverlayErrorBoundary globalError={[...]}>
+[2m[WebServer] [22m        <ReplaySsrOnlyErrors>
+[2m[WebServer] [22m        <DevRootHTTPAccessFallbackBoundary>
+[2m[WebServer] [22m          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+[2m[WebServer] [22m            <HTTPAccessFallbackErrorBoundary pathname="/access-co..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+[2m[WebServer] [22m              <RedirectBoundary>
+[2m[WebServer] [22m                <RedirectErrorBoundary router={{...}}>
+[2m[WebServer] [22m                  <Head>
+[2m[WebServer] [22m                  <__next_root_layout_boundary__>
+[2m[WebServer] [22m                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+[2m[WebServer] [22m                      <SegmentTrieNode>
+[2m[WebServer] [22m                      <link>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <RootLayout>
+[2m[WebServer] [22m                        <html
+[2m[WebServer] [22m                          lang="en"
+[2m[WebServer] [22m-                         data-theme="light"
+[2m[WebServer] [22m                        >
+[2m[WebServer] [22m                  ...
+[2m[WebServer] [22m 
+  [32m✓[39m  [2m12 [22mplaywright/bio-ux-014-visual-regression.spec.ts:130:5 › BIO-UX-014-AC01 representative page from every major module (desktop, light theme) › /access-control[2m (378ms)[22m
+[2m[WebServer] [22m[36m[browser][39m A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[2m[WebServer] [22m
+[2m[WebServer] [22m- A server/client branch `if (typeof window !== 'undefined')`.
+[2m[WebServer] [22m- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+[2m[WebServer] [22m- Date formatting in a user's locale which doesn't match the server.
+[2m[WebServer] [22m- External changing data without sending a snapshot of it along with the HTML.
+[2m[WebServer] [22m- Invalid HTML tag nesting.
+[2m[WebServer] [22m
+[2m[WebServer] [22mIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+[2m[WebServer] [22m
+[2m[WebServer] [22mhttps://react.dev/link/hydration-mismatch
+[2m[WebServer] [22m
+[2m[WebServer] [22m  ...
+[2m[WebServer] [22m    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+[2m[WebServer] [22m      <AppDevOverlayErrorBoundary globalError={[...]}>
+[2m[WebServer] [22m        <ReplaySsrOnlyErrors>
+[2m[WebServer] [22m        <DevRootHTTPAccessFallbackBoundary>
+[2m[WebServer] [22m          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+[2m[WebServer] [22m            <HTTPAccessFallbackErrorBoundary pathname="/administr..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+[2m[WebServer] [22m              <RedirectBoundary>
+[2m[WebServer] [22m                <RedirectErrorBoundary router={{...}}>
+[2m[WebServer] [22m                  <Head>
+[2m[WebServer] [22m                  <__next_root_layout_boundary__>
+[2m[WebServer] [22m                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+[2m[WebServer] [22m                      <SegmentTrieNode>
+[2m[WebServer] [22m                      <link>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <RootLayout>
+[2m[WebServer] [22m                        <html
+[2m[WebServer] [22m                          lang="en"
+[2m[WebServer] [22m-                         data-theme="light"
+[2m[WebServer] [22m                        >
+[2m[WebServer] [22m                  ...
+[2m[WebServer] [22m 
+  [32m✓[39m  [2m13 [22mplaywright/bio-ux-014-visual-regression.spec.ts:130:5 › BIO-UX-014-AC01 representative page from every major module (desktop, light theme) › /administration[2m (384ms)[22m
+[2m[WebServer] [22m[36m[browser][39m A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[2m[WebServer] [22m
+[2m[WebServer] [22m- A server/client branch `if (typeof window !== 'undefined')`.
+[2m[WebServer] [22m- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+[2m[WebServer] [22m- Date formatting in a user's locale which doesn't match the server.
+[2m[WebServer] [22m- External changing data without sending a snapshot of it along with the HTML.
+[2m[WebServer] [22m- Invalid HTML tag nesting.
+[2m[WebServer] [22m
+[2m[WebServer] [22mIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+[2m[WebServer] [22m
+[2m[WebServer] [22mhttps://react.dev/link/hydration-mismatch
+[2m[WebServer] [22m
+[2m[WebServer] [22m  ...
+[2m[WebServer] [22m    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+[2m[WebServer] [22m      <AppDevOverlayErrorBoundary globalError={[...]}>
+[2m[WebServer] [22m        <ReplaySsrOnlyErrors>
+[2m[WebServer] [22m        <DevRootHTTPAccessFallbackBoundary>
+[2m[WebServer] [22m          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+[2m[WebServer] [22m            <HTTPAccessFallbackErrorBoundary pathname="/reports" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+[2m[WebServer] [22m              <RedirectBoundary>
+[2m[WebServer] [22m                <RedirectErrorBoundary router={{...}}>
+[2m[WebServer] [22m                  <Head>
+[2m[WebServer] [22m                  <__next_root_layout_boundary__>
+[2m[WebServer] [22m                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+[2m[WebServer] [22m                      <SegmentTrieNode>
+[2m[WebServer] [22m                      <link>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <script>
+[2m[WebServer] [22m                      <RootLayout>
+[2m[WebServer] [22m                        <html
+[2m[WebServer] [22m                          lang="en"
+[2m[WebServer] [22m-                         data-theme="light"
+[2m[WebServer] [22m                        >
+[2m[WebServer] [22m                  ...
+[2m[WebServer] [22m 
+  [32m✓[39m  [2m14 [22mplaywright/bio-ux-014-visual-regression.spec.ts:130:5 › BIO-UX-014-AC01 representative page from every major module (desktop, light theme) › /reports[2m (388ms)[22m
+
+[32m  14 passed[39m[2m (10.6s)[22m

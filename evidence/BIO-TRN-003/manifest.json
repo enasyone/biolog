@@ -1,0 +1,26 @@
+{
+  "story_key": "BIO-TRN-003",
+  "title": "Implement parent/system transport notifications",
+  "implementation_commit": "15184ef758398cefd9f45700f496474dbdd5034a",
+  "builder_head": "3c0050afd436edd2a7dd76f339157fc60ac67020",
+  "reviewed_head": "bcf9451cc7da5e42bfc13117cefdd6f7920a7ea5",
+  "environment": {"profile": "local acceptance on Darwin arm64; synthetic fixtures only", "timestamp": "2026-10-07"},
+  "acceptance_criteria": {
+    "BIO-TRN-003-AC01": {"result": "PASS", "evidence": ["api/features/bio-trn-003/Domain/TransportNotificationRule.cs", "tests/features/bio-trn-003/TransportNotificationRuleServiceTests.cs", "tests/frontend/playwright/bio-trn-003-transport-notifications.spec.ts"], "finding": "Rules select board, alight, missed-alight and exception events; creation, empty selection and both toggle directions have executable coverage."},
+    "BIO-TRN-003-AC02": {"result": "PASS", "evidence": ["api/features/bio-trn-003/Domain/TransportNotificationPayloadRedactor.cs", "tests/features/bio-trn-003/TransportNotificationDispatchServiceTests.cs"], "finding": "Delivery payloads use an explicit minimum-data allowlist and cannot carry source location or vehicle fields."},
+    "BIO-TRN-003-AC03": {"result": "PASS", "evidence": ["api/features/bio-trn-003/Domain/TransportNotificationDispatchService.cs", "tests/features/bio-trn-003/TransportNotificationDispatchServiceTests.cs", "tests/frontend/playwright/bio-trn-003-transport-notifications.spec.ts"], "finding": "Bounded retries end in durable Delivered or DeadLettered outcomes, both visible in the approved UI workflow."},
+    "BIO-TRN-003-AC04": {"result": "PASS", "evidence": ["api/features/bio-trn-003/Domain/ITransportEventFeedGateway.cs", "tests/features/bio-trn-003/TransportNotificationDispatchServiceTests.cs"], "finding": "The transport gateway is read-only; notification evaluation and delivery cannot mutate source transport-event truth."},
+    "BIO-TRN-003-AC05": {"result": "PASS", "evidence": ["web/features/bio-trn-003/TransportNotificationsPanel.tsx", "tests/frontend/playwright/bio-trn-003-transport-notifications.spec.ts", "evidence/features/bio-trn-003/builder/playwright-transport-notifications-output.txt", "tests/dotnet/Biolog.IntegrationTests/BioTrn003EndpointsTests.cs"], "finding": "The /transport panel is additive; committed browser evidence proves the full SIMULATION workflow and real-host integration proves minimized delivery from a captured transport event."}
+  },
+  "commands": [
+    {"command": "./tests/features/bio-trn-003/bin/Debug/net10.0/Biolog.Features.TransportNotifications.Tests", "result": "PASS (21/21)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (36 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"}
+  ],
+  "builder_verdict": {"result": "PASS", "commit_hash": "3c0050afd436edd2a7dd76f339157fc60ac67020", "implementation_commit": "15184ef758398cefd9f45700f496474dbdd5034a", "feature_tests": "21/21 PASS", "integration_tests": "248/248 PASS", "unit_tests": "210/210 PASS", "browser_tests": "6/6 PASS twice", "metadata_sha256": "4be6198bc8da1845c910ffffb08df86ebdaf53ffdeb310ba52c83c1338ab8a25"},
+  "independent_qa": {"reviewer": "Seyi", "result": "PASS", "builder_commit_reviewed": "3c0050afd436edd2a7dd76f339157fc60ac67020", "review_commit": "bcf9451cc7da5e42bfc13117cefdd6f7920a7ea5", "evidence": "evidence/features/bio-trn-003/codex/REVIEW-Seyi-round2.md", "evidence_sha256": "7fafe8672076450186c78f364c383dafe8c62b01bce2b2088ca32b8805b26a23", "closed_findings": ["SY-TRN003-01"]},
+  "category_verdicts": {"functional": "PASS", "privacy": "PASS", "tenant_isolation": "PASS", "recovery": "PASS", "concurrency": "PASS", "regression": "PASS", "mapped_ui_workflow": "PASS"},
+  "acceptance_blockers": [],
+  "follow_ups": [{"id": "BIO-TRN-003-GUARDIAN-CONTACT-CHANNEL", "status": "DISCLOSED_SCOPE_BOUNDARY", "summary": "External parent delivery requires a future guardian relationship/contact-channel model; current delivery is the real in-app system feed."}],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "AC01-AC05 pass. The lost-update race is closed by repository-level atomic compare-and-swap with deterministic concurrent-writer coverage and exact-commit independent review."}
+}

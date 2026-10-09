@@ -1,0 +1,8 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Biolog.Features.DocumentVerify -> <workspace>/biolog-worktrees/BIO-DOC-001/api/features/bio-doc-001/Biolog.Features.DocumentVerify/bin/Debug/net10.0/Biolog.Features.DocumentVerify.dll
+  Biolog.Features.DocumentVerify.Tests -> <workspace>/biolog-worktrees/BIO-DOC-001/tests/features/bio-doc-001/Biolog.Features.DocumentVerify.Tests/bin/Debug/net10.0/Biolog.Features.DocumentVerify.Tests.dll
+Test run for <workspace>/biolog-worktrees/BIO-DOC-001/tests/features/bio-doc-001/Biolog.Features.DocumentVerify.Tests/bin/Debug/net10.0/Biolog.Features.DocumentVerify.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:    64, Skipped:     0, Total:    64, Duration: 27 ms - Biolog.Features.DocumentVerify.Tests.dll (net10.0)

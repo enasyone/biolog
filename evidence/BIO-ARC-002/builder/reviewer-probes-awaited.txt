@@ -1,0 +1,7 @@
+PASS AC01 unanimity rejects every two-tenant channel conflict
+PASS AC01/AC04 forged context cannot choose a repository binding
+PASS AC04 cross-tenant denial cannot return without a mandatory audit sink
+PASS AC04 control-plane misuse is audited before denial
+PASS AC04 asynchronous audit completes before the denial is returned
+ALL REVIEWER PROBES PASS (awaited)
+exit=0

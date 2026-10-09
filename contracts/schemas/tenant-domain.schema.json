@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.biolog.local/tenant-domain.schema.json",
+  "title": "BIOLOG tenant domain record",
+  "description": "ADR-0002 Decision 1.3. Control-plane mapping from a verified hostname to a tenant. Only status VERIFIED resolves; every other status fails closed. Examples are SYNTHETIC.",
+  "type": "object",
+  "required": ["hostname", "tenant_id", "status", "is_primary"],
+  "properties": {
+    "hostname": {
+      "description": "Lowercase ASCII hostname, no port, no trailing dot. Non-ASCII is rejected rather than converted: punycode conversion belongs at the edge, before this contract.",
+      "type": "string",
+      "pattern": "^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?(\\.[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)*$",
+      "minLength": 1,
+      "maxLength": 253
+    },
+    "tenant_id": { "type": "string", "pattern": "^ten_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$" },
+    "status": {
+      "type": "string",
+      "enum": ["PENDING_VERIFICATION", "VERIFIED", "SUSPENDED", "RETIRED"]
+    },
+    "is_primary": { "type": "boolean" }
+  },
+  "examples": [
+    { "hostname": "portal.example.edu.ng", "tenant_id": "ten_0199e0c1-8b2f-7c31-9a4e-2f6b1d0c5a77", "status": "VERIFIED", "is_primary": true }
+  ]
+}

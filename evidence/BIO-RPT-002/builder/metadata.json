@@ -1,0 +1,10 @@
+{
+  "story_key": "BIO-RPT-002",
+  "stage": "builder",
+  "commit_hash": "dfcf525",
+  "test_command": "dotnet test tests/features/bio-rpt-002/Biolog.Features.ReportBuilder.Tests.csproj && dotnet test tests/features/bio-crd-007/Biolog.Features.CardProduction.Tests.csproj && dotnet build api/Biolog.Api/Biolog.Api.csproj && (cd web && npx tsc --noEmit && npx next build) && (cd tests/frontend && npx vitest run) && (dev server started manually on 127.0.0.1:3002, then) (cd tests/frontend && BIOLOG_BASE_URL=http://127.0.0.1:3002 npx playwright test --workers=1) && (real .NET backend + LIVE-built Next.js server + a verified BIO-TEN-002 tenant domain, then) (cd tests/frontend && BIOLOG_RPT002_LIVE_TESTS=1 npx playwright test bio-rpt-002-reporting-live.spec.ts)",
+  "result": "PASS",
+  "timestamp": "2026-09-24T07:20:00Z",
+  "reviewer": "Ngozi",
+  "data_classification": "SYNTHETIC"
+}

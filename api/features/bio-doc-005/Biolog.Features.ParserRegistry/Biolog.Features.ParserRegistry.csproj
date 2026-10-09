@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Matches api/Biolog.Api/Biolog.Api.csproj's pinned TFM (BIO-FND-008), same as sibling BIO-DOC-00x features. -->
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <!--
+    No ASP.NET Core dependency, no NuGet package references. ProjectReference to BIO-DOC-003's
+    BarcodeEngine is this story's one declared dependency (DEPENDENCIES: BIO-DOC-003) - a parser
+    interprets the raw payload bytes a barcode decoder already produced
+    (Biolog.Features.BarcodeEngine.Model.BarcodeDecodeAttempt.RawPayload), never the reverse.
+  -->
+  <ItemGroup>
+    <ProjectReference Include="../../bio-doc-003/Biolog.Features.BarcodeEngine/Biolog.Features.BarcodeEngine.csproj" />
+  </ItemGroup>
+
+</Project>

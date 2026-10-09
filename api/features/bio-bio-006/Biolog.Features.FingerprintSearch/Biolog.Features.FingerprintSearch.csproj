@@ -1,0 +1,66 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Matches api/Biolog.Api/Biolog.Api.csproj's pinned TFM (BIO-FND-008), same as every prior
+         BIO-BIO story. -->
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <!--
+    No ASP.NET Core dependency, no NuGet package references. ProjectReference to BIO-BIO-001
+    only - the same "direct reference to a plain, host-agnostic contracts library" shape every
+    prior BIO-BIO story established (BiometricTemplate/IFingerprintProvider/IBiometricMatcher).
+
+    The approved story also names BIO-BIO-002 (guided tenprint/single-finger enrolment) as a
+    dependency, but deliberately NO ProjectReference exists to it here - the identical situation
+    BIO-BIO-004's own csproj remarks already document: BIO-BIO-002's own
+    IFingerprintEnrolmentRepository/FingerprintEnrolmentService are internal, Singleton-registered,
+    and expose no bulk/enumerate query at all (only get-by-session-id), and captured templates
+    live embedded in its own session aggregate, never published anywhere queryable across many
+    people. Reaching into BIO-BIO-002's owned paths to add such a query is out of this story's
+    write scope (governance/feature-path-ownership.json).
+
+    Unlike BIO-BIO-004, this story does NOT reuse BIO-BIO-001's own IBiometricTemplateStore
+    either - that store's own contract (Matching/IBiometricTemplateStore.cs) only supports
+    "get every template for ONE (tenant, person)", never "enumerate every enrolled identity in a
+    tenant", which a 1:N GALLERY search fundamentally needs. Extending that interface would
+    modify BIO-BIO-001's own owned files, equally out of this story's write scope. This story
+    therefore defines its own Domain/IFingerprintGalleryStore.cs - a deliberately SEPARATE
+    concept from BIO-BIO-001's per-identity reference store, the same "search gallery distinct
+    from a canonical per-identity reference store" architecture a production AFIS/1:N search
+    system commonly uses anyway, not merely a workaround. See
+    docs/features/bio-bio-006/README.md "Design decisions" for the full reasoning, including how
+    the gallery gets populated (an explicit IndexAsync call, since no existing seam can
+    auto-populate it without modifying another story's owned files).
+
+    Deliberately NO ProjectReference to BIO-IDN-005 (duplicate review) or BIO-IDN-006 (RBAC)
+    either: both expose only internal, Scoped-registered services with no PUBLIC entry point this
+    story can safely reach for its own purposes (BIO-IDN-005's own DuplicateSignalSource.Biometric
+    enum member anticipates a future story raising it, but DuplicateReviewService.RaiseOrAugmentAsync
+    - the only method that could do so - is PRIVATE, not even internal, so no ProjectReference
+    could reach it regardless). This story defines its own narrow
+    Domain/IBiometricSearchPermissionGateway.cs (AC02) and its own self-contained duplicate
+    review queue (AC03) instead; the real gateway implementation is an adapter in
+    Biolog.Api.Modules.BioBio006Module wrapping BIO-IDN-006's already-registered
+    PermissionService.ActorHasPermissionAsync, the same "narrow gateway + host-level adapter"
+    shape every prior BIO-BIO story uses for its own tenant-scoped upstream dependency.
+  -->
+  <ItemGroup>
+    <ProjectReference Include="../../bio-bio-001/Biolog.Features.Biometrics/Biolog.Features.Biometrics.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- IFingerprintGalleryStore/InMemoryFingerprintGalleryStore,
+         IFingerprintDuplicateReviewRepository/InMemoryFingerprintDuplicateReviewRepository and
+         FingerprintSearchService are internal (BIO-IDN-001-QA-01's governance shape, mirrored by
+         every prior BIO-BIO story). This is the explicit, auditable seam that grants Biolog.Api
+         (DI registration in Modules/BioBio006Module.cs) and this feature's own test project the
+         same access. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.FingerprintSearch.Tests" />
+  </ItemGroup>
+
+</Project>

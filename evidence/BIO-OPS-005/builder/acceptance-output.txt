@@ -1,0 +1,14 @@
+PASS: AC02 comparison component keeps mismatched fields visible
+PASS: AC03 policy component distinguishes unsupported NFC from pass/fail
+PASS: AC04/AC05 foundation exposes non-destructive PERSON change proposals
+PASS: AC01 BIO-DOC-002 engine is linked into the shipped API host
+PASS: AC01 BIO-DOC-003 engine is linked into the shipped API host
+PASS: AC01 BIO-DOC-004 engine is linked into the shipped API host
+PASS: AC01 BIO-DOC-007 engine is linked into the shipped API host
+PASS: AC01 /api/v1/documents/mrz is implemented
+PASS: AC01 /api/v1/documents/barcode is implemented
+PASS: AC01 /api/v1/documents/ocr is implemented
+PASS: AC01 /api/v1/documents/nfc is implemented
+PASS: AC01 shipped UI port returns engine provenance
+PASS: AC01 every engine result contract carries confidence
+PASS: BIO-OPS-005 integrated acceptance invariants satisfied

@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-RPT-004 owns api/features/bio-rpt-004/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh) and no
+         ProjectReference to bio-idn-001/bio-acc-002/bio-crd-007 either, despite all three being
+         real runtime dependencies (the operational-health snapshot reads live Identity/Access/
+         CardProduction data): every cross-feature runtime need goes through a narrow gateway
+         interface this project defines (Domain/IIdentityHealthGateway.cs,
+         Domain/IAccessHealthGateway.cs, Domain/IProductionHealthGateway.cs), implemented by an
+         adapter in api/Biolog.Api/Modules/BioRpt004Module.cs - the same shape BIO-RPT-002/
+         BIO-RPT-003 already established. All three adapters wrap a PUBLIC or already-
+         InternalsVisibleTo-granted repository interface already registered by the dependency's
+         own module (IPersonRepository.ListByTenantAsync, IAccessDecisionEventRepository.
+         ListForTenantAsync, IProductionJobRepository.ListForTenant) - zero edits to any of their
+         owned files.
+
+         Device/Card/Sync health are a disclosed, intentionally-scoped HYBRID gap (BIO-RPT-004-
+         AC05's own "or an explicitly documented HYBRID state" allowance): BIO-DEV-001's
+         IDeviceRepository, BIO-CRD-005/006's card repositories and BIO-MOB-003's offline-sync
+         feature none of them expose a tenant-wide read today (verified by direct inspection, not
+         assumed) - see docs/features/bio-rpt-004/README.md "Which sources are wired, and why" for
+         the full reasoning. This story does not add a tenant-wide list method to any of those
+         three dependencies itself (that would be a cross-story-ownership change needing explicit
+         sign-off, not a unilateral addition) - it honestly reports those three panels as
+         Simulated/unavailable with a stated reason instead of fabricating a number.
+
+         Namespace root is "OperationalDashboard". No new ADR-0001 canonical identifier type is
+         minted - this feature creates no durable aggregate of its own, only a read-time
+         projection over already-governed data. -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.OperationalDashboard.Tests" />
+  </ItemGroup>
+
+</Project>

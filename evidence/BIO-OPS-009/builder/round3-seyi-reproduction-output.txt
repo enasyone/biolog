@@ -1,0 +1,6 @@
+PASS control-plane restore verifies complete row contents
+PASS tenant restore verifies complete row contents
+PASS failure and signal exits always clean standalone restored resources
+PASS MySQL restore refuses a pre-existing volume instead of reusing it
+PASS Azurite restore refuses a pre-existing volume instead of reusing it
+5 passed, 0 failed

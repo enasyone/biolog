@@ -1,0 +1,2 @@
+PASS BoundingBox rejects NaN x coordinate
+PASS conflict rejects unrelated/non-disagreeing evidence

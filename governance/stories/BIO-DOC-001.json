@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-DOC-001",
+  "title": "Implement Document Verify session and evidence foundation",
+  "owner": "Ifeanyi - Document Intelligence Engineer",
+  "reviewed_commit": "a2a03b3a49712abc0d3c3c306ae0cb37cd7bde2f",
+  "required_acceptance_stages": ["builder", "adversarial", "acceptance"],
+  "requirement_ids": [
+    "BIO-DOC-001-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-DOC-001-AC01",
+      "requirement_ids": ["BIO-DOC-001-REQ-001"],
+      "text": "DocumentSession supports person-linked or pre-person onboarding."
+    },
+    {
+      "id": "BIO-DOC-001-AC02",
+      "requirement_ids": ["BIO-DOC-001-REQ-001"],
+      "text": "Source images are immutable evidence objects with hashes and page/side metadata."
+    },
+    {
+      "id": "BIO-DOC-001-AC03",
+      "requirement_ids": ["BIO-DOC-001-REQ-001"],
+      "text": "Evidence records preserve raw, normalized, confidence, source and bounding-box metadata."
+    },
+    {
+      "id": "BIO-DOC-001-AC04",
+      "requirement_ids": ["BIO-DOC-001-REQ-001"],
+      "text": "Document results never silently overwrite PERSON fields."
+    },
+    {
+      "id": "BIO-DOC-001-AC05",
+      "requirement_ids": ["BIO-DOC-001-REQ-001"],
+      "text": "Manual review state and conflict evidence are supported."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-DOC-001.test.sh",
+      "ac_ids": [
+        "BIO-DOC-001-AC01",
+        "BIO-DOC-001-AC02",
+        "BIO-DOC-001-AC03",
+        "BIO-DOC-001-AC04",
+        "BIO-DOC-001-AC05"
+      ]
+    },
+    {
+      "path": "tests/features/bio-doc-001/Biolog.Features.DocumentVerify.Tests/DocumentSessionTests.cs",
+      "ac_ids": [
+        "BIO-DOC-001-AC01"
+      ]
+    },
+    {
+      "path": "tests/features/bio-doc-001/Biolog.Features.DocumentVerify.Tests/DocumentEvidenceTests.cs",
+      "ac_ids": [
+        "BIO-DOC-001-AC02"
+      ]
+    },
+    {
+      "path": "tests/features/bio-doc-001/Biolog.Features.DocumentVerify.Tests/DocumentFieldEvidenceTests.cs",
+      "ac_ids": [
+        "BIO-DOC-001-AC03"
+      ]
+    },
+    {
+      "path": "tests/features/bio-doc-001/Biolog.Features.DocumentVerify.Tests/PersonFieldChangeProposalTests.cs",
+      "ac_ids": [
+        "BIO-DOC-001-AC04"
+      ]
+    },
+    {
+      "path": "tests/features/bio-doc-001/Biolog.Features.DocumentVerify.Tests/DocumentConflictTests.cs",
+      "ac_ids": [
+        "BIO-DOC-001-AC05"
+      ]
+    },
+    {
+      "path": "tests/features/bio-doc-001/Biolog.Features.DocumentVerify.Tests/InMemoryDocumentSessionStoreTests.cs",
+      "ac_ids": [
+        "BIO-DOC-001-AC01",
+        "BIO-DOC-001-AC02",
+        "BIO-DOC-001-AC03",
+        "BIO-DOC-001-AC04",
+        "BIO-DOC-001-AC05"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-DOC-001/builder/metadata.json",
+      "stage": "builder",
+      "ac_ids": [
+        "BIO-DOC-001-AC01",
+        "BIO-DOC-001-AC02",
+        "BIO-DOC-001-AC03",
+        "BIO-DOC-001-AC04",
+        "BIO-DOC-001-AC05"
+      ]
+    }
+  ]
+}

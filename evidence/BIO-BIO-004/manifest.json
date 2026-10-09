@@ -1,0 +1,63 @@
+{
+  "story_key": "BIO-BIO-004",
+  "title": "Implement fingerprint 1:1 verification",
+  "implementation_commit": "2ff084dc48ec6a1716fd8db1758bcb63b46f5918",
+  "builder_head": "e104f73",
+  "reviewed_head": "0bec3f7c41930c8535fa7d4020053f31e5cae436",
+  "environment": {
+    "profile": "local acceptance; synthetic biometric fixtures only; VSTest loopback unavailable in sandbox",
+    "timestamp": "2026-09-22T23:26:56Z"
+  },
+  "acceptance_criteria": {
+    "BIO-BIO-004-AC01": {"result": "PASS", "evidence": ["tenant/person/modality reference resolution tests", "newest-reference and missing/cross-tenant reference tests"]},
+    "BIO-BIO-004-AC02": {"result": "PASS", "evidence": ["persisted score, matcher, provider and model-version tests", "record/history retrieval tests"]},
+    "BIO-BIO-004-AC03": {"result": "PASS", "evidence": ["no-match versus acquisition-failure tests", "F01 regression tests for timeout, vendor failure and provider cancellation"]},
+    "BIO-BIO-004-AC04": {"result": "PASS", "evidence": ["matched suspended and revoked identities deny access", "matched active identity allows access"]}
+  },
+  "commands": [
+    {"command": "bash tests/features/bio-bio-004/BIO-BIO-004.test.sh", "result": "PASS (38/38)"},
+    {"command": "dotnet build tests/features/bio-bio-004/Biolog.Features.FingerprintVerification.Tests.csproj --no-restore -m:1 /nodeReuse:false", "result": "PASS (0 warnings, 0 errors)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (24 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS"}
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "2ff084dc48ec6a1716fd8db1758bcb63b46f5918",
+    "feature_tests": "34/34 PASS",
+    "structural_tests": "38/38 PASS",
+    "traceability": "PASS (24 implemented stories)",
+    "module_references": "PASS",
+    "metadata_sha256": "c218ea165ff469b71ad03355955e29bd9a465f04e5e80fc29776aeac8b11daf7"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "round_1": {"result": "FAIL", "finding": "BIO-BIO-004-F01 High: non-ArgumentException provider failures escaped without an AcquisitionFailed record", "evidence": "evidence/BIO-BIO-004/codex/REVIEW-Seyi-round1.md", "sha256": "f4c81dd77b41d5cbc372f14bff10e5878bb77b381fb1202ac14310f43cb864a3"},
+    "round_2": {"result": "PASS", "review_commit": "0bec3f7", "evidence": "evidence/BIO-BIO-004/codex/REREVIEW-Seyi-round2.md", "sha256": "437d258a9f54df099d6ad56b4d4a1953e7d5aee46d158b2d4ba5a0fc94c2d591"}
+  },
+  "security_review": {
+    "reviewer": "Zainab",
+    "result": "PASS",
+    "evidence": "evidence/BIO-BIO-004/codex/SECURITY-REVIEW-ZAINAB.md",
+    "sha256": "5d6fee4c8b5c55c49da1f57bf6418a22e54959c17264a7914365762f26342e83"
+  },
+  "category_verdicts": {
+    "functional": "PASS",
+    "security": "PASS",
+    "tenant_isolation": "PASS",
+    "offline_recovery": "PASS",
+    "concurrency": "PASS",
+    "regression": "PASS"
+  },
+  "security_performance_verdicts": {
+    "security": "PASS: F01 provider-failure containment closed; tenant isolation, internal mutation surfaces and suspended/revoked access denial verified",
+    "performance": "Not separately required"
+  },
+  "screenshots_logs": [],
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "All four acceptance criteria have executable evidence; F01 High is closed at the reviewed implementation, and builder, independent QA and security verdicts pass."
+  }
+}

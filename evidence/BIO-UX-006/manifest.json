@@ -1,0 +1,36 @@
+{
+  "story_key": "BIO-UX-006",
+  "commit_hash": "0f0fdf0827198dbc1a976ce0f8c72c258e7c1419",
+  "implementation_commit": "9564563ed15842babb4503a9d9af5beba0f98fee",
+  "builder_evidence_commit": "0f0fdf0827198dbc1a976ce0f8c72c258e7c1419",
+  "environment_profile": "local frontend Node/pnpm workspace; synthetic fixtures",
+  "timestamp": "2026-09-23T15:04:20Z",
+  "acceptance_criteria": {
+    "BIO-UX-006-AC01": {"result": "PASS", "tests": ["bio-ux-006-identity-journeys.spec.ts list/detail coverage"]},
+    "BIO-UX-006-AC02": {"result": "PASS", "tests": ["bio-ux-006-identity-journeys.spec.ts enrolment wizard coverage"]},
+    "BIO-UX-006-AC03": {"result": "PASS", "tests": ["bio-ux-006-identity-data-store.test.ts", "bio-ux-006-identity-journeys.spec.ts"]},
+    "BIO-UX-006-AC04": {"result": "PASS", "tests": ["bio-ux-006-identity-journeys.spec.ts tenant and role coverage"]},
+    "BIO-UX-006-AC05": {"result": "PASS", "tests": ["bio-ux-006-identity-journeys.spec.ts primary-action coverage"]},
+    "BIO-UX-006-AC06": {"result": "PASS", "tests": ["bio-ux-006-identity-live-port.test.ts"]}
+  },
+  "commands_results": [
+    {"command": "corepack pnpm --dir tests/frontend test:unit", "result": "PASS: 44 files, 332 tests"},
+    {"command": "corepack pnpm --dir web typecheck", "result": "PASS"},
+    {"command": "corepack pnpm --dir web build", "result": "PASS: 34 routes plus dynamic person-detail route"},
+    {"command": "builder production-browser suite", "result": "PASS: 122 applicable tests; 2 development-only panel tests intentionally excluded in production"}
+  ],
+  "builder_verdict": "PASS",
+  "independent_qa_verdict": "PASS",
+  "security_verdict": "PASS",
+  "tenant_verdict": "PASS",
+  "offline_verdict": "PASS",
+  "concurrency_verdict": "NOT_APPLICABLE",
+  "regression_verdict": "PASS",
+  "evidence_references": [
+    "builder/metadata.json",
+    "codex/REVIEW-Seyi-round1.md",
+    "acceptance/REVIEW-Chioma-round1.md"
+  ],
+  "final_acceptance_decision": "PASS",
+  "reason": "AC01-AC06 are implemented and covered by commit-bound builder, reviewer, and acceptance evidence."
+}

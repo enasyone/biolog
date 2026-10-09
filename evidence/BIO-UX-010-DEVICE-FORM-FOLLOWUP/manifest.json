@@ -1,0 +1,23 @@
+{
+  "story_key": "BIO-UX-010-DEVICE-FORM-FOLLOWUP",
+  "title": "Device registration form redesign and live wiring",
+  "implementation_commit": "65cea59083e563620ed944f62c08acd905be0706",
+  "reviewed_head": "5fd90db",
+  "environment": {"profile": "local acceptance; synthetic fixtures only; GitHub push blocked", "timestamp": "2026-09-28T08:45:00Z"},
+  "acceptance_criteria": {
+    "contract_parity": {"result": "PASS", "evidence": ["form payload matches DeviceRegistrationRequest fields and types; server-owned fields excluded"]},
+    "approved_values": {"result": "PASS", "evidence": ["vendor values match certified adapters and site values are explicit synthetic fixtures"]},
+    "port_isolation": {"result": "PASS", "evidence": ["registration uses a separate port; connectivity-status behavior remains untouched"]},
+    "live_and_mock": {"result": "PASS", "evidence": ["deterministic mock and typed live POST wiring reviewed independently"]}
+  },
+  "commands": [
+    {"command": "cd tests/frontend && pnpm exec vitest run", "result": "PASS (55 files, 413 tests)"},
+    {"command": "cd web && pnpm exec tsc --noEmit", "result": "PASS"},
+    {"command": "cd web && pnpm exec next build", "result": "PASS (34 routes)"}
+  ],
+  "builder_verdict": {"result": "PASS", "commit_hash": "65cea59083e563620ed944f62c08acd905be0706", "note": "Retroactively governed follow-up; direct acceptance replay supplies the command evidence."},
+  "independent_qa": {"reviewer": "Seyi", "result": "PASS", "evidence": "evidence/BIO-UX-010-DEVICE-FORM-FOLLOWUP/codex/REVIEW-Seyi.md"},
+  "category_verdicts": {"functional": "PASS", "security": "PASS", "tenant_isolation": "NOT_APPLICABLE", "offline_recovery": "NOT_APPLICABLE", "concurrency": "NOT_APPLICABLE", "regression": "PASS"},
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "Contract parity, port isolation, deterministic mock/live wiring, independent review, full frontend tests, typecheck and production build all pass."}
+}

@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-FND-003",
+  "title": "Create local Docker development infrastructure",
+  "owner": "Emeka - Platform & Infrastructure Engineer",
+  "requirement_ids": [
+    "BIO-FND-003-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-FND-003-AC01",
+      "requirement_ids": [
+        "BIO-FND-003-REQ-001"
+      ],
+      "text": "Docker Compose starts control-plane MySQL, at least one isolated tenant MySQL, Redis, RabbitMQ, Azurite and Mailpit."
+    },
+    {
+      "id": "BIO-FND-003-AC02",
+      "requirement_ids": [
+        "BIO-FND-003-REQ-001"
+      ],
+      "text": "A standard profile can start a second tenant database to validate cross-tenant isolation."
+    },
+    {
+      "id": "BIO-FND-003-AC03",
+      "requirement_ids": [
+        "BIO-FND-003-REQ-001"
+      ],
+      "text": "Health checks are defined and bootstrap waits for readiness."
+    },
+    {
+      "id": "BIO-FND-003-AC04",
+      "requirement_ids": [
+        "BIO-FND-003-REQ-001"
+      ],
+      "text": "Volumes are named and reset commands are documented."
+    },
+    {
+      "id": "BIO-FND-003-AC05",
+      "requirement_ids": [
+        "BIO-FND-003-REQ-001"
+      ],
+      "text": "No production credentials are required."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-FND-003.test.sh",
+      "ac_ids": [
+        "BIO-FND-003-AC01",
+        "BIO-FND-003-AC02",
+        "BIO-FND-003-AC03",
+        "BIO-FND-003-AC04",
+        "BIO-FND-003-AC05"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-FND-003/manifest.json",
+      "ac_ids": [
+        "BIO-FND-003-AC01",
+        "BIO-FND-003-AC02",
+        "BIO-FND-003-AC03",
+        "BIO-FND-003-AC04",
+        "BIO-FND-003-AC05"
+      ]
+    }
+  ]
+}

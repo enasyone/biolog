@@ -1,0 +1,15 @@
+PASS  BIO-FND-010-AC01 story spec exposes stable requirement and AC IDs
+PASS  BIO-FND-010-AC02 tests declare the AC IDs they cover
+PASS  BIO-FND-010-AC03 reports missing tests and evidence as blocking gaps
+PASS  BIO-FND-010-AC03 reports unknown and uncovered AC links
+PASS  BIO-FND-010-AC04 unresolved gaps cannot create an acceptance record
+PASS  BIO-FND-010-AC04 story owner cannot self-accept
+PASS  BIO-FND-010-AC04 clean independent acceptance records once without overwrite
+PASS  BIO-FND-010-AC03 untrusted paths cannot escape the repository
+TRACEABILITY: PASS (BIO-FND-010; 4 ACs)
+PASS  BIO-FND-010-AC01-AC04 committed story graph validates
+secret-scan: gitleaks not installed, using built-in fallback pattern scan
+secret-scan: clean
+PASS  regression: tracked secret scan stays clean
+==============================
+10/10 checks passed

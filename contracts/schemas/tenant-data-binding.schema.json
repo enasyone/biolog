@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.biolog.local/tenant-data-binding.schema.json",
+  "title": "BIOLOG tenant data binding",
+  "description": "ADR-0002 Decision 4.1. Control-plane record mapping a resolved tenant to its database. Looked up by tenant_id and NEVER supplied by a request: no caller may name a database, schema, host, connection string or binding key. Only status ACTIVE routes.",
+  "type": "object",
+  "required": ["tenant_id", "binding_key", "status"],
+  "properties": {
+    "tenant_id": { "type": "string", "pattern": "^ten_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$" },
+    "binding_key": {
+      "description": "Opaque handle the infrastructure layer exchanges for a connection. Deliberately not a connection string: credentials are not contract data.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "status": { "type": "string", "enum": ["PROVISIONING", "ACTIVE", "SUSPENDED", "RETIRED"] }
+  },
+  "not": {
+    "anyOf": [
+      { "required": ["connection_string"] },
+      { "required": ["password"] },
+      { "required": ["database_host"] }
+    ],
+    "$comment": "Credentials and addresses never travel as contract data (Master Spec section 13; Tenant Domain Routing)."
+  }
+}

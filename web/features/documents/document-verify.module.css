@@ -1,0 +1,169 @@
+/* Document Verify journey styles (BIO-UX-009). Reuses shell tokens from
+   web/app/globals.css (--biolog-color-*) rather than inventing new colours,
+   so this feature stays visually consistent with the rest of the shell
+   without needing Damilola's design-system sign-off for a new palette. */
+
+.context {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: baseline;
+  margin-bottom: 1.5rem;
+}
+
+.contextLabel {
+  color: var(--biolog-color-text-muted);
+  font-size: var(--biolog-font-size-sm);
+  margin-right: 0.35rem;
+}
+
+.pageActions {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.buttonSecondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6rem 1.25rem;
+  border-radius: var(--biolog-radius-md);
+  border: 1px solid var(--biolog-color-border);
+  background: var(--biolog-color-surface);
+  color: var(--biolog-color-text);
+  font: inherit;
+  font-weight: var(--biolog-font-weight-semibold);
+  cursor: pointer;
+}
+
+.buttonSecondary:hover:not(:disabled) {
+  background: var(--biolog-color-bg);
+}
+
+.buttonSecondary:disabled,
+.buttonPrimarySmall:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.buttonPrimarySmall {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 1rem;
+  border-radius: var(--biolog-radius-md);
+  border: none;
+  background: var(--biolog-color-accent);
+  color: var(--biolog-color-brand-navy);
+  font: inherit;
+  font-weight: var(--biolog-font-weight-semibold);
+  cursor: pointer;
+}
+
+.buttonPrimarySmall:hover:not(:disabled) {
+  filter: brightness(0.95);
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stepCard {
+  background: var(--biolog-color-surface);
+  border: 1px solid var(--biolog-color-border);
+  border-radius: var(--biolog-radius-lg);
+  box-shadow: var(--biolog-shadow-sm);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stepCard h3 {
+  margin: 0;
+  font-size: var(--biolog-font-size-lg);
+}
+
+.stepDescription {
+  margin: 0;
+  color: var(--biolog-color-text-muted);
+  font-size: var(--biolog-font-size-sm);
+}
+
+.stepMessage {
+  margin: 0;
+  font-size: var(--biolog-font-size-sm);
+}
+
+.stepGateHint {
+  margin: 0;
+  color: var(--biolog-color-text-muted);
+  font-size: var(--biolog-font-size-sm);
+  font-style: italic;
+}
+
+.section {
+  margin-bottom: 1.5rem;
+}
+
+.reviewQueueEmpty {
+  color: var(--biolog-color-text-muted);
+}
+
+.reviewQueueList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.reviewQueueItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid var(--biolog-color-border);
+  border-radius: var(--biolog-radius-md);
+  background: var(--biolog-color-warning-bg);
+}
+
+.reviewQueueItemResolved {
+  background: var(--biolog-color-surface);
+  opacity: 0.7;
+}
+
+.reviewQueueItemLabel {
+  font-size: var(--biolog-font-size-sm);
+}
+
+.selfieRow {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.selfiePlaceholder {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: var(--biolog-color-bg);
+  border: 1px dashed var(--biolog-color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--biolog-color-text-muted);
+  font-size: var(--biolog-font-size-sm);
+  text-align: center;
+}
+
+.selfieNote {
+  color: var(--biolog-color-text-muted);
+  font-size: var(--biolog-font-size-sm);
+  max-width: 32rem;
+}

@@ -1,0 +1,10 @@
+{
+  "story_key": "BIO-DEV-003",
+  "stage": "builder",
+  "commit_hash": "b26de8c",
+  "test_command": "dotnet build api/Biolog.Api/Biolog.Api.csproj && dotnet test tests/features/bio-dev-003/Biolog.Features.DeviceAdapters.Tests.csproj && dotnet test tests/dotnet/Biolog.IntegrationTests/Biolog.IntegrationTests.csproj && dotnet test tests/dotnet/Biolog.UnitTests/Biolog.UnitTests.csproj && bash tests/features/bio-dev-003/BIO-DEV-003.test.sh && bash scripts/check-module-project-references.sh && python3 scripts/check-traceability.py --all && bash scripts/secret-scan.sh --all",
+  "result": "PASS",
+  "timestamp": "2026-09-24T03:20:00Z",
+  "reviewer": "Emeka",
+  "data_classification": "SYNTHETIC"
+}

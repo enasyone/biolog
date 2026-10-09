@@ -1,0 +1,8 @@
+
+[2mRunning [22m3[2m tests using [22m1[2m worker[22m
+
+  [32m✓[39m  [2m1 [22mplaywright/bio-rpt-003-audit-investigation-live.spec.ts:25:3 › BIO-RPT-003-AC05 the audit investigation panel is connected to a real backend, not a placeholder › the panel reports LIVE mode and a search returns real results from the real backend[2m (280ms)[22m
+  [32m✓[39m  [2m2 [22mplaywright/bio-rpt-003-audit-investigation-live.spec.ts:42:3 › BIO-RPT-003-AC05 the audit investigation panel is connected to a real backend, not a placeholder › AC03: export without the export permission is refused with a real 403 from the real backend[2m (374ms)[22m
+  [32m✓[39m  [2m3 [22mplaywright/bio-rpt-003-audit-investigation-live.spec.ts:55:3 › BIO-RPT-003-AC05 the audit investigation panel is connected to a real backend, not a placeholder › AC01: a real actor filter genuinely narrows the real backend result set (not client-side fakery)[2m (292ms)[22m
+
+[32m  3 passed[39m[2m (6.0s)[22m

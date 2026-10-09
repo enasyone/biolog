@@ -1,0 +1,9 @@
+
+[2mRunning [22m4[2m tests using [22m1[2m worker[22m
+
+  [32m✓[39m  [2m1 [22mplaywright/bio-doc-009-authenticity-live.spec.ts:60:3 › BIO-DOC-009-AC06 the authenticity step is connected to a real backend, not a placeholder › three consecutive live calls cover all three real computed dispositions (authentic, inconclusive, not authentic) — proof this is a real orchestrator, not a canned response[2m (1.8s)[22m
+  [32m✓[39m  [2m2 [22mplaywright/bio-doc-009-authenticity-live.spec.ts:77:3 › BIO-DOC-009-AC06 the authenticity step is connected to a real backend, not a placeholder › the live response is genuinely computed server-side, carrying real evidence/ruleset version fields (AC04), not just a bare state string[2m (1.4s)[22m
+  [32m✓[39m  [2m3 [22mplaywright/bio-doc-009-authenticity-live.spec.ts:98:3 › BIO-DOC-009-AC06 the authenticity step is connected to a real backend, not a placeholder › the evidence-comparison table reflects the live authenticity result, same as any other step[2m (1.4s)[22m
+  [32m✓[39m  [2m4 [22mplaywright/bio-doc-009-authenticity-live.spec.ts:108:3 › BIO-DOC-009-AC06 the authenticity step is connected to a real backend, not a placeholder › has no axe violations after a live authenticity result is shown[2m (2.1s)[22m
+
+[32m  4 passed[39m[2m (7.8s)[22m

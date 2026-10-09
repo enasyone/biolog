@@ -1,0 +1,29 @@
+{
+  "story_key": "BIO-TRN-001",
+  "title": "Implement routes, buses and assignment model",
+  "implementation_commit": "fa2a0e3fb624c62132d16efa5596664b6737c222",
+  "traceability_correction_commit": "a611dc2",
+  "reviewed_head": "b2e434a972f817a1426d5251ea6e4ad7adf5523e",
+  "environment": {"profile": "local acceptance; synthetic fixtures only; GitHub push blocked", "timestamp": "2026-09-24T06:45:04Z"},
+  "acceptance_criteria": {
+    "BIO-TRN-001-AC01": {"result": "PASS", "evidence": ["route, vehicle and stop aggregates are CAS-versioned", "lifecycle transitions are validated at service and repository boundaries"]},
+    "BIO-TRN-001-AC02": {"result": "PASS", "evidence": ["assignments use half-open validity windows", "tenant/person lock prevents overlapping concurrent assignments", "effective validity status is computed at read time"]},
+    "BIO-TRN-001-AC03": {"result": "PASS", "evidence": ["vehicle device linkage is optional and existence-checked through the real BIO-DEV-001 service"]},
+    "BIO-TRN-001-AC04": {"result": "PASS", "evidence": ["route, vehicle and stop carry tenant-local campus scope", "route/stop campus mismatch is rejected"]},
+    "BIO-TRN-001-AC05": {"result": "PASS", "evidence": ["existing TransportService live routes map to the real transport domain bridge", "approved transport page, ports and mock remain unchanged", "HYBRID boarding/alighting boundary is documented"]}
+  },
+  "commands": [
+    {"command": "bash tests/features/bio-trn-001/BIO-TRN-001.test.sh", "result": "PASS (34/34)"},
+    {"command": "tests/features/bio-trn-001/bin/Debug/net10.0/Biolog.Features.Transport.Tests", "result": "PASS (26/26)"},
+    {"command": "dotnet build api/Biolog.Api/Biolog.Api.csproj --no-restore -m:1 /nodeReuse:false --disable-build-servers", "result": "PASS (0 warnings, 0 errors)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (31 implemented stories on reviewed branch)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS (built-in fallback scan clean)"}
+  ],
+  "builder_verdict": {"result": "PASS", "commit_hash": "b2e434a972f817a1426d5251ea6e4ad7adf5523e", "feature_tests": "26/26 PASS", "host_channel_tests": "6/6 PASS", "integration_tests": "158/158 PASS", "frontend_unit": "398/398 PASS", "structural_tests": "34/34 PASS", "metadata_sha256": "7e69c7d642f731300933f49d4000e19e6f2a3d792ae38f35105e1d662a39c141"},
+  "independent_qa": {"reviewer": "Seyi", "result": "PASS", "commit_hash": "b2e434a972f817a1426d5251ea6e4ad7adf5523e", "evidence": "evidence/features/bio-trn-001/codex/REVIEW-Seyi.md", "evidence_sha256": "057105152e1cdc6b19ae6057ae2d5bac238ecc75bae3313ce215c4c85dc51fdd", "binding_note": "Runtime state confirms review_results.commit and builder_commit both equal b2e434a after the final re-stamp."},
+  "category_verdicts": {"functional": "PASS", "security": "PASS", "tenant_isolation": "PASS", "offline_recovery": "NOT_APPLICABLE", "concurrency": "PASS", "regression": "PASS"},
+  "disclosures": ["Full Playwright quality runs showed pre-existing unrelated /audit and /cards flakes, never /transport; targeted feature, integration and frontend unit suites pass."],
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "All five acceptance criteria have commit-bound builder evidence, Seyi PASS bound to final head b2e434a, corrected AC traceability, and successful focused acceptance replay; no unresolved Critical or High finding exists."}
+}

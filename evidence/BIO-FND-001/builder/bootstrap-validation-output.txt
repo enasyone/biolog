@@ -1,0 +1,28 @@
+== BIO-FND-001-AC01: documented directory structure ==
+PASS  directory 'web' exists
+PASS  directory 'api' exists
+PASS  directory 'mobile' exists
+PASS  directory 'tests' exists
+PASS  directory 'infrastructure' exists
+PASS  directory 'docs' exists
+PASS  directory 'evidence' exists
+PASS  directory 'scripts' exists
+PASS  directory '.githooks' exists
+PASS  directory 'governance' exists
+== BIO-FND-001-AC02: git initialised, main + develop, no remote ==
+PASS  git repository initialised
+PASS  branch 'main' exists
+PASS  branch 'develop' exists
+PASS  no git remote configured
+== BIO-FND-001-AC03: pre-push guard blocks push while disabled ==
+PASS  .githooks/pre-push is present and executable
+PASS  core.hooksPath is set to .githooks
+PASS  pre-push hook blocks push while github_push_enabled is false
+== BIO-FND-001-AC04: no secrets or machine-specific absolute paths ==
+secret-scan: gitleaks not installed, using built-in fallback pattern scan
+secret-scan: clean
+PASS  secret scan clean
+PASS  no machine-specific absolute paths found in tracked files
+==============================
+BOOTSTRAP VALIDATION: SUCCESS
+exit 0

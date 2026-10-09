@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-CRD-001",
+  "title": "Implement versioned tenant brand asset library",
+  "owner": "Ngozi - Credential & Card Engineer",
+  "reviewed_commit": "159ec1c1e948628f0f777446527dee55d1fb4573",
+  "required_acceptance_stages": ["builder", "adversarial"],
+  "requirement_ids": [
+    "BIO-CRD-001-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-CRD-001-AC01",
+      "requirement_ids": ["BIO-CRD-001-REQ-001"],
+      "text": "PNG/JPEG/SVG uploads are supported."
+    },
+    {
+      "id": "BIO-CRD-001-AC02",
+      "requirement_ids": ["BIO-CRD-001-REQ-001"],
+      "text": "Assets record tenant, organisation/campus usage, version and status."
+    },
+    {
+      "id": "BIO-CRD-001-AC03",
+      "requirement_ids": ["BIO-CRD-001-REQ-001"],
+      "text": "Raster quality/effective DPI warnings are calculated."
+    },
+    {
+      "id": "BIO-CRD-001-AC04",
+      "requirement_ids": ["BIO-CRD-001-REQ-001"],
+      "text": "SVG/content validation and malware scanning hooks exist."
+    },
+    {
+      "id": "BIO-CRD-001-AC05",
+      "requirement_ids": ["BIO-CRD-001-REQ-001"],
+      "text": "Cross-tenant asset access is denied."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-CRD-001.test.sh",
+      "ac_ids": [
+        "BIO-CRD-001-AC01",
+        "BIO-CRD-001-AC02",
+        "BIO-CRD-001-AC03",
+        "BIO-CRD-001-AC04",
+        "BIO-CRD-001-AC05"
+      ]
+    },
+    {
+      "path": "tests/dotnet/Biolog.UnitTests/Features/BrandAssets/RasterImageInspectorTests.cs",
+      "ac_ids": ["BIO-CRD-001-AC03"]
+    },
+    {
+      "path": "tests/dotnet/Biolog.UnitTests/Features/BrandAssets/SvgValidatorTests.cs",
+      "ac_ids": ["BIO-CRD-001-AC01", "BIO-CRD-001-AC04"]
+    },
+    {
+      "path": "tests/dotnet/Biolog.UnitTests/Features/BrandAssets/HeuristicMalwareScannerTests.cs",
+      "ac_ids": ["BIO-CRD-001-AC04"]
+    },
+    {
+      "path": "tests/dotnet/Biolog.UnitTests/Features/BrandAssets/BrandAssetRepositoryTests.cs",
+      "ac_ids": ["BIO-CRD-001-AC02", "BIO-CRD-001-AC05"]
+    },
+    {
+      "path": "tests/dotnet/Biolog.UnitTests/Features/BrandAssets/HeaderTenantAuthenticatorTests.cs",
+      "ac_ids": ["BIO-CRD-001-AC05"]
+    },
+    {
+      "path": "tests/dotnet/Biolog.UnitTests/Features/BrandAssets/TenantCredentialProvisioningTests.cs",
+      "ac_ids": ["BIO-CRD-001-AC05"]
+    },
+    {
+      "path": "tests/dotnet/Biolog.UnitTests/Features/BrandAssets/IdempotencyStoreTests.cs",
+      "ac_ids": ["BIO-CRD-001-AC01", "BIO-CRD-001-AC02"]
+    },
+    {
+      "path": "tests/dotnet/Biolog.IntegrationTests/Features/BrandAssets/BrandAssetsEndpointTests.cs",
+      "ac_ids": [
+        "BIO-CRD-001-AC01",
+        "BIO-CRD-001-AC02",
+        "BIO-CRD-001-AC03",
+        "BIO-CRD-001-AC04",
+        "BIO-CRD-001-AC05"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-CRD-001/builder/metadata.json",
+      "stage": "builder",
+      "ac_ids": [
+        "BIO-CRD-001-AC01",
+        "BIO-CRD-001-AC02",
+        "BIO-CRD-001-AC03",
+        "BIO-CRD-001-AC04",
+        "BIO-CRD-001-AC05"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Biolog.Features.DocumentVerify -> <workspace>/biolog-worktrees/BIO-DEV-002/api/features/bio-doc-001/Biolog.Features.DocumentVerify/bin/Debug/net10.0/Biolog.Features.DocumentVerify.dll
+  Biolog.Features.Rbac -> <workspace>/biolog-worktrees/BIO-DEV-002/api/features/bio-idn-006/bin/Debug/net10.0/Biolog.Features.Rbac.dll
+  Biolog.Features.PersonRegistry -> <workspace>/biolog-worktrees/BIO-DEV-002/api/features/bio-idn-001/bin/Debug/net10.0/Biolog.Features.PersonRegistry.dll
+  Biolog.Features.PersonLifecycle -> <workspace>/biolog-worktrees/BIO-DEV-002/api/features/bio-idn-004/bin/Debug/net10.0/Biolog.Features.PersonLifecycle.dll
+  Biolog.Features.PersonProfileRegistry -> <workspace>/biolog-worktrees/BIO-DEV-002/api/features/bio-idn-002/bin/Debug/net10.0/Biolog.Features.PersonProfileRegistry.dll
+  Biolog.Features.TenantRegistry -> <workspace>/biolog-worktrees/BIO-DEV-002/api/features/bio-ten-001/bin/Debug/net10.0/Biolog.Features.TenantRegistry.dll
+  Biolog.Features.TenantDomainRegistry -> <workspace>/biolog-worktrees/BIO-DEV-002/api/features/bio-ten-002/bin/Debug/net10.0/Biolog.Features.TenantDomainRegistry.dll
+  Biolog.Features.DuplicateReview -> <workspace>/biolog-worktrees/BIO-DEV-002/api/features/bio-idn-005/bin/Debug/net10.0/Biolog.Features.DuplicateReview.dll
+  Biolog.Features.InstitutionalIdentifiers -> <workspace>/biolog-worktrees/BIO-DEV-002/api/features/bio-idn-003/bin/Debug/net10.0/Biolog.Features.InstitutionalIdentifiers.dll
+  Biolog.Api -> <workspace>/biolog-worktrees/BIO-DEV-002/api/Biolog.Api/bin/Debug/net10.0/Biolog.Api.dll
+  Biolog.IntegrationTests -> <workspace>/biolog-worktrees/BIO-DEV-002/tests/dotnet/Biolog.IntegrationTests/bin/Debug/net10.0/Biolog.IntegrationTests.dll
+Test run for <workspace>/biolog-worktrees/BIO-DEV-002/tests/dotnet/Biolog.IntegrationTests/bin/Debug/net10.0/Biolog.IntegrationTests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:    96, Skipped:     0, Total:    96, Duration: 5 s - Biolog.IntegrationTests.dll (net10.0)

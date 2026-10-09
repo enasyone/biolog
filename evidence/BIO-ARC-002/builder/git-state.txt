@@ -1,0 +1,36 @@
+# git state — BIO-ARC-002 builder (round 3: QA-03 fix)
+
+## branch
+feature/BIO-ARC-002
+
+## commits on this branch
+8bd5c66 BIO-ARC-002: await durable audit before denying (BIO-ARC-002-QA-03)
+d3edab2 BIO-ARC-002: record round-2 builder evidence
+823bca8 BIO-ARC-002: close the binding bypass and the audit gap (QA-01, QA-02)
+52ade1b BIO-ARC-002: record builder evidence
+7b135f2 BIO-ARC-002: define tenant context and database routing contract
+
+## branch base
+feature/BIO-ARC-001 @ 7ad8ccd, merged into develop (3f384eb) by Chinedu
+
+## remotes (must be empty)
+(none — no remote configured, nothing pushed)
+
+## working tree
+ M evidence/BIO-ARC-002/builder/git-state.txt
+
+## files changed by the QA-03 fix (8bd5c66)
+ contracts/README.md                                |   9 +-
+ contracts/js/tenant-context.mjs                    | 120 +++--
+ contracts/js/tenant-context.test.mjs               | 407 ++++++++++-----
+ ...ADR-0002-tenant-context-and-database-routing.md |  29 +-
+ evidence/BIO-ARC-002/builder/SUMMARY.md            |  98 ++++
+ .../BIO-ARC-002/builder/contract-suite-output.txt  | 276 +++++-----
+ .../BIO-ARC-002/builder/developer-test-output.txt  | 556 +++++++++++---------
+ .../builder/reviewer-probes-awaited.mjs            |  79 +++
+ .../builder/reviewer-probes-awaited.txt            |   7 +
+ .../BIO-ARC-002/builder/reviewer-script-rerun.txt  | 569 ++++++++++++---------
+ evidence/BIO-ARC-002/codex/REREVIEW-ROUND-2.md     |  61 +++
+ evidence/BIO-ARC-002/codex/independent-review.sh   |  16 +
+ tests/foundation/BIO-ARC-002.test.sh               |  59 ++-
+ 13 files changed, 1515 insertions(+), 771 deletions(-)

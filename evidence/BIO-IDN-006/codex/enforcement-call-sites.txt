@@ -1,0 +1,24 @@
+api/features/bio-idn-006/MakerCheckerService.cs:180:    public async Task<bool> IsActionClearedAsync(string actionKey, string targetRef, CancellationToken cancellationToken = default)
+api/features/bio-idn-006/Domain/IPersonRoleAssignmentRepository.cs:18:    /// <summary>Every ACTIVE role held by every person in the tenant - the population PermissionService.HasPermissionAsync needs to resolve a person's current authority.</summary>
+api/features/bio-idn-006/Domain/IRolePermissionGrantRepository.cs:17:    /// <summary>Every permission key currently GRANTED to this role in this tenant - the population PermissionService.HasPermissionAsync reads.</summary>
+api/features/bio-idn-006/Domain/RolePermissionGrant.cs:23:/// <see cref="PermissionService.HasPermissionAsync"/> short-circuits to <c>true</c> for
+api/features/bio-idn-006/PermissionService.cs:12:/// carries in the resolved tenant, and <see cref="HasPermissionAsync"/> - the REAL permission
+api/features/bio-idn-006/PermissionService.cs:83:    public async Task<(bool Granted, IReadOnlyList<RoleType> ViaRoles)> HasPermissionAsync(
+api/features/bio-idn-006/Domain/RoleType.cs:15:/// header and <see cref="PermissionService.HasPermissionAsync"/> for why (a tenant must never be
+api/features/bio-idn-006/Api/PermissionEndpoints.cs:11:/// verification surface, <see cref="PermissionService.HasPermissionAsync"/>). Every mutating
+api/features/bio-idn-006/Api/PermissionEndpoints.cs:47:            var (granted, viaRoles) = await service.HasPermissionAsync(personId, permissionKey, context.RequestAborted);
+tests/features/bio-idn-006/MakerCheckerServiceTests.cs:44:        Assert.True(await service.IsActionClearedAsync(ActionKey, TargetRef, ct)); // nothing configured -> always cleared
+tests/features/bio-idn-006/MakerCheckerServiceTests.cs:57:        Assert.False(await service.IsActionClearedAsync(ActionKey, TargetRef, ct)); // required, but never requested -> not cleared
+tests/features/bio-idn-006/MakerCheckerServiceTests.cs:141:        Assert.True(await service.IsActionClearedAsync(ActionKey, TargetRef, ct));
+tests/features/bio-idn-006/MakerCheckerServiceTests.cs:156:        Assert.False(await service.IsActionClearedAsync(ActionKey, TargetRef, ct));
+tests/features/bio-idn-006/PermissionServiceTests.cs:9:/// <summary>BIO-IDN-006-AC02: tenant-scoped permission grants, and the real HasPermissionAsync verification surface BIO-IDN-004's own PermissionResolver documented itself as waiting for.</summary>
+tests/features/bio-idn-006/PermissionServiceTests.cs:38:        var (granted, viaRoles) = await h.Permissions.HasPermissionAsync(PersonId, PermissionKey, ct);
+tests/features/bio-idn-006/PermissionServiceTests.cs:51:        var (granted, _) = await h.Permissions.HasPermissionAsync(PersonId, PermissionKey, ct);
+tests/features/bio-idn-006/PermissionServiceTests.cs:64:        var (granted, viaRoles) = await h.Permissions.HasPermissionAsync(PersonId, PermissionKey, ct);
+tests/features/bio-idn-006/PermissionServiceTests.cs:77:        Assert.True((await h.Permissions.HasPermissionAsync(PersonId, PermissionKey, ct)).Granted);
+tests/features/bio-idn-006/PermissionServiceTests.cs:81:        var (granted, _) = await h.Permissions.HasPermissionAsync(PersonId, PermissionKey, ct);
+tests/features/bio-idn-006/PermissionServiceTests.cs:95:        Assert.False((await h.Permissions.HasPermissionAsync(PersonId, PermissionKey, ct)).Granted);
+tests/features/bio-idn-006/PermissionServiceTests.cs:107:        var (granted, viaRoles) = await h.Permissions.HasPermissionAsync(PersonId, "anything.at_all", ct);
+tests/features/bio-idn-006/PermissionServiceTests.cs:136:        var (granted, _) = await h.Permissions.HasPermissionAsync(PersonId, "tenant.delete_all_data", ct);
+tests/features/bio-idn-006/PermissionServiceTests.cs:164:        var (grantedInB, _) = await hB.Permissions.HasPermissionAsync(PersonId, PermissionKey, ct);
+tests/features/bio-idn-006/PermissionServiceTests.cs:177:        var error = await Assert.ThrowsAsync<RbacError>(() => h.HasPermissionAsync(PersonId, PermissionKey, ct));

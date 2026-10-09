@@ -1,0 +1,29 @@
+{
+  "story_key": "BIO-DOC-003",
+  "title": "Build native barcode detection/decoding service",
+  "implementation_commit": "a795c73fcb7bdd236f9882c41842244ad12d8fbf",
+  "builder_head": "cf5da0e",
+  "reviewed_head": "d31237f20caa5ffe870f9380414753a18917c0c6",
+  "environment": {"profile": "local offline acceptance; synthetic fixtures only", "timestamp": "2026-09-22T20:42:34Z"},
+  "acceptance_criteria": {
+    "BIO-DOC-003-AC01": {"result": "PASS_MASTER_SPEC_INTERFACE_SCOPE", "evidence": ["six registered replaceable decoders", "Code 39 end-to-end decode tests", "structural detection tests"]},
+    "BIO-DOC-003-AC02": {"result": "PASS", "evidence": ["symbology/bounding-box/hash/confidence tests"]},
+    "BIO-DOC-003-AC03": {"result": "PASS", "evidence": ["malformed framing/width and decoder-exception isolation tests"]},
+    "BIO-DOC-003-AC04": {"result": "PASS", "evidence": ["result lockdown and no-authenticity-field tests"]}
+  },
+  "commands": [
+    {"command": "bash tests/foundation/BIO-DOC-003.test.sh", "result": "PASS (25/25)"},
+    {"command": "dotnet Biolog.Features.BarcodeEngine.Tests.dll", "result": "PASS (41/41)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (22 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS"}
+  ],
+  "builder_verdict": {"result": "PASS_FOR_STORY_SCOPE", "commit_hash": "a795c73fcb7bdd236f9882c41842244ad12d8fbf", "feature_tests": "41/41 PASS", "structural_tests": "25/25 PASS", "vulnerability_audit": "PASS", "metadata_sha256": "4478d9785faa411a25dbd3111c26144f5eca54748540a4d7c94477e7a1a23028"},
+  "independent_qa": {"reviewer": "Seyi", "result": "PASS", "review_commit": "d31237f", "evidence": "evidence/BIO-DOC-003/codex/REVIEW-Seyi-round1.md", "evidence_sha256": "ac582dc39ab559b3e3db2fe527618cb7182e70e442c91553cef200c5d2dede00"},
+  "category_verdicts": {"functional": "PASS_MASTER_SPEC_INTERFACE_SCOPE", "security": "PASS", "tenant_isolation": "NOT_APPLICABLE_STATELESS_ENGINE", "offline_recovery": "PASS", "concurrency": "PASS_STATELESS_ENGINE", "regression": "PASS"},
+  "scope_boundary": "Code 39 is fully decoded. QR, PDF417, Data Matrix, Aztec, and Code 128 provide registered replaceable decoder implementations with structural detection; full payload decoding remains swappable future implementation under the master specification's replaceable-interface rule.",
+  "security_performance_reviews": {"security": "PASS: malformed data is inert, decoder failures are isolated, only SHA-256 payload hashes leave the engine, and no authenticity claim exists", "performance": "Not separately required for the dependency-free offline engine"},
+  "known_unrelated_quality_failure": "Full quality reports missing frontend dependencies and the pre-existing BIO-FND-009 observability race; all BIO-DOC-003 gates pass",
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "All four acceptance criteria have executable builder and independent evidence under the master specification's replaceable-decoder interface scope."}
+}

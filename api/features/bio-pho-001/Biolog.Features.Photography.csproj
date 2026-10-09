@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-PHO-001 owns api/features/bio-pho-001/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh)
+         and, deliberately, no ProjectReference to api/features/bio-idn-001's project either:
+         PersonId existence is proven through this project's own narrow
+         Domain/IPersonExistenceGateway.cs, the same BIO-IDN-002-QA-01-derived shape every
+         sibling identity/card-wave story uses - see that interface's header.
+
+         This project's own module adapter lives in api/Biolog.Api/Modules/BioPho001Module.cs
+         from the start (never written here first), matching every prior story.
+
+         Namespace root is "Photography": the aggregates this project defines are PhotoMaster
+         (immutable/append-only, ADR-0001 §3.3), PhotoDerivative (a regenerable rendition, not
+         on that append-only list) and PhotoAssignment (a mutable, CAS-versioned pointer, ADR-0001
+         §3.1/3.2). None mints a new ADR-0001 canonical identifier type - each is keyed by a
+         natural/composite key against the already-registered `per_` PersonId, the same choice
+         BIO-IDN-002's PersonProfile made for an identical reason (see each aggregate's own
+         header). -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Applying BIO-IDN-001-QA-01's lesson from the start: every aggregate's constructor and
+         its repository are internal - this grant is the explicit, auditable seam for
+         Biolog.Api (DI registration) and this project's own test assembly. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.Photography.Tests" />
+  </ItemGroup>
+
+</Project>

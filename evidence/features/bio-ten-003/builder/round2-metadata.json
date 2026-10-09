@@ -1,0 +1,32 @@
+{
+  "story_key": "BIO-TEN-003",
+  "stage": "builder",
+  "round": 2,
+  "commit_hash": "c6f8e8c",
+  "test_command": "dotnet test tests/features/bio-ten-003/Biolog.Features.TenantFeatureConfig.Tests.csproj && dotnet test tests/features/bio-bio-007/Biolog.Features.FaceSearch.Tests.csproj && dotnet test tests/dotnet/Biolog.IntegrationTests/Biolog.IntegrationTests.csproj && bash scripts/check-module-project-references.sh && python3 scripts/check-contract-freeze.py && (cd web && pnpm run typecheck)",
+  "result": "PASS",
+  "timestamp": "2026-10-06T18:10:00Z",
+  "reviewer": "Tunde",
+  "data_classification": "SYNTHETIC",
+  "summary": "Round-2 remediation for round-1's double FAIL (Seyi + Zainab, commit 56f04fd). F01/ZB-TEN003-01 (Critical, unauthorized cross-tenant read/write): added ActorProvenanceGate (ADR-0006 Decision 3, RandomNumberGenerator-generated unconfigured fallback key per god's explicit flag on a floor-wide forgeable-dummy-key bug), IPermissionGateway (wraps BIO-IDN-006 PermissionService), ITenantExistenceGateway (wraps BIO-TEN-001 TenantService); both GET/PATCH now require provenance, tenant-scoped permission, and target-tenant existence. F02/ZB-TEN003-02 (High, Face-1N ignores disabled parent): effective policy is now Biometrics.Enabled && Face1NIdentificationEnabled, computed on every commit. F03/ZB-TEN003-03 (High, 5 unenforced modules): scoped down per god's decision after directly verifying no FeatureFlagPolicy-shaped seam exists in any of the 15 owning stories; documented with the explicit BIO-BIO-009/Seyi distinction god required. F04 (High, Seyi, AC05 missing browser E2E): new live Playwright spec proves the live backend correctly rejects an unauthenticated browser call (401) and the UI fails closed - an honest HYBRID disclosure since no browser-usable ActorProvenanceGate bridge exists anywhere in this codebase yet (also latent in BIO-INT-002, escalated separately by god to Kemi/Emeka). Also fixed a separate, pre-existing gap found while writing that spec: next.config.mjs had no /api/v1/tenants/:path* rewrite entry at all. Test results: BIO-TEN-003 own suite 40/40 (was 28/28), BIO-BIO-007 23/23 unchanged, full Biolog.IntegrationTests 192/192 unchanged. check-module-project-references.sh PASS, check-contract-freeze.py PASS (39 artifacts, 83 future stories, unchanged), web pnpm typecheck clean. dotnet build clean (sandbox loopback-socket flake on first attempt per this repo's documented environment characteristic, resolved by retrying with sandbox disabled).",
+  "files_changed": {
+    "new": [
+      "api/features/bio-ten-003/Api/ActorProvenanceGate.cs",
+      "api/features/bio-ten-003/Domain/IPermissionGateway.cs",
+      "api/features/bio-ten-003/Domain/ITenantExistenceGateway.cs",
+      "tests/frontend/playwright/bio-ten-003-feature-configuration-live.spec.ts"
+    ],
+    "modified": [
+      "api/Biolog.Api/Modules/BioTen003Module.cs",
+      "api/features/bio-ten-003/Api/TenantFeatureConfigurationEndpoints.cs",
+      "api/features/bio-ten-003/Domain/TenantFeatureConfigurationError.cs",
+      "api/features/bio-ten-003/TenantFeatureConfigurationService.cs",
+      "docs/features/bio-ten-003/README.md",
+      "tests/features/bio-ten-003/TenantFeatureConfigurationEndpointsIntegrationTests.cs",
+      "tests/features/bio-ten-003/TenantFeatureConfigurationServiceTests.cs",
+      "tests/features/bio-ten-003/TenantFeatureFlagPolicyAdapterTests.cs",
+      "web/next.config.mjs"
+    ]
+  },
+  "notes": "Three scope/design decisions escalated to and resolved by god before this commit: (1) F03 scoped down to a disclosed boundary rather than wiring enforcement into 15 other stories' own endpoint files - god verified directly, before deciding, that no existing FeatureFlagPolicy-shaped seam exists in any of them. (2) The browser-provenance gap discovered while building F04's evidence was disclosed as HYBRID rather than worked around unilaterally (a demo-secret bridge or Next.js middleware would itself be a cross-cutting security decision outside this story's call). (3) HmacActorProvenanceStore's dummy key uses RandomNumberGenerator.GetBytes(32), not a hardcoded-string-derived constant, per god's direct flag about a floor-wide bug in the same primitive elsewhere in the codebase - applied correctly here from the start rather than inherited and fixed later."
+}

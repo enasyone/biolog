@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Matches api/Biolog.Api/Biolog.Api.csproj's pinned TFM (BIO-FND-008), same as every prior
+         BIO-BIO story. -->
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <!--
+    No ASP.NET Core dependency, no NuGet package references. TWO feature-to-feature
+    ProjectReferences, both deliberate and for different reasons:
+
+    - BIO-BIO-001: the same "direct reference to a plain, host-agnostic contracts library" shape
+      BIO-BIO-002/003/004 already established - BiometricTemplate/IFaceProvider/IBiometricMatcher.
+
+    - BIO-BIO-003 (this story's own declared dependency): NOT for its tenant-scoped, internal,
+      Scoped-registered FaceEnrolmentService/IFaceBiometricReferenceRepository (the same
+      "internal aggregate service" shape BIO-BIO-002's FingerprintEnrolmentService and
+      BIO-PHO-001's PhotoMasterService already document, and the reason THOSE are always reached
+      through a narrow gateway, never a direct call) - this project cannot reach any of that
+      regardless of the ProjectReference below, since none of it is granted to
+      Biolog.Features.FaceVerification.Tests/this project via InternalsVisibleTo. The reference
+      is instead for BIO-BIO-003's genuinely PUBLIC, host-agnostic quality/liveness contracts -
+      IFaceQualityChecker/FaceQualityAssessment/FaceQualityCheck/FaceQualityCheckResult and
+      ILivenessDetector/LivenessResult - the same "plain interface + synthetic implementation"
+      shape BIO-BIO-001's own provider contracts have, just declared inside BIO-BIO-003's project
+      rather than BIO-BIO-001's. Re-deriving an equivalent quality contract here instead of
+      reusing BIO-BIO-003's own would duplicate AC02's seven-check model for no reason.
+
+    Resolving "the claimed identity's latest approved face reference" still goes through this
+    story's own narrow Domain/IFaceReferenceGateway.cs, never a direct call into
+    FaceEnrolmentService - the real implementation is an adapter in
+    Biolog.Api.Modules.BioBio005Module wrapping BIO-BIO-003's already-registered
+    FaceEnrolmentService.GetLatestReferenceAsync, the same "narrow gateway + host-level adapter"
+    shape BioBio004Module/BioBio003Module/BioPho001Module/BioIdn002-006Module already use.
+  -->
+  <ItemGroup>
+    <ProjectReference Include="../../bio-bio-001/Biolog.Features.Biometrics/Biolog.Features.Biometrics.csproj" />
+    <ProjectReference Include="../../bio-bio-003/Biolog.Features.FaceEnrolment/Biolog.Features.FaceEnrolment.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- IFaceVerificationEvidenceStore/InMemoryFaceVerificationEvidenceStore and
+         FaceVerificationService are internal (BIO-IDN-001-QA-01's governance shape, mirrored by
+         every prior BIO-BIO story). This is the explicit, auditable seam that grants Biolog.Api
+         (DI registration in Modules/BioBio005Module.cs) and this feature's own test project the
+         same access. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.FaceVerification.Tests" />
+  </ItemGroup>
+
+</Project>

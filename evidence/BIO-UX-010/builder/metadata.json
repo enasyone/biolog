@@ -1,0 +1,10 @@
+{
+  "story_key": "BIO-UX-010",
+  "stage": "builder",
+  "commit_hash": "44eb3bcbff7aa9676fc21a6cee46355915708cd5",
+  "test_command": "(cd web && ./node_modules/.bin/tsc --noEmit && ./node_modules/.bin/next build) && (cd tests/frontend && ./node_modules/.bin/vitest run) && (cd tests/frontend && BIOLOG_BASE_URL=http://127.0.0.1:3235 ./node_modules/.bin/playwright test) && manual verification: cd web && rm -rf .next && pnpm build && pnpm start -p 3233 (production panel-exclusion + new pages render), NEXT_PUBLIC_FEATURE_MODE_ACCESSSERVICE_VIEWACCESSEVENTS=LIVE pnpm dev -p 3234 (per-port LIVE switch) — see evidence/BIO-UX-010/builder/manual-verification.txt",
+  "result": "PASS",
+  "timestamp": "2026-09-23T15:12:00Z",
+  "reviewer": "Busola",
+  "data_classification": "SYNTHETIC"
+}

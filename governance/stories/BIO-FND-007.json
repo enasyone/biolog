@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-FND-007",
+  "title": "Create Next.js application shell and design-system foundation",
+  "owner": "Ngozi - Credential & Card Engineer",
+  "reviewed_commit": "12a14ded7736558cc7d465aed7d7f5c7db99e08b",
+  "required_acceptance_stages": ["builder", "adversarial", "acceptance"],
+  "requirement_ids": [
+    "BIO-FND-007-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-FND-007-AC01",
+      "requirement_ids": ["BIO-FND-007-REQ-001"],
+      "text": "Responsive shell renders in light and dark mode."
+    },
+    {
+      "id": "BIO-FND-007-AC02",
+      "requirement_ids": ["BIO-FND-007-REQ-001"],
+      "text": "BIOLOG brand assets and orange/navy palette are tokenised."
+    },
+    {
+      "id": "BIO-FND-007-AC03",
+      "requirement_ids": ["BIO-FND-007-REQ-001"],
+      "text": "Navigation supports permission-based visibility."
+    },
+    {
+      "id": "BIO-FND-007-AC04",
+      "requirement_ids": ["BIO-FND-007-REQ-001"],
+      "text": "No feature-specific business logic is embedded in shell."
+    },
+    {
+      "id": "BIO-FND-007-AC05",
+      "requirement_ids": ["BIO-FND-007-REQ-001"],
+      "text": "Accessibility baseline passes axe smoke tests."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-FND-007.test.sh",
+      "ac_ids": [
+        "BIO-FND-007-AC01",
+        "BIO-FND-007-AC02",
+        "BIO-FND-007-AC03",
+        "BIO-FND-007-AC04",
+        "BIO-FND-007-AC05"
+      ]
+    },
+    {
+      "path": "tests/frontend/unit/bio-fnd-007-tokens.test.ts",
+      "ac_ids": [
+        "BIO-FND-007-AC02"
+      ]
+    },
+    {
+      "path": "tests/frontend/unit/bio-fnd-007-permissions.test.ts",
+      "ac_ids": [
+        "BIO-FND-007-AC03",
+        "BIO-FND-007-AC04"
+      ]
+    },
+    {
+      "path": "tests/frontend/playwright/bio-fnd-007-shell.spec.ts",
+      "ac_ids": [
+        "BIO-FND-007-AC01",
+        "BIO-FND-007-AC02",
+        "BIO-FND-007-AC03",
+        "BIO-FND-007-AC05"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-FND-007/builder/metadata.json",
+      "stage": "builder",
+      "ac_ids": [
+        "BIO-FND-007-AC01",
+        "BIO-FND-007-AC02",
+        "BIO-FND-007-AC03",
+        "BIO-FND-007-AC04",
+        "BIO-FND-007-AC05"
+      ]
+    },
+    {
+      "path": "evidence/BIO-FND-007/codex/metadata.json",
+      "stage": "adversarial",
+      "ac_ids": [
+        "BIO-FND-007-AC01",
+        "BIO-FND-007-AC02",
+        "BIO-FND-007-AC03",
+        "BIO-FND-007-AC04",
+        "BIO-FND-007-AC05"
+      ]
+    },
+    {
+      "path": "evidence/BIO-FND-007/acceptance/metadata.json",
+      "stage": "acceptance",
+      "ac_ids": [
+        "BIO-FND-007-AC01",
+        "BIO-FND-007-AC02",
+        "BIO-FND-007-AC03",
+        "BIO-FND-007-AC04",
+        "BIO-FND-007-AC05"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-DOC-009",
+  "title": "Build automatic authenticity assessment orchestrator",
+  "owner": "Ifeanyi - Document Intelligence Engineer",
+  "reviewed_commit": "6cd77a6ffea51925de782d981ed5e3b13d18a8c7",
+  "required_acceptance_stages": ["builder", "adversarial", "acceptance"],
+  "requirement_ids": [
+    "BIO-DOC-009-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-DOC-009-AC01",
+      "requirement_ids": ["BIO-DOC-009-REQ-001"],
+      "text": "Assessment reports individual checks and overall policy result."
+    },
+    {
+      "id": "BIO-DOC-009-AC02",
+      "requirement_ids": ["BIO-DOC-009-REQ-001"],
+      "text": "Barcode decode alone can never produce DOCUMENT AUTHENTIC."
+    },
+    {
+      "id": "BIO-DOC-009-AC03",
+      "requirement_ids": ["BIO-DOC-009-REQ-001"],
+      "text": "Unsupported checks are marked not performed, not passed."
+    },
+    {
+      "id": "BIO-DOC-009-AC04",
+      "requirement_ids": ["BIO-DOC-009-REQ-001"],
+      "text": "Evidence, template and ruleset versions are recorded."
+    },
+    {
+      "id": "BIO-DOC-009-AC05",
+      "requirement_ids": ["BIO-DOC-009-REQ-001"],
+      "text": "Manual review can override workflow disposition but cannot rewrite raw evidence."
+    },
+    {
+      "id": "BIO-DOC-009-AC06",
+      "requirement_ids": ["BIO-DOC-009-REQ-001"],
+      "text": "The approved web surface (/document-verify) is connected through DocumentVerifyService to this story's live implementation or an explicitly documented HYBRID state, and the mapped end-to-end human workflow passes without an unapproved UI redesign."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-DOC-009.test.sh",
+      "ac_ids": [
+        "BIO-DOC-009-AC01",
+        "BIO-DOC-009-AC02",
+        "BIO-DOC-009-AC03",
+        "BIO-DOC-009-AC04",
+        "BIO-DOC-009-AC05",
+        "BIO-DOC-009-AC06"
+      ]
+    },
+    {
+      "path": "tests/features/bio-doc-009/Biolog.Features.AuthenticityAssessment.Tests/AuthenticityPolicyEngineTests.cs",
+      "ac_ids": ["BIO-DOC-009-AC01", "BIO-DOC-009-AC02", "BIO-DOC-009-AC03"]
+    },
+    {
+      "path": "tests/features/bio-doc-009/Biolog.Features.AuthenticityAssessment.Tests/AuthenticityAssessmentResultTests.cs",
+      "ac_ids": ["BIO-DOC-009-AC04"]
+    },
+    {
+      "path": "tests/features/bio-doc-009/Biolog.Features.AuthenticityAssessment.Tests/AuthenticityAssessmentTests.cs",
+      "ac_ids": ["BIO-DOC-009-AC05"]
+    },
+    {
+      "path": "tests/features/bio-doc-009/Biolog.Features.AuthenticityAssessment.Tests/AuthenticityAssessmentResultTypesAreLockedDownTests.cs",
+      "ac_ids": ["BIO-DOC-009-AC01"]
+    },
+    {
+      "path": "tests/features/bio-doc-009/Biolog.Features.AuthenticityAssessment.Tests/AuthenticityAssessmentServiceTests.cs",
+      "ac_ids": ["BIO-DOC-009-AC01", "BIO-DOC-009-AC05"]
+    },
+    {
+      "path": "tests/frontend/unit/bio-doc-009-documents-authenticity-port.test.ts",
+      "ac_ids": ["BIO-DOC-009-AC06"]
+    },
+    {
+      "path": "tests/frontend/playwright/bio-doc-009-authenticity-live.spec.ts",
+      "ac_ids": ["BIO-DOC-009-AC06"]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-DOC-009/builder/metadata.json",
+      "stage": "builder",
+      "ac_ids": [
+        "BIO-DOC-009-AC01",
+        "BIO-DOC-009-AC02",
+        "BIO-DOC-009-AC03",
+        "BIO-DOC-009-AC04",
+        "BIO-DOC-009-AC05",
+        "BIO-DOC-009-AC06"
+      ]
+    }
+  ]
+}

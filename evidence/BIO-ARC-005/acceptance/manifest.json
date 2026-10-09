@@ -1,0 +1,155 @@
+{
+  "story_key": "BIO-ARC-005",
+  "story_title": "Define migration ownership and sequencing policy",
+  "implementation_fix_commit": "082ce3d1e3bd4a87e4efe41ebbbb473a2d36d0bf",
+  "reviewed_head": "91113c27ea9652bf81129930ec715e30c738d0ce",
+  "environment_profile": {
+    "operating_system": "macOS 26.4 (build 25E246)",
+    "kernel": "Darwin 25.4.0 arm64",
+    "node": "20.20.2",
+    "python": "3.14.3",
+    "git": "2.53.0",
+    "profile": "local offline acceptance; synthetic fixtures only"
+  },
+  "timestamp": "2026-09-21T12:10:05Z",
+  "acceptance_criteria": {
+    "BIO-ARC-005-AC01": {
+      "result": "PASS",
+      "evidence": ["builder/SUMMARY.md", "builder/developer-test-output.txt", "builder/contract-suite-output.txt", "codex/REREVIEW-ROUND-5.md"],
+      "trace": "Proposals carry no sequence; only Kemi assignment produces immutable numbered records."
+    },
+    "BIO-ARC-005-AC02": {
+      "result": "PASS",
+      "evidence": ["builder/SUMMARY.md", "builder/developer-test-output.txt", "builder/contract-suite-output.txt", "codex/REVIEW.md", "codex/REREVIEW-ROUND-2.md", "codex/REREVIEW-ROUND-3.md", "codex/REREVIEW-ROUND-4.md", "codex/REREVIEW-ROUND-5.md"],
+      "trace": "openMigrationRegistry() accepts no caller-selected id and always returns the single production authority; process-level exclusion remains the migration-core lock."
+    },
+    "BIO-ARC-005-AC03": {
+      "result": "PASS",
+      "evidence": ["builder/SUMMARY.md", "builder/developer-test-output.txt", "builder/contract-suite-output.txt", "codex/REREVIEW-ROUND-3.md", "codex/REREVIEW-ROUND-5.md"],
+      "trace": "Forward-safe, rollback/repair and immutability rules are documented; a breaking target must exactly match the referenced deprecation window."
+    },
+    "BIO-ARC-005-AC04": {
+      "result": "PASS_WITH_DISCLOSED_SCOPE_BOUNDARY",
+      "evidence": ["builder/SUMMARY.md", "builder/developer-test-output.txt", "builder/contract-suite-output.txt", "codex/REREVIEW-ROUND-5.md", "docs/adr/ADR-0005-migration-ownership-and-sequencing.md"],
+      "trace": "Assignment structurally requires applyUp, hashState and priorState, runs fresh-create and upgrade-from-previous itself, and refuses mismatch before assignment. Decision 4.6 explicitly limits the guarantee: convergence is proven only if the supplied runner faithfully interprets the opaque migration body."
+    }
+  },
+  "finding_disposition": {
+    "BIO-ARC-005-QA-01": {
+      "result": "CLOSED_IN_CODE",
+      "fix_commit": "082ce3d1e3bd4a87e4efe41ebbbb473a2d36d0bf",
+      "evidence": ["builder/developer-test-output.txt", "codex/REREVIEW-ROUND-5.md"]
+    },
+    "BIO-ARC-005-QA-02": {
+      "result": "REPRODUCIBLE_SCOPE_BOUNDARY_NON_BLOCKING",
+      "evidence": ["docs/adr/ADR-0005-migration-ownership-and-sequencing.md", "builder/developer-test-output.txt", "codex/REREVIEW-ROUND-5.md"],
+      "adr_sha256": "94e6023b146ed626e4348c3ecf8c89c36226abe6f7994a8e3158c7c4e05317b9",
+      "decision": "A caller-supplied no-op applyUp can still assign an opaque, unexecuted migration body. Decision 4.6 discloses this accurately: the module proves convergence conditional on runner fidelity, cannot verify that fidelity without trusted database execution/introspection infrastructure outside this story, and records Kemi as responsible for runner selection. This is not recorded as code-closed."
+    },
+    "BIO-ARC-005-QA-03": {
+      "result": "CLOSED_IN_CODE",
+      "fix_commit": "bc5810cec0ee079c002be891518a660f841b96cf",
+      "evidence": ["builder/developer-test-output.txt", "codex/REREVIEW-ROUND-3.md", "codex/REREVIEW-ROUND-5.md"]
+    }
+  },
+  "commands": [
+    {
+      "command": "bash tests/foundation/BIO-ARC-005.test.sh",
+      "result": "PASS (34/34 in committed builder evidence)",
+      "evidence": "builder/developer-test-output.txt",
+      "sha256": "9e2dec1b704d6d24ad4221227a0b1c37dde76cd1a772c3a82edaa186d79204e1"
+    },
+    {
+      "command": "node --test contracts/js/",
+      "result": "PASS (322/322; acceptance replay exit 0)",
+      "evidence": "builder/contract-suite-output.txt",
+      "sha256": "260a5ad438c613f501954cd98592595064ba9af50722fafcc6cff8b7c28f0d99"
+    },
+    {
+      "command": "node evidence/BIO-ARC-005/codex/independent-review.mjs",
+      "result": "PASS (4/4; acceptance replay exit 0, including direct QA-02 reproduction under the approved scope interpretation)",
+      "evidence": "codex/independent-review.mjs",
+      "sha256": "5b277ad9bd4576e243a6840875425164fdf53a5bdc6cd9754bd54762eb507126"
+    },
+    {
+      "command": "scripts/quality.sh",
+      "result": "PASS in committed builder evidence",
+      "evidence": "builder/quality-output.txt",
+      "sha256": "2adcdf75b4cec8f855a6f7a56fc8e40a290e6d449d880a8e6056b2228ca8e5d7"
+    },
+    {
+      "command": "scripts/secret-scan.sh --all",
+      "result": "PASS (clean; acceptance replay exit 0)",
+      "evidence": "builder/secret-scan-output.txt",
+      "sha256": "98b48f0b2f0d789cde914c04c249880176c350aa22d00361913b175b0d74346d"
+    }
+  ],
+  "builder_verdict": {
+    "reviewer": "Kemi",
+    "result": "PASS",
+    "implementation_fix_commit": "082ce3d1e3bd4a87e4efe41ebbbb473a2d36d0bf",
+    "evidence_head": "4635097ce1865fdb91809aedd4774af049d1fb03",
+    "final_review_head": "91113c27ea9652bf81129930ec715e30c738d0ce",
+    "evidence": "builder/SUMMARY.md"
+  },
+  "independent_qa_verdict_history": [
+    {
+      "reviewer": "Seyi",
+      "round": 1,
+      "result": "FAIL",
+      "reviewed_implementation_commit": "fd63e82afac8b1513c9e727e69080218c6e53f7a",
+      "reviewed_head": "d4dcda0883c294e7ac3b2c25bab851710c2e88ae",
+      "findings": ["BIO-ARC-005-QA-01 (High)", "BIO-ARC-005-QA-02 (High)", "BIO-ARC-005-QA-03 (High)"],
+      "evidence": "codex/REVIEW.md",
+      "sha256": "12d5c6eb2a9e8fc0a713bfec7e7977bc3f41963c79b292988395bca91c934eb3"
+    },
+    {
+      "reviewer": "Seyi",
+      "round": 2,
+      "result": "FAIL",
+      "reviewed_fix_commit": "69911a68bafb65c345c14ffa6e359b47c8fd0124",
+      "reviewed_head": "4250740e8f0306befab50c9933c4d6dc4fc948e7",
+      "evidence": "codex/REREVIEW-ROUND-2.md",
+      "sha256": "9b57773072d04663cff605abb4c1828bfce7cc351cc7237e19cfae23a7696243"
+    },
+    {
+      "reviewer": "Seyi",
+      "round": 3,
+      "result": "FAIL",
+      "reviewed_fix_commit": "bc5810cec0ee079c002be891518a660f841b96cf",
+      "reviewed_head": "89d97e161307579a72362dda617b250b3e019edf",
+      "evidence": "codex/REREVIEW-ROUND-3.md",
+      "sha256": "0a385ea256c26b566d7b3ab4f9058d52d8d9f9399698f83b2ee97c819febb575"
+    },
+    {
+      "reviewer": "Seyi",
+      "round": 4,
+      "result": "FAIL",
+      "reviewed_fix_commit": "0b80d6975cd8a6adba20aba1e9599dde81fd88f3",
+      "reviewed_head": "8b224df0a4955af5b3e9b01a7b7fd1a930c4d6b7",
+      "evidence": "codex/REREVIEW-ROUND-4.md",
+      "sha256": "764e6b428a5de990fb3ff2f1d504249b8c53eba9f5e6ddc01007180593a1de57"
+    },
+    {
+      "reviewer": "Seyi",
+      "round": 5,
+      "result": "PASS_WITH_EXPLICIT_NON_BLOCKING_SCOPE_LIMITATION",
+      "reviewed_fix_commit": "082ce3d1e3bd4a87e4efe41ebbbb473a2d36d0bf",
+      "reviewed_head": "4635097ce1865fdb91809aedd4774af049d1fb03",
+      "evidence": "codex/REREVIEW-ROUND-5.md",
+      "sha256": "a914763f40f539dbef1f8e5d3aa217f64f4e70f7a513b9a1b0e57158039bd2c2"
+    }
+  ],
+  "security_verdict": "NOT_APPLICABLE",
+  "tenant_isolation_verdict": "NOT_APPLICABLE",
+  "offline_recovery_verdict": "PASS",
+  "concurrency_verdict": "PASS",
+  "regression_verdict": "PASS",
+  "performance_verdict": "NOT_APPLICABLE",
+  "screenshots": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "AC01-AC04 have objective builder and independent evidence. QA-01 and QA-03 are closed in code. QA-02 remains reproducible and is accepted only as the explicit Decision 4.6 scope boundary: assignment mandates and runs both path comparisons, but runner fidelity is outside this policy module and is not falsely recorded as verified or code-closed. No other acceptance criterion assumes that stronger guarantee."
+  }
+}

@@ -1,0 +1,4 @@
+PASS Microsoft.OpenApi is on patched 2.x release 2.7.5 or later
+PASS tenant hook does not infer tenant data from request input
+PASS module host rejects dependency cycles
+PASS vulnerability audit fails closed when dotnet audit fails

@@ -1,0 +1,43 @@
+PASS  AC01 feature project exists
+PASS  AC01 project targets the pinned .NET SDK's TFM
+PASS  AC01 a ranked search result type exists carrying candidates and similarity
+PASS  AC01 candidates are ordered by score descending and capped at the caller-requested count
+PASS  AC01 a structural test proves ranking order
+PASS  QA-01 a narrow approval gateway exists, not a call into BIO-BIO-003's internal service
+PASS  QA-01 IndexAsync takes no raw BiometricSample parameter
+PASS  QA-01 IndexAsync resolves the approved reference through the gateway before indexing anything
+PASS  QA-01 a missing approved reference is a precondition failure, not a routine outcome
+PASS  QA-01 regression tests prove no raw-sample overload exists and an unapproved person cannot be indexed
+PASS  AC02 a tenant feature-flag policy contract exists, separate from the service
+PASS  AC02 the feature flag is checked before the gallery is read, fail-closed by default
+PASS  AC02 a structural test proves search is rejected for a tenant that never enabled the feature
+PASS  AC02 a structural test proves enabling one tenant does not enable another
+PASS  AC03 the result and candidate types carry no decision/authorization field
+PASS  AC03 the service exposes no decide/authorize method
+PASS  AC03 a structural test proves no decision/authorization field or method exists
+PASS  AC04 no ProjectReference to BIO-IDN-001 exists
+PASS  AC04 a structural test proves this assembly has no reference to BIO-IDN-001's own assembly
+PASS  AC05 the gallery store is keyed by tenant and never returns another tenant's templates
+PASS  AC05 the search result names the population scope and size explicitly
+PASS  AC05 an explicit audit sink/event exists and every search writes to it
+PASS  AC05 an audit write that cannot be confirmed durable fails the search
+PASS  AC05 a structural test proves the population scope/size are recorded
+PASS  AC05 a structural test proves every search writes an audit event
+PASS  AC05 a structural test proves cross-tenant gallery isolation
+PASS  AC05 a structural test proves cross-tenant audit isolation
+PASS  governance: the gallery store and its implementation are internal, not public
+PASS  governance: the audit sink and its implementation are internal, not public
+PASS  governance: the service is internal too
+PASS  governance: the InternalsVisibleTo seam is explicit and auditable in source control
+PASS  governance: reflection tests prove the gallery/audit/service are inaccessible to ordinary production consumers
+PASS  this project references BIO-BIO-001's provider-neutral biometric library
+PASS  no ProjectReference to BIO-BIO-003 (reached via this story's own independent gallery design)
+PASS  module project references stay one-way (no ProjectReference back to Biolog.Api)
+PASS  module lives one-way in api/Biolog.Api/Modules, not back in the feature project
+PASS  registered in the packaged Program.cs module array
+PASS  no HTTP endpoints are mapped (AC01-AC05 are about the search/population/audit model, matching every prior BIO-BIO story's deferred-integration call)
+PASS  unit tests reference the feature project
+PASS  docs/features/bio-bio-007/README.md documents the feature
+PASS  builder evidence recorded
+==============================
+41 passed, 0 failed

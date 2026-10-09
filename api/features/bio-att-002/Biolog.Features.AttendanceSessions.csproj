@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-ATT-002 owns api/features/bio-att-002/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh) and no
+         ProjectReference to any other feature project - PersonId existence is proven through this
+         project's own narrow Domain/IPersonExistenceGateway.cs, the policy-management/adjustment
+         permission checks through Domain/IPermissionGateway.cs, and a roster member's raw
+         attendance evidence through this project's own narrow
+         Domain/IAttendanceEventQueryGateway.cs - all three implemented by adapters in
+         api/Biolog.Api/Modules/BioAtt002Module.cs wrapping BIO-IDN-001's PersonService,
+         BIO-IDN-006's PermissionService and BIO-ATT-001's own already-registered (internal,
+         InternalsVisibleTo Biolog.Api) AttendanceEventService.ListForPersonOnDateAsync directly -
+         the same gateway pattern every story in this codebase already uses.
+
+         Namespace root is "AttendanceSessions". Two CAS-versioned mutable aggregates - Session
+         (Domain/Session.cs, AC01's session/roster association) and SessionAttendancePolicy
+         (Domain/SessionAttendancePolicy.cs, AC02's per-tenant-per-SessionType configurable
+         present/late/absent thresholds, a genuinely richer granularity than BIO-ATT-001's own
+         single tenant-wide AttendancePolicy) - and one append-only record, AttendanceAdjustment
+         (Domain/AttendanceAdjustment.cs, AC04's audited manual override, layered on top of a
+         computed classification, never mutating it or any BIO-ATT-001 AttendanceEvent). Derived
+         present/late/absent status is never persisted; it is computed at read time from BIO-ATT-001's
+         own raw events plus this feature's own SessionAttendancePolicy
+         (Domain/SessionAttendanceClassifier.cs), the same "refuse auto-flip, compute in effect at
+         read time" discipline BIO-ATT-001/BIO-IDN-002 established. -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Every aggregate's constructor and its repository are internal - the explicit, auditable
+         seam for Biolog.Api (DI registration) and this project's own test assembly. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.AttendanceSessions.Tests" />
+  </ItemGroup>
+
+</Project>

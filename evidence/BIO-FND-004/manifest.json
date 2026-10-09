@@ -1,0 +1,42 @@
+{
+  "story": "BIO-FND-004",
+  "title": "Create local acceptance evidence structure",
+  "commit_hash": "79a3099a7f4e9e67e7c533becd4a241a52dc4c79",
+  "environment_profile": {
+    "os": "macOS (local laptop)",
+    "python": "3.x",
+    "git": "local",
+    "github_push_enabled": false
+  },
+  "timestamp": "2026-09-20T15:09:14.033199+00:00",
+  "commands_results": [
+    {
+      "cmd": "tests/foundation/BIO-FND-004.test.sh",
+      "result": "PASS",
+      "note": "builder suite 8/8"
+    },
+    {
+      "cmd": "scripts/check-evidence.py",
+      "result": "PASS",
+      "note": "gap reporting; commit-bound; non-PASS blocks"
+    }
+  ],
+  "builder_verdict": "PASS",
+  "independent_qa_verdict": {
+    "reviewer": "Seyi",
+    "verdict": "PASS",
+    "round": 2,
+    "evidence": "evidence/BIO-FND-004/codex/REREVIEW-ROUND-2.md"
+  },
+  "security_verdict": "N/A (not required for evidence-foundation)",
+  "performance_verdict": "N/A",
+  "evidence_references": [
+    "evidence/BIO-FND-004/builder/",
+    "evidence/BIO-FND-004/codex/"
+  ],
+  "final_acceptance_decision": {
+    "acceptor": "Chinedu",
+    "verdict": "PASS",
+    "reason": "AC01-AC## mapped to evidence; Seyi PASS; QA-01/02 fixed (commit-bound evidence, non-PASS blocks)."
+  }
+}

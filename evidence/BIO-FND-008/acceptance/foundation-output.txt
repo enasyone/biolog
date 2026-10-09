@@ -1,0 +1,37 @@
+PASS  AC01 Biolog.Api project exists
+PASS  AC01 project targets the pinned .NET SDK's TFM
+PASS  AC01 appsettings.json exists
+PASS  AC01 appsettings.Development.json exists
+PASS  AC01 development launch profile sets ASPNETCORE_ENVIRONMENT
+PASS  AC01 Program.cs exposes Program for WebApplicationFactory
+PASS  AC02 HealthModule registers health checks
+PASS  AC02 liveness endpoint mapped, never evaluates checks
+PASS  AC02 readiness endpoint mapped, evaluates every check
+PASS  AC03 native OpenAPI package referenced (not a third-party generator)
+PASS  AC03 OpenApiModule registers and maps the document
+PASS  AC03/QA-01 Microsoft.OpenApi is pinned to the patched 2.12.2, not a vulnerable version
+PASS  AC03/QA-01 the resolution and its history are documented
+PASS  AC03/QA-01 vulnerability audit gate exists and is wired into quality.sh --full
+PASS  QA-02 clean audit output still passes
+PASS  QA-02 vulnerable-package output still fails
+PASS  QA-02 nonzero dotnet exit status fails closed (previously a false PASS)
+PASS  QA-02 nonzero-exit failure is reported, not swallowed
+PASS  QA-02 advisory-source failure with exit 0 fails closed (previously a false PASS)
+PASS  AC04 tenant context accessor exists
+PASS  AC04 tenant middleware hook exists
+PASS  AC04 middleware unconditionally clears the context (invents nothing)
+PASS  AC04 middleware does not read any request header or claim
+PASS  AC04 TenantModule wires the middleware into the pipeline
+PASS  AC05 module interface exists
+PASS  AC05 module host performs topological ordering
+PASS  AC05 a cycle raises a dedicated exception
+PASS  AC05 Program.cs registers modules through the host, not ad hoc
+PASS  AC05 developer tests cover ordering and cycle detection
+PASS  unit tests reference the api project
+PASS  integration tests reference the api project and Mvc.Testing
+PASS  integration tests cover AC01-03 through a real HTTP pipeline
+PASS  tenant middleware unit tests exist
+PASS  docs/API-SHELL.md documents the shell
+PASS  builder evidence recorded
+==============================
+35 passed, 0 failed

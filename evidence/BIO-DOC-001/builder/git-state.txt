@@ -1,0 +1,103 @@
+=== git log -1 ===
+commit 3054aec9df1e00a4fcc7489f6b3ba4036575e473
+Author: Emeka <enasyfoto@gmail.com>
+Date:   Mon Sep 21 23:01:00 2026 +0100
+
+    BIO-DOC-001: Document Verify session and evidence foundation
+    
+    Provider-neutral domain model for Document Verify (api/features/bio-doc-001/
+    Biolog.Features.DocumentVerify), ahead of the MRZ/barcode/OCR/NFC engines
+    that will populate it:
+    
+    - DocumentSession (AC01): pre-person or person-linked onboarding, ADR-0001
+      Decision 3 optimistic concurrency.
+    - DocumentEvidence (AC02): immutable source-image evidence with SHA-256
+      hash and page/side metadata.
+    - DocumentFieldEvidence + BoundingBox (AC03): raw/normalized value,
+      confidence, source engine, optional bounding box.
+    - PersonFieldChangeProposal (AC04): a proposed PERSON field change that is
+      never auto-applied - inert until Accept(actor) returns a new, separate
+      record.
+    - DocumentConflict + ManualReviewState (AC05): conflicting field evidence
+      with a pending/in-review/resolved lifecycle.
+    - InMemoryDocumentSessionStore: reference orchestration wired into the API
+      host via Modules/DocumentModule.cs (no HTTP endpoints yet - no real
+      tenant resolution or persistence exists anywhere in this codebase for
+      them to be built against safely; see docs/features/bio-doc-001/
+      DOCUMENT-VERIFY-FOUNDATION.md for the full reasoning, including why no
+      new ADR-0001 identifier prefix was requested and why no migration was
+      proposed).
+    
+    56 developer tests (tests/features/bio-doc-001/Biolog.Features.DocumentVerify.Tests)
+    plus a 43-check offline structural harness (tests/foundation/BIO-DOC-001.test.sh),
+    wired into scripts/quality.sh.
+    
+    Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+
+=== git show --stat HEAD ===
+commit 3054aec9df1e00a4fcc7489f6b3ba4036575e473
+Author: Emeka <enasyfoto@gmail.com>
+Date:   Mon Sep 21 23:01:00 2026 +0100
+
+    BIO-DOC-001: Document Verify session and evidence foundation
+    
+    Provider-neutral domain model for Document Verify (api/features/bio-doc-001/
+    Biolog.Features.DocumentVerify), ahead of the MRZ/barcode/OCR/NFC engines
+    that will populate it:
+    
+    - DocumentSession (AC01): pre-person or person-linked onboarding, ADR-0001
+      Decision 3 optimistic concurrency.
+    - DocumentEvidence (AC02): immutable source-image evidence with SHA-256
+      hash and page/side metadata.
+    - DocumentFieldEvidence + BoundingBox (AC03): raw/normalized value,
+      confidence, source engine, optional bounding box.
+    - PersonFieldChangeProposal (AC04): a proposed PERSON field change that is
+      never auto-applied - inert until Accept(actor) returns a new, separate
+      record.
+    - DocumentConflict + ManualReviewState (AC05): conflicting field evidence
+      with a pending/in-review/resolved lifecycle.
+    - InMemoryDocumentSessionStore: reference orchestration wired into the API
+      host via Modules/DocumentModule.cs (no HTTP endpoints yet - no real
+      tenant resolution or persistence exists anywhere in this codebase for
+      them to be built against safely; see docs/features/bio-doc-001/
+      DOCUMENT-VERIFY-FOUNDATION.md for the full reasoning, including why no
+      new ADR-0001 identifier prefix was requested and why no migration was
+      proposed).
+    
+    56 developer tests (tests/features/bio-doc-001/Biolog.Features.DocumentVerify.Tests)
+    plus a 43-check offline structural harness (tests/foundation/BIO-DOC-001.test.sh),
+    wired into scripts/quality.sh.
+    
+    Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+
+ .gitignore                                         |   2 +
+ api/Biolog.Api/Biolog.Api.csproj                   |  10 +
+ api/Biolog.Api/Modules/DocumentModule.cs           |  45 +++
+ api/Biolog.Api/Program.cs                          |   1 +
+ .../Biolog.Features.DocumentVerify.csproj          |  20 ++
+ .../Model/BoundingBox.cs                           |  47 ++++
+ .../Model/DocumentConflict.cs                      | 123 ++++++++
+ .../Model/DocumentEvidence.cs                      | 126 +++++++++
+ .../Model/DocumentFieldEvidence.cs                 |  99 +++++++
+ .../Model/DocumentSession.cs                       | 202 +++++++++++++
+ .../Model/DocumentSessionStatus.cs                 |  20 ++
+ .../Model/DocumentSide.cs                          |  20 ++
+ .../Model/EvidenceClassification.cs                |  20 ++
+ .../Model/EvidenceSource.cs                        |  26 ++
+ .../Model/ManualReviewState.cs                     |  14 +
+ .../Model/PersonFieldChangeProposal.cs             | 119 ++++++++
+ .../Storage/DocumentSessionNotFoundException.cs    |  23 ++
+ .../Storage/IDocumentSessionStore.cs               |  90 ++++++
+ .../Storage/InMemoryDocumentSessionStore.cs        | 313 +++++++++++++++++++++
+ .../bio-doc-001/DOCUMENT-VERIFY-FOUNDATION.md      |  93 ++++++
+ governance/stories/BIO-DOC-001.json                | 103 +++++++
+ scripts/quality.sh                                 |   6 +-
+ .../Biolog.Features.DocumentVerify.Tests.csproj    |  20 ++
+ .../DocumentConflictTests.cs                       |  81 ++++++
+ .../DocumentEvidenceTests.cs                       |  97 +++++++
+ .../DocumentFieldEvidenceTests.cs                  | 104 +++++++
+ .../DocumentSessionTests.cs                        | 113 ++++++++
+ .../InMemoryDocumentSessionStoreTests.cs           | 177 ++++++++++++
+ .../PersonFieldChangeProposalTests.cs              |  79 ++++++
+ tests/foundation/BIO-DOC-001.test.sh               | 105 +++++++
+ 30 files changed, 2297 insertions(+), 1 deletion(-)

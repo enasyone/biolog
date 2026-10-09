@@ -1,0 +1,21 @@
+PASS  AC01 OfflineMutationOperation models addition/update/revocation
+PASS  AC01 the sync delta payload carries operation and payload without touching the frozen envelope
+PASS  AC01 the offline_mutations schema migration adds the operation column without dropping prior data
+PASS  AC01 SyncEngine gives revocation deltas priority over other pending mutations (ADR-0001 §3.5)
+PASS  AC01 HttpSyncTransport is a real implementation, not a permanent throw (BIO-MOB-003-FEMI-01)
+PASS  AC01/AC05 SyncEngine is wired into the live mobile app, not only sync-package tests (BIO-MOB-003-FEMI-01)
+PASS  AC02 SyncAck models a replayed acknowledgement distinctly from a fresh one
+PASS  AC02 SyncEngine handles a replayed acknowledgement identically to a fresh one (no branch on replayed)
+PASS  AC02 markAcknowledged is guarded by current state, mirroring every other queue transition
+PASS  AC03 SyncEngine routes a conflict acknowledgement to recordConflict, not a merge path
+PASS  AC03 conflicted mutations remain queryable for the human Sync Resolution Queue
+PASS  AC04 no automatic merge/resolution path exists anywhere in the sync engine
+PASS  AC05 SyncEngine has an in-process single-flight guard against overlapping passes
+PASS  AC05 markUploading reports whether it actually claimed the mutation, so a pass never uploads one it does not own
+PASS  AC05 SyncEngine can attach to the live connectivity signal to react to a reconnect
+PASS  AC05 SessionController attaches SyncEngine before starting connectivity, so the first reading is never missed (BIO-MOB-003-FEMI-02)
+PASS  AC05 HttpSyncTransport enforces a request deadline, not an unbounded wait (BIO-MOB-003-FEMI-03)
+PASS  unit tests mapped to BIO-MOB-003 ACs exist
+PASS  builder evidence recorded
+==============================
+19 passed, 0 failed

@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-MOB-001",
+  "title": "Create Flutter Android application shell and secure local store",
+  "owner": "Busola - Mobile & Edge Engineer",
+  "reviewed_commit": "50366628fdbbd34c88887dc990f03f7bacd6c280",
+  "required_acceptance_stages": ["builder", "adversarial", "acceptance"],
+  "requirement_ids": [
+    "BIO-MOB-001-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-MOB-001-AC01",
+      "requirement_ids": ["BIO-MOB-001-REQ-001"],
+      "text": "App boots locally/emulator."
+    },
+    {
+      "id": "BIO-MOB-001-AC02",
+      "requirement_ids": ["BIO-MOB-001-REQ-001"],
+      "text": "Sensitive local data is encrypted."
+    },
+    {
+      "id": "BIO-MOB-001-AC03",
+      "requirement_ids": ["BIO-MOB-001-REQ-001"],
+      "text": "Tenant context is explicit."
+    },
+    {
+      "id": "BIO-MOB-001-AC04",
+      "requirement_ids": ["BIO-MOB-001-REQ-001"],
+      "text": "Navigation supports enrolment, verify, QR/barcode, bus and offline states as configured."
+    },
+    {
+      "id": "BIO-MOB-001-AC05",
+      "requirement_ids": ["BIO-MOB-001-REQ-001"],
+      "text": "No production data is bundled."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-MOB-001.test.sh",
+      "ac_ids": [
+        "BIO-MOB-001-AC01",
+        "BIO-MOB-001-AC02",
+        "BIO-MOB-001-AC03",
+        "BIO-MOB-001-AC04",
+        "BIO-MOB-001-AC05"
+      ]
+    },
+    {
+      "path": "tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart",
+      "ac_ids": ["BIO-MOB-001-AC01", "BIO-MOB-001-AC03", "BIO-MOB-001-AC04"]
+    },
+    {
+      "path": "tests/flutter/test/bio_mob_001_ac02_passphrase_vault_test.dart",
+      "ac_ids": ["BIO-MOB-001-AC02"]
+    },
+    {
+      "path": "tests/flutter/test/bio_mob_001_ac03_session_controller_test.dart",
+      "ac_ids": ["BIO-MOB-001-AC03", "BIO-MOB-001-AC05"]
+    },
+    {
+      "path": "tests/flutter/test/bio_mob_001_ac03_persisted_tenant_validation_test.dart",
+      "ac_ids": ["BIO-MOB-001-AC03"]
+    },
+    {
+      "path": "tests/flutter/test/bio_mob_001_ac03_save_tenant_context_unimplemented_test.dart",
+      "ac_ids": ["BIO-MOB-001-AC03"]
+    },
+    {
+      "path": "tests/flutter/test/bio_mob_001_ac04_nav_items_test.dart",
+      "ac_ids": ["BIO-MOB-001-AC04"]
+    },
+    {
+      "path": "tests/flutter/test/bio_mob_001_offline_mutation_test.dart",
+      "ac_ids": ["BIO-MOB-001-AC04"]
+    },
+    {
+      "path": "tests/flutter/test/bio_mob_001_ac04_offline_queue_idempotency_test.dart",
+      "ac_ids": ["BIO-MOB-001-AC04"]
+    },
+    {
+      "path": "tests/flutter/test/bio_mob_001_identifiers_clock_test.dart",
+      "ac_ids": ["BIO-MOB-001-AC02", "BIO-MOB-001-AC03"]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-MOB-001/builder/metadata.json",
+      "stage": "builder",
+      "ac_ids": [
+        "BIO-MOB-001-AC01",
+        "BIO-MOB-001-AC02",
+        "BIO-MOB-001-AC03",
+        "BIO-MOB-001-AC04",
+        "BIO-MOB-001-AC05"
+      ]
+    }
+  ]
+}

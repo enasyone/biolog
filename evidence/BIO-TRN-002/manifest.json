@@ -1,0 +1,28 @@
+{
+  "story_key": "BIO-TRN-002",
+  "title": "Implement boarding, alighting and bus-presence events",
+  "implementation_commit": "9a3c6bd360d961ee612ce2e605f27a1f5cdbdaf5",
+  "reviewed_head": "4108ef6cb2b726c5b4f6b916bfaccb5933a89abf",
+  "environment": {"profile": "local acceptance; synthetic fixtures only; GitHub push blocked", "timestamp": "2026-09-24T10:27:28Z"},
+  "acceptance_criteria": {
+    "BIO-TRN-002-AC01": {"result": "PASS", "evidence": ["immutable transport events carry route, vehicle, stop and list-valued UHF/NFC/face evidence"]},
+    "BIO-TRN-002-AC02": {"result": "PASS", "evidence": ["tenant/key lock and content fingerprint provide concurrent idempotency"]},
+    "BIO-TRN-002-AC03": {"result": "PASS", "evidence": ["missing-alight is a pure read-time derived status without stored-event mutation"]},
+    "BIO-TRN-002-AC04": {"result": "PASS", "evidence": ["CAS notification config and append-only deduplicated trigger log are feature-local and testable"]},
+    "BIO-TRN-002-AC05": {"result": "PASS", "evidence": ["primary-action legitimately hands off from BIO-TRN-001 placeholder to real event bridge", "assign-route and approved UI remain intact"]}
+  },
+  "commands": [
+    {"command": "bash tests/features/bio-trn-002/BIO-TRN-002.test.sh", "result": "PASS (38/38)"},
+    {"command": "bash tests/features/bio-trn-001/BIO-TRN-001.test.sh", "result": "PASS (34/34)"},
+    {"command": "tests/features/bio-trn-002/bin/Debug/net10.0/Biolog.Features.TransportEvents.Tests", "result": "PASS (28/28)"},
+    {"command": "dotnet build api/Biolog.Api/Biolog.Api.csproj --no-restore -m:1 /nodeReuse:false --disable-build-servers", "result": "PASS (0 warnings, 0 errors)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (32 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS"}
+  ],
+  "builder_verdict": {"result": "PASS", "commit_hash": "9a3c6bd360d961ee612ce2e605f27a1f5cdbdaf5", "feature_tests": "28/28 PASS", "host_channel_tests": "4/4 PASS", "integration_tests": "161/162 with one pre-existing unrelated observability flake", "structural_tests": "38/38 PASS", "metadata_sha256": "6efb5949ecfc98b39073dd7bf8e1f88981c426367f1e0ee820212a5590a76ed8"},
+  "independent_qa": {"reviewer": "Seyi", "result": "PASS", "evidence": "evidence/features/bio-trn-002/codex/REVIEW-Seyi.md", "evidence_sha256": "3db0ef5ad4e3805bc9c6bd5aae993cce12670c1265df501d852e0b3efa2c1a82"},
+  "category_verdicts": {"functional": "PASS", "security": "PASS", "tenant_isolation": "PASS", "offline_recovery": "NOT_APPLICABLE", "concurrency": "PASS", "regression": "PASS"},
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "All five criteria have commit-bound evidence, Seyi PASS, focused replay and BIO-TRN-001 regression proof; no unresolved Critical or High finding exists."}
+}

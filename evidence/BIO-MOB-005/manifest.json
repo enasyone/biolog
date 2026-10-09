@@ -1,0 +1,26 @@
+{
+  "story_key": "BIO-MOB-005",
+  "title": "Implement limited offline enrolment package",
+  "implementation_commit": "e97e9b2a394f33424c446c75c8ba57fc266a218b",
+  "builder_commit": "2516e24459ed708f6e87905118871e917532472e",
+  "reviewed_head": "3407302",
+  "environment": {"profile": "local acceptance; synthetic fixtures only; GitHub push blocked", "timestamp": "2026-09-28T09:00:00Z"},
+  "acceptance_criteria": {
+    "AC01": {"result": "PASS", "evidence": ["tenant capture policy is enforced in mobile and server paths with conservative defaults"]},
+    "AC02": {"result": "PASS", "evidence": ["packages use the existing SQLCipher-backed AppDatabase"]},
+    "AC03": {"result": "PASS", "evidence": ["central duplicate scan runs synchronously during intake without forbidden dependencies"]},
+    "AC04": {"result": "PASS", "evidence": ["duplicates remain pending until permissioned, provenance-gated human review with mandatory reason"]},
+    "AC05": {"result": "PASS", "evidence": ["package-id idempotent sync rejects mismatched replay and the mobile surface uses real enrolment services"]}
+  },
+  "commands": [
+    {"command": "bash tests/foundation/BIO-MOB-005.test.sh", "result": "PASS (20/20)"},
+    {"command": "tests/features/bio-mob-005/bin/Debug/net10.0/Biolog.Features.OfflineEnrolment.Tests", "result": "PASS (17/17)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (33 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"}
+  ],
+  "builder_verdict": {"result": "PASS", "commit_hash": "2516e24459ed708f6e87905118871e917532472e", "backend": "17/17", "flutter": "128/128", "analysis_build_secret_scan": "PASS"},
+  "independent_qa": [{"reviewer": "Seyi", "result": "PASS", "evidence": "evidence/features/bio-mob-005/codex/REVIEW-Seyi.md"}, {"reviewer": "Zainab", "result": "PASS", "evidence": "evidence/BIO-MOB-005/codex/SECURITY-REVIEW-ZAINAB.md"}],
+  "category_verdicts": {"functional": "PASS", "security": "PASS", "tenant_isolation": "PASS", "offline_recovery": "PASS", "concurrency": "PASS", "regression": "PASS"},
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "All five criteria have commit-bound evidence, both required reviews pass, and focused acceptance replay is green."}
+}

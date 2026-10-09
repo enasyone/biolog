@@ -1,0 +1,42 @@
+{
+  "story_key": "BIO-IDN-003",
+  "title": "Implement institutional identifiers",
+  "implementation_commit": "c5d299e1c46252adf26f6129a38c9116297f2884",
+  "builder_head": "47929f7",
+  "reviewed_head": "2647e4172596c9f26c534ca31cdcccc0634fadcf",
+  "environment": {"profile": "local acceptance; synthetic fixtures only", "timestamp": "2026-09-22T12:36:43Z"},
+  "acceptance_criteria": {
+    "BIO-IDN-003-AC01": {"result": "PASS", "evidence": ["feature tests", "structural suite", "tenant-isolation tests"]},
+    "BIO-IDN-003-AC02": {"result": "PASS_CURRENT_SINGLE_PROCESS_TIER", "evidence": ["cross-person concurrency test", "rule-enablement duplicate probe", "REREVIEW-ROUND3.md"]},
+    "BIO-IDN-003-AC03": {"result": "PASS", "evidence": ["history, retirement, reissue, and audit tests"]},
+    "BIO-IDN-003-AC04": {"result": "PASS", "evidence": ["credential-separation structural and reflection tests"]}
+  },
+  "commands": [
+    {"command": "bash tests/features/bio-idn-003/BIO-IDN-003.test.sh", "result": "PASS (63/63)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (19 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS"},
+    {"command": "dotnet Biolog.Features.InstitutionalIdentifiers.Tests.dll", "result": "PASS (55/55)"}
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "c5d299e1c46252adf26f6129a38c9116297f2884",
+    "feature_tests": "55/55 PASS",
+    "unit_tests": "154/154 PASS",
+    "integration_tests": "64/64 PASS",
+    "structural_tests": "63/63 PASS",
+    "full_quality": "PASS",
+    "metadata_sha256": "bc0a301e42815f83a55fb09d2d5fd0a6bcfe09f108e83a8fa2bbeaa66d69847b"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "result": "PASS",
+    "review_commit": "2647e41",
+    "evidence": "evidence/BIO-IDN-003/codex/REREVIEW-ROUND3.md",
+    "evidence_sha256": "f4545c863bfe7e98115e7535985d7c4b07136e8bc159818efb9ba462cdd4a9f2"
+  },
+  "category_verdicts": {"functional": "PASS", "security": "PASS", "tenant_isolation": "PASS", "offline_recovery": "NOT_APPLICABLE", "concurrency": "PASS_CURRENT_SINGLE_PROCESS_TIER", "regression": "PASS"},
+  "security_performance_reviews": {"security": "PASS: tenant/type uniqueness is serialized and unsafe rule enablement fails before state or audit mutation", "performance": "Not required for the current in-memory tier"},
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "All four acceptance criteria have builder and independent evidence; tenant-wide uniqueness races and unsafe enforcement over existing duplicates are closed."}
+}

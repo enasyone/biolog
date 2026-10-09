@@ -1,0 +1,13 @@
+PASS AC01-AC05 real-config PASS
+PASS harness sanity: clean copy PASS
+PASS QA-01 eligibility allow-incomplete-deps
+PASS QA-02 self_accept=allowed string
+PASS QA-03 git_push true
+PASS AC01 thirteenth agent
+PASS AC03 second approver
+PASS QA-04 missing self_accept key
+PASS QA-04 missing git_push key
+PASS QA-05 required agent replaced (Chinedu->Alice)
+PASS QA-06 Kemi loses migrations scope
+PASS QA-03 configured remote
+---- 12 passed, 0 failed ----

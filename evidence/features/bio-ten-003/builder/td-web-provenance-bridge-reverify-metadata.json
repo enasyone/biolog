@@ -1,0 +1,26 @@
+{
+  "story_key": "BIO-TEN-003",
+  "stage": "builder",
+  "round": "post-acceptance-fix",
+  "related_task": "TD-WEB-PROVENANCE-BRIDGE-REVERIFY",
+  "test_command": "dotnet test tests/features/bio-ten-003/Biolog.Features.TenantFeatureConfig.Tests.csproj && dotnet test tests/dotnet/Biolog.IntegrationTests/Biolog.IntegrationTests.csproj --filter FullyQualifiedName~BioTen003ReverifyEndpointsTests && dotnet test tests/dotnet/Biolog.IntegrationTests/Biolog.IntegrationTests.csproj && bash scripts/check-module-project-references.sh && python3 scripts/check-contract-freeze.py && (cd web && pnpm run typecheck && pnpm run build) && (cd tests/frontend && pnpm run test:unit -- td-web-provenance-bridge-route-table)",
+  "result": "PASS",
+  "timestamp": "2026-10-07T02:30:00Z",
+  "reviewer": "Tunde",
+  "data_classification": "SYNTHETIC",
+  "summary": "Closes BIO-TEN-003's share of TD-WEB-PROVENANCE-BRIDGE-REVERIFY (Seyi's REVERIFY-Seyi-BIO-RPT-004-BIO-TEN-003.md FAIL): a real signed demo session now completes a genuine authorized workflow through the merged bridge, superseding the prior negative-only live proof. Found and fixed three story-own gaps (route-table entry missing for /api/v1/tenants/*, the synthetic tenant needing a real TenantRegistry row plus real seeded RolePermissionGrant rows since this endpoint takes tenantId explicitly from the URL rather than ambiently like BIO-RPT-004/BIO-BIO-009, and a pre-existing BIO-IDN-006 ambient-tenant dependency inside ActorHasPermissionAsync's own person-existence check surfacing as an unhandled 500 without a signed X-Web-Session-Token). Also found and escalated (not fixed here, resolved separately by Emeka's TD-WEB-PROVENANCE-BRIDGE round 6) the cross-cutting blocker that the bridge's original demo-actor-{roleId} id shape failed CanonicalId.IsPersonId before any RBAC grant lookup could ever run. New tests/dotnet/Biolog.IntegrationTests/BioTen003ReverifyEndpointsTests.cs (5 tests, through the real packaged host, real RBAC, real seeded grants) - 5/5 pass every run, deterministic. Rewrote tests/frontend/playwright/bio-ten-003-feature-configuration-live.spec.ts to prove the real positive admin workflow and a real 403 viewer denial, replacing the stale 401-only assertions - verified manually against two real local servers, passes cleanly in the large majority of runs; found and disclosed (not papered over) an intermittent empty-body-400 connection-pool artifact (Kestrel keep_alive_timeout vs Next's rewrite-proxy connection reuse) specific to this manual two-long-running-local-process setup, confirmed unrelated to this story's own authorization logic via the API host's own structured logs. Zero regressions: own suite 46/46 unchanged; full Biolog.IntegrationTests 232/232 (the 2 pre-existing AuthenticationEndpointsTests failures noted during BIO-ATT-003 are gone - Busola's fix landed separately); check-module-project-references.sh PASS; check-contract-freeze.py PASS (39 artifacts, 83 future stories, unchanged); web typecheck/build clean, /administration/tenants prerenders; tests/frontend test:unit 544/546 (same 2 pre-existing, unrelated bio-ux-005 failures).",
+  "files_changed": {
+    "modified": [
+      "api/Biolog.Api/Modules/BioTen003Module.cs",
+      "web/lib/actor-provenance-routes.ts",
+      "web/features/tenants/components/feature-configuration-console.tsx",
+      "tests/frontend/unit/td-web-provenance-bridge-route-table.test.ts",
+      "tests/frontend/playwright/bio-ten-003-feature-configuration-live.spec.ts",
+      "docs/features/bio-ten-003/README.md"
+    ],
+    "new": [
+      "tests/dotnet/Biolog.IntegrationTests/BioTen003ReverifyEndpointsTests.cs"
+    ]
+  },
+  "notes": "Post-acceptance fix on an already-DONE/accepted story (no CLI path back to a fixable state in governance/runtime-state.json - start/late-commit both refuse from DONE, per Ngozi's own established precedent for this exact situation, TD-CRD-006-DENY-LIST-DEVICE-AUTH). Tracked via hive/tasks.json's TD-WEB-PROVENANCE-BRIDGE-REVERIFY entry and this evidence file (this story's own established per-round convention - round2-metadata.json/round3-metadata.json - rather than editing the original metadata.json in place), plus docs/features/bio-ten-003/README.md's new 'Post-acceptance fix' section. Two commits: the fix itself, then this evidence commit. Routed back to Seyi/Zainab per god's own instruction, not through automation/biolog.py (which has no verb for a DONE story)."
+}

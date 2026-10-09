@@ -1,0 +1,1655 @@
+contract-freeze: PASS (38 artifacts, 83 future stories)
+PASS  AC01 versioned snapshot validates every frozen artifact
+PASS  AC01 snapshot version is semantic and baseline is commit-bound
+PASS  AC01 a nonexistent baseline commit fails closed
+PASS  AC01 a tampered snapshot hash fails closed
+PASS  AC04 a rewritten contract and regenerated v1 manifest fail closed
+PASS  AC02 conflict definition includes contradictions, ownership, findings and overclaims
+PASS  AC02 ADR-0005 runner fidelity boundary is preserved, not flattened
+PASS  AC02 conflict ledger declares zero open only with resolutions
+PASS  AC03 all 83 W02-W15 stories have unique declarations
+PASS  AC03 deleting a story from both self-declared lists still fails closed
+contract-freeze: PASS (38 artifacts, 83 future stories)
+PASS  AC03 every story declares owned paths and all frozen roots read-only
+PASS  AC03 no future story owns a frozen shared path
+PASS  AC04 freeze requires ADR, impact review, new version and independent acceptance
+PASS  AC04 existing snapshots are immutable, never rewritten
+PASS  every published schema remains valid JSON
+(node:30654) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAP version 13
+# (node:30655) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: AC01: the path prefix is /api/v1
+ok 1 - AC01: the path prefix is /api/v1
+  ---
+  duration_ms: 2.575958
+  ...
+# Subtest: AC01: the ADR distinguishes the API path version from schema_version and aggregate_version
+ok 2 - AC01: the ADR distinguishes the API path version from schema_version and aggregate_version
+  ---
+  duration_ms: 2.389958
+  ...
+# Subtest: AC01: the ADR requires an explicit version for non-path interfaces
+ok 3 - AC01: the ADR requires an explicit version for non-path interfaces
+  ---
+  duration_ms: 0.254584
+  ...
+# Subtest: AC02: toProblemResponse works unchanged with all three existing error classes
+ok 4 - AC02: toProblemResponse works unchanged with all three existing error classes
+  ---
+  duration_ms: 4.060583
+  ...
+# Subtest: AC02: a future error class needs only the same four properties, not inheritance
+ok 5 - AC02: a future error class needs only the same four properties, not inheritance
+  ---
+  duration_ms: 0.182375
+  ...
+# Subtest: AC02: BiologApiError is available as a convenience base and behaves like the others
+ok 6 - AC02: BiologApiError is available as a convenience base and behaves like the others
+  ---
+  duration_ms: 0.635916
+  ...
+# Subtest: AC02: toProblemResponse refuses an object that is not error-shaped
+ok 7 - AC02: toProblemResponse refuses an object that is not error-shaped
+  ---
+  duration_ms: 1.633584
+  ...
+# Subtest: AC02/hostile: a detail field cannot shadow a reserved top-level field
+ok 8 - AC02/hostile: a detail field cannot shadow a reserved top-level field
+  ---
+  duration_ms: 0.28325
+  ...
+# Subtest: AC02: detail is omitted entirely when empty, never an empty object on the wire
+ok 9 - AC02: detail is omitted entirely when empty, never an empty object on the wire
+  ---
+  duration_ms: 0.234542
+  ...
+# Subtest: AC02: errors[] and a non-validation code never coexist
+ok 10 - AC02: errors[] and a non-validation code never coexist
+  ---
+  duration_ms: 0.297458
+  ...
+# Subtest: AC02: the response is frozen — an error handler cannot mutate a shared problem object
+ok 11 - AC02: the response is frozen — an error handler cannot mutate a shared problem object
+  ---
+  duration_ms: 0.113667
+  ...
+# Subtest: AC02: the schema requires code, message, status and correlation_id
+ok 12 - AC02: the schema requires code, message, status and correlation_id
+  ---
+  duration_ms: 0.328083
+  ...
+# Subtest: AC02/QA-03: a schema-invalid code is refused, not passed through
+ok 13 - AC02/QA-03: a schema-invalid code is refused, not passed through
+  ---
+  duration_ms: 0.601125
+  ...
+# Subtest: AC02/QA-03: a schema-invalid status is refused — NaN, fractional, and out of range
+ok 14 - AC02/QA-03: a schema-invalid status is refused — NaN, fractional, and out of range
+  ---
+  duration_ms: 5.036208
+  ...
+# Subtest: AC02/QA-03: errors[] cannot ride along on a non-validation code
+ok 15 - AC02/QA-03: errors[] cannot ride along on a non-validation code
+  ---
+  duration_ms: 0.296375
+  ...
+# Subtest: AC02/QA-03: an empty errors[] array is treated as absent, not an empty validation list
+ok 16 - AC02/QA-03: an empty errors[] array is treated as absent, not an empty validation list
+  ---
+  duration_ms: 0.298333
+  ...
+# Subtest: AC04/QA-03: a validation item message must be a string when supplied, not merely truthy
+ok 17 - AC04/QA-03: a validation item message must be a string when supplied, not merely truthy
+  ---
+  duration_ms: 0.79575
+  ...
+# Subtest: AC04/QA-03: buildPageEnvelope refuses a missing, non-integer or non-positive limit
+ok 18 - AC04/QA-03: buildPageEnvelope refuses a missing, non-integer or non-positive limit
+  ---
+  duration_ms: 0.344875
+  ...
+# Subtest: AC04/QA-03: buildPageEnvelope refuses a non-string, non-null cursor
+ok 19 - AC04/QA-03: buildPageEnvelope refuses a non-string, non-null cursor
+  ---
+  duration_ms: 0.149333
+  ...
+# Subtest: AC04/QA-03: buildPageEnvelope refuses a negative or fractional total_count
+ok 20 - AC04/QA-03: buildPageEnvelope refuses a negative or fractional total_count
+  ---
+  duration_ms: 0.216125
+  ...
+# Subtest: AC04/QA-03: every builder output actually satisfies its own published schema shape
+ok 21 - AC04/QA-03: every builder output actually satisfies its own published schema shape
+  ---
+  duration_ms: 0.410167
+  ...
+# Subtest: AC02/QA-03: the ADR records that a builder must enforce, not merely resemble, its schema
+ok 22 - AC02/QA-03: the ADR records that a builder must enforce, not merely resemble, its schema
+  ---
+  duration_ms: 0.069208
+  ...
+# Subtest: AC02/QA-03r2: the exact reported examples are all refused, not returned
+ok 23 - AC02/QA-03r2: the exact reported examples are all refused, not returned
+  ---
+  duration_ms: 0.194125
+  ...
+# Subtest: AC02/QA-03r2: a validation errors[] item handed through directly is validated, not spread blindly
+ok 24 - AC02/QA-03r2: a validation errors[] item handed through directly is validated, not spread blindly
+  ---
+  duration_ms: 0.192875
+  ...
+# Subtest: AC02/QA-03r2: toValidationProblem and toProblemResponse validate items through the same rule
+ok 25 - AC02/QA-03r2: toValidationProblem and toProblemResponse validate items through the same rule
+  ---
+  duration_ms: 0.0885
+  ...
+# Subtest: AC02/QA-03r2: a legitimate errors[] payload still works end to end
+ok 26 - AC02/QA-03r2: a legitimate errors[] payload still works end to end
+  ---
+  duration_ms: 0.115375
+  ...
+# Subtest: AC02/QA-03r2: an empty-string or null message is refused, not silently replaced
+ok 27 - AC02/QA-03r2: an empty-string or null message is refused, not silently replaced
+  ---
+  duration_ms: 0.097
+  ...
+# Subtest: AC04/AC02: a validation error path is escaped exactly like an ADR-0003 redaction path
+ok 28 - AC04/AC02: a validation error path is escaped exactly like an ADR-0003 redaction path
+  ---
+  duration_ms: 0.084542
+  ...
+# Subtest: AC04/hostile: a bare dot-joined string is refused, not silently interpreted
+ok 29 - AC04/hostile: a bare dot-joined string is refused, not silently interpreted
+  ---
+  duration_ms: 0.115625
+  ...
+# Subtest: AC04: a validation error requires a snake_case code
+ok 30 - AC04: a validation error requires a snake_case code
+  ---
+  duration_ms: 0.115125
+  ...
+# Subtest: AC04: toValidationProblem requires at least one error
+ok 31 - AC04: toValidationProblem requires at least one error
+  ---
+  duration_ms: 0.06825
+  ...
+# Subtest: AC04: the validation-error-item schema matches what toValidationProblem emits
+ok 32 - AC04: the validation-error-item schema matches what toValidationProblem emits
+  ---
+  duration_ms: 0.190292
+  ...
+# Subtest: AC03: a new key executes and stores the result
+ok 33 - AC03: a new key executes and stores the result
+  ---
+  duration_ms: 3.388334
+  ...
+# Subtest: AC03: the same key and body replays without re-executing
+ok 34 - AC03: the same key and body replays without re-executing
+  ---
+  duration_ms: 0.996042
+  ...
+# Subtest: AC03/hostile: the same key with different content is surfaced, never absorbed
+ok 35 - AC03/hostile: the same key with different content is surfaced, never absorbed
+  ---
+  duration_ms: 1.57325
+  ...
+# Subtest: AC03: a required key that is missing is 428 idempotency_key_required, distinct from precondition_required
+ok 36 - AC03: a required key that is missing is 428 idempotency_key_required, distinct from precondition_required
+  ---
+  duration_ms: 0.560375
+  ...
+# Subtest: AC03: a required key that is missing fails before execute is ever called
+ok 37 - AC03: a required key that is missing fails before execute is ever called
+  ---
+  duration_ms: 5.343958
+  ...
+# Subtest: AC03: an optional idempotency key executes normally when omitted
+ok 38 - AC03: an optional idempotency key executes normally when omitted
+  ---
+  duration_ms: 0.106792
+  ...
+# Subtest: AC03/hostile: the storage key is scoped to tenant and operation — no cross-tenant or cross-operation collision
+ok 39 - AC03/hostile: the storage key is scoped to tenant and operation — no cross-tenant or cross-operation collision
+  ---
+  duration_ms: 0.266667
+  ...
+# Subtest: AC03/QA-02: the exact reported collision — operation/key tuples cannot alias
+ok 40 - AC03/QA-02: the exact reported collision — operation/key tuples cannot alias
+  ---
+  duration_ms: 0.085125
+  ...
+# Subtest: AC03/QA-02: a colon-carrying operation or key cannot collide across many shapes
+ok 41 - AC03/QA-02: a colon-carrying operation or key cannot collide across many shapes
+  ---
+  duration_ms: 0.298125
+  ...
+# Subtest: AC03/QA-02/hostile: an operation or key crafted with embedded quotes still cannot collide
+ok 42 - AC03/QA-02/hostile: an operation or key crafted with embedded quotes still cannot collide
+  ---
+  duration_ms: 0.067875
+  ...
+# Subtest: AC03/QA-02: two different tenants running otherwise-identical operations still never collide
+ok 43 - AC03/QA-02: two different tenants running otherwise-identical operations still never collide
+  ---
+  duration_ms: 0.09075
+  ...
+# Subtest: AC03/QA-02: the ADR records the injective JSON-tuple rule
+ok 44 - AC03/QA-02: the ADR records the injective JSON-tuple rule
+  ---
+  duration_ms: 0.282292
+  ...
+# Subtest: AC03/QA-04: the exact reported alias — NaN cannot become the control-plane scope
+ok 45 - AC03/QA-04: the exact reported alias — NaN cannot become the control-plane scope
+  ---
+  duration_ms: 0.091542
+  ...
+# Subtest: AC03/QA-04: only an explicit null or a canonical tenant identifier is accepted
+ok 46 - AC03/QA-04: only an explicit null or a canonical tenant identifier is accepted
+  ---
+  duration_ms: 0.339125
+  ...
+# Subtest: AC03/QA-04/hostile: an omitted tenantId is refused, not silently treated as control-plane
+ok 47 - AC03/QA-04/hostile: an omitted tenantId is refused, not silently treated as control-plane
+  ---
+  duration_ms: 0.063792
+  ...
+# Subtest: AC03/QA-04: withIdempotency itself refuses a malformed tenantId before touching the store
+ok 48 - AC03/QA-04: withIdempotency itself refuses a malformed tenantId before touching the store
+  ---
+  duration_ms: 0.096666
+  ...
+# Subtest: AC03/QA-04: the ADR records the alias risk and the explicit-null requirement
+ok 49 - AC03/QA-04: the ADR records the alias risk and the explicit-null requirement
+  ---
+  duration_ms: 0.129458
+  ...
+# Subtest: ACC-01: the ADR names both mechanisms and states they are distinct, not shared
+ok 50 - ACC-01: the ADR names both mechanisms and states they are distinct, not shared
+  ---
+  duration_ms: 0.065167
+  ...
+# Subtest: ACC-01: the ADR references ADR-0003's eventFingerprint mechanism by its actual behaviour
+ok 51 - ACC-01: the ADR references ADR-0003's eventFingerprint mechanism by its actual behaviour
+  ---
+  duration_ms: 0.056
+  ...
+# Subtest: ACC-01: the ADR answers — not just raises — whether a replayed response re-emits the domain event
+ok 52 - ACC-01: the ADR answers — not just raises — whether a replayed response re-emits the domain event
+  ---
+  duration_ms: 0.155791
+  ...
+# Subtest: ACC-01: the ADR identifies the actual seam — a partial failure, not an ordinary retry — precisely
+ok 53 - ACC-01: the ADR identifies the actual seam — a partial failure, not an ordinary retry — precisely
+  ---
+  duration_ms: 0.137
+  ...
+# Subtest: ACC-01: the ADR places the resulting obligation on the endpoint author, explicitly
+ok 54 - ACC-01: the ADR places the resulting obligation on the endpoint author, explicitly
+  ---
+  duration_ms: 0.191166
+  ...
+# Subtest: AC03: idempotencyStorageKey rejects a missing operation or an oversized key
+ok 55 - AC03: idempotencyStorageKey rejects a missing operation or an oversized key
+  ---
+  duration_ms: 0.118375
+  ...
+# Subtest: AC03: a control-plane operation (no tenant) still scopes correctly
+ok 56 - AC03: a control-plane operation (no tenant) still scopes correctly
+  ---
+  duration_ms: 0.071875
+  ...
+# Subtest: AC03: the ADR states the retention floor and the distinct machine code
+ok 57 - AC03: the ADR states the retention floor and the distinct machine code
+  ---
+  duration_ms: 0.079209
+  ...
+# Subtest: AC03: an async store is awaited correctly, sequentially
+ok 58 - AC03: an async store is awaited correctly, sequentially
+  ---
+  duration_ms: 34.7665
+  ...
+# Subtest: AC03/QA-01: concurrent identical retries execute exactly once, under real interleaving
+ok 59 - AC03/QA-01: concurrent identical retries execute exactly once, under real interleaving
+  ---
+  duration_ms: 33.55675
+  ...
+# Subtest: AC03/QA-01: the reference store proves atomicity at scale — twenty concurrent callers, one execution
+ok 60 - AC03/QA-01: the reference store proves atomicity at scale — twenty concurrent callers, one execution
+  ---
+  duration_ms: 21.357375
+  ...
+# Subtest: AC03/QA-01: a crash between execute and completion is recoverable by a later retry, not silently lost
+ok 61 - AC03/QA-01: a crash between execute and completion is recoverable by a later retry, not silently lost
+  ---
+  duration_ms: 0.373667
+  ...
+# Subtest: AC03/QA-01: concurrent DIFFERENT content under the same key still conflicts, never silently races through
+ok 62 - AC03/QA-01: concurrent DIFFERENT content under the same key still conflicts, never silently races through
+  ---
+  duration_ms: 8.662792
+  ...
+# Subtest: AC03/QA-01: a loser waits, bounded, and a permanently stuck winner surfaces a distinct timeout
+ok 63 - AC03/QA-01: a loser waits, bounded, and a permanently stuck winner surfaces a distinct timeout
+  ---
+  duration_ms: 48.174375
+  ...
+# Subtest: AC03/QA-01: default poll bounds are exported, not magic numbers buried in the function
+ok 64 - AC03/QA-01: default poll bounds are exported, not magic numbers buried in the function
+  ---
+  duration_ms: 0.15025
+  ...
+# Subtest: AC03/QA-01: the ADR records the atomic-claim rule and why get-then-set failed
+ok 65 - AC03/QA-01: the ADR records the atomic-claim rule and why get-then-set failed
+  ---
+  duration_ms: 0.074833
+  ...
+# Subtest: AC04: a well-formed caller-supplied correlation id is used as-is
+ok 66 - AC04: a well-formed caller-supplied correlation id is used as-is
+  ---
+  duration_ms: 0.089833
+  ...
+# Subtest: AC04/hostile: a malformed or foreign correlation id is never trusted — a fresh one is minted
+ok 67 - AC04/hostile: a malformed or foreign correlation id is never trusted — a fresh one is minted
+  ---
+  duration_ms: 0.130625
+  ...
+# Subtest: AC04: a resolved correlation id would satisfy buildAuditEvent's own validation
+ok 68 - AC04: a resolved correlation id would satisfy buildAuditEvent's own validation
+  ---
+  duration_ms: 0.942875
+  ...
+# Subtest: AC04: the ADR states there is one correlation id space, not two
+ok 69 - AC04: the ADR states there is one correlation id space, not two
+  ---
+  duration_ms: 0.1395
+  ...
+# Subtest: AC04: default and max page limits are documented and enforced
+ok 70 - AC04: default and max page limits are documented and enforced
+  ---
+  duration_ms: 0.066625
+  ...
+# Subtest: AC04/hostile: a non-integer or non-positive limit is rejected, not coerced silently
+ok 71 - AC04/hostile: a non-integer or non-positive limit is rejected, not coerced silently
+  ---
+  duration_ms: 0.126583
+  ...
+# Subtest: AC04: the page envelope matches the published schema shape
+ok 72 - AC04: the page envelope matches the published schema shape
+  ---
+  duration_ms: 0.212209
+  ...
+# Subtest: AC04: total_count is included only when explicitly supplied
+ok 73 - AC04: total_count is included only when explicitly supplied
+  ---
+  duration_ms: 0.068125
+  ...
+# Subtest: AC04: an empty final page has a null next_cursor
+ok 74 - AC04: an empty final page has a null next_cursor
+  ---
+  duration_ms: 0.759167
+  ...
+# Subtest: AC04: the returned data array is copied, not the caller's live array
+ok 75 - AC04: the returned data array is copied, not the caller's live array
+  ---
+  duration_ms: 0.139542
+  ...
+# Subtest: AC04: filtering is allowlisted — an unrecognised field is a validation error, not a silent drop
+ok 76 - AC04: filtering is allowlisted — an unrecognised field is a validation error, not a silent drop
+  ---
+  duration_ms: 0.198708
+  ...
+# Subtest: AC04/hostile: a field added later to an unrelated allowlist is still refused here
+ok 77 - AC04/hostile: a field added later to an unrelated allowlist is still refused here
+  ---
+  duration_ms: 0.109791
+  ...
+# Subtest: AC04: cursor pagination is documented as the default with a stated reason
+ok 78 - AC04: cursor pagination is documented as the default with a stated reason
+  ---
+  duration_ms: 0.144292
+  ...
+# Subtest: AC04: filtering allowlist reasoning is documented and matches ADR-0003's
+ok 79 - AC04: filtering allowlist reasoning is documented and matches ADR-0003's
+  ---
+  duration_ms: 0.051125
+  ...
+# Subtest: every published schema is self-describing JSON Schema 2020-12
+ok 80 - every published schema is self-describing JSON Schema 2020-12
+  ---
+  duration_ms: 0.380666
+  ...
+# Subtest: ADR-0004 records the decision, the reuses, and the freeze policy
+ok 81 - ADR-0004 records the decision, the reuses, and the freeze policy
+  ---
+  duration_ms: 0.069833
+  ...
+# Subtest: headers and constants used across the ADR are exported, not re-typed by consumers
+ok 82 - headers and constants used across the ADR are exported, not re-typed by consumers
+  ---
+  duration_ms: 0.030542
+  ...
+# (node:30656) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: AC01: the envelope carries every field the criterion names
+ok 83 - AC01: the envelope carries every field the criterion names
+  ---
+  duration_ms: 4.89125
+  ...
+# Subtest: AC01: an actor is structured, never a bare string
+ok 84 - AC01: an actor is structured, never a bare string
+  ---
+  duration_ms: 7.05425
+  ...
+# Subtest: AC01: outcome and reason_code are required on success, not only on failure
+ok 85 - AC01: outcome and reason_code are required on success, not only on failure
+  ---
+  duration_ms: 0.682084
+  ...
+# Subtest: AC01: an action must be a namespaced verb
+ok 86 - AC01: an action must be a namespaced verb
+  ---
+  duration_ms: 0.360917
+  ...
+# Subtest: AC01: a control-plane audit has a null tenant, and a bad tenant is refused
+ok 87 - AC01: a control-plane audit has a null tenant, and a bad tenant is refused
+  ---
+  duration_ms: 0.191625
+  ...
+# Subtest: AC01: an audit event is append-only and carries no payload or evidence
+ok 88 - AC01: an audit event is append-only and carries no payload or evidence
+  ---
+  duration_ms: 0.434625
+  ...
+# Subtest: AC01: the times follow ADR-0001 — a claim and an authority
+ok 89 - AC01: the times follow ADR-0001 — a claim and an authority
+  ---
+  duration_ms: 0.1895
+  ...
+# Subtest: AC01: the correlation id ties the record to its request
+ok 90 - AC01: the correlation id ties the record to its request
+  ---
+  duration_ms: 0.1745
+  ...
+# Subtest: AC01: the ARC-002 denial event is a conforming audit event
+ok 91 - AC01: the ARC-002 denial event is a conforming audit event
+  ---
+  duration_ms: 0.355833
+  ...
+# Subtest: AC01: causation_id is required on the audit envelope and explicitly nullable
+ok 92 - AC01: causation_id is required on the audit envelope and explicitly nullable
+  ---
+  duration_ms: 0.381709
+  ...
+# Subtest: AC01: a document missing causation_id fails the audit schema required list, same as device
+ok 93 - AC01: a document missing causation_id fails the audit schema required list, same as device
+  ---
+  duration_ms: 0.513666
+  ...
+# Subtest: AC01: causation_id accepts a canonical event id and rejects garbage, like correlation_id does
+ok 94 - AC01: causation_id accepts a canonical event id and rejects garbage, like correlation_id does
+  ---
+  duration_ms: 0.320666
+  ...
+# Subtest: AC01/AC02: both envelopes hold causation_id to the identical rule
+ok 95 - AC01/AC02: both envelopes hold causation_id to the identical rule
+  ---
+  duration_ms: 0.521625
+  ...
+# Subtest: the ADR states the alignment is deliberate, not an inconsistency
+ok 96 - the ADR states the alignment is deliberate, not an inconsistency
+  ---
+  duration_ms: 0.799166
+  ...
+# Subtest: AC02: the envelope requires every field the criterion names
+ok 97 - AC02: the envelope requires every field the criterion names
+  ---
+  duration_ms: 0.600125
+  ...
+# Subtest: AC02: "version" means the aggregate version, and a bare version is still refused
+ok 98 - AC02: "version" means the aggregate version, and a bare version is still refused
+  ---
+  duration_ms: 0.614166
+  ...
+# Subtest: AC02: an event may order against the aggregate version rather than a clock
+ok 99 - AC02: an event may order against the aggregate version rather than a clock
+  ---
+  duration_ms: 0.137833
+  ...
+# Subtest: AC02: the idempotency key is optional and bounded
+ok 100 - AC02: the idempotency key is optional and bounded
+  ---
+  duration_ms: 0.513458
+  ...
+# Subtest: AC03: five levels are registered and ranked
+ok 101 - AC03: five levels are registered and ranked
+  ---
+  duration_ms: 0.197
+  ...
+# Subtest: AC03: an unknown classification is treated as the most restrictive, not the least
+ok 102 - AC03: an unknown classification is treated as the most restrictive, not the least
+  ---
+  duration_ms: 0.134125
+  ...
+# Subtest: AC03: redaction is an allowlist — an unlisted field never appears
+ok 103 - AC03: redaction is an allowlist — an unlisted field never appears
+  ---
+  duration_ms: 0.143334
+  ...
+# Subtest: AC03/hostile: a field added later is withheld by default, which a denylist could not do
+ok 104 - AC03/hostile: a field added later is withheld by default, which a denylist could not do
+  ---
+  duration_ms: 0.480709
+  ...
+# Subtest: AC03/hostile: an unclassified field is withheld — unclassified is not "safe"
+ok 105 - AC03/hostile: an unclassified field is withheld — unclassified is not "safe"
+  ---
+  duration_ms: 0.079583
+  ...
+# Subtest: AC03/hostile: an allowlist cannot promote a secret into an envelope
+ok 106 - AC03/hostile: an allowlist cannot promote a secret into an envelope
+  ---
+  duration_ms: 0.065209
+  ...
+# Subtest: AC03: a secret is absent, and only its name is recorded
+ok 107 - AC03: a secret is absent, and only its name is recorded
+  ---
+  duration_ms: 0.18275
+  ...
+# Subtest: AC03: classification is the maximum of everything the envelope names
+ok 108 - AC03: classification is the maximum of everything the envelope names
+  ---
+  duration_ms: 0.18425
+  ...
+# Subtest: AC03: an envelope naming an identifier can declare a classification floor
+ok 109 - AC03: an envelope naming an identifier can declare a classification floor
+  ---
+  duration_ms: 0.128041
+  ...
+# Subtest: AC03: hashing a low-entropy personal value is refused as a redaction substitute
+ok 110 - AC03: hashing a low-entropy personal value is refused as a redaction substitute
+  ---
+  duration_ms: 0.240542
+  ...
+# Subtest: AC03: redaction refuses a non-object source rather than guessing
+ok 111 - AC03: redaction refuses a non-object source rather than guessing
+  ---
+  duration_ms: 0.132
+  ...
+# Subtest: AC03: the registry records the rules, so they cannot be softened silently
+ok 112 - AC03: the registry records the rules, so they cannot be softened silently
+  ---
+  duration_ms: 3.770208
+  ...
+# Subtest: AC03/QA-01: permitting a container does not permit what is nested inside it
+ok 113 - AC03/QA-01: permitting a container does not permit what is nested inside it
+  ---
+  duration_ms: 0.3325
+  ...
+# Subtest: AC03/QA-01: a field added later beneath an allowed container is withheld
+ok 114 - AC03/QA-01: a field added later beneath an allowed container is withheld
+  ---
+  duration_ms: 0.194083
+  ...
+# Subtest: AC03/QA-01: nesting fails closed at every depth, not just the first
+ok 115 - AC03/QA-01: nesting fails closed at every depth, not just the first
+  ---
+  duration_ms: 8.765041
+  ...
+# Subtest: AC03/QA-01: an unregistered classification withholds the value and never becomes the level
+ok 116 - AC03/QA-01: an unregistered classification withholds the value and never becomes the level
+  ---
+  duration_ms: 1.220125
+  ...
+# Subtest: AC03/QA-01: a built event can never carry an out-of-schema classification
+ok 117 - AC03/QA-01: a built event can never carry an out-of-schema classification
+  ---
+  duration_ms: 0.354667
+  ...
+# Subtest: AC03/QA-01: awkward shapes fail closed — object arrays, cycles, depth, prototype keys
+ok 118 - AC03/QA-01: awkward shapes fail closed — object arrays, cycles, depth, prototype keys
+  ---
+  duration_ms: 0.302625
+  ...
+# Subtest: AC03/QA-01: an array of primitives is copied, not referenced
+ok 119 - AC03/QA-01: an array of primitives is copied, not referenced
+  ---
+  duration_ms: 0.064958
+  ...
+# Subtest: AC03/QA-02: mutating the source after construction cannot change a built event
+ok 120 - AC03/QA-02: mutating the source after construction cannot change a built event
+  ---
+  duration_ms: 0.102084
+  ...
+# Subtest: AC03/QA-02: a built event is frozen at every level
+ok 121 - AC03/QA-02: a built event is frozen at every level
+  ---
+  duration_ms: 0.399208
+  ...
+# Subtest: AC03/QA-02: a denial event is deeply immutable too
+ok 122 - AC03/QA-02: a denial event is deeply immutable too
+  ---
+  duration_ms: 0.258625
+  ...
+# Subtest: AC03/QA-02: deepFreeze handles nesting, arrays and already-frozen values
+ok 123 - AC03/QA-02: deepFreeze handles nesting, arrays and already-frozen values
+  ---
+  duration_ms: 0.065917
+  ...
+# Subtest: AC01/QA-03: the audit schema requires the device slot
+ok 124 - AC01/QA-03: the audit schema requires the device slot
+  ---
+  duration_ms: 0.263084
+  ...
+# Subtest: AC02/QA-03: the event envelope requires causation_id, nullable for a root event
+ok 125 - AC02/QA-03: the event envelope requires causation_id, nullable for a root event
+  ---
+  duration_ms: 0.134917
+  ...
+# Subtest: AC01/AC02/QA-03: a document missing either field fails its schema required list
+ok 126 - AC01/AC02/QA-03: a document missing either field fails its schema required list
+  ---
+  duration_ms: 0.767125
+  ...
+# Subtest: QA-01/02/03: the ADR records all three rules so they cannot be softened
+ok 127 - QA-01/02/03: the ADR records all three rules so they cannot be softened
+  ---
+  duration_ms: 0.116417
+  ...
+# Subtest: AC03/QA-04: the exact reported collision — flat "profile.name" beside nested profile.name
+ok 128 - AC03/QA-04: the exact reported collision — flat "profile.name" beside nested profile.name
+  ---
+  duration_ms: 0.101083
+  ...
+# Subtest: AC03/QA-04: escapeSegment gives flat and nested paths distinct, non-colliding strings
+ok 129 - AC03/QA-04: escapeSegment gives flat and nested paths distinct, non-colliding strings
+  ---
+  duration_ms: 0.048125
+  ...
+# Subtest: AC03/QA-04: a flat dotted key with no competing nested structure still needs its escaped form
+ok 130 - AC03/QA-04: a flat dotted key with no competing nested structure still needs its escaped form
+  ---
+  duration_ms: 0.069958
+  ...
+# Subtest: AC03/QA-04: a partial match is not a collision — no competing value, no false withhold beyond policy
+ok 131 - AC03/QA-04: a partial match is not a collision — no competing value, no false withhold beyond policy
+  ---
+  duration_ms: 0.062917
+  ...
+# Subtest: AC03/QA-04: the collision is detected at any depth, not only at the root
+ok 132 - AC03/QA-04: the collision is detected at any depth, not only at the root
+  ---
+  duration_ms: 0.237625
+  ...
+# Subtest: AC03/QA-04: a three-level dotted key aliasing a deep nested value is also caught
+ok 133 - AC03/QA-04: a three-level dotted key aliasing a deep nested value is also caught
+  ---
+  duration_ms: 0.727084
+  ...
+# Subtest: AC03/QA-04: collision detection cannot be used to walk through the prototype chain
+ok 134 - AC03/QA-04: collision detection cannot be used to walk through the prototype chain
+  ---
+  duration_ms: 1.485084
+  ...
+# Subtest: AC03/QA-04: the ordinary nested case, with no colliding flat key, is unaffected
+ok 135 - AC03/QA-04: the ordinary nested case, with no colliding flat key, is unaffected
+  ---
+  duration_ms: 0.2445
+  ...
+# Subtest: AC03/QA-04: the ADR records the collision rule and when it does and does not fire
+ok 136 - AC03/QA-04: the ADR records the collision rule and when it does and does not fire
+  ---
+  duration_ms: 0.074042
+  ...
+# Subtest: AC04: the dedupe key is tenant plus event id
+ok 137 - AC04: the dedupe key is tenant plus event id
+  ---
+  duration_ms: 0.211083
+  ...
+# Subtest: AC04: a redelivery of the same event is a DUPLICATE
+ok 138 - AC04: a redelivery of the same event is a DUPLICATE
+  ---
+  duration_ms: 0.687916
+  ...
+# Subtest: AC04: received_at is excluded from the fingerprint, or dedupe would never fire
+ok 139 - AC04: received_at is excluded from the fingerprint, or dedupe would never fire
+  ---
+  duration_ms: 0.107416
+  ...
+# Subtest: AC04/hostile: a reused event id with different content is a CONFLICT, never absorbed
+ok 140 - AC04/hostile: a reused event id with different content is a CONFLICT, never absorbed
+  ---
+  duration_ms: 0.1035
+  ...
+# Subtest: AC04/hostile: every asserted field is in the fingerprint, so nothing can be edited quietly
+ok 141 - AC04/hostile: every asserted field is in the fingerprint, so nothing can be edited quietly
+  ---
+  duration_ms: 0.221667
+  ...
+# Subtest: AC04: the fingerprint ignores key order but not values
+ok 142 - AC04: the fingerprint ignores key order but not values
+  ---
+  duration_ms: 0.078625
+  ...
+# Subtest: AC04: classification works against a plain object store as well as a Map
+ok 143 - AC04: classification works against a plain object store as well as a Map
+  ---
+  duration_ms: 0.082125
+  ...
+# Subtest: AC04: two different events are both applied
+ok 144 - AC04: two different events are both applied
+  ---
+  duration_ms: 0.071709
+  ...
+# Subtest: AC01/AC02: schemas are self-describing JSON Schema 2020-12
+ok 145 - AC01/AC02: schemas are self-describing JSON Schema 2020-12
+  ---
+  duration_ms: 0.328333
+  ...
+# Subtest: ADR-0003 records the decisions, the amendments and the freeze policy
+ok 146 - ADR-0003 records the decisions, the amendments and the freeze policy
+  ---
+  duration_ms: 0.240584
+  ...
+# (node:30657) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: AC01: every entity named by the story is registered with a distinct prefix
+ok 147 - AC01: every entity named by the story is registered with a distinct prefix
+  ---
+  duration_ms: 1.508708
+  ...
+# Subtest: AC01: the tenant is the only control-plane identifier
+ok 148 - AC01: the tenant is the only control-plane identifier
+  ---
+  duration_ms: 0.133417
+  ...
+# Subtest: AC01: minted identifiers are typed, well formed and round-trip through parse
+ok 149 - AC01: minted identifiers are typed, well formed and round-trip through parse
+  ---
+  duration_ms: 0.989916
+  ...
+# Subtest: AC01: minted identifiers are UUIDv7 — version and RFC 9562 variant are pinned
+ok 150 - AC01: minted identifiers are UUIDv7 — version and RFC 9562 variant are pinned
+  ---
+  duration_ms: 2.951833
+  ...
+# Subtest: AC01: identifiers sort in creation order, which is why UUIDv7 was chosen
+ok 151 - AC01: identifiers sort in creation order, which is why UUIDv7 was chosen
+  ---
+  duration_ms: 0.142
+  ...
+# Subtest: AC01: identifiers are mintable offline with no coordination and do not collide
+ok 152 - AC01: identifiers are mintable offline with no coordination and do not collide
+  ---
+  duration_ms: 50.98125
+  ...
+# Subtest: AC01: a wrong-type identifier is rejected at the boundary
+ok 153 - AC01: a wrong-type identifier is rejected at the boundary
+  ---
+  duration_ms: 0.333833
+  ...
+# Subtest: AC01: malformed, foreign and unregistered identifiers are refused
+ok 154 - AC01: malformed, foreign and unregistered identifiers are refused
+  ---
+  duration_ms: 0.258959
+  ...
+# Subtest: AC01: an unregistered type cannot be minted locally by a feature module
+ok 155 - AC01: an unregistered type cannot be minted locally by a feature module
+  ---
+  duration_ms: 0.164958
+  ...
+# Subtest: AC01: storage form is 16 bytes without the prefix and round-trips exactly
+ok 156 - AC01: storage form is 16 bytes without the prefix and round-trips exactly
+  ---
+  duration_ms: 0.287625
+  ...
+# Subtest: AC01: stored bytes carry no type, so the column type must be reasserted on read
+ok 157 - AC01: stored bytes carry no type, so the column type must be reasserted on read
+  ---
+  duration_ms: 0.108334
+  ...
+# Subtest: AC01: the embedded timestamp is ordering metadata, and the ADR says not to trust it
+ok 158 - AC01: the embedded timestamp is ordering metadata, and the ADR says not to trust it
+  ---
+  duration_ms: 0.137209
+  ...
+# Subtest: AC01: registry examples satisfy the published canonical-id schema pattern
+ok 159 - AC01: registry examples satisfy the published canonical-id schema pattern
+  ---
+  duration_ms: 1.046459
+  ...
+# Subtest: AC01: business identifiers are documented as attributes, never keys
+ok 160 - AC01: business identifiers are documented as attributes, never keys
+  ---
+  duration_ms: 0.807959
+  ...
+# Subtest: AC02: the canonical instant is RFC 3339 UTC, literal Z, three fractional digits
+ok 161 - AC02: the canonical instant is RFC 3339 UTC, literal Z, three fractional digits
+  ---
+  duration_ms: 15.261333
+  ...
+# Subtest: AC02: instants are fixed width, so string comparison equals chronological order
+ok 162 - AC02: instants are fixed width, so string comparison equals chronological order
+  ---
+  duration_ms: 0.555667
+  ...
+# Subtest: AC02: naive, offset and low-precision timestamps are rejected, not guessed at
+ok 163 - AC02: naive, offset and low-precision timestamps are rejected, not guessed at
+  ---
+  duration_ms: 0.284375
+  ...
+# Subtest: AC02: a valid instant parses back to the same point on the timeline
+ok 164 - AC02: a valid instant parses back to the same point on the timeline
+  ---
+  duration_ms: 0.257541
+  ...
+# Subtest: AC02: local rendering requires an explicit IANA zone and is never implicit
+ok 165 - AC02: local rendering requires an explicit IANA zone and is never implicit
+  ---
+  duration_ms: 15.355292
+  ...
+# Subtest: AC02: a rendered local time carries its zone and offset, so it stays reversible
+ok 166 - AC02: a rendered local time carries its zone and offset, so it stays reversible
+  ---
+  duration_ms: 3.973916
+  ...
+# Subtest: AC02: one instant renders differently per zone while the stored value never changes
+ok 167 - AC02: one instant renders differently per zone while the stored value never changes
+  ---
+  duration_ms: 1.139292
+  ...
+# Subtest: AC02: daylight-saving transitions resolve from the zone rules, not a stored offset
+ok 168 - AC02: daylight-saving transitions resolve from the zone rules, not a stored offset
+  ---
+  duration_ms: 0.238375
+  ...
+# Subtest: AC02/QA-01: impossible calendar instants are rejected, never normalized
+ok 169 - AC02/QA-01: impossible calendar instants are rejected, never normalized
+  ---
+  duration_ms: 0.136792
+  ...
+# Subtest: AC02/QA-01: the rejected values are exactly the ones Date.parse would have moved
+ok 170 - AC02/QA-01: the rejected values are exactly the ones Date.parse would have moved
+  ---
+  duration_ms: 0.093084
+  ...
+# Subtest: AC02/QA-01: genuine leap days are still accepted, including the 400-year rule
+ok 171 - AC02/QA-01: genuine leap days are still accepted, including the 400-year rule
+  ---
+  duration_ms: 0.075584
+  ...
+# Subtest: AC02/QA-01: impossible calendar dates are rejected and real ones kept
+ok 172 - AC02/QA-01: impossible calendar dates are rejected and real ones kept
+  ---
+  duration_ms: 0.154458
+  ...
+# Subtest: AC02/QA-01: the leap rule is the proleptic Gregorian one
+ok 173 - AC02/QA-01: the leap rule is the proleptic Gregorian one
+  ---
+  duration_ms: 0.0475
+  ...
+# Subtest: AC02/QA-01: every day of a leap year and a non-leap year is classified correctly
+ok 174 - AC02/QA-01: every day of a leap year and a non-leap year is classified correctly
+  ---
+  duration_ms: 1.055083
+  ...
+# Subtest: AC02/QA-01: clock-skew assessment refuses an impossible claimed time
+ok 175 - AC02/QA-01: clock-skew assessment refuses an impossible claimed time
+  ---
+  duration_ms: 0.1545
+  ...
+# Subtest: AC04/QA-01: schema patterns and code agree on impossible dates
+ok 176 - AC04/QA-01: schema patterns and code agree on impossible dates
+  ---
+  duration_ms: 0.735583
+  ...
+# Subtest: AC02/QA-02: the supported year range is 1000..9999 and both ends hold
+ok 177 - AC02/QA-02: the supported year range is 1000..9999 and both ends hold
+  ---
+  duration_ms: 0.066916
+  ...
+# Subtest: AC02/QA-02: year zero is rejected everywhere, including its leap day
+ok 178 - AC02/QA-02: year zero is rejected everywhere, including its leap day
+  ---
+  duration_ms: 0.147875
+  ...
+# Subtest: AC02/QA-02: years below the range are rejected whether or not they are leap years
+ok 179 - AC02/QA-02: years below the range are rejected whether or not they are leap years
+  ---
+  duration_ms: 0.169417
+  ...
+# Subtest: AC02/QA-02: formatting cannot produce a value that parsing would refuse
+ok 180 - AC02/QA-02: formatting cannot produce a value that parsing would refuse
+  ---
+  duration_ms: 0.14175
+  ...
+# Subtest: AC02/QA-02: an out-of-range year is reported differently from an impossible day
+ok 181 - AC02/QA-02: an out-of-range year is reported differently from an impossible day
+  ---
+  duration_ms: 0.075625
+  ...
+# Subtest: AC04/QA-02: code and schema agree on every four-digit year, exhaustively
+ok 182 - AC04/QA-02: code and schema agree on every four-digit year, exhaustively
+  ---
+  duration_ms: 2054.150791
+  ...
+# Subtest: AC04/QA-02: the schema patterns avoid lookahead so generated bindings can use them
+ok 183 - AC04/QA-02: the schema patterns avoid lookahead so generated bindings can use them
+  ---
+  duration_ms: 0.425792
+  ...
+# Subtest: AC02: calendar dates are a separate type from instants
+ok 184 - AC02: calendar dates are a separate type from instants
+  ---
+  duration_ms: 0.109041
+  ...
+# Subtest: AC02: a device clock is a claim; received_at stays authoritative
+ok 185 - AC02: a device clock is a claim; received_at stays authoritative
+  ---
+  duration_ms: 0.075792
+  ...
+# Subtest: AC02: the event envelope requires both the claimed and the received instant
+ok 186 - AC02: the event envelope requires both the claimed and the received instant
+  ---
+  duration_ms: 0.16475
+  ...
+# Subtest: AC03: versions start at 1 and advance by exactly one
+ok 187 - AC03: versions start at 1 and advance by exactly one
+  ---
+  duration_ms: 0.164708
+  ...
+# Subtest: AC03: a matching precondition commits and yields the next version
+ok 188 - AC03: a matching precondition commits and yields the next version
+  ---
+  duration_ms: 0.082542
+  ...
+# Subtest: AC03: a stale writer is rejected with 409 and told the current version
+ok 189 - AC03: a stale writer is rejected with 409 and told the current version
+  ---
+  duration_ms: 0.065208
+  ...
+# Subtest: AC03: a missing precondition fails closed with 428 rather than last-write-wins
+ok 190 - AC03: a missing precondition fails closed with 428 rather than last-write-wins
+  ---
+  duration_ms: 0.104375
+  ...
+# Subtest: AC03: two concurrent writers from the same read — exactly one wins
+ok 191 - AC03: two concurrent writers from the same read — exactly one wins
+  ---
+  duration_ms: 0.070375
+  ...
+# Subtest: AC03: append-only records reject updates instead of carrying a version
+ok 192 - AC03: append-only records reject updates instead of carrying a version
+  ---
+  duration_ms: 0.157709
+  ...
+# Subtest: AC03: the mutable-aggregate envelope requires id, tenant, version and both instants
+ok 193 - AC03: the mutable-aggregate envelope requires id, tenant, version and both instants
+  ---
+  duration_ms: 0.100125
+  ...
+# Subtest: AC03: an idempotent retry replays the stored result without executing again
+ok 194 - AC03: an idempotent retry replays the stored result without executing again
+  ---
+  duration_ms: 0.404958
+  ...
+# Subtest: AC03: request fingerprints ignore key order but not values
+ok 195 - AC03: request fingerprints ignore key order but not values
+  ---
+  duration_ms: 0.083292
+  ...
+# Subtest: AC03: reusing an idempotency key with a different body is surfaced, not absorbed
+ok 196 - AC03: reusing an idempotency key with a different body is surfaced, not absorbed
+  ---
+  duration_ms: 0.189834
+  ...
+# Subtest: AC03: offline sync applies only on an exact base-version match
+ok 197 - AC03: offline sync applies only on an exact base-version match
+  ---
+  duration_ms: 0.061167
+  ...
+# Subtest: AC03: security-sensitive sync conflicts go to the human queue, never last-write-wins
+ok 198 - AC03: security-sensitive sync conflicts go to the human queue, never last-write-wins
+  ---
+  duration_ms: 0.053709
+  ...
+# Subtest: AC03: without a declared merge rule, any version mismatch defaults to CONFLICT
+ok 199 - AC03: without a declared merge rule, any version mismatch defaults to CONFLICT
+  ---
+  duration_ms: 0.044458
+  ...
+# Subtest: AC03: sync states match the offline architecture
+ok 200 - AC03: sync states match the offline architecture
+  ---
+  duration_ms: 0.100125
+  ...
+# Subtest: AC03: event schema versioning is separate from aggregate versioning
+ok 201 - AC03: event schema versioning is separate from aggregate versioning
+  ---
+  duration_ms: 0.046
+  ...
+# Subtest: AC04: every published schema is valid JSON Schema 2020-12 with an id and title
+ok 202 - AC04: every published schema is valid JSON Schema 2020-12 with an id and title
+  ---
+  duration_ms: 0.248083
+  ...
+# Subtest: AC04: code and schema share one definition of a canonical identifier
+ok 203 - AC04: code and schema share one definition of a canonical identifier
+  ---
+  duration_ms: 0.354708
+  ...
+# Subtest: AC04: code and schema share one definition of a UTC instant
+ok 204 - AC04: code and schema share one definition of a UTC instant
+  ---
+  duration_ms: 0.091084
+  ...
+# Subtest: AC04: the ADR is the recorded decision and names its owner and freeze policy
+ok 205 - AC04: the ADR is the recorded decision and names its owner and freeze policy
+  ---
+  duration_ms: 0.052792
+  ...
+# Subtest: AC04: a full envelope built from the contracts validates against its schema shape
+ok 206 - AC04: a full envelope built from the contracts validates against its schema shape
+  ---
+  duration_ms: 0.237417
+  ...
+# (node:30658) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: AC01: a proposal carries no sequence number
+ok 207 - AC01: a proposal carries no sequence number
+  ---
+  duration_ms: 3.070417
+  ...
+# Subtest: AC01: proposal and record are validated against distinct schemas
+ok 208 - AC01: proposal and record are validated against distinct schemas
+  ---
+  duration_ms: 0.897083
+  ...
+# Subtest: AC01: assignSequence is the only path to a sequence number
+ok 209 - AC01: assignSequence is the only path to a sequence number
+  ---
+  duration_ms: 2.344375
+  ...
+# Subtest: AC01/hostile: a caller cannot compute their own "next" number by pre-setting sequence
+ok 210 - AC01/hostile: a caller cannot compute their own "next" number by pre-setting sequence
+  ---
+  duration_ms: 0.33775
+  ...
+# Subtest: AC01/hostile: a domain change cannot name itself the sequencing conflict group
+ok 211 - AC01/hostile: a domain change cannot name itself the sequencing conflict group
+  ---
+  duration_ms: 0.097875
+  ...
+# Subtest: AC01: the story id must be a real Jira-shaped identifier
+ok 212 - AC01: the story id must be a real Jira-shaped identifier
+  ---
+  duration_ms: 0.151709
+  ...
+# Subtest: AC02: assignment refuses to proceed without the lock explicitly held by Kemi
+ok 213 - AC02: assignment refuses to proceed without the lock explicitly held by Kemi
+  ---
+  duration_ms: 0.791625
+  ...
+# Subtest: AC02: sequential assignment against one held handle is strictly monotonic and gapless
+ok 214 - AC02: sequential assignment against one held handle is strictly monotonic and gapless
+  ---
+  duration_ms: 4.656583
+  ...
+# Subtest: AC02: a proposal already present in the registry cannot be assigned a second time
+ok 215 - AC02: a proposal already present in the registry cannot be assigned a second time
+  ---
+  duration_ms: 0.340583
+  ...
+# Subtest: AC02: the ADR states the rule with no implicit carve-outs, and pre-empts the three rationalisations
+ok 216 - AC02: the ADR states the rule with no implicit carve-outs, and pre-empts the three rationalisations
+  ---
+  duration_ms: 0.164541
+  ...
+# Subtest: QA-01: assignSequence refuses a plain object that never went through openMigrationRegistry
+ok 217 - QA-01: assignSequence refuses a plain object that never went through openMigrationRegistry
+  ---
+  duration_ms: 0.225542
+  ...
+# Subtest: QA-01: assignSequence refuses a JSON round-trip of a real handle
+ok 218 - QA-01: assignSequence refuses a JSON round-trip of a real handle
+  ---
+  duration_ms: 0.457875
+  ...
+# Subtest: QA-01 (Round 5): openMigrationRegistry() takes no id — there is no parameter left to alias
+ok 219 - QA-01 (Round 5): openMigrationRegistry() takes no id — there is no parameter left to alias
+  ---
+  duration_ms: 0.071334
+  ...
+# Subtest: QA-01 (Round 5): two openMigrationRegistry() calls always return the SAME live handle, and serialize correctly
+ok 220 - QA-01 (Round 5): two openMigrationRegistry() calls always return the SAME live handle, and serialize correctly
+  ---
+  duration_ms: 0.896708
+  ...
+# Subtest: QA-01 (Round 5): createMigrationRegistryForTests requires an explicit registryId — the SAME two-different-ids attack applied to the test-only factory still cannot alias the production registry
+ok 221 - QA-01 (Round 5): createMigrationRegistryForTests requires an explicit registryId — the SAME two-different-ids attack applied to the test-only factory still cannot alias the production registry
+  ---
+  duration_ms: 0.08075
+  ...
+# Subtest: QA-01: createMigrationRegistryForTests refuses a missing or empty registryId
+ok 222 - QA-01: createMigrationRegistryForTests refuses a missing or empty registryId
+  ---
+  duration_ms: 0.209167
+  ...
+# Subtest: QA-01: createMigrationRegistryForTests refuses a non-array seed on first open
+ok 223 - QA-01: createMigrationRegistryForTests refuses a non-array seed on first open
+  ---
+  duration_ms: 0.111208
+  ...
+# Subtest: QA-01 (Round 5): a second createMigrationRegistryForTests() call for a live id ignores initialRecords
+ok 224 - QA-01 (Round 5): a second createMigrationRegistryForTests() call for a live id ignores initialRecords
+  ---
+  duration_ms: 0.237959
+  ...
+# Subtest: QA-01 (Round 5): the ADR documents the retired-id fix and corrects its own Round 4 overclaim
+ok 225 - QA-01 (Round 5): the ADR documents the retired-id fix and corrects its own Round 4 overclaim
+  ---
+  duration_ms: 0.079208
+  ...
+# Subtest: AC03: an additive migration needs no deprecation dependency
+ok 226 - AC03: an additive migration needs no deprecation dependency
+  ---
+  duration_ms: 0.146042
+  ...
+# Subtest: AC03: a breaking migration must name its deprecation dependency to even be proposed
+ok 227 - AC03: a breaking migration must name its deprecation dependency to even be proposed
+  ---
+  duration_ms: 0.101167
+  ...
+# Subtest: AC03/hostile: a breaking migration cannot be assigned if its named dependency is not actually in the registry
+ok 228 - AC03/hostile: a breaking migration cannot be assigned if its named dependency is not actually in the registry
+  ---
+  duration_ms: 0.114458
+  ...
+# Subtest: AC03: a breaking migration assigns cleanly once its deprecation dependency genuinely matches
+ok 229 - AC03: a breaking migration assigns cleanly once its deprecation dependency genuinely matches
+  ---
+  duration_ms: 0.1635
+  ...
+# Subtest: AC03/QA-03: a breaking migration cannot be assigned against a record at the right sequence that never declared a deprecation window
+ok 230 - AC03/QA-03: a breaking migration cannot be assigned against a record at the right sequence that never declared a deprecation window
+  ---
+  duration_ms: 0.130125
+  ...
+# Subtest: AC03/QA-03: deprecation_window.target must be a real, non-empty string when present
+ok 231 - AC03/QA-03: deprecation_window.target must be a real, non-empty string when present
+  ---
+  duration_ms: 0.1095
+  ...
+# Subtest: QA-03 (Round 3): a deprecation window for one target does not authorise dropping a different one
+ok 232 - QA-03 (Round 3): a deprecation window for one target does not authorise dropping a different one
+  ---
+  duration_ms: 0.198917
+  ...
+# Subtest: QA-03 (Round 3): an omitted breaks can never match a real target
+ok 233 - QA-03 (Round 3): an omitted breaks can never match a real target
+  ---
+  duration_ms: 0.543792
+  ...
+# Subtest: QA-03 (Round 3): forward_safety.breaks must be a non-empty string when present
+ok 234 - QA-03 (Round 3): forward_safety.breaks must be a non-empty string when present
+  ---
+  duration_ms: 0.431542
+  ...
+# Subtest: QA-03 (Round 3): the ADR documents the target-match fix and states its own scope boundary
+ok 235 - QA-03 (Round 3): the ADR documents the target-match fix and states its own scope boundary
+  ---
+  duration_ms: 0.327
+  ...
+# Subtest: AC03: reversibility is exactly one of down or reversible:false+repair_procedure, never neither, never both
+ok 236 - AC03: reversibility is exactly one of down or reversible:false+repair_procedure, never neither, never both
+  ---
+  duration_ms: 0.252334
+  ...
+# Subtest: AC03: an assigned record is immutable — a correction is a new record, never an edit
+ok 237 - AC03: an assigned record is immutable — a correction is a new record, never an edit
+  ---
+  duration_ms: 0.192959
+  ...
+# Subtest: AC03: the ADR states forward-safety reuses ADR-0004's additive/breaking split precisely
+ok 238 - AC03: the ADR states forward-safety reuses ADR-0004's additive/breaking split precisely
+  ---
+  duration_ms: 0.220708
+  ...
+# Subtest: AC03: the ADR states the append-only posture for assigned records, reusing ADR-0001/0003
+ok 239 - AC03: the ADR states the append-only posture for assigned records, reusing ADR-0001/0003
+  ---
+  duration_ms: 0.217042
+  ...
+# Subtest: AC04: proposeMigration refuses to build a proposal missing either proof
+ok 240 - AC04: proposeMigration refuses to build a proposal missing either proof
+  ---
+  duration_ms: 0.123459
+  ...
+# Subtest: AC04: verifyFreshCreateMatchesUpgrade requires priorState, and refuses the tautological default
+ok 241 - AC04: verifyFreshCreateMatchesUpgrade requires priorState, and refuses the tautological default
+  ---
+  duration_ms: 0.142208
+  ...
+# Subtest: AC04: verifyFreshCreateMatchesUpgrade converges when the real prior state matches what fresh-create would have reached
+ok 242 - AC04: verifyFreshCreateMatchesUpgrade converges when the real prior state matches what fresh-create would have reached
+  ---
+  duration_ms: 0.221625
+  ...
+# Subtest: AC04/hostile/QA-02: verifyFreshCreateMatchesUpgrade itself refuses a migration reading accumulated data, called directly
+ok 243 - AC04/hostile/QA-02: verifyFreshCreateMatchesUpgrade itself refuses a migration reading accumulated data, called directly
+  ---
+  duration_ms: 0.243833
+  ...
+# Subtest: AC04/QA-02: the ADR documents the fail-closed proof fix as two independent, complementary closures
+ok 244 - AC04/QA-02: the ADR documents the fail-closed proof fix as two independent, complementary closures
+  ---
+  duration_ms: 0.062375
+  ...
+# Subtest: AC04/hostile: a migration with no real data dependency genuinely converges — the check does not false-flag
+ok 245 - AC04/hostile: a migration with no real data dependency genuinely converges — the check does not false-flag
+  ---
+  duration_ms: 0.149583
+  ...
+# Subtest: AC04: verifyFreshCreateMatchesUpgrade requires a gapless 1..N sequence
+ok 246 - AC04: verifyFreshCreateMatchesUpgrade requires a gapless 1..N sequence
+  ---
+  duration_ms: 0.1335
+  ...
+# Subtest: AC04: verifyFreshCreateMatchesUpgrade refuses an empty record list
+ok 247 - AC04: verifyFreshCreateMatchesUpgrade refuses an empty record list
+  ---
+  duration_ms: 0.084792
+  ...
+# Subtest: AC04: hashSchemaState ignores key order, matching every other canonical hash in this contract series
+ok 248 - AC04: hashSchemaState ignores key order, matching every other canonical hash in this contract series
+  ---
+  duration_ms: 0.067333
+  ...
+# Subtest: AC04: the ADR states both proofs are mandatory before assignment, not optional afterthoughts
+ok 249 - AC04: the ADR states both proofs are mandatory before assignment, not optional afterthoughts
+  ---
+  duration_ms: 0.098208
+  ...
+# Subtest: QA-02: assignSequence refuses to assign without applyUp/hashState — there is no path that skips running the real check
+ok 250 - QA-02: assignSequence refuses to assign without applyUp/hashState — there is no path that skips running the real check
+  ---
+  duration_ms: 0.116083
+  ...
+# Subtest: QA-02 (Round 4): a caller-forged, perfectly verifier-shaped proof is irrelevant — the exact gap Round 3 left open
+ok 251 - QA-02 (Round 4): a caller-forged, perfectly verifier-shaped proof is irrelevant — the exact gap Round 3 left open
+  ---
+  duration_ms: 0.094625
+  ...
+# Subtest: QA-02 (Round 4): assignSequence computes the proof itself; a genuinely converging migration assigns cleanly with no caller-attached claim trusted
+ok 252 - QA-02 (Round 4): assignSequence computes the proof itself; a genuinely converging migration assigns cleanly with no caller-attached claim trusted
+  ---
+  duration_ms: 0.066333
+  ...
+# Subtest: QA-02 (Round 4): a migration that genuinely does not converge is refused, even if its declared proofs happen to agree with each other
+ok 253 - QA-02 (Round 4): a migration that genuinely does not converge is refused, even if its declared proofs happen to agree with each other
+  ---
+  duration_ms: 4.06425
+  ...
+# Subtest: QA-02 (Round 4): the proposal-declared proofs are cross-checked as an honesty signal, distinct from a real convergence failure
+ok 254 - QA-02 (Round 4): the proposal-declared proofs are cross-checked as an honesty signal, distinct from a real convergence failure
+  ---
+  duration_ms: 0.225958
+  ...
+# Subtest: QA-02 (Round 4): the ADR documents why shape-checking was still insufficient and states the fused-verification design precisely
+ok 255 - QA-02 (Round 4): the ADR documents why shape-checking was still insufficient and states the fused-verification design precisely
+  ---
+  duration_ms: 0.151459
+  ...
+# Subtest: QA-02 (Round 5): a no-op applyUp still converges and still assigns — this is the accepted, documented scope boundary, not an oversight
+ok 256 - QA-02 (Round 5): a no-op applyUp still converges and still assigns — this is the accepted, documented scope boundary, not an oversight
+  ---
+  duration_ms: 0.195791
+  ...
+# Subtest: QA-02 (Round 5): the ADR states the honest, narrower guarantee and records the scope decision explicitly, not silently
+ok 257 - QA-02 (Round 5): the ADR states the honest, narrower guarantee and records the scope decision explicitly, not silently
+  ---
+  duration_ms: 0.203708
+  ...
+# Subtest: every published schema is self-describing JSON Schema 2020-12
+ok 258 - every published schema is self-describing JSON Schema 2020-12
+  ---
+  duration_ms: 6.143708
+  ...
+# Subtest: a full record built through the contract satisfies migration-record.schema.json shape
+ok 259 - a full record built through the contract satisfies migration-record.schema.json shape
+  ---
+  duration_ms: 0.805833
+  ...
+# Subtest: ADR-0005 records the decision, the reuses, and the freeze policy
+ok 260 - ADR-0005 records the decision, the reuses, and the freeze policy
+  ---
+  duration_ms: 0.102833
+  ...
+# Subtest: FORWARD_SAFETY_CLASSES matches the schema enum exactly
+ok 261 - FORWARD_SAFETY_CLASSES matches the schema enum exactly
+  ---
+  duration_ms: 0.177125
+  ...
+# (node:30659) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: AC01: there are exactly three channels and they are the documented ones
+ok 262 - AC01: there are exactly three channels and they are the documented ones
+  ---
+  duration_ms: 6.052
+  ...
+# Subtest: AC01: each channel alone resolves a context and records which channel it came from
+ok 263 - AC01: each channel alone resolves a context and records which channel it came from
+  ---
+  duration_ms: 5.355667
+  ...
+# Subtest: AC01: agreeing channels all appear in the resolved context
+ok 264 - AC01: agreeing channels all appear in the resolved context
+  ---
+  duration_ms: 0.237334
+  ...
+# Subtest: AC01: a tenant id in a request field is not a channel
+ok 265 - AC01: a tenant id in a request field is not a channel
+  ---
+  duration_ms: 1.477709
+  ...
+# Subtest: AC01: hostname normalisation handles case, port and trailing dot
+ok 266 - AC01: hostname normalisation handles case, port and trailing dot
+  ---
+  duration_ms: 0.536917
+  ...
+# Subtest: AC01: a non-ASCII hostname is rejected, not converted
+ok 267 - AC01: a non-ASCII hostname is rejected, not converted
+  ---
+  duration_ms: 0.103
+  ...
+# Subtest: AC01: malformed hostnames do not resolve
+ok 268 - AC01: malformed hostnames do not resolve
+  ---
+  duration_ms: 0.101416
+  ...
+# Subtest: AC01: only a VERIFIED domain resolves — every other status fails closed
+ok 269 - AC01: only a VERIFIED domain resolves — every other status fails closed
+  ---
+  duration_ms: 2.132375
+  ...
+# Subtest: AC01: a platform host that maps to no tenant still works when the token carries one
+ok 270 - AC01: a platform host that maps to no tenant still works when the token carries one
+  ---
+  duration_ms: 0.316125
+  ...
+# Subtest: AC01: control-plane context is a distinct kind carrying no tenant
+ok 271 - AC01: control-plane context is a distinct kind carrying no tenant
+  ---
+  duration_ms: 4.975958
+  ...
+# Subtest: AC01: claims are collected only from the three channels
+ok 272 - AC01: claims are collected only from the three channels
+  ---
+  duration_ms: 0.300084
+  ...
+# Subtest: AC01/AC02: every combination of the three channels resolves exactly as specified
+ok 273 - AC01/AC02: every combination of the three channels resolves exactly as specified
+  ---
+  duration_ms: 3.31525
+  ...
+# Subtest: AC01: channels are not ranked — no channel can overrule another
+ok 274 - AC01: channels are not ranked — no channel can overrule another
+  ---
+  duration_ms: 0.649167
+  ...
+# Subtest: AC02: a request with no channel at all is refused, not defaulted
+ok 275 - AC02: a request with no channel at all is refused, not defaulted
+  ---
+  duration_ms: 0.215125
+  ...
+# Subtest: AC02: an unrecognised host alone answers 404, never 403
+ok 276 - AC02: an unrecognised host alone answers 404, never 403
+  ---
+  duration_ms: 0.800542
+  ...
+# Subtest: AC02: an empty or absent host is not treated as a wildcard
+ok 277 - AC02: an empty or absent host is not treated as a wildcard
+  ---
+  duration_ms: 0.351166
+  ...
+# Subtest: AC02: a non-canonical tenant claim in a token is refused
+ok 278 - AC02: a non-canonical tenant claim in a token is refused
+  ---
+  duration_ms: 0.527542
+  ...
+# Subtest: AC02: a tenant with no ACTIVE binding fails closed instead of sharing a database
+ok 279 - AC02: a tenant with no ACTIVE binding fails closed instead of sharing a database
+  ---
+  duration_ms: 3.235125
+  ...
+# Subtest: AC02: only an ACTIVE binding routes — every other status fails closed
+ok 280 - AC02: only an ACTIVE binding routes — every other status fails closed
+  ---
+  duration_ms: 3.747875
+  ...
+# Subtest: AC02: the ADR forbids a development-only default tenant explicitly
+ok 281 - AC02: the ADR forbids a development-only default tenant explicitly
+  ---
+  duration_ms: 0.223708
+  ...
+# Subtest: AC02: the binding is looked up, never supplied by the caller
+ok 282 - AC02: the binding is looked up, never supplied by the caller
+  ---
+  duration_ms: 0.500792
+  ...
+# Subtest: AC03: a resolved context cannot be reassigned, deleted or redefined
+ok 283 - AC03: a resolved context cannot be reassigned, deleted or redefined
+  ---
+  duration_ms: 6.362459
+  ...
+# Subtest: AC03: the channel list cannot be mutated either
+ok 284 - AC03: the channel list cannot be mutated either
+  ---
+  duration_ms: 0.423292
+  ...
+# Subtest: AC03: a control-plane context is immutable too and cannot grow a tenant
+ok 285 - AC03: a control-plane context is immutable too and cannot grow a tenant
+  ---
+  duration_ms: 0.465625
+  ...
+# Subtest: AC03: nested and asynchronous work sees the same frozen object, not a copy
+ok 286 - AC03: nested and asynchronous work sees the same frozen object, not a copy
+  ---
+  duration_ms: 8.174208
+  ...
+# Subtest: AC03: re-resolving produces a separate context and never mutates the first
+ok 287 - AC03: re-resolving produces a separate context and never mutates the first
+  ---
+  duration_ms: 0.15625
+  ...
+# Subtest: AC03: a resolved context carries a valid correlation id and UTC resolution instant
+ok 288 - AC03: a resolved context carries a valid correlation id and UTC resolution instant
+  ---
+  duration_ms: 0.803583
+  ...
+# Subtest: AC04: a record from another tenant is denied
+ok 289 - AC04: a record from another tenant is denied
+  ---
+  duration_ms: 0.369875
+  ...
+# Subtest: AC04: the caller is told "not found", never "forbidden"
+ok 290 - AC04: the caller is told "not found", never "forbidden"
+  ---
+  duration_ms: 0.191292
+  ...
+# Subtest: AC04: the audit records both tenants, which is the whole signal
+ok 291 - AC04: the audit records both tenants, which is the whole signal
+  ---
+  duration_ms: 0.162833
+  ...
+# Subtest: AC04: the audit event carries no payload and no version
+ok 292 - AC04: the audit event carries no payload and no version
+  ---
+  duration_ms: 4.529792
+  ...
+# Subtest: AC04: the audit is written before the denial is returned
+ok 293 - AC04: the audit is written before the denial is returned
+  ---
+  duration_ms: 16.485708
+  ...
+# Subtest: AC04: every resolution failure is audited, not just cross-tenant reads
+ok 294 - AC04: every resolution failure is audited, not just cross-tenant reads
+  ---
+  duration_ms: 0.431959
+  ...
+# Subtest: AC04: a forged or unresolved context cannot admit a record
+ok 295 - AC04: a forged or unresolved context cannot admit a record
+  ---
+  duration_ms: 0.921958
+  ...
+# Subtest: AC04: a record with a missing or null tenant is denied, not waved through
+ok 296 - AC04: a record with a missing or null tenant is denied, not waved through
+  ---
+  duration_ms: 0.799875
+  ...
+# Subtest: AC04: a record from the resolved tenant is allowed
+ok 297 - AC04: a record from the resolved tenant is allowed
+  ---
+  duration_ms: 0.110042
+  ...
+# Subtest: AC04: a control-plane context cannot open a tenant repository or pass a tenant check
+ok 298 - AC04: a control-plane context cannot open a tenant repository or pass a tenant check
+  ---
+  duration_ms: 0.222583
+  ...
+# Subtest: AC04: a repository cannot be opened without a resolved context
+ok 299 - AC04: a repository cannot be opened without a resolved context
+  ---
+  duration_ms: 0.653334
+  ...
+# Subtest: AC04: every reason code the implementation can emit is in the schema enum
+ok 300 - AC04: every reason code the implementation can emit is in the schema enum
+  ---
+  duration_ms: 0.732625
+  ...
+# Subtest: AC04: the hostname schema pattern and normaliseHostname agree
+ok 301 - AC04: the hostname schema pattern and normaliseHostname agree
+  ---
+  duration_ms: 0.281459
+  ...
+# Subtest: AC01/QA-01: a structurally perfect forged context is refused
+ok 302 - AC01/QA-01: a structurally perfect forged context is refused
+  ---
+  duration_ms: 0.131625
+  ...
+# Subtest: AC01/QA-01: a caller-chosen binding_key cannot select a database
+ok 303 - AC01/QA-01: a caller-chosen binding_key cannot select a database
+  ---
+  duration_ms: 0.273625
+  ...
+# Subtest: AC01/QA-01: a binding_key set on a real context is inert, not authoritative
+ok 304 - AC01/QA-01: a binding_key set on a real context is inert, not authoritative
+  ---
+  duration_ms: 0.238209
+  ...
+# Subtest: AC01/QA-01: provenance survives neither serialisation nor reconstruction
+ok 305 - AC01/QA-01: provenance survives neither serialisation nor reconstruction
+  ---
+  duration_ms: 0.302041
+  ...
+# Subtest: AC01/QA-01: a forged context cannot pass the cross-tenant check either
+ok 306 - AC01/QA-01: a forged context cannot pass the cross-tenant check either
+  ---
+  duration_ms: 0.102375
+  ...
+# Subtest: AC01/QA-01: a legitimately resolved context still works end to end
+ok 307 - AC01/QA-01: a legitimately resolved context still works end to end
+  ---
+  duration_ms: 0.082291
+  ...
+# Subtest: AC04/QA-02: a cross-tenant denial without an audit sink fails closed
+ok 308 - AC04/QA-02: a cross-tenant denial without an audit sink fails closed
+  ---
+  duration_ms: 0.187042
+  ...
+# Subtest: AC04/QA-02: every denial path refuses to proceed without a sink
+ok 309 - AC04/QA-02: every denial path refuses to proceed without a sink
+  ---
+  duration_ms: 0.302542
+  ...
+# Subtest: AC04/QA-02: a sink that is not callable is treated as unavailable
+ok 310 - AC04/QA-02: a sink that is not callable is treated as unavailable
+  ---
+  duration_ms: 0.198834
+  ...
+# Subtest: AC04/QA-02: a sink that throws is a failure to audit, not a swallowed error
+ok 311 - AC04/QA-02: a sink that throws is a failure to audit, not a swallowed error
+  ---
+  duration_ms: 0.129875
+  ...
+# Subtest: AC04/QA-02: a successful path never needs a sink
+ok 312 - AC04/QA-02: a successful path never needs a sink
+  ---
+  duration_ms: 0.059833
+  ...
+# Subtest: AC04/QA-02: the ADR states both rules so they cannot be softened later
+ok 313 - AC04/QA-02: the ADR states both rules so they cannot be softened later
+  ---
+  duration_ms: 0.133666
+  ...
+# Subtest: AC04/QA-03: an async sink persists before the denial response is returned
+ok 314 - AC04/QA-03: an async sink persists before the denial response is returned
+  ---
+  duration_ms: 10.711916
+  ...
+# Subtest: AC04/QA-03: an async sink that rejects after returning fails the denial closed
+ok 315 - AC04/QA-03: an async sink that rejects after returning fails the denial closed
+  ---
+  duration_ms: 10.933375
+  ...
+# Subtest: AC04/QA-03: a microtask-deferred rejection also fails closed
+ok 316 - AC04/QA-03: a microtask-deferred rejection also fails closed
+  ---
+  duration_ms: 0.349125
+  ...
+# Subtest: AC04/QA-03: a sink that never settles times out and fails closed
+ok 317 - AC04/QA-03: a sink that never settles times out and fails closed
+  ---
+  duration_ms: 25.977167
+  ...
+# Subtest: AC04/QA-03: resolution denials await an async sink too, not just record checks
+ok 318 - AC04/QA-03: resolution denials await an async sink too, not just record checks
+  ---
+  duration_ms: 0.897291
+  ...
+# Subtest: AC04/QA-03: an async sink that succeeds still yields the ordinary denial
+ok 319 - AC04/QA-03: an async sink that succeeds still yields the ordinary denial
+  ---
+  duration_ms: 0.232542
+  ...
+# Subtest: AC04/QA-03: a synchronous sink still works and is not made async
+ok 320 - AC04/QA-03: a synchronous sink still works and is not made async
+  ---
+  duration_ms: 0.249417
+  ...
+# Subtest: AC04/QA-03: the ADR states that written means settled
+ok 321 - AC04/QA-03: the ADR states that written means settled
+  ---
+  duration_ms: 0.074334
+  ...
+# Subtest: AC04: the ADR records the decision, its owner and the freeze policy
+ok 322 - AC04: the ADR records the decision, its owner and the freeze policy
+  ---
+  duration_ms: 0.134917
+  ...
+1..322
+# tests 322
+# suites 0
+# pass 322
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2268.647833
+PASS  contract behavior suite passes
+secret-scan: gitleaks not installed, using built-in fallback pattern scan
+secret-scan: clean
+PASS  tracked secret scan stays clean
+==============================
+17/17 checks passed

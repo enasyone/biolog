@@ -1,0 +1,916 @@
+--------- beginning of main
+09-23 05:54:19.769   518   518 I adbd    : Remote process closed the socket (on MSG_PEEK)
+09-23 05:54:19.773  5659  5659 I Zygote  : Process 11229 exited due to signal 9 (Killed)
+09-23 05:54:19.774  6043  6085 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10219/pid_11229
+--------- beginning of system
+09-23 05:54:19.776  6043  6352 V ActivityManager: Got obituary of 11229:com.biolog.biolog_mobile
+09-23 05:54:19.776  6430  6496 D QuickstepModelDelegate: notifyAppTargetEvent action=1 launchLocation=workspace/0/[-1,-1]/[1,1]
+09-23 05:54:19.784  6416  6416 D CarrierSvcBindHelper: No carrier app for: 0
+09-23 05:54:19.791  6043  7246 I WindowManager: WIN DEATH: Window{be26aee u0 com.biolog.biolog_mobile/com.biolog.biolog_mobile.MainActivity}
+09-23 05:54:19.798  6430  6430 I NotificationListener: Handling notification state refresh for com.google.android.apps.wellbeing#0
+09-23 05:54:19.798  6430  6430 I NotificationListener: Handling notification state refresh for android#0
+09-23 05:54:19.813  6043  6071 W ActivityManager: setHasOverlayUi called on unknown pid: 11229
+09-23 05:54:19.820  6043  7035 I ImeTracker: com.biolog.biolog_mobile:d248c806: onRequestHide at ORIGIN_SERVER reason HIDE_REMOVE_CLIENT fromUser false
+09-23 05:54:19.821  6043  7035 I ImeTracker: com.biolog.biolog_mobile:d248c806: onCancelled at PHASE_SERVER_SHOULD_HIDE
+09-23 05:54:19.823  6838  7082 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+09-23 05:54:19.823  6838  7082 I AiAiEcho: EchoTargets: 
+09-23 05:54:19.823  6838  7082 I AiAiEcho: Filtered by AiAi flag check: 
+09-23 05:54:19.823  6838  7082 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+09-23 05:54:19.825  6838  7082 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+09-23 05:54:19.827  6838  7082 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+09-23 05:54:19.830  6043  6072 W ActivityTaskManager: Unable to send transaction to client proc com.biolog.biolog_mobile: no app thread
+09-23 05:54:19.832  6043  6195 D ConnectivityService: releasing NetworkRequest [ REQUEST id=181, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10219 RequestorUid: 10219 RequestorPkg: com.biolog.biolog_mobile UnderlyingNetworks: Null] ] (release request)
+09-23 05:54:19.834  6430  6430 D SsBaseTemplateCard: No text view can be set up
+09-23 05:54:19.834  6430  6430 D SsBaseTemplateCard: Passed-in item info is null
+09-23 05:54:19.834  6430  6430 D SsBaseTemplateCard: Passed-in item info is null
+09-23 05:54:19.834  6430  6430 D SsBaseTemplateCard: Passed-in item info is null
+09-23 05:54:19.835  6430  6430 I SsBaseTemplateCard: Secondary card pane is null
+09-23 05:54:19.844  6287  6530 V WindowManagerShell: onTransitionReady(transaction=25954487370481)
+09-23 05:54:19.844  6287  6326 V WindowManagerShell: onTransitionReady (#21) android.os.BinderProxy@8f154c7: {id=21 t=CLOSE f=0x0 trk=0 r=[0@Point(0, 0)] c=[
+09-23 05:54:19.844  6287  6326 V WindowManagerShell:         {m=TO_FRONT f=SHOW_WALLPAPER|MOVE_TO_TOP leash=Surface(name=Task=1)/@0x9123c92 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0 taskParent=-1},
+09-23 05:54:19.844  6287  6326 V WindowManagerShell:         {m=CLOSE f=NONE leash=Surface(name=Task=37)/@0x6247663 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0 taskParent=-1},
+09-23 05:54:19.844  6287  6326 V WindowManagerShell:         {m=TO_FRONT f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{77739cb showWhenLocked=false})/@0xd2ac260 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0}
+09-23 05:54:19.844  6287  6326 V WindowManagerShell:     ]}
+09-23 05:54:19.845  6287  6326 V WindowManagerShell: Playing animation for (#21) android.os.BinderProxy@8f154c7@0
+09-23 05:54:19.845  6287  6326 V ShellRecents: RecentsTransitionHandler.startAnimation: no controller found
+09-23 05:54:19.845  6287  6326 V WindowManagerShell: Transition doesn't have explicit remote, search filters for match for {id=21 t=CLOSE f=0x0 trk=0 r=[0@Point(0, 0)] c=[{m=TO_FRONT f=SHOW_WALLPAPER|MOVE_TO_TOP leash=Surface(name=Task=1)/@0x9123c92 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0 taskParent=-1},{m=CLOSE f=NONE leash=Surface(name=Task=37)/@0x6247663 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0 taskParent=-1},{m=TO_FRONT f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{77739cb showWhenLocked=false})/@0xd2ac260 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0}]}
+09-23 05:54:19.845  6287  6326 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=undefined independent=true modes=[CLOSE,TO_BACK] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=null launchCookie=null taskFragmentToken=android.os.BinderProxy@2d3ddee windowingMode=undefined}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@5e8328f, appThread = android.app.IApplicationThread$Stub$Proxy@cdf491c, debugName = overlayBackTransition }}
+09-23 05:54:19.845  6287  6326 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=dream independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined},{atype=home independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@b00d925, appThread = android.app.IApplicationThread$Stub$Proxy@923eafa, debugName = LauncherToDream }}
+09-23 05:54:19.845  6287  6326 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null windowingMode=undefined},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined},{NOT atype=undefined independent=true modes=[] flags=NONE mustBeTask=true order=ANY topActivity=null launchCookie=null customAnim=true windowingMode=undefined}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@d3f68ab, appThread = android.app.IApplicationThread$Stub$Proxy@525db08, debugName = QuickstepLaunchHome }}
+09-23 05:54:19.845  6287  6326 D RemoteTransitionHandler: Found filterPair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null windowingMode=undefined},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined},{NOT atype=undefined independent=true modes=[] flags=NONE mustBeTask=true order=ANY topActivity=null launchCookie=null customAnim=true windowingMode=undefined}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@d3f68ab, appThread = android.app.IApplicationThread$Stub$Proxy@525db08, debugName = QuickstepLaunchHome }}
+09-23 05:54:19.845  6287  6326 V WindowManagerShell:  Delegate animation for (#21) to RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@d3f68ab, appThread = android.app.IApplicationThread$Stub$Proxy@525db08, debugName = QuickstepLaunchHome }
+09-23 05:54:19.857  6043  6068 V WindowManager: Sent Transition (#21) createdAt=09-23 05:54:19.696 via request=TransitionRequestInfo { type = CLOSE, triggerTask = TaskInfo{userId=0 taskId=37 effectiveUid=10219 displayId=0 isRunning=false baseIntent=Intent { flg=0x10000000 cmp=com.biolog.biolog_mobile/.MainActivity } baseActivity=null topActivity=null origActivity=null realActivity=ComponentInfo{com.biolog.biolog_mobile/com.biolog.biolog_mobile.MainActivity} numActivities=0 lastActiveTime=4905200 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{77d5989 Task{8254671 #37 type=standard I=com.biolog.biolog_mobile/.MainActivity}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 0 - 0, 0) topActivityInfo=null launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false isActivityStackTransparent=true lastNonFullscreenBounds=Rect(276, 696 - 805, 1776) capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=-9 topActivityRequestOpenInBrowserEducationTimestamp=0 appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false eligibleForLetterboxEducation= false isLetterboxEducationEnabled= false isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 0 - 0, 0) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null cameraCompatTaskInfo=CameraCompatTaskInfo { freeformCameraCompatMode=undefined}} topActivityMainWindowFrame=null}, pipChange = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 21 }
+09-23 05:54:19.857  6043  6068 V WindowManager:     startWCT=WindowContainerTransaction { changes= {} hops= [] errorCallbackToken=null taskFragmentOrganizer=null }
+09-23 05:54:19.857  6043  6068 V WindowManager:     info={id=21 t=CLOSE f=0x0 trk=0 r=[0@Point(0, 0)] c=[
+09-23 05:54:19.857  6043  6068 V WindowManager:         {WCT{RemoteToken{e88198f Task{56eedba #1 type=home}}} m=TO_FRONT f=SHOW_WALLPAPER|MOVE_TO_TOP leash=Surface(name=Task=1)/@0xe4eb17e sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0 taskParent=-1},
+09-23 05:54:19.857  6043  6068 V WindowManager:         {WCT{RemoteToken{77d5989 Task{8254671 #37 type=standard I=com.biolog.biolog_mobile/.MainActivity}}} m=CLOSE f=NONE leash=Surface(name=Task=37)/@0xc5b3b53 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0 taskParent=-1},
+09-23 05:54:19.857  6043  6068 V WindowManager:         {m=TO_FRONT f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{77739cb showWhenLocked=false})/@0x6805739 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0}
+09-23 05:54:19.857  6043  6068 V WindowManager:     ]}
+09-23 05:54:19.873  3095  3095 I abb     : StartCommandInProcess(73657474696e67730067657400676c6f settings.get.glo [truncated])
+09-23 05:54:19.874  6430  6430 D StateManager: createAtomicAnimation - fromState: Background, toState: Normal, partial trace:
+09-23 05:54:19.874  6430  6430 D StateManager: 	at com.android.quickstep.util.ScalingWorkspaceRevealAnim.<init>(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:39)
+09-23 05:54:19.874  6430  6430 D StateManager: 	at com.android.launcher3.QuickstepTransitionManager.createWallpaperOpenAnimations(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:168)
+09-23 05:54:19.874  6430  6430 D StateManager: 	at com.android.launcher3.QuickstepTransitionManager$WallpaperOpenLauncherAnimationRunner.onAnimationStart(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:17)
+09-23 05:54:19.877  6430  6430 D b/311077782: LauncherAnimationRunner.setAnimation
+09-23 05:54:19.882  6287  6326 V WindowManagerShell:  animated by com.android.wm.shell.transition.RemoteTransitionHandler@135bcc6
+09-23 05:54:19.880  6043  6043 W binder:6043_16: type=1400 audit(0.0:156): avc:  denied  { getopt } for  scontext=u:r:system_server:s0 tcontext=u:r:shell:s0 tclass=unix_stream_socket permissive=0
+09-23 05:54:19.885  6287  6326 W Looper  : Slow dispatch took 38ms wmshell.main app=com.android.systemui main=false group=FOREGROUND h=android.os.Handler c=com.android.wm.shell.transition.Transitions$TransitionPlayerImpl$$ExternalSyntheticLambda0@344cbea m=0
+09-23 05:54:19.880  6043  6043 W binder:6043_16: type=1400 audit(0.0:157): avc:  denied  { getopt } for  scontext=u:r:system_server:s0 tcontext=u:r:shell:s0 tclass=unix_stream_socket permissive=0
+09-23 05:54:19.880  6043  6043 W binder:6043_16: type=1400 audit(0.0:158): avc:  denied  { getopt } for  scontext=u:r:system_server:s0 tcontext=u:r:shell:s0 tclass=unix_stream_socket permissive=0
+09-23 05:54:19.886  3095  3095 I abb     : StartCommandInProcess(7061636b61676500696e7374616c6c00 package.install. [truncated])
+09-23 05:54:19.887  6430  6496 I s.nexuslauncher: AssetManager2(0xb400007666aaa518) locale list changing from [] to [en-US]
+09-23 05:54:19.892  6043  6163 I ImeTracker: com.google.android.apps.nexuslauncher:c148d2f2: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+09-23 05:54:19.894  6430  6430 D InsetsController: hide(ime(), fromIme=false)
+09-23 05:54:19.894  6430  6430 I ImeTracker: com.google.android.apps.nexuslauncher:c148d2f2: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+09-23 05:54:19.925  6430  6496 W HWUI    : Image decoding logging dropped!
+09-23 05:54:19.928  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:19.933  6768  6768 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2043 
+09-23 05:54:19.937  6768  6768 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 0, locked = false
+09-23 05:54:19.941  6768  6768 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1293 onStartInput(EditorInfo{EditorInfo{packageName=com.google.android.apps.nexuslauncher, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+09-23 05:54:19.943  6768  6768 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 1, locked = false
+09-23 05:54:19.943  6043  7039 W PackageConfigPersister: App-specific configuration not found for packageName: com.google.android.apps.nexuslauncher and userId: 0
+09-23 05:54:19.971  6043  7311 I ImeTracker: system_server:291ea5b1: onRequestHide at ORIGIN_SERVER reason IME_REQUESTED_CHANGED_LISTENER fromUser false
+09-23 05:54:19.972  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:19.972  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:19.978   513   513 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+09-23 05:54:19.978  6043  6071 I ImeTracker: system_server:291ea5b1: onCancelled at PHASE_SERVER_SHOULD_HIDE
+09-23 05:54:20.006  6043  6072 W ActivityTaskManager: Unable to send transaction to client proc com.biolog.biolog_mobile: no app thread
+09-23 05:54:20.014  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.035  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.060  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.095  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.113  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.124  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.141  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.158  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.209  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.239  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.248  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.272  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.277  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.297  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.309  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.323  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.341  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.354  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.373  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.381  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.389  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.402  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.426  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.442  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.469  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.478  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.487  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.505  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.517  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.526  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.540  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.552  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.560  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.576  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.588  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.596  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.606  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.623  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.635  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.643  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.655  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.658  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.663  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.668  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.685  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.693  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.705  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.716  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.735  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.743  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.757  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.775  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.784  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.794  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.806  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.809  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.814  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.822  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.829  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.840  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.847  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.859  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.870  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.877  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.882  6430  6430 D ScalingWorkspaceRevealAnim: alpha of workspace at the end of animation: 1.0
+09-23 05:54:20.884  6287  6326 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#21) android.os.BinderProxy@8f154c7@0
+09-23 05:54:20.891  6043  6068 V WindowManager: Finish Transition (#21): created at 09-23 05:54:19.696 collect-started=0.084ms request-sent=0.387ms started=9.141ms ready=14.451ms sent=140.875ms commit=45.282ms finished=1194.567ms
+09-23 05:54:20.891  6043  7039 E IPCThreadState: Binder transaction failure. id: 740953, BR_*: 29189, error: -22 (Invalid argument)
+09-23 05:54:20.891  6043  7039 W ActivityManager: pid 6043 system sent binder code 7 with flags 1 to frozen apps and got error -32
+09-23 05:54:20.892  6043  7039 W WindowManager: Exception thrown during dispatchAppVisibility Window{be26aee u0 com.biolog.biolog_mobile/com.biolog.biolog_mobile.MainActivity EXITING}
+09-23 05:54:20.892  6043  7039 W WindowManager: android.os.DeadObjectException
+09-23 05:54:20.892  6043  7039 W WindowManager: 	at android.os.BinderProxy.transactNative(Native Method)
+09-23 05:54:20.892  6043  7039 W WindowManager: 	at android.os.BinderProxy.transact(BinderProxy.java:592)
+09-23 05:54:20.892  6043  7039 W WindowManager: 	at android.view.IWindow$Stub$Proxy.dispatchAppVisibility(IWindow.java:557)
+09-23 05:54:20.892  6043  7039 W WindowManager: 	at com.android.server.wm.WindowState.sendAppVisibilityToClients(WindowState.java:3151)
+09-23 05:54:20.892  6043  7039 W WindowManager: 	at com.android.server.wm.WindowContainer.sendAppVisibilityToClients(WindowContainer.java:1311)
+09-23 05:54:20.892  6043  7039 W WindowManager: 	at com.android.server.wm.WindowToken.setClientVisible(WindowToken.java:389)
+09-23 05:54:20.892  6043  7039 W WindowManager: 	at com.android.server.wm.ActivityRecord.setClientVisible(ActivityRecord.java:6650)
+09-23 05:54:20.892  6043  7039 W WindowManager: 	at com.android.server.wm.ActivityRecord.commitVisibility(ActivityRecord.java:5561)
+09-23 05:54:20.892  6043  7039 W WindowManager: 	at com.android.server.wm.Transition.finishTransition(Transition.java:1391)
+09-23 05:54:20.892  6043  7039 W WindowManager: 	at com.android.server.wm.TransitionController.finishTransition(TransitionController.java:1029)
+09-23 05:54:20.892  6043  7039 W WindowManager: 	at com.android.server.wm.WindowOrganizerController.finishTransition(WindowOrganizerController.java:496)
+09-23 05:54:20.892  6043  7039 W WindowManager: 	at android.window.IWindowOrganizerController$Stub.onTransact(IWindowOrganizerController.java:261)
+09-23 05:54:20.892  6043  7039 W WindowManager: 	at com.android.server.wm.WindowOrganizerController.onTransact(WindowOrganizerController.java:223)
+09-23 05:54:20.892  6043  7039 W WindowManager: 	at android.os.Binder.execTransactInternal(Binder.java:1426)
+09-23 05:54:20.892  6043  7039 W WindowManager: 	at android.os.Binder.execTransact(Binder.java:1365)
+09-23 05:54:20.892  6043  7039 W Process : Unable to open /proc/11229/status
+09-23 05:54:20.894  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+--------- beginning of kernel
+09-23 05:54:20.896  7039  7039 I binder  : 7039:6043 cannot find target node
+09-23 05:54:20.896  7039  7039 I binder  : 6043:7039 transaction async to 0:0 failed 740953/29189/-22, size 64-0 line 3348
+09-23 05:54:20.906  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.907  6430  6430 D RecentsView: onTaskRemoved: 37, not handling task stack changes
+09-23 05:54:20.907  6430  6430 D RecentsView: onTaskRemoved: 37, not handling task stack changes
+09-23 05:54:20.908  6287  6326 V WindowManagerShell: Track 0 became idle
+09-23 05:54:20.908  6287  6326 V WindowManagerShell: All active transition animations finished
+09-23 05:54:20.922  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.920  6043  6043 W binder:6043_19: type=1400 audit(0.0:159): avc:  denied  { getopt } for  scontext=u:r:system_server:s0 tcontext=u:r:shell:s0 tclass=unix_stream_socket permissive=0
+09-23 05:54:20.926  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.926  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:20.928  6043  7246 E SystemServiceRegistry: No service published for: persistent_data_block
+09-23 05:54:20.928  6043  7246 E SystemServiceRegistry: android.os.ServiceManager$ServiceNotFoundException: No service published for: persistent_data_block
+09-23 05:54:20.928  6043  7246 E SystemServiceRegistry: 	at android.os.ServiceManager.getServiceOrThrow(ServiceManager.java:203)
+09-23 05:54:20.928  6043  7246 E SystemServiceRegistry: 	at android.app.SystemServiceRegistry$82.createService(SystemServiceRegistry.java:1110)
+09-23 05:54:20.928  6043  7246 E SystemServiceRegistry: 	at android.app.SystemServiceRegistry$82.createService(SystemServiceRegistry.java:1107)
+09-23 05:54:20.928  6043  7246 E SystemServiceRegistry: 	at android.app.SystemServiceRegistry$StaticServiceFetcher.getService(SystemServiceRegistry.java:2405)
+09-23 05:54:20.928  6043  7246 E SystemServiceRegistry: 	at android.app.SystemServiceRegistry.getSystemService(SystemServiceRegistry.java:1918)
+09-23 05:54:20.928  6043  7246 E SystemServiceRegistry: 	at android.app.ContextImpl.getSystemService(ContextImpl.java:2315)
+09-23 05:54:20.928  6043  7246 E SystemServiceRegistry: 	at android.content.Context.getSystemService(Context.java:4630)
+09-23 05:54:20.928  6043  7246 E SystemServiceRegistry: 	at com.android.server.pm.PackageInstallerSession.markAsSealed(PackageInstallerSession.java:2449)
+09-23 05:54:20.928  6043  7246 E SystemServiceRegistry: 	at com.android.server.pm.PackageInstallerSession.commit(PackageInstallerSession.java:2198)
+09-23 05:54:20.928  6043  7246 E SystemServiceRegistry: 	at android.content.pm.PackageInstaller$Session.commit(PackageInstaller.java:1988)
+09-23 05:54:20.928  6043  7246 E SystemServiceRegistry: 	at com.android.server.pm.PackageManagerShellCommand.doCommitSession(PackageManagerShellCommand.java:4316)
+09-23 05:54:20.928  6043  7246 E SystemServiceRegistry: 	at com.android.server.pm.PackageManagerShellCommand.doRunInstall(PackageManagerShellCommand.java:1641)
+09-23 05:54:20.928  6043  7246 E SystemServiceRegistry: 	at com.android.server.pm.PackageManagerShellCommand.runInstall(PackageManagerShellCommand.java:1562)
+09-23 05:54:20.928  6043  7246 E SystemServiceRegistry: 	at com.android.server.pm.PackageManagerShellCommand.onCommand(PackageManagerShellCommand.java:246)
+09-23 05:54:20.928  6043  7246 E SystemServiceRegistry: 	at com.android.modules.utils.BasicShellCommandHandler.exec(BasicShellCommandHandler.java:97)
+09-23 05:54:20.928  6043  7246 E SystemServiceRegistry: 	at android.os.ShellCommand.exec(ShellCommand.java:38)
+09-23 05:54:20.928  6043  7246 E SystemServiceRegistry: 	at com.android.server.pm.PackageManagerService$IPackageManagerImpl.onShellCommand(PackageManagerService.java:6684)
+09-23 05:54:20.928  6043  7246 E SystemServiceRegistry: 	at android.os.Binder.shellCommand(Binder.java:1151)
+09-23 05:54:20.928  6043  7246 E SystemServiceRegistry: 	at android.os.Binder.onTransact(Binder.java:953)
+09-23 05:54:20.928  6043  7246 E SystemServiceRegistry: 	at android.content.pm.IPackageManager$Stub.onTransact(IPackageManager.java:4729)
+09-23 05:54:20.928  6043  7246 E SystemServiceRegistry: 	at com.android.server.pm.PackageManagerService$IPackageManagerImpl.onTransact(PackageManagerService.java:6668)
+09-23 05:54:20.928  6043  7246 E SystemServiceRegistry: 	at android.os.Binder.execTransactInternal(Binder.java:1426)
+09-23 05:54:20.928  6043  7246 E SystemServiceRegistry: 	at android.os.Binder.execTransact(Binder.java:1365)
+09-23 05:54:20.928  6043  7246 E SystemServiceRegistry: Manager wrapper not available: persistent_data_block
+09-23 05:54:20.948   513   513 E BpTransactionCompletedListener: Failed to transact (-32)
+09-23 05:54:20.948   513   513 E BpTransactionCompletedListener: Failed to transact (-32)
+09-23 05:54:21.053  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.057  6043  6070 D FileSystemUtils: Total number of LOAD segments 3
+09-23 05:54:21.057  6043  6070 D FileSystemUtils: Size before punching holes st_blocks: 350592, st_blksize: 4096, st_size: 179496333
+09-23 05:54:21.057  6043  6070 D FileSystemUtils: Size after punching holes st_blocks: 350592, st_blksize: 4096, st_size: 179496333
+09-23 05:54:21.057  6043  6070 D FileSystemUtils: Extra field length: 6768,  Size before punching holes st_blocks: 350592, st_blksize: 4096, st_size: 179496333
+09-23 05:54:21.057  6043  6070 D FileSystemUtils: Extra field length: 6768 content near offset: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+09-23 05:54:21.057  6043  6070 D FileSystemUtils: Punching hole in file - start: 4599808 len:4096
+09-23 05:54:21.057  6043  6070 D FileSystemUtils: punchHolesInApk:: Size after punching holes st_blocks: 350584, st_blksize: 4096, st_size: 179496333
+09-23 05:54:21.057  6043  6070 D FileSystemUtils: Total number of LOAD segments 3
+09-23 05:54:21.057  6043  6070 D FileSystemUtils: Size before punching holes st_blocks: 350584, st_blksize: 4096, st_size: 179496333
+09-23 05:54:21.057  6043  6070 D FileSystemUtils: Size after punching holes st_blocks: 350584, st_blksize: 4096, st_size: 179496333
+09-23 05:54:21.057  6043  6070 D FileSystemUtils: Extra field length: 13367,  Size before punching holes st_blocks: 350584, st_blksize: 4096, st_size: 179496333
+09-23 05:54:21.057  6043  6070 D FileSystemUtils: Extra field length: 13367 content near offset: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+09-23 05:54:21.057  6043  6070 D FileSystemUtils: Punching hole in file - start: 19845120 len:12288
+09-23 05:54:21.058  6043  6070 D FileSystemUtils: punchHolesInApk:: Size after punching holes st_blocks: 350568, st_blksize: 4096, st_size: 179496333
+09-23 05:54:21.058  6043  6070 D FileSystemUtils: Total number of LOAD segments 3
+09-23 05:54:21.058  6043  6070 D FileSystemUtils: Size before punching holes st_blocks: 350568, st_blksize: 4096, st_size: 179496333
+09-23 05:54:21.058  6043  6070 D FileSystemUtils: Size after punching holes st_blocks: 350568, st_blksize: 4096, st_size: 179496333
+09-23 05:54:21.058  6043  6070 D FileSystemUtils: Extra field length: 295,  Size before punching holes st_blocks: 350568, st_blksize: 4096, st_size: 179496333
+09-23 05:54:21.058  6043  6070 D FileSystemUtils: Skipping punching apk as extra field length is less than block size
+09-23 05:54:21.058  6043  6070 W NativeLibraryHelper: Failed to punch apk : /data/app/vmdl1280075972.tmp/base.apk at extra field
+09-23 05:54:21.058  6043  6070 D FileSystemUtils: Total number of LOAD segments 3
+09-23 05:54:21.058  6043  6070 D FileSystemUtils: Size before punching holes st_blocks: 350568, st_blksize: 4096, st_size: 179496333
+09-23 05:54:21.058  6043  6070 D FileSystemUtils: Size after punching holes st_blocks: 350568, st_blksize: 4096, st_size: 179496333
+09-23 05:54:21.058  6043  6070 D FileSystemUtils: Extra field length: 229,  Size before punching holes st_blocks: 350568, st_blksize: 4096, st_size: 179496333
+09-23 05:54:21.058  6043  6070 D FileSystemUtils: Skipping punching apk as extra field length is less than block size
+09-23 05:54:21.058  6043  6070 W NativeLibraryHelper: Failed to punch apk : /data/app/vmdl1280075972.tmp/base.apk at extra field
+09-23 05:54:21.058  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.062  6043  6119 D InstallDependencyHelper: No missing dependency for com.biolog.biolog_mobile
+09-23 05:54:21.068  6043  6109 V Configuration: Updating configuration, locales updated from [] to [en_US]
+09-23 05:54:21.068  6043  6109 I system_server: AssetManager2(0xb400007666ac92d8) locale list changing from [] to [en-US]
+09-23 05:54:21.070  6043  6109 I PackageManager: Update package com.biolog.biolog_mobile code path from /data/app/~~IBuVpHm-WF_d-ulxhwS_WQ==/com.biolog.biolog_mobile-tdgAw1aevvMq5GIIESm-eA== to /data/app/vmdl1280075972.tmp; Retain data and using new
+09-23 05:54:21.085  6043  6109 I AppsFilter: interaction: PackageSetting{acdaf3f com.asu.asu_nfc_app/10215} -> PackageSetting{c7c741f com.biolog.biolog_mobile/10219} BLOCKED
+09-23 05:54:21.085  6043  6109 I AppsFilter: interaction: PackageSetting{86b0ae1 com.enasyone.asuphotodemo/10213} -> PackageSetting{c7c741f com.biolog.biolog_mobile/10219} BLOCKED
+09-23 05:54:21.085  6043  6109 I AppsFilter: interaction: PackageSetting{acdaf3f com.asu.asu_nfc_app/10215} -> PackageSetting{7602b31 com.biolog.biolog_mobile/10219} BLOCKED
+09-23 05:54:21.085  6043  6109 I AppsFilter: interaction: PackageSetting{86b0ae1 com.enasyone.asuphotodemo/10213} -> PackageSetting{7602b31 com.biolog.biolog_mobile/10219} BLOCKED
+09-23 05:54:21.113  6043  6109 D PackageManager: Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE
+09-23 05:54:21.113  6043  6109 D PackageManager: Clear ephemeral installer activity
+09-23 05:54:21.113  6043  6083 I ActivityManager: Force stopping com.biolog.biolog_mobile appid=10219 user=-1: installPackageLI
+09-23 05:54:21.117  3584  3584 I logd    : start watching /data/system/packages.list ...
+09-23 05:54:21.117  3584  3584 I logd    : ReadPackageList, total packages: 224
+09-23 05:54:21.114  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.114  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.114  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.114  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.114  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.114  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.114  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.115  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.115  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.115  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.115  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.115  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.115  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.115  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.115  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.115  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.115  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.115  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.115  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.115  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.115  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.115  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.115  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.115  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.115  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.115  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.115  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.115  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.115  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.115  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.115  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.115  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.115  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.116  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.116  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.116  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.116  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.116  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.116  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.116  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.116  6043  6083 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.116  6043  6109 I PackageManager: installation completed for package:com.biolog.biolog_mobile. Final code path: /data/app/~~U_XqKTcUK0jXnOclgVC54g==/com.biolog.biolog_mobile-AkQ6bbXDEeitrsGFSZmHzg==
+09-23 05:54:21.116  6043  6109 I AppsFilter: interaction: PackageSetting{8cf4eb2 com.asu.asu_nfc_app/10215} -> PackageSetting{3f9757a com.biolog.biolog_mobile/10219} BLOCKED
+09-23 05:54:21.116  6043  6109 I AppsFilter: interaction: PackageSetting{fa9013f com.enasyone.asuphotodemo/10213} -> PackageSetting{3f9757a com.biolog.biolog_mobile/10219} BLOCKED
+09-23 05:54:21.124  6043  6109 I ActivityManager: Force stopping com.biolog.biolog_mobile appid=10219 user=0: pkg removed
+09-23 05:54:21.125  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.125  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.125  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.126  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.127  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.127  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.127  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.127  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.127  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.127  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.127  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.127  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.127  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.127  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.127  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.127  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.127  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.128  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.128  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.128  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.128  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.128  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.128  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.128  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.128  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.128  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.128  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.128  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.128  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.128  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.128  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.128  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.128  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.128  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.128  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.128  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.128  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.128  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.129  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.129  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.129  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.129  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.129  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.140  6043  6167 I system_server: AssetManager2(0xb400007666ac92d8) locale list changing from [] to [en-US]
+09-23 05:54:21.141  6416  6645 I SatelliteAppTracker: onPackageUpdateFinished : com.biolog.biolog_mobile
+09-23 05:54:21.141  6416  6645 I SatelliteAppTracker: onPackageModified : com.biolog.biolog_mobile
+09-23 05:54:21.142  6043  6201 E AppOps  : attributionTag VCN not declared in manifest of android
+09-23 05:54:21.143  6043  6167 I system_server: AssetManager2(0xb400007666a7b3f8) locale list changing from [] to [en-US]
+09-23 05:54:21.144  6043  6167 I system_server: AssetManager2(0xb400007666a82dd8) locale list changing from [] to [en-US]
+09-23 05:54:21.145  6043  6220 I AppWidgetServiceImpl: Received broadcast: android.intent.action.PACKAGE_REMOVED on user 0
+09-23 05:54:21.147  6430  6496 D PackageUpdatedTask: Package updated: mOp=UPDATE packages=[com.biolog.biolog_mobile], user=UserHandle{0}
+09-23 05:54:21.148  6838 11147 I AiAiEcho: AppIndexer Package:[com.biolog.biolog_mobile] UserProfile:[0] Enabled:[true].
+09-23 05:54:21.148  6838 11147 I AiAiEcho: AppFetcherImplV2 updateApps package:[com.biolog.biolog_mobile], userId:[0], reason:[package is updated.].
+09-23 05:54:21.150  6043  6167 I system_server: AssetManager2(0xb400007666ab0c38) locale list changing from [] to [en-US]
+09-23 05:54:21.152  6287  6287 D ControlsListingControllerImpl: ServiceConfig reloaded, count: 0
+09-23 05:54:21.155  6043  6071 I system_server: AssetManager2(0xb400007666ab82f8) locale list changing from [] to [en-US]
+09-23 05:54:21.157  6043  6220 I AppWidgetServiceImpl: Received broadcast: android.intent.action.PACKAGE_ADDED on user 0
+09-23 05:54:21.158  6043  6167 V AccessibilityManagerService: onUserStateChangedLocked for userId: 0, forceUpdate: false
+09-23 05:54:21.162  6430  6430 D ActivityThread: Package [com.biolog.biolog_mobile] reported as REPLACED, but missing application info. Assuming REMOVED.
+09-23 05:54:21.164  6802  6802 D ActivityThread: Package [com.biolog.biolog_mobile] reported as REPLACED, but missing application info. Assuming REMOVED.
+09-23 05:54:21.164  6768  6768 D ActivityThread: Package [com.biolog.biolog_mobile] reported as REPLACED, but missing application info. Assuming REMOVED.
+09-23 05:54:21.166  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.166  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.166  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.166  6838  6838 D ActivityThread: Package [com.biolog.biolog_mobile] reported as REPLACED, but missing application info. Assuming REMOVED.
+09-23 05:54:21.166  6851  6851 D ActivityThread: Package [com.biolog.biolog_mobile] reported as REPLACED, but missing application info. Assuming REMOVED.
+09-23 05:54:21.166  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.166  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.166  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.166  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.166  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.166  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.166  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.166  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.166  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.168  7045  7045 D ActivityThread: Package [com.biolog.biolog_mobile] reported as REPLACED, but missing application info. Assuming REMOVED.
+09-23 05:54:21.169  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.169  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.169  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.169  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.169  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.169  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.169  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.169  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.169  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.169  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.169  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.169  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.169  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.169  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.169  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.169  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.169  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.169  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.169  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.169  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.169  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.169  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.169  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.169  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.169  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.169  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.169  6454  6454 D ActivityThread: Package [com.biolog.biolog_mobile] reported as REPLACED, but missing application info. Assuming REMOVED.
+09-23 05:54:21.170  7791  7791 D ActivityThread: Package [com.biolog.biolog_mobile] reported as REPLACED, but missing application info. Assuming REMOVED.
+09-23 05:54:21.170  7816  7816 D ActivityThread: Package [com.biolog.biolog_mobile] reported as REPLACED, but missing application info. Assuming REMOVED.
+09-23 05:54:21.170  6043  6246 I SdkSandboxManager: No SDKs used. Skipping SDK data reconcilation for CallingInfo{mUid=10219, mPackageName='com.biolog.biolog_mobile, mAppProcessToken='null'}
+09-23 05:54:21.172  6287  6287 D ControlsListingControllerImpl: ServiceConfig reloaded, count: 0
+09-23 05:54:21.172  6535  6535 D ActivityThread: Package [com.biolog.biolog_mobile] reported as REPLACED, but missing application info. Assuming REMOVED.
+09-23 05:54:21.173  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.174  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.174  6828  6828 D ActivityThread: Package [com.biolog.biolog_mobile] reported as REPLACED, but missing application info. Assuming REMOVED.
+09-23 05:54:21.174  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.174  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.174  6043  6109 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.174  7131  7131 D ActivityThread: Package [com.biolog.biolog_mobile] reported as REPLACED, but missing application info. Assuming REMOVED.
+09-23 05:54:21.177  6287  6287 D ActivityThread: Package [com.biolog.biolog_mobile] reported as REPLACED, but missing application info. Assuming REMOVED.
+09-23 05:54:21.178  6430  6496 I s.nexuslauncher: AssetManager2(0xb400007666a69dd8) locale list changing from [] to [en-US]
+09-23 05:54:21.178  6435  6435 D ActivityThread: Package [com.biolog.biolog_mobile] reported as REPLACED, but missing application info. Assuming REMOVED.
+09-23 05:54:21.179  6430  6496 W HWUI    : Image decoding logging dropped!
+09-23 05:54:21.181  6398  6398 D ActivityThread: Package [com.biolog.biolog_mobile] reported as REPLACED, but missing application info. Assuming REMOVED.
+09-23 05:54:21.183  5661  5682 I netd    : tetherGetStats() -> {[]} <1.61ms>
+09-23 05:54:21.183  6895  6895 D ActivityThread: Package [com.biolog.biolog_mobile] reported as REPLACED, but missing application info. Assuming REMOVED.
+09-23 05:54:21.183  6389  6389 D ActivityThread: Package [com.biolog.biolog_mobile] reported as REPLACED, but missing application info. Assuming REMOVED.
+09-23 05:54:21.184  6875  6875 D ActivityThread: Package [com.biolog.biolog_mobile] reported as REPLACED, but missing application info. Assuming REMOVED.
+09-23 05:54:21.186  6416  6416 E SmsApplication: com.google.android.apps.messaging lost android:read_cell_broadcasts:  (fixing)
+09-23 05:54:21.187  6043  6346 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 10147, code = READ_CELL_BROADCASTS, mode = allow, callingUid = 1001, oldMode = allow
+09-23 05:54:21.188  6043  6109 D PackageInstallerSession: Marking session 1280075972 as applied
+09-23 05:54:21.188  6043  6167 W MagnificationConnectionManager: requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+09-23 05:54:21.189  6043  6330 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = READ_SMS, mode = allow, callingUid = 1001, oldMode = allow
+09-23 05:54:21.189  6043  6330 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = RECEIVE_SMS, mode = allow, callingUid = 1001, oldMode = allow
+09-23 05:54:21.189  6043  6330 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = RECEIVE_WAP_PUSH, mode = allow, callingUid = 1001, oldMode = allow
+09-23 05:54:21.189  6043  6330 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = SEND_SMS, mode = allow, callingUid = 1001, oldMode = allow
+09-23 05:54:21.189  6043  6330 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = READ_CELL_BROADCASTS, mode = allow, callingUid = 1001, oldMode = allow
+09-23 05:54:21.190  6043  6246 I SdkSandboxManager: No SDKs used. Skipping SDK data reconcilation for CallingInfo{mUid=10219, mPackageName='com.biolog.biolog_mobile, mAppProcessToken='null'}
+09-23 05:54:21.192  6043  6119 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.192  6043  6119 D InstallDependencyHelper: Session complete for 1280075972
+09-23 05:54:21.188  6043  6043 W binder:6043_19: type=1400 audit(0.0:160): avc:  denied  { getopt } for  scontext=u:r:system_server:s0 tcontext=u:r:shell:s0 tclass=unix_stream_socket permissive=0
+09-23 05:54:21.188  6043  6043 W binder:6043_19: type=1400 audit(0.0:161): avc:  denied  { getopt } for  scontext=u:r:system_server:s0 tcontext=u:r:shell:s0 tclass=unix_stream_socket permissive=0
+09-23 05:54:21.188  6043  6043 W binder:6043_19: type=1400 audit(0.0:162): avc:  denied  { getopt } for  scontext=u:r:system_server:s0 tcontext=u:r:shell:s0 tclass=unix_stream_socket permissive=0
+09-23 05:54:21.196  6043  6240 D ShortcutService: received package broadcast intent: Intent { act=android.intent.action.PACKAGE_REMOVED dat=package: flg=0x4000010 (has extras) }
+09-23 05:54:21.197  6043  6083 D ActivityManager: sync unfroze 6620 com.google.android.permissioncontroller for 3
+09-23 05:54:21.199  6043  6240 D ShortcutService: received package broadcast intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package: flg=0x4000010 (has extras) }
+09-23 05:54:21.199  6043  6240 D ShortcutService: replacing package: com.biolog.biolog_mobile userId=0
+09-23 05:54:21.201  6043  6119 E AtomicFile: Failed to rename /data/system/install_sessions.xml.new to /data/system/install_sessions.xml
+09-23 05:54:21.203  6043  6170 W PackageConfigPersister: App-specific configuration not found for packageName: com.biolog.biolog_mobile and userId: 0
+09-23 05:54:21.209  6043  6241 D BackgroundInstallControlService: Package event received: 0
+09-23 05:54:21.209  6043  6043 I Telecom : CarModeTracker: Package com.biolog.biolog_mobile is not tracked.: SSH.oR@ARw🔒
+09-23 05:54:21.209  6043  6043 I Telecom : InCallController: updateCarModeForConnections: car mode apps: : SSH.oR@ARw🔒
+09-23 05:54:21.209  6043  6043 I Telecom : InCallController: update carmode current:UserHandle{0} parent:null: SSH.oR@ARw🔒
+09-23 05:54:21.212  6043  6147 I RoleService: Granting default roles...
+09-23 05:54:21.212  6287  6287 D ControlsListingControllerImpl: ServiceConfig reloaded, count: 0
+09-23 05:54:21.213  6043  6241 D BackgroundInstallControlService: Package event received: 0
+09-23 05:54:21.220  6043  9137 W SignedPackage: Package doesn't have required signing certificate: com.google.android.retaildemo
+09-23 05:54:21.220  6043  9137 E RoleControllerServiceImpl: Default/fallback role holder package doesn't qualify for the role, package: com.google.android.gms.supervision, role: android.app.role.SYSTEM_SUPERVISION
+09-23 05:54:21.225  6043  9137 W SignedPackage: Package doesn't have required signing certificate: com.google.android.apps.work.clouddpc
+09-23 05:54:21.231  6620  6620 D ActivityThread: Package [com.biolog.biolog_mobile] reported as REPLACED, but missing application info. Assuming REMOVED.
+09-23 05:54:21.232  6043  6043 D AppSearchAppsIndexerManagerS: userid in package receiver: 10219
+09-23 05:54:21.246  6430  6496 W HWUI    : Image decoding logging dropped!
+09-23 05:54:21.246  6043  6241 D BackgroundInstallControlService: Package event received: 0
+09-23 05:54:21.246  6430  6496 D AlphabeticIndexCompat: computeSectionName: cs: biolog_mobile sectionName: B
+09-23 05:54:21.247  6430  6430 D AllAppsStore: setApps: apps.length=22
+09-23 05:54:21.247  6430  6430 D AllAppsStore: notifyUpdate: notifying listeners
+09-23 05:54:21.247  6430  6430 D ActivityAllAppsContainerView: onAppsUpdated; number of apps: 22
+09-23 05:54:21.247  6430  6430 D ActivityAllAppsContainerView: rebindAdapters: force: false
+09-23 05:54:21.247  6430  6430 D ActivityAllAppsContainerView: rebindAdapters: Not needed.
+09-23 05:54:21.248  6430  6430 D StatsLog: LAUNCHER_ALLAPPS_COUNT
+09-23 05:54:21.248  6430  6430 D AlphabeticalAppsList: Clearing FastScrollerSections.
+09-23 05:54:21.248  6430  6430 D AlphabeticalAppsList: Adding apps with sections. HasPrivateApps: false
+09-23 05:54:21.248  6430  6430 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: A with appInfoTitle: ASU NFC
+09-23 05:54:21.248  6430  6430 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: B with appInfoTitle: biolog_mobile
+09-23 05:54:21.248  6430  6430 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: C with appInfoTitle: Calendar
+09-23 05:54:21.248  6430  6430 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: D with appInfoTitle: Drive
+09-23 05:54:21.248  6430  6430 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: F with appInfoTitle: Files
+09-23 05:54:21.248  6430  6430 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: G with appInfoTitle: Gmail
+09-23 05:54:21.248  6430  6430 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: M with appInfoTitle: Maps
+09-23 05:54:21.248  6430  6430 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: P with appInfoTitle: Phone
+09-23 05:54:21.248  6430  6430 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: S with appInfoTitle: Safety
+09-23 05:54:21.248  6430  6430 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: T with appInfoTitle: TMoble
+09-23 05:54:21.248  6430  6430 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: Y with appInfoTitle: YouTube
+09-23 05:54:21.248  6430  6430 D AlphabeticalAppsList: Adding FastScrollSection duplicate to scroll to the bottom.
+09-23 05:54:21.248  6430  6430 D AlphabeticalAppsList: Clearing FastScrollerSections.
+09-23 05:54:21.248  6430  6430 D AlphabeticalAppsList: Adding apps with sections. HasPrivateApps: false
+09-23 05:54:21.248  6430  6430 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: A with appInfoTitle: ASU NFC
+09-23 05:54:21.248  6430  6430 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: B with appInfoTitle: biolog_mobile
+09-23 05:54:21.248  6430  6430 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: C with appInfoTitle: Calendar
+09-23 05:54:21.248  6430  6430 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: D with appInfoTitle: Drive
+09-23 05:54:21.248  6430  6430 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: F with appInfoTitle: Files
+09-23 05:54:21.248  6430  6430 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: G with appInfoTitle: Gmail
+09-23 05:54:21.248  6430  6430 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: M with appInfoTitle: Maps
+09-23 05:54:21.248  6430  6430 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: P with appInfoTitle: Phone
+09-23 05:54:21.248  6430  6430 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: S with appInfoTitle: Safety
+09-23 05:54:21.248  6430  6430 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: T with appInfoTitle: TMoble
+09-23 05:54:21.248  6430  6430 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: Y with appInfoTitle: YouTube
+09-23 05:54:21.248  6430  6430 D AlphabeticalAppsList: Adding FastScrollSection duplicate to scroll to the bottom.
+09-23 05:54:21.250  6416  6416 D CarrierSvcBindHelper: onPackageUpdateFinished: com.biolog.biolog_mobile
+09-23 05:54:21.252  6430  6430 D b/387844520: getOutlineOffsetX: measured width = 173, mNormalizedIconSize = 159, last updated width = 173
+09-23 05:54:21.253  6043  6043 D BackupManagerConstants: getFullBackupIntervalMilliseconds(...) returns 86400000
+09-23 05:54:21.253  6043  6043 D BackupManagerConstants: getFullBackupRequiredNetworkType(...) returns 2
+09-23 05:54:21.253  6043  6043 D BackupManagerConstants: getFullBackupRequireCharging(...) returns true
+09-23 05:54:21.254  6043  6241 D BackgroundInstallControlService: Package event received: 0
+09-23 05:54:21.254  6416  6416 D CarrierSvcBindHelper: No carrier app for: 0
+09-23 05:54:21.255  6416  6416 D CarrierSvcBindHelper: onPackageModified: com.biolog.biolog_mobile
+09-23 05:54:21.255  6416  6416 D CarrierSvcBindHelper: No carrier app for: 0
+09-23 05:54:21.256  6043  6346 W ActivityTaskManager: callingPackage for (uid=2000, pid=11294) has no WPC
+09-23 05:54:21.258  6043  6346 I system_server: AssetManager2(0xb400007666a6d618) locale list changing from [] to [en-US]
+09-23 05:54:21.261  6043  6346 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10219, packageName = null, attributionTag = null, token = android.os.Binder@76652d1, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+09-23 05:54:21.261  6043  6346 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_USER_ASPECT_RATIO_OVERRIDE
+09-23 05:54:21.268  6043  6346 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_USER_ASPECT_RATIO_FULLSCREEN_OVERRIDE
+09-23 05:54:21.268  6043  6346 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_RESIZEABLE_ACTIVITY_OVERRIDES
+09-23 05:54:21.268  6043  6346 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_MIN_ASPECT_RATIO_OVERRIDE
+09-23 05:54:21.273  6416  6416 E SmsApplication: com.google.android.apps.messaging lost android:read_cell_broadcasts:  (fixing)
+09-23 05:54:21.273  6043  7039 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 10147, code = READ_CELL_BROADCASTS, mode = allow, callingUid = 1001, oldMode = allow
+09-23 05:54:21.275  6043  7036 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = READ_SMS, mode = allow, callingUid = 1001, oldMode = allow
+09-23 05:54:21.278  6043  7246 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = RECEIVE_SMS, mode = allow, callingUid = 1001, oldMode = allow
+09-23 05:54:21.278  6043  7039 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = RECEIVE_WAP_PUSH, mode = allow, callingUid = 1001, oldMode = allow
+09-23 05:54:21.279  6043  7039 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = SEND_SMS, mode = allow, callingUid = 1001, oldMode = allow
+09-23 05:54:21.280  6043  7036 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = READ_CELL_BROADCASTS, mode = allow, callingUid = 1001, oldMode = allow
+09-23 05:54:21.282  6043  6346 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_ORIENTATION_OVERRIDE
+09-23 05:54:21.282  6043  6043 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.282  6043  6043 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.282  6043  6043 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.283  6043  6043 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.283  6043  6043 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.283  6043  6043 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.283  6043  6043 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.283  6043  6043 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.286  6416  6416 E SmsApplication: com.google.android.apps.messaging lost android:read_cell_broadcasts:  (fixing)
+09-23 05:54:21.286  6043  7246 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 10147, code = READ_CELL_BROADCASTS, mode = allow, callingUid = 1001, oldMode = allow
+09-23 05:54:21.287  6043  7246 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = READ_SMS, mode = allow, callingUid = 1001, oldMode = allow
+09-23 05:54:21.288  6043  7036 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = RECEIVE_SMS, mode = allow, callingUid = 1001, oldMode = allow
+09-23 05:54:21.288   513   781 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+09-23 05:54:21.288  6043  7246 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = RECEIVE_WAP_PUSH, mode = allow, callingUid = 1001, oldMode = allow
+09-23 05:54:21.288  6043  7246 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = SEND_SMS, mode = allow, callingUid = 1001, oldMode = allow
+09-23 05:54:21.288  6043  7246 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = READ_CELL_BROADCASTS, mode = allow, callingUid = 1001, oldMode = allow
+09-23 05:54:21.290  6043  6346 I ActivityTaskManager: START u0 {flg=0x10000000 xflg=0x5 cmp=com.biolog.biolog_mobile/.MainActivity} with LAUNCH_SINGLE_TOP from uid 2000 (BAL_ALLOW_PERMISSION) result code=0
+09-23 05:54:21.290  6287  6326 V WindowManagerShell: Transition requested (#22): android.os.BinderProxy@36548bc TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=38 effectiveUid=10219 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=com.biolog.biolog_mobile/.MainActivity } baseActivity=ComponentInfo{com.biolog.biolog_mobile/com.biolog.biolog_mobile.MainActivity} topActivity=ComponentInfo{com.biolog.biolog_mobile/com.biolog.biolog_mobile.MainActivity} origActivity=null realActivity=ComponentInfo{com.biolog.biolog_mobile/com.biolog.biolog_mobile.MainActivity} numActivities=1 lastActiveTime=4915774 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@bb17045} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 136 - 0, 0) topActivityInfo=ActivityInfo{520039a com.biolog.biolog_mobile.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false isActivityStackTransparent=false lastNonFullscreenBounds=Rect(276, 696 - 805, 1776) capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=-9 topActivityRequestOpenInBrowserEducationTimestamp=0 appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false eligibleForLetterboxEducation= false isLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 0 - 1080, 2400) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null cameraCompatTaskInfo=CameraCompatTaskInfo { freeformCameraCompatMode=inactive}} topActivityMainWindowFrame=null}, pipChange = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 22 }
+09-23 05:54:21.290  6287  6326 D ShellSplitScreen: logExit: no-op, mLoggerSessionId is null
+09-23 05:54:21.291  6287  6480 I ndroid.systemui: AssetManager2(0xb400007666ad76f8) locale list changing from [] to [en-US]
+09-23 05:54:21.291  6043  6071 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10219, packageName = null, attributionTag = null, token = android.os.Binder@76652d1, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+09-23 05:54:21.292  6430  6430 W SplitSelectStateCtor: Missing session instanceIds
+09-23 05:54:21.292  6430  6430 D StatsLog: LAUNCHER_SPLIT_SELECTION_EXIT_INTERRUPTED
+09-23 05:54:21.293  6043  6658 I AppsFilter: interaction: PackageSetting{8cf4eb2 com.asu.asu_nfc_app/10215} -> PackageSetting{72d302f com.biolog.biolog_mobile/10219} BLOCKED
+09-23 05:54:21.294  6043  6658 I AppsFilter: interaction: PackageSetting{fa9013f com.enasyone.asuphotodemo/10213} -> PackageSetting{72d302f com.biolog.biolog_mobile/10219} BLOCKED
+09-23 05:54:21.295  6287  6326 D WindowManagerShell: setLauncherKeepClearAreaHeight: visible=false, height=527
+09-23 05:54:21.295  6043  6043 D AppSearchAppsIndexerManagerS: userid in package receiver: 10219
+09-23 05:54:21.298   513   513 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+09-23 05:54:21.298  6043  6043 W AlarmManager: Package com.biolog.biolog_mobile, uid 10219 lost permission to set exact alarms!
+09-23 05:54:21.300  6043  6241 D BackgroundInstallControlService: Package event received: 0
+09-23 05:54:21.302  6043  6330 D CompatChangeReporter: Compat change id reported: 377864165; UID 10219; state: ENABLED
+09-23 05:54:21.303  6620  6620 I SafetyLabelChangedBroadcastReceiver: received broadcast packageName: com.biolog.biolog_mobile, current user: UserHandle{0}, packageChangeEvent: UPDATE, intent user: UserHandle{0}
+09-23 05:54:21.303  6043  6220 I AppWidgetServiceImpl: Received broadcast: android.intent.action.PACKAGE_UNSTOPPED on user 0
+09-23 05:54:21.304  6043  6220 I AppWidgetServiceImpl: Updating package stopped masked state for uid 10219 package com.biolog.biolog_mobile isStopped false
+09-23 05:54:21.305  6287  6481 W HWUI    : Image decoding logging dropped!
+09-23 05:54:21.319  5659  5659 D Zygote  : Forked child process 11300
+09-23 05:54:21.320  6043  6084 I ActivityManager: Start proc 11300:com.biolog.biolog_mobile/u0a219 for next-top-activity {com.biolog.biolog_mobile/com.biolog.biolog_mobile.MainActivity}
+09-23 05:54:21.320  6287  6481 D SplashScreenView: Build android.window.SplashScreenView{a17ce16 V.E...... ......ID 0,0-0,0}
+09-23 05:54:21.320  6287  6481 D SplashScreenView: Icon: view: android.widget.ImageView{7f1a397 V.ED..... ......I. 0,0-0,0 #1020542 android:id/splashscreen_icon_view} drawable: com.android.wm.shell.startingsurface.SplashscreenIconDrawableFactory$ImmobileIconDrawable@f84d984 size: 420
+09-23 05:54:21.320  6287  6481 D SplashScreenView: Branding: view: android.view.View{5ef056d G.ED..... ......I. 0,0-0,0 #1020541 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+09-23 05:54:21.323  6416  6626 D ImsResolver: maybeAddedImsService, packageName: com.biolog.biolog_mobile
+09-23 05:54:21.324  6416  6626 V ImsResolver: searchForImsServices: package=com.biolog.biolog_mobile, users=[UserHandle{0}]
+09-23 05:54:21.324  6416  6626 V ImsResolver: searchForImsServices: package=com.biolog.biolog_mobile, users=[UserHandle{0}]
+09-23 05:54:21.326  5660 10364 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.332  6416  6416 W VvmPkgInstalledRcvr: carrierVvmPkgAdded: carrier vvm packages doesn't contain com.biolog.biolog_mobile
+09-23 05:54:21.332  6043  6084 I ActivityManager: ProcessObserver broadcast disabled
+09-23 05:54:21.338 11300 11300 I g.biolog_mobile: Late-enabling -Xcheck:jni
+09-23 05:54:21.352  6416  6416 D ActivityThread: Package [com.biolog.biolog_mobile] reported as REPLACED, but missing application info. Assuming REMOVED.
+09-23 05:54:21.364  6043  6167 V AccessibilityManagerService: onUserStateChangedLocked for userId: 0, forceUpdate: false
+09-23 05:54:21.364  6416  6416 D SatelliteController: packageStateChanged: package:com.biolog.biolog_mobile DefaultSmsPackageName:com.google.android.apps.messaging
+09-23 05:54:21.365  6416  6416 V SatelliteController: Neither SMS or SatelliteGateway package
+09-23 05:54:21.386  6620  8962 I PermissionControllerServiceImpl: Updating user sensitive for uid 10219
+09-23 05:54:21.389 11300 11300 I g.biolog_mobile: Using CollectorTypeCMC GC.
+09-23 05:54:21.394   518   552 I adbd    : jdwp connection from 11300
+09-23 05:54:21.395  6287  6294 I ndroid.systemui: Background concurrent mark compact GC freed 2309KB AllocSpace bytes, 5(1444KB) LOS objects, 50% free, 22MB/44MB, paused 229us,893us total 258.853ms
+09-23 05:54:21.400  6043  9137 E RoleControllerServiceImpl: Default/fallback role holder package doesn't qualify for the role, package: com.google.android.gms, role: android.app.role.WALLET
+09-23 05:54:21.404  6043  9137 W SignedPackage: Cannot get ApplicationInfo for package: com.google.android.devicelockcontroller
+09-23 05:54:21.410  6287  6492 V WindowManagerShell: onTransitionReady(transaction=25954487370515)
+09-23 05:54:21.411  6287  6326 V WindowManagerShell: onTransitionReady (#22) android.os.BinderProxy@36548bc: {id=22 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[
+09-23 05:54:21.411  6287  6326 V WindowManagerShell:         {m=OPEN f=NONE leash=Surface(name=Task=38)/@0xd4156fa sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0 taskParent=-1},
+09-23 05:54:21.411  6287  6326 V WindowManagerShell:         {m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0xcae64ab sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0 taskParent=-1},
+09-23 05:54:21.411  6287  6326 V WindowManagerShell:         {m=TO_BACK f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{77739cb showWhenLocked=false})/@0x2f2708 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0}
+09-23 05:54:21.411  6287  6326 V WindowManagerShell:     ]}
+09-23 05:54:21.411  6043  6068 V WindowManager: Sent Transition (#22) createdAt=09-23 05:54:21.269 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=38 effectiveUid=10219 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=com.biolog.biolog_mobile/.MainActivity } baseActivity=ComponentInfo{com.biolog.biolog_mobile/com.biolog.biolog_mobile.MainActivity} topActivity=ComponentInfo{com.biolog.biolog_mobile/com.biolog.biolog_mobile.MainActivity} origActivity=null realActivity=ComponentInfo{com.biolog.biolog_mobile/com.biolog.biolog_mobile.MainActivity} numActivities=1 lastActiveTime=4915774 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{ab9638e Task{a70906b #38 type=standard I=com.biolog.biolog_mobile/.MainActivity}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 136 - 0, 0) topActivityInfo=ActivityInfo{b18d7af com.biolog.biolog_mobile.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false isActivityStackTransparent=false lastNonFullscreenBounds=Rect(276, 696 - 805, 1776) capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=-9 topActivityRequestOpenInBrowserEducationTimestamp=0 appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false eligibleForLetterboxEducation= false isLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 0 - 1080, 2400) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null cameraCompatTaskInfo=CameraCompatTaskInfo { freeformCameraCompatMode=inactive}} topActivityMainWindowFrame=null}, pipChange = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 22 }
+09-23 05:54:21.411  6043  6068 V WindowManager:     startWCT=WindowContainerTransaction { changes= {} hops= [] errorCallbackToken=null taskFragmentOrganizer=null }
+09-23 05:54:21.411  6287  6326 V WindowManagerShell: Playing animation for (#22) android.os.BinderProxy@36548bc@0
+09-23 05:54:21.411  6287  6326 V ShellRecents: RecentsTransitionHandler.startAnimation: no controller found
+09-23 05:54:21.411  6043  6068 V WindowManager:     info={id=22 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[
+09-23 05:54:21.411  6043  6068 V WindowManager:         {WCT{RemoteToken{ab9638e Task{a70906b #38 type=standard I=com.biolog.biolog_mobile/.MainActivity}}} m=OPEN f=NONE leash=Surface(name=Task=38)/@0x230a290 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0 taskParent=-1},
+09-23 05:54:21.411  6043  6068 V WindowManager:         {WCT{RemoteToken{e88198f Task{56eedba #1 type=home}}} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0xe4eb17e sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0 taskParent=-1},
+09-23 05:54:21.411  6043  6068 V WindowManager:         {m=TO_BACK f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{77739cb showWhenLocked=false})/@0x6805739 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0}
+09-23 05:54:21.411  6043  6068 V WindowManager:     ]}
+09-23 05:54:21.411  6287  6326 V WindowManagerShell: Transition doesn't have explicit remote, search filters for match for {id=22 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{m=OPEN f=NONE leash=Surface(name=Task=38)/@0xd4156fa sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0 taskParent=-1},{m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0xcae64ab sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0 taskParent=-1},{m=TO_BACK f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{77739cb showWhenLocked=false})/@0x2f2708 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0}]}
+09-23 05:54:21.411  6287  6326 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=undefined independent=true modes=[CLOSE,TO_BACK] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=null launchCookie=null taskFragmentToken=android.os.BinderProxy@2d3ddee windowingMode=undefined}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@5e8328f, appThread = android.app.IApplicationThread$Stub$Proxy@cdf491c, debugName = overlayBackTransition }}
+09-23 05:54:21.411  6287  6326 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=dream independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined},{atype=home independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@b00d925, appThread = android.app.IApplicationThread$Stub$Proxy@923eafa, debugName = LauncherToDream }}
+09-23 05:54:21.411  6287  6326 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null windowingMode=undefined},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined},{NOT atype=undefined independent=true modes=[] flags=NONE mustBeTask=true order=ANY topActivity=null launchCookie=null customAnim=true windowingMode=undefined}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@d3f68ab, appThread = android.app.IApplicationThread$Stub$Proxy@525db08, debugName = QuickstepLaunchHome }}
+09-23 05:54:21.411  6287  6326 V WindowManagerShell:  Delegate animation for (#22) to null
+09-23 05:54:21.411  6287  6326 V WindowManagerShell: start default transition animation, info = {id=22 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{m=OPEN f=NONE leash=Surface(name=Task=38)/@0xd4156fa sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0 taskParent=-1},{m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0xcae64ab sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0 taskParent=-1},{m=TO_BACK f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{77739cb showWhenLocked=false})/@0x2f2708 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0}]}
+09-23 05:54:21.411  6287  6326 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@7bde8c6 animAttr=0x13 type=OPEN isEntrance=false
+09-23 05:54:21.411  6287  6326 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@7eca087 animAttr=0x12 type=OPEN isEntrance=true
+09-23 05:54:21.413  6287  6326 V WindowManagerShell:  animated by com.android.wm.shell.transition.DefaultTransitionHandler@ceed8f4
+09-23 05:54:21.418  6043  6167 W MagnificationConnectionManager: requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+09-23 05:54:21.418  6043  6043 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.418  6043  6043 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.418  6043  6043 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.418  6043  6043 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.418  6043  6043 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.418  6043  6043 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.418  6043  6043 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.418  6043  6043 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.428 11300 11300 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+09-23 05:54:21.442  6043  6346 W ActivityTaskManager: takeTaskSnapshot: taskId=24 not found or not visible
+09-23 05:54:21.453  6043  6241 D BackgroundInstallControlService: Package event received: 0
+09-23 05:54:21.459 11300 11300 D nativeloader: Load libstats_jni.so using APEX ns com_android_os_statsd for caller /apex/com.android.os.statsd/javalib/framework-statsd.jar: ok
+09-23 05:54:21.473 11300 11300 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+09-23 05:54:21.473 11300 11300 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+09-23 05:54:21.521  6043  6054 I system_server: Background concurrent mark compact GC freed 24MB AllocSpace bytes, 71(1932KB) LOS objects, 43% free, 30MB/54MB, paused 1.111ms,1.825ms total 344.493ms
+09-23 05:54:21.523  6043  6055 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+09-23 05:54:21.559  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a83d78) locale list changing from [] to [en-US]
+09-23 05:54:21.564  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a749b8) locale list changing from [] to [en-US]
+09-23 05:54:21.565  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a7fbd8) locale list changing from [] to [en-US]
+09-23 05:54:21.565  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a80218) locale list changing from [] to [en-US]
+09-23 05:54:21.567  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a64fb8) locale list changing from [] to [en-US]
+09-23 05:54:21.568  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a77898) locale list changing from [] to [en-US]
+09-23 05:54:21.572  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a72438) locale list changing from [] to [en-US]
+09-23 05:54:21.573  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a7f598) locale list changing from [] to [en-US]
+09-23 05:54:21.574  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a7f8b8) locale list changing from [] to [en-US]
+09-23 05:54:21.574  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a5ebb8) locale list changing from [] to [en-US]
+09-23 05:54:21.576  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a7c9d8) locale list changing from [] to [en-US]
+09-23 05:54:21.576  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a80538) locale list changing from [] to [en-US]
+09-23 05:54:21.577  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a817f8) locale list changing from [] to [en-US]
+09-23 05:54:21.577  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a75c78) locale list changing from [] to [en-US]
+09-23 05:54:21.578  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a6feb8) locale list changing from [] to [en-US]
+09-23 05:54:21.581  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a74378) locale list changing from [] to [en-US]
+09-23 05:54:21.583  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a6f878) locale list changing from [] to [en-US]
+09-23 05:54:21.585  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a70e58) locale list changing from [] to [en-US]
+09-23 05:54:21.591  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a61458) locale list changing from [] to [en-US]
+09-23 05:54:21.593  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a5cf98) locale list changing from [] to [en-US]
+09-23 05:54:21.594  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a77578) locale list changing from [] to [en-US]
+09-23 05:54:21.596  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a6e298) locale list changing from [] to [en-US]
+09-23 05:54:21.597  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a77258) locale list changing from [] to [en-US]
+09-23 05:54:21.600  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a704f8) locale list changing from [] to [en-US]
+09-23 05:54:21.601  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a6ef18) locale list changing from [] to [en-US]
+09-23 05:54:21.601  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a5d8f8) locale list changing from [] to [en-US]
+09-23 05:54:21.602  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a70818) locale list changing from [] to [en-US]
+09-23 05:54:21.603  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a6b3b8) locale list changing from [] to [en-US]
+09-23 05:54:21.604  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a6b9f8) locale list changing from [] to [en-US]
+09-23 05:54:21.605  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a6dc58) locale list changing from [] to [en-US]
+09-23 05:54:21.608  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a6f238) locale list changing from [] to [en-US]
+09-23 05:54:21.610  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a781f8) locale list changing from [] to [en-US]
+09-23 05:54:21.610  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a5ad38) locale list changing from [] to [en-US]
+09-23 05:54:21.613  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a6c998) locale list changing from [] to [en-US]
+09-23 05:54:21.618  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a762b8) locale list changing from [] to [en-US]
+09-23 05:54:21.620  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a71df8) locale list changing from [] to [en-US]
+09-23 05:54:21.621  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a71ad8) locale list changing from [] to [en-US]
+09-23 05:54:21.625  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a64658) locale list changing from [] to [en-US]
+09-23 05:54:21.632  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a72d98) locale list changing from [] to [en-US]
+09-23 05:54:21.633  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a63cf8) locale list changing from [] to [en-US]
+09-23 05:54:21.634  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a6a418) locale list changing from [] to [en-US]
+09-23 05:54:21.636  6828  6828 W MediaProvider: WorkProfileOwnerApps cache is empty
+09-23 05:54:21.637  6828  6828 D PickerSyncLockManager: Trying to acquire lock com.android.providers.media.photopicker.sync.CloseableReentrantLock@c5f1f39[Unlocked]. Lock Name = CLOUD_PROVIDER_LOCK. Threads that may be waiting to acquire this lock = []
+09-23 05:54:21.637  6828  6828 D CloseableReentrantLock: Successfully acquired lock com.android.providers.media.photopicker.sync.CloseableReentrantLock@c5f1f39[Locked by thread main]. Lock Name = CLOUD_PROVIDER_LOCK. Threads that may be waiting to acquire this lock = []
+09-23 05:54:21.638  6851  6851 I fiis    : (REDACTED) O received %s
+09-23 05:54:21.638  6828  6828 D CloseableReentrantLock: Successfully released lock com.android.providers.media.photopicker.sync.CloseableReentrantLock@c5f1f39[Unlocked]. Lock Name = CLOUD_PROVIDER_LOCK. Threads that may be waiting to acquire this lock = []
+09-23 05:54:21.648  6043  7246 D ActivityManager: sync unfroze 6901 com.google.android.gms for 6
+09-23 05:54:21.657  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a62d58) locale list changing from [] to [en-US]
+09-23 05:54:21.658  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a64c98) locale list changing from [] to [en-US]
+09-23 05:54:21.658  6901  6901 D ActivityThread: Package [com.biolog.biolog_mobile] reported as REPLACED, but missing application info. Assuming REMOVED.
+09-23 05:54:21.659  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a63398) locale list changing from [] to [en-US]
+09-23 05:54:21.660  6851  6851 I fiis    : (REDACTED) O received %s
+09-23 05:54:21.662  6851  6851 I fiis    : (REDACTED) O received %s
+09-23 05:54:21.664  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a67218) locale list changing from [] to [en-US]
+09-23 05:54:21.664 11300 11300 D nativeloader: Configuring clns-9 for other apk /data/app/~~U_XqKTcUK0jXnOclgVC54g==/com.biolog.biolog_mobile-AkQ6bbXDEeitrsGFSZmHzg==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~U_XqKTcUK0jXnOclgVC54g==/com.biolog.biolog_mobile-AkQ6bbXDEeitrsGFSZmHzg==/lib/arm64:/data/app/~~U_XqKTcUK0jXnOclgVC54g==/com.biolog.biolog_mobile-AkQ6bbXDEeitrsGFSZmHzg==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/com.biolog.biolog_mobile
+09-23 05:54:21.672  6043  7039 D ActivityManager: sync unfroze 9309 com.google.android.googlequicksearchbox:search for 6
+09-23 05:54:21.673 11300 11300 I g.biolog_mobile: AssetManager2(0xb400007666a5fe78) locale list changing from [] to [en-US]
+09-23 05:54:21.673  6043  6241 D BackgroundInstallControlService: Package event received: 0
+09-23 05:54:21.676 11300 11300 V GraphicsEnvironment: Currently set values for:
+09-23 05:54:21.676 11300 11300 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+09-23 05:54:21.676 11300 11300 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+09-23 05:54:21.676 11300 11300 V GraphicsEnvironment: com.biolog.biolog_mobile is not listed in per-application setting
+09-23 05:54:21.676 11300 11300 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+09-23 05:54:21.676 11300 11300 V GraphicsEnvironment: com.biolog.biolog_mobile is not listed in ANGLE allowlist or settings, returning default
+09-23 05:54:21.676 11300 11300 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+09-23 05:54:21.677  9309  9309 D ActivityThread: Package [com.biolog.biolog_mobile] reported as REPLACED, but missing application info. Assuming REMOVED.
+09-23 05:54:21.687  6043  6195 D ConnectivityService: releasing NetworkRequest [ REQUEST id=179, [ Transports: CELLULAR Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VPN&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10146 RequestorUid: 10146 RequestorPkg: com.google.android.googlequicksearchbox UnderlyingNetworks: Null] ] (release request)
+09-23 05:54:21.688  6043  6195 I ConnectivityService: Update capabilities for net 103 : -FOREGROUND
+09-23 05:54:21.696  5661  5682 I netd    : networkSetPermissionForNetwork(103, 1) <5.58ms>
+09-23 05:54:21.701  6043  7246 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ENABLE_FAKE_FOCUS
+09-23 05:54:21.703  6043  6195 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.703  6043  6195 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:21.707  6043  6241 D BackgroundInstallControlService: Package event received: 0
+09-23 05:54:21.708  6043  6241 D BackgroundInstallControlService: Package event received: 0
+09-23 05:54:21.710 11300 11319 I DisplayManager: Choreographer implicitly registered for the refresh rate.
+09-23 05:54:21.716  6287  6326 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#22) android.os.BinderProxy@36548bc@0
+09-23 05:54:21.717 11300 11300 I g.biolog_mobile: AssetManager2(0xb400007666a5f838) locale list changing from [] to [en-US]
+09-23 05:54:21.717  6043  6068 V WindowManager: Finish Transition (#22): created at 09-23 05:54:21.269 collect-started=0.025ms request-sent=20.883ms started=22.64ms ready=90.382ms sent=139.922ms commit=5.649ms finished=448.312ms
+09-23 05:54:21.718  6430  6430 D VRI[NexusLauncherActivity]: visibilityChanged oldVisibility=true newVisibility=false
+09-23 05:54:21.720  6287  6326 V WindowManagerShell: Track 0 became idle
+09-23 05:54:21.720  6287  6326 V WindowManagerShell: All active transition animations finished
+09-23 05:54:21.726 11300 11300 E ashmem  : Pinning is deprecated since Android Q. Please use trim or other methods.
+09-23 05:54:21.732  6430  6430 D NexusLauncherModelDelegate: notifySmartspaceEvent: SmartspaceTargetEvent{mSmartspaceTarget=null, mSmartspaceActionId='null', mEventType=7}
+09-23 05:54:21.740 11300 11330 D FlutterJNI: Beginning load of flutter...
+09-23 05:54:21.742 11300 11331 I ResourceExtractor: Found extracted resources res_timestamp-1-1790139230764
+09-23 05:54:21.743 11300 11331 I ResourceExtractor: Resource version mismatch res_timestamp-1-1790139261085
+09-23 05:54:21.746  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a65f58) locale list changing from [] to [en-US]
+09-23 05:54:21.748  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a68b18) locale list changing from [] to [en-US]
+09-23 05:54:21.749  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a63078) locale list changing from [] to [en-US]
+09-23 05:54:21.749  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a69dd8) locale list changing from [] to [en-US]
+09-23 05:54:21.756  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a66278) locale list changing from [] to [en-US]
+09-23 05:54:21.758  6535 11324 I Fitness : FitCleanupIntentOperation received Intent android.intent.action.PACKAGE_REMOVED [CONTEXT service_id=17 ]
+09-23 05:54:21.761  6535 11318 I ProximityAuth: [RecentAppsMediator] Package added: (user=UserHandle{0}) com.biolog.biolog_mobile
+09-23 05:54:21.769  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a64978) locale list changing from [] to [en-US]
+09-23 05:54:21.770  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a73a18) locale list changing from [] to [en-US]
+09-23 05:54:21.771  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a5b9b8) locale list changing from [] to [en-US]
+09-23 05:54:21.773  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a5d2b8) locale list changing from [] to [en-US]
+09-23 05:54:21.775  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a5e898) locale list changing from [] to [en-US]
+09-23 05:54:21.777  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a620d8) locale list changing from [] to [en-US]
+09-23 05:54:21.778  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a61db8) locale list changing from [] to [en-US]
+09-23 05:54:21.782 11300 11330 D nativeloader: Load /data/app/~~U_XqKTcUK0jXnOclgVC54g==/com.biolog.biolog_mobile-AkQ6bbXDEeitrsGFSZmHzg==/base.apk!/lib/arm64-v8a/libflutter.so using class loader ns clns-9 (caller=/data/app/~~U_XqKTcUK0jXnOclgVC54g==/com.biolog.biolog_mobile-AkQ6bbXDEeitrsGFSZmHzg==/base.apk): ok
+09-23 05:54:21.782  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a6a0f8) locale list changing from [] to [en-US]
+09-23 05:54:21.782 11300 11330 D FlutterJNI: flutter (null) was loaded normally!
+09-23 05:54:21.785 11300 11345 D skia    : [SkFontMgr Android Parser] '/product/etc/fonts_customization.xml' could not be opened
+09-23 05:54:21.789  6043  7039 W ProcessStats: Tracking association SourceState{44a7db7 com.google.android.googlequicksearchbox:interactor/10146 BFgs #4469} whose proc state 4 is better than process ProcessState{f4145ee com.google.android.googlequicksearchbox:search/10146 pkg=com.google.android.googlequicksearchbox} proc state 15 (0 skipped)
+09-23 05:54:21.789  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a60e18) locale list changing from [] to [en-US]
+09-23 05:54:21.790  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a5bcd8) locale list changing from [] to [en-US]
+09-23 05:54:21.793  6901 11336 I Auth    : [SupervisedAccountIntentOperationV2] onHandleIntent: android.intent.action.PACKAGE_ADDED [CONTEXT service_id=42 ]
+09-23 05:54:21.795 11300 11319 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+09-23 05:54:21.796 11300 11319 I EGL_emulation: Opening libGLESv2_emulation.so
+09-23 05:54:21.807  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a61778) locale list changing from [] to [en-US]
+09-23 05:54:21.808  9309  9344 W adua    : Abort, client detached.
+09-23 05:54:21.810  9309  9344 W adua    : Abort, client detached.
+09-23 05:54:21.811 11300 11319 W HWUI    : Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+09-23 05:54:21.811 11300 11319 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+09-23 05:54:21.814  9309  9344 W adua    : Abort, client detached.
+09-23 05:54:21.870  6901 10966 I gle.android.gms: AssetManager2(0xb400007666a72438) locale list changing from [] to [en-US]
+09-23 05:54:21.921  6901 11338 W SQLiteLog: (28) double-quoted string literal: "com.biolog.biolog_mobile"
+09-23 05:54:21.925  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a6fb98) locale list changing from [] to [en-US]
+09-23 05:54:21.925  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a6c678) locale list changing from [] to [en-US]
+09-23 05:54:21.927  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a67538) locale list changing from [] to [en-US]
+09-23 05:54:21.929  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a5e258) locale list changing from [] to [en-US]
+09-23 05:54:21.936  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a5b9b8) locale list changing from [] to [en-US]
+09-23 05:54:21.937  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a79198) locale list changing from [] to [en-US]
+09-23 05:54:21.939  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a684d8) locale list changing from [] to [en-US]
+09-23 05:54:21.944  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a639d8) locale list changing from [] to [en-US]
+09-23 05:54:21.945  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a64018) locale list changing from [] to [en-US]
+09-23 05:54:21.946  6901  6901 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.feedback.internal.IFeedbackService dat=chimera-action:/... xflg=0x4 cmp=com.google.android.gms/.chimera.GmsBoundBrokerService }
+09-23 05:54:21.946  6901  6901 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.feedback.internal.IFeedbackService dat=chimera-action:/... xflg=0x4 cmp=com.google.android.gms/.chimera.GmsBoundBrokerService }
+09-23 05:54:21.948  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a655f8) locale list changing from [] to [en-US]
+09-23 05:54:21.949  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a66278) locale list changing from [] to [en-US]
+09-23 05:54:21.950  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a69dd8) locale list changing from [] to [en-US]
+09-23 05:54:21.950  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a63078) locale list changing from [] to [en-US]
+09-23 05:54:21.951  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a64978) locale list changing from [] to [en-US]
+09-23 05:54:21.951  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a75958) locale list changing from [] to [en-US]
+09-23 05:54:21.953  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a67218) locale list changing from [] to [en-US]
+09-23 05:54:21.954  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a63398) locale list changing from [] to [en-US]
+09-23 05:54:21.955  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a65f58) locale list changing from [] to [en-US]
+09-23 05:54:21.956  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a6a418) locale list changing from [] to [en-US]
+09-23 05:54:21.956  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a62d58) locale list changing from [] to [en-US]
+09-23 05:54:21.957  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a72d98) locale list changing from [] to [en-US]
+09-23 05:54:21.957  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a64658) locale list changing from [] to [en-US]
+09-23 05:54:21.958  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a78518) locale list changing from [] to [en-US]
+09-23 05:54:21.965  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a74698) locale list changing from [] to [en-US]
+09-23 05:54:21.969  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a71ad8) locale list changing from [] to [en-US]
+09-23 05:54:21.972  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a668b8) locale list changing from [] to [en-US]
+09-23 05:54:21.973  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a762b8) locale list changing from [] to [en-US]
+09-23 05:54:21.976  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a71df8) locale list changing from [] to [en-US]
+09-23 05:54:21.977  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a5ad38) locale list changing from [] to [en-US]
+09-23 05:54:21.977  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a6f238) locale list changing from [] to [en-US]
+09-23 05:54:21.978  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a74058) locale list changing from [] to [en-US]
+09-23 05:54:21.981  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a6b9f8) locale list changing from [] to [en-US]
+09-23 05:54:21.982  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a6b3b8) locale list changing from [] to [en-US]
+09-23 05:54:21.982  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a6d618) locale list changing from [] to [en-US]
+09-23 05:54:21.983  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a5d8f8) locale list changing from [] to [en-US]
+09-23 05:54:21.984  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a70818) locale list changing from [] to [en-US]
+09-23 05:54:21.984  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a604b8) locale list changing from [] to [en-US]
+09-23 05:54:21.987  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a77258) locale list changing from [] to [en-US]
+09-23 05:54:21.987  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a77578) locale list changing from [] to [en-US]
+09-23 05:54:21.990  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a61458) locale list changing from [] to [en-US]
+09-23 05:54:21.992  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a70e58) locale list changing from [] to [en-US]
+09-23 05:54:21.993  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a70b38) locale list changing from [] to [en-US]
+09-23 05:54:21.994  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a6f878) locale list changing from [] to [en-US]
+09-23 05:54:21.996  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a74378) locale list changing from [] to [en-US]
+09-23 05:54:21.997  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a5fb58) locale list changing from [] to [en-US]
+09-23 05:54:21.997  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a817f8) locale list changing from [] to [en-US]
+09-23 05:54:21.998  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a80538) locale list changing from [] to [en-US]
+09-23 05:54:21.999  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a7f8b8) locale list changing from [] to [en-US]
+09-23 05:54:22.000  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a7f598) locale list changing from [] to [en-US]
+09-23 05:54:22.000  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a72438) locale list changing from [] to [en-US]
+09-23 05:54:22.001  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a5ebb8) locale list changing from [] to [en-US]
+09-23 05:54:22.001  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a64fb8) locale list changing from [] to [en-US]
+09-23 05:54:22.002  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a77898) locale list changing from [] to [en-US]
+09-23 05:54:22.004  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a7fbd8) locale list changing from [] to [en-US]
+09-23 05:54:22.006  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a76f38) locale list changing from [] to [en-US]
+09-23 05:54:22.006  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a83d78) locale list changing from [] to [en-US]
+09-23 05:54:22.007  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a79e18) locale list changing from [] to [en-US]
+09-23 05:54:22.012  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a75318) locale list changing from [] to [en-US]
+09-23 05:54:22.014  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a7adb8) locale list changing from [] to [en-US]
+09-23 05:54:22.014  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a72758) locale list changing from [] to [en-US]
+09-23 05:54:22.017  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a7a458) locale list changing from [] to [en-US]
+09-23 05:54:22.019  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a7f278) locale list changing from [] to [en-US]
+09-23 05:54:22.020  6802  6926 I .apps.wellbeing: AssetManager2(0xb400007666a7d658) locale list changing from [] to [en-US]
+09-23 05:54:22.143  6043  6932 E AppOps  : attributionTag VCN not declared in manifest of android
+09-23 05:54:22.287  6043  6189 D WifiClientModeImpl[4703635:wlan0]: updateLinkLayerStatsRssiSpeedFrequencyCapabilities rssi=-50 TxLinkspeed=1 freq=2447 RxLinkSpeed=2
+09-23 05:54:22.287  6043  6189 D WifiDataStall: tx tput in kbps: 11000
+09-23 05:54:22.287  6043  6189 D WifiDataStall: rx tput in kbps: 11000
+09-23 05:54:22.287  6043  6189 V WifiConfigManager: Updating scan detail cache freq=2447 BSSID=00:13:10:85:fe:01 RSSI=-50 for "AndroidWifi"NONE
+09-23 05:54:22.287  6043  6189 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+09-23 05:54:22.287  6043  6189 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+09-23 05:54:22.287  6043  6189 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+09-23 05:54:22.287  6043  6189 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+09-23 05:54:22.287  6043  6189 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+09-23 05:54:22.287  6043  6189 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+09-23 05:54:22.287  6043  6189 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+09-23 05:54:22.287  6043  6189 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+09-23 05:54:22.288  6043  6189 D WifiScoreCard: BSSID update SIGNAL_POLL ID: 468854022 SSID: "AndroidWifi", BSSID: 00:13:10:85:fe:01, MAC: 02:15:b2:00:00:00, IP: /10.0.2.16, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 1Mbps, Tx Link speed: 1Mbps, Max Supported Tx Link speed: 11Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 11Mbps, Frequency: 2447MHz, Net ID: 0, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: 1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none>"AndroidWifi"openMLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>
+09-23 05:54:22.288  6043  6189 D WifiScoreCard: txRate: 1 txSpeed: 1
+09-23 05:54:22.288  6043  6189 D WifiScoreCard: network update SIGNAL_POLL "AndroidWifi" ID: 1738066459 RSSI -50 txSpeed -1
+09-23 05:54:22.288  6043  6189 D WifiClientModeImpl[4703635:wlan0]:  ClientModeImpl$L2ConnectedState screen=on 1 0 "AndroidWifi" 00:13:10:85:fe:01 rssi=-50 f=2447 sc=60 link=1 tx=0.0, 0.0, 0.0 rx=0.0 bcn=0 [on:0 tx:0 rx:0 period:3004] from screen [on:0 period:19394908] score=60
+09-23 05:54:22.413 11300 11331 I ResourceExtractor: Extracted baseline resource assets/flutter_assets/kernel_blob.bin
+09-23 05:54:22.414 11300 11331 I ResourceExtractor: Extracted baseline resource assets/flutter_assets/vm_snapshot_data
+09-23 05:54:22.456 11300 11331 I ResourceExtractor: Extracted baseline resource assets/flutter_assets/isolate_snapshot_data
+09-23 05:54:22.457  6043  6932 D FileUtils: Rounded bytes from 2592632832 to 4000000000
+09-23 05:54:22.464 11300 11300 I g.biolog_mobile: AssetManager2(0xb400007666a5ad38) locale list changing from [] to [en-US]
+09-23 05:54:22.468 11300 11300 W g.biolog_mobile: type=1400 audit(0.0:163): avc:  denied  { read } for  name="max_map_count" dev="proc" ino=16235 scontext=u:r:untrusted_app:s0:c219,c256,c512,c768 tcontext=u:object_r:proc_max_map_count:s0 tclass=file permissive=0 app=com.biolog.biolog_mobile
+09-23 05:54:22.489 11300 11300 D DesktopModeFlags: Toggle override initialized to: OVERRIDE_UNSET
+09-23 05:54:22.516 11300 11349 I flutter : [IMPORTANT:flutter/shell/platform/android/android_context_gl_impeller.cc(104)] Using the Impeller rendering backend (OpenGLES).
+09-23 05:54:22.581 11300 11355 I flutter : The Dart VM service is listening on http://127.0.0.1:39529/ZmdH0mEUuPQ=/
+09-23 05:54:22.767 11300 11300 D nativeloader: Load /data/app/~~U_XqKTcUK0jXnOclgVC54g==/com.biolog.biolog_mobile-AkQ6bbXDEeitrsGFSZmHzg==/base.apk!/lib/arm64-v8a/libdartjni.so using class loader ns clns-9 (caller=/data/app/~~U_XqKTcUK0jXnOclgVC54g==/com.biolog.biolog_mobile-AkQ6bbXDEeitrsGFSZmHzg==/base.apk!classes4.dex): ok
+09-23 05:54:22.769 11300 11300 D nativeloader: Load /data/app/~~U_XqKTcUK0jXnOclgVC54g==/com.biolog.biolog_mobile-AkQ6bbXDEeitrsGFSZmHzg==/base.apk!/lib/arm64-v8a/libsqlcipher.so using class loader ns clns-9 (caller=/data/app/~~U_XqKTcUK0jXnOclgVC54g==/com.biolog.biolog_mobile-AkQ6bbXDEeitrsGFSZmHzg==/base.apk!classes2.dex): ok
+09-23 05:54:22.804 11300 11300 I g.biolog_mobile: hiddenapi: Accessing hidden method Landroid/view/accessibility/AccessibilityNodeInfo;->getSourceNodeId()J (runtime_flags=0, domain=platform, api=unsupported,test-api) from Lio/flutter/view/AccessibilityViewEmbedder$ReflectionAccessors; (domain=app) using reflection: allowed
+09-23 05:54:22.804 11300 11300 I g.biolog_mobile: hiddenapi: Accessing hidden method Landroid/view/accessibility/AccessibilityRecord;->getSourceNodeId()J (runtime_flags=0, domain=platform, api=unsupported) from Lio/flutter/view/AccessibilityViewEmbedder$ReflectionAccessors; (domain=app) using reflection: allowed
+09-23 05:54:22.804 11300 11300 I g.biolog_mobile: hiddenapi: Accessing hidden field Landroid/view/accessibility/AccessibilityNodeInfo;->mChildNodeIds:Landroid/util/LongArray; (runtime_flags=0, domain=platform, api=unsupported) from Lio/flutter/view/AccessibilityViewEmbedder$ReflectionAccessors; (domain=app) using reflection: allowed
+09-23 05:54:22.805 11300 11300 I g.biolog_mobile: hiddenapi: Accessing hidden method Landroid/util/LongArray;->get(I)J (runtime_flags=0, domain=platform, api=unsupported) from Lio/flutter/view/AccessibilityViewEmbedder$ReflectionAccessors; (domain=app) using reflection: allowed
+09-23 05:54:22.828 11300 11300 D FlutterRenderer: Width is zero. 0,0
+09-23 05:54:22.835 11300 11300 D CompatChangeReporter: Compat change id reported: 377864165; UID 10219; state: ENABLED
+09-23 05:54:22.860   223   223 I servicemanager: Caller(pid=11300,uid=10219,sid=u:r:untrusted_app:s0:c219,c256,c512,c768) Found android.hardware.graphics.allocator.IAllocator/default in device VINTF manifest.
+09-23 05:54:22.858 11300 11300 W HWUI    : Unknown dataspace 0
+09-23 05:54:22.862   223   223 I servicemanager: Caller(pid=11300,uid=10219,sid=u:r:untrusted_app:s0:c219,c256,c512,c768) Found android.hardware.graphics.allocator.IAllocator/default in device VINTF manifest.
+09-23 05:54:22.863   223   223 I servicemanager: Caller(pid=11300,uid=10219,sid=u:r:untrusted_app:s0:c219,c256,c512,c768) Found mapper/ranchu in device VINTF manifest.
+09-23 05:54:22.867  6416  6645 D SatelliteController: iisInCarrierRoamingNbIotNtn: satellite is disabled
+09-23 05:54:23.035  6043  6346 D CoreBackPreview: Window{6af0f7b u0 com.biolog.biolog_mobile/com.biolog.biolog_mobile.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@2cf6df1, mPriority=-1, mIsAnimationCallback=false, mOverrideBehavior=0}
+09-23 05:54:23.041 11300 11300 I WindowExtensionsImpl: Initializing Window Extensions, vendor API level=9, activity embedding enabled=true
+09-23 05:54:23.049 11300 11306 I g.biolog_mobile: Compiler allocated 5111KB to compile void android.view.ViewRootImpl.performTraversals()
+09-23 05:54:23.059 11300 11300 D FlutterRenderer: Width is zero. 0,0
+09-23 05:54:23.072 11300 11300 D FlutterJNI: Sending viewport metrics to the engine.
+09-23 05:54:23.275   250 11265 I keystore2: system/security/keystore2/watchdog/src/lib.rs:377 - Watchdog thread idle -> terminating. Have a great day.
+09-23 05:54:23.564 11300 11300 D WindowLayoutComponentImpl: Register WindowLayoutInfoListener on Context=com.biolog.biolog_mobile.MainActivity@a1947ab, of which baseContext=android.app.ContextImpl@c669bd9
+09-23 05:54:23.567 11300 11300 D FlutterJNI: Sending viewport metrics to the engine.
+09-23 05:54:23.667 11300 11365 I SQLiteConnection: Database keying operation returned:0
+09-23 05:54:23.772 11300 11365 W g.biolog_mobile: JNI critical lock held for 100.990ms on Thread[23,tid=11365,Runnable,Thread*=0xb4000077f6abe0a0,peer=0x2370a90,"Sqflite"]
+09-23 05:54:23.981  6043  6346 D ConnectivityService: requestNetwork for uid/pid:10219/11300 activeRequest: null callbackRequest: 182 [NetworkRequest [ REQUEST id=183, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10219 RequestorUid: 10219 RequestorPkg: com.biolog.biolog_mobile UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647 isUidTracked: false declaredMethods: AVAIL|LOST|NC
+09-23 05:54:23.983  6043  6195 D ConnectivityService: NetReassign [183 : null → 104] [c 0] [a 0] [i 1]
+09-23 05:54:23.984  6043  6189 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=183, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10219 RequestorUid: 10219 RequestorPkg: com.biolog.biolog_mobile UnderlyingNetworks: Null] ]
+09-23 05:54:23.984  6043  6189 V WifiNetworkFactory: Accepted network request NetworkRequest [ REQUEST id=183, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10219 RequestorUid: 10219 RequestorPkg: com.biolog.biolog_mobile UnderlyingNetworks: Null] ]
+09-23 05:54:23.984  6043  6189 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=183, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10219 RequestorUid: 10219 RequestorPkg: com.biolog.biolog_mobile UnderlyingNetworks: Null] ]
+09-23 05:54:23.984  6043  6189 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=183, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10219 RequestorUid: 10219 RequestorPkg: com.biolog.biolog_mobile UnderlyingNetworks: Null] ]
+09-23 05:54:23.984  6043  6189 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=183, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10219 RequestorUid: 10219 RequestorPkg: com.biolog.biolog_mobile UnderlyingNetworks: Null] ]
+09-23 05:54:24.460  6043  6068 I ActivityTaskManager: Displayed com.biolog.biolog_mobile/.MainActivity for user 0: +3s212ms
+09-23 05:54:24.460  6043  6068 I ActivityTaskManager: Fully drawn com.biolog.biolog_mobile/.MainActivity: +3s212ms
+09-23 05:54:24.475  6430  6430 D BaseDepthController: setSurface:
+09-23 05:54:24.475  6430  6430 D BaseDepthController: 	mWaitingOnSurfaceValidity: false
+09-23 05:54:24.475  6430  6430 D BaseDepthController: 	mBaseSurface: null
+09-23 05:54:24.479  6430  6430 D BaseDepthController: mSurface is null and mCurrentBlur is: 0
+09-23 05:54:24.489  6430  6430 D StateManager: goToState - fromState: Normal, toState: Normal, partial trace:
+09-23 05:54:24.489  6430  6430 D StateManager: 	at com.android.launcher3.statemanager.StateManager.moveToRestState(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:4)
+09-23 05:54:24.489  6430  6430 D StateManager: 	at com.android.launcher3.statemanager.StateManager.moveToRestState(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:1)
+09-23 05:54:24.489  6430  6430 D StateManager: 	at com.android.launcher3.statemanager.StatefulActivity.onStop(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:34)
+09-23 05:54:24.489  6430  6430 D StatsLog: LAUNCHER_ONSTOP
+09-23 05:54:24.490  5661  5682 I netd    : tetherGetStats() -> {[]} <1.60ms>
+09-23 05:54:24.494  6043  6346 I AppWidgetServiceImpl: setAppWidgetHidden() 0
+09-23 05:54:24.496  6043  6163 I ImeTracker: com.biolog.biolog_mobile:5027e9fb: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+09-23 05:54:24.497  6430  6430 D StatsLog: LAUNCHER_GOOGLE_SEARCH_RESTORE_LIST_SIZE_AFTER_ACTIVITY_RESTART
+09-23 05:54:24.516 11300 11300 D InsetsController: hide(ime(), fromIme=false)
+09-23 05:54:24.516 11300 11300 I ImeTracker: com.biolog.biolog_mobile:5027e9fb: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+09-23 05:54:24.525  6043  6241 D BackgroundInstallControlService: Package event received: 0
+09-23 05:54:24.533  6768  6768 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2043 
+09-23 05:54:24.534  6043  6932 I ImeTracker: system_server:3daea5c1: onRequestHide at ORIGIN_SERVER reason IME_REQUESTED_CHANGED_LISTENER fromUser false
+09-23 05:54:24.534  6768  6768 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 0, locked = false
+09-23 05:54:24.535  6768  6768 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1293 onStartInput(EditorInfo{EditorInfo{packageName=com.biolog.biolog_mobile, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+09-23 05:54:24.536  6043  6071 I ImeTracker: system_server:3daea5c1: onCancelled at PHASE_SERVER_SHOULD_HIDE
+09-23 05:54:24.537  6768  6768 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 1, locked = false
+09-23 05:54:24.537  6043  6932 W PackageConfigPersister: App-specific configuration not found for packageName: com.biolog.biolog_mobile and userId: 0
+09-23 05:54:24.537  6430  6438 W System  : A resource failed to call release. 
+09-23 05:54:24.537  6430  6438 W System  : A resource failed to call release. 
+09-23 05:54:24.537  6430  6438 W System  : A resource failed to call release. 
+09-23 05:54:24.820  5660  8344 W IPCThreadState: Sending oneway calls to frozen process.
+09-23 05:54:24.912  6043  6896 E TaskPersister: File error accessing recents directory (directory doesn't exist?).
+09-23 05:54:25.291  6043  6189 D WifiClientModeImpl[4703635:wlan0]: updateLinkLayerStatsRssiSpeedFrequencyCapabilities rssi=-50 TxLinkspeed=1 freq=2447 RxLinkSpeed=2
+09-23 05:54:25.291  6043  6189 D WifiDataStall: tx tput in kbps: 11000
+09-23 05:54:25.291  6043  6189 D WifiDataStall: rx tput in kbps: 11000
+09-23 05:54:25.291  6043  6189 V WifiConfigManager: Updating scan detail cache freq=2447 BSSID=00:13:10:85:fe:01 RSSI=-50 for "AndroidWifi"NONE
+09-23 05:54:25.291  6043  6189 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+09-23 05:54:25.291  6043  6189 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+09-23 05:54:25.291  6043  6189 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+09-23 05:54:25.291  6043  6189 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+09-23 05:54:25.292  6043  6189 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+09-23 05:54:25.292  6043  6189 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+09-23 05:54:25.292  6043  6189 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+09-23 05:54:25.292  6043  6189 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+09-23 05:54:25.293  6043  6189 D WifiScoreCard: BSSID update SIGNAL_POLL ID: 468854022 SSID: "AndroidWifi", BSSID: 00:13:10:85:fe:01, MAC: 02:15:b2:00:00:00, IP: /10.0.2.16, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 1Mbps, Tx Link speed: 1Mbps, Max Supported Tx Link speed: 11Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 11Mbps, Frequency: 2447MHz, Net ID: 0, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: 1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none>"AndroidWifi"openMLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>
+09-23 05:54:25.293  6043  6189 D WifiScoreCard: txRate: 1 txSpeed: 1
+09-23 05:54:25.293  6043  6189 D WifiScoreCard: network update SIGNAL_POLL "AndroidWifi" ID: 1738066459 RSSI -50 txSpeed -1
+09-23 05:54:25.293  6043  6189 D WifiClientModeImpl[4703635:wlan0]:  ClientModeImpl$L2ConnectedState screen=on 1 0 "AndroidWifi" 00:13:10:85:fe:01 rssi=-50 f=2447 sc=60 link=1 tx=0.0, 0.0, 0.0 rx=0.0 bcn=0 [on:0 tx:0 rx:0 period:3005] from screen [on:0 period:19397913] score=60
+09-23 05:54:25.545 10241 10241 D wpa_supplicant: nl80211: Drv Event 64 (NL80211_CMD_NOTIFY_CQM) received for wlan0
+09-23 05:54:25.545 10241 10241 D wpa_supplicant: nl80211: Beacon loss event
+09-23 05:54:25.545 10241 10241 D wpa_supplicant: wlan0: Event BEACON_LOSS (53) received
+09-23 05:54:25.545 10241 10241 I wpa_supplicant: wlan0: CTRL-EVENT-BEACON-LOSS 
+09-23 05:54:27.119 11300 11370 D ProfileInstaller: Installing profile for com.biolog.biolog_mobile
+09-23 05:54:27.350   230   230 I logd    : logdr: UID=2000 GID=2000 PID=11371 n tail=0 logMask=99 pid=0 start=0ns deadline=0ns
+09-23 05:54:27.378   230   230 I logd    : logdr: UID=2000 GID=2000 PID=11374 n tail=0 logMask=99 pid=0 start=0ns deadline=0ns
+09-23 05:54:28.297  6043  6189 D WifiClientModeImpl[4703635:wlan0]: updateLinkLayerStatsRssiSpeedFrequencyCapabilities rssi=-50 TxLinkspeed=1 freq=2447 RxLinkSpeed=2
+09-23 05:54:28.297  6043  6189 D WifiDataStall: tx tput in kbps: 11000
+09-23 05:54:28.297  6043  6189 D WifiDataStall: rx tput in kbps: 11000
+09-23 05:54:28.297  6043  6189 V WifiConfigManager: Updating scan detail cache freq=2447 BSSID=00:13:10:85:fe:01 RSSI=-50 for "AndroidWifi"NONE
+09-23 05:54:28.297  6043  6189 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+09-23 05:54:28.297  6043  6189 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+09-23 05:54:28.297  6043  6189 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+09-23 05:54:28.297  6043  6189 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+09-23 05:54:28.298  6043  6189 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+09-23 05:54:28.298  6043  6189 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+09-23 05:54:28.298  6043  6189 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+09-23 05:54:28.298  6043  6189 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 11
+09-23 05:54:28.298  6043  6189 D WifiScoreCard: BSSID update SIGNAL_POLL ID: 468854022 SSID: "AndroidWifi", BSSID: 00:13:10:85:fe:01, MAC: 02:15:b2:00:00:00, IP: /10.0.2.16, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 1Mbps, Tx Link speed: 1Mbps, Max Supported Tx Link speed: 11Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 11Mbps, Frequency: 2447MHz, Net ID: 0, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: 1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none>"AndroidWifi"openMLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>
+09-23 05:54:28.298  6043  6189 D WifiScoreCard: txRate: 1 txSpeed: 1
+09-23 05:54:28.298  6043  6189 D WifiScoreCard: network update SIGNAL_POLL "AndroidWifi" ID: 1738066459 RSSI -50 txSpeed -1
+09-23 05:54:28.298  6043  6189 D WifiClientModeImpl[4703635:wlan0]:  ClientModeImpl$L2ConnectedState screen=on 1 0 "AndroidWifi" 00:13:10:85:fe:01 rssi=-50 f=2447 sc=60 link=1 tx=0.0, 0.0, 0.0 rx=0.0 bcn=0 [on:0 tx:0 rx:0 period:3005] from screen [on:0 period:19400918] score=60
+09-23 05:54:31.109   230   230 I logd    : logdr: UID=2000 GID=2000 PID=11377 n tail=0 logMask=99 pid=0 start=0ns deadline=0ns

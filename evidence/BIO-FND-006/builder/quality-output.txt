@@ -1,0 +1,19 @@
+== BIO-FND-006 foundation harness ==
+PASS  AC01 .NET unit test project
+PASS  AC01 .NET integration test project
+PASS  AC01 .NET projects marked as test projects
+PASS  AC02 frontend unit project and test
+PASS  AC02 Playwright project and test
+PASS  AC03 Flutter scaffold
+PASS  AC04 security commands documented
+PASS  AC04 all fixtures marked synthetic
+PASS  AC05 single quality command executable
+PASS  AC05 quality command orchestrates every ecosystem
+==============================
+10 passed, 0 failed
+PASS  BIO-FND-006 foundation harness
+== tracked secret scan ==
+secret-scan: gitleaks not installed, using built-in fallback pattern scan
+secret-scan: clean
+PASS  tracked secret scan
+QUALITY: PASS

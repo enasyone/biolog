@@ -1,0 +1,46 @@
+PASS  AC01 correlation logging middleware exists
+PASS  AC01 middleware pushes correlation_id and tenant_id onto the log scope
+PASS  AC01 middleware reads the tenant hook rather than inventing a value
+PASS  AC01 the JSON console formatter renders scope values
+PASS  AC01 ObservabilityModule wires the middleware into the pipeline
+PASS  AC01 ObservabilityModule runs after tenant context is set
+PASS  AC02 OpenTelemetry packages referenced
+PASS  AC02 tracing and metrics are both registered
+PASS  AC02 ASP.NET Core instrumentation is wired to both signals
+PASS  AC02 a local-development exporter is configured (no external collector required)
+PASS  AC03 docs/OBSERVABILITY.md exists
+PASS  AC03 doc explains how to run and read logs locally
+PASS  AC03 doc explains the trace/metric local view
+PASS  AC04 sensitive key matcher exists
+PASS  AC04 matcher covers secret-classified examples from the shared registry
+PASS  AC04 matcher references the shared data-classification registry (ADR-0003)
+PASS  AC04 the formatter redacts structured properties
+PASS  AC04 the rendered message is redacted too, not only the properties object
+PASS  AC04 redaction is wired as the default console formatter, not opt-in
+PASS  QA-01 a type-shape allowlist guards values regardless of property name
+PASS  QA-01 an unrecognised value type is never rendered via its own ToString()
+PASS  QA-01 scope values flow through the same type-shape guard, not a bare ToString()
+PASS  QA-01 exception messages are suppressed by default; type and stack trace are kept
+PASS  QA-02 an explicit opt-in type exists for call sites to assert a value is safe
+PASS  QA-02 an unknown value defaults to withheld, distinct from a name-based redaction
+PASS  QA-02 an explicit safe-value opt-in still yields to name-based redaction
+PASS  QA-03 category-prefix trust was removed, not merely narrowed
+PASS  QA-03 fixed scope-key-name trust was removed, not merely narrowed
+PASS  QA-03 SafeLogValue is the only input Classify uses to establish trust
+PASS  QA-03 the middleware's own correlation/tenant values go through the same opt-in as any caller
+PASS  QA-04 the caller's formatter delegate is never invoked for non-structured state
+PASS  QA-04 non-structured state is withheld by default via the same Classify boundary
+PASS  QA-04 the string-interpolation residual risk is closed at compile time, not left silent
+PASS  QA-04 CA2254 is promoted to a build error
+PASS  QA-05 default logger providers are cleared before the redacting one is added
+PASS  QA-05 docs enumerate every path to an observability sink
+PASS  QA-05 the two documented-only rows also have an executable regression
+PASS  QA-05 a real request carrying a secret is proven, not merely assumed, not to leak
+PASS  Program.cs registers ObservabilityModule through the module host
+PASS  unit tests cover sensitive key matching
+PASS  unit tests cover the JSON console formatter
+PASS  integration tests exercise the real composed host
+PASS  builder evidence recorded
+==============================
+43 passed, 0 failed
+exit 0

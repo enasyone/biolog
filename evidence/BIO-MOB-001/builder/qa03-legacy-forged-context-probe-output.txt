@@ -1,0 +1,2 @@
+PASS: legacy caller-created tenant contexts cannot become bound after upgrade
+probe exit: 0

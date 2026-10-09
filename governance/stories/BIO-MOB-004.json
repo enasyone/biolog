@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-MOB-004",
+  "title": "Implement mobile identity/card/face verification flows",
+  "owner": "Busola - Mobile & Edge Engineer",
+  "reviewed_commit": "6bc27084ad9fc9eba6c2d298f1cf1c97eb252bb3",
+  "required_acceptance_stages": ["builder", "adversarial", "acceptance"],
+  "requirement_ids": [
+    "BIO-MOB-004-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-MOB-004-AC01",
+      "requirement_ids": ["BIO-MOB-004-REQ-001"],
+      "text": "Flows show identity/status/decision without exposing unnecessary biometric internals."
+    },
+    {
+      "id": "BIO-MOB-004-AC02",
+      "requirement_ids": ["BIO-MOB-004-REQ-001"],
+      "text": "Offline state is visible."
+    },
+    {
+      "id": "BIO-MOB-004-AC03",
+      "requirement_ids": ["BIO-MOB-004-REQ-001"],
+      "text": "Actions obey role permissions."
+    },
+    {
+      "id": "BIO-MOB-004-AC04",
+      "requirement_ids": ["BIO-MOB-004-REQ-001"],
+      "text": "Verification events sync idempotently."
+    },
+    {
+      "id": "BIO-MOB-004-AC05",
+      "requirement_ids": ["BIO-MOB-004-REQ-001"],
+      "text": "The approved mobile surface (Flutter application) is connected through MobileService to this story's live implementation or an explicitly documented HYBRID state, and the mapped end-to-end human workflow passes without an unapproved UI redesign."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-MOB-004.test.sh",
+      "ac_ids": [
+        "BIO-MOB-004-AC01",
+        "BIO-MOB-004-AC02",
+        "BIO-MOB-004-AC03",
+        "BIO-MOB-004-AC04",
+        "BIO-MOB-004-AC05"
+      ]
+    },
+    {
+      "path": "tests/flutter/test/bio_mob_004_ac01_ac03_ac04_sync_client_test.dart",
+      "ac_ids": ["BIO-MOB-004-AC01", "BIO-MOB-004-AC03", "BIO-MOB-004-AC04"]
+    },
+    {
+      "path": "tests/flutter/test/bio_mob_004_ac02_verification_service_test.dart",
+      "ac_ids": ["BIO-MOB-004-AC02"]
+    },
+    {
+      "path": "tests/features/bio-mob-004/VerificationEndpointsIntegrationTests.cs",
+      "ac_ids": [
+        "BIO-MOB-004-AC01",
+        "BIO-MOB-004-AC03",
+        "BIO-MOB-004-AC04"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-MOB-004/builder/metadata.json",
+      "stage": "builder",
+      "ac_ids": [
+        "BIO-MOB-004-AC01",
+        "BIO-MOB-004-AC02",
+        "BIO-MOB-004-AC03",
+        "BIO-MOB-004-AC04",
+        "BIO-MOB-004-AC05"
+      ]
+    }
+  ]
+}

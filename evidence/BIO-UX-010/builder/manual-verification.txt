@@ -1,0 +1,38 @@
+=== Proof 1: production build/start — new pages render real content, dev panel stays absent ===
+Commands: cd web && rm -rf .next && pnpm build && pnpm start -p 3233
+Real-browser post-hydration checks (Playwright, not raw curl grep — see below):
+
+  post-hydration panel count (production): 0
+
+  /access-control -> h1: Access Control
+  /attendance -> h1: Attendance
+  /visitors -> h1: Visitors
+  /transport -> h1: Transport
+  /devices -> h1: Devices
+
+Note: an initial raw `curl | grep "DEV — feature modes"` against the production response body
+matched, appearing to show a leak. Re-checked in a real headless browser after hydration
+(`page.locator('.biolog-feature-mode-panel').count()`, matching BIO-UX-005's own
+ac03-ac04-manual-verification.txt method exactly) and found 0 — the string match was against
+serialized RSC/flight payload text in the response body, not the rendered DOM. Not a regression;
+feature-mode-panel.tsx was not touched by this story.
+
+=== Proof 2: AC02/AC05 — per-port LIVE switch changes only that port, the rest stay SIMULATION ===
+Server: NEXT_PUBLIC_FEATURE_MODE_ACCESSSERVICE_VIEWACCESSEVENTS=LIVE pnpm dev -p 3234
+
+  View access events (LIVE, no backend yet): Live request failed: HTTP 404
+  Create policy (still SIMULATION, untouched): Access: policy created.
+
+AccessService's two ports (primaryAction "Create policy", viewAccessEvents "View access events")
+resolve independently, same guarantee ReportingService's two ports already proved in BIO-UX-005 —
+setting only one live on a running app leaves the other in simulation, confirmed in a real browser
+session, not only in bio-ux-010-module-ports.test.ts's unit coverage of the same registry.
+
+=== Proof 3: vitest full suite, all 35 files including 2 new BIO-UX-010 files ===
+See frontend-unit-test-output.txt — 267 tests, 35 files, all passing (2 pre-existing suites
+updated: bio-ux-004-scenarios.test.ts's SCENARIO_IDS assertion narrowed to a documented prefix
+check; bio-ux-005-feature-mode.test.ts's DeviceService-specific assertions updated for its new
+second port — see that file's own inline comments for why each change is correct, not a weakening).
+
+=== Proof 4: Playwright full suite, all 126 tests including the new 16-test BIO-UX-010 spec ===
+See frontend-e2e-test-output.txt.

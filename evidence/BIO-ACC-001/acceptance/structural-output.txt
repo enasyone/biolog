@@ -1,0 +1,53 @@
+PASS  feature project exists
+PASS  project targets the pinned .NET SDK's TFM
+PASS  module lives one-way in api/Biolog.Api/Modules, not back in the feature project
+PASS  registered in the packaged Program.cs module array
+PASS  Biolog.Api.csproj references the feature project
+PASS  no ProjectReference from the feature project to any other feature project or Biolog.Api
+PASS  AC01 SubjectMatch supports ANY_PERSON, SPECIFIC_PERSON and PROFILE_KEY
+PASS  AC01 CredentialClassMatch exists
+PASS  AC01 LocationMatch exists
+PASS  AC01 ScheduleMatch supports recurring weekly windows
+PASS  AC01 IdentityStatusMatch and CardStatusMatch both exist
+PASS  AC01 AssuranceLevel is a three-level ordered enum
+PASS  AC01 a specific-person subject is existence-checked at authoring time
+PASS  AC01 identity status is resolved live via a gateway, never accepted as a caller-supplied evaluation input
+PASS  AC01 a test proves a rule can name every AC01 dimension at once
+PASS  AC02 AccessPolicyStatus is a Draft/Published workflow
+PASS  AC02 revising a draft edits in place while Draft, starts a new version once Published
+PASS  AC02 publish requires a different actor from the draft's own author (maker-checker)
+PASS  AC02 publish requires the caller to hold a distinct permission from draft management
+PASS  AC02 a test proves revising in place keeps the same version number
+PASS  AC02 a test proves revising a published policy starts a new draft version, leaving the published one untouched
+PASS  AC02 a test proves self-approval is rejected
+PASS  AC03 PolicyRule.Effect is ALLOW or DENY, a per-rule field
+PASS  AC03 the evaluator checks every DENY match before considering any ALLOW match
+PASS  AC03 the default outcome with no matching rule is DENY (fail-closed)
+PASS  AC03 insufficient assurance on a matching ALLOW rule is its own distinct, auditable reason
+PASS  AC03 a test proves deny wins even when the deny rule appears after the allow rule in the list
+PASS  AC03 a test proves deny wins even when it appears before the allow rule too (order genuinely does not matter)
+PASS  AC03 a test proves the default-deny fail-closed outcome
+PASS  AC04 an audit sink exists, mirroring ADR-0003's append-only audit envelope
+PASS  AC04 PolicyEvaluationService audits every evaluation before returning, following ADR-0003 Decision 7
+PASS  AC04 AccessPolicyService audits every mutation the same way
+PASS  AC04 the pure evaluator is independently testable with no service/gateway dependency
+PASS  AC04 a test proves a confirmed audit-sink failure prevents the mutation from ever committing
+PASS  AC04 a test proves the evaluation audit outcome matches the decision
+PASS  RBAC: every authoring/publishing/evaluating method checks a permission via IPermissionGateway
+PASS  ADR-0006: ActorProvenanceGate exists and is referenced against the accepted ADR
+PASS  ADR-0006: the provenance store uses constant-time comparison
+PASS  ADR-0006: every endpoint (mutating, evaluating AND read - QA-01) calls the provenance gate immediately after resolving the actor
+PASS  ADR-0006: no provenance secret is committed to source
+PASS  a real-host test proves the provenance gate runs before authority is ever checked
+PASS  QA-01 a dedicated ReadPermission exists, distinct from Manage/Publish
+PASS  QA-01 GetAsync and ListAsync both require an actor and check the read permission
+PASS  QA-01 both read endpoint handlers pass the resolved actor through to the service (not an unauthenticated read)
+PASS  QA-01 a service-level test proves GET is rejected without the read permission, even for the policy's own author
+PASS  QA-01 a service-level test proves LIST is rejected without the read permission
+PASS  QA-01 a positive-path test proves a read-only permission holder can read but not author or publish
+PASS  QA-01 a real-host test proves an unprivileged actor cannot list policies through the shipped endpoint
+PASS  governance test file exists
+PASS  the feature project has no assembly reference to any sibling feature project (test-enforced)
+PASS  feature-path-ownership.json declares this story's owned paths
+----
+BIO-ACC-001 structural checks: 51 passed, 0 failed

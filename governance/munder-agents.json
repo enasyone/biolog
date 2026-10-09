@@ -1,0 +1,207 @@
+{
+  "office": "Munder BIOLOG",
+  "policy_version": "1.0",
+  "rules": {
+    "dispatch_eligibility": {
+      "statement": "Chinedu assigns a story only when all dependencies are DONE and its conflict group / owned write-scope are free.",
+      "require_dependencies_done": true,
+      "respect_conflict_locks": true,
+      "allow_incomplete_dependencies": false,
+      "ac": "BIO-FND-005-AC02"
+    },
+    "shared_contract_authority": {
+      "statement": "Only Kemi approves shared contracts and migration sequencing.",
+      "sole_approver": "Kemi",
+      "ac": "BIO-FND-005-AC03"
+    },
+    "no_self_accept": {
+      "statement": "No builder may accept its own story; acceptance is an independent acceptor.",
+      "self_accept_allowed": false,
+      "ac": "BIO-FND-005-AC04"
+    },
+    "local_first": {
+      "statement": "No GitHub remote or push before the W15 gate.",
+      "git_push_allowed": false,
+      "remote_allowed": false,
+      "github_push_enabled": false,
+      "ac": "BIO-FND-005-AC05"
+    }
+  },
+  "agents": [
+    {
+      "name": "Chinedu",
+      "role": "Programme Orchestrator",
+      "engine": "Claude Code",
+      "model": "claude-opus-5",
+      "permissions": {
+        "dispatch": true,
+        "write_feature_code": false,
+        "approve_shared_contracts": false,
+        "accept_stories": "only where routed as acceptor",
+        "git_push": false,
+        "self_accept": false
+      }
+    },
+    {
+      "name": "Kemi",
+      "role": "Chief Architect & Integrator",
+      "engine": "Claude Code",
+      "model": "claude-opus-5",
+      "permissions": {
+        "write_scope": [
+          "ADRs",
+          "migrations",
+          "shared-contracts"
+        ],
+        "approve_shared_contracts": true,
+        "self_accept": false,
+        "git_push": false
+      }
+    },
+    {
+      "name": "Tunde",
+      "role": "Identity & Tenant Engineer",
+      "engine": "Claude Code",
+      "model": "claude-sonnet-5",
+      "permissions": {
+        "write_scope": [
+          "identity",
+          "tenant",
+          "rbac"
+        ],
+        "approve_shared_contracts": false,
+        "self_accept": false,
+        "git_push": false
+      }
+    },
+    {
+      "name": "Ngozi",
+      "role": "Credential & Card Engineer",
+      "engine": "Claude Code",
+      "model": "claude-sonnet-5",
+      "permissions": {
+        "write_scope": [
+          "cards",
+          "credentials",
+          "production"
+        ],
+        "approve_shared_contracts": false,
+        "self_accept": false,
+        "git_push": false
+      }
+    },
+    {
+      "name": "Amina",
+      "role": "Biometrics Engineer",
+      "engine": "Claude Code",
+      "model": "claude-sonnet-5",
+      "permissions": {
+        "write_scope": [
+          "biometrics"
+        ],
+        "approve_shared_contracts": false,
+        "self_accept": false,
+        "git_push": false
+      }
+    },
+    {
+      "name": "Ifeanyi",
+      "role": "Document Intelligence Engineer",
+      "engine": "Claude Code",
+      "model": "claude-sonnet-5",
+      "permissions": {
+        "write_scope": [
+          "mrz",
+          "barcode",
+          "ocr",
+          "document-intelligence"
+        ],
+        "approve_shared_contracts": false,
+        "self_accept": false,
+        "git_push": false
+      }
+    },
+    {
+      "name": "Busola",
+      "role": "Mobile & Edge Engineer",
+      "engine": "Claude Code",
+      "model": "claude-sonnet-5",
+      "permissions": {
+        "write_scope": [
+          "flutter",
+          "offline",
+          "edge",
+          "sync"
+        ],
+        "approve_shared_contracts": false,
+        "self_accept": false,
+        "git_push": false
+      }
+    },
+    {
+      "name": "Emeka",
+      "role": "Platform & Infrastructure Engineer",
+      "engine": "Claude Code",
+      "model": "claude-sonnet-5",
+      "permissions": {
+        "write_scope": [
+          "platform",
+          "infra",
+          "api-shell",
+          "observability"
+        ],
+        "approve_shared_contracts": false,
+        "self_accept": false,
+        "git_push": false
+      }
+    },
+    {
+      "name": "Seyi",
+      "role": "Adversarial QA Engineer",
+      "engine": "Codex CLI",
+      "model": "gpt-5.6-sol",
+      "permissions": {
+        "write_feature_code": false,
+        "role": "independent-review",
+        "self_accept": false,
+        "git_push": false
+      }
+    },
+    {
+      "name": "Zainab",
+      "role": "Security Engineer",
+      "engine": "Codex CLI",
+      "model": "gpt-5.6-sol",
+      "permissions": {
+        "write_feature_code": false,
+        "role": "security-review",
+        "self_accept": false,
+        "git_push": false
+      }
+    },
+    {
+      "name": "Femi",
+      "role": "Performance & Resilience Engineer",
+      "engine": "Codex CLI",
+      "model": "gpt-5.6-sol",
+      "permissions": {
+        "write_feature_code": false,
+        "role": "performance-review",
+        "self_accept": false,
+        "git_push": false
+      }
+    },
+    {
+      "name": "Chioma",
+      "role": "Acceptance & Traceability Auditor",
+      "engine": "Codex CLI",
+      "model": "gpt-5.6-sol",
+      "permissions": {
+        "write_feature_code": false,
+        "role": "acceptance",
+        "self_accept": false,
+        "git_push": false
+      }
+    }
+  ]
+}

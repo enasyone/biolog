@@ -1,0 +1,54 @@
+PASS  AC01 EvidenceSourceKind names visual/MRZ/barcode/NFC
+PASS  AC01 FieldMatchStatus is exactly match/mismatch/unknown
+PASS  AC01 fewer than two sources is Unknown, never a trivial match
+PASS  AC01 ComparisonEngine is the only place Status is derived
+PASS  AC02 SourceFieldValue requires both raw and normalized values together
+PASS  AC02 Create rejects an empty normalized value
+PASS  AC02 the barcode adapter preserves RawValue even when validation failed
+PASS  AC03 FieldsRequiringReview names mismatched fields explicitly
+PASS  AC03 a failed NFC passive authentication also forces review, not just field mismatches
+PASS  AC04 SourcePrecedencePolicy exists as an explicit, caller-declared order
+PASS  AC04 PreferredValueResolver requires the policy - no default/implicit precedence
+PASS  AC04 a policy rejects duplicate sources
+PASS  AC04 no other engine method resolves a value without a precedence policy (structural test exists)
+PASS  AC05 CrossComparisonResult carries a version number
+PASS  AC05 CrossComparisonResult carries audit attribution (actor + timestamp)
+PASS  QA-01 a real audit-sink pair exists (IEvidenceComparisonAuditSink + InMemory implementation)
+PASS  QA-01 Compute durably writes an audit event before returning, never after
+PASS  QA-01 a genuinely unavailable audit sink throws rather than returning a successful comparison
+PASS  QA-01 an ambiguous write is resolved via ExistsAsync before treating the sink as unavailable
+PASS  QA-01 versionNumber below 1 is rejected
+PASS  QA-01 a blank actor id is rejected
+PASS  QA-01 computedAt is validated as a real timestamp, not accepted as an arbitrary string
+PASS  QA-02 a strict RFC 3339 shape pattern is required before TryParse is ever consulted
+PASS  QA-02 the pattern requires an explicit Z or numeric offset, not a bare date
+PASS  QA-03 IVersionStore exists as the sole path to a legitimate version claim
+PASS  QA-03 IVersionStore.AllocateVersion is the atomic check-and-commit operation
+PASS  QA-03 an in-memory version store implementation exists
+PASS  QA-03 Compute takes an IVersionStore and calls AllocateVersion before returning a result
+PASS  QA-03 a rejected version claim throws a dedicated StaleComparisonVersionException
+PASS  QA-03 regressions exist for duplicate, skipped, and backward versions
+PASS  QA-04 IVersionStore.CommitVersion finalizes a reservation only after it is durable
+PASS  QA-04 IVersionStore.ReleaseVersion discards a reservation without consuming it
+PASS  QA-04 Compute allocates the version BEFORE the audit write and commits AFTER it
+PASS  QA-04 a failed audit write does not permanently burn the reserved version (regression)
+PASS  QA-04 an outstanding reservation blocks a second reservation for the same session (regression)
+PASS  NfcCorroboration exists and is derived from a real BIO-DOC-007 ChipReadOutcome
+PASS  NfcCorroboration.PassiveAuthenticationPassed is nullable - never coerced when not attempted
+PASS  FieldComparison properties are internal init, not public init
+PASS  CrossComparisonResult properties are internal init, not public init
+PASS  FieldComparison's ValuesBySource is a genuine ReadOnlyDictionary, not a downcastable interface view
+PASS  CrossComparisonResult's list properties use AsReadOnly(), not a downcastable interface view
+PASS  standing reflection-based lockdown regression test exists
+PASS  EvidenceComparison references BIO-DOC-002's MRZ engine
+PASS  EvidenceComparison references BIO-DOC-005's parser registry
+PASS  EvidenceComparison references BIO-DOC-007's NFC reader
+PASS  EvidenceComparison does NOT reference BIO-DOC-001/003/004/006 directly (not declared dependencies)
+PASS  no sibling BIO-DOC-00x project takes a dependency back on this feature (no cycle)
+PASS  no ASP.NET Core / Biolog.Api project or framework reference was added to this feature
+PASS  ADR-0001-S1.2 the frozen identifier registry was not touched by this story
+PASS  feature test project exists
+PASS  story traceability spec exists
+PASS  feature design doc exists
+----
+BIO-DOC-008 structural checks: 52 passed, 0 failed

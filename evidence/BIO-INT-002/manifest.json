@@ -1,0 +1,91 @@
+{
+  "story_key": "BIO-INT-002",
+  "title": "Implement SIS/HR/ERP import framework",
+  "implementation_commit": "9c00ffc1da1c5119052b3b061ac6e60cf4dc0a90",
+  "builder_head": "66d5dffb120812e59ef1404b0e89f91f3a09a171",
+  "reviewed_head": "34e2dae24dc9953a0d77a065120b1979c9888960",
+  "environment": {
+    "profile": "local acceptance on Darwin arm64; synthetic fixtures only",
+    "timestamp": "2026-10-06"
+  },
+  "acceptance_criteria": {
+    "BIO-INT-002-AC01": {
+      "result": "PASS",
+      "evidence": ["tests/features/bio-int-002/ImportMappingServiceTests.cs", "tests/features/bio-int-002/BIO-INT-002.test.sh"],
+      "finding": "Import source mappings are versioned and compare-and-set protected; creates and updates require tenant-scoped permission and verified provenance."
+    },
+    "BIO-INT-002-AC02": {
+      "result": "PASS",
+      "evidence": ["tests/features/bio-int-002/ImportBatchServiceTests.cs", "docs/features/bio-int-002/README.md"],
+      "finding": "Each integration declares source-is-master or BIOLOG-is-master; inbound preview/apply fails closed when BIOLOG is authoritative."
+    },
+    "BIO-INT-002-AC03": {
+      "result": "PASS",
+      "evidence": ["tests/features/bio-int-002/ImportBatchServiceTests.cs", "web/features/integrations/components/import-console.tsx"],
+      "finding": "Dry-run preview classifies rows and conflicts without creating PERSON records or claiming idempotency keys."
+    },
+    "BIO-INT-002-AC04": {
+      "result": "PASS",
+      "evidence": ["tests/features/bio-int-002/ImportBatchServiceTests.cs", "evidence/features/bio-int-002/codex/SECURITY-REVIEW-ZAINAB-ROUND7.md"],
+      "finding": "Existing PERSON evidence is never silently overwritten; disagreements produce field-level conflicts, including orphan-adoption and released-attempt recovery paths."
+    },
+    "BIO-INT-002-AC05": {
+      "result": "PASS",
+      "evidence": ["tests/features/bio-int-002/ImportBatchServiceTests.cs", "evidence/BIO-INT-002/codex/REVIEW-Seyi-round8.md"],
+      "finding": "Concurrent identical requests execute once, retries replay stable results, and different-content reuse is rejected or freshly classified using unambiguous canonical JSON fingerprints."
+    },
+    "BIO-INT-002-AC06": {
+      "result": "PASS",
+      "evidence": ["web/features/integrations/live.ts", "web/app/administration/integrations/page.tsx", "tests/features/bio-int-002/BIO-INT-002.test.sh"],
+      "finding": "The administration integrations page uses real IntegrationService import endpoints; authentication settings retains its documented HYBRID boundary and existing primary action."
+    }
+  },
+  "commands": [
+    {"command": "bash tests/features/bio-int-002/BIO-INT-002.test.sh", "result": "PASS (76/76)"},
+    {"command": "dotnet build tests/features/bio-int-002/Biolog.Features.Integrations.Tests.csproj --no-restore --nologo -m:1 /nodeReuse:false", "result": "PASS (0 errors; 88 existing xUnit analyzer warnings)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (35 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS (clean, fallback scanner)"},
+    {"command": "dotnet test tests/features/bio-int-002/Biolog.Features.Integrations.Tests.csproj", "result": "UNAVAILABLE in acceptance sandbox: VSTest loopback socket bind denied; exact-commit builder evidence records 43/43 PASS"}
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "66d5dffb120812e59ef1404b0e89f91f3a09a171",
+    "implementation_commit": "9c00ffc1da1c5119052b3b061ac6e60cf4dc0a90",
+    "feature_tests": "43/43 PASS",
+    "integration_tests": "192/192 PASS",
+    "structural_tests": "76/76 PASS",
+    "metadata_sha256": "b0e82960cd4b566b8a5b9bc8f79f7859ae241b2ca084f4cd989eb94f7ce53f8d"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "result": "PASS",
+    "builder_commit_reviewed": "66d5dffb120812e59ef1404b0e89f91f3a09a171",
+    "review_commit": "34e2dae24dc9953a0d77a065120b1979c9888960",
+    "evidence": "evidence/BIO-INT-002/codex/REVIEW-Seyi-round8.md",
+    "evidence_sha256": "9531e71e38224a8c62af087bc2e662a6c28f5c359c3a8866962b0ef4906ba21e"
+  },
+  "security_review": {
+    "reviewer": "Zainab",
+    "result": "PASS",
+    "builder_commit_reviewed": "66d5dffb120812e59ef1404b0e89f91f3a09a171",
+    "review_commit": "ad44b0bcd86cf1cb66afb8897a4f1282b712adad",
+    "evidence": "evidence/features/bio-int-002/codex/SECURITY-REVIEW-ZAINAB-ROUND7.md",
+    "evidence_sha256": "ae0ce0cb02254f75c56649588e878798f95b385599ae77227d41906f7b6a9881"
+  },
+  "category_verdicts": {
+    "functional": "PASS",
+    "security_data_integrity": "PASS",
+    "tenant_isolation": "PASS",
+    "authorization": "PASS",
+    "failure_recovery": "PASS",
+    "concurrency_idempotency": "PASS",
+    "regression": "PASS"
+  },
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "All six acceptance criteria map to exact-commit implementation, focused tests, builder evidence and independent QA/security PASS reviews. Fresh structural, compilation, traceability, module-direction and secret checks pass; executable .NET coverage is commit-bound because this sandbox denies the VSTest loopback socket."
+  }
+}

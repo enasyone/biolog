@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-DEV-003 owns api/features/bio-dev-003/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh)
+         and, deliberately, no ProjectReference to api/Biolog.Api/Features/DeviceRegistry or
+         api/Biolog.Api/Features/DeviceCertification either, even though both are public,
+         in-host types this project COULD reference directly (they live inside Biolog.Api
+         itself, predating the separate-feature-project convention, so referencing either
+         would mean referencing Biolog.Api.csproj - forbidden regardless): a real device's
+         identity is passed in as this project's own DeviceDescriptor (see
+         Domain/DeviceDescriptor.cs) and certification status is read through this project's
+         own ICertificationGate seam (see Gateways/ICertificationGate.cs), the same
+         "narrow gateway, not a direct reference" discipline BIO-MOB-003's own
+         IDeviceTenantResolutionGateway already established for an identical problem shape.
+
+         This project's own module adapter lives in api/Biolog.Api/Modules/BioDev003Module.cs
+         from the start (never written here first), matching every prior story - it is the
+         one place that bridges this project's ICertificationGate to the real
+         DeviceCertificationService, and this project's DeviceDescriptor to a real, tenant-
+         resolved Device.
+
+         Namespace root is "DeviceAdapters": BIO-DEV-003 - "adapter boundaries for
+         fingerprint scanners, face terminals, NFC/UHF readers and card printers" -
+         vendor SDK code is isolated behind this project's own typed interfaces
+         (Domain/IDeviceAdapter.cs) and internal, per-vendor simulator types
+         (VendorSdks/**, never public - see docs/features/bio-dev-003/README.md's
+         "No vendor SDK type leaks" section for how AC04 is enforced both by the compiler
+         and by a reflection test). -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Applying BIO-IDN-001-QA-01's lesson from the start: the explicit, auditable seam for
+         Biolog.Api (DI registration of the internal vendor adapter classes below) and this
+         project's own test assembly (the AC04 isolation reflection test needs to enumerate
+         this assembly's types, which InternalsVisibleTo does not even require - the test
+         project is granted access only so it can construct internal adapters directly for
+         AC01/AC02/AC03 unit coverage without going through DI). -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.DeviceAdapters.Tests" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Matches api/Biolog.Api/Biolog.Api.csproj's pinned TFM (BIO-FND-008), same as sibling BIO-DOC-00x features. -->
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <!--
+    Two ProjectReferences - BIO-DOC-006 (DocumentClassifier), BIO-DOC-009 (AuthenticityAssessment) -
+    exactly this story's own declared DEPENDENCIES line.
+
+    BIO-DOC-006 is used for real, not decoratively: DocumentSide is reused directly (this story's
+    own "sides" (AC01) are governed identities registered as BIO-DOC-006 DocumentIntelligenceRegistry
+    entries - see DocumentTemplatePack.Publish), and publishing a pack version literally populates a
+    caller-supplied DocumentIntelligenceRegistry with this pack's governed Nigeria identities,
+    honouring BIO-DOC-006's own monotonic-version supersession rule.
+
+    BIO-DOC-009 is used for its public AuthenticityDisposition enum only (Model/DocumentTemplateVerification.cs's
+    optional correlatedAuthenticityDisposition parameter) - a deliberately narrow use. This project
+    cannot construct a real AuthenticityAssessmentResult itself: that type's own locked-down
+    Classification input requires a DocumentClassificationOutcome, whose constructor is internal to
+    BIO-DOC-006 (granted only to Biolog.Api and BIO-DOC-006's own tests) - the same "cannot construct
+    a sibling's locked-down aggregate from outside its own boundary" wall BIO-DOC-009's own csproj
+    comment already documents for its own BIO-DOC-004/007 boundary. Cross-referencing an ALREADY
+    computed BIO-DOC-009 result therefore takes plain primitives (template_id, evidence_version) at
+    the HTTP/service boundary, not the locked-down result type itself.
+  -->
+  <ItemGroup>
+    <ProjectReference Include="../../bio-doc-006/Biolog.Features.DocumentClassifier/Biolog.Features.DocumentClassifier.csproj" />
+    <ProjectReference Include="../../bio-doc-009/Biolog.Features.AuthenticityAssessment/Biolog.Features.AuthenticityAssessment.csproj" />
+  </ItemGroup>
+
+  <!-- This story DOES have an HTTP surface (BIO-DOC-010-AC05, "connected through DocumentVerifyService") -
+       the bio-pho-002/bio-doc-009 shape: Api/ below is a plain folder in this SAME project, not a
+       separate assembly. No ProjectReference to Biolog.Api.csproj (one-way dependency,
+       scripts/check-module-project-references.sh) - this project's own module adapter lives in
+       api/Biolog.Api/Modules/BioDoc010Module.cs. -->
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Every locked-down type's constructor is internal - this grant is the explicit, auditable
+         seam for Biolog.Api (DI registration) and this project's own test assembly. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.DocumentTemplatePack.Tests" />
+  </ItemGroup>
+
+</Project>

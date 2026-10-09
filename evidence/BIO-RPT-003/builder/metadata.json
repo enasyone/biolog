@@ -1,0 +1,10 @@
+{
+  "story_key": "BIO-RPT-003",
+  "stage": "builder",
+  "commit_hash": "db78d58",
+  "test_command": "dotnet test tests/features/bio-rpt-003/Biolog.Features.AuditInvestigation.Tests.csproj && dotnet build api/Biolog.Api/Biolog.Api.csproj && (cd web && pnpm exec tsc --noEmit && pnpm exec next build) && (cd tests/frontend && pnpm exec vitest run) && (cd tests/frontend && pnpm exec playwright test --workers=1) && bash tests/features/bio-rpt-003/BIO-RPT-003.test.sh && (real .NET backend + LIVE-built Next.js server + a verified BIO-TEN-002 tenant domain, then) (cd tests/frontend && BIOLOG_RPT003_LIVE_TESTS=1 BIOLOG_BASE_URL=http://127.0.0.1:3214 pnpm exec playwright test bio-rpt-003-audit-investigation-live.spec.ts --workers=1)",
+  "result": "PASS",
+  "timestamp": "2026-09-27T10:45:00Z",
+  "reviewer": "Ngozi",
+  "data_classification": "SYNTHETIC"
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-ACC-003",
+  "title": "Implement offline deny-list and cached access decisions",
+  "owner": "Busola - Mobile & Edge Engineer",
+  "reviewed_commit": "66188f748a956717de77cb0ee1b77638372abe15",
+  "required_acceptance_stages": ["builder", "adversarial", "acceptance"],
+  "requirement_ids": [
+    "BIO-ACC-003-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-ACC-003-AC01",
+      "requirement_ids": ["BIO-ACC-003-REQ-001"],
+      "text": "Edge cache is minimum necessary data."
+    },
+    {
+      "id": "BIO-ACC-003-AC02",
+      "requirement_ids": ["BIO-ACC-003-REQ-001"],
+      "text": "Revocation deltas have priority."
+    },
+    {
+      "id": "BIO-ACC-003-AC03",
+      "requirement_ids": ["BIO-ACC-003-REQ-001"],
+      "text": "Old card presentation logs locally and denies once revocation is cached."
+    },
+    {
+      "id": "BIO-ACC-003-AC04",
+      "requirement_ids": ["BIO-ACC-003-REQ-001"],
+      "text": "Stale-cache policy is explicit."
+    },
+    {
+      "id": "BIO-ACC-003-AC05",
+      "requirement_ids": ["BIO-ACC-003-REQ-001"],
+      "text": "Reconnect sync uploads events exactly once."
+    },
+    {
+      "id": "BIO-ACC-003-AC06",
+      "requirement_ids": ["BIO-ACC-003-REQ-001"],
+      "text": "The approved web surface (/access-control) is connected through AccessService to this story's live implementation or an explicitly documented HYBRID state, and the mapped end-to-end human workflow passes without an unapproved UI redesign."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-ACC-003.test.sh",
+      "ac_ids": [
+        "BIO-ACC-003-AC01",
+        "BIO-ACC-003-AC02",
+        "BIO-ACC-003-AC03",
+        "BIO-ACC-003-AC04",
+        "BIO-ACC-003-AC05",
+        "BIO-ACC-003-AC06"
+      ]
+    },
+    {
+      "path": "tests/flutter/test/bio_acc_003_ac01_ac02_revocation_cache_test.dart",
+      "ac_ids": ["BIO-ACC-003-AC01", "BIO-ACC-003-AC02", "BIO-ACC-003-AC04"]
+    },
+    {
+      "path": "tests/flutter/test/bio_acc_003_ac03_ac04_offline_decision_test.dart",
+      "ac_ids": ["BIO-ACC-003-AC03", "BIO-ACC-003-AC04"]
+    },
+    {
+      "path": "tests/flutter/test/bio_acc_003_ac05_sync_client_test.dart",
+      "ac_ids": ["BIO-ACC-003-AC02", "BIO-ACC-003-AC05"]
+    },
+    {
+      "path": "tests/features/bio-acc-003/AccessCacheEndpointsIntegrationTests.cs",
+      "ac_ids": [
+        "BIO-ACC-003-AC01",
+        "BIO-ACC-003-AC02",
+        "BIO-ACC-003-AC05",
+        "BIO-ACC-003-AC06"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-ACC-003/builder/metadata.json",
+      "stage": "builder",
+      "ac_ids": [
+        "BIO-ACC-003-AC01",
+        "BIO-ACC-003-AC02",
+        "BIO-ACC-003-AC03",
+        "BIO-ACC-003-AC04",
+        "BIO-ACC-003-AC05",
+        "BIO-ACC-003-AC06"
+      ]
+    }
+  ]
+}

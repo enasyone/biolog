@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.biolog.local/audit-event.schema.json",
+  "title": "BIOLOG audit event envelope",
+  "description": "ADR-0003 Decision 1. One append-only shape for every audited action, allowed or denied. Carries no payload and no evidence: it references them (Decision 5). Examples are SYNTHETIC.",
+  "type": "object",
+  "required": [
+    "event_id",
+    "schema_version",
+    "tenant_id",
+    "actor",
+    "device",
+    "action",
+    "target",
+    "outcome",
+    "reason_code",
+    "correlation_id",
+    "causation_id",
+    "occurred_at",
+    "received_at",
+    "classification"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "pattern": "^evt_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "schema_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "tenant_id": {
+      "description": "Tenant the action was performed in. Null only for control-plane actions.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^ten_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "actor": {
+      "description": "Structured, never a bare string: a name alone cannot tell a user from a service account of the same name.",
+      "type": "object",
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "user",
+            "service_account",
+            "device",
+            "system",
+            "anonymous",
+            "unknown"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255
+        }
+      }
+    },
+    "device": {
+      "description": "Where the action came from, when it came from a station, reader or mobile install. REQUIRED (AC01): explicitly null when there was no device, so 'no device' and 'nobody recorded the device' are different answers.",
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "device_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^dev_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        },
+        "workstation": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 255
+        }
+      }
+    },
+    "action": {
+      "description": "Namespaced verb, e.g. credential.activate, tenant.access, person.export.",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+$",
+      "maxLength": 128
+    },
+    "target": {
+      "type": "object",
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "outcome": {
+      "description": "Required on success too: an audit that records only failures cannot prove something was allowed.",
+      "type": "string",
+      "enum": [
+        "ALLOWED",
+        "DENIED",
+        "ERROR"
+      ]
+    },
+    "reason_code": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "correlation_id": {
+      "type": "string",
+      "pattern": "^evt_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "causation_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^evt_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+      "description": "What caused this event. REQUIRED (ADR-0003 Decision 1, aligned with the domain-event envelope's Decision 2 rule) and explicitly null for a root event, so an unstated cause cannot be confused with no cause."
+    },
+    "occurred_at": {
+      "$ref": "utc-instant.schema.json"
+    },
+    "received_at": {
+      "$ref": "utc-instant.schema.json"
+    },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "public",
+        "internal",
+        "personal",
+        "sensitive"
+      ]
+    },
+    "withheld": {
+      "description": "Field NAMES deliberately not carried. Never values. This is how a record stays honest about a secret without keeping it.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "detail": {
+      "description": "Allowlisted, non-secret fields only (Decision 3). Built by projection, never by copying a source object.",
+      "type": "object"
+    }
+  },
+  "not": {
+    "anyOf": [
+      {
+        "required": [
+          "payload"
+        ]
+      },
+      {
+        "required": [
+          "record"
+        ]
+      },
+      {
+        "required": [
+          "version"
+        ]
+      },
+      {
+        "required": [
+          "evidence"
+        ]
+      }
+    ],
+    "$comment": "No payload or embedded record (Decision 3), no aggregate version (append-only, ADR-0001 3.3), no inlined evidence (Decision 5)."
+  }
+}

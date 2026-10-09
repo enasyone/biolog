@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.biolog.local/validation-error-item.schema.json",
+  "title": "BIOLOG validation error item",
+  "description": "ADR-0004 Decision 5.3. One entry in a problem response's errors[] array. path uses the identical escapeSegment/dot-join rule as ADR-0003's redaction paths, deliberately reused rather than re-derived.",
+  "type": "object",
+  "required": ["path", "code", "message"],
+  "properties": {
+    "path": {
+      "description": "Escaped dot-joined field path (contracts/js/audit.mjs escapeSegment). An unescaped '.' is always a delimiter between two distinct fields, never a literal dot inside one.",
+      "type": "string",
+      "minLength": 1
+    },
+    "code": {
+      "description": "Short snake_case machine reason specific to the field's validation rule, e.g. required, invalid_format, out_of_range, unknown_field.",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "message": { "type": "string", "minLength": 1 }
+  },
+  "examples": [
+    { "path": "person.date_of_birth", "code": "invalid_format", "message": "must be a calendar date (YYYY-MM-DD)" }
+  ]
+}

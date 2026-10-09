@@ -1,0 +1,45 @@
+{
+  "story_key": "BIO-UX-005",
+  "commit_hash": "c8b6b78280cc6df0bf69b2964fccc7ca4420eeb1",
+  "implementation_commit": "c5a96e1249d45759e70f66a25fddbef2a8b3be2b",
+  "builder_evidence_commit": "2e88ae40ff783a0133cdc85ffdbfce5bcb5a72c5",
+  "environment_profile": "local frontend Node/pnpm workspace; synthetic fixtures",
+  "timestamp": "2026-09-23T13:30:29Z",
+  "acceptance_criteria": {
+    "BIO-UX-005-AC01": {"result": "PASS", "tests": ["bio-ux-005-module-registry.test.ts", "bio-ux-005-adapter-framework.spec.ts"]},
+    "BIO-UX-005-AC02": {"result": "PASS", "tests": ["bio-ux-005-feature-mode.test.ts HYBRID override/env coverage", "real-browser mixed-port transcript"]},
+    "BIO-UX-005-AC03": {"result": "PASS", "tests": ["production build/panel exclusion evidence", "security review"]},
+    "BIO-UX-005-AC04": {"result": "PASS", "tests": ["resolvePort tests", "live-mode manual verification"]},
+    "BIO-UX-005-AC05": {"result": "PASS", "tests": ["bio-ux-005-module-port.test.ts", "bio-ux-005-adapter-framework.spec.ts"]},
+    "BIO-UX-005-AC06": {"result": "PASS", "tests": ["bio-ux-005-feature-mode.test.ts fail-safe coverage", "security review"]}
+  },
+  "commands_results": [
+    {"command": "corepack pnpm --dir tests/frontend test:unit", "result": "PASS: 27 files, 217 tests"},
+    {"command": "corepack pnpm --dir web typecheck", "result": "PASS"},
+    {"command": "corepack pnpm --dir web build", "result": "PASS: 34 static pages generated"},
+    {"command": "NEXT_PUBLIC_FEATURE_MODE_REPORTINGSERVICE_VIEWAUDITTRAIL=LIVE real-browser verification", "result": "PASS: ReportingService HYBRID; audit LIVE; reports SIMULATION"}
+  ],
+  "builder_verdict": "PASS",
+  "independent_qa_verdict": "PASS",
+  "security_verdict": "PASS",
+  "performance_verdict": "NOT_REQUIRED",
+  "evidence_references": [
+    "builder/SUMMARY.md",
+    "builder/metadata.json",
+    "builder/ac03-ac04-manual-verification.txt",
+    "builder/frontend-unit-test-output.txt",
+    "builder/frontend-e2e-test-output.txt",
+    "builder/web-typecheck-build-output.txt",
+    "builder/round2-frontend-unit-test-output.txt",
+    "builder/round2-frontend-e2e-test-output.txt",
+    "builder/round2-web-build-output.txt",
+    "codex/REVIEW-Seyi-round1.md",
+    "codex/SECURITY-REVIEW-ZAINAB.md",
+    "codex/REVIEW-Seyi-round2.md",
+    "codex/SECURITY-REVIEW-ZAINAB-ROUND2.md",
+    "acceptance/REVIEW-Chioma-round1.md",
+    "acceptance/REVIEW-Chioma-round2.md"
+  ],
+  "final_acceptance_decision": "PASS",
+  "reason": "AC01-AC06 are complete; ReportingService provides a real independently configurable multi-port HYBRID implementation with unit, browser, functional-review, and security-review evidence."
+}

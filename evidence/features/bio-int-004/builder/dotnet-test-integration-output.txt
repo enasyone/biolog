@@ -1,0 +1,30 @@
+  Biolog.Features.Integrations -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-int-002/bin/Debug/net10.0/Biolog.Features.Integrations.dll
+  Biolog.Features.FingerprintSearch -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-bio-006/Biolog.Features.FingerprintSearch/bin/Debug/net10.0/Biolog.Features.FingerprintSearch.dll
+  Biolog.Features.FaceEnrolment -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-bio-003/Biolog.Features.FaceEnrolment/bin/Debug/net10.0/Biolog.Features.FaceEnrolment.dll
+  Biolog.Features.FingerprintVerification -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-bio-004/Biolog.Features.FingerprintVerification/bin/Debug/net10.0/Biolog.Features.FingerprintVerification.dll
+  Biolog.Features.OfflineSync -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-mob-003/bin/Debug/net10.0/Biolog.Features.OfflineSync.dll
+  Biolog.Features.BiometricRetention -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-bio-009/Biolog.Features.BiometricRetention/bin/Debug/net10.0/Biolog.Features.BiometricRetention.dll
+  Biolog.Features.OfflineEnrolment -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-mob-005/bin/Debug/net10.0/Biolog.Features.OfflineEnrolment.dll
+  Biolog.Features.ReportBuilder -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-rpt-002/bin/Debug/net10.0/Biolog.Features.ReportBuilder.dll
+  Biolog.Features.OcrEngine -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-doc-004/Biolog.Features.OcrEngine/bin/Debug/net10.0/Biolog.Features.OcrEngine.dll
+  Biolog.Features.TenantFeatureConfig -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-ten-003/bin/Debug/net10.0/Biolog.Features.TenantFeatureConfig.dll
+  Biolog.Features.TransportEvents -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-trn-002/bin/Debug/net10.0/Biolog.Features.TransportEvents.dll
+  Biolog.Features.BarcodeEngine -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-doc-003/Biolog.Features.BarcodeEngine/bin/Debug/net10.0/Biolog.Features.BarcodeEngine.dll
+  Biolog.Features.Webhooks -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-int-004/bin/Debug/net10.0/Biolog.Features.Webhooks.dll
+  Biolog.Features.Visitors -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-vis-001/bin/Debug/net10.0/Biolog.Features.Visitors.dll
+  Biolog.Features.MobileVerification -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-mob-004/bin/Debug/net10.0/Biolog.Features.MobileVerification.dll
+  Biolog.Features.MrzEngine -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-doc-002/Biolog.Features.MrzEngine/bin/Debug/net10.0/Biolog.Features.MrzEngine.dll
+  Biolog.Features.FaceVerification -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-bio-005/Biolog.Features.FaceVerification/bin/Debug/net10.0/Biolog.Features.FaceVerification.dll
+  Biolog.Features.DocumentTemplateEditor -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-doc-011/Biolog.Features.DocumentTemplateEditor/bin/Debug/net10.0/Biolog.Features.DocumentTemplateEditor.dll
+  Biolog.Features.ParserRegistry -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-doc-005/Biolog.Features.ParserRegistry/bin/Debug/net10.0/Biolog.Features.ParserRegistry.dll
+  Biolog.Features.DocumentClassifier -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-doc-006/Biolog.Features.DocumentClassifier/bin/Debug/net10.0/Biolog.Features.DocumentClassifier.dll
+  Biolog.Features.NfcReader -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-doc-007/Biolog.Features.NfcReader/bin/Debug/net10.0/Biolog.Features.NfcReader.dll
+  Biolog.Features.EvidenceComparison -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-doc-008/Biolog.Features.EvidenceComparison/bin/Debug/net10.0/Biolog.Features.EvidenceComparison.dll
+  Biolog.Features.AuthenticityAssessment -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-doc-009/Biolog.Features.AuthenticityAssessment/bin/Debug/net10.0/Biolog.Features.AuthenticityAssessment.dll
+  Biolog.Features.DocumentTemplatePack -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-doc-010/Biolog.Features.DocumentTemplatePack/bin/Debug/net10.0/Biolog.Features.DocumentTemplatePack.dll
+  Biolog.Api -> <workspace>/biolog-worktrees/BIO-INT-004/api/Biolog.Api/bin/Debug/net10.0/Biolog.Api.dll
+  Biolog.IntegrationTests -> <workspace>/biolog-worktrees/BIO-INT-004/tests/dotnet/Biolog.IntegrationTests/bin/Debug/net10.0/Biolog.IntegrationTests.dll
+Test run for <workspace>/biolog-worktrees/BIO-INT-004/tests/dotnet/Biolog.IntegrationTests/bin/Debug/net10.0/Biolog.IntegrationTests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:   244, Skipped:     0, Total:   244, Duration: 36 s - Biolog.IntegrationTests.dll (net10.0)

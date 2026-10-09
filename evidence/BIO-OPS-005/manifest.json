@@ -1,0 +1,128 @@
+{
+  "story_key": "BIO-OPS-005",
+  "title": "Document Verify evidence acceptance",
+  "implementation_commit": "8c8ed840da11802f4a1aa89d1340c3af1b5c51e7",
+  "builder_head": "6bf77b0b7e8ba5457e01a8cb5fe1c626134faff3",
+  "reviewed_head": "1232b9a06abe2419123bcc672c0680a362e36491",
+  "environment": {
+    "profile": "local acceptance on Darwin arm64; synthetic fixtures only",
+    "timestamp": "2026-10-08"
+  },
+  "acceptance_criteria": {
+    "BIO-OPS-005-AC01": {
+      "result": "PASS",
+      "evidence": [
+        "api/features/bio-ops-005/Biolog.Features.DocumentVerifyCoordination/DocumentVerifyCoordinatorService.cs",
+        "api/features/bio-ops-005/Biolog.Features.DocumentVerifyCoordination/Api/EvidenceStepResponse.cs",
+        "web/features/documents/evidence.ts",
+        "tests/features/bio-ops-005/Biolog.Features.DocumentVerifyCoordination.Tests/DocumentVerifyCoordinatorServiceTests.cs"
+      ],
+      "finding": "The shipped coordinator composes MRZ, barcode, OCR, identification, NFC, cross-source comparison and authenticity; every UI step result requires confidence and provenance."
+    },
+    "BIO-OPS-005-AC02": {
+      "result": "PASS",
+      "evidence": [
+        "api/features/bio-ops-005/Biolog.Features.DocumentVerifyCoordination/DocumentVerifyCoordinatorService.cs",
+        "tests/features/bio-ops-005/Biolog.Features.DocumentVerifyCoordination.Tests/DocumentVerifyCoordinatorServiceTests.cs"
+      ],
+      "finding": "A genuine MRZ/OCR disagreement raises an evidence-linked conflict, returns an inconclusive result and moves the session to manual review."
+    },
+    "BIO-OPS-005-AC03": {
+      "result": "PASS",
+      "evidence": [
+        "api/features/bio-ops-005/Biolog.Features.DocumentVerifyCoordination/DocumentVerifyCoordinatorService.cs",
+        "api/features/bio-doc-009/Biolog.Features.AuthenticityAssessment/Model/AuthenticityPolicyEngine.cs",
+        "tests/features/bio-ops-005/Biolog.Features.DocumentVerifyCoordination.Tests/DocumentVerifyCoordinatorServiceTests.cs"
+      ],
+      "finding": "No chip transport is fabricated: unavailable NFC returns not-checked with unavailable provenance, zero confidence and no NFC field evidence."
+    },
+    "BIO-OPS-005-AC04": {
+      "result": "PASS",
+      "evidence": [
+        "api/features/bio-doc-001/Biolog.Features.DocumentVerify/Model/PersonFieldChangeProposal.cs",
+        "api/features/bio-ops-005/Biolog.Features.DocumentVerifyCoordination/DocumentVerifyCoordinatorService.cs",
+        "tests/features/bio-ops-005/Biolog.Features.DocumentVerifyCoordination.Tests/DocumentVerifyCoordinatorServiceTests.cs"
+      ],
+      "finding": "Manual review resolves append-only conflicts and creates new immutable proposal state; it does not rewrite raw document or field evidence."
+    },
+    "BIO-OPS-005-AC05": {
+      "result": "PASS",
+      "evidence": [
+        "api/features/bio-ops-005/Biolog.Features.DocumentVerifyCoordination/DocumentVerifyCoordinatorService.cs",
+        "tests/features/bio-ops-005/Biolog.Features.DocumentVerifyCoordination.Tests/DocumentVerifyCoordinatorServiceTests.cs"
+      ],
+      "finding": "Document reads cannot mutate PERSON data. Once a trusted flow links a PERSON, extracted differences only create explicit immutable change proposals."
+    }
+  },
+  "commands": [
+    {
+      "command": "bash tests/features/bio-ops-005/BIO-OPS-005.acceptance.sh",
+      "result": "PASS (13/13 integrated invariants)"
+    },
+    {
+      "command": "tests/features/bio-ops-005/Biolog.Features.DocumentVerifyCoordination.Tests/bin/Debug/net10.0/Biolog.Features.DocumentVerifyCoordination.Tests",
+      "result": "PASS (8/8)"
+    },
+    {
+      "command": "tests/features/bio-doc-009/Biolog.Features.AuthenticityAssessment.Tests/bin/Debug/net10.0/Biolog.Features.AuthenticityAssessment.Tests",
+      "result": "PASS (54/54)"
+    },
+    {
+      "command": "tests/features/bio-doc-010/Biolog.Features.DocumentTemplatePack.Tests/bin/Debug/net10.0/Biolog.Features.DocumentTemplatePack.Tests",
+      "result": "PASS (41/41)"
+    },
+    {
+      "command": "dotnet build api/Biolog.Api/Biolog.Api.csproj --no-restore -m:1 /nodeReuse:false --disable-build-servers",
+      "result": "PASS (0 warnings, 0 errors)"
+    },
+    {
+      "command": "python3 scripts/check-traceability.py --all",
+      "result": "PASS (36 implemented stories)"
+    },
+    {
+      "command": "bash scripts/check-module-project-references.sh",
+      "result": "PASS"
+    },
+    {
+      "command": "bash scripts/secret-scan.sh --all",
+      "result": "PASS (built-in fallback scan clean)"
+    }
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "6bf77b0b7e8ba5457e01a8cb5fe1c626134faff3",
+    "implementation_commit": "8c8ed840da11802f4a1aa89d1340c3af1b5c51e7",
+    "coordinator_tests": "8/8 PASS",
+    "bio_doc_009_regression": "54/54 PASS",
+    "bio_doc_010_regression": "41/41 PASS",
+    "integrated_invariants": "13/13 PASS",
+    "api_build": "PASS (0 warnings, 0 errors)"
+  },
+  "security_review": {
+    "reviewer": "Zainab",
+    "result": "PASS",
+    "builder_commit_reviewed": "6bf77b0b7e8ba5457e01a8cb5fe1c626134faff3",
+    "review_commit": "1232b9a06abe2419123bcc672c0680a362e36491",
+    "evidence": "evidence/BIO-OPS-005/codex/SECURITY-REVIEW-ZAINAB.md",
+    "evidence_sha256": "827c165d43ce7ad1d5bda7a4760b112bbf462dbd8685c209b70e059984cad229"
+  },
+  "category_verdicts": {
+    "functional": "PASS",
+    "security": "PASS",
+    "tenant_isolation": "PASS",
+    "privacy": "PASS",
+    "replay_concurrency": "PASS",
+    "regression": "PASS"
+  },
+  "disclosures": [
+    "Input raster decoding remains an explicitly documented scanner/camera integration boundary; acceptance uses one deterministic synthetic document rendered into each engine's native raster form.",
+    "Physical NFC is unavailable and is reported as not-checked rather than fabricated.",
+    "Portrait-to-selfie comparison remains intentionally synthetic under BIO-UX-009-AC04 and is labelled synthetic-fixture."
+  ],
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "AC01-AC05 map to the shipped coordinator, executable end-to-end tests, dependent regression suites and an exact-commit security PASS. The synthetic raster, unavailable NFC and synthetic selfie boundaries are disclosed accurately; no unresolved Critical or High finding remains."
+  }
+}

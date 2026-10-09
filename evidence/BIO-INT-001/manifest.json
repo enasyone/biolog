@@ -1,0 +1,67 @@
+{
+  "story_key": "BIO-INT-001",
+  "commit_hash": "29805929b2700667879f4179318bbb13a1197406",
+  "implementation_commit": "ff0aa17",
+  "remediation_commit": "03cba7b",
+  "environment_profile": "local .NET workspace; synthetic fixtures; real composed host via WebApplicationFactory",
+  "builder_commit": "29805929b2700667879f4179318bbb13a1197406",
+  "reviewed_head": "e43250cca0e570d651320c7be16d00292420247a",
+  "timestamp": "2026-10-01T13:49:50Z",
+  "acceptance_criteria": {
+    "BIO-INT-001-AC01": {"result": "PASS", "tests": ["ProviderConfigRepositoryTests.cs", "AuthenticationEndpointsTests.cs"]},
+    "BIO-INT-001-AC02": {"result": "PASS", "tests": ["ClaimMappingTests.cs", "AuthenticationServiceTests.cs", "AuthenticationEndpointsTests.cs"]},
+    "BIO-INT-001-AC03": {"result": "PASS", "tests": ["MfaChallengeProviderTests.cs", "AuthenticationServiceTests.cs", "AuthenticationEndpointsTests.cs"]},
+    "BIO-INT-001-AC04": {"result": "PASS", "tests": ["AuthenticationServiceTests.cs", "AuthenticationEndpointsTests.cs"]},
+    "BIO-INT-001-AC05": {"result": "PASS", "tests": ["AuthenticationEndpointsTests.cs", "BIO-INT-001.test.sh"]}
+  },
+  "commands_results": [
+    {"command": "dotnet build api/Biolog.Api/Biolog.Api.csproj", "result": "PASS: 0 warnings, 0 errors, all 45 feature projects"},
+    {"command": "dotnet test tests/features/bio-int-001/Biolog.Features.Authentication.Tests.csproj", "result": "PASS: 70/70"},
+    {"command": "dotnet test tests/dotnet/Biolog.IntegrationTests/Biolog.IntegrationTests.csproj", "result": "PASS: 175/175 (full suite, includes 11 new tests)"},
+    {"command": "dotnet test tests/dotnet/Biolog.UnitTests/Biolog.UnitTests.csproj", "result": "PASS: 200/200"},
+    {"command": "bash tests/features/bio-int-001/BIO-INT-001.test.sh", "result": "PASS: 35/35"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (32 implemented stories)"},
+    {"command": "bash scripts/check-dotnet-vulnerabilities.sh (both new projects)", "result": "PASS: no vulnerable packages"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS: clean"}
+  ],
+  "builder_verdict": "PASS at 29805929b2700667879f4179318bbb13a1197406; 70/70 feature, 175/175 integration, 200/200 unit and 35/35 structural tests",
+  "independent_qa_verdict": "PASS: Seyi, bound to 29805929b2700667879f4179318bbb13a1197406",
+  "security_verdict": "PASS: Zainab round two, bound to 29805929b2700667879f4179318bbb13a1197406",
+  "performance_verdict": "NOT_REQUIRED",
+  "evidence_references": [
+    "builder/SUMMARY.md",
+    "builder/metadata.json",
+    "builder/dotnet-build-output.txt",
+    "builder/dotnet-test-authentication-output.txt",
+    "builder/dotnet-test-integration-output.txt",
+    "builder/dotnet-test-unittests-output.txt",
+    "builder/BIO-INT-001-structural-harness-output.txt",
+    "builder/module-references-output.txt",
+    "builder/traceability-output.txt",
+    "builder/secret-scan-output.txt",
+    "builder/vulnerability-audit-output.txt",
+    "codex/SECURITY-REVIEW-ZAINAB.md",
+    "codex/SECURITY-REVIEW-ZAINAB-ROUND2.md",
+    "codex/REVIEW-Seyi-round3.md"
+  ],
+  "governance_notes": [
+    "No governance/stories/BIO-INT-001.json and no tests/foundation/BIO-INT-001.test.sh - matches every other api/features/-convention story with no mobile component; confirmed by inspecting both directories before relying on the precedent.",
+    "AC05 resolved as a genuine LIVE connection: web/features/integrations/live.ts (BIO-UX-005) already targeted /api/v1/integrations/primary-action, built for precisely this integration per that module's own doc comment. Zero changes made to web/features/integrations/** or web/app/{administration/integrations,settings/authentication}/** (BIO-UX-005's own owned files) - confirmed by a git-diff check in the structural harness. Both pages remain placeholder-only (BIO-UX-002/003 shell scope); no dedicated provider-configuration UI exists yet - that is each page's own future work, not redesigned here.",
+    "ADR-0006 scope discipline: this story is ADR-0006 Decision 5's named closing story, but the ADR's own text frames retrofitting each existing X-Actor-Id-based story (BIO-TEN-001/002, BIO-IDN-001-006) and retiring BIO-IDN-006's interim ActorProvenanceGate as 'a named follow-up on each story', not a single retrofit performed by this one. No other story's feature project was touched (confirmed by a git-diff check in the structural harness) - this scoping call is flagged to god for visibility, not treated as unilaterally settled.",
+    "No JWT/session ADR or dependency existed anywhere in this codebase before this story (confirmed by search) - docs/features/bio-crd-007/README.md already names this precedent explicitly. This story's session token is a hand-rolled HMAC construction matching BIO-IDN-006's own ActorProvenanceGate precedent, introducing no new library dependency or vulnerability-scan surface.",
+    "BIO-IDN-006's role model (RoleType, 11 wire strings) is duplicated by VALUE in this project's own KnownRoles.cs, not referenced live - this project cannot ProjectReference bio-idn-006's csproj (only Biolog.Api may reference feature projects), and even the host can only reach BIO-IDN-006's PermissionService/RoleAssignmentService because InternalsVisibleTo is scoped to Biolog.Api and its own tests, not to a sibling feature project.",
+    "REMEDIATION (2026-09-30): Zainab's security review (evidence/BIO-INT-001/codex/SECURITY-REVIEW-ZAINAB.md) FAILed builder commit ff0aa17 High BIO-INT-001-F01 - InMemoryMfaChallengeProvider's public ExpectedCodeFor derived the MFA code as a fixed SHA-256 prefix of the challenge id, which every legitimate mfa_required response hands the caller, so any caller could compute the code themselves and bypass MFA. Fixed in commit 03cba7b: the code is now RandomNumberGenerator-generated, independent of the challenge id, and returned only to the in-process caller of IssueChallengeAsync via an internal-only AuthenticationOutcome.DemoOnlyMfaCode field never reachable through any HTTP response. Disclosed consequence: a real MFA-required sign-in cannot complete through the live endpoints until a real out-of-band transport adapter is plugged in behind IMfaChallengeProvider - a limitation, not a regression. Regression tests added at both the unit layer (An_attacker_who_knows_only_the_challenge_id_cannot_derive_the_code) and the real HTTP layer (An_attacker_with_only_the_http_visible_challenge_id_cannot_verify_mfa), the latter being the exact test Zainab's review asked for."
+  ],
+  "acceptance_replay": [
+    {"command": "tests/features/bio-int-001/bin/Debug/net10.0/Biolog.Features.Authentication.Tests", "result": "PASS: 70/70"},
+    {"command": "bash tests/features/bio-int-001/BIO-INT-001.test.sh", "result": "PASS: 35/35"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS: 32 implemented stories"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS: clean fallback scan"}
+  ],
+  "acceptance_blockers": [],
+  "final_acceptance_decision": "PASS",
+  "acceptor": "Chioma",
+  "reason": "AC01-AC05 have exact-commit builder evidence, fresh focused replay, and Seyi plus Zainab PASS verdicts bound to the remediation. Cryptographically random server-held MFA codes close the reported High bypass; no unresolved Critical or High finding remains."
+}

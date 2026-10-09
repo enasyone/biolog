@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-ARC-004",
+  "title": "Define API, error and idempotency conventions",
+  "owner": "Kemi - Chief Architect & Integrator",
+  "requirement_ids": [
+    "BIO-ARC-004-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-ARC-004-AC01",
+      "requirement_ids": [
+        "BIO-ARC-004-REQ-001"
+      ],
+      "text": "All public APIs use /api/v1 or explicitly versioned equivalents."
+    },
+    {
+      "id": "BIO-ARC-004-AC02",
+      "requirement_ids": [
+        "BIO-ARC-004-REQ-001"
+      ],
+      "text": "Problem/error response format is standardised."
+    },
+    {
+      "id": "BIO-ARC-004-AC03",
+      "requirement_ids": [
+        "BIO-ARC-004-REQ-001"
+      ],
+      "text": "Write endpoints define idempotency behavior where retries can occur."
+    },
+    {
+      "id": "BIO-ARC-004-AC04",
+      "requirement_ids": [
+        "BIO-ARC-004-REQ-001"
+      ],
+      "text": "Pagination, filtering, correlation IDs and validation errors are documented."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-ARC-004.test.sh",
+      "ac_ids": [
+        "BIO-ARC-004-AC01",
+        "BIO-ARC-004-AC02",
+        "BIO-ARC-004-AC03",
+        "BIO-ARC-004-AC04"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-ARC-004/acceptance/manifest.json",
+      "ac_ids": [
+        "BIO-ARC-004-AC01",
+        "BIO-ARC-004-AC02",
+        "BIO-ARC-004-AC03",
+        "BIO-ARC-004-AC04"
+      ]
+    }
+  ]
+}

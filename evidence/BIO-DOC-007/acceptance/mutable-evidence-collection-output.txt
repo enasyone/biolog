@@ -1,0 +1,6 @@
+mutable_list_created=True
+same_list_passed_to_result=True
+same_list_exposed_as_readonly_interface=False
+immutable_copy_present=True
+PASS
+exit_code=0

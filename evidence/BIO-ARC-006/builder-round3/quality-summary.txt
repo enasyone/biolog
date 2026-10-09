@@ -1,0 +1,23 @@
+command: bash scripts/quality.sh
+exit_code: 0
+tail:
+# tests 322
+# suites 0
+# pass 322
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2119.956291
+PASS  contract behavior suite passes
+secret-scan: gitleaks not installed, using built-in fallback pattern scan
+secret-scan: clean
+PASS  tracked secret scan stays clean
+==============================
+17/17 checks passed
+PASS  BIO-ARC-006 contract freeze harness
+== tracked secret scan ==
+secret-scan: gitleaks not installed, using built-in fallback pattern scan
+secret-scan: clean
+PASS  tracked secret scan
+QUALITY: PASS

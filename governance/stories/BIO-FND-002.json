@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-FND-002",
+  "title": "Pin local toolchain and dependency policy",
+  "owner": "Emeka - Platform & Infrastructure Engineer",
+  "requirement_ids": [
+    "BIO-FND-002-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-FND-002-AC01",
+      "requirement_ids": [
+        "BIO-FND-002-REQ-001"
+      ],
+      "text": "Toolchain policy covers .NET LTS, Node LTS, package manager, Flutter, Docker and database client."
+    },
+    {
+      "id": "BIO-FND-002-AC02",
+      "requirement_ids": [
+        "BIO-FND-002-REQ-001"
+      ],
+      "text": "Exact versions are recorded in repository-managed version files during first bootstrap."
+    },
+    {
+      "id": "BIO-FND-002-AC03",
+      "requirement_ids": [
+        "BIO-FND-002-REQ-001"
+      ],
+      "text": "All agents use the same lock files and may not upgrade toolchains inside feature stories."
+    },
+    {
+      "id": "BIO-FND-002-AC04",
+      "requirement_ids": [
+        "BIO-FND-002-REQ-001"
+      ],
+      "text": "A version check command reports drift and fails when unsupported versions are used."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-FND-002.test.sh",
+      "ac_ids": [
+        "BIO-FND-002-AC01",
+        "BIO-FND-002-AC02",
+        "BIO-FND-002-AC03",
+        "BIO-FND-002-AC04"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-FND-002/manifest.json",
+      "ac_ids": [
+        "BIO-FND-002-AC01",
+        "BIO-FND-002-AC02",
+        "BIO-FND-002-AC03",
+        "BIO-FND-002-AC04"
+      ]
+    }
+  ]
+}

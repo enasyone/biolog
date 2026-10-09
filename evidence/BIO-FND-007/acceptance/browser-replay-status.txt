@@ -1,0 +1,6 @@
+command: ./web/node_modules/.bin/next dev web -H 127.0.0.1 -p 3107
+result: UNAVAILABLE in acceptance sandbox
+reason: listen EPERM on 127.0.0.1:3107
+substitute evidence: committed builder browser transcript plus independent source checks
+builder transcript sha256: 8785a59b784f4c9d6a1f383769f48cc6fcaeb14556b6106c5e2c4be4a2bd7351
+builder browser result: 16/16 PASS at remediation commit 12a14de

@@ -1,0 +1,57 @@
+{
+  "story_key": "BIO-DOC-010",
+  "title": "Implement Nigeria Document Intelligence Pack v1",
+  "implementation_commit": "cfef942448006d324cb264b76ca63bf4868c06ef",
+  "builder_commit": "3da6de97d9987e8014add39f29e601a712ffc4c9",
+  "reviewed_head": "215d0658d355dd6303bc96bd01b5da53c17443ce",
+  "environment": {
+    "profile": "local acceptance; synthetic fixtures only; GitHub push blocked",
+    "timestamp": "2026-09-30T15:19:55Z"
+  },
+  "acceptance_criteria": {
+    "BIO-DOC-010-AC01": {"result": "PASS", "evidence": ["complete Nigeria ePassport, NIN slip and driver licence metadata", "structural and feature tests"]},
+    "BIO-DOC-010-AC02": {"result": "PASS", "evidence": ["one-way Draft to Published lifecycle", "published packs reject mutation and re-publication"]},
+    "BIO-DOC-010-AC03": {"result": "PASS", "evidence": ["samples are structurally synthetic", "sample store rejects ungoverned entries"]},
+    "BIO-DOC-010-AC04": {"result": "PASS", "evidence": ["every verification result and audit event records pack id, version and entry id", "unpublished and ungoverned verification fails closed"]},
+    "BIO-DOC-010-AC05": {"result": "PASS", "evidence": ["POST /api/v1/documents/identify is connected to the independent DocumentVerifyService documentIdentification port", "builder live browser 4/4 without UI redesign"]}
+  },
+  "commands": [
+    {"command": "bash tests/foundation/BIO-DOC-010.test.sh", "result": "PASS (42/42)"},
+    {"command": "python3 scripts/check-traceability.py governance/stories/BIO-DOC-010.json", "result": "PASS (5 ACs)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "dotnet test tests/features/bio-doc-010/Biolog.Features.DocumentTemplatePack.Tests/Biolog.Features.DocumentTemplatePack.Tests.csproj --no-restore", "result": "UNAVAILABLE in acceptance sandbox: MSBuild named-pipe bind denied; commit-bound builder transcript records 41/41 PASS"}
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "3da6de97d9987e8014add39f29e601a712ffc4c9",
+    "feature_tests": "41/41 PASS",
+    "structural_tests": "42/42 PASS",
+    "frontend_unit": "419/419 PASS",
+    "live_browser": "4/4 PASS",
+    "metadata_sha256": "1813b8ecda5d5af2a5ecdb9dead09eea132f94d1f281756ab802016b1cf86234"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "result": "PASS",
+    "commit_hash": "3da6de97d9987e8014add39f29e601a712ffc4c9",
+    "evidence": "evidence/BIO-DOC-010/codex/REVIEW-Seyi.md",
+    "evidence_sha256": "322b9502ac15ccb0fecf9ea98f6c78117292b1e9d44db7bfb345ebc573c016fc"
+  },
+  "category_verdicts": {
+    "functional": "PASS",
+    "security": "PASS",
+    "tenant_isolation": "PASS",
+    "offline_recovery": "PASS_APPLICABLE",
+    "concurrency": "PASS_APPLICABLE",
+    "regression": "PASS"
+  },
+  "disclosures": [
+    "The endpoint uses fixed synthetic verification scenarios and does not expose the documented authenticity cross-reference service seam over HTTP; that seam remains tested and is outside BIO-DOC-010."
+  ],
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "All five acceptance criteria have exact-commit builder evidence, Seyi PASS bound to the builder commit, and successful focused acceptance replay; no unresolved Critical or High finding exists."
+  }
+}

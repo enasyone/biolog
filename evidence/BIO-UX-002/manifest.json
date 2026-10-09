@@ -1,0 +1,42 @@
+{
+  "story_key": "BIO-UX-002",
+  "commit_hash": "d6c200d6bab09f06b285f0a6bf803a9a8ba77fc6",
+  "implementation_commit": "61a5ed4cec3b5414ee0c5c0fdad90b6b729da4c0",
+  "builder_evidence_commit": "8ef200e40a018077dd0c8ac72773703f16b408df",
+  "environment_profile": "local frontend Node/pnpm workspace; synthetic fixtures; managed sandbox blocks local browser-server bind",
+  "timestamp": "2026-09-23T12:34:49Z",
+  "acceptance_criteria": {
+    "BIO-UX-002-AC01": {"result": "PASS", "tests": ["bio-ux-002-shell.spec.ts", "bio-ux-002-search-fixtures.test.ts"]},
+    "BIO-UX-002-AC02": {"result": "PASS", "tests": ["bio-ux-002-nav-groups.test.ts", "bio-fnd-007-permissions.test.ts"]},
+    "BIO-UX-002-AC03": {"result": "PASS", "tests": ["bio-ux-002-shell.spec.ts keyboard/focus and axe coverage"]},
+    "BIO-UX-002-AC04": {"result": "PASS", "tests": ["Next production route manifest", "bio-ux-002-shell.spec.ts route inventory"]},
+    "BIO-UX-002-AC05": {"result": "PASS", "tests": ["bio-ux-002-shell.spec.ts no-feature-API coverage"]},
+    "BIO-UX-002-AC06": {"result": "PASS", "tests": ["brand-token pin and axe contrast coverage", "independent contrast calculation"]}
+  },
+  "commands_results": [
+    {"command": "corepack pnpm --dir tests/frontend test:unit", "result": "PASS: 23 files, 172 tests"},
+    {"command": "corepack pnpm --dir web typecheck", "result": "PASS"},
+    {"command": "corepack pnpm --dir web build", "result": "PASS: 34 static pages generated"},
+    {"command": "corepack pnpm --dir tests/frontend test:e2e", "result": "UNAVAILABLE in acceptance sandbox: listen EPERM on 127.0.0.1:3000; builder evidence records PASS 102/102"},
+    {"command": "WCAG relative-luminance calculation for light/dark accent and navy pairs", "result": "PASS: 4.529:1 light, 5.596:1 dark"}
+  ],
+  "builder_verdict": "PASS",
+  "independent_qa_verdict": "PASS",
+  "security_verdict": "NOT_REQUIRED",
+  "performance_verdict": "NOT_REQUIRED",
+  "evidence_references": [
+    "builder/SUMMARY.md",
+    "builder/metadata.json",
+    "builder/frontend-unit-test-output.txt",
+    "builder/frontend-e2e-test-output.txt",
+    "builder/web-typecheck-build-output.txt",
+    "codex/REVIEW-Seyi-round1.md",
+    "acceptance/REVIEW-Chioma-round1.md"
+  ],
+  "scope_boundaries": [
+    "Visitors versus Visitor Management naming is deferred to BIO-UX-003.",
+    "Backend-port mapping for Alumni, Contractors, and NFC/UHF is deferred to BIO-UX-003."
+  ],
+  "final_acceptance_decision": "PASS",
+  "reason": "AC01-AC06 are implemented and evidenced; unit, typecheck, and production-build replay pass, with commit-bound browser and independent-review evidence covering the managed-sandbox browser limitation."
+}

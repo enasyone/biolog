@@ -1,0 +1,10 @@
+{
+  "story_key": "BIO-CRD-003",
+  "stage": "builder",
+  "commit_hash": "28418d6d8685d15934606b03cbd2bcc56155e95f",
+  "test_command": "bash tests/features/bio-crd-003/BIO-CRD-003.test.sh && dotnet test tests/features/bio-crd-003/Biolog.Features.CardTypography.Tests.csproj --nologo && pnpm --dir tests/frontend test:unit && pnpm --dir tests/frontend test:e2e && bash scripts/quality.sh --full",
+  "result": "PASS",
+  "timestamp": "2026-09-22T23:40:00Z",
+  "reviewer": "Ngozi",
+  "data_classification": "SYNTHETIC"
+}

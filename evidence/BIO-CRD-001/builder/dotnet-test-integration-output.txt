@@ -1,0 +1,8 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Biolog.Api -> <workspace>/biolog-worktrees/BIO-CRD-001/api/Biolog.Api/bin/Debug/net10.0/Biolog.Api.dll
+  Biolog.IntegrationTests -> <workspace>/biolog-worktrees/BIO-CRD-001/tests/dotnet/Biolog.IntegrationTests/bin/Debug/net10.0/Biolog.IntegrationTests.dll
+Test run for <workspace>/biolog-worktrees/BIO-CRD-001/tests/dotnet/Biolog.IntegrationTests/bin/Debug/net10.0/Biolog.IntegrationTests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:    35, Skipped:     0, Total:    35, Duration: 2 s - Biolog.IntegrationTests.dll (net10.0)

@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Matches api/Biolog.Api/Biolog.Api.csproj's pinned TFM (BIO-FND-008). -->
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <!--
+    BIO-BIO-001-AC03: this is a plain, host-agnostic class library with no dependency on
+    ASP.NET Core (no FrameworkReference, no ProjectReference to Biolog.Api) and, just as
+    importantly, no dependency on any SQL/MySQL client library. "Biometric service is
+    separate from MySQL matching logic" is enforced structurally by this project simply
+    having no way to reach a database: BiometricService (Service/BiometricService.cs) talks
+    only to the IBiometricTemplateStore/IBiometricMatcher interfaces this project defines
+    (Matching/), never a connection string or a SQL statement. A later story that persists
+    templates in MySQL and runs real 1:N matching implements those two interfaces against a
+    database in its OWN project; this project never references it (mirrors BIO-DOC-001's
+    identical "provider-neutral domain model, no ASP.NET dependency" shape - see that
+    project's own csproj remarks).
+  -->
+
+</Project>

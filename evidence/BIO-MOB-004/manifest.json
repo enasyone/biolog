@@ -1,0 +1,85 @@
+{
+  "story_key": "BIO-MOB-004",
+  "title": "Implement mobile identity/card/face verification flows",
+  "implementation_commit": "6bc27084ad9fc9eba6c2d298f1cf1c97eb252bb3",
+  "builder_head": "d7bdc9a9ba2d053dbb412eb578b39c82a9e1a757",
+  "reviewed_head": "40ee21ab8294aa142ce312ce9083761e40caa71c",
+  "environment": {
+    "profile": "local acceptance on Darwin arm64; synthetic fixtures only",
+    "timestamp": "2026-10-06"
+  },
+  "acceptance_criteria": {
+    "BIO-MOB-004-AC01": {
+      "result": "PASS",
+      "evidence": ["tests/features/bio-mob-004/VerificationEndpointsIntegrationTests.cs", "tests/flutter/test/bio_mob_004_ac01_ac03_ac04_sync_client_test.dart", "evidence/BIO-MOB-004/codex/REVIEW-Seyi.md"],
+      "finding": "The mobile result exposes identity, status and decision while biometric scores and internal evidence are structurally absent."
+    },
+    "BIO-MOB-004-AC02": {
+      "result": "PASS",
+      "evidence": ["tests/flutter/test/bio_mob_004_ac02_verification_service_test.dart", "tests/foundation/BIO-MOB-004.test.sh"],
+      "finding": "Connectivity explicitly selects live or existing offline-cache evaluation, and the UI labels source and stale-cache state."
+    },
+    "BIO-MOB-004-AC03": {
+      "result": "PASS",
+      "evidence": ["tests/features/bio-mob-004/VerificationEndpointsIntegrationTests.cs", "evidence/BIO-MOB-004/codex/REVIEW-Zainab.md"],
+      "finding": "Least-privilege device roles gate supervisor overrides; role assignment remains human RBAC and provenance gated, with mandatory override reasons."
+    },
+    "BIO-MOB-004-AC04": {
+      "result": "PASS",
+      "evidence": ["tests/features/bio-mob-004/VerificationEndpointsIntegrationTests.cs", "tests/flutter/test/bio_mob_004_ac01_ac03_ac04_sync_client_test.dart"],
+      "finding": "Decision writes require and preserve Idempotency-Key through the reviewed downstream guarantee."
+    },
+    "BIO-MOB-004-AC05": {
+      "result": "PASS",
+      "evidence": ["tests/foundation/BIO-MOB-004.test.sh", "mobile/lib/features/verify/verify_screen.dart", "evidence/BIO-MOB-004/builder/SUMMARY.md"],
+      "finding": "The approved Flutter verify surface is wired through VerificationService and VerificationSyncClient without unrelated UI redesign."
+    }
+  },
+  "commands": [
+    {"command": "bash tests/foundation/BIO-MOB-004.test.sh", "result": "PASS (23/23)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (34 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "flutter test", "result": "UNAVAILABLE in acceptance sandbox: Flutter SDK cache is read-only; commit-bound builder evidence records 134/134 PASS"},
+    {"command": "dotnet test tests/features/bio-mob-004/Biolog.Features.MobileVerification.Tests.csproj --no-restore --nologo -m:1 /nodeReuse:false", "result": "UNAVAILABLE in acceptance sandbox: VSTest loopback socket execution did not complete; commit-bound builder evidence records 13/13 PASS"}
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "d7bdc9a9ba2d053dbb412eb578b39c82a9e1a757",
+    "implementation_commit": "6bc27084ad9fc9eba6c2d298f1cf1c97eb252bb3",
+    "feature_tests": "13/13 PASS",
+    "flutter_tests": "134/134 PASS",
+    "structural_tests": "23/23 PASS",
+    "host_build": "PASS (0 warnings, 0 errors)",
+    "metadata_sha256": "0de0ada78beaee0ce62f2431c702fa9ec149a4cb9e28758646ee5aa82bcf2fdc"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "result": "PASS",
+    "builder_commit_reviewed": "d7bdc9a9ba2d053dbb412eb578b39c82a9e1a757",
+    "review_commit": "edbe24d685c4458a60fb524a3e0f7e09a7cc11f7",
+    "evidence": "evidence/BIO-MOB-004/codex/REVIEW-Seyi.md",
+    "evidence_sha256": "7686ed7bacff8d463a07eecfb93fee563a58f0aab34fac9972342c0da742dd4f"
+  },
+  "security_review": {
+    "reviewer": "Zainab",
+    "result": "PASS",
+    "review_commit": "40ee21ab8294aa142ce312ce9083761e40caa71c",
+    "evidence": "evidence/BIO-MOB-004/codex/REVIEW-Zainab.md",
+    "evidence_sha256": "873e682a70f5eebf2a845757c7f6b2eba72d795635669fac612015c12273afcb"
+  },
+  "category_verdicts": {
+    "functional": "PASS",
+    "security_privacy": "PASS",
+    "tenant_isolation": "PASS",
+    "offline_recovery": "PASS",
+    "authorization": "PASS",
+    "idempotency": "PASS",
+    "regression": "PASS"
+  },
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "All five acceptance criteria map to exact-commit builder, independent QA and security evidence; fresh structural, traceability and module-direction checks pass, with executable suites covered by commit-bound builder evidence where the acceptance sandbox blocks their runners."
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "story_key": "BIO-ATT-003",
+  "stage": "builder",
+  "round": 2,
+  "commit_hash": "6d7e433",
+  "test_command": "dotnet test tests/features/bio-att-003/Biolog.Features.WorkforceAttendance.Tests.csproj && dotnet test tests/features/bio-att-001/Biolog.Features.Attendance.Tests.csproj && dotnet test tests/dotnet/Biolog.IntegrationTests/Biolog.IntegrationTests.csproj && bash scripts/check-module-project-references.sh && python3 scripts/check-contract-freeze.py && (cd web && pnpm run typecheck && pnpm run build) && (cd tests/frontend && pnpm run test:unit)",
+  "result": "PASS",
+  "timestamp": "2026-10-07T03:50:00Z",
+  "reviewer": "Tunde",
+  "data_classification": "SYNTHETIC",
+  "summary": "Round-2 remediation for Seyi's round-1 double-High FAIL (evidence 2d442b1). F01 (lateness/absence interpretation missing): new Domain/AttendanceInterpretationEvaluator.cs (pure function, reads raw clock events directly, overnight-wrap-safe), AttendanceInterpretationStatus.cs, WorkforceAttendanceInterpretation.cs - wired into WorkforceAttendanceService.GetDailySummaryAsync as a new required WorkforceDailySummary.Interpretation field, exposed over the wire and in the web UI. 11 new AttendanceInterpretationEvaluatorTests.cs (includes the reviewer's own 08:00+10min-grace/08:11 reproduction and two overnight-wrap boundary cases) plus 2 new WorkforceAttendanceServiceTests.cs and 2 new WorkforceAttendanceEndpointsIntegrationTests.cs proving the service/HTTP wiring, not just the pure evaluator. F02 (AC05 obsolete pre-bridge boundary): merged develop (now on top of TD-WEB-PROVENANCE-BRIDGE round 6, commit 20f9312) into this branch; found and fixed the same class of gap BIO-TEN-003's own TD-WEB-PROVENANCE-BRIDGE-REVERIFY round found (web/lib/actor-provenance-routes.ts had no entry for /api/v1/workforce-attendance/*) plus a genuinely simpler fix than BIO-TEN-003 needed (no tenant-registry seeding, since this story resolves tenant ambiently throughout - only BioAtt003Module.Configure seeding real RolePermissionGrant rows for TenantAdmin's two permission keys). New tests/dotnet/Biolog.IntegrationTests/BioAtt003ReverifyEndpointsTests.cs (3 tests, through the real packaged host, real RBAC, real seeded grants - admin creates a shift 201 with a confirming follow-up read, viewer denied 403, no-provenance 401 unchanged). Rewrote tests/frontend/playwright/bio-att-003-workforce-attendance-live.spec.ts for the same real admin-success/viewer-denial workflow through a real browser, replacing the stale negative-only (401) assertions - verified clean across 4 consecutive manual two-server runs, no flake (this page never auto-fetches on mount, so the cold-start session/fetch race BIO-TEN-003's own equivalent spec needed to work around does not apply here). Also found and fixed a self-introduced round-1 regression: the workforceAttendance MODULE_PORT_KEYS addition broke bio-ux-005-module-registry.test.ts/bio-ux-010-module-ports.test.ts's own cross-check invariants (round 1's own evidence claimed 'same 2 pre-existing bio-ux-005 failures' without having actually diffed the failure content - it was really 3, one of them this story's own). Fixed with a thin, genuinely-functional ModulePort proxy (workforceAttendanceModulePort) rather than a fabricated stub. Verification: own suite 61/61 (was 46), BIO-ATT-001 zero-regression 24/24 unchanged, full Biolog.IntegrationTests 230/230 (the 2 pre-existing AuthenticationEndpointsTests failures from round 1 are gone - Busola's unrelated SessionTokenSecret fix landed separately), module-reference/contract-freeze PASS, web typecheck/build clean, tests/frontend test:unit 543/545 (same 2 pre-existing, unrelated bio-ux-005 IntegrationService/CredentialService gap only).",
+  "files_changed": {
+    "new": [
+      "api/features/bio-att-003/Domain/AttendanceInterpretationStatus.cs",
+      "api/features/bio-att-003/Domain/WorkforceAttendanceInterpretation.cs",
+      "api/features/bio-att-003/Domain/AttendanceInterpretationEvaluator.cs",
+      "tests/features/bio-att-003/AttendanceInterpretationEvaluatorTests.cs",
+      "tests/dotnet/Biolog.IntegrationTests/BioAtt003ReverifyEndpointsTests.cs"
+    ],
+    "modified": [
+      "api/features/bio-att-003/WorkforceAttendanceService.cs",
+      "api/features/bio-att-003/Api/WorkforceDailySummaryResponse.cs",
+      "api/Biolog.Api/Modules/BioAtt003Module.cs",
+      "tests/features/bio-att-003/WorkforceAttendanceServiceTests.cs",
+      "tests/features/bio-att-003/WorkforceAttendanceEndpointsIntegrationTests.cs",
+      "web/features/attendance/ports.ts",
+      "web/features/attendance/live.ts",
+      "web/features/attendance/mock.ts",
+      "web/features/attendance/index.ts",
+      "web/features/attendance/attendance-page.tsx",
+      "web/lib/actor-provenance-routes.ts",
+      "web/lib/module-registry.ts",
+      "tests/frontend/unit/td-web-provenance-bridge-route-table.test.ts",
+      "tests/frontend/unit/bio-ux-005-feature-mode.test.ts",
+      "tests/frontend/unit/bio-ux-010-module-ports.test.ts",
+      "tests/frontend/playwright/bio-att-003-workforce-attendance-live.spec.ts",
+      "docs/features/bio-att-003/README.md"
+    ]
+  },
+  "notes": "Design decisions worth recording: (1) AttendanceInterpretationEvaluator deliberately reads raw ClockEventView events directly rather than WorkforceClockPair, since lateness/absence is about the first CheckIn's own timing, a question pairing status was never meant to answer (an OpenCheckIn/Overlapping day still has a real arrival time). (2) Overnight-shift lateness math wraps modulo 1440 the same way WorkforceShift.ExpectedDurationMinutes already does, inheriting that property's own disclosed 'wall time, no timezone, no full calendar awareness' limitation rather than introducing a new one. (3) F02's fix is simpler than BIO-TEN-003's own equivalent because this story resolves tenant ambiently throughout - no tenant-registry seeding needed, only RolePermissionGrant seeding. (4) The bio-ux-005/bio-ux-010 fixture regression was caught only because the full tests/frontend test:unit suite was actually run this round (an oversight in round 1's own verification, corrected here) - a reminder that 'same N pre-existing failures' claims need the actual failure content diffed, not just the count compared."
+}

@@ -1,0 +1,28 @@
+=== git log -5 ===
+14341f5 BIO-MOB-002: recover mutations stranded in uploading on restart
+9ac83fb audit(bio-mob-002): fail interrupted upload recovery
+f830a16 review(bio-mob-002): pass round-two retry re-review
+4ccbb6a BIO-MOB-002: record round-1 fix evidence for BIO-MOB-002-QA-01
+6941787 BIO-MOB-002: guard queue state transitions and fix a retry-count race
+
+=== git status ===
+On branch feature/BIO-MOB-002
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   evidence/BIO-MOB-002/builder/SUMMARY.md
+	modified:   evidence/BIO-MOB-002/builder/flutter-analyze-output.txt
+	modified:   evidence/BIO-MOB-002/builder/flutter-test-output.txt
+	modified:   evidence/BIO-MOB-002/builder/foundation-harness-output.txt
+	modified:   evidence/BIO-MOB-002/builder/git-state.txt
+	modified:   evidence/BIO-MOB-002/builder/metadata.json
+	modified:   governance/stories/BIO-MOB-002.json
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	evidence/BIO-MOB-002/builder/qa02-chioma-probe-post-fix-output.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+=== HEAD commit ===
+14341f53901d30bf2147bb83e5efedefa2785a76

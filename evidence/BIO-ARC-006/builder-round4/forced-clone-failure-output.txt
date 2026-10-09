@@ -1,0 +1,7 @@
+command: FREEZE_CLONE_BIN=false FREEZE_SKIP_SETUP_FAILURE_SELFTEST=1 bash tests/foundation/BIO-ARC-006.test.sh
+expected_nonzero_exit: 1
+FAIL  AC04 a rewritten contract and regenerated v1 manifest fail closed
+16/17 checks passed
+manifest_sha256_before: 73d8b6a85faca20c4d1d3d5645eb8f8833fafe84d72e698323fb9e4a3b200a3b
+manifest_sha256_after: 73d8b6a85faca20c4d1d3d5645eb8f8833fafe84d72e698323fb9e4a3b200a3b
+manifest_unchanged: yes

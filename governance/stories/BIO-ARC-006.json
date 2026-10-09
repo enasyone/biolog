@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-ARC-006",
+  "title": "Freeze baseline shared contracts for feature waves",
+  "owner": "Chioma - Acceptance & Traceability Auditor",
+  "requirement_ids": [
+    "BIO-ARC-006-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-ARC-006-AC01",
+      "requirement_ids": [
+        "BIO-ARC-006-REQ-001"
+      ],
+      "text": "Shared contracts have versioned snapshots."
+    },
+    {
+      "id": "BIO-ARC-006-AC02",
+      "requirement_ids": [
+        "BIO-ARC-006-REQ-001"
+      ],
+      "text": "Open architecture conflicts are zero."
+    },
+    {
+      "id": "BIO-ARC-006-AC03",
+      "requirement_ids": [
+        "BIO-ARC-006-REQ-001"
+      ],
+      "text": "Each upcoming feature declares owned paths and read-only shared contracts."
+    },
+    {
+      "id": "BIO-ARC-006-AC04",
+      "requirement_ids": [
+        "BIO-ARC-006-REQ-001"
+      ],
+      "text": "Changes after freeze require an ADR and impact review."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-ARC-006.test.sh",
+      "ac_ids": [
+        "BIO-ARC-006-AC01",
+        "BIO-ARC-006-AC02",
+        "BIO-ARC-006-AC03",
+        "BIO-ARC-006-AC04"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-ARC-006/codex/REREVIEW-ROUND-4.md",
+      "ac_ids": [
+        "BIO-ARC-006-AC01",
+        "BIO-ARC-006-AC02",
+        "BIO-ARC-006-AC03",
+        "BIO-ARC-006-AC04"
+      ]
+    }
+  ]
+}

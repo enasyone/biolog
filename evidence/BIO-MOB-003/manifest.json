@@ -1,0 +1,65 @@
+{
+  "story_key": "BIO-MOB-003",
+  "commit_hash": "ec0841c",
+  "implementation_commit": "01044b0234d70d53e8e9e71ad92a48cdd9a44692",
+  "scope_boundary_commit": "8ebe1da5092e4bb7e53896a6240ca6a4ac698fe2",
+  "environment_profile": "managed workspace-write sandbox; Flutter execution unavailable because the shared SDK cache is not writable",
+  "timestamp": "2026-09-23T10:24:00Z",
+  "commands_results": [
+    {
+      "command": "bash tests/foundation/BIO-MOB-003.test.sh",
+      "result": "PASS: 19 passed, 0 failed"
+    },
+    {
+      "command": "bash evidence/BIO-MOB-003/codex/independent-review-femi.sh",
+      "result": "PASS"
+    },
+    {
+      "command": "bash evidence/BIO-MOB-003/codex/independent-review-femi-round2.sh",
+      "result": "PASS"
+    },
+    {
+      "command": "python3 scripts/check-traceability.py governance/stories/BIO-MOB-003.json",
+      "result": "PASS: 5 acceptance criteria"
+    },
+    {
+      "command": "bash scripts/check-module-project-references.sh",
+      "result": "PASS"
+    },
+    {
+      "command": "bash scripts/secret-scan.sh --all",
+      "result": "PASS using built-in fallback scan"
+    },
+    {
+      "command": "bash evidence/BIO-MOB-003/acceptance/round2-boundary-probe.sh",
+      "result": "EXPECTED BOUNDARY: headers/device/fingerprint pass; command exits 1 only because no production provisioning caller exists, which Kemi formally placed outside this story"
+    },
+    {
+      "command": "bash tests/features/bio-mob-003/BIO-MOB-003.test.sh",
+      "result": "PASS: 28 passed, 0 failed"
+    }
+  ],
+  "builder_verdict": "PASS",
+  "independent_qa_verdict": "PASS",
+  "security_verdict": "PASS",
+  "performance_verdict": "PASS",
+  "evidence_references": [
+    "builder/SUMMARY.md",
+    "builder/metadata.json",
+    "builder/flutter-test-output.txt",
+    "builder/flutter-analyze-output.txt",
+    "codex/REVIEW-Seyi-round3.md",
+    "codex/REVIEW-Seyi-round4.md",
+    "codex/REVIEW-Seyi-round5.md",
+    "codex/REVIEW-Seyi-round6.md",
+    "codex/REVIEW-Seyi-round7.md",
+    "codex/REVIEW-Femi-round3.md",
+    "acceptance/REVIEW-Chioma-round1.md",
+    "acceptance/REVIEW-Chioma-round2.md",
+    "acceptance/REVIEW-Chioma-round3.md",
+    "acceptance/REVIEW-Chioma-round4.md",
+    "acceptance/round2-boundary-probe.sh"
+  ],
+  "final_acceptance_decision": "PASS",
+  "reason": "All ACs pass for an already-provisioned device; Kemi formally assigned self-service enrollment/pairing outside this story as a disclosed device-lifecycle dependency boundary."
+}

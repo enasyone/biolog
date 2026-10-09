@@ -1,0 +1,92 @@
+{
+  "story_key": "BIO-VIS-002",
+  "title": "Implement visitor check-in/out and temporary credentials",
+  "implementation_commit": "c2649276a06d894531eb3d013d6d2c81a276cf79",
+  "builder_head": "351457aa1a3feae5ded9a290e0e0a5d6d455cb18",
+  "reviewed_head": "df462dbe61f498b54eea72de745129833adc1308",
+  "environment": {
+    "profile": "local acceptance on Darwin arm64; synthetic fixtures only",
+    "timestamp": "2026-10-06"
+  },
+  "acceptance_criteria": {
+    "BIO-VIS-002-AC01": {
+      "result": "PASS",
+      "evidence": ["docs/features/bio-vis-002/README.md", "tests/features/bio-vis-001/BIO-VIS-001.test.sh"],
+      "finding": "The existing BIO-VIS-001 check-in service enforces configured approval and evidence requirements; this story preserves and delegates to that implementation."
+    },
+    "BIO-VIS-002-AC02": {
+      "result": "PASS",
+      "evidence": ["tests/features/bio-vis-002/VisitorCredentialServiceTests.cs", "tests/features/bio-vis-002/BIO-VIS-002.test.sh"],
+      "finding": "A visitor credential has bounded expiry and enumerated scope and is persisted only with a real activated BIO-CRD-005 card."
+    },
+    "BIO-VIS-002-AC03": {
+      "result": "PASS",
+      "evidence": ["tests/features/bio-vis-002/VisitorCredentialServiceTests.cs", "evidence/BIO-VIS-002/codex/REVIEW-Seyi-round10.md"],
+      "finding": "Checkout revokes the credential and deactivates its backing card before the one-way visitor checkout; retry remains idempotent and fail-closed."
+    },
+    "BIO-VIS-002-AC04": {
+      "result": "PASS",
+      "evidence": ["tests/features/bio-vis-002/VisitorOverstayEvaluatorTests.cs", "tests/features/bio-vis-002/BIO-VIS-002.test.sh"],
+      "finding": "Read-time evaluation distinguishes an arrived visitor in overstay from a never-arrived expired preregistration."
+    },
+    "BIO-VIS-002-AC05": {
+      "result": "PASS",
+      "evidence": ["tests/features/bio-vis-002/VisitorCredentialServiceTests.cs", "evidence/BIO-VIS-002/codex/SECURITY-REVIEW-ZAINAB-ROUND9.md"],
+      "finding": "History combines visitor lifecycle and credential records; grant, revoke and reconciliation mutations are audit-gated with atomic stable-event deduplication."
+    },
+    "BIO-VIS-002-AC06": {
+      "result": "PASS",
+      "evidence": ["tests/dotnet/Biolog.IntegrationTests/VisitorCredentialsHostChannelTests.cs", "tests/features/bio-vis-002/BIO-VIS-002.test.sh"],
+      "finding": "The packaged visitor route delegates checkout to the BIO-VIS-002 orchestrator without duplicate routing or visitor-page redesign."
+    }
+  },
+  "commands": [
+    {"command": "bash tests/features/bio-vis-002/BIO-VIS-002.test.sh", "result": "PASS (89/89)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (35 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS (clean, fallback scanner)"},
+    {"command": "dotnet test tests/features/bio-vis-002/Biolog.Features.VisitorCredentials.Tests.csproj --no-restore --nologo -m:1 /nodeReuse:false", "result": "UNAVAILABLE in acceptance sandbox: VSTest loopback socket bind denied; exact-commit builder evidence records 47/47 PASS"}
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "351457aa1a3feae5ded9a290e0e0a5d6d455cb18",
+    "production_fix_commit": "c2649276a06d894531eb3d013d6d2c81a276cf79",
+    "feature_tests": "47/47 PASS",
+    "bio_vis_001_regression": "25/25 PASS",
+    "integration_tests": "192/192 PASS",
+    "structural_tests": "89/89 PASS",
+    "metadata_sha256": "bcea7d3fee5f12b5f7529cf7c2f764cd67ff36a912a73d5740fd7c5a5727c6b7"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "result": "PASS",
+    "builder_commit_reviewed": "351457aa1a3feae5ded9a290e0e0a5d6d455cb18",
+    "review_commit": "df462dbe61f498b54eea72de745129833adc1308",
+    "evidence": "evidence/BIO-VIS-002/codex/REVIEW-Seyi-round10.md",
+    "evidence_sha256": "170fa4dcf99d55cb2f899de59c266152491ec6d4c1da7bddb75f5cdb284a05dc"
+  },
+  "security_review": {
+    "reviewer": "Zainab",
+    "result": "PASS",
+    "builder_commit_reviewed": "351457aa1a3feae5ded9a290e0e0a5d6d455cb18",
+    "review_commit": "5ae24f043e9c54baf4ed192212dc91ada0aab4f6",
+    "evidence": "evidence/BIO-VIS-002/codex/SECURITY-REVIEW-ZAINAB-ROUND9.md",
+    "evidence_sha256": "2b3f6e2d6540d39b5e0929944e1734c208ee773f9055deefe1b13e536ef44a37"
+  },
+  "category_verdicts": {
+    "functional": "PASS",
+    "security_privacy": "PASS",
+    "tenant_isolation": "PASS",
+    "authorization": "PASS",
+    "failure_recovery": "PASS",
+    "audit_integrity": "PASS",
+    "concurrency": "PASS",
+    "regression": "PASS"
+  },
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "All six acceptance criteria map to exact-commit implementation, tests, builder evidence and independent QA/security PASS reviews. Fresh structural, traceability, module-direction and secret checks pass; executable .NET coverage is commit-bound because this sandbox denies the VSTest loopback socket."
+  }
+}

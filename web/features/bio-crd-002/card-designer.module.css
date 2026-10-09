@@ -1,0 +1,146 @@
+.designer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.controlsRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--biolog-color-text);
+}
+
+.field input,
+.field select {
+  padding: 0.4rem 0.5rem;
+  border: 1px solid var(--biolog-color-border);
+  border-radius: 4px;
+  background: var(--biolog-color-surface);
+  color: var(--biolog-color-text);
+}
+
+.customSizeFields {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+
+.validationError {
+  color: var(--biolog-color-accent);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.workspace {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.canvasFrame {
+  /* Physical card artwork must not inherit the administrator's light/dark UI theme. */
+  --card-design-paper: #ffffff;
+  --card-design-grid: #f7f8fa;
+  --card-design-ink: #161b22;
+  --card-design-accent: #f4502a;
+  --card-design-border: #0b2341;
+  --card-design-element-fill: color-mix(in srgb, #f4502a 12%, #ffffff);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--biolog-color-border);
+  background: var(--card-design-paper);
+  flex-shrink: 0;
+}
+
+.canvasSurface {
+  position: relative;
+  transform-origin: top left;
+  background-color: var(--card-design-paper);
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 9px, var(--card-design-grid) 9px, var(--card-design-grid) 10px);
+}
+
+.element {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.75rem;
+  padding: 0.25rem;
+  border: 1px dashed var(--card-design-border);
+  background: var(--card-design-element-fill);
+  color: var(--card-design-ink);
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.element[data-selected='true'] {
+  outline: 2px solid var(--card-design-accent);
+  outline-offset: 1px;
+}
+
+.element[data-locked='true'] {
+  cursor: not-allowed;
+}
+
+.sidebar {
+  min-width: 16rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.layerList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.layerListItem {
+  width: 100%;
+  text-align: left;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--biolog-color-border);
+  border-radius: 4px;
+  background: var(--biolog-color-surface);
+  color: var(--biolog-color-text);
+}
+
+.layerListItem[aria-pressed='true'] {
+  border-color: var(--biolog-color-accent);
+  font-weight: 600;
+}
+
+.properties {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0.75rem;
+  border: 1px solid var(--biolog-color-border);
+  border-radius: 6px;
+}
+
+.buttonRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.hint {
+  color: var(--biolog-color-text-muted);
+  font-size: 0.85rem;
+}

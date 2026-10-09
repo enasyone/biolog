@@ -1,0 +1,3 @@
+TryConsumeApprovalAsync call line: 119
+target existence check line: 131
+REPRODUCED: approval is consumed before target existence validation; a failed target mutation can burn a valid approval.

@@ -1,0 +1,10 @@
+{
+  "story_key": "BIO-FND-008",
+  "stage": "builder",
+  "commit_hash": "2ceaffeea54080b42096b28b4f41f35fac28311e",
+  "test_command": "dotnet test tests/dotnet/Biolog.UnitTests/Biolog.UnitTests.csproj && dotnet test tests/dotnet/Biolog.IntegrationTests/Biolog.IntegrationTests.csproj && bash scripts/check-dotnet-vulnerabilities.sh api/Biolog.Api/Biolog.Api.csproj tests/dotnet/Biolog.UnitTests/Biolog.UnitTests.csproj tests/dotnet/Biolog.IntegrationTests/Biolog.IntegrationTests.csproj && bash tests/foundation/BIO-FND-008.test.sh",
+  "result": "PASS",
+  "timestamp": "2026-09-21T20:05:00Z",
+  "reviewer": "Emeka",
+  "data_classification": "SYNTHETIC"
+}

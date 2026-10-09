@@ -1,0 +1,49 @@
+{
+  "story_key": "BIO-TEN-001",
+  "title": "Implement control-plane tenant registry",
+  "implementation_commit": "a91d1168eb71d98534f120ad9e645720e40352c2",
+  "builder_head": "96006ea4fb9bd504c692cdea912c763c76ff234f",
+  "independent_review_commit": "03086c1",
+  "environment": {"profile": "local acceptance; synthetic fixtures only", "timestamp": "2026-09-22T05:47:30Z"},
+  "acceptance_criteria": {
+    "BIO-TEN-001-AC01": {"result": "PASS", "tests": ["TenantServiceTests", "TenantEndpointsIntegrationTests", "BIO-TEN-001.test.sh"]},
+    "BIO-TEN-001-AC02": {"result": "PASS", "tests": ["ControlPlaneScopeTests", "BIO-TEN-001.test.sh"]},
+    "BIO-TEN-001-AC03": {"result": "PASS", "tests": ["TenantServiceTests", "TenantEndpointsIntegrationTests"]},
+    "BIO-TEN-001-AC04": {"result": "PASS_CURRENT_SINGLE_PROCESS_VOLATILE_TIER", "tests": ["TenantAuditTests", "AuditAtomicityProbe", "BIO-TEN-001.test.sh"]}
+  },
+  "commands": [
+    {"command": "dotnet evidence/features/bio-ten-001/codex/AuditAtomicityProbe/bin/Debug/net10.0/AuditAtomicityProbe.dll", "result": "PASS: singleton service serializes same-tenant writers; rejected writer has no ALLOWED audit"},
+    {"command": "dotnet tests/features/bio-ten-001/bin/Debug/net10.0/Biolog.Features.TenantRegistry.Tests.dll", "result": "PASS (51/51)"},
+    {"command": "bash tests/features/bio-ten-001/BIO-TEN-001.test.sh", "result": "PASS (29/29)"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS (built-in fallback scan; gitleaks unavailable)"},
+    {"command": "bash scripts/check-dotnet-vulnerabilities.sh [feature and test projects]", "result": "UNAVAILABLE in acceptance replay: advisory-source access failed closed with NU1900; builder metadata records PASS and the hardening changed no package references"}
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "a91d1168eb71d98534f120ad9e645720e40352c2",
+    "tests": "51/51 PASS",
+    "foundation": "29/29 PASS",
+    "vulnerability_audit": "PASS",
+    "metadata_sha256": "53b513fab6b7768c9aa8425f853bbdf19a1eca406a1e9e801d47450fcb66799e"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "result": "PASS",
+    "reviewed_implementation": "e3217c7",
+    "review_commit": "03086c1",
+    "evidence": "evidence/features/bio-ten-001/codex/REREVIEW-ROUND5.md",
+    "evidence_sha256": "7dbf6e4749e0a87224f5f32de259d987801a04cc6ad170679f7a37502cc8151d",
+    "post_review_change": "a91d116 is additive CancellationToken.None hardening independently replayed by Chioma; it changes no packages or accepted current-tier boundary"
+  },
+  "required_security_review": {
+    "reviewer": "Zainab",
+    "result": "HUMAN_AUTHORIZED_WAIVER_NOT_A_COMPLETED_REVIEW",
+    "authorized_at": "2026-09-22T05:39:07Z",
+    "reason": "Two reviewer launch attempts crashed before execution with unknown option -a. The human authorized acceptance to proceed; a real security review remains tracked follow-up debt."
+  },
+  "category_verdicts": {"functional": "PASS", "security": "PASS_WITH_HUMAN_AUTHORIZED_REVIEW_WAIVER", "tenant_isolation": "PASS_CONTROL_PLANE_SCOPED", "offline_recovery": "NOT_APPLICABLE", "concurrency": "PASS_CURRENT_SINGLE_PROCESS_TIER", "regression": "PASS"},
+  "security_performance_reviews": {"security": "Seyi PASS; Zainab review waived by human and retained as follow-up debt", "performance": "Not required for this in-memory control-plane foundation"},
+  "scope_boundary": "Reopen audit atomicity before registry or audit storage becomes durable, remote, independently transactional, or shared across processes.",
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS_WITH_HUMAN_AUTHORIZED_SECURITY_REVIEW_WAIVER", "reason": "All four acceptance criteria have executable evidence; Seyi's current-tier atomicity review passes, post-review cancellation hardening was independently replayed, and the human explicitly waived the unavailable Zainab review."}
+}

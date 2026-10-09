@@ -1,0 +1,32 @@
+PASS  Portability: infra scripts parse under /bin/bash (macOS default, bash 3.2)
+PASS  Portability: no bash 4+ associative arrays in infra scripts
+PASS  docker compose config parses infrastructure/docker-compose.local.yml (default profile)
+PASS  docker compose config parses infrastructure/docker-compose.local.yml (--profile multi-tenant)
+== BIO-FND-003-AC01: control-plane MySQL, tenant MySQL, Redis, RabbitMQ, Azurite, Mailpit ==
+PASS  default profile starts all six required services
+== BIO-FND-003-AC02: standard profile starts a second, isolated tenant database ==
+PASS  docker compose --profile multi-tenant adds mysql-tenant-grace
+PASS  mysql-tenant-grace is NOT started by the default profile (opt-in only)
+== BIO-FND-003-AC03: health checks are defined for every service ==
+PASS  every service (including the multi-tenant profile) declares a healthcheck
+== BIO-FND-003-AC04: volumes are named ==
+PASS  every service mounts a named top-level volume (no anonymous state)
+== BIO-FND-003-AC05: no production credentials are required ==
+PASS  docker compose config succeeds with zero environment overrides (every credential has a synthetic default)
+PASS  unset credentials resolve to the documented local-only defaults (localroot / biolog)
+==============================
+INFRA COMPOSE VALIDATION: SUCCESS
+PASS  AC01-AC05: validate-infra-compose.sh passes on the real compose file
+PASS  AC01: removing a required service (mysql-control) fails the check
+PASS  AC02: a second tenant DB started by default (not profile-gated) fails the check
+PASS  AC03: a service with no healthcheck (redis) fails the check
+PASS  AC03/QA-01: wait-for-infra.sh reports a no-healthcheck container as NOT ready
+PASS  AC04: a service with no named volume (redis) fails the check
+PASS  AC04/QA-02: infra-reset.sh propagates a Docker cleanup failure instead of reporting done
+PASS  AC04/QA-02: resetting a service whose volume was never created still succeeds
+PASS  AC04/QA-03: a volume-inspect error (not 'no such volume') fails closed instead of being treated as absent
+PASS  AC05: a credential with no synthetic default fails the check
+SKIP  AC03 (live): scripts/wait-for-infra.sh converges to healthy (Docker daemon not reachable on this machine - see docs/LOCAL-INFRASTRUCTURE.md)
+==============================
+12/12 checks passed, 1 skipped
+exit 0

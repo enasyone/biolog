@@ -1,0 +1,71 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Environment / secrets - never commit real values
+.env
+.env.*
+!.env.example
+*.pfx
+*.pem
+*.key
+!**/test-fixtures/**/*.key
+
+# Node / web
+node_modules/
+web/.next/
+web/dist/
+web/out/
+web/*.tsbuildinfo
+pnpm-debug.log*
+npm-debug.log*
+
+# TD-WEB-PROVENANCE-BRIDGE: file-backed demo session revocation store (runtime state, never
+# source) - default directory when WEB_SESSION_REVOCATION_STORE_DIR is unset.
+web/.web-session-revocations/
+
+# .NET / api
+api/**/bin/
+api/**/obj/
+tests/dotnet/**/bin/
+tests/dotnet/**/obj/
+tests/features/**/bin/
+tests/features/**/obj/
+*.user
+
+# Test harness dependency/build state
+tests/frontend/node_modules/
+tests/frontend/test-results/
+tests/frontend/playwright-report/
+tests/flutter/.dart_tool/
+tests/flutter/build/
+tests/flutter/.flutter-plugins-dependencies
+
+# Flutter / mobile
+mobile/.dart_tool/
+mobile/.flutter-plugin-registrant/
+mobile/build/
+mobile/.flutter-plugins-dependencies
+**/ios/Pods/
+**/android/.gradle/
+**/android/local.properties
+
+# Docker / infrastructure local state
+infrastructure/**/*.local.env
+
+# BIO-OPS-009: scratch backup/restore artifacts (mysqldump files, Azurite
+# tarballs, rehearsal fixtures) - transient local output, never source;
+# the recorded evidence is evidence/BIO-OPS-009/builder/, not these bytes.
+backups/
+scripts/__pycache__/
+
+# Git worktrees created for isolated story work
+.worktrees/
+
+# Local validation/test scratch output
+evidence/**/*.local.tmp

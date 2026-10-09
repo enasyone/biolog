@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-FND-008",
+  "title": "Create ASP.NET Core API/service shell",
+  "owner": "Emeka - Platform & Infrastructure Engineer",
+  "reviewed_commit": "2ceaffeea54080b42096b28b4f41f35fac28311e",
+  "required_acceptance_stages": ["builder", "adversarial", "acceptance"],
+  "requirement_ids": [
+    "BIO-FND-008-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-FND-008-AC01",
+      "requirement_ids": ["BIO-FND-008-REQ-001"],
+      "text": "API boots locally against development configuration."
+    },
+    {
+      "id": "BIO-FND-008-AC02",
+      "requirement_ids": ["BIO-FND-008-REQ-001"],
+      "text": "Health/readiness endpoints exist."
+    },
+    {
+      "id": "BIO-FND-008-AC03",
+      "requirement_ids": ["BIO-FND-008-REQ-001"],
+      "text": "OpenAPI generation works."
+    },
+    {
+      "id": "BIO-FND-008-AC04",
+      "requirement_ids": ["BIO-FND-008-REQ-001"],
+      "text": "Tenant middleware hook exists but does not invent tenant defaults."
+    },
+    {
+      "id": "BIO-FND-008-AC05",
+      "requirement_ids": ["BIO-FND-008-REQ-001"],
+      "text": "Module registration pattern prevents circular dependencies."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-FND-008.test.sh",
+      "ac_ids": [
+        "BIO-FND-008-AC01",
+        "BIO-FND-008-AC02",
+        "BIO-FND-008-AC03",
+        "BIO-FND-008-AC04",
+        "BIO-FND-008-AC05"
+      ]
+    },
+    {
+      "path": "tests/dotnet/Biolog.IntegrationTests/ApiShellTests.cs",
+      "ac_ids": [
+        "BIO-FND-008-AC01",
+        "BIO-FND-008-AC02",
+        "BIO-FND-008-AC03"
+      ]
+    },
+    {
+      "path": "tests/dotnet/Biolog.UnitTests/Tenancy/TenantContextMiddlewareTests.cs",
+      "ac_ids": [
+        "BIO-FND-008-AC04"
+      ]
+    },
+    {
+      "path": "tests/dotnet/Biolog.UnitTests/Modules/ModuleHostTests.cs",
+      "ac_ids": [
+        "BIO-FND-008-AC05"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-FND-008/builder/metadata.json",
+      "stage": "builder",
+      "ac_ids": [
+        "BIO-FND-008-AC01",
+        "BIO-FND-008-AC02",
+        "BIO-FND-008-AC03",
+        "BIO-FND-008-AC04",
+        "BIO-FND-008-AC05"
+      ]
+    },
+    {
+      "path": "evidence/BIO-FND-008/codex/metadata.json",
+      "stage": "adversarial",
+      "ac_ids": [
+        "BIO-FND-008-AC01",
+        "BIO-FND-008-AC02",
+        "BIO-FND-008-AC03",
+        "BIO-FND-008-AC04",
+        "BIO-FND-008-AC05"
+      ]
+    },
+    {
+      "path": "evidence/BIO-FND-008/acceptance/metadata.json",
+      "stage": "acceptance",
+      "ac_ids": [
+        "BIO-FND-008-AC01",
+        "BIO-FND-008-AC02",
+        "BIO-FND-008-AC03",
+        "BIO-FND-008-AC04",
+        "BIO-FND-008-AC05"
+      ]
+    }
+  ]
+}

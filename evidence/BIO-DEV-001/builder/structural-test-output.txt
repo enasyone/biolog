@@ -1,0 +1,49 @@
+PASS  AC01 Device record exists with the required fields
+PASS  AC01 device id is the canonical dev_ identifier (ADR-0001)
+PASS  AC01 device status is a defined vocabulary, not a free string
+PASS  AC01 mutable device aggregate carries a version (ADR-0001 Decision 3)
+PASS  AC02 device carries a credential reference, never a secret field
+PASS  AC02 no code path resolves a credential reference into a secret value
+PASS  AC03 an audit envelope exists, matching ADR-0003 field names
+PASS  AC03 a status change writes an audit event before returning
+PASS  AC03 audit action names the specific event, not a generic label
+PASS  AC03 audit write failure is not swallowed (ADR-0002 Decision 5 hard dependency)
+PASS  AC04 the service reads the resolved tenant context, never a caller-supplied tenant id
+PASS  AC04 a missing tenant context fails closed rather than defaulting
+PASS  AC04 the repository asserts a record's own tenant_id on every read/write
+PASS  AC04 cross-tenant access returns not-found, never a forbidden/exists signal
+PASS  QA-01 integration tests prove a resolved-tenant success path, not only the failure path
+PASS  QA-01 the positive-path test double never edits production tenant middleware
+PASS  QA-01 fail-closed integration coverage is kept, not dropped in favor of the positive-path proof
+PASS  QA-01 the specific blocking dependency (BIO-TEN-002) is named, not left vague
+PASS  QA-01 a tracked follow-up obligation is recorded for once BIO-TEN-002 ships
+PASS  QA-02 the audit write happens before the repository commit, not after with a rollback
+PASS  QA-02 no compensating rollback exists - audit-before-commit removes the race by construction
+PASS  QA-02 a stale version is rejected before the audit write, matching the pre-existing no-audit-for-invalid-attempt behaviour
+PASS  QA-02 a per-device lock serializes the whole pre-check-audit-commit sequence (audit-before-commit alone was insufficient)
+PASS  QA-02 the lock registry is a singleton shared across every request, not scoped per DeviceService instance
+PASS  QA-03 the repository commit no longer honours the caller's cancellation token
+PASS  IAuditSink exposes ExistsAsync for verifying an ambiguous RecordAsync throw
+PASS  InMemoryAuditSink implements ExistsAsync
+PASS  DeviceService verifies via ExistsAsync before treating a RecordAsync throw as a real failure
+PASS  an unverifiable/confirmed-absent audit write throws the dedicated AuditUnavailableException
+PASS  the crash-between-audit-and-commit residual is confirmed inert and its reopening trigger is named
+PASS  a credential-reference validator exists
+PASS  an invalid credential reference throws the dedicated InvalidCredentialReferenceException
+PASS  the request boundary (DeviceService.RegisterAsync) validates the credential reference
+PASS  the repository boundary (InMemoryDeviceRepository.CreateAsync) also validates the credential reference
+PASS  an invalid credential reference surfaces as a 400 problem, not a 500
+PASS  a dedicated regression test proves the repository rejects plaintext even if the service is bypassed
+PASS  endpoints are versioned under /api/v1 (ADR-0004 Decision 1)
+PASS  a mutating status write requires expected_version (ADR-0001 Decision 3.2)
+PASS  a stale expected_version is a 409, not a silent overwrite
+PASS  Program.cs registers DeviceRegistryModule through the module host
+PASS  DeviceRegistryModule depends on Tenant so the tenant hook runs first
+PASS  unit tests cover the canonical id helper
+PASS  unit tests cover DeviceService tenant/audit/concurrency behaviour
+PASS  unit tests cover the repository's concurrent-write race
+PASS  integration tests exercise the real composed host
+PASS  docs/DEVICE-REGISTRY.md documents the feature and its scope boundaries
+PASS  builder evidence recorded
+==============================
+47 passed, 0 failed

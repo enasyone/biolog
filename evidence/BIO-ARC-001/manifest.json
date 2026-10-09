@@ -1,0 +1,92 @@
+{
+  "story_key": "BIO-ARC-001",
+  "story_title": "Define canonical identifiers, clocks and versioning",
+  "implementation_commit": "c6e2a26ad52c8c8e7824ba8ebbe8901a168cfe07",
+  "builder_head": "7e3bff9236074d740b331afa12f57e4516258ab7",
+  "environment_profile": {
+    "operating_system": "macOS 26.4 (build 25E246)",
+    "kernel": "Darwin 25.4.0 arm64",
+    "node": "20.20.2",
+    "python": "3.14.3",
+    "git": "2.53.0",
+    "profile": "local offline acceptance; synthetic fixtures only"
+  },
+  "timestamp": "2026-09-20T20:22:33Z",
+  "acceptance_criteria": {
+    "BIO-ARC-001-AC01": {
+      "result": "PASS",
+      "evidence": ["builder/SUMMARY.md", "builder/developer-test-output.txt", "builder/contract-suite-output.txt", "codex/REREVIEW-ROUND-3.md"]
+    },
+    "BIO-ARC-001-AC02": {
+      "result": "PASS",
+      "evidence": ["builder/developer-test-output.txt", "builder/contract-suite-output.txt", "builder/year-parity-sweep.txt", "codex/REREVIEW-ROUND-3.md"]
+    },
+    "BIO-ARC-001-AC03": {
+      "result": "PASS",
+      "evidence": ["builder/SUMMARY.md", "builder/developer-test-output.txt", "builder/contract-suite-output.txt", "codex/REREVIEW-ROUND-3.md"]
+    },
+    "BIO-ARC-001-AC04": {
+      "result": "PASS",
+      "evidence": ["builder/developer-test-output.txt", "builder/contract-suite-output.txt", "builder/year-parity-sweep.txt", "codex/REREVIEW-ROUND-3.md"]
+    }
+  },
+  "commands": [
+    {
+      "command": "tests/foundation/BIO-ARC-001.test.sh",
+      "result": "PASS (24/24; exit 0)",
+      "evidence": "builder/developer-test-output.txt",
+      "sha256": "f5425b2f12c97abcc81ed92c8016aa0a0b8d3c269f0598e7f28f2e11cfb76c0c"
+    },
+    {
+      "command": "node --test contracts/js/",
+      "result": "PASS (60/60; exit 0)",
+      "evidence": "builder/contract-suite-output.txt",
+      "sha256": "a7db27913a5463168dc3122caaabb70936e1c34ba48378493a96392f4228e437"
+    },
+    {
+      "command": "bash evidence/BIO-ARC-001/codex/independent-review.sh",
+      "result": "PASS (all independent probes; exit 0)",
+      "evidence": "builder/reviewer-script-rerun.txt",
+      "sha256": "4b2a6ca1cfa4b904b871d66f5a41c6729f335b1f2a5311b3cffa468156d8b894"
+    },
+    {
+      "command": "exhaustive code/schema date parity sweep for years 0000..9999",
+      "result": "PASS (7,440,000 values; 0 divergences)",
+      "evidence": "builder/year-parity-sweep.txt",
+      "sha256": "41df9355b24d244ad4429381bfbff2d9689fa3ffede6c30b5ca9fd5447587ff8"
+    },
+    {
+      "command": "scripts/secret-scan.sh --all",
+      "result": "PASS (built-in fallback scanner; exit 0)",
+      "evidence": "builder/secret-scan-output.txt"
+    }
+  ],
+  "builder_verdict": {
+    "reviewer": "Kemi",
+    "result": "PASS",
+    "implementation_commit": "c6e2a26ad52c8c8e7824ba8ebbe8901a168cfe07",
+    "evidence_head": "7e3bff9236074d740b331afa12f57e4516258ab7"
+  },
+  "independent_qa_verdicts": [
+    {
+      "reviewer": "Seyi",
+      "round": 3,
+      "result": "PASS",
+      "reviewed_implementation_commit": "c6e2a26ad52c8c8e7824ba8ebbe8901a168cfe07",
+      "reviewed_builder_head": "7e3bff9236074d740b331afa12f57e4516258ab7",
+      "evidence": "codex/REREVIEW-ROUND-3.md",
+      "sha256": "71abff4fa6ffaa2f5ef293248b594a3fa6cbe2d1a3ffdabda4aae8c6b332c797"
+    }
+  ],
+  "security_verdict": "PASS",
+  "tenant_isolation_verdict": "PASS",
+  "offline_recovery_verdict": "PASS",
+  "concurrency_verdict": "PASS",
+  "performance_verdict": "NOT_APPLICABLE",
+  "screenshots": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "AC01-AC04 have reproducible builder and independent evidence; impossible dates and code/schema year parity findings are closed, concurrency fails closed, and Seyi round-3 passed."
+  }
+}

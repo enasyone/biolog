@@ -1,0 +1,149 @@
+# BIOLOG local development infrastructure (BIO-FND-003).
+#
+# All credentials below are synthetic, local-only defaults (BIO-FND-003-AC05)
+# - override them via infrastructure/.env if you want different values, but
+# nothing here is ever a real secret. See docs/LOCAL-INFRASTRUCTURE.md.
+#
+# Usage: scripts/infra-up.sh [--multi-tenant] / scripts/infra-down.sh /
+# scripts/infra-reset.sh / scripts/wait-for-infra.sh - do not invoke
+# `docker compose` directly so the right project name and env file are
+# always used consistently.
+#
+# `name: biolog` pins the Compose project name so resulting volume names
+# (biolog_<volume>) are deterministic regardless of which directory or
+# machine this file is run from - Compose otherwise derives the project
+# name from the containing directory, which would silently break
+# scripts/infra-reset.sh's volume lookups if this file were ever moved or
+# checked out under a differently-named path.
+name: biolog
+services:
+  mysql-control:
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-localroot}
+      MYSQL_DATABASE: biolog_control
+    ports:
+      - "${MYSQL_CONTROL_PORT:-33061}:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p${MYSQL_ROOT_PASSWORD:-localroot}"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 30s
+    volumes:
+      - mysql_control:/var/lib/mysql
+
+  # First tenant database (BIO-FND-003-AC01): started by the default profile,
+  # so a single-tenant local stack is always available with no extra flags.
+  mysql-tenant-asu:
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-localroot}
+      MYSQL_DATABASE: biolog_asu
+    ports:
+      - "${MYSQL_TENANT_ASU_PORT:-33062}:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p${MYSQL_ROOT_PASSWORD:-localroot}"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 30s
+    volumes:
+      - mysql_tenant_asu:/var/lib/mysql
+
+  # Second, isolated tenant database (BIO-FND-003-AC02): deliberately gated
+  # behind the "multi-tenant" profile so it is NOT started by default -
+  # `scripts/infra-up.sh --multi-tenant` (or `docker compose --profile
+  # multi-tenant up -d`) brings it up specifically to validate that tenant
+  # data never crosses the mysql-tenant-asu / mysql-tenant-grace boundary.
+  mysql-tenant-grace:
+    image: mysql:8.4
+    profiles: ["multi-tenant"]
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-localroot}
+      MYSQL_DATABASE: biolog_grace
+    ports:
+      - "${MYSQL_TENANT_GRACE_PORT:-33063}:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p${MYSQL_ROOT_PASSWORD:-localroot}"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 30s
+    volumes:
+      - mysql_tenant_grace:/var/lib/mysql
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 5s
+    volumes:
+      - redis_data:/data
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-biolog}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:-localdev}
+    ports:
+      - "${RABBITMQ_AMQP_PORT:-5672}:5672"
+      - "${RABBITMQ_MGMT_PORT:-15672}:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 24
+      start_period: 30s
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+  azurite:
+    image: mcr.microsoft.com/azure-storage/azurite
+    command: ["azurite", "--blobHost", "0.0.0.0", "--queueHost", "0.0.0.0", "--location", "/data"]
+    ports:
+      - "${AZURITE_BLOB_PORT:-10000}:10000"
+      - "${AZURITE_QUEUE_PORT:-10001}:10001"
+    healthcheck:
+      # Azurite is a Node.js application, so `node` is guaranteed present in
+      # its own image regardless of which shell utilities are installed. The
+      # socket must be captured in a variable - the 'connect' event listener
+      # is not called with the socket as an argument.
+      test: ["CMD", "node", "-e", "const s=require('net').createConnection(10000,'localhost');s.on('connect',()=>{s.end();process.exit(0)});s.on('error',()=>process.exit(1))"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 5s
+    volumes:
+      - azurite_data:/data
+
+  mailpit:
+    image: axllent/mailpit
+    environment:
+      MP_DATABASE: /data/mailpit.db
+    ports:
+      - "${MAILPIT_SMTP_PORT:-1025}:1025"
+      - "${MAILPIT_UI_PORT:-8025}:8025"
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8025/readyz"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 5s
+    volumes:
+      - mailpit_data:/data
+
+volumes:
+  mysql_control:
+  mysql_tenant_asu:
+  mysql_tenant_grace:
+  redis_data:
+  rabbitmq_data:
+  azurite_data:
+  mailpit_data:

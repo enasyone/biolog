@@ -1,0 +1,4 @@
+
+> @biolog/web@0.0.0 typecheck <workspace>/biolog-worktrees/BIO-UX-013/web
+> tsc --noEmit
+

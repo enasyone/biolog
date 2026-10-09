@@ -1,0 +1,103 @@
+{
+  "story_key": "BIO-BIO-009",
+  "title": "Implement biometric retention and deletion workflows",
+  "implementation_commit": "afd48bea6ab66985f615fe09a4c06753d9653593",
+  "builder_head": "2547c41a4637b66ba98b78b54f220e80a5b6cf92",
+  "reviewed_head": "cda1e24c8fc55919094e3d727e980dcc253fc8d1",
+  "environment": {
+    "profile": "local acceptance on Darwin arm64; synthetic fixtures only",
+    "timestamp": "2026-10-06"
+  },
+  "acceptance_criteria": {
+    "BIO-BIO-009-AC01": {
+      "result": "PASS",
+      "evidence": ["tests/features/bio-bio-009/InMemoryRetentionPolicyTests.cs", "tests/features/bio-bio-009/RetentionPolicyServiceTests.cs"],
+      "finding": "Tenant/category retention policies are configurable behind verified actor provenance and real tenant-scoped permission grants."
+    },
+    "BIO-BIO-009-AC02": {
+      "result": "PASS",
+      "evidence": ["tests/features/bio-bio-009/BiometricDeletionServiceTests.cs", "tests/features/bio-bio-009/BiometricRetentionGovernanceTests.cs"],
+      "finding": "Deletion writes immutable requested and terminal audit events around the real template deletion workflow."
+    },
+    "BIO-BIO-009-AC03": {
+      "result": "PASS",
+      "evidence": ["tests/features/bio-bio-009/InMemoryRawImageRetentionPolicyTests.cs", "tests/features/bio-bio-002/FingerprintEnrolmentServiceTests.cs"],
+      "finding": "Raw-image retention defaults off and BIO-BIO-002 enforces the tenant authority at the capture write boundary, failing closed on denial or authority failure."
+    },
+    "BIO-BIO-009-AC04": {
+      "result": "PASS",
+      "evidence": ["tests/features/bio-bio-009/BiometricDeletionServiceTests.cs", "tests/features/bio-bio-009/FileBackedPendingGalleryCleanupStoreTests.cs", "evidence/features/bio-bio-009/codex/SECURITY-REVIEW-ZAINAB-ROUND4-CORRECTION.md"],
+      "finding": "Deletion propagates to galleries using record-derived identity; restart-surviving pending cleanup and ambiguity-safe verification preserve recovery obligations while immutable audit metadata has no delete surface."
+    },
+    "BIO-BIO-009-AC05": {
+      "result": "PASS_WITH_FOLLOW_UP",
+      "evidence": ["tests/frontend/playwright/bio-bio-009-retention-privacy.spec.ts", "tests/frontend/playwright/bio-bio-009-retention-privacy-live.spec.ts", "evidence/BIO-BIO-009/codex/REVIEW-Seyi-round4.md", "evidence/features/bio-bio-009/codex/SECURITY-REVIEW-ZAINAB-ROUND4-CORRECTION.md"],
+      "finding": "The fingerprints surface connects through BiometricService in a documented HYBRID state: SIMULATION proves the human workflow and real-server LIVE tests prove unauthenticated calls fail closed with visible 400/401 errors. Authorized-success and unprivileged-deny LIVE workflows must be re-verified when TD-WEB-PROVENANCE-BRIDGE ships."
+    }
+  },
+  "commands": [
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (35 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS (clean, fallback scanner)"},
+    {"command": "cd tests/frontend && node node_modules/vitest/vitest.mjs run unit/bio-bio-009-retention-port.test.ts", "result": "UNAVAILABLE in acceptance sandbox: runner stalled and was stopped; exact-commit builder evidence records 473/473 unit PASS"},
+    {"command": "dotnet test tests/features/bio-bio-009/Biolog.Features.BiometricRetention.Tests.csproj", "result": "UNAVAILABLE in acceptance sandbox; exact-commit builder evidence records 42/42 PASS"}
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "2547c41a4637b66ba98b78b54f220e80a5b6cf92",
+    "implementation_commit": "afd48bea6ab66985f615fe09a4c06753d9653593",
+    "feature_tests": "42/42 PASS",
+    "integration_tests": "202/202 PASS",
+    "shared_unit_tests": "200/200 PASS",
+    "frontend_tests": "473/473 PASS",
+    "simulation_playwright": "4/4 PASS",
+    "negative_live_playwright": "2/2 PASS against real web/API servers",
+    "metadata_sha256": "0e7d1e9502579dd7b3091bd261d6d2e05e115fe1432476b97a797744c98b9ccc"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "result": "PASS",
+    "builder_commit_reviewed": "2547c41a4637b66ba98b78b54f220e80a5b6cf92",
+    "review_commit": "51b1d86950d5c7b1e452b724c7894220f3f15c96",
+    "evidence": "evidence/BIO-BIO-009/codex/REVIEW-Seyi-round4.md",
+    "evidence_sha256": "4aba53f070c8cdf4411efd98acad6be2cb4acbc1ce8473607e0786c436a41c12"
+  },
+  "security_review": {
+    "reviewer": "Zainab",
+    "result": "PASS_WITH_TRACKED_FOLLOW_UP",
+    "builder_commit_reviewed": "2547c41a4637b66ba98b78b54f220e80a5b6cf92",
+    "review_commit": "cda1e24c8fc55919094e3d727e980dcc253fc8d1",
+    "evidence": "evidence/features/bio-bio-009/codex/SECURITY-REVIEW-ZAINAB-ROUND4-CORRECTION.md",
+    "evidence_sha256": "85bcbe54ccd5c72acaf563acd3c79e9f95bdc67a1a6385ce4e7f947db73581c9"
+  },
+  "category_verdicts": {
+    "functional": "PASS",
+    "security_privacy": "PASS",
+    "tenant_isolation": "PASS",
+    "offline_recovery": "PASS",
+    "concurrency": "PASS_FOR_SINGLE_PROCESS_TIER",
+    "regression": "PASS",
+    "positive_live_browser_workflow": "DEFERRED_TO_TD-WEB-PROVENANCE-BRIDGE"
+  },
+  "open_follow_up_obligations": [
+    {
+      "id": "TD-WEB-PROVENANCE-BRIDGE-REVERIFY/BIO-BIO-009",
+      "status": "OPEN",
+      "trigger": "TD-WEB-PROVENANCE-BRIDGE ships",
+      "required_action": "Re-open/re-verify BIO-BIO-009 against real web and API servers: prove an authorized browser session successfully updates retention policy and deletes a biometric record, and prove an unprivileged browser session is denied.",
+      "current_negative_proof": "Real-server LIVE tests prove proof-less browser calls are rejected before mutation and the UI surfaces the error without hanging."
+    },
+    {
+      "id": "BIO-BIO-009-MULTIPROCESS-CLEANUP-STORE",
+      "status": "OPEN_IF_DEPLOYMENT_TIER_CHANGES",
+      "trigger": "Biometric retention runs in multiple processes sharing one cleanup-store path",
+      "required_action": "Replace the single-instance SemaphoreSlim coordination with shared storage or an inter-process lock so concurrent read-modify-write cannot lose a pending cleanup obligation."
+    }
+  ],
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "AC01-AC04 and the documented AC05 HYBRID boundary map to exact-commit implementation, builder evidence and independent QA/security PASS reviews. Fresh traceability, module-direction and secret checks pass. Acceptance preserves the mandatory positive authorized and unprivileged-deny LIVE re-verification when TD-WEB-PROVENANCE-BRIDGE lands and the documented single-process cleanup-store constraint."
+  }
+}

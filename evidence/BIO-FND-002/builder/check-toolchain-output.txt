@@ -1,0 +1,21 @@
+== BIO-FND-002-AC01/AC02/AC04: pinned toolchain versions ==
+PASS  .NET SDK: 10.0.201 (matches pinned exact version)
+PASS  Node.js: 20.20.2 (matches pinned exact version)
+FAIL  pnpm: NOT INSTALLED (pinned exact version: 9.12.0)
+FAIL  Flutter: NOT INSTALLED (pinned exact version: 3.44.8)
+PASS  Docker Engine: 29.3.1 (>= minimum supported 29.3.1)
+PASS  Docker Compose: 5.1.1 (>= minimum supported 5.1.1)
+FAIL  MySQL client: NOT INSTALLED (minimum supported version: 8.4.0)
+== BIO-FND-002-AC02: native pin files vs toolchain/versions.json ==
+PASS  .nvmrc (Node pin): 20.20.2 (matches pinned exact version)
+PASS  global.json sdk.version (.NET pin): 10.0.201 (matches pinned exact version)
+PASS  global.json sdk.rollForward: disable (exact pin enforced natively by the dotnet CLI)
+PASS  package.json packageManager (pnpm pin): pnpm@9.12.0 (matches pinned exact version)
+PASS  package.json engines.node: 20.20.2 (matches pinned exact version)
+== BIO-FND-002-AC03: lock file policy ==
+PASS  web: no web/package.json yet (nothing to enforce)
+PASS  mobile: no mobile/pubspec.yaml yet (nothing to enforce)
+PASS  api: no *.csproj yet (nothing to enforce)
+==============================
+TOOLCHAIN CHECK: DRIFT DETECTED
+exit 1

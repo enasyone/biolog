@@ -1,0 +1,55 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Biolog.Features.TenantDomainRegistry -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-ten-002/bin/Debug/net10.0/Biolog.Features.TenantDomainRegistry.dll
+  Biolog.Features.DocumentVerify -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-doc-001/Biolog.Features.DocumentVerify/bin/Debug/net10.0/Biolog.Features.DocumentVerify.dll
+  Biolog.Features.Biometrics -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-bio-001/Biolog.Features.Biometrics/bin/Debug/net10.0/Biolog.Features.Biometrics.dll
+  Biolog.Features.TenantRegistry -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-ten-001/bin/Debug/net10.0/Biolog.Features.TenantRegistry.dll
+  Biolog.Features.PersonRegistry -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-idn-001/bin/Debug/net10.0/Biolog.Features.PersonRegistry.dll
+  Biolog.Features.DuplicateReview -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-idn-005/bin/Debug/net10.0/Biolog.Features.DuplicateReview.dll
+  Biolog.Features.Rbac -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-idn-006/bin/Debug/net10.0/Biolog.Features.Rbac.dll
+  Biolog.Features.PersonLifecycle -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-idn-004/bin/Debug/net10.0/Biolog.Features.PersonLifecycle.dll
+  Biolog.Features.CardDesigner -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-crd-002/bin/Debug/net10.0/Biolog.Features.CardDesigner.dll
+  Biolog.Features.PersonProfileRegistry -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-idn-002/bin/Debug/net10.0/Biolog.Features.PersonProfileRegistry.dll
+  Biolog.Features.InstitutionalIdentifiers -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-idn-003/bin/Debug/net10.0/Biolog.Features.InstitutionalIdentifiers.dll
+  Biolog.Features.AccessDecisions -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-acc-002/bin/Debug/net10.0/Biolog.Features.AccessDecisions.dll
+  Biolog.Features.CardTypography -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-crd-003/bin/Debug/net10.0/Biolog.Features.CardTypography.dll
+  Biolog.Features.PhotoBooth -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-pho-002/bin/Debug/net10.0/Biolog.Features.PhotoBooth.dll
+  Biolog.Features.CardTemplates -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-crd-008/bin/Debug/net10.0/Biolog.Features.CardTemplates.dll
+  Biolog.Features.CardIssuance -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-crd-005/bin/Debug/net10.0/Biolog.Features.CardIssuance.dll
+  Biolog.Features.Photography -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-pho-001/bin/Debug/net10.0/Biolog.Features.Photography.dll
+  Biolog.Features.FingerprintEnrolment -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-bio-002/Biolog.Features.FingerprintEnrolment/bin/Debug/net10.0/Biolog.Features.FingerprintEnrolment.dll
+  Biolog.Features.FingerprintVerification -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-bio-004/Biolog.Features.FingerprintVerification/bin/Debug/net10.0/Biolog.Features.FingerprintVerification.dll
+  Biolog.Features.AccessPolicy -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-acc-001/bin/Debug/net10.0/Biolog.Features.AccessPolicy.dll
+  Biolog.Features.CardObjects -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-crd-004/bin/Debug/net10.0/Biolog.Features.CardObjects.dll
+  Biolog.Features.OfflineSync -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-mob-003/bin/Debug/net10.0/Biolog.Features.OfflineSync.dll
+  Biolog.Features.ReportBuilder -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-rpt-002/bin/Debug/net10.0/Biolog.Features.ReportBuilder.dll
+  Biolog.Features.FingerprintSearch -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-bio-006/Biolog.Features.FingerprintSearch/bin/Debug/net10.0/Biolog.Features.FingerprintSearch.dll
+  Biolog.Features.Attendance -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-att-001/bin/Debug/net10.0/Biolog.Features.Attendance.dll
+  Biolog.Features.CardProduction -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-crd-007/bin/Debug/net10.0/Biolog.Features.CardProduction.dll
+  Biolog.Features.FaceSearch -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-bio-007/Biolog.Features.FaceSearch/bin/Debug/net10.0/Biolog.Features.FaceSearch.dll
+  Biolog.Features.FaceEnrolment -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-bio-003/Biolog.Features.FaceEnrolment/bin/Debug/net10.0/Biolog.Features.FaceEnrolment.dll
+  Biolog.Features.TransportEvents -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-trn-002/bin/Debug/net10.0/Biolog.Features.TransportEvents.dll
+  Biolog.Features.AuditInvestigation -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-rpt-003/bin/Debug/net10.0/Biolog.Features.AuditInvestigation.dll
+  Biolog.Features.CardLifecycle -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-crd-006/bin/Debug/net10.0/Biolog.Features.CardLifecycle.dll
+  Biolog.Features.Notifications -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-rpt-001/bin/Debug/net10.0/Biolog.Features.Notifications.dll
+  Biolog.Features.OfflineEnrolment -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-mob-005/bin/Debug/net10.0/Biolog.Features.OfflineEnrolment.dll
+  Biolog.Features.Visitors -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-vis-001/bin/Debug/net10.0/Biolog.Features.Visitors.dll
+  Biolog.Features.OcrEngine -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-doc-004/Biolog.Features.OcrEngine/bin/Debug/net10.0/Biolog.Features.OcrEngine.dll
+  Biolog.Features.DeviceAdapters -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-dev-003/bin/Debug/net10.0/Biolog.Features.DeviceAdapters.dll
+  Biolog.Features.BarcodeEngine -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-doc-003/Biolog.Features.BarcodeEngine/bin/Debug/net10.0/Biolog.Features.BarcodeEngine.dll
+  Biolog.Features.ParserRegistry -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-doc-005/Biolog.Features.ParserRegistry/bin/Debug/net10.0/Biolog.Features.ParserRegistry.dll
+  Biolog.Features.Transport -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-trn-001/bin/Debug/net10.0/Biolog.Features.Transport.dll
+  Biolog.Features.MrzEngine -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-doc-002/Biolog.Features.MrzEngine/bin/Debug/net10.0/Biolog.Features.MrzEngine.dll
+  Biolog.Features.AccessCache -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-acc-003/bin/Debug/net10.0/Biolog.Features.AccessCache.dll
+  Biolog.Features.FaceVerification -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-bio-005/Biolog.Features.FaceVerification/bin/Debug/net10.0/Biolog.Features.FaceVerification.dll
+  Biolog.Features.DocumentClassifier -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-doc-006/Biolog.Features.DocumentClassifier/bin/Debug/net10.0/Biolog.Features.DocumentClassifier.dll
+  Biolog.Features.NfcReader -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-doc-007/Biolog.Features.NfcReader/bin/Debug/net10.0/Biolog.Features.NfcReader.dll
+  Biolog.Features.EvidenceComparison -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-doc-008/Biolog.Features.EvidenceComparison/bin/Debug/net10.0/Biolog.Features.EvidenceComparison.dll
+  Biolog.Features.AuthenticityAssessment -> <workspace>/biolog-worktrees/BIO-CRD-009/api/features/bio-doc-009/Biolog.Features.AuthenticityAssessment/bin/Debug/net10.0/Biolog.Features.AuthenticityAssessment.dll
+  Biolog.Api -> <workspace>/biolog-worktrees/BIO-CRD-009/api/Biolog.Api/bin/Debug/net10.0/Biolog.Api.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:15.21

@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-DOC-004",
+  "title": "Build template-driven and generic visual OCR",
+  "owner": "Ifeanyi - Document Intelligence Engineer",
+  "reviewed_commit": "87daeb50fd26bd86570c519ee5bbaf6f0208003b",
+  "required_acceptance_stages": ["builder", "adversarial", "acceptance"],
+  "requirement_ids": [
+    "BIO-DOC-004-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-DOC-004-AC01",
+      "requirement_ids": ["BIO-DOC-004-REQ-001"],
+      "text": "Template OCR returns field type, raw value, normalized value, confidence and source coordinates."
+    },
+    {
+      "id": "BIO-DOC-004-AC02",
+      "requirement_ids": ["BIO-DOC-004-REQ-001"],
+      "text": "Generic OCR returns text blocks without pretending field semantics."
+    },
+    {
+      "id": "BIO-DOC-004-AC03",
+      "requirement_ids": ["BIO-DOC-004-REQ-001"],
+      "text": "English is production baseline; French support is architected as the next language pack."
+    },
+    {
+      "id": "BIO-DOC-004-AC04",
+      "requirement_ids": ["BIO-DOC-004-REQ-001"],
+      "text": "Low-confidence critical fields require human review."
+    },
+    {
+      "id": "BIO-DOC-004-AC05",
+      "requirement_ids": ["BIO-DOC-004-REQ-001"],
+      "text": "OCR never uses generative guessing to fill unreadable identity characters."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-DOC-004.test.sh",
+      "ac_ids": [
+        "BIO-DOC-004-AC01",
+        "BIO-DOC-004-AC02",
+        "BIO-DOC-004-AC03",
+        "BIO-DOC-004-AC04",
+        "BIO-DOC-004-AC05"
+      ]
+    },
+    {
+      "path": "tests/features/bio-doc-004/Biolog.Features.OcrEngine.Tests/TemplateOcrEngineTests.cs",
+      "ac_ids": ["BIO-DOC-004-AC01", "BIO-DOC-004-AC04", "BIO-DOC-004-AC05"]
+    },
+    {
+      "path": "tests/features/bio-doc-004/Biolog.Features.OcrEngine.Tests/GenericOcrEngineTests.cs",
+      "ac_ids": ["BIO-DOC-004-AC02"]
+    },
+    {
+      "path": "tests/features/bio-doc-004/Biolog.Features.OcrEngine.Tests/OcrTextLineDetectorTests.cs",
+      "ac_ids": ["BIO-DOC-004-AC02"]
+    },
+    {
+      "path": "tests/features/bio-doc-004/Biolog.Features.OcrEngine.Tests/OcrLanguagePackRegistryTests.cs",
+      "ac_ids": ["BIO-DOC-004-AC03"]
+    },
+    {
+      "path": "tests/features/bio-doc-004/Biolog.Features.OcrEngine.Tests/OcrGlyphFontTests.cs",
+      "ac_ids": ["BIO-DOC-004-AC05"]
+    },
+    {
+      "path": "tests/features/bio-doc-004/Biolog.Features.OcrEngine.Tests/OcrTemplateRegistryTests.cs",
+      "ac_ids": ["BIO-DOC-004-AC01"]
+    },
+    {
+      "path": "tests/features/bio-doc-004/Biolog.Features.OcrEngine.Tests/OcrResultTypesAreLockedDownTests.cs",
+      "ac_ids": ["BIO-DOC-004-AC04"]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-DOC-004/builder/metadata.json",
+      "stage": "builder",
+      "ac_ids": [
+        "BIO-DOC-004-AC01",
+        "BIO-DOC-004-AC02",
+        "BIO-DOC-004-AC03",
+        "BIO-DOC-004-AC04",
+        "BIO-DOC-004-AC05"
+      ]
+    }
+  ]
+}

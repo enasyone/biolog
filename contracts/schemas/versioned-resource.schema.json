@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.biolog.local/versioned-resource.schema.json",
+  "title": "BIOLOG mutable aggregate envelope",
+  "description": "ADR-0001 Decision 3.1. Fields every mutable tenant aggregate carries. Immutable and append-only records must NOT carry version (Decision 3.3).",
+  "type": "object",
+  "required": ["id", "tenant_id", "version", "created_at", "updated_at"],
+  "properties": {
+    "id": { "$ref": "canonical-id.schema.json" },
+    "tenant_id": {
+      "description": "Owning tenant. Every tenant-plane read and write is filtered by the resolved tenant context, never by this field alone.",
+      "type": "string",
+      "pattern": "^ten_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "version": {
+      "description": "Optimistic concurrency token. Starts at 1, +1 per committed mutation. Opaque to clients.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "created_at": { "$ref": "utc-instant.schema.json" },
+    "updated_at": { "$ref": "utc-instant.schema.json" }
+  }
+}

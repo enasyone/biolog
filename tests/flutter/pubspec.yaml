@@ -1,0 +1,16 @@
+name: biolog_baseline_tests
+description: BIOLOG synthetic baseline Flutter test scaffold.
+publish_to: none
+version: 0.0.0
+environment:
+  sdk: ">=3.12.0 <4.0.0"
+dependencies:
+  flutter:
+    sdk: flutter
+  biolog_mobile:
+    path: ../../mobile
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+flutter:
+  uses-material-design: true

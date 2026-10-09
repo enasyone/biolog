@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-DOC-006",
+  "title": "Build automatic document type identification",
+  "owner": "Ifeanyi - Document Intelligence Engineer",
+  "reviewed_commit": "3345e8962f53a778a71833589d9ec78a0b3ec045",
+  "required_acceptance_stages": ["builder", "adversarial", "acceptance"],
+  "requirement_ids": [
+    "BIO-DOC-006-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-DOC-006-AC01",
+      "requirement_ids": ["BIO-DOC-006-REQ-001"],
+      "text": "Classifier can return ranked candidates with confidence."
+    },
+    {
+      "id": "BIO-DOC-006-AC02",
+      "requirement_ids": ["BIO-DOC-006-REQ-001"],
+      "text": "Unknown/unsupported is a valid safe outcome."
+    },
+    {
+      "id": "BIO-DOC-006-AC03",
+      "requirement_ids": ["BIO-DOC-006-REQ-001"],
+      "text": "Template selection uses versioned Document Intelligence Registry entries."
+    },
+    {
+      "id": "BIO-DOC-006-AC04",
+      "requirement_ids": ["BIO-DOC-006-REQ-001"],
+      "text": "Wrong-side/front-back detection is supported."
+    },
+    {
+      "id": "BIO-DOC-006-AC05",
+      "requirement_ids": ["BIO-DOC-006-REQ-001"],
+      "text": "Low confidence requires operator confirmation."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-DOC-006.test.sh",
+      "ac_ids": [
+        "BIO-DOC-006-AC01",
+        "BIO-DOC-006-AC02",
+        "BIO-DOC-006-AC03",
+        "BIO-DOC-006-AC04",
+        "BIO-DOC-006-AC05"
+      ]
+    },
+    {
+      "path": "tests/features/bio-doc-006/Biolog.Features.DocumentClassifier.Tests/DocumentClassifierTests.cs",
+      "ac_ids": ["BIO-DOC-006-AC01", "BIO-DOC-006-AC02", "BIO-DOC-006-AC04", "BIO-DOC-006-AC05"]
+    },
+    {
+      "path": "tests/features/bio-doc-006/Biolog.Features.DocumentClassifier.Tests/DocumentIntelligenceRegistryTests.cs",
+      "ac_ids": ["BIO-DOC-006-AC03"]
+    },
+    {
+      "path": "tests/features/bio-doc-006/Biolog.Features.DocumentClassifier.Tests/DocumentClassificationResultTypesAreLockedDownTests.cs",
+      "ac_ids": ["BIO-DOC-006-AC01"]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-DOC-006/builder/metadata.json",
+      "stage": "builder",
+      "ac_ids": [
+        "BIO-DOC-006-AC01",
+        "BIO-DOC-006-AC02",
+        "BIO-DOC-006-AC03",
+        "BIO-DOC-006-AC04",
+        "BIO-DOC-006-AC05"
+      ]
+    }
+  ]
+}

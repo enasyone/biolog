@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-ACC-001 owns api/features/bio-acc-001/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh)
+         and no ProjectReference to any other feature project - PersonId existence/identity
+         status is proven through this project's own narrow Domain/IPersonExistenceGateway.cs
+         and Domain/IIdentityStatusGateway.cs, and RBAC authority through
+         Domain/IPermissionGateway.cs, all implemented by adapters in
+         api/Biolog.Api/Modules/BioAcc001Module.cs wrapping BIO-IDN-001's PersonService and
+         BIO-IDN-006's PermissionService directly - the same gateway pattern every identity-wave
+         story in this codebase already uses (see docs/features/bio-acc-001/README.md
+         "Integration seam").
+
+         Namespace root is "AccessPolicy": the aggregate this project defines is AccessPolicy
+         (Domain/AccessPolicy.cs), a tenant-scoped, versioned Draft/Publish record of
+         WHO+CREDENTIAL+WHERE+WHEN+STATUS+ASSURANCE rules (AC01), keyed by a plain business
+         identifier (PolicyKey) rather than a new ADR-0001 canonical id type - the same
+         "prefer a natural key over minting a new canonical type" discipline BIO-IDN-006's own
+         ApprovalRequest applies. -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Every aggregate's constructor and its repository are internal - the explicit, auditable
+         seam for Biolog.Api (DI registration) and this project's own test assembly. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.AccessPolicy.Tests" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,10 @@
+{
+  "story_key": "BIO-UX-009",
+  "stage": "builder",
+  "commit_hash": "9b01031e45b8a599e3b69acf5490e39faab984ce",
+  "test_command": "(cd web && ./node_modules/.bin/tsc --noEmit && ./node_modules/.bin/next build) && (cd tests/frontend && ./node_modules/.bin/vitest run) && (cd web && rm -rf .next && pnpm build && pnpm start -p 3011) && (cd tests/frontend && BIOLOG_BASE_URL=http://127.0.0.1:3011 ./node_modules/.bin/playwright test bio-ux-009-document-verify.spec.ts)",
+  "result": "PASS",
+  "timestamp": "2026-09-23T16:05:58Z",
+  "reviewer": "Ifeanyi",
+  "data_classification": "SYNTHETIC"
+}

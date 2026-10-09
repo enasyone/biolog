@@ -1,0 +1,44 @@
+PASS  AC01 DocumentTemplatePackEntry carries every declared metadata kind
+PASS  AC01 barcode corroboration is carried per-side via the reused BIO-DOC-006 registry entry (Publish), not duplicated
+PASS  AC01 Create validates structural shape (non-empty sides, non-empty expected fields, rules reference declared fields)
+PASS  AC01 the actual governed Nigeria pack content exists with three entries
+PASS  AC01 test coverage exists
+PASS  AC02 DocumentTemplatePackStatus is a two-state Draft/Published lifecycle
+PASS  AC02 AddEntry throws once the pack is published
+PASS  AC02 there is no RemoveEntry/ReplaceEntry/UpdateEntry method anywhere on the aggregate
+PASS  AC02 Publish is durably audited before returning, the same audit-before-commit discipline as BIO-DOC-009
+PASS  AC02 test coverage exists, including the structural no-remove-method proof
+PASS  AC03 DocumentTemplateSample.IsSynthetic is a structural guarantee, not a caller-supplied flag
+PASS  AC03 the sample store rejects a sample naming an entry the pack does not govern
+PASS  AC03 governed synthetic reference samples exist for the real Nigeria pack, one per entry
+PASS  AC03 test coverage exists
+PASS  AC04 DocumentTemplateVerificationOutcome carries PackId/PackVersion/EntryId on every result
+PASS  AC04 Verify refuses to run against an unpublished pack (a draft has no governance standing)
+PASS  AC04 Verify is durably audited before returning
+PASS  AC04 the audit event's own Detail records pack_version explicitly
+PASS  AC04 test coverage exists, including a direct proof of the recorded pack version
+PASS  AC05 a real HTTP endpoint exists at POST /api/v1/documents/identify
+PASS  AC05 the module is registered into the host (Program.cs, one line, additive)
+PASS  AC05 the module adapter lives in api/Biolog.Api/Modules, not inside the feature project
+PASS  AC05 web/features/documents already targets this exact route (BIO-UX-009's own LIVE_ENDPOINTS, unmodified contract) - the frontend parsing/routing logic needed no change to connect it
+PASS  AC05 DocumentVerifyService gains a third, independent 'documentIdentification' port key (genuine HYBRID, capture stays mock so it never blocks this step)
+PASS  AC05 no unapproved UI redesign - DocumentVerifyApp.tsx and its stylesheet are untouched by this story
+PASS  AC05 response is a superset of the existing LiveStepBody shape (state/message), no frontend parsing change required
+PASS  AC05 Map() registers exactly one route on this endpoint class (no unauthenticated GET-by-id surface, applying BIO-DOC-009-F01's lesson from the start)
+PASS  AC05 frontend test coverage exists for the new independent port key
+PASS  AC05 a Playwright test exercises the real HTTP endpoint end to end
+PASS  DocumentTemplateVerificationOutcome/DocumentTemplatePackEntry are internal init/no public constructor, not public init
+PASS  standing reflection-based lockdown regression test exists
+PASS  DocumentTemplatePackService owns its own instance-level registry/store/audit sink, never static
+PASS  test coverage proves two independent service instances never share state
+PASS  DocumentTemplatePack references BIO-DOC-006's document classifier
+PASS  DocumentTemplatePack references BIO-DOC-009's authenticity assessment orchestrator
+PASS  DocumentTemplatePack does NOT reference BIO-DOC-001/002/003/004/005/007/008 directly (not declared dependencies)
+PASS  no sibling BIO-DOC-00x project takes a dependency back on this feature (no cycle)
+PASS  this feature project never references Biolog.Api.csproj (one-way dependency)
+PASS  ADR-0001-S1.2 the frozen identifier registry was not touched by this story
+PASS  feature test project exists
+PASS  story traceability spec exists
+PASS  feature design doc exists
+----
+BIO-DOC-010 structural checks: 42 passed, 0 failed

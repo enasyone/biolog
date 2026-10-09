@@ -1,0 +1,9 @@
+PASS AC01-05 Compose structural validation
+PASS AC01-04 service topology, tenant separation, healthchecks and named volumes
+PASS AC05 no tracked machine paths or detected secrets
+PASS AC03 wait rejects a service with no healthcheck
+PASS AC04 targeted reset reports Docker cleanup failure
+PASS AC04 targeted reset distinguishes inspect failure from absent volume
+PASS AC04 unknown reset target fails
+PASS AC03 unknown wait flag fails
+exit 0

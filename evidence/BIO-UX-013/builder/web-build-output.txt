@@ -1,0 +1,59 @@
+
+> @biolog/web@0.0.0 build <workspace>/biolog-worktrees/BIO-UX-013/web
+> next build
+
+[1m[38;2;173;127;168m▲ Next.js 16.3.5[39m[22m (Turbopack)
+[32m[1m✓[22m[39m Running next.config.mjs took 12ms
+
+[37m[1m [22m[39m Creating an optimized production build ...
+[32m[1m✓[22m[39m Compiled successfully in 2.7s
+[37m[1m [22m[39m Running TypeScript ...
+[37m[1m [22m[39m Finished TypeScript in 359ms ...
+[37m[1m [22m[39m Collecting page data using 9 workers ...
+[37m[1m [22m[39m Generating static pages using 9 workers (0/34) ...
+[37m[1m [22m[39m Generating static pages using 9 workers (8/34) 
+[37m[1m [22m[39m Generating static pages using 9 workers (16/34) 
+[37m[1m [22m[39m Generating static pages using 9 workers (25/34) 
+[32m[1m✓[22m[39m Generating static pages using 9 workers (34/34) in 351ms
+[37m[1m [22m[39m Finalizing page optimization ...
+
+[4mRoute (app)[24m
+┌ ○ /
+├ ○ /_not-found
+├ ○ /access-control
+├ ○ /administration
+├ ○ /administration/integrations
+├ ○ /administration/tenants
+├ ○ /alumni
+├ ○ /attendance
+├ ○ /audit
+├ ○ /card-designer
+├ ○ /cards
+├ ○ /cards/issue
+├ ○ /cards/replace
+├ ○ /contractors
+├ ○ /credentials
+├ ○ /devices
+├ ○ /document-verify
+├ ○ /duplicate-review
+├ ○ /enrolment
+├ ○ /facial-recognition
+├ ○ /fingerprints
+├ ○ /icon.png
+├ ○ /mobile-credentials
+├ ○ /nfc-uhf
+├ ○ /people
+├ ƒ /people/[personId]
+├ ○ /photographs
+├ ○ /reports
+├ ○ /settings
+├ ○ /settings/authentication
+├ ○ /staff
+├ ○ /students
+├ ○ /transport
+└ ○ /visitors
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

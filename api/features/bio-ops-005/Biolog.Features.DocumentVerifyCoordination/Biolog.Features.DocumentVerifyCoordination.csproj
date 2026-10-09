@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Matches api/Biolog.Api/Biolog.Api.csproj's pinned TFM (BIO-FND-008). -->
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <!--
+    Kemi's BIO-OPS-005 ruling, DEPENDENCY SHAPE (point 2): direct ProjectReference to BIO-DOC-001
+    (model+store), BIO-DOC-002/003/004/007 (pure stateless engines) and BIO-DOC-008's own
+    ComparisonEngine (pure static) - the same precedent BIO-DOC-009/010 already used for THEIR
+    own declared deps. The two STATEFUL DI-registered services this story also needs
+    (AuthenticityAssessmentService, DocumentTemplatePackService) are reached through this
+    project's own IAuthenticityAssessmentGateway/IDocumentIdentificationGateway instead - never a
+    ProjectReference to bio-doc-009/010's assemblies - with the real adapters living in
+    Biolog.Api.Modules.BioOps005Module, wrapping those services' already-registered DI instances
+    directly (the same ICardIssueGateway/IPermissionGateway shape every prior cross-story seam in
+    this epic already established).
+  -->
+  <ItemGroup>
+    <ProjectReference Include="../../bio-doc-001/Biolog.Features.DocumentVerify/Biolog.Features.DocumentVerify.csproj" />
+    <ProjectReference Include="../../bio-doc-002/Biolog.Features.MrzEngine/Biolog.Features.MrzEngine.csproj" />
+    <ProjectReference Include="../../bio-doc-003/Biolog.Features.BarcodeEngine/Biolog.Features.BarcodeEngine.csproj" />
+    <ProjectReference Include="../../bio-doc-004/Biolog.Features.OcrEngine/Biolog.Features.OcrEngine.csproj" />
+    <ProjectReference Include="../../bio-doc-007/Biolog.Features.NfcReader/Biolog.Features.NfcReader.csproj" />
+    <ProjectReference Include="../../bio-doc-008/Biolog.Features.EvidenceComparison/Biolog.Features.EvidenceComparison.csproj" />
+  </ItemGroup>
+
+  <!-- This story's own HTTP surface (the 8 endpoints) lives in this SAME project's Api/ folder -
+       the bio-doc-009/010 shape - never a ProjectReference to Biolog.Api.csproj. -->
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Biolog.Api only, the same scoped visibility every sibling feature's own csproj grants - no
+         test-assembly entry needed here since this story's own tests live in a plain, separate
+         xUnit project with no internal-member coverage requirement. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.DocumentVerifyCoordination.Tests" />
+  </ItemGroup>
+
+</Project>

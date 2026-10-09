@@ -1,0 +1,48 @@
+{
+  "story_key": "BIO-IDN-006",
+  "title": "Implement RBAC role catalogue and maker-checker hooks",
+  "implementation_commit": "67bcb8e53b338595c61114c654da24f84d7aaebe",
+  "builder_head": "1a172cd",
+  "reviewed_head": "93fce5de79e4430f287e73bd654d18020a199e9a",
+  "environment": {"profile": "local acceptance; synthetic fixtures only", "timestamp": "2026-09-22T18:19:52Z"},
+  "acceptance_criteria": {
+    "BIO-IDN-006-AC01": {"result": "PASS", "evidence": ["catalogue tests", "structural suite"]},
+    "BIO-IDN-006-AC02": {"result": "PASS", "evidence": ["tenant-scoped permission tests", "packaged-host tests"]},
+    "BIO-IDN-006-AC03": {"result": "PASS_WITH_ADR_0006_INTERIM_PROVENANCE_SCOPE", "evidence": ["single-use maker-checker tests", "REREVIEW-ROUND7.md", "SECURITY-REVIEW-ZAINAB-ROUND7.md"]},
+    "BIO-IDN-006-AC04": {"result": "PASS", "evidence": ["role audit and failure-atomicity tests"]}
+  },
+  "commands": [
+    {"command": "bash tests/features/bio-idn-006/BIO-IDN-006.test.sh", "result": "PASS (121/121)"},
+    {"command": "dotnet Biolog.Features.Rbac.Tests.dll", "result": "PASS (113/113)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (19 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS"}
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "67bcb8e53b338595c61114c654da24f84d7aaebe",
+    "feature_tests": "113/113 PASS",
+    "integration_tests": "86/86 PASS",
+    "structural_tests": "121/121 PASS",
+    "full_quality": "PASS",
+    "metadata_sha256": "24818b66e2a4ee9ef0eff6ea92966d508cfcd598039503ee58085bbcb7604df1"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "result": "PASS_WITH_ADR_0006_INTERIM_PROVENANCE_SCOPE",
+    "review_commit": "93fce5d",
+    "evidence": "evidence/BIO-IDN-006/codex/REREVIEW-ROUND7.md",
+    "evidence_sha256": "465822f6e548a2ba87e8d839a4fa038dd7d7417d7dca8013235160696665266a"
+  },
+  "specialist_security_review": {
+    "reviewer": "Zainab",
+    "result": "PASS_FOR_ADR_0006_DECISION_3_INTERIM_APPLICATION_PROVENANCE_TIER",
+    "evidence": "evidence/BIO-IDN-006/codex/SECURITY-REVIEW-ZAINAB-ROUND7.md",
+    "evidence_sha256": "0322fa3c43bbef7e845b03be53976e57b5e82f1b4a9162366db332404fe665c3"
+  },
+  "category_verdicts": {"functional": "PASS", "security": "PASS_WITH_DISCLOSED_ADR_0006_BOUNDARY", "tenant_isolation": "PASS", "offline_recovery": "NOT_APPLICABLE", "concurrency": "PASS_CURRENT_SINGLE_PROCESS_TIER", "regression": "PASS"},
+  "residual_boundary": "HMAC provenance binds proof to the asserted actor ID but is not person authentication, replay protection, or genuine maker-checker separation. ADR-0006 assigns closure and retirement of this accommodation to BIO-INT-001.",
+  "security_performance_reviews": {"security": "Zainab PASS for ADR-0006 Decision 3 interim application-side provenance tier; Critical caller-controlled authorization is mitigated within that accepted scope, not represented as real authentication", "performance": "Not required for the current in-memory tier"},
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS_WITH_ADR_0006_INTERIM_PROVENANCE_SCOPE", "reason": "All four acceptance criteria have builder, independent QA, and specialist security evidence. Actor-bound provenance closes the application-side requirement while real authentication and separation of duties remain explicit BIO-INT-001 debt."}
+}

@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-RPT-002 owns api/features/bio-rpt-002/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh) and
+         no ProjectReference to bio-crd-007/bio-att-001 either, despite both being real runtime
+         dependencies (a governed report reads live CardProduction/Attendance data): every
+         cross-feature runtime need in this codebase goes through a narrow gateway interface THIS
+         project defines (see Domain/ICardProductionGateway.cs, Domain/IAttendanceGateway.cs)
+         implemented by an adapter in api/Biolog.Api/Modules/BioRpt002Module.cs, the same shape
+         every prior story in this epic already established. Unlike most prior gateways, both
+         adapters here wrap a PUBLIC repository interface already registered by the dependency's
+         own module (IProductionJobRepository, IAttendanceEventRepository) rather than an
+         internal application service - no InternalsVisibleTo grant from either dependency is
+         needed for that reason.
+
+         Namespace root is "ReportBuilder". No new ADR-0001 canonical identifier type is minted
+         for a report job - see Identifiers/CanonicalId.cs's own header. -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.ReportBuilder.Tests" />
+  </ItemGroup>
+
+</Project>

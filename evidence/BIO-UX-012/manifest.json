@@ -1,0 +1,51 @@
+{
+  "story_key": "BIO-UX-012",
+  "commit_hash": "a3de36632e72f71d29c39ca35ae3b24f39a6e2a3",
+  "implementation_commit": "7c33dd66e309917f431d15541a0cae3618adef26",
+  "builder_evidence_commit": "a3de36632e72f71d29c39ca35ae3b24f39a6e2a3",
+  "environment_profile": "local frontend Node/pnpm workspace; synthetic fixtures",
+  "timestamp": "2026-09-23T16:13:42Z",
+  "acceptance_criteria": {
+    "BIO-UX-012-AC01": {"result": "PASS", "tests": ["bio-ux-012-human-test-console.spec.ts eight-dimension coverage"]},
+    "BIO-UX-012-AC02": {"result": "PASS", "tests": ["bio-ux-012-human-test-console.spec.ts module-status coverage"]},
+    "BIO-UX-012-AC03": {"result": "PASS", "tests": ["bio-ux-012-human-test-console.spec.ts distinct credential-state and document-result workflow coverage"]},
+    "BIO-UX-012-AC04": {"result": "PASS", "tests": ["bio-ux-012-test-scenario-params.test.ts", "production executable-bundle scan", "production-server verification"]},
+    "BIO-UX-012-AC05": {"result": "PASS", "tests": ["bio-ux-012-human-test-console.spec.ts LOCAL/mode indicator coverage"]},
+    "BIO-UX-012-AC06": {"result": "PASS", "tests": ["bio-ux-012-human-test-console.spec.ts workflow navigation coverage"]}
+  },
+  "commands_results": [
+    {"command": "corepack pnpm --dir tests/frontend test:unit", "result": "PASS: 50 files, 376 tests"},
+    {"command": "corepack pnpm --dir web typecheck", "result": "PASS"},
+    {"command": "corepack pnpm --dir web build", "result": "PASS: 34 routes plus dynamic person-detail route"},
+    {"command": "production executable-bundle scan for biolog-human-test-console", "result": "PASS: 0 non-source-map matches"},
+    {"command": "builder round-two affected Playwright suite", "result": "PASS: 77 tests"},
+    {"command": "credential/document preset flow inspection", "result": "PASS: validated dev-only parameters drive distinct observable Cards and Document Verify state"}
+  ],
+  "builder_verdict": "PASS",
+  "independent_qa_verdict": "PASS",
+  "security_verdict": "PASS",
+  "tenant_verdict": "PASS",
+  "offline_verdict": "PASS",
+  "concurrency_verdict": "NOT_APPLICABLE",
+  "regression_verdict": "PASS",
+  "evidence_references": [
+    "builder/metadata.json",
+    "builder/SUMMARY.md",
+    "builder/unit-test-output.txt",
+    "builder/typecheck-output.txt",
+    "builder/web-build-output.txt",
+    "builder/e2e-test-output.txt",
+    "builder/round2-unit-test-output.txt",
+    "builder/round2-typecheck-output.txt",
+    "builder/round2-web-build-output.txt",
+    "builder/round2-e2e-test-output.txt",
+    "codex/REVIEW-Seyi-round1.md",
+    "codex/REVIEW-Seyi-round2.md",
+    "codex/SECURITY-REVIEW-ZAINAB.md",
+    "codex/SECURITY-REVIEW-ZAINAB-ROUND2.md",
+    "acceptance/REVIEW-Chioma-round1.md",
+    "acceptance/REVIEW-Chioma-round2.md"
+  ],
+  "final_acceptance_decision": "PASS",
+  "reason": "AC01-AC06 are complete; every console choice now has a deterministic observable application effect or route effect, and production remains fail closed."
+}

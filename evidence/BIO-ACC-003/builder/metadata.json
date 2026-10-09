@@ -1,0 +1,10 @@
+{
+  "story_key": "BIO-ACC-003",
+  "stage": "builder",
+  "commit_hash": "66188f748a956717de77cb0ee1b77638372abe15",
+  "test_command": "bash tests/foundation/BIO-ACC-003.test.sh && dotnet test tests/features/bio-acc-003/Biolog.Features.AccessCache.Tests.csproj && dotnet test tests/features/bio-idn-001/Biolog.Features.PersonRegistry.Tests.csproj && (cd tests/flutter && flutter test) && dotnet build api/Biolog.Api/Biolog.Api.csproj && bash scripts/check-module-project-references.sh && bash scripts/secret-scan.sh --all",
+  "result": "PASS",
+  "timestamp": "2026-09-24T07:00:00Z",
+  "reviewer": "Busola",
+  "data_classification": "SYNTHETIC"
+}

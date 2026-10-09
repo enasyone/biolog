@@ -1,0 +1,10 @@
+{
+  "story_key": "BIO-OPS-006",
+  "stage": "builder",
+  "commit_hash": "e50d3f6aaf767e7b9bc21d7f3eb498fa3234ec53",
+  "test_command": "bash tests/features/bio-ops-006/BIO-OPS-006.acceptance.sh",
+  "result": "PASS",
+  "timestamp": "2026-10-08T02:30:00Z",
+  "reviewer": "Zainab",
+  "data_classification": "SYNTHETIC"
+}

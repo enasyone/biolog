@@ -1,0 +1,4 @@
+PASS baseline freeze validates
+PASS AC01 rejects a nonexistent baseline commit
+PASS AC04 rejects in-place regeneration of an existing snapshot version
+PASS AC03 makes freeze governance and ownership enforcement read-only

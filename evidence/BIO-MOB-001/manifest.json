@@ -1,0 +1,67 @@
+{
+  "story_key": "BIO-MOB-001",
+  "title": "Create Flutter Android application shell and secure local store",
+  "implementation_commit": "50366628fdbbd34c88887dc990f03f7bacd6c280",
+  "builder_head": "6dedc6a9b71c80ee404584dc99a481b5eaff9c62",
+  "reviewed_head": "9ef52769a63f1f76ab76e2ab2a4b4fb361bd6191",
+  "environment": {
+    "profile": "local acceptance; synthetic fixtures only; shared Flutter SDK cache is read-only in sandbox",
+    "timestamp": "2026-09-23T01:39:53Z"
+  },
+  "acceptance_criteria": {
+    "BIO-MOB-001-AC01": {"result": "PASS", "evidence": ["evidence/BIO-MOB-001/builder/emulator-logcat-boot.txt", "evidence/BIO-MOB-001/builder/emulator-unbound-screen-round2.png"]},
+    "BIO-MOB-001-AC02": {"result": "PASS", "evidence": ["tests/flutter/test/bio_mob_001_ac02_passphrase_vault_test.dart", "evidence/BIO-MOB-001/builder/emulator-logcat-boot.txt"]},
+    "BIO-MOB-001-AC03": {"result": "PASS", "evidence": ["evidence/BIO-MOB-001/acceptance/persisted-tenant-validation-probe.dart", "evidence/BIO-MOB-001/acceptance/caller-constructed-tenant-source-probe.py", "evidence/BIO-MOB-001/acceptance/legacy-forged-context-source-probe.py", "tests/flutter/test/bio_mob_001_ac03_save_tenant_context_unimplemented_test.dart", "evidence/BIO-MOB-001/codex/REREVIEW-Seyi-round6.md"], "finding": "QA-01 through QA-04 closed: malformed/legacy context rejects, no local resolver exists, and the real store cannot self-issue provenance"},
+    "BIO-MOB-001-AC04": {"result": "PASS", "evidence": ["tests/flutter/test/bio_mob_001_ac04_nav_items_test.dart", "tests/flutter/test/bio_mob_001_ac04_offline_queue_idempotency_test.dart", "evidence/BIO-MOB-001/codex/REREVIEW-Seyi-round2.md"]},
+    "BIO-MOB-001-AC05": {"result": "PASS", "evidence": ["tests/foundation/BIO-MOB-001.test.sh", "evidence/BIO-MOB-001/builder/secret-scan-output.txt"]}
+  },
+  "commands": [
+    {"command": "/opt/homebrew/share/flutter/bin/cache/dart-sdk/bin/dart --packages=tests/flutter/.dart_tool/package_config.json evidence/BIO-MOB-001/acceptance/persisted-tenant-validation-probe.dart", "result": "PASS: QA-01 malformed persisted context rejected"},
+    {"command": "python3 evidence/BIO-MOB-001/acceptance/caller-constructed-tenant-source-probe.py", "result": "PASS: QA-02 local producer removed"},
+    {"command": "python3 evidence/BIO-MOB-001/acceptance/legacy-forged-context-source-probe.py", "result": "PASS: legacy caller-created context is invalidated"},
+    {"command": "bash tests/foundation/BIO-MOB-001.test.sh", "result": "PASS (36/36)"},
+    {"command": "cd mobile && flutter analyze", "result": "UNAVAILABLE: sandbox denied writes to shared Flutter SDK cache"},
+    {"command": "cd tests/flutter && flutter test", "result": "UNAVAILABLE: sandbox denied writes to shared Flutter SDK cache"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (25 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS"}
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "50366628fdbbd34c88887dc990f03f7bacd6c280",
+    "foundation_tests": "36/36 PASS",
+    "flutter_tests": "50/50 PASS",
+    "flutter_analyze": "PASS",
+    "metadata_sha256": "76bae0d76ee5e8c949afdd60f9f2d97d2442bc50671027bba41fde4777ed743b",
+    "flutter_test_sha256": "d5b91f02162af00913251f5150d18e5d993ceb3f94970a1ca63d907010a65576"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "result": "PASS",
+    "review_commit": "9ef52769a63f1f76ab76e2ab2a4b4fb361bd6191",
+    "evidence": "evidence/BIO-MOB-001/codex/REREVIEW-Seyi-round6.md",
+    "evidence_sha256": "c034cb608918351cc005628a23deb7464965b4d861cd5b2b23959cade85eb13d"
+  },
+  "category_verdicts": {
+    "functional": "PASS",
+    "security": "PASS",
+    "tenant_isolation": "PASS",
+    "offline_recovery": "PASS",
+    "concurrency": "PASS",
+    "regression": "PASS"
+  },
+  "security_performance_verdicts": {
+    "security": "PASS: no production path can create or persist a locally forged resolved tenant context",
+    "performance": "Not separately required"
+  },
+  "screenshots_logs": [
+    "evidence/BIO-MOB-001/builder/emulator-unbound-screen-round2.png",
+    "evidence/BIO-MOB-001/builder/emulator-logcat-boot.txt"
+  ],
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "All ACs and security findings have passing commit-bound builder, independent and acceptance evidence."
+  }
+}

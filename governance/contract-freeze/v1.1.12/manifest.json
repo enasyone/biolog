@@ -1,0 +1,201 @@
+{
+  "snapshot_version": "1.1.12",
+  "baseline_parent_commit": "2f6826a40db537753f3d91fae867a2b26a518308",
+  "artifacts": [
+    {
+      "path": "contracts/README.md",
+      "sha256": "8639b2a1cdf8112ccf0dcb77dc1086cf7266cc862b454d2690955b783b9a4233",
+      "bytes": 7033
+    },
+    {
+      "path": "contracts/js/api.mjs",
+      "sha256": "c922e03b740252a4e5bc5bead5d3ff7ea208cec7509fe87db756f439349205be",
+      "bytes": 24759
+    },
+    {
+      "path": "contracts/js/api.test.mjs",
+      "sha256": "081a5f322c37315faedae12330d70aaf459422eb75bd6435bdc14e3633a444bb",
+      "bytes": 47732
+    },
+    {
+      "path": "contracts/js/audit.mjs",
+      "sha256": "b7c300fe2879d8bf4d0a8b1c52e2cee0943866dc7d8fc1fe6b2ddbb1bf2cb980",
+      "bytes": 19302
+    },
+    {
+      "path": "contracts/js/audit.test.mjs",
+      "sha256": "f7ca62bf578b3ef63c8bd17b4fc68a82413c278c5eaca3847e4e7448cea1c57f",
+      "bytes": 41557
+    },
+    {
+      "path": "contracts/js/clock.mjs",
+      "sha256": "337242b4721312f60e2c24b5a046d933216cdab225a39ae1882590ae48e18d45",
+      "bytes": 7810
+    },
+    {
+      "path": "contracts/js/concurrency.mjs",
+      "sha256": "59075758e9fccbee12d9c43332abeb25a713c03a6fe2b0372367bf38abc5bbe0",
+      "bytes": 5137
+    },
+    {
+      "path": "contracts/js/contracts.test.mjs",
+      "sha256": "63162d663525007cc52d52cc795e4f595737e42b3ef24ff2e9b617dd60b60cbd",
+      "bytes": 31466
+    },
+    {
+      "path": "contracts/js/identifiers.mjs",
+      "sha256": "d575e9bb16fdece4757bb9ae16ec970ec3268207e5c0ed6e911d3582e60099c8",
+      "bytes": 4346
+    },
+    {
+      "path": "contracts/js/index.mjs",
+      "sha256": "bc88a0c383863af65e02b96852a43db157e5e2281d92aecdc6c8ffd378526390",
+      "bytes": 401
+    },
+    {
+      "path": "contracts/js/migrations.mjs",
+      "sha256": "bf3751894a0aef4774192ada8374090da80ff588dd55c8d50cf5e06ba4838862",
+      "bytes": 24942
+    },
+    {
+      "path": "contracts/js/migrations.test.mjs",
+      "sha256": "136cf7b5436e3e76cea21ba81965ee9acaa39818d4ed56fc26d14db5754989d3",
+      "bytes": 37148
+    },
+    {
+      "path": "contracts/js/tenant-context.mjs",
+      "sha256": "bb5be1f1df5c9ef80608f0d5452aea46bbc7349803fed3e49c8cff1d6c40305b",
+      "bytes": 18720
+    },
+    {
+      "path": "contracts/js/tenant-context.test.mjs",
+      "sha256": "d788d6f213dd236bfc80eda6d7ca53b5ac900d4e99d76e4f4bde0da3337aefe0",
+      "bytes": 45885
+    },
+    {
+      "path": "contracts/schemas/audit-event.schema.json",
+      "sha256": "6ec1535c6c8c770959a272bfc1169433bbc15cf250fc5b635ee66e672f8a9a1f",
+      "bytes": 5154
+    },
+    {
+      "path": "contracts/schemas/calendar-date.schema.json",
+      "sha256": "bea00216896d9adb2b6e0c88ae521f10e679082cf38a7ca397b56764bb6e6723",
+      "bytes": 1150
+    },
+    {
+      "path": "contracts/schemas/canonical-id.schema.json",
+      "sha256": "7a0ea20dcf3804523e6c49178034146ff9271136a14d119c6c05a754d6d2d3b0",
+      "bytes": 571
+    },
+    {
+      "path": "contracts/schemas/data-classification.json",
+      "sha256": "ca42f715c520b7001230236563a0cb2b1c5eee07239fa94e88f785a6976c753c",
+      "bytes": 1718
+    },
+    {
+      "path": "contracts/schemas/event-envelope.schema.json",
+      "sha256": "bd0baf02fd31d59e98d32938ebd35a967f2d34a4070b7c7d9010a08e07ec43d2",
+      "bytes": 3260
+    },
+    {
+      "path": "contracts/schemas/identifier-registry.json",
+      "sha256": "d8d5f4957c4c54e1585beb722ccd8e94a7b78fd18429e7cec905c98ca8179c0a",
+      "bytes": 2274
+    },
+    {
+      "path": "contracts/schemas/migration-proposal.schema.json",
+      "sha256": "badaf9b24083997d648040611269e0cab368b81199cd9b36e8c0692f0b2c1d75",
+      "bytes": 5261
+    },
+    {
+      "path": "contracts/schemas/migration-record.schema.json",
+      "sha256": "82d2ee76fd0a02bcca2ca936a673630fa5842c89445acad9406fd943ab35a83c",
+      "bytes": 1814
+    },
+    {
+      "path": "contracts/schemas/migration-registry.schema.json",
+      "sha256": "0b74aabfd2e1dd7748f06264a184bb89ca07bfd6d3dec6548f54b9e644e9c7bf",
+      "bytes": 679
+    },
+    {
+      "path": "contracts/schemas/offline-mutation.schema.json",
+      "sha256": "173f2c4fc13a4f3817e065055f327a2695484638baa8ec871e67666d1e3661a3",
+      "bytes": 1395
+    },
+    {
+      "path": "contracts/schemas/paginated-list-response.schema.json",
+      "sha256": "67b1812eec3b3c5a3c12a7a22ec4cf6d837bf5b3025d87634c823ab6d5fbcea1",
+      "bytes": 1173
+    },
+    {
+      "path": "contracts/schemas/problem-response.schema.json",
+      "sha256": "5a87d1cf8f3c55e515269ff3f7f72c74a41f46580f95a41eb3fa48b886d03b95",
+      "bytes": 2347
+    },
+    {
+      "path": "contracts/schemas/tenant-access-denial-event.schema.json",
+      "sha256": "eb840422d3d1c60d31fee6a5f03a93859f6a58fb8fc31f06ba909ffc1319d113",
+      "bytes": 2352
+    },
+    {
+      "path": "contracts/schemas/tenant-context.schema.json",
+      "sha256": "49f26661626ad55ca2b419e073f662544ba53914759a8dabd96a7fb573edaab3",
+      "bytes": 1246
+    },
+    {
+      "path": "contracts/schemas/tenant-data-binding.schema.json",
+      "sha256": "050130b0de8b9092d3337d22b28ea1f924a3f9f69205e1d2ad92d6d24353f0ee",
+      "bytes": 1311
+    },
+    {
+      "path": "contracts/schemas/tenant-domain.schema.json",
+      "sha256": "061ae8588b66969f87d064621759d120c32f71e93af998bd4aaf6761318b8433",
+      "bytes": 1302
+    },
+    {
+      "path": "contracts/schemas/utc-instant.schema.json",
+      "sha256": "e82d7f0e87b6c49fb225edb07dcadb25e82699fab73453f2cfdb206610eac0e4",
+      "bytes": 1203
+    },
+    {
+      "path": "contracts/schemas/validation-error-item.schema.json",
+      "sha256": "237bddc3906862cd555cc7ce711367269e0c8f62050d0c02d66793c9999cf79e",
+      "bytes": 1178
+    },
+    {
+      "path": "contracts/schemas/versioned-resource.schema.json",
+      "sha256": "73654ead391ad12d11db3403564a89bb2c2c9b5c4ab3cf67f103fd4d91bcc858",
+      "bytes": 1097
+    },
+    {
+      "path": "docs/adr/ADR-0001-canonical-identifiers-clocks-and-versioning.md",
+      "sha256": "7f8711a786b317a2a435746558cfb6c41aff7cfc1afeb986cb96fc67cfcc1d19",
+      "bytes": 16417
+    },
+    {
+      "path": "docs/adr/ADR-0002-tenant-context-and-database-routing.md",
+      "sha256": "edf15c2e5c838199b1ef2d5cda7b678e49b58b8362277fb542b72a475907d159",
+      "bytes": 27989
+    },
+    {
+      "path": "docs/adr/ADR-0003-audit-evidence-and-event-envelopes.md",
+      "sha256": "4f9c3cef04f0b44cbaf392b46ff97ba5d45416ea0a0b5069a4e4b266f9bc4691",
+      "bytes": 37605
+    },
+    {
+      "path": "docs/adr/ADR-0004-api-versioning-error-and-idempotency-conventions.md",
+      "sha256": "4efcf54c72f7c009b06a8e97af26cdeed690f93b2335daaa4b0d1b416940774d",
+      "bytes": 32514
+    },
+    {
+      "path": "docs/adr/ADR-0005-migration-ownership-and-sequencing.md",
+      "sha256": "94e6023b146ed626e4348c3ecf8c89c36226abe6f7994a8e3158c7c4e05317b9",
+      "bytes": 38083
+    },
+    {
+      "path": "docs/adr/ADR-0006-actor-identity-and-authorization-boundary.md",
+      "sha256": "89f67bd174f56230f5943d6513f060b7c29ce9704f607a188f43d05c412c2d4d",
+      "bytes": 20667
+    }
+  ]
+}

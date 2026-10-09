@@ -1,0 +1,34 @@
+PASS  AC01 DeviceCertification record exists
+PASS  AC01 record carries Firmware/Sdk/TestEvidenceReference/Version
+PASS  AC01 the five certification statuses are the ones the user story names
+PASS  AC01 the key validator rejects reserved composite-key separators
+PASS  AC01 the key validator is enforced at both the service and repository boundaries
+PASS  AC01 test evidence reference is validated, not merely stored blindly
+PASS  AC01 developer tests exist for the key validator
+PASS  AC02 the global matrix listing endpoint exists
+PASS  AC02 the listing supports filtering by status
+PASS  AC02 developer tests prove an Unsupported entry surfaces in the listing
+PASS  AC03 the repository scopes storage by an explicit nullable tenant id
+PASS  AC03 the service exposes a tenant-override registration path requiring a resolved tenant
+PASS  AC03 effective-status lookup prefers a tenant override over the global default
+PASS  AC03 the tenant-scoped endpoint group is a separate route from the control-plane one
+PASS  AC03 integration tests prove tenant-override precedence through the real BIO-TEN-002 host channel
+PASS  AC04 a dedicated certification audit sink exists (not a reuse of DeviceRegistry's IAuditSink)
+PASS  AC04 the audit sink exposes ExistsAsync (ADR-0003 Decision 7 element 4)
+PASS  AC04 registration is audited before the repository commit
+PASS  AC04 status/evidence updates are audited and concurrency-checked
+PASS  AC04 per-aggregate locking prevents the BIO-DEV-001-QA-02 class of false-success audit
+PASS  AC04 an ambiguous audit write past the point of no return uses CancellationToken.None
+PASS  AC04 module maps an audit_unavailable problem response
+PASS  DeviceCertificationModule exists and depends on Tenant
+PASS  DeviceCertificationModule is registered in Program.cs
+PASS  DeviceCertificationModule registers its own audit sink, not a reuse of DeviceRegistryModule's IAuditSink
+PASS  unit tests exist for the service
+PASS  unit tests exist for the repository
+PASS  integration tests exist through the real composed host
+PASS  quality.sh runs this harness
+PASS  docs/DEVICE-CERTIFICATION.md documents the feature
+PASS  builder evidence recorded
+PASS  governance traceability spec recorded
+==============================
+32 passed, 0 failed

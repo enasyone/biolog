@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Matches api/Biolog.Api/Biolog.Api.csproj's pinned TFM (BIO-FND-008), same as BIO-BIO-001/002. -->
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <!--
+    No ASP.NET Core dependency, no NuGet package references. This project DOES reference
+    BIO-BIO-001's provider-neutral biometric library - a feature-to-feature ProjectReference,
+    not a shared/common one - because BIO-BIO-003 is declared dependent on BIO-BIO-001 in its own
+    approved story and exists specifically to drive BIO-BIO-001's IFaceProvider/BiometricTemplate
+    contracts through a quality-gated face capture flow. Same accepted shape as
+    BIO-BIO-002/BIO-DOC-002/BIO-DOC-003 referencing their own foundation library directly.
+
+    Deliberately NO ProjectReference to BIO-PHO-001 (source-photo linkage, AC03): PhotoMaster is
+    a tenant-scoped, internal, access-restricted aggregate (the OPPOSITE shape from BIO-BIO-001) -
+    the same reasoning BIO-PHO-001 itself already documents for why IT has no ProjectReference to
+    BIO-IDN-001 (see Domain/IPersonExistenceGateway.cs there). This project defines its own
+    narrow Domain/IPhotoMasterExistenceGateway.cs instead; the real implementation is an adapter
+    in Biolog.Api.Modules.BioBio003Module wrapping BIO-PHO-001's already-registered
+    PhotoMasterService.GetVersionAsync, the identical pattern BioPho001Module/BioPho002Module/
+    BioIdn002-006Module already use for their own person-existence gateways.
+  -->
+  <ItemGroup>
+    <ProjectReference Include="../../bio-bio-001/Biolog.Features.Biometrics/Biolog.Features.Biometrics.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- FaceBiometricReference's constructor, IFaceBiometricReferenceRepository/
+         InMemoryFaceBiometricReferenceRepository and FaceEnrolmentService are internal
+         (BIO-IDN-001-QA-01's governance shape / BIO-PHO-001-QA-01's identical immutable-
+         aggregate shape). This is the explicit, auditable seam that grants Biolog.Api (DI
+         registration in Modules/BioBio003Module.cs) and this feature's own test project the
+         same access. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.FaceEnrolment.Tests" />
+  </ItemGroup>
+
+</Project>

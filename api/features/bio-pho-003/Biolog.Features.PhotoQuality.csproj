@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-PHO-003 owns api/features/bio-pho-003/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh)
+         and, deliberately, no ProjectReference to api/features/bio-idn-001's,
+         api/features/bio-pho-001's or api/features/bio-bio-003's projects either: person
+         existence, master promotion and biometric suitability are each proven through this
+         project's own narrow gateways (Domain/IPersonExistenceGateway.cs,
+         Domain/IPhotoMasterPromotionGateway.cs, Domain/IBiometricSuitabilityGateway.cs), the
+         same BIO-IDN-002-QA-01-derived shape every sibling story uses.
+
+         This project's own module adapter lives in api/Biolog.Api/Modules/BioPho003Module.cs
+         from the start (never written here first), matching every prior story.
+
+         Namespace root is "PhotoQuality": the aggregate this project defines is
+         PhotoQualityCapture (a mutable, CAS-versioned staging record, ADR-0001 §3.1/§3.2 -
+         promotion to the immutable PhotoMaster, BIO-PHO-001's own aggregate, is a one-way,
+         one-time gateway call, never a shared type - the identical shape BIO-PHO-002's own
+         BoothCapture -> PhotoMaster promotion already established). No new ADR-0001 canonical
+         identifier type is minted - PhotoQualityCapture is keyed by a natural composite key
+         against the already-registered `per_` PersonId, the same choice PhotoMaster
+         (BIO-PHO-001) and BoothCapture (BIO-PHO-002) made.
+
+         AC04 ("no beauty/facial reshaping filters"): no image-processing or computer-vision
+         library (SixLabors.ImageSharp, SkiaSharp, System.Drawing, OpenCvSharp, etc.) is
+         referenced anywhere in this project, the same disclosed "header metadata only, no pixel
+         resampling or content analysis" boundary BIO-PHO-001/BIO-PHO-002 already established -
+         see Domain/PhotoQualityRasterInspector.cs's own header. Categorically, this project has
+         no capability to apply any image filter at all, beautifying or otherwise. -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Applying BIO-IDN-001-QA-01's lesson from the start: every aggregate's constructor and
+         its repository are internal - this grant is the explicit, auditable seam for
+         Biolog.Api (DI registration) and this project's own test assembly. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.PhotoQuality.Tests" />
+  </ItemGroup>
+
+</Project>

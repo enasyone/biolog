@@ -1,0 +1,94 @@
+{
+  "story_key": "BIO-INT-005",
+  "title": "Implement external import conflict review",
+  "implementation_commit": "a44c778a7062234e48b91438aec9fb89186eaa70",
+  "builder_head": "ed5f0d3baedc9a78cfc55566a52b948c74322333",
+  "reviewed_head": "c345d1681c115ba20e54fde8b17485f82f493d9a",
+  "environment": {
+    "profile": "local acceptance on Darwin arm64; synthetic fixtures only",
+    "timestamp": "2026-10-07"
+  },
+  "acceptance_criteria": {
+    "BIO-INT-005-AC01": {
+      "result": "PASS",
+      "evidence": ["api/features/bio-int-005/ImportConflictReviewService.cs", "tests/features/bio-int-005/ImportConflictReviewServiceTests.cs"],
+      "finding": "The tenant-scoped review queue carries BIO-INT-002's existing-versus-incoming field comparisons, selects the latest applied outcome per external key, and raises, augments, withdraws or reopens only non-terminal rows."
+    },
+    "BIO-INT-005-AC02": {
+      "result": "PASS",
+      "evidence": ["api/features/bio-int-005/ImportConflictReviewService.cs", "api/features/bio-int-005/Api/ImportConflictReviewEndpoints.cs", "tests/features/bio-int-005/ImportConflictReviewServiceTests.cs", "tests/dotnet/Biolog.IntegrationTests/BioInt005ConflictReviewEndpointsTests.cs"],
+      "finding": "KEEP_EXISTING, USE_SOURCE and ESCALATED decisions require optimistic versioning, reason, verified actor provenance and tenant-scoped decide permission. Scan/list separately require verified provenance and read permission."
+    },
+    "BIO-INT-005-AC03": {
+      "result": "PASS",
+      "evidence": ["api/features/bio-int-005/Audit/ImportConflictReviewAuditEventBuilder.cs", "api/features/bio-int-005/ImportConflictReviewService.cs", "tests/features/bio-int-005/ImportConflictReviewServiceTests.cs"],
+      "finding": "Every queue transition and human decision is append-only audited before state commit; audit detail excludes compared field values."
+    },
+    "BIO-INT-005-AC04": {
+      "result": "PASS",
+      "evidence": ["api/features/bio-int-005/Biolog.Features.ImportConflictReview.csproj", "tests/features/bio-int-005/ImportConflictReviewServiceTests.cs", "tests/frontend/playwright/bio-int-005-conflict-review.spec.ts", "docs/features/bio-int-005/README.md"],
+      "finding": "The feature has no PERSON or BIO-INT-002 project reference or mutation capability. USE_SOURCE records routing intent but does not modify the compared values; automated rescans never reopen a terminal human decision."
+    },
+    "BIO-INT-005-AC05": {
+      "result": "PASS",
+      "evidence": ["web/features/bio-int-005/ConflictReviewPanel.tsx", "web/app/administration/integrations/page.tsx", "tests/frontend/playwright/bio-int-005-conflict-review.spec.ts", "docs/features/bio-int-005/README.md"],
+      "finding": "The SIMULATION browser workflow covers mount, empty state, exact field comparison, accessible missing-reason failure, successful decision, unchanged comparison after USE_SOURCE and persistence after refresh. The authentication-settings route is explicitly documented as an unrelated HYBRID boundary."
+    }
+  },
+  "commands": [
+    {"command": "./tests/features/bio-int-005/bin/Debug/net10.0/Biolog.Features.ImportConflictReview.Tests", "result": "PASS (22/22)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (36 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "python3 scripts/check-contract-freeze.py", "result": "PASS (39 artifacts, 83 future stories)"},
+    {"command": "pnpm --dir tests/frontend exec playwright test playwright/bio-int-005-conflict-review.spec.ts", "result": "PASS (builder evidence 6/6); acceptance replay blocked by managed sandbox EPERM on 127.0.0.1:3000"}
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "ed5f0d3baedc9a78cfc55566a52b948c74322333",
+    "implementation_commit": "a44c778a7062234e48b91438aec9fb89186eaa70",
+    "feature_tests": "22/22 PASS",
+    "integration_tests": "255/255 PASS",
+    "frontend_unit_tests": "548/548 PASS",
+    "browser_tests": "6/6 PASS",
+    "metadata_sha256": "087c0c5a0242bd3ec220623acbc70bcd7692b5f89716365a2dfd6781027dd80a"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "result": "PASS",
+    "builder_commit_reviewed": "ed5f0d3baedc9a78cfc55566a52b948c74322333",
+    "review_commit": "c345d1681c115ba20e54fde8b17485f82f493d9a",
+    "evidence": "evidence/features/bio-int-005/codex/REVIEW-Seyi.md",
+    "evidence_sha256": "d66c0a58952cc1be6f229cec12c0a6435e4045782774c4567805634330ac6044"
+  },
+  "security_review": {
+    "reviewer": "Zainab",
+    "result": "PASS",
+    "builder_commit_reviewed": "ed5f0d3baedc9a78cfc55566a52b948c74322333",
+    "review_commit": "d41bbe6ccd3d472e6fb8999db0b7d360e4324d85",
+    "evidence": "evidence/features/bio-int-005/codex/SECURITY-REVIEW-ZAINAB-ROUND2.md",
+    "evidence_sha256": "584a3a17e1e5988e61faa0e432aaa80f0e886872730e5796fa53e61fb598bf39",
+    "closed_findings": ["ZB-INT005-01", "ZB-INT005-02"]
+  },
+  "category_verdicts": {
+    "functional": "PASS",
+    "security": "PASS",
+    "tenant_isolation": "PASS",
+    "audit": "PASS",
+    "concurrency": "PASS",
+    "no_destructive_overwrite": "PASS",
+    "mapped_ui_workflow": "PASS"
+  },
+  "acceptance_blockers": [],
+  "follow_ups": [
+    {
+      "id": "BIO-INT-005-PERSON-CORRECTION-CAPABILITY",
+      "status": "DISCLOSED_SCOPE_BOUNDARY",
+      "summary": "USE_SOURCE remains routing intent until a separately authorised PERSON profile-correction capability exists; this feature deliberately cannot mutate identity evidence."
+    }
+  ],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "AC01-AC05 pass with exact-commit builder and independent reviewer evidence. The round-one scan/list authorization findings are closed by provenance plus separate read permission, and the no-overwrite boundary is structurally enforced and explicitly disclosed."
+  }
+}

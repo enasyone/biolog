@@ -1,0 +1,33 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Biolog.Features.Biometrics -> <workspace>/biolog-worktrees/BIO-MOB-003/api/features/bio-bio-001/Biolog.Features.Biometrics/bin/Debug/net10.0/Biolog.Features.Biometrics.dll
+  Biolog.Features.DocumentVerify -> <workspace>/biolog-worktrees/BIO-MOB-003/api/features/bio-doc-001/Biolog.Features.DocumentVerify/bin/Debug/net10.0/Biolog.Features.DocumentVerify.dll
+  Biolog.Features.InstitutionalIdentifiers -> <workspace>/biolog-worktrees/BIO-MOB-003/api/features/bio-idn-003/bin/Debug/net10.0/Biolog.Features.InstitutionalIdentifiers.dll
+  Biolog.Features.PersonRegistry -> <workspace>/biolog-worktrees/BIO-MOB-003/api/features/bio-idn-001/bin/Debug/net10.0/Biolog.Features.PersonRegistry.dll
+  Biolog.Features.PersonProfileRegistry -> <workspace>/biolog-worktrees/BIO-MOB-003/api/features/bio-idn-002/bin/Debug/net10.0/Biolog.Features.PersonProfileRegistry.dll
+  Biolog.Features.Rbac -> <workspace>/biolog-worktrees/BIO-MOB-003/api/features/bio-idn-006/bin/Debug/net10.0/Biolog.Features.Rbac.dll
+  Biolog.Features.PersonLifecycle -> <workspace>/biolog-worktrees/BIO-MOB-003/api/features/bio-idn-004/bin/Debug/net10.0/Biolog.Features.PersonLifecycle.dll
+  Biolog.Features.TenantDomainRegistry -> <workspace>/biolog-worktrees/BIO-MOB-003/api/features/bio-ten-002/bin/Debug/net10.0/Biolog.Features.TenantDomainRegistry.dll
+  Biolog.Features.TenantRegistry -> <workspace>/biolog-worktrees/BIO-MOB-003/api/features/bio-ten-001/bin/Debug/net10.0/Biolog.Features.TenantRegistry.dll
+  Biolog.Features.DuplicateReview -> <workspace>/biolog-worktrees/BIO-MOB-003/api/features/bio-idn-005/bin/Debug/net10.0/Biolog.Features.DuplicateReview.dll
+  Biolog.Features.CardTypography -> <workspace>/biolog-worktrees/BIO-MOB-003/api/features/bio-crd-003/bin/Debug/net10.0/Biolog.Features.CardTypography.dll
+  Biolog.Features.CardObjects -> <workspace>/biolog-worktrees/BIO-MOB-003/api/features/bio-crd-004/bin/Debug/net10.0/Biolog.Features.CardObjects.dll
+  Biolog.Features.CardDesigner -> <workspace>/biolog-worktrees/BIO-MOB-003/api/features/bio-crd-002/bin/Debug/net10.0/Biolog.Features.CardDesigner.dll
+  Biolog.Features.PhotoBooth -> <workspace>/biolog-worktrees/BIO-MOB-003/api/features/bio-pho-002/bin/Debug/net10.0/Biolog.Features.PhotoBooth.dll
+  Biolog.Features.OfflineSync -> <workspace>/biolog-worktrees/BIO-MOB-003/api/features/bio-mob-003/bin/Debug/net10.0/Biolog.Features.OfflineSync.dll
+  Biolog.Features.FingerprintEnrolment -> <workspace>/biolog-worktrees/BIO-MOB-003/api/features/bio-bio-002/Biolog.Features.FingerprintEnrolment/bin/Debug/net10.0/Biolog.Features.FingerprintEnrolment.dll
+  Biolog.Features.CardIssuance -> <workspace>/biolog-worktrees/BIO-MOB-003/api/features/bio-crd-005/bin/Debug/net10.0/Biolog.Features.CardIssuance.dll
+  Biolog.Features.FaceEnrolment -> <workspace>/biolog-worktrees/BIO-MOB-003/api/features/bio-bio-003/Biolog.Features.FaceEnrolment/bin/Debug/net10.0/Biolog.Features.FaceEnrolment.dll
+  Biolog.Features.Photography -> <workspace>/biolog-worktrees/BIO-MOB-003/api/features/bio-pho-001/bin/Debug/net10.0/Biolog.Features.Photography.dll
+  Biolog.Features.FaceSearch -> <workspace>/biolog-worktrees/BIO-MOB-003/api/features/bio-bio-007/Biolog.Features.FaceSearch/bin/Debug/net10.0/Biolog.Features.FaceSearch.dll
+  Biolog.Features.FingerprintVerification -> <workspace>/biolog-worktrees/BIO-MOB-003/api/features/bio-bio-004/Biolog.Features.FingerprintVerification/bin/Debug/net10.0/Biolog.Features.FingerprintVerification.dll
+  Biolog.Features.FingerprintSearch -> <workspace>/biolog-worktrees/BIO-MOB-003/api/features/bio-bio-006/Biolog.Features.FingerprintSearch/bin/Debug/net10.0/Biolog.Features.FingerprintSearch.dll
+  Biolog.Features.CardLifecycle -> <workspace>/biolog-worktrees/BIO-MOB-003/api/features/bio-crd-006/bin/Debug/net10.0/Biolog.Features.CardLifecycle.dll
+  Biolog.Features.FaceVerification -> <workspace>/biolog-worktrees/BIO-MOB-003/api/features/bio-bio-005/Biolog.Features.FaceVerification/bin/Debug/net10.0/Biolog.Features.FaceVerification.dll
+  Biolog.Api -> <workspace>/biolog-worktrees/BIO-MOB-003/api/Biolog.Api/bin/Debug/net10.0/Biolog.Api.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:05.43

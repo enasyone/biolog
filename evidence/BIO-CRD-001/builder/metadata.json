@@ -1,0 +1,10 @@
+{
+  "story_key": "BIO-CRD-001",
+  "stage": "builder",
+  "commit_hash": "159ec1c1e948628f0f777446527dee55d1fb4573",
+  "test_command": "bash tests/foundation/BIO-CRD-001.test.sh && dotnet test tests/dotnet/Biolog.UnitTests/Biolog.UnitTests.csproj --nologo && dotnet test tests/dotnet/Biolog.IntegrationTests/Biolog.IntegrationTests.csproj --nologo && bash scripts/check-dotnet-vulnerabilities.sh api/Biolog.Api/Biolog.Api.csproj tests/dotnet/Biolog.UnitTests/Biolog.UnitTests.csproj tests/dotnet/Biolog.IntegrationTests/Biolog.IntegrationTests.csproj",
+  "result": "PASS",
+  "timestamp": "2026-09-22T12:40:00Z",
+  "reviewer": "Ngozi",
+  "data_classification": "SYNTHETIC"
+}

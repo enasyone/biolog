@@ -1,0 +1,11 @@
+
+[2mRunning [22m6[2m tests using [22m5[2m workers[22m
+
+  [32m✓[39m  [2m3 [22mplaywright/bio-trn-003-transport-notifications.spec.ts:18:3 › BIO-TRN-003 the Transport notifications panel (SIMULATION) › AC05: mounted on /transport, alongside the existing boarding/alighting log and route-assignment sections, untouched[2m (7.9s)[22m
+  [32m✓[39m  [2m2 [22mplaywright/bio-trn-003-transport-notifications.spec.ts:64:3 › BIO-TRN-003 the Transport notifications panel (SIMULATION) › AC01: creating with no event type selected is rejected with a visible failure state, never a silent no-op[2m (8.0s)[22m
+  [32m✓[39m  [2m1 [22mplaywright/bio-trn-003-transport-notifications.spec.ts:28:3 › BIO-TRN-003 the Transport notifications panel (SIMULATION) › AC01: a tenant with no rules yet sees an explicit empty state, never a silent blank table[2m (8.0s)[22m
+  [32m✓[39m  [2m5 [22mplaywright/bio-trn-003-transport-notifications.spec.ts:77:3 › BIO-TRN-003 the Transport notifications panel (SIMULATION) › SY-INT004-04 lesson applied: a genuinely failed create call (empty name, a real validation failure the mock adapter returns) renders a visible, accessible error state, not a silent no-op[2m (9.5s)[22m
+  [32m✓[39m  [2m4 [22mplaywright/bio-trn-003-transport-notifications.spec.ts:35:3 › BIO-TRN-003 the Transport notifications panel (SIMULATION) › AC01/AC03: creating a rule for board events shows the new rule, then a matching visible SUCCESS delivery and a visible, accessible FAILURE delivery[2m (9.6s)[22m
+  [32m✓[39m  [2m6 [22mplaywright/bio-trn-003-transport-notifications.spec.ts:98:3 › BIO-TRN-003 the Transport notifications panel (SIMULATION) › AC01: toggling a rule disabled, then enabled again, shows both visible status transitions[2m (4.9s)[22m
+
+[32m  6 passed[39m[2m (44.0s)[22m

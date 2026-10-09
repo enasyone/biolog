@@ -1,0 +1,59 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Matches api/Biolog.Api/Biolog.Api.csproj's pinned TFM (BIO-FND-008), same as sibling BIO-DOC-00x features. -->
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <!--
+    Two ProjectReferences - BIO-DOC-006 (DocumentClassifier), BIO-DOC-008 (EvidenceComparison) -
+    exactly this story's own declared DEPENDENCIES line. Deliberately NOT BIO-DOC-001/002/003/004/005/007:
+    MRZ/barcode/OCR structural-check outcomes are taken as plain caller-supplied
+    AuthenticityCheckOutcome+detail pairs (Model/AuthenticityAssessmentInputs.cs), the same
+    "plain domain parameter, not a resolved dependency" pattern BIO-DOC-008 itself already
+    established for its own undeclared OCR dependency (BIO-DOC-004). The cryptographic
+    (passive authentication) signal is taken exclusively through BIO-DOC-008's own
+    CrossComparisonResult.NfcCorroboration - already folded in from BIO-DOC-007 by that story -
+    rather than a second, direct BIO-DOC-007 reference of this story's own.
+
+    A consequence of this boundary, documented rather than hidden: this project cannot itself
+    construct a CrossComparisonResult whose NfcCorroboration.Available is true (that requires a
+    real BIO-DOC-007 ChipReadOutcome, which only a caller holding a BIO-DOC-007 reference can
+    produce), nor a DocumentClassificationOutcome with a non-empty candidate list (that requires a
+    real BIO-DOC-004 TemplateOcrResult). AuthenticityPolicyEngineTests exercises those specific
+    branches by testing AuthenticityPolicyEngine.DetermineDisposition directly against hand-built
+    AuthenticityCheckResult lists instead (see this csproj's own InternalsVisibleTo grant to this
+    project's OWN test assembly, below) - the input-to-check TRANSLATION for those two branches is
+    provably correct by inspection (a one-line construction each in
+    AuthenticityPolicyEngine.BuildClassificationCheck/BuildPassiveAuthenticationCheck) and is
+    exhaustively covered where it CAN be reached in isolation; the POLICY decision those checks
+    feed into (DetermineDisposition) is what AC01/AC02/AC03 actually govern, and that is fully
+    covered.
+  -->
+  <ItemGroup>
+    <ProjectReference Include="../../bio-doc-006/Biolog.Features.DocumentClassifier/Biolog.Features.DocumentClassifier.csproj" />
+    <ProjectReference Include="../../bio-doc-008/Biolog.Features.EvidenceComparison/Biolog.Features.EvidenceComparison.csproj" />
+  </ItemGroup>
+
+  <!-- This story DOES have an HTTP surface (BIO-DOC-009-AC06, "connected through DocumentVerifyService") -
+       unlike bio-doc-006/008, which stayed pure domain libraries. Api/ below is a plain folder in
+       this SAME project (the bio-pho-002 shape), not a separate assembly. No ProjectReference to
+       Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh) - this
+       project's own module adapter lives in api/Biolog.Api/Modules/BioDoc009Module.cs, same as
+       every prior story with an HTTP surface. -->
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Applying BIO-IDN-001-QA-01's lesson from the start: every locked-down type's constructor
+         is internal - this grant is the explicit, auditable seam for Biolog.Api (DI registration)
+         and this project's own test assembly. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.AuthenticityAssessment.Tests" />
+  </ItemGroup>
+
+</Project>

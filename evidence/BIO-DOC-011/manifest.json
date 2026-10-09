@@ -1,0 +1,88 @@
+{
+  "story_key": "BIO-DOC-011",
+  "title": "Implement tenant visual document-template editor",
+  "implementation_commit": "e2367cf960a67cf20cd510f9ae159c3b148f33e3",
+  "builder_head": "54fcf9054e1bb16069b6381eec6f30625aa6d8db",
+  "reviewed_head": "f9a4afa41eb84719be3cb41368f574b9f621288c",
+  "environment": {
+    "profile": "local acceptance on Darwin arm64; synthetic fixtures only",
+    "timestamp": "2026-10-07"
+  },
+  "acceptance_criteria": {
+    "BIO-DOC-011-AC01": {
+      "result": "PASS",
+      "evidence": ["api/features/bio-doc-011/Biolog.Features.DocumentTemplateEditor/Domain/DocumentTemplateDraft.cs", "tests/features/bio-doc-011/Biolog.Features.DocumentTemplateEditor.Tests/DocumentTemplateDraftTests.cs"],
+      "finding": "Tenant drafts accept a hashed reference layout and validated named OCR-field and graphic regions bounded by the canvas."
+    },
+    "BIO-DOC-011-AC02": {
+      "result": "PASS",
+      "evidence": ["api/features/bio-doc-011/Biolog.Features.DocumentTemplateEditor/Domain/DocumentTemplateDraftStatus.cs", "tests/features/bio-doc-011/Biolog.Features.DocumentTemplateEditor.Tests/DocumentTemplateDraftServiceTests.cs"],
+      "finding": "The aggregate enforces the Draft, Test, Approval and Published lifecycle with guarded transitions."
+    },
+    "BIO-DOC-011-AC03": {
+      "result": "PASS",
+      "evidence": ["api/features/bio-doc-011/Biolog.Features.DocumentTemplateEditor/Domain/SyntheticCorpusRenderer.cs", "tests/features/bio-doc-011/Biolog.Features.DocumentTemplateEditor.Tests/DocumentTemplateDraftServiceTests.cs"],
+      "finding": "Corpus outcome is computed through the real BIO-DOC-004 OCR engine, cannot be caller-attested, and must pass before approval and publication."
+    },
+    "BIO-DOC-011-AC04": {
+      "result": "PASS",
+      "evidence": ["api/features/bio-doc-011/Biolog.Features.DocumentTemplateEditor/Domain/DocumentTemplateDraft.cs", "tests/foundation/BIO-DOC-011.test.sh"],
+      "finding": "Tenant identity is server-resolved, repository keys are tenant-scoped, and tenant public references are structurally distinct from official global-template identifiers."
+    },
+    "BIO-DOC-011-AC05": {
+      "result": "PASS",
+      "evidence": ["api/features/bio-doc-011/Biolog.Features.DocumentTemplateEditor/Domain/DocumentTemplateDraft.cs", "tests/features/bio-doc-011/Biolog.Features.DocumentTemplateEditor.Tests/DocumentTemplateDraftTests.cs"],
+      "finding": "Published versions reject all content mutation; changes require a new immutable-lineage draft version."
+    },
+    "BIO-DOC-011-AC06": {
+      "result": "PASS_WITH_DISCLOSED_HYBRID_BOUNDARY",
+      "evidence": ["docs/features/bio-doc-011/DOCUMENT-TEMPLATE-EDITOR.md", "tests/foundation/BIO-DOC-011.test.sh", "evidence/BIO-DOC-011/codex/REVIEW-Seyi-round3.md"],
+      "finding": "The existing /document-verify DocumentVerifyService wiring is preserved without redesign. The tenant editor is a complete secured API capability; a new drawing-canvas route and tenant-template registry integration are explicitly deferred rather than falsely represented as delivered."
+    }
+  },
+  "commands": [
+    {"command": "./tests/features/bio-doc-011/Biolog.Features.DocumentTemplateEditor.Tests/bin/Debug/net10.0/Biolog.Features.DocumentTemplateEditor.Tests", "result": "PASS (48/48)"},
+    {"command": "bash tests/foundation/BIO-DOC-011.test.sh", "result": "PASS (55/55)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (36 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS (clean, fallback scanner)"}
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "54fcf9054e1bb16069b6381eec6f30625aa6d8db",
+    "implementation_commit": "e2367cf960a67cf20cd510f9ae159c3b148f33e3",
+    "feature_tests": "48/48 PASS",
+    "structural_tests": "55/55 PASS"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "result": "PASS",
+    "builder_commit_reviewed": "54fcf9054e1bb16069b6381eec6f30625aa6d8db",
+    "review_commit": "f9a4afa41eb84719be3cb41368f574b9f621288c",
+    "evidence": "evidence/BIO-DOC-011/codex/REVIEW-Seyi-round3.md",
+    "evidence_sha256": "2461c8f599ebb481e3c2418d00e871c4dfc446016c00007b7da40d8de4b845ca"
+  },
+  "security_review": {
+    "reviewer": "Zainab",
+    "result": "PASS",
+    "builder_commit_reviewed": "54fcf9054e1bb16069b6381eec6f30625aa6d8db",
+    "review_commit": "ba1dfeefa2ab4c18a3e4975b40744c7397d63008",
+    "evidence": "evidence/BIO-DOC-011/codex/SECURITY-REVIEW-ZAINAB-ROUND-3.md",
+    "evidence_sha256": "5f430c6ed56b43c3dacc89c1860b106d4d5dacb1d83ad342f72dd5c386ad2297"
+  },
+  "category_verdicts": {
+    "functional": "PASS",
+    "security_rbac": "PASS",
+    "tenant_isolation": "PASS",
+    "concurrency_audit_integrity": "PASS",
+    "immutability": "PASS",
+    "regression": "PASS"
+  },
+  "open_follow_up_obligations": [],
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "All six acceptance criteria map to exact-commit implementation, tests, builder evidence and independent QA/security PASS reviews. All administrative reads now enforce tenant-scoped read/manage/publish permission after provenance and before repository access. Fresh executable, structural, traceability, module-direction and secret checks pass."
+  }
+}

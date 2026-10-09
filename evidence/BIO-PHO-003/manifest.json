@@ -1,0 +1,28 @@
+{
+  "story_key": "BIO-PHO-003",
+  "title": "Photo quality and biometric suitability evaluation",
+  "implementation_commit": "03f4cec68637c6116dbdf078ba099ed7e92bb3f2",
+  "builder_head": "c5a0791ae281fe68bf8f58d74d87898b17b51041",
+  "reviewed_head": "2c7f118f65d5f126aff24483e7a74b0ea045a271",
+  "environment": {"profile": "local acceptance on Darwin arm64; synthetic fixtures only", "timestamp": "2026-10-07"},
+  "acceptance_criteria": {
+    "BIO-PHO-003-AC01": {"result": "PASS", "evidence": ["api/features/bio-pho-003/Domain/PrintQualityGate.cs", "api/features/bio-pho-003/Domain/IBiometricSuitabilityGateway.cs", "tests/features/bio-pho-003/PhotoQualityServiceTests.cs"], "finding": "Print quality and biometric suitability are independent verdicts; executable tests cover each side passing while the other fails."},
+    "BIO-PHO-003-AC02": {"result": "PASS", "evidence": ["api/features/bio-pho-003/Api/PhotoQualityCaptureResponse.cs", "tests/features/bio-pho-003/PhotoQualityServiceTests.cs"], "finding": "Both independent verdicts retain and expose their reason lists."},
+    "BIO-PHO-003-AC03": {"result": "PASS", "evidence": ["api/features/bio-pho-003/PhotoQualityService.cs", "api/features/bio-pho-003/Domain/IdempotencyStore.cs", "tests/features/bio-pho-003/PhotoQualityServiceTests.cs", "evidence/features/bio-pho-003/codex/SECURITY-REVIEW-ZAINAB-ROUND6.md"], "finding": "Approve/reject are permissioned and audited human decisions. Approval claims the stable pending attempt before promotion, stores the exact returned master version, preserves the initiating actor and safely resumes without reconstruction or duplicate promotion."},
+    "BIO-PHO-003-AC04": {"result": "PASS", "evidence": ["tests/features/bio-pho-003/BIO-PHO-003.test.sh", "api/features/bio-pho-003/Domain/PhotoQualityRasterInspector.cs"], "finding": "No image-processing dependency or beautify/reshape path exists; inspection reads raster header metadata without pixel transformation."},
+    "BIO-PHO-003-AC05": {"result": "PASS", "evidence": ["web/features/bio-pho-003", "tests/dotnet/Biolog.IntegrationTests/PhotoQualityHostChannelTests.cs", "docs/features/bio-pho-003/README.md"], "finding": "The /photographs workflow uses the real PhotoService backend. The pre-PERSON /enrolment photo step remains an explicit HYBRID boundary because no person identifier exists at that wizard stage."}
+  },
+  "commands": [
+    {"command": "./tests/features/bio-pho-003/bin/Debug/net10.0/Biolog.Features.PhotoQuality.Tests", "result": "PASS (39/39)"},
+    {"command": "bash tests/features/bio-pho-003/BIO-PHO-003.test.sh", "result": "PASS (55/55)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (36 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"}
+  ],
+  "builder_verdict": {"result": "PASS", "commit_hash": "c5a0791ae281fe68bf8f58d74d87898b17b51041", "implementation_commit": "03f4cec68637c6116dbdf078ba099ed7e92bb3f2", "feature_tests": "39/39 PASS", "integration_tests": "250/250 PASS", "unit_tests": "210/210 PASS", "structural_tests": "55/55 PASS", "metadata_sha256": "37d759c22b785bc94083679c1df5a57082257601057daeb69d9645b38a388983"},
+  "independent_qa": {"reviewer": "Seyi", "result": "PASS", "builder_commit_reviewed": "c5a0791ae281fe68bf8f58d74d87898b17b51041", "review_commit": "2c7f118f65d5f126aff24483e7a74b0ea045a271", "evidence": "evidence/BIO-PHO-003/codex/REVIEW-Seyi-round6.md", "evidence_sha256": "e103b02e9da773207d24d08c375884cdd2479df0fc6efc2df4c04f5491b54f3f", "closed_findings": ["SY-PHO003-07"]},
+  "security_review": {"reviewer": "Zainab", "result": "PASS", "builder_commit_reviewed": "c5a0791ae281fe68bf8f58d74d87898b17b51041", "review_commit": "9e6b932ac47cd1151d09079a650f359c333b7494", "evidence": "evidence/features/bio-pho-003/codex/SECURITY-REVIEW-ZAINAB-ROUND6.md", "evidence_sha256": "b81749249a24b23e5bc2d2298ce387316c5b64375679c77db23c7c8110eb7059", "closed_findings": ["ZB-PHO003-01", "ZB-PHO003-02", "ZB-PHO003-03", "ZB-PHO003-04"]},
+  "category_verdicts": {"functional": "PASS", "security": "PASS", "tenant_isolation": "PASS", "audit": "PASS", "recovery": "PASS", "concurrency": "PASS", "regression": "PASS", "mapped_ui_workflow": "PASS"},
+  "acceptance_blockers": [],
+  "follow_ups": [{"id": "BIO-PHO-003-DURABLE-IDEMPOTENCY", "status": "DISCLOSED_SCOPE_BOUNDARY", "summary": "The accepted in-memory tier uses a process-local idempotency store. A crash after promotion but before claim completion fails closed with a bounded timeout; durable cross-process recovery belongs to the persistent-storage boundary."}],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "AC01-AC05 pass. The six-round promotion-atomicity chain is closed under Kemi's approved feature-local idempotency architecture, with exact-commit functional and security reviewer PASSes and explicit fail-closed residual disclosure."}
+}

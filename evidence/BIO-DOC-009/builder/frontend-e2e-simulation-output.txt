@@ -1,0 +1,18 @@
+
+[2mRunning [22m13[2m tests using [22m5[2m workers[22m
+
+  [32m✓[39m  [2m 1 [22mplaywright/bio-ux-009-document-verify.spec.ts:46:3 › BIO-UX-009-AC01 every named interactive area is present and runnable › capture, MRZ, barcode, OCR, document identification, NFC and authenticity sections all render[2m (696ms)[22m
+  [32m✓[39m  [2m 5 [22mplaywright/bio-ux-009-document-verify.spec.ts:34:3 › BIO-UX-009 the Document Verify route is real, not a placeholder › is reachable from the primary nav and renders the real journey, not "Simulate primary action"[2m (903ms)[22m
+  [32m✓[39m  [2m 4 [22mplaywright/bio-ux-009-document-verify.spec.ts:88:3 › BIO-UX-009-AC02 evidence comparison distinguishes states clearly › the comparison table starts every area at "Not checked" and updates after a step runs[2m (1.2s)[22m
+  [32m✓[39m  [2m 2 [22mplaywright/bio-ux-009-document-verify.spec.ts:76:3 › BIO-UX-009-AC01 every named interactive area is present and runnable › a failed capture attempt keeps the rest of the journey gated (state genuinely matters, not just "any click")[2m (1.2s)[22m
+  [32m✓[39m  [2m 3 [22mplaywright/bio-ux-009-document-verify.spec.ts:64:3 › BIO-UX-009-AC01 every named interactive area is present and runnable › every later step is disabled until capture succeeds, then unlocks (no dead actions, AC05)[2m (1.9s)[22m
+  [32m✓[39m  [2m10 [22mplaywright/bio-ux-009-document-verify.spec.ts:152:3 › BIO-UX-009-AC04 portrait vs. live selfie comparison is simulated, never real biometric data › the selfie section states plainly that no camera or real biometric data is used[2m (131ms)[22m
+  [32m✓[39m  [2m 9 [22mplaywright/bio-ux-009-document-verify.spec.ts:135:3 › BIO-UX-009-AC03 low-confidence / conflicting-source scenarios route to human review › the "Route to human review" secondary action manually escalates once capture has succeeded[2m (1.5s)[22m
+  [32m✓[39m  [2m12 [22mplaywright/bio-ux-009-document-verify.spec.ts:171:3 › BIO-UX-009 accessibility › has no axe violations on initial load[2m (626ms)[22m
+  [32m✓[39m  [2m 6 [22mplaywright/bio-ux-009-document-verify.spec.ts:103:3 › BIO-UX-009-AC03 low-confidence / conflicting-source scenarios route to human review › an inconclusive OCR result adds an entry to the human review queue[2m (3.0s)[22m
+  [32m✓[39m  [2m11 [22mplaywright/bio-ux-009-document-verify.spec.ts:158:3 › BIO-UX-009-AC04 portrait vs. live selfie comparison is simulated, never real biometric data › the selfie comparison action runs and produces a visible result once capture has succeeded[2m (1.7s)[22m
+  [32m✓[39m  [2m 7 [22mplaywright/bio-ux-009-document-verify.spec.ts:115:3 › BIO-UX-009-AC03 low-confidence / conflicting-source scenarios route to human review › resolving a queue entry marks it resolved instead of silently disappearing[2m (3.0s)[22m
+  [32m✓[39m  [2m 8 [22mplaywright/bio-ux-009-document-verify.spec.ts:125:3 › BIO-UX-009-AC03 low-confidence / conflicting-source scenarios route to human review › a retry that resolves the underlying issue drops the earlier queue entry for that step[2m (4.1s)[22m
+  [32m✓[39m  [2m13 [22mplaywright/bio-ux-009-document-verify.spec.ts:177:3 › BIO-UX-009 accessibility › has no axe violations once success, warning and error badges are all visible (contrast check)[2m (4.0s)[22m
+
+[32m  13 passed[39m[2m (8.7s)[22m

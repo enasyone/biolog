@@ -1,0 +1,19 @@
+{
+  "$comment": "BIOLOG data classification registry. Owner: Kemi. Source of truth for ADR-0003 Decision 3. Examples are SYNTHETIC.",
+  "contract": "biolog.data-classification",
+  "contract_version": 1,
+  "adr": "ADR-0003",
+  "levels": [
+    { "level": "public", "rank": 0, "envelope": "allowed", "examples": ["tenant display name", "campus name"] },
+    { "level": "internal", "rank": 1, "envelope": "allowed", "examples": ["device serial", "policy id", "job id"] },
+    { "level": "personal", "rank": 2, "envelope": "allowlist_only", "examples": ["name", "institutional identifier", "date of birth", "photo reference"] },
+    { "level": "sensitive", "rank": 3, "envelope": "allowlist_only", "examples": ["biometric metadata", "document evidence field", "access decision about a person"] },
+    { "level": "secret", "rank": 4, "envelope": "never", "examples": ["biometric template", "raw biometric image", "card key", "signing key", "password", "token"] }
+  ],
+  "rules": {
+    "secrets_are_absent_not_redacted": "A secret value is never copied into an envelope in any form. Its field NAME may appear in withheld[].",
+    "allowlist_not_denylist": "Envelopes are built by projecting through an explicit allowlist. A denylist fails open on every field added later, and the caller controls field names.",
+    "no_hashing_low_entropy": "A hash of a date of birth, national identifier, staff number or phone number is reversible by enumeration. It is pseudonymisation, not redaction, and may not be published as redaction.",
+    "classification_is_the_maximum": "An envelope's classification is the highest level of anything it names, so a consumer can make a retention or export decision from the envelope alone."
+  }
+}

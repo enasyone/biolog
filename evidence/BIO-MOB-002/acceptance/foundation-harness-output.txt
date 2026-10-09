@@ -1,0 +1,20 @@
+PASS  AC01 OfflineMutation carries mutation/tenant/device/aggregate ids, version and idempotency key
+PASS  AC01 retry-tracking fields do not leak into the frozen wire envelope
+PASS  AC02 all six sync states are modelled
+PASS  AC02 markUploading transitions pending -> uploading
+PASS  AC02 state transitions are guarded by current state, never resurrect a terminal record (BIO-MOB-002-QA-01)
+PASS  AC03 recordUploadFailure is transactional, not a racy read-then-write (BIO-MOB-002-QA-01)
+PASS  AC03 a documented retry-policy module exists (exponential, bounded, jittered)
+PASS  AC03 backoff is bounded by maxAttempts and capped by maxDelay
+PASS  AC03 backoff grows exponentially with jitter, not a fixed delay
+PASS  AC03 exhausting the retry bound moves a mutation to the terminal failed state
+PASS  AC03 dueForRetry only surfaces pending mutations whose backoff window has elapsed
+PASS  AC02/AC03 offline_mutations schema migration adds retry columns without dropping v1 data
+PASS  AC03 a mutation stranded in uploading by a process restart recovers on open, not left permanently stuck (BIO-MOB-002-QA-02)
+PASS  AC04 recordConflict moves a mutation to conflict and clears any scheduled retry
+PASS  AC04 conflicted mutations are queryable for the human Sync Resolution Queue
+PASS  AC04 no automatic merge/resolution path exists for a conflicted mutation
+PASS  unit tests mapped to BIO-MOB-002 ACs exist
+PASS  builder evidence recorded
+==============================
+18 passed, 0 failed

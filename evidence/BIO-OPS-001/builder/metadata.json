@@ -1,0 +1,10 @@
+{
+  "story_key": "BIO-OPS-001",
+  "stage": "builder",
+  "commit_hash": "779507f44f8016a1e953836c991b11cbe7ce8b1e",
+  "test_command": "bash tests/operations/BIO-OPS-001.test.sh && (cd tests/frontend && node node_modules/vitest/vitest.mjs run) && (cd web && node node_modules/typescript/bin/tsc --noEmit --project tsconfig.json) && python3 scripts/check-traceability.py --all && bash scripts/check-module-project-references.sh && bash scripts/secret-scan.sh --all",
+  "result": "PASS",
+  "timestamp": "2026-10-06T03:26:00+01:00",
+  "reviewer": "Chioma",
+  "data_classification": "SYNTHETIC"
+}

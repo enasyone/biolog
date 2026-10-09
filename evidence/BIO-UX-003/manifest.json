@@ -1,0 +1,40 @@
+{
+  "story_key": "BIO-UX-003",
+  "commit_hash": "e1301634288526d5835201066a92db5b960a4408",
+  "implementation_commit": "ce8ce0e5385bc490444384e5285de261abad3aea",
+  "builder_evidence_commit": "b3efebb797f4112725cc5137dbb6532ad8f374a9",
+  "environment_profile": "local frontend Node/pnpm workspace; synthetic fixtures",
+  "timestamp": "2026-09-23T12:46:44Z",
+  "acceptance_criteria": {
+    "BIO-UX-003-AC01": {"result": "PASS", "tests": ["bio-ux-003-route-manifest.test.ts page-family coverage"]},
+    "BIO-UX-003-AC02": {"result": "PASS", "tests": ["bio-ux-003-route-manifest.test.ts action, visibility, and port coverage"]},
+    "BIO-UX-003-AC03": {"result": "PASS", "tests": ["bio-ux-003-route-manifest.test.ts page-state contract"]},
+    "BIO-UX-003-AC04": {"result": "PASS", "tests": ["Manual review of four Mermaid cross-page journeys"]},
+    "BIO-UX-003-AC05": {"result": "PASS", "tests": ["bio-ux-003-route-manifest.test.ts filesystem and navigation coverage", "builder Playwright route evidence"]}
+  },
+  "commands_results": [
+    {"command": "corepack pnpm --dir tests/frontend test:unit", "result": "PASS: 24 files, 183 tests"},
+    {"command": "corepack pnpm --dir web typecheck", "result": "PASS"},
+    {"command": "corepack pnpm --dir web build", "result": "PASS: 34 static pages generated"},
+    {"command": "python3 -m json.tool BIOLOG_Orchestration_Pack_v2.3/governance/ui-integration-map.json", "result": "PASS: valid JSON; BIO-RPT-001..004 dashboard route corrected to /"}
+  ],
+  "builder_verdict": "PASS",
+  "independent_qa_verdict": "PASS",
+  "security_verdict": "NOT_REQUIRED",
+  "performance_verdict": "NOT_REQUIRED",
+  "evidence_references": [
+    "builder/SUMMARY.md",
+    "builder/metadata.json",
+    "builder/frontend-unit-test-output.txt",
+    "builder/frontend-e2e-test-output.txt",
+    "builder/web-typecheck-build-output.txt",
+    "codex/REVIEW-Seyi-round1.md",
+    "acceptance/REVIEW-Chioma-round1.md"
+  ],
+  "governance_notes": [
+    "The authoritative v2.3 ui-integration-map now maps BIO-RPT-001..004 dashboard routes to / with a dated correction note.",
+    "Alumni, Contractors, NFC/UHF, and web-facing Mobile Credentials remain explicitly Unassigned rather than guessed."
+  ],
+  "final_acceptance_decision": "PASS",
+  "reason": "AC01-AC05 have complete route, action, permission, service-port, state, journey, filesystem, test, and evidence coverage."
+}

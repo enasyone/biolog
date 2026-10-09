@@ -1,0 +1,40 @@
+{
+  "story_key": "BIO-UX-004",
+  "commit_hash": "f2ff294e7a1ae504eada9255d440d9f6bde6449e",
+  "implementation_commit": "9e5ffd564497e7dfd17285d154d6af3a7a1a175f",
+  "builder_evidence_commit": "590dab3eb318d477e213ddcb023ad212352d0a15",
+  "environment_profile": "local frontend Node/pnpm workspace; synthetic fixtures",
+  "timestamp": "2026-09-23T13:10:06Z",
+  "acceptance_criteria": {
+    "BIO-UX-004-AC01": {"result": "PASS", "tests": ["bio-ux-004-generators.test.ts", "bio-ux-004-rng.test.ts"]},
+    "BIO-UX-004-AC02": {"result": "PASS", "tests": ["bio-ux-004-scenarios.test.ts"]},
+    "BIO-UX-004-AC03": {"result": "PASS", "tests": ["bio-ux-004-store.test.ts"]},
+    "BIO-UX-004-AC04": {"result": "PASS", "tests": ["bio-ux-004-privacy-markers.test.ts"]},
+    "BIO-UX-004-AC05": {"result": "PASS", "tests": ["bio-ux-004-privacy-markers.test.ts", "bio-ux-004-tenant-parity.test.ts"]}
+  },
+  "commands_results": [
+    {"command": "corepack pnpm --dir web typecheck", "result": "PASS"},
+    {"command": "corepack pnpm --dir web build", "result": "PASS: 34 static pages generated (unchanged from BIO-UX-003)"},
+    {"command": "corepack pnpm --dir tests/frontend test:unit", "result": "PASS: 30 files, 220 tests (37 new)"},
+    {"command": "BIOLOG_BASE_URL=http://127.0.0.1:3299 corepack pnpm --dir tests/frontend test:e2e", "result": "PASS: 102 tests (regression, no new specs)"}
+  ],
+  "builder_verdict": "PASS",
+  "independent_qa_verdict": "PASS",
+  "security_verdict": "NOT_REQUIRED",
+  "performance_verdict": "NOT_REQUIRED",
+  "evidence_references": [
+    "builder/SUMMARY.md",
+    "builder/metadata.json",
+    "builder/frontend-unit-test-output.txt",
+    "builder/frontend-e2e-test-output.txt",
+    "builder/web-typecheck-build-output.txt",
+    "codex/REVIEW-Seyi-round1.md",
+    "acceptance/REVIEW-Chioma-round1.md"
+  ],
+  "governance_notes": [
+    "No governance/ui-integration-map.json entry — this story has no user-facing surface of its own; it is a data library other stories (BIO-UX-005 adapter framework, BIO-UX-012 Human Test Console) will build on.",
+    "No governance/stories/BIO-UX-004.json — matches BIO-UX-001/002/003's own precedent; check-traceability.py's inventory is keyed off tests/foundation/<KEY>.test.sh, which no pure-frontend UX story uses."
+  ],
+  "final_acceptance_decision": "PASS",
+  "reason": "AC01-AC05 have deterministic, privacy-safe implementation and objective test evidence; builder, independent QA, and acceptance replays pass."
+}

@@ -1,0 +1,12 @@
+  Determining projects to restore...
+<workspace>/biolog-worktrees/BIO-DOC-011/tests/features/bio-doc-011/Biolog.Features.DocumentTemplateEditor.Tests/Biolog.Features.DocumentTemplateEditor.Tests.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.
+  All projects are up-to-date for restore.
+<workspace>/biolog-worktrees/BIO-DOC-011/tests/features/bio-doc-011/Biolog.Features.DocumentTemplateEditor.Tests/Biolog.Features.DocumentTemplateEditor.Tests.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.
+  Biolog.Features.DocumentVerify -> <workspace>/biolog-worktrees/BIO-DOC-011/api/features/bio-doc-001/Biolog.Features.DocumentVerify/bin/Debug/net10.0/Biolog.Features.DocumentVerify.dll
+  Biolog.Features.OcrEngine -> <workspace>/biolog-worktrees/BIO-DOC-011/api/features/bio-doc-004/Biolog.Features.OcrEngine/bin/Debug/net10.0/Biolog.Features.OcrEngine.dll
+  Biolog.Features.DocumentTemplateEditor -> <workspace>/biolog-worktrees/BIO-DOC-011/api/features/bio-doc-011/Biolog.Features.DocumentTemplateEditor/bin/Debug/net10.0/Biolog.Features.DocumentTemplateEditor.dll
+  Biolog.Features.DocumentTemplateEditor.Tests -> <workspace>/biolog-worktrees/BIO-DOC-011/tests/features/bio-doc-011/Biolog.Features.DocumentTemplateEditor.Tests/bin/Debug/net10.0/Biolog.Features.DocumentTemplateEditor.Tests.dll
+Test run for <workspace>/biolog-worktrees/BIO-DOC-011/tests/features/bio-doc-011/Biolog.Features.DocumentTemplateEditor.Tests/bin/Debug/net10.0/Biolog.Features.DocumentTemplateEditor.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:    48, Skipped:     0, Total:    48, Duration: 62 ms - Biolog.Features.DocumentTemplateEditor.Tests.dll (net10.0)

@@ -1,0 +1,111 @@
+{
+  "story_key": "BIO-OPS-004",
+  "title": "Offline/reconnect local acceptance",
+  "implementation_commit": "e5dda38fd33fdeac517acc7474664d86e81053bd",
+  "reviewed_head": "4f76453fea86ab510b33b388acb8aa34cc54ea7e",
+  "environment": {
+    "profile": "local acceptance on Darwin arm64; synthetic fixtures only",
+    "timestamp": "2026-10-07"
+  },
+  "acceptance_criteria": {
+    "BIO-OPS-004-AC01": {
+      "result": "PASS",
+      "evidence": [
+        "mobile/lib/core/verification/verification_service.dart",
+        "tests/features/bio-ops-004/BIO-OPS-004.acceptance.sh"
+      ],
+      "finding": "Network loss routes verification through the cached decision service."
+    },
+    "BIO-OPS-004-AC02": {
+      "result": "PASS",
+      "evidence": [
+        "mobile/lib/core/verification/verification_service.dart",
+        "tests/flutter/test/bio_ops_004_sy_ops004_01_access_cache_reconnect_test.dart"
+      ],
+      "finding": "The offline verification workflow remains executable across database close and reopen."
+    },
+    "BIO-OPS-004-AC03": {
+      "result": "PASS",
+      "evidence": [
+        "mobile/lib/core/access/access_cache_service.dart",
+        "mobile/lib/core/session/session_controller.dart",
+        "tests/flutter/test/bio_ops_004_sy_ops004_01_access_cache_reconnect_test.dart"
+      ],
+      "finding": "Known cached revocations deny and log locally; every production reconnect refreshes revocation state for the current trusted tenant."
+    },
+    "BIO-OPS-004-AC04": {
+      "result": "PASS",
+      "evidence": [
+        "mobile/lib/core/db/sqlcipher_app_database.dart",
+        "mobile/lib/core/session/session_controller.dart",
+        "tests/flutter/test/bio_ops_004_sy_ops004_01_access_cache_reconnect_test.dart"
+      ],
+      "finding": "Presentation events persist in the encrypted durable queue and the shipped reconnect coordinator drains them while retaining failed work for retry."
+    },
+    "BIO-OPS-004-AC05": {
+      "result": "PASS",
+      "evidence": [
+        "mobile/lib/core/access/access_cache_sync_client.dart",
+        "mobile/lib/core/sync/sync_engine.dart",
+        "tests/flutter/test/bio_ops_004_sy_ops004_01_access_cache_reconnect_test.dart"
+      ],
+      "finding": "Event identifiers remain idempotency keys, conflicts remain visible, and overlapping reconnects are single-flight with one coalesced rerun so recovery signals are not lost."
+    }
+  },
+  "commands": [
+    {
+      "command": "bash tests/features/bio-ops-004/BIO-OPS-004.acceptance.sh",
+      "result": "PASS (AC01-AC05 integrated invariants)"
+    },
+    {
+      "command": "flutter test",
+      "result": "UNAVAILABLE in acceptance sandbox because the installed Flutter SDK cache is read-only; independent exact-commit orchestration replay PASS (137/137)"
+    },
+    {
+      "command": "flutter analyze",
+      "result": "UNAVAILABLE in acceptance sandbox because the installed Flutter SDK cache is read-only; independent exact-commit orchestration replay PASS (clean)"
+    },
+    {
+      "command": "python3 scripts/check-traceability.py --all",
+      "result": "PASS (36 implemented stories)"
+    },
+    {
+      "command": "bash scripts/check-module-project-references.sh",
+      "result": "PASS"
+    },
+    {
+      "command": "bash scripts/secret-scan.sh --all",
+      "result": "PASS (built-in fallback scan clean)"
+    }
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "e5dda38fd33fdeac517acc7474664d86e81053bd",
+    "flutter_tests": "137/137 PASS",
+    "flutter_analysis": "PASS (clean)",
+    "focused_acceptance": "PASS"
+  },
+  "security_review": {
+    "reviewer": "Zainab",
+    "result": "PASS",
+    "builder_commit_reviewed": "e5dda38fd33fdeac517acc7474664d86e81053bd",
+    "review_commit": "4f76453fea86ab510b33b388acb8aa34cc54ea7e",
+    "evidence": "evidence/BIO-OPS-004/codex/SECURITY-REVIEW-ZAINAB-ROUND2.md",
+    "evidence_sha256": "f2b9a9515530fadd2910949b2c746895bf1443ee6c3c7cbae779cb07b41e2e6a"
+  },
+  "category_verdicts": {
+    "functional": "PASS",
+    "security": "PASS",
+    "tenant_isolation": "PASS",
+    "offline_recovery": "PASS",
+    "concurrency": "PASS",
+    "replay_idempotency": "PASS",
+    "regression": "PASS"
+  },
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "All five acceptance criteria map to the frozen implementation, deterministic regression tests, integrated acceptance checks and an exact-commit independent security PASS. The lost-wakeup reconnect race is remediated and no unresolved Critical or High finding remains."
+  }
+}

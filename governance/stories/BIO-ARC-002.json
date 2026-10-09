@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-ARC-002",
+  "title": "Define tenant context and database routing contract",
+  "owner": "Kemi - Chief Architect & Integrator",
+  "requirement_ids": [
+    "BIO-ARC-002-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-ARC-002-AC01",
+      "requirement_ids": [
+        "BIO-ARC-002-REQ-001"
+      ],
+      "text": "Host/domain, authenticated tenant and explicit service context resolution rules are defined."
+    },
+    {
+      "id": "BIO-ARC-002-AC02",
+      "requirement_ids": [
+        "BIO-ARC-002-REQ-001"
+      ],
+      "text": "No implicit/default tenant fallback is permitted."
+    },
+    {
+      "id": "BIO-ARC-002-AC03",
+      "requirement_ids": [
+        "BIO-ARC-002-REQ-001"
+      ],
+      "text": "Tenant context is immutable for the lifetime of a request."
+    },
+    {
+      "id": "BIO-ARC-002-AC04",
+      "requirement_ids": [
+        "BIO-ARC-002-REQ-001"
+      ],
+      "text": "Cross-tenant data access fails closed and is audited."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-ARC-002.test.sh",
+      "ac_ids": [
+        "BIO-ARC-002-AC01",
+        "BIO-ARC-002-AC02",
+        "BIO-ARC-002-AC03",
+        "BIO-ARC-002-AC04"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-ARC-002/manifest.json",
+      "ac_ids": [
+        "BIO-ARC-002-AC01",
+        "BIO-ARC-002-AC02",
+        "BIO-ARC-002-AC03",
+        "BIO-ARC-002-AC04"
+      ]
+    }
+  ]
+}

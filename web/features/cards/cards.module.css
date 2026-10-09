@@ -1,0 +1,128 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.table th,
+.table td {
+  text-align: left;
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid var(--biolog-color-border);
+}
+
+.table tbody tr:hover {
+  background: var(--biolog-color-surface-hover, rgba(0, 0, 0, 0.03));
+}
+
+.emptyState {
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--biolog-color-text-muted);
+}
+
+.simBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.1rem 0.5rem;
+  border-radius: var(--biolog-radius-pill, 999px);
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: var(--biolog-color-info-bg);
+  color: var(--biolog-color-text);
+}
+
+.rowActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.actionButton {
+  padding: 0.3rem 0.65rem;
+  font-size: 0.8rem;
+  border: 1px solid var(--biolog-color-border);
+  border-radius: var(--biolog-radius-sm, 4px);
+  background: var(--biolog-color-surface);
+  color: var(--biolog-color-text);
+  cursor: pointer;
+}
+
+.actionButton:hover:not(:disabled) {
+  border-color: var(--biolog-color-accent);
+}
+
+.actionButton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 32rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.875rem;
+  color: var(--biolog-color-text);
+}
+
+.field select,
+.field input,
+.field textarea {
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--biolog-color-border);
+  border-radius: var(--biolog-radius-sm, 4px);
+  background: var(--biolog-color-surface);
+  color: var(--biolog-color-text);
+}
+
+.resultBanner {
+  padding: 0.75rem 1rem;
+  border-radius: var(--biolog-radius-md, 0.5rem);
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.resultBannerLoading {
+  background: var(--biolog-color-offline-bg);
+  color: var(--biolog-color-text);
+}
+
+.resultBannerSuccess {
+  background: var(--biolog-color-success-bg);
+  color: var(--biolog-color-text);
+}
+
+.resultBannerFailure {
+  background: var(--biolog-color-error-bg);
+  color: var(--biolog-color-text);
+}
+
+.resultBannerOffline {
+  background: var(--biolog-color-warning-bg);
+  color: var(--biolog-color-text);
+}
+
+.evidenceRef {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.8rem;
+  opacity: 0.85;
+}

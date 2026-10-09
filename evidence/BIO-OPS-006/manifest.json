@@ -1,0 +1,131 @@
+{
+  "story_key": "BIO-OPS-006",
+  "title": "Security and tenant-isolation hardening gate",
+  "implementation_commit": "e50d3f6aaf767e7b9bc21d7f3eb498fa3234ec53",
+  "builder_head": "a201fcfc385750e03c6f254053001bbfc6d6efda",
+  "reviewed_head": "732509c716e6ccc4780a62f51d06da159888a117",
+  "environment": {
+    "profile": "local acceptance on Darwin arm64; synthetic fixtures only; AC03 replayed by orchestrator without sandbox restrictions",
+    "timestamp": "2026-10-08",
+    "gitleaks_version": "8.30.1"
+  },
+  "acceptance_criteria": {
+    "BIO-OPS-006-AC01": {
+      "result": "PASS",
+      "evidence": [
+        "docs/features/bio-ops-006/THREAT-MODEL.md",
+        "tests/features/bio-ops-006/BIO-OPS-006.acceptance.sh"
+      ],
+      "finding": "The whole-system threat model covers authentication, authorization, tenant routing, biometrics, card lifecycle, document parsing, webhooks and offline caches with controls and residual boundaries."
+    },
+    "BIO-OPS-006-AC02": {
+      "result": "PASS",
+      "evidence": [
+        "docs/SECURITY-FIXES.md",
+        "tests/features/bio-ops-006/BIO-OPS-006.acceptance.sh"
+      ],
+      "finding": "The executable ledger check finds no defect explicitly marked open at Critical or High severity; approved future scope boundaries remain disclosed."
+    },
+    "BIO-OPS-006-AC03": {
+      "result": "PASS",
+      "evidence": [
+        "tests/features/bio-ops-006/BIO-OPS-006.acceptance.sh",
+        "evidence/BIO-OPS-006/builder/SUMMARY.md",
+        "evidence/BIO-OPS-006/codex/REREVIEW-SEYI-ROUND9.md"
+      ],
+      "finding": "The fail-closed gate executed seven named cross-tenant negative integration tests in an unrestricted runner: total 7, executed 7, passed 7, failed 0, skipped 0."
+    },
+    "BIO-OPS-006-AC04": {
+      "result": "PASS",
+      "evidence": [
+        "scripts/secret-scan.sh",
+        "scripts/history-secret-scan.sh",
+        ".gitleaks.toml",
+        "tests/features/bio-ops-006/BIO-OPS-006.mutation.sh",
+        "tests/features/bio-ops-006/BIO-OPS-006.adversarial.sh"
+      ],
+      "finding": "Mandatory gitleaks current-tree and full-history scans are clean and fail closed when the pinned scanner is unavailable; native allowlisting is limited to exact synthetic fixtures and mutation proof rejects an unlisted credential."
+    },
+    "BIO-OPS-006-AC05": {
+      "result": "PASS",
+      "evidence": [
+        "tests/features/bio-ops-006/BIO-OPS-006.acceptance.sh",
+        "api/Biolog.Api/Audit/InMemoryAuditSink.cs",
+        "api/Biolog.Api/Features/DeviceCertification/Audit/InMemoryCertificationAuditSink.cs"
+      ],
+      "finding": "All direct production application logging is confined to two audit sinks whose emitted values cross SafeLogValue; no production console/debug writes or sensitive log-template vocabulary was found."
+    }
+  },
+  "commands": [
+    {
+      "command": "bash tests/features/bio-ops-006/BIO-OPS-006.acceptance.sh --cross-tenant-only",
+      "result": "PASS unrestricted on e50d3f6 (7/7; local sandbox replay unavailable because VSTest socket creation is denied)"
+    },
+    {
+      "command": "bash tests/features/bio-ops-006/BIO-OPS-006.acceptance.sh --controls-only",
+      "result": "PASS (14/14; gitleaks scanned 1,273 commits / 134.36 MB with no leaks)"
+    },
+    {
+      "command": "bash tests/features/bio-ops-006/BIO-OPS-006.mutation.sh",
+      "result": "PASS (4/4)"
+    },
+    {
+      "command": "bash tests/features/bio-ops-006/BIO-OPS-006.adversarial.sh",
+      "result": "PASS"
+    },
+    {
+      "command": "python3 scripts/check-traceability.py --all",
+      "result": "PASS (36 implemented stories)"
+    },
+    {
+      "command": "bash scripts/check-module-project-references.sh",
+      "result": "PASS"
+    }
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "a201fcfc385750e03c6f254053001bbfc6d6efda",
+    "implementation_commit": "e50d3f6aaf767e7b9bc21d7f3eb498fa3234ec53",
+    "cross_tenant_integration": "7/7 PASS unrestricted",
+    "controls": "14/14 PASS",
+    "mutation": "4/4 PASS",
+    "adversarial": "PASS"
+  },
+  "independent_qa": [
+    {
+      "reviewer": "Seyi",
+      "result": "PASS",
+      "builder_commit_reviewed": "a201fcfc385750e03c6f254053001bbfc6d6efda",
+      "review_commit": "732509c716e6ccc4780a62f51d06da159888a117",
+      "evidence": "evidence/BIO-OPS-006/codex/REREVIEW-SEYI-ROUND9.md",
+      "evidence_sha256": "e3df451d72c047ceca9f0500becae41759debe0cda9ba240df0d7706250be28e"
+    },
+    {
+      "reviewer": "Femi",
+      "result": "PASS",
+      "builder_commit_reviewed": "a201fcfc385750e03c6f254053001bbfc6d6efda",
+      "evidence": "evidence/BIO-OPS-006/codex/REVIEW-Femi-round9.md",
+      "evidence_sha256": "ab19b1db5a7ec1fa3fc2aa075ce697ba067eabe2241a7e465b363c75d296b584"
+    }
+  ],
+  "category_verdicts": {
+    "functional": "PASS",
+    "security": "PASS",
+    "tenant_isolation": "PASS",
+    "offline": "PASS",
+    "concurrency": "PASS",
+    "performance_resilience": "PASS",
+    "regression": "PASS"
+  },
+  "disclosures": [
+    "Shared HMAC actor provenance remains the accepted interim mechanism under ADR-0006, not real person authentication or separation of duties.",
+    "Real device enrolment remains responsible for provisioning mobile device secrets.",
+    "The mandatory current-tree and history secret scans conservatively duplicate full-history work; this is a non-blocking gate-efficiency issue."
+  ],
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "AC01-AC05 have executable, commit-bound evidence. Nine review rounds closed the false-success tenant test gate and three unsafe scanner designs; both required reviewers pass the final evidence and no unresolved Critical or High finding remains."
+  }
+}

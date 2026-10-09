@@ -1,0 +1,32 @@
+
+> @biolog/web@0.0.0 build <workspace>/biolog-worktrees/BIO-UX-001/web
+> next build
+
+[1m[38;2;173;127;168m▲ Next.js 16.3.5[39m[22m (Turbopack)
+[32m[1m✓[22m[39m Running next.config.mjs took 16ms
+
+[37m[1m [22m[39m Creating an optimized production build ...
+[32m[1m✓[22m[39m Compiled successfully in 390ms
+[37m[1m [22m[39m Running TypeScript ...
+[37m[1m [22m[39m Finished TypeScript in 299ms ...
+[37m[1m [22m[39m Collecting page data using 6 workers ...
+[37m[1m [22m[39m Generating static pages using 6 workers (0/5) ...
+[37m[1m [22m[39m Generating static pages using 6 workers (1/5) 
+[37m[1m [22m[39m Generating static pages using 6 workers (2/5) 
+[37m[1m [22m[39m Generating static pages using 6 workers (3/5) 
+[32m[1m✓[22m[39m Generating static pages using 6 workers (5/5) in 401ms
+[37m[1m [22m[39m Finalizing page optimization ...
+
+[4mRoute (app)[24m
+┌ ○ /
+├ ○ /_not-found
+├ ○ /card-designer
+└ ○ /icon.png
+
+
+○  (Static)  prerendered as static content
+
+
+> @biolog/web@0.0.0 typecheck <workspace>/biolog-worktrees/BIO-UX-001/web
+> tsc --noEmit
+

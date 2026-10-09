@@ -1,0 +1,79 @@
+{
+  "story_key": "BIO-BIO-005",
+  "title": "Implement face 1:1 verification",
+  "implementation_commit": "a4afee5c8b9b6896cd49895970bb92a5c2cafbfb",
+  "builder_head": "9e2c3379a8833d93a87d6052066ed940d5fa81dd",
+  "reviewed_head": "0d24b2b5ac12ac9207297c4d503127213b7566a0",
+  "environment": {
+    "profile": "local acceptance on Darwin arm64; .NET SDK 10.0.201; synthetic fixtures only",
+    "timestamp": "2026-09-23T02:25:28Z"
+  },
+  "acceptance_criteria": {
+    "BIO-BIO-005-AC01": {
+      "result": "PASS",
+      "evidence": ["tests/features/bio-bio-005/FaceVerificationServiceTests.cs", "evidence/features/bio-bio-005/builder/metadata.json"]
+    },
+    "BIO-BIO-005-AC02": {
+      "result": "PASS",
+      "evidence": ["tests/features/bio-bio-005/FaceVerificationServiceTests.cs", "api/features/bio-bio-005/Biolog.Features.FaceVerification/Domain/IFaceVerificationThresholdPolicy.cs"]
+    },
+    "BIO-BIO-005-AC03": {
+      "result": "PASS",
+      "evidence": ["tests/features/bio-bio-005/FaceVerificationServiceTests.cs", "evidence/BIO-BIO-005/codex/REREVIEW-Seyi-round2.md"]
+    },
+    "BIO-BIO-005-AC04": {
+      "result": "PASS",
+      "evidence": ["tests/features/bio-bio-005/FaceVerificationPhotoLifecycleTests.cs", "evidence/BIO-BIO-005/acceptance/Program.cs", "evidence/BIO-BIO-005/codex/REREVIEW-Seyi-round2.md", "evidence/BIO-BIO-005/codex/SECURITY-REVIEW-ZAINAB-ROUND3.md"],
+      "finding": "BIO-BIO-005-QA-01 closed: stale or absent current photo deterministically records ReferenceStale before extraction and denies authorization"
+    }
+  },
+  "commands": [
+    {"command": "dotnet restore evidence/BIO-BIO-005/acceptance/StalePhotoLifecycleProbe.csproj -m:1 /nodeReuse:false --ignore-failed-sources", "result": "PASS"},
+    {"command": "dotnet build evidence/BIO-BIO-005/acceptance/StalePhotoLifecycleProbe.csproj -m:1 /nodeReuse:false --no-restore -p:UseSharedCompilation=false", "result": "PASS (0 warnings, 0 errors)"},
+    {"command": "dotnet run --no-build --project evidence/BIO-BIO-005/acceptance/StalePhotoLifecycleProbe.csproj", "result": "PASS: stale photo-v1 reference rejected as ReferenceStale while current photo was v2; no score produced"},
+    {"command": "bash tests/features/bio-bio-005/BIO-BIO-005.test.sh", "result": "PASS (46/46)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (26 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS (built-in fallback scanner)"},
+    {"command": "dotnet test tests/features/bio-bio-005/Biolog.Features.FaceVerification.Tests.csproj --no-build --no-restore -m:1 /nodeReuse:false", "result": "UNAVAILABLE: sandbox denied VSTest loopback socket"}
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "a4afee5c8b9b6896cd49895970bb92a5c2cafbfb",
+    "feature_tests": "27/27 PASS",
+    "structural_tests": "46/46 PASS",
+    "metadata_sha256": "e40b79dc560e85997bcafb6df49f6b0e5d8483cd5b4dca1bd3ec120bfbeefed7"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "result": "PASS",
+    "review_commit": "0d24b2b5ac12ac9207297c4d503127213b7566a0",
+    "evidence": "evidence/BIO-BIO-005/codex/REREVIEW-Seyi-round2.md",
+    "evidence_sha256": "b4ab220d43909894c134fb92da0a428bccdaf6fd07ff0d14b6a999393808c7a8"
+  },
+  "security_review": {
+    "reviewer": "Zainab",
+    "result": "PASS",
+    "evidence": "evidence/BIO-BIO-005/codex/SECURITY-REVIEW-ZAINAB-ROUND3.md",
+    "evidence_sha256": "7ddb5d7d7a153291ee755d6275c7120ef5f4b14dbc2eca3c5be934948939cee0"
+  },
+  "category_verdicts": {
+    "functional": "PASS",
+    "security": "PASS",
+    "tenant_isolation": "PASS",
+    "offline_recovery": "NOT APPLICABLE",
+    "concurrency": "PASS",
+    "regression": "PASS"
+  },
+  "security_performance_verdicts": {
+    "security": "PASS: current-photo lifecycle is checked before extraction; stale or absent current photo records ReferenceStale and denies",
+    "performance": "Not separately required"
+  },
+  "screenshots_logs": [],
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "All ACs map to current commit-bound builder, independent QA, specialist security and acceptance evidence; QA-01 is closed."
+  }
+}

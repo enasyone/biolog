@@ -1,0 +1,4 @@
+PASS AC03 concurrent identical retries execute exactly once (adapted store shape)
+PASS AC02 a document with errors[] on a non-validation code is never returned
+ALL ADAPTED PROBES PASS
+exit=0

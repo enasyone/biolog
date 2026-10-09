@@ -1,0 +1,53 @@
+00:00 +0: loading <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac03_session_controller_test.dart
+00:00 +0: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac03_session_controller_test.dart: bootstrap never fabricates a tenant on a fresh install (AC03/AC05)
+00:00 +1: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac03_session_controller_test.dart: bootstrap never fabricates a tenant on a fresh install (AC03/AC05)
+00:00 +2: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac04_nav_items_test.dart: every nav item has a distinct, absolute go_router path
+00:00 +3: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac03_session_controller_test.dart: a context already resolved by a trusted boundary persists and survives a reload
+00:00 +4: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac03_session_controller_test.dart: signOut clears the bound tenant explicitly
+00:00 +5: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac03_session_controller_test.dart: a corrupted-but-provenanced persisted tenant context fails closed on bootstrap (BIO-MOB-001-QA-01)
+00:00 +6: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac03_session_controller_test.dart: a schema-valid but unprovenanced legacy tenant context never binds after upgrade (BIO-MOB-001-QA-03)
+00:00 +7: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac03_session_controller_test.dart: device id is minted once and stable across bootstraps
+00:00 +8: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac04_offline_queue_idempotency_test.dart: resolveEnqueue (pure decision) no existing entry: the incoming mutation is returned as-is
+00:00 +9: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac04_offline_queue_idempotency_test.dart: resolveEnqueue (pure decision) identical replay returns the ORIGINAL instance, not the retry
+00:00 +10: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac04_offline_queue_idempotency_test.dart: resolveEnqueue (pure decision) same key, different payload: throws instead of replacing (BIO-MOB-001-F01)
+00:00 +11: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac04_offline_queue_idempotency_test.dart: resolveEnqueue (pure decision) same key, different aggregate: throws (aggregate is logical content)
+00:00 +12: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac04_offline_queue_idempotency_test.dart: jsonDeepEquals nested maps/lists compare structurally, not by identity
+00:00 +13: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac04_offline_queue_idempotency_test.dart: AppDatabase.enqueueMutation (via FakeAppDatabase) exact Seyi repro: same key + different payload never replaces the queue
+00:00 +14: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac04_offline_queue_idempotency_test.dart: AppDatabase.enqueueMutation (via FakeAppDatabase) a genuine retry (same logical content) is a no-op, not a duplicate
+00:00 +15: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac03_persisted_tenant_validation_test.dart: a valid resolved tenant context round-trips through toJson/fromTrustedJson
+00:00 +16: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac03_persisted_tenant_validation_test.dart: Chioma's exact acceptance-probe payload is rejected, not accepted
+00:00 +17: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac03_persisted_tenant_validation_test.dart: rejects a wrong kind
+00:00 +18: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac03_persisted_tenant_validation_test.dart: rejects a non-canonical tenant_id
+00:00 +19: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac03_persisted_tenant_validation_test.dart: rejects a blank binding_key
+00:00 +20: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac03_persisted_tenant_validation_test.dart: rejects empty channels
+00:00 +21: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac03_persisted_tenant_validation_test.dart: rejects an unknown channel name
+00:00 +22: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac03_persisted_tenant_validation_test.dart: rejects duplicate channels
+00:00 +23: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac03_persisted_tenant_validation_test.dart: rejects a malformed correlation_id
+00:00 +24: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac03_persisted_tenant_validation_test.dart: rejects a malformed resolved_at
+00:00 +25: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac03_persisted_tenant_validation_test.dart: rejects a missing field instead of fabricating a default
+00:00 +26: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: boots to an informational, unbound tenant-select screen with no form
+00:00 +27: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: boots to an informational, unbound tenant-select screen with no form
+00:00 +28: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_offline_mutation_test.dart: compose produces a PENDING mutation with a canonical envelope
+00:00 +29: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:00 +30: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:00 +31: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:00 +32: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:00 +33: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:00 +34: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:00 +35: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:00 +36: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:00 +37: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:00 +38: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:00 +39: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:00 +40: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:00 +41: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:00 +42: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:00 +43: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:01 +44: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:01 +45: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: shows the offline banner when connectivity drops (AC04)
+00:01 +46: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: shows the offline banner when connectivity drops (AC04)
+00:01 +47: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: shows the offline banner when connectivity drops (AC04)
+00:01 +48: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: shows the offline banner when connectivity drops (AC04)
+00:01 +49: <workspace>/biolog-worktrees/BIO-MOB-001/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: shows the offline banner when connectivity drops (AC04)
+00:01 +50: All tests passed!
+test exit: 0

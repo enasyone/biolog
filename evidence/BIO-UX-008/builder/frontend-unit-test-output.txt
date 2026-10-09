@@ -1,0 +1,57 @@
+
+> @biolog/baseline-tests@ test:unit <workspace>/biolog-worktrees/BIO-UX-008/tests/frontend
+> vitest run
+
+
+[1m[46m RUN [49m[22m [36mv3.2.4 [39m[90m<workspace>/biolog-worktrees/BIO-UX-008/tests/frontend[39m
+
+ [32m✓[39m unit/bio-ux-004-rng.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-008-biometrics-live.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-005-feature-mode.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-003-route-manifest.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-004-store.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-004-privacy-markers.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-004-scenarios.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-004-barcode-objects.test.ts [2m([22m[2m24 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-001-breakpoints.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-004-generators.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-002-card-formats.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-005-module-port.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 280[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-002-nav-groups.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m unit/bio-fnd-007-permissions.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-001-tokens.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-002-elements.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-003-watermarks.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-008-formatters.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-001-component-states.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-002-card-design-state.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-001-css-sync.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-004-tenant-parity.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-003-typography.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-002-search-fixtures.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-003-name-fields.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-002-orientation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-003-canvas-element-ops.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m unit/bio-fnd-007-tokens.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-004-canvas-element-ops.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-005-module-registry.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-008-scenario-options.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-004-visibility.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-004-signature-objects.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m unit/bio-crd-004-logo-objects.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-001-iconography.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-008-tenprint-state.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m unit/baseline.test.js [2m([22m[2m1 test[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m unit/bio-ux-008-biometrics-mock.test.ts [2m([22m[2m11 tests[22m[2m)[22m[33m 6361[2mms[22m[39m
+   [33m[2m✓[22m[39m BIO-UX-008-AC03 an explicit hint deterministically forces the matching outcome[2m > [22mcaptureFingerprint("good") always returns a good-quality result [33m 755[2mms[22m[39m
+   [33m[2m✓[22m[39m BIO-UX-008-AC03 an explicit hint deterministically forces the matching outcome[2m > [22mverifyFace("match") and ("no_match") are both directly reachable, not just by chance [33m 504[2mms[22m[39m
+   [33m[2m✓[22m[39m BIO-UX-008-AC03 an explicit hint deterministically forces the matching outcome[2m > [22mcheckLiveness hints are both reachable and both explicitly marked simulated [33m 504[2mms[22m[39m
+   [33m[2m✓[22m[39m BIO-UX-008-AC03 an explicit hint deterministically forces the matching outcome[2m > [22mconnectDevice hints are both reachable for each device kind [33m 503[2mms[22m[39m
+   [33m[2m✓[22m[39m BIO-UX-008-AC01 each finger position cycles its own independent history[2m > [22ma never-yet-captured finger's first auto-cycled result is unaffected by another finger's call history [33m 1822[2mms[22m[39m
+   [33m[2m✓[22m[39m BIO-UX-008-AC04 every message clearly names itself as simulated[2m > [22mcapture, verify, identify and liveness messages all say SIMULATED [33m 1258[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m38 passed[39m[22m[90m (38)[39m
+[2m      Tests [22m [1m[32m290 passed[39m[22m[90m (290)[39m
+[2m   Start at [22m 14:58:59
+[2m   Duration [22m 6.74s[2m (transform 840ms, setup 0ms, collect 1.89s, tests 6.80s, environment 4ms, prepare 3.02s)[22m
+

@@ -1,0 +1,152 @@
+Resolving dependencies...
+Downloading packages...
+  clock 1.1.2 (1.1.3 available)
+  code_assets 1.2.1 (2.1.0 available)
+  cupertino_ui 1.0.2 (1.1.1 available)
+  dbus 0.7.15 (0.8.0 available)
+  hooks 2.0.2 (2.2.0 available)
+  intl 0.20.2 (0.20.3 available)
+  matcher 0.12.19 (0.12.20 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  material_ui 1.2.0 (1.4.0 available)
+  meta 1.18.0 (1.19.0 available)
+  nm 0.5.0 (0.6.0 available)
+  objective_c 9.5.0 (9.6.0 available)
+  petitparser 7.0.2 (7.1.0 available)
+  record_use 0.6.0 (1.1.1 available)
+  stack_trace 1.12.1 (1.12.2 available)
+  test_api 0.7.11 (0.7.14 available)
+  vector_math 2.2.0 (2.4.3 available)
+Got dependencies!
+17 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+00:00 +0: loading <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_003_ac02_idempotent_ack_test.dart
+00:00 +0: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_acc_003_ac03_ac04_offline_decision_test.dart: AC03 a presentation for a person NOT in the cache is allowed and logged locally
+00:00 +1: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_003_ac02_idempotent_ack_test.dart: a fresh accepted acknowledgement moves a mutation to acknowledged
+00:00 +2: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_acc_003_ac03_ac04_offline_decision_test.dart: AC03 a presentation for a person cached as revoked is denied and logged locally, fully offline
+00:00 +3: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_003_ac02_idempotent_ack_test.dart: a replayed acknowledgement (ADR-0001 §3.4: same idempotency key, original stored result) is handled exactly like a fresh one, not as an error or a second effect
+00:00 +4: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_acc_003_ac03_ac04_offline_decision_test.dart: AC04 a decision made against a never-synced cache is flagged stale
+00:00 +5: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_003_ac02_idempotent_ack_test.dart: markAcknowledged is a no-op for a mutation that is not currently uploading
+00:00 +6: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_003_ac02_idempotent_ack_test.dart: markAcknowledged is a no-op for a mutation that is not currently uploading
+00:00 +7: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_acc_003_ac03_ac04_offline_decision_test.dart: AC04 a decision made 25 hours after the last sync is flagged stale
+00:00 +8: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_003_ac02_idempotent_ack_test.dart: a mutation already acknowledged is not re-uploaded on a later sync pass
+00:00 +9: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_acc_003_ac03_ac04_offline_decision_test.dart: AC04 staleness never changes the allow/deny outcome — a stale cache still denies a known revocation
+00:00 +10: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_003_ac03_ac04_conflict_test.dart: a conflict acknowledgement routes the mutation to the Sync Resolution Queue
+00:00 +11: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_003_ac03_ac04_conflict_test.dart: a conflict never mutates the queued payload — no merge, no last-write-wins
+00:00 +12: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_003_ac03_ac04_conflict_test.dart: conflict handling does not special-case operation kind — uniform for every mutation
+00:00 +13: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_acc_003_ac05_sync_client_test.dart: pullRevocationDelta sends device headers and the stored cursor, then caches the response
+00:00 +14: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_acc_003_ac05_sync_client_test.dart: pushPendingPresentationEvents uses the event id as the Idempotency-Key and marks it synced on success
+00:00 +15: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_acc_003_ac05_sync_client_test.dart: one events transport failure does not abandon the rest of the batch
+00:00 +16: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_acc_003_ac05_sync_client_test.dart: an unprovisioned device fails fast without attempting the network, for both pull and push
+00:00 +17: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_002_ac01_retry_fields_test.dart: a freshly-composed mutation starts with retryCount 0 and no scheduled retry
+00:00 +18: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_002_ac01_retry_fields_test.dart: rejects a negative retryCount
+00:00 +19: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_002_ac01_retry_fields_test.dart: rejects a malformed nextRetryAt
+00:00 +20: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_002_ac01_retry_fields_test.dart: accepts a well-formed nextRetryAt
+00:00 +21: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_002_ac01_retry_fields_test.dart: copyWith can explicitly clear nextRetryAt back to null
+00:00 +22: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_002_ac01_retry_fields_test.dart: copyWith without touching nextRetryAt leaves it as-is
+00:00 +23: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_002_ac01_retry_fields_test.dart: toEnvelopeJson does not leak the local-only retry fields into the frozen wire shape
+00:00 +24: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac03_session_controller_test.dart: bootstrap never fabricates a tenant on a fresh install (AC03/AC05)
+00:00 +25: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac03_session_controller_test.dart: a context already resolved by a trusted boundary persists and survives a reload
+00:00 +26: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac03_session_controller_test.dart: signOut clears the bound tenant explicitly
+00:00 +27: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac03_session_controller_test.dart: a corrupted-but-provenanced persisted tenant context fails closed on bootstrap (BIO-MOB-001-QA-01)
+00:00 +28: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac03_session_controller_test.dart: a schema-valid but unprovenanced legacy tenant context never binds after upgrade (BIO-MOB-001-QA-03)
+00:00 +29: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac03_session_controller_test.dart: device id is minted once and stable across bootstraps
+00:01 +30: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac04_nav_items_test.dart: configured navigation covers every AC04-required state exactly once
+00:01 +31: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac04_nav_items_test.dart: every nav item has a distinct, absolute go_router path
+00:01 +32: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac04_offline_queue_idempotency_test.dart: resolveEnqueue (pure decision) no existing entry: the incoming mutation is returned as-is
+00:01 +33: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac04_offline_queue_idempotency_test.dart: resolveEnqueue (pure decision) identical replay returns the ORIGINAL instance, not the retry
+00:01 +34: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac04_offline_queue_idempotency_test.dart: resolveEnqueue (pure decision) same key, different payload: throws instead of replacing (BIO-MOB-001-F01)
+00:01 +35: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac04_offline_queue_idempotency_test.dart: resolveEnqueue (pure decision) same key, different aggregate: throws (aggregate is logical content)
+00:01 +36: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac04_offline_queue_idempotency_test.dart: jsonDeepEquals nested maps/lists compare structurally, not by identity
+00:01 +37: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac04_offline_queue_idempotency_test.dart: AppDatabase.enqueueMutation (via FakeAppDatabase) exact Seyi repro: same key + different payload never replaces the queue
+00:01 +38: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac04_offline_queue_idempotency_test.dart: AppDatabase.enqueueMutation (via FakeAppDatabase) a genuine retry (same logical content) is a no-op, not a duplicate
+00:01 +39: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_002_ac04_conflict_test.dart: recordConflict moves a mutation to conflict, out of the automatic retry cycle
+00:01 +40: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac03_persisted_tenant_validation_test.dart: a valid resolved tenant context round-trips through toJson/fromTrustedJson
+00:01 +41: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac03_persisted_tenant_validation_test.dart: a valid resolved tenant context round-trips through toJson/fromTrustedJson
+00:01 +42: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac03_persisted_tenant_validation_test.dart: a valid resolved tenant context round-trips through toJson/fromTrustedJson
+00:01 +43: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac03_persisted_tenant_validation_test.dart: a valid resolved tenant context round-trips through toJson/fromTrustedJson
+00:01 +44: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac03_persisted_tenant_validation_test.dart: Chioma's exact acceptance-probe payload is rejected, not accepted
+00:01 +45: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac03_persisted_tenant_validation_test.dart: rejects a wrong kind
+00:01 +46: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac03_persisted_tenant_validation_test.dart: rejects a non-canonical tenant_id
+00:01 +47: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac03_persisted_tenant_validation_test.dart: rejects a blank binding_key
+00:01 +48: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac03_persisted_tenant_validation_test.dart: rejects empty channels
+00:01 +49: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac03_persisted_tenant_validation_test.dart: rejects an unknown channel name
+00:01 +50: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac03_persisted_tenant_validation_test.dart: rejects duplicate channels
+00:01 +51: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac03_persisted_tenant_validation_test.dart: rejects a malformed correlation_id
+00:01 +52: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac03_persisted_tenant_validation_test.dart: rejects a malformed resolved_at
+00:01 +53: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac03_persisted_tenant_validation_test.dart: rejects a missing field instead of fabricating a default
+00:01 +54: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_003_femi02_femi03_test.dart: FEMI-02: a mutation already queued before boot syncs on the very first connectivity reading, not only on a later transition
+00:01 +55: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_003_femi02_femi03_test.dart: FEMI-03: a transport that never responds does not permanently block the single-flight guard
+00:01 +56: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_003_femi02_femi03_test.dart: FEMI-03: HttpSyncTransport enforces a request deadline instead of waiting forever
+00:02 +57: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_003_ac05_reconnect_storm_test.dart: two overlapping sync passes over the same due mutations upload each mutation at most once (direct reconnect-storm repro)
+00:02 +58: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_003_ac05_reconnect_storm_test.dart: a mutation already uploading (claimed by another pass) is never double-uploaded
+00:02 +59: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_003_ac05_reconnect_storm_test.dart: attachTo triggers a sync pass when connectivity transitions to online
+00:02 +60: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_003_femi01_session_wiring_test.dart: bootstrap() attaches SyncEngine to the real connectivity signal, not just constructs one
+00:02 +61: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: boots to an informational, unbound tenant-select screen with no form
+00:02 +62: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: boots to an informational, unbound tenant-select screen with no form
+00:02 +63: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: boots to an informational, unbound tenant-select screen with no form
+00:02 +64: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: boots to an informational, unbound tenant-select screen with no form
+00:02 +65: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: boots to an informational, unbound tenant-select screen with no form
+00:02 +66: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: boots to an informational, unbound tenant-select screen with no form
+00:02 +67: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: boots to an informational, unbound tenant-select screen with no form
+00:02 +68: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: boots to an informational, unbound tenant-select screen with no form
+00:02 +69: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: boots to an informational, unbound tenant-select screen with no form
+00:03 +70: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:03 +71: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:03 +72: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:03 +73: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:03 +74: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:03 +75: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:03 +76: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:03 +77: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:03 +78: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:03 +79: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:03 +80: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:03 +81: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:03 +82: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:03 +83: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:03 +84: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:03 +85: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:03 +86: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:03 +87: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:03 +88: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:03 +89: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:03 +90: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:03 +91: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:03 +92: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:03 +93: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:03 +94: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:03 +95: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:03 +96: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: a context resolved by a trusted boundary unlocks the configured navigation shell (AC03/AC04)
+00:03 +97: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: shows the offline banner when connectivity drops (AC04)
+00:03 +98: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_002_ac03_retry_queue_test.dart: a freshly-enqueued mutation is immediately due for retry (never attempted)
+00:03 +99: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_002_ac03_retry_queue_test.dart: markUploading transitions pending -> uploading (AC02)
+00:03 +100: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_002_ac03_retry_queue_test.dart: markUploading cannot resurrect a conflicted mutation (BIO-MOB-002-QA-01, Seyi round 1 repro)
+00:03 +101: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_002_ac03_retry_queue_test.dart: markUploading cannot resurrect a failed mutation (BIO-MOB-002-QA-01)
+00:03 +102: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_002_ac03_retry_queue_test.dart: a failed attempt with retries remaining schedules a future retry and returns to pending
+00:03 +103: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_002_ac03_retry_queue_test.dart: exhausting the bound moves the mutation to failed, not an infinite retry
+00:03 +104: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_002_ac03_retry_queue_test.dart: retryCount increments by exactly one per failed attempt
+00:03 +105: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_002_ac03_retry_queue_test.dart: recordUploadFailure is a no-op for a mutation that is not currently uploading (BIO-MOB-002-QA-01)
+00:03 +106: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_002_ac03_retry_queue_test.dart: a mutation stranded in uploading by a process restart recovers to retryable pending (BIO-MOB-002-QA-02, Chioma acceptance round 1)
+00:04 +107: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_acc_003_ac01_ac02_revocation_cache_test.dart: AC01 a cached revocation entry carries only person id and revoked-at, nothing else
+00:04 +108: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_acc_003_ac01_ac02_revocation_cache_test.dart: AC01/AC02 caching a delta makes isRevoked true only for the cached person
+00:04 +109: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_acc_003_ac01_ac02_revocation_cache_test.dart: AC02 a second, later delta round adds to the cache without losing earlier entries
+00:04 +110: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_acc_003_ac01_ac02_revocation_cache_test.dart: AC04 an empty successful poll still advances last-synced-at (proves the cache is current, not stale)
+00:04 +111: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/baseline_test.dart: baseline Flutter harness uses synthetic data
+00:04 +112: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_005_ac01_ac02_capture_policy_test.dart: with no cached policy, capture falls back to the conservative text-only default
+00:04 +113: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_005_ac01_ac02_capture_policy_test.dart: capture accepts every field the cached policy allows
+00:04 +114: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_005_ac01_ac02_capture_policy_test.dart: a field the policy does not allow is rejected, not silently captured
+00:04 +115: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_005_ac01_ac02_capture_policy_test.dart: a photo is rejected when the policy does not permit photo capture
+00:04 +116: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_005_ac01_ac02_capture_policy_test.dart: a biometric modality is rejected when the policy does not permit it
+00:04 +117: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac02_passphrase_vault_test.dart: generatePassphrase never returns a bundled/hardcoded value
+00:04 +118: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac02_passphrase_vault_test.dart: loadOrCreate mints a passphrase on first use
+00:04 +119: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac02_passphrase_vault_test.dart: loadOrCreate is idempotent across app restarts (same store)
+00:04 +120: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_001_ac02_passphrase_vault_test.dart: two installs (independent stores) never share a passphrase
+00:04 +121: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_003_femi01_http_sync_transport_test.dart: POSTs to the versioned offline-mutations route with the Idempotency-Key, device-auth headers and delta body
+00:04 +122: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_003_femi01_http_sync_transport_test.dart: a 200/201 response with no replay header is a fresh acceptance
+00:04 +123: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_003_femi01_http_sync_transport_test.dart: the Idempotency-Replayed response header is surfaced as a replayed acceptance
+00:04 +124: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_003_femi01_http_sync_transport_test.dart: a 409 concurrency_conflict problem response is a conflict carrying the server version
+00:04 +125: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_003_femi01_http_sync_transport_test.dart: a 5xx response throws, which SyncEngine treats as a transient failure, not success/conflict
+00:04 +126: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_003_femi01_http_sync_transport_test.dart: a 409 that is not a version conflict (e.g. idempotency_key_reuse) throws, not conflict
+00:04 +127: <workspace>/biolog-worktrees/BIO-MOB-005/tests/flutter/test/bio_mob_003_femi01_http_sync_transport_test.dart: no device secret is provisioned yet: upload fails fast without making an HTTP request
+00:04 +128: All tests passed!

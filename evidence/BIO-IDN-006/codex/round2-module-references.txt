@@ -1,0 +1,2 @@
+$ bash scripts/check-module-project-references.sh
+MODULE PROJECT REFERENCES: PASS

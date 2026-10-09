@@ -1,0 +1,8 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Biolog.Features.Webhooks -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-int-004/bin/Debug/net10.0/Biolog.Features.Webhooks.dll
+  Biolog.Features.Webhooks.Tests -> <workspace>/biolog-worktrees/BIO-INT-004/tests/features/bio-int-004/bin/Debug/net10.0/Biolog.Features.Webhooks.Tests.dll
+Test run for <workspace>/biolog-worktrees/BIO-INT-004/tests/features/bio-int-004/bin/Debug/net10.0/Biolog.Features.Webhooks.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:   103, Skipped:     0, Total:   103, Duration: 241 ms - Biolog.Features.Webhooks.Tests.dll (net10.0)

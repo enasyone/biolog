@@ -1,0 +1,114 @@
+{
+  "story_key": "BIO-FND-007",
+  "title": "Create Next.js application shell and design-system foundation",
+  "implementation_commit": "12a14de",
+  "reviewed_head": "26a7e25a528f3a0af49ec73ae5f10a5c56a2f2f6",
+  "environment": {
+    "profile": "local acceptance; synthetic demo roles and tenant labels only",
+    "timestamp": "2026-09-21T17:52:05Z",
+    "browser_replay": "Unavailable: sandbox denied local port binding with listen EPERM",
+    "browser_evidence_substitute": "Builder Chromium transcript committed by remediation 12a14de, independently source-audited by Seyi and Chioma"
+  },
+  "acceptance_criteria": {
+    "BIO-FND-007-AC01": {
+      "result": "PASS",
+      "evidence": [
+        "evidence/BIO-FND-007/acceptance/foundation-output.txt",
+        "evidence/BIO-FND-007/acceptance/build-output.txt",
+        "evidence/BIO-FND-007/builder/frontend-e2e-test-output.txt"
+      ]
+    },
+    "BIO-FND-007-AC02": {
+      "result": "PASS",
+      "evidence": [
+        "evidence/BIO-FND-007/acceptance/unit-output.txt",
+        "evidence/BIO-FND-007/builder/frontend-e2e-test-output.txt"
+      ]
+    },
+    "BIO-FND-007-AC03": {
+      "result": "PASS",
+      "evidence": [
+        "evidence/BIO-FND-007/acceptance/independent-probes.txt",
+        "evidence/BIO-FND-007/acceptance/unit-output.txt",
+        "evidence/BIO-FND-007/builder/frontend-e2e-test-output.txt"
+      ]
+    },
+    "BIO-FND-007-AC04": {
+      "result": "PASS",
+      "evidence": [
+        "evidence/BIO-FND-007/acceptance/foundation-output.txt",
+        "evidence/BIO-FND-007/acceptance/unit-output.txt",
+        "evidence/BIO-FND-007/codex/REREVIEW-ROUND-2.md"
+      ]
+    },
+    "BIO-FND-007-AC05": {
+      "result": "PASS",
+      "evidence": [
+        "evidence/BIO-FND-007/acceptance/independent-probes.txt",
+        "evidence/BIO-FND-007/builder/frontend-e2e-test-output.txt",
+        "evidence/BIO-FND-007/acceptance/browser-replay-status.txt"
+      ]
+    }
+  },
+  "commands": [
+    {
+      "command": "python3 evidence/BIO-FND-007/codex/independent-review.py",
+      "result": "PASS (4/4)"
+    },
+    {
+      "command": "bash tests/foundation/BIO-FND-007.test.sh",
+      "result": "PASS (25/25)"
+    },
+    {
+      "command": "./tests/frontend/node_modules/.bin/vitest run tests/frontend/unit/bio-fnd-007-permissions.test.ts tests/frontend/unit/bio-fnd-007-tokens.test.ts",
+      "result": "PASS (11/11)"
+    },
+    {
+      "command": "./web/node_modules/.bin/tsc --noEmit -p web/tsconfig.json",
+      "result": "PASS"
+    },
+    {
+      "command": "./web/node_modules/.bin/next build web",
+      "result": "PASS"
+    },
+    {
+      "command": "bash scripts/secret-scan.sh --all",
+      "result": "PASS (clean)"
+    },
+    {
+      "command": "./web/node_modules/.bin/next dev web -H 127.0.0.1 -p 3107",
+      "result": "UNAVAILABLE (sandbox listen EPERM); not represented as a fresh browser PASS"
+    }
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "browser_suite": "16/16 PASS",
+    "browser_transcript_sha256": "8785a59b784f4c9d6a1f383769f48cc6fcaeb14556b6106c5e2c4be4a2bd7351"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "initial_result": "FAIL (QA-01: closed mobile navigation remained keyboard-focusable)",
+    "final_result": "PASS",
+    "review_evidence": "evidence/BIO-FND-007/codex/REREVIEW-ROUND-2.md",
+    "review_head": "26a7e25a528f3a0af49ec73ae5f10a5c56a2f2f6"
+  },
+  "category_verdicts": {
+    "functional": "PASS",
+    "security": "PASS",
+    "tenant_isolation": "NOT_APPLICABLE",
+    "offline_recovery": "PASS",
+    "concurrency": "NOT_APPLICABLE",
+    "accessibility": "PASS",
+    "regression": "PASS"
+  },
+  "security_performance_reviews": {
+    "security": "No separate specialist review required; Seyi security category PASS and tracked secret scan clean",
+    "performance": "Not required for this foundation shell story"
+  },
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "All five criteria have objective builder and independent evidence. QA-01 is closed by removing the closed mobile drawer from keyboard/accessibility interaction and by making axe scans reject every unwaived violation. Acceptance replay passed source probes, foundation, unit, typecheck, production build and secret scan. Browser replay was accurately recorded unavailable rather than falsely passed; the remediation-bound committed 16/16 Chromium transcript and independent source verification cover that runtime assertion."
+  }
+}

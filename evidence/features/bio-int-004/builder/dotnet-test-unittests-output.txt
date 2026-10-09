@@ -1,0 +1,15 @@
+  Biolog.Features.Liveness -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-bio-008/Biolog.Features.Liveness/bin/Debug/net10.0/Biolog.Features.Liveness.dll
+  Biolog.Features.DocumentTemplateEditor -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-doc-011/Biolog.Features.DocumentTemplateEditor/bin/Debug/net10.0/Biolog.Features.DocumentTemplateEditor.dll
+  Biolog.Features.DocumentClassifier -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-doc-006/Biolog.Features.DocumentClassifier/bin/Debug/net10.0/Biolog.Features.DocumentClassifier.dll
+  Biolog.Features.TenantFeatureConfig -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-ten-003/bin/Debug/net10.0/Biolog.Features.TenantFeatureConfig.dll
+  Biolog.Features.BiometricRetention -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-bio-009/Biolog.Features.BiometricRetention/bin/Debug/net10.0/Biolog.Features.BiometricRetention.dll
+  Biolog.Features.NfcReader -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-doc-007/Biolog.Features.NfcReader/bin/Debug/net10.0/Biolog.Features.NfcReader.dll
+  Biolog.Features.EvidenceComparison -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-doc-008/Biolog.Features.EvidenceComparison/bin/Debug/net10.0/Biolog.Features.EvidenceComparison.dll
+  Biolog.Features.AuthenticityAssessment -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-doc-009/Biolog.Features.AuthenticityAssessment/bin/Debug/net10.0/Biolog.Features.AuthenticityAssessment.dll
+  Biolog.Features.DocumentTemplatePack -> <workspace>/biolog-worktrees/BIO-INT-004/api/features/bio-doc-010/Biolog.Features.DocumentTemplatePack/bin/Debug/net10.0/Biolog.Features.DocumentTemplatePack.dll
+  Biolog.Api -> <workspace>/biolog-worktrees/BIO-INT-004/api/Biolog.Api/bin/Debug/net10.0/Biolog.Api.dll
+  Biolog.UnitTests -> <workspace>/biolog-worktrees/BIO-INT-004/tests/dotnet/Biolog.UnitTests/bin/Debug/net10.0/Biolog.UnitTests.dll
+Test run for <workspace>/biolog-worktrees/BIO-INT-004/tests/dotnet/Biolog.UnitTests/bin/Debug/net10.0/Biolog.UnitTests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:   210, Skipped:     0, Total:   210, Duration: 191 ms - Biolog.UnitTests.dll (net10.0)

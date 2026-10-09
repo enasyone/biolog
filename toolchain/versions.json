@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "story": "BIO-FND-002",
+  "recorded_at": "2026-09-20T15:31:00Z",
+  "recorded_by": "Emeka",
+  "policy": "See docs/TOOLCHAIN-POLICY.md. This file is the single source of truth for pinned toolchain versions. Do not edit it inside a feature story; a version change requires its own dedicated toolchain story.",
+  "toolchain": {
+    "dotnet": {
+      "category": ".NET LTS SDK",
+      "command": "dotnet --version",
+      "match": "exact",
+      "pinned_version": "10.0.201",
+      "native_pin_file": "global.json",
+      "installed_at_bootstrap": true
+    },
+    "node": {
+      "category": "Node.js LTS runtime",
+      "command": "node --version",
+      "match": "exact",
+      "pinned_version": "20.20.2",
+      "native_pin_file": ".nvmrc",
+      "installed_at_bootstrap": true
+    },
+    "package_manager": {
+      "category": "Package manager",
+      "tool": "pnpm",
+      "command": "pnpm --version",
+      "match": "exact",
+      "pinned_version": "9.12.0",
+      "native_pin_file": "package.json (packageManager field, Corepack-managed)",
+      "installed_at_bootstrap": false,
+      "note": "pnpm is not installed on the reference bootstrap machine. Corepack (bundled with Node 20.20.2, confirmed present) reads the packageManager field in the root package.json and fetches exactly this version on first use. This pinned value has not been verified against the live npm registry (no network access at bootstrap time) - confirm or correct it with `corepack use pnpm@<version>` before the first real pnpm install, then update this file and package.json together in the same commit."
+    },
+    "flutter": {
+      "category": "Flutter SDK",
+      "command": "flutter --version --machine",
+      "match": "exact",
+      "pinned_version": "3.44.8",
+      "pinned_channel": "stable",
+      "pinned_dart_version": "3.12.2",
+      "native_pin_file": null,
+      "installed_at_bootstrap": true
+    },
+    "docker": {
+      "category": "Docker Engine + Compose",
+      "command": "docker --version; docker compose version --short",
+      "match": "min_major_minor",
+      "pinned_engine_version": "29.3.1",
+      "pinned_compose_version": "5.1.1",
+      "native_pin_file": null,
+      "installed_at_bootstrap": true,
+      "note": "Host-managed software (Docker Desktop/Engine); pinned as a minimum supported major.minor rather than an exact patch, since patch updates are applied by the OS/Docker Desktop outside repo control. A major or minor downgrade below this baseline is unsupported."
+    },
+    "database_client": {
+      "category": "MySQL client",
+      "tool": "mysql (MySQL command-line client)",
+      "command": "mysql --version",
+      "match": "min_major_minor",
+      "pinned_version": "8.4.0",
+      "native_pin_file": null,
+      "installed_at_bootstrap": false,
+      "note": "No MySQL client is installed on the reference bootstrap machine. Minimum supported family tracks the MySQL 8.4 LTS server family used by infrastructure/ containers (BIO-FND-003). Install any 8.4.x client; a different major (e.g. 9.x) is unsupported until this policy is revised."
+    },
+    "gitleaks": {
+      "category": "Secret scanner",
+      "tool": "gitleaks",
+      "command": "gitleaks version",
+      "match": "exact",
+      "pinned_version": "8.30.1",
+      "native_pin_file": null,
+      "installed_at_bootstrap": true,
+      "note": "Added via TD-FND002-PIN-GITLEAKS (Kemi's ruling on BIO-OPS-006 round 3, 2026-10-08): the no-gitleaks pattern-scan fallback in scripts/secret-scan.sh and scripts/history-secret-scan.sh failed three review rounds in a row and was removed outright in BIO-OPS-006 round 4 - both scripts now require gitleaks and fail closed when it is absent, so this category is not optional the way pnpm/the MySQL client are. Corrected same-day (still TD-FND002-PIN-GITLEAKS): the initial 8.24.3 pin was recorded without network access to confirm it against the live release feed, exactly the caveat this note originally flagged; god installed gitleaks via brew to unblock BIO-OPS-006 verification and got 8.30.1, confirmed directly here by running `gitleaks version` on the same machine - pinned exact (not a minimum) because this tool's detection rules, not just its interface, can change between versions, and the whole point of mandating it is that every Munder agent's secret-scan gate makes the identical pass/fail decision. A future correction to this value still needs its own dedicated toolchain story (the same path this entry itself was added and corrected through)."
+    }
+  }
+}

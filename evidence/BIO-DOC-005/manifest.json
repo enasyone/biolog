@@ -1,0 +1,29 @@
+{
+  "story_key": "BIO-DOC-005",
+  "title": "Implement barcode parser registry and tenant parser workflow",
+  "implementation_commit": "1b2fcb413e0e227cbead4c22f0f4f2bb072efa46",
+  "builder_head": "aa04d0a",
+  "reviewed_head": "9a42a649db3e49df5080fde6e9d7478896658ceb",
+  "environment": {"profile": "local offline acceptance; synthetic fixtures only", "timestamp": "2026-09-22T22:06:11Z"},
+  "acceptance_criteria": {
+    "BIO-DOC-005-AC01": {"result": "PASS", "evidence": ["BTS/global and tenant authority tests"]},
+    "BIO-DOC-005-AC02": {"result": "PASS", "evidence": ["draft/tested/published maker-checker tests"]},
+    "BIO-DOC-005-AC03": {"result": "PASS", "evidence": ["applicability, mapping, validation, and bounded-regex tests"]},
+    "BIO-DOC-005-AC04": {"result": "PASS", "evidence": ["immutable published revision/new-version tests"]},
+    "BIO-DOC-005-AC05": {"result": "PASS", "evidence": ["single visibility gate and cross-tenant mutation tests"]}
+  },
+  "commands": [
+    {"command": "bash tests/foundation/BIO-DOC-005.test.sh", "result": "PASS (29/29)"},
+    {"command": "dotnet Biolog.Features.ParserRegistry.Tests.dll", "result": "PASS (36/36)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (24 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS"}
+  ],
+  "builder_verdict": {"result": "PASS", "commit_hash": "1b2fcb413e0e227cbead4c22f0f4f2bb072efa46", "feature_tests": "36/36 PASS", "structural_tests": "29/29 PASS", "metadata_sha256": "738e8ab946c3ed1df41231d8dd732de1900eb4fdf9475dee79f434d65df9d65b"},
+  "independent_qa": {"reviewer": "Seyi", "result": "PASS", "review_commit": "9a42a64", "evidence": "evidence/BIO-DOC-005/codex/REREVIEW-Seyi-round2.md", "evidence_sha256": "18dfc2caceeacca3ffc142b4c6bf49c7813e9d7c637a0bb80eaf72ff2f4f2c8a"},
+  "specialist_security_review": {"reviewer": "Zainab", "result": "PASS", "evidence": "evidence/BIO-DOC-005/codex/SECURITY-REVIEW-ZAINAB.md", "evidence_sha256": "61b1795c159edb416bd3d47643320298149d918ef701549c2c54ff1deecdee5b"},
+  "category_verdicts": {"functional": "PASS", "security": "PASS", "tenant_isolation": "PASS", "offline_recovery": "PASS", "concurrency": "PASS", "regression": "PASS"},
+  "security_performance_reviews": {"security": "Zainab PASS: tenant visibility/authorship, BTS-only global scope, maker-checker publish, published-only execution and bounded regex timeout", "performance": "Hostile tenant regex evaluation is bounded and timeout becomes explicit pattern_timeout failure"},
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "All five acceptance criteria have executable builder, independent QA, and specialist security evidence; the High regex denial-of-service finding is closed."}
+}

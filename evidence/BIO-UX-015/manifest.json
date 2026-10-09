@@ -1,0 +1,37 @@
+{
+  "story_key": "BIO-UX-015",
+  "commit_hash": "c276273a1511d52b09091bfd9437c061c8551b34",
+  "implementation_commit": "c276273a1511d52b09091bfd9437c061c8551b34",
+  "environment_profile": "local frontend Node/pnpm workspace; deterministic synthetic fixtures; governance unsandboxed Playwright",
+  "timestamp": "2026-09-23T21:25:00Z",
+  "acceptance_criteria": {
+    "BIO-UX-015-AC01": {"result": "PASS", "tests": ["bio-ux-015-product-experience-gate.spec.ts: 31/31"]},
+    "BIO-UX-015-AC02": {"result": "PENDING", "reason": "Seyi review follows builder-complete."},
+    "BIO-UX-015-AC03": {"result": "PASS", "tests": ["bio-ux-015-product-experience-gate.test.ts: 8/8"]},
+    "BIO-UX-015-AC04": {"result": "PENDING_HUMAN", "reason": "Explicit human approve-ui command is mandatory and has not been run."},
+    "BIO-UX-015-AC05": {"result": "PASS", "tests": ["no Git remote", "github_push_enabled: false"]},
+    "BIO-UX-015-AC06": {"result": "PASS", "tests": ["W01UX.9 active", "accept engine human-approval guard"]}
+  },
+  "commands_results": [
+    {"command": "tests/frontend vitest run", "result": "PASS: 52 files, 392 tests"},
+    {"command": "web tsc --noEmit", "result": "PASS"},
+    {"command": "web next build", "result": "PASS: 34 page entries"},
+    {"command": "BIO-UX-015 product gate", "result": "PASS: 31/31 unsandboxed"}
+  ],
+  "builder_verdict": "PASS_READY_FOR_REVIEW",
+  "independent_qa_verdict": "PENDING",
+  "human_approval_verdict": "PENDING",
+  "security_verdict": "PASS",
+  "tenant_isolation_verdict": "PASS_VIA_ACCEPTED_FOCUSED_SUITES",
+  "offline_verdict": "PASS_VIA_ACCEPTED_FOCUSED_SUITES",
+  "concurrency_verdict": "NOT_APPLICABLE",
+  "regression_verdict": "PASS",
+  "evidence_references": [
+    "builder/SUMMARY.md",
+    "builder/metadata.json",
+    "builder/bio-ux-015-verification.txt",
+    "../../BIO-UX-014/acceptance/REVIEW-Chioma-round2.md"
+  ],
+  "final_acceptance_decision": "PENDING",
+  "reason": "Builder-owned AC01/03/05/06 pass; Seyi AC02 and explicit human AC04 remain required."
+}

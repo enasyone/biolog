@@ -1,0 +1,5 @@
+get_read_protected=True
+list_read_protected=True
+get_exposes_full_policy=True
+list_exposes_full_policies=True
+PASS

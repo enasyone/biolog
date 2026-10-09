@@ -1,0 +1,73 @@
+{
+  "story_key": "BIO-FND-005",
+  "story_title": "Configure Munder office operating rules",
+  "commit_hash": "a555621b92187295055f0f633b86d9bc393da664",
+  "environment_profile": {
+    "operating_system": "macOS 26.4 (build 25E246)",
+    "kernel": "Darwin 25.4.0 arm64",
+    "python": "3.14.3",
+    "git": "2.53.0",
+    "profile": "local synthetic acceptance; no production data"
+  },
+  "timestamp": "2026-09-20T15:16:27Z",
+  "acceptance_criteria": {
+    "BIO-FND-005-AC01": {
+      "result": "PASS",
+      "evidence": ["builder/SUMMARY.md", "builder/test-output.txt", "codex/REREVIEW-ROUND-3.md"]
+    },
+    "BIO-FND-005-AC02": {
+      "result": "PASS",
+      "evidence": ["builder/SUMMARY.md", "builder/test-output.txt", "codex/REREVIEW-ROUND-3.md"]
+    },
+    "BIO-FND-005-AC03": {
+      "result": "PASS",
+      "evidence": ["builder/SUMMARY.md", "builder/test-output.txt", "codex/REREVIEW-ROUND-3.md"]
+    },
+    "BIO-FND-005-AC04": {
+      "result": "PASS",
+      "evidence": ["builder/SUMMARY.md", "builder/test-output.txt", "codex/REREVIEW-ROUND-3.md"]
+    },
+    "BIO-FND-005-AC05": {
+      "result": "PASS",
+      "evidence": ["builder/SUMMARY.md", "builder/test-output.txt", "codex/REREVIEW-ROUND-3.md"]
+    }
+  },
+  "commands": [
+    {
+      "command": "tests/foundation/BIO-FND-005.test.sh",
+      "result": "PASS (12/12)",
+      "evidence": "builder/test-output.txt",
+      "sha256": "703068008fc06d64283f3dac4b31a33fe35f5d70e71e0d6b7203a750bfa3a40b"
+    },
+    {
+      "command": "bash evidence/BIO-FND-005/codex/independent-review.sh",
+      "result": "PASS (14/14 independent probes; exit 0)",
+      "evidence": "codex/independent-review.sh",
+      "sha256": "fa643dba4f5da0d2119fe97bc89283aa0229f0a41fa5eacc2bd6efde05661870"
+    }
+  ],
+  "builder_verdict": {
+    "reviewer": "Chinedu",
+    "result": "PASS",
+    "commit": "a555621b92187295055f0f633b86d9bc393da664"
+  },
+  "independent_qa_verdicts": [
+    {
+      "reviewer": "Seyi",
+      "round": 3,
+      "result": "PASS",
+      "reviewed_commit": "a555621b92187295055f0f633b86d9bc393da664",
+      "evidence": "codex/REREVIEW-ROUND-3.md",
+      "sha256": "8c2b6cfd5e206dce6dc3defa213758431c67ffd36eb588f986f703c7ccf2ca20"
+    }
+  ],
+  "security_verdict": "PASS",
+  "performance_verdict": "NOT_APPLICABLE",
+  "concurrency_verdict": "PASS",
+  "screenshots": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "AC01-AC05 have builder and independent evidence; all six prior QA findings are closed and Seyi round-3 passed."
+  }
+}

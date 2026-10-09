@@ -1,0 +1,80 @@
+{
+  "story_key": "BIO-FND-006",
+  "story_title": "Create baseline local test harness",
+  "implementation_commit": "1bd777655c0e02646a75e2127fd22310118a7618",
+  "builder_head": "595438bfed24903d2109c32691595391fa98f13f",
+  "environment_profile": {
+    "operating_system": "macOS 26.4 (build 25E246)",
+    "kernel": "Darwin 25.4.0 arm64",
+    "python": "3.14.3",
+    "git": "2.53.0",
+    "profile": "local offline baseline; synthetic fixtures only"
+  },
+  "timestamp": "2026-09-20T15:27:49Z",
+  "acceptance_criteria": {
+    "BIO-FND-006-AC01": {
+      "result": "PASS",
+      "evidence": ["builder/SUMMARY.md", "builder/quality-output.txt", "codex/SECURITY-REVIEW-ZAINAB.md"]
+    },
+    "BIO-FND-006-AC02": {
+      "result": "PASS",
+      "evidence": ["builder/SUMMARY.md", "builder/quality-output.txt", "codex/SECURITY-REVIEW-ZAINAB.md"]
+    },
+    "BIO-FND-006-AC03": {
+      "result": "PASS",
+      "evidence": ["builder/SUMMARY.md", "builder/quality-output.txt", "codex/SECURITY-REVIEW-ZAINAB.md"]
+    },
+    "BIO-FND-006-AC04": {
+      "result": "PASS",
+      "evidence": ["builder/SUMMARY.md", "builder/quality-output.txt", "codex/SECURITY-REVIEW-ZAINAB.md"]
+    },
+    "BIO-FND-006-AC05": {
+      "result": "PASS",
+      "evidence": ["builder/SUMMARY.md", "builder/quality-output.txt", "codex/SECURITY-REVIEW-ZAINAB.md"]
+    }
+  },
+  "commands": [
+    {
+      "command": "scripts/quality.sh",
+      "result": "PASS (offline baseline; exit 0)",
+      "evidence": "builder/quality-output.txt",
+      "sha256": "31e8484328b0808a08631e370ded5eb517e4772d0cecf706f432f947303a6487"
+    },
+    {
+      "command": "tests/foundation/BIO-FND-006.test.sh",
+      "result": "PASS (10/10; exit 0)",
+      "evidence": "builder/quality-output.txt"
+    },
+    {
+      "command": "scripts/secret-scan.sh --all",
+      "result": "PASS (built-in fallback scanner; exit 0)",
+      "evidence": "builder/quality-output.txt"
+    }
+  ],
+  "builder_verdict": {
+    "reviewer": "Seyi",
+    "result": "PASS",
+    "implementation_commit": "1bd777655c0e02646a75e2127fd22310118a7618",
+    "evidence_commit": "595438bfed24903d2109c32691595391fa98f13f",
+    "metadata": "builder/metadata.json",
+    "metadata_sha256": "1687a612185f633a3b49f8541dfa23ded93b11e0102e5f64fec2276239e91fd3"
+  },
+  "independent_qa_verdicts": [
+    {
+      "reviewer": "Zainab",
+      "result": "PASS",
+      "reviewed_implementation_commit": "1bd777655c0e02646a75e2127fd22310118a7618",
+      "reviewed_builder_head": "595438bfed24903d2109c32691595391fa98f13f",
+      "evidence": "codex/SECURITY-REVIEW-ZAINAB.md",
+      "sha256": "f896f1542747b39fb6a31c57a9e3c9043bde4f251b356f3878a16acdbcea2404"
+    }
+  ],
+  "security_verdict": "PASS",
+  "performance_verdict": "NOT_APPLICABLE",
+  "screenshots": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "AC01-AC05 have reproducible builder evidence, the offline quality suite passes, and Zainab's independent security review passed with no Critical or High findings."
+  }
+}

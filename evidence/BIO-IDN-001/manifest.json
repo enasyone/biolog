@@ -1,0 +1,30 @@
+{
+  "story_key": "BIO-IDN-001",
+  "title": "Implement universal PERSON aggregate",
+  "implementation_commit": "f1b143d6243bfe0f082794dbf0e9c5074f8a9cc6",
+  "builder_head": "1c23753b840dbbaf8d0d1c9efbd4520c481fee2a",
+  "reviewed_head": "45f9d885b28c891d0a537d909b5ea26226f1af9f",
+  "environment": {"profile": "local acceptance; synthetic fixtures only", "timestamp": "2026-09-22T10:00:33Z"},
+  "acceptance_criteria": {
+    "BIO-IDN-001-AC01": {"result": "PASS", "tests": ["PersonRegistry.Tests", "BIO-IDN-001.test.sh"]},
+    "BIO-IDN-001-AC02": {"result": "PASS", "tests": ["PersonRepositoryGovernanceTests", "shipped-host tests"]},
+    "BIO-IDN-001-AC03": {"result": "PASS", "tests": ["shared lifecycle transition tests", "PersonRegistry.Tests"]},
+    "BIO-IDN-001-AC04": {"result": "PASS", "tests": ["archive transition tests", "no-delete structural tests"]},
+    "BIO-IDN-001-AC05": {"result": "PASS_CURRENT_SINGLE_PROCESS_TIER", "tests": ["audit failure/concurrency/cancellation tests", "PersonRegistry.Tests"]}
+  },
+  "commands": [
+    {"command": "bash tests/features/bio-idn-001/BIO-IDN-001.test.sh", "result": "PASS (47/47)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (19 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS (built-in fallback scan; gitleaks unavailable)"},
+    {"command": "dotnet tests/features/bio-idn-001/bin/Debug/net10.0/Biolog.Features.PersonRegistry.Tests.dll", "result": "PASS (70/70)"},
+    {"command": "dotnet tests/dotnet/Biolog.UnitTests/bin/Debug/net10.0/Biolog.UnitTests.dll", "result": "PASS (154/154)"},
+    {"command": "RepositoryBypassProbe", "result": "PASS in independent review: compiler rejects inaccessible repository and invalid public construction; fresh restore was unavailable in acceptor replay"}
+  ],
+  "builder_verdict": {"result": "PASS", "commit_hash": "f1b143d6243bfe0f082794dbf0e9c5074f8a9cc6", "feature_tests": "70/70 PASS", "unit_tests": "154/154 PASS", "integration_tests": "54/54 PASS", "foundation_tests": "47/47 PASS", "full_quality": "PASS", "metadata_sha256": "5582a5cebdaa43d9d03e324403158422a211b839de72752afb43291d339ddfa9"},
+  "independent_qa": {"reviewer": "Seyi", "result": "PASS", "review_commit": "45f9d88", "evidence": "evidence/BIO-IDN-001/codex/REREVIEW-ROUND2.md", "evidence_sha256": "e810c6612de5cc61c56bd74c5631741d337121daf2abe1983e3b066479c4b9fc"},
+  "category_verdicts": {"functional": "PASS", "security": "PASS", "tenant_isolation": "PASS", "offline_recovery": "NOT_APPLICABLE", "concurrency": "PASS_CURRENT_SINGLE_PROCESS_TIER", "regression": "PASS"},
+  "security_performance_reviews": {"security": "PASS: repository governance bypass closed at visibility, aggregate, and persistence boundaries", "performance": "Not required for this in-memory aggregate foundation"},
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "All five acceptance criteria have builder and independent evidence; the direct repository tenant/lifecycle/audit bypass is closed and no unresolved High finding remains."}
+}

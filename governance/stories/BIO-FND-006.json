@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-FND-006",
+  "title": "Create baseline local test harness",
+  "owner": "Seyi - Adversarial QA Engineer",
+  "requirement_ids": [
+    "BIO-FND-006-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-FND-006-AC01",
+      "requirement_ids": [
+        "BIO-FND-006-REQ-001"
+      ],
+      "text": ".NET unit/integration test project exists."
+    },
+    {
+      "id": "BIO-FND-006-AC02",
+      "requirement_ids": [
+        "BIO-FND-006-REQ-001"
+      ],
+      "text": "Frontend unit test and Playwright projects exist."
+    },
+    {
+      "id": "BIO-FND-006-AC03",
+      "requirement_ids": [
+        "BIO-FND-006-REQ-001"
+      ],
+      "text": "Flutter test scaffold exists."
+    },
+    {
+      "id": "BIO-FND-006-AC04",
+      "requirement_ids": [
+        "BIO-FND-006-REQ-001"
+      ],
+      "text": "Local security and dependency scan commands are documented."
+    },
+    {
+      "id": "BIO-FND-006-AC05",
+      "requirement_ids": [
+        "BIO-FND-006-REQ-001"
+      ],
+      "text": "A single local quality command can run the baseline suite."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-FND-006.test.sh",
+      "ac_ids": [
+        "BIO-FND-006-AC01",
+        "BIO-FND-006-AC02",
+        "BIO-FND-006-AC03",
+        "BIO-FND-006-AC04",
+        "BIO-FND-006-AC05"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-FND-006/manifest.json",
+      "ac_ids": [
+        "BIO-FND-006-AC01",
+        "BIO-FND-006-AC02",
+        "BIO-FND-006-AC03",
+        "BIO-FND-006-AC04",
+        "BIO-FND-006-AC05"
+      ]
+    }
+  ]
+}

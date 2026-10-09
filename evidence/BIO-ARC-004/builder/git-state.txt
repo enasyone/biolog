@@ -1,0 +1,33 @@
+# git state — BIO-ARC-004 builder (acceptance fix: ACC-01)
+
+## branch
+feature/BIO-ARC-004
+
+## commits on this branch
+33bf7ea BIO-ARC-004: state the ADR-0003 event-idempotency relationship (ACC-01)
+5c29b1c BIO-ARC-004: record acceptance audit failure
+6dbea2a BIO-ARC-004: record round-3 builder evidence
+3a06cf2 BIO-ARC-004: close remaining QA-03 gaps and the tenant-scope alias (QA-04)
+2cc2ae0 BIO-ARC-004: record round-2 builder evidence
+14a5346 BIO-ARC-004: close idempotency atomicity, key collision and schema gaps (QA-01..03)
+42c3951 BIO-ARC-004: record builder evidence
+66fae3e BIO-ARC-004: define API versioning, error, idempotency and pagination conventions
+
+## base
+develop @ b36f186
+
+## remotes (must be empty)
+(none — no remote configured, nothing pushed)
+
+## working tree
+ M evidence/BIO-ARC-004/builder/git-state.txt
+
+## files changed by this commit (33bf7ea)
+ contracts/js/api.test.mjs                          |    40 +
+ ...versioning-error-and-idempotency-conventions.md |    62 +
+ evidence/BIO-ARC-004/builder/SUMMARY.md            |    49 +
+ .../BIO-ARC-004/builder/contract-suite-output.txt  |   983 +-
+ .../BIO-ARC-004/builder/developer-test-output.txt  |  7865 +++++-----
+ evidence/BIO-ARC-004/builder/quality-output.txt    | 14738 ++++++++++---------
+ tests/foundation/BIO-ARC-004.test.sh               |     5 +
+ 7 files changed, 12250 insertions(+), 11492 deletions(-)

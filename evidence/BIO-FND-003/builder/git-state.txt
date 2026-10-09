@@ -1,0 +1,12 @@
+branch:
+feature/BIO-FND-003
+
+remotes (expect none):
+
+log:
+f6ae3fa BIO-FND-003: distinguish volume-absent from inspect error (QA-03)
+c6cf432 BIO-FND-003: update builder evidence for QA-01/QA-02 fixes
+fba5227 BIO-FND-003: fix readiness/reset error handling (QA-01, QA-02)
+9bcced8 BIO-FND-003: record builder evidence
+935524a BIO-FND-003: create local Docker development infrastructure
+2224d4d BIO-FND-001: update builder evidence for BIO-FND-001-QA-01 fix

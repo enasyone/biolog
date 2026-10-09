@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.biolog.local/utc-instant.schema.json",
+  "title": "BIOLOG UTC instant",
+  "description": "ADR-0001 Decision 2. RFC 3339 UTC with literal Z and exactly three fractional digits. No offsets, no naive values. Every field named *_at uses this. Calendar-validated: The day must exist in that month of that year: 2026-02-30 and 2026-02-29 are rejected, 2028-02-29 and 2000-02-29 are accepted, 1900-02-29 is not. Proleptic Gregorian leap rule. Mirrors contracts/js/clock.mjs exactly. Year range 1000-9999 inclusive: the intersection of the MySQL DATE/DATETIME supported range and .NET DateTime, so every surface can store and round-trip it. Year 0000 is out of range in both the schema and contracts/js/clock.mjs.",
+  "type": "string",
+  "pattern": "^(?:[1-9]\\d{3}-(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|[1-9]\\d{3}-(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|[1-9]\\d{3}-02-(?:0[1-9]|1\\d|2[0-8])|(?:[1-9]\\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d\\.\\d{3}Z$",
+  "minLength": 24,
+  "maxLength": 24,
+  "examples": [
+    "2026-09-20T21:05:00.000Z"
+  ]
+}

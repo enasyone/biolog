@@ -1,0 +1,28 @@
+{
+  "story_key": "BIO-PHO-002",
+  "title": "Implement Photo Booth integration contract",
+  "implementation_commit": "e3a957503be9605756e2606a9b0f3227df6c9791",
+  "builder_head": "43ab401",
+  "reviewed_head": "00882bd92fc60387467fe193151f0b14871f2159",
+  "environment": {"profile": "local acceptance; synthetic fixtures only", "timestamp": "2026-09-22T20:37:28Z"},
+  "acceptance_criteria": {
+    "BIO-PHO-002-AC01": {"result": "PASS", "evidence": ["capture specification endpoint and quality-rule tests"]},
+    "BIO-PHO-002-AC02": {"result": "PASS", "evidence": ["device secret/status authentication and real-host forgery tests"]},
+    "BIO-PHO-002-AC03": {"result": "PASS", "evidence": ["idempotent replay and content-mismatch tests"]},
+    "BIO-PHO-002-AC04": {"result": "PASS", "evidence": ["quality rejection, terminal-state, and real master-promotion tests"]}
+  },
+  "commands": [
+    {"command": "bash tests/features/bio-pho-002/BIO-PHO-002.test.sh", "result": "PASS (35/35)"},
+    {"command": "dotnet Biolog.Features.PhotoBooth.Tests.dll", "result": "PASS (61/61)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (21 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS"}
+  ],
+  "builder_verdict": {"result": "PASS_FOR_STORY_SCOPE", "commit_hash": "e3a957503be9605756e2606a9b0f3227df6c9791", "feature_tests": "61/61 PASS", "unit_tests": "200/200 PASS", "integration_tests": "104/104 PASS", "structural_tests": "35/35 PASS", "base_quality": "PASS", "vulnerability_audit": "PASS", "metadata_sha256": "778253ba8e0a620e435ecc2ace3db119005c4a9645a4be1239a7ee99c92b3d02"},
+  "independent_qa": {"reviewer": "Seyi", "result": "PASS", "review_commit": "00882bd", "evidence": "evidence/BIO-PHO-002/codex/REVIEW-Seyi-round1.md", "evidence_sha256": "171e19ac28e874cd071cc91693dd5b5647a267e47796ffa6bce3d3b2d9a71c89"},
+  "category_verdicts": {"functional": "PASS", "security": "PASS", "tenant_isolation": "PASS", "offline_recovery": "PASS", "concurrency": "PASS", "regression": "PASS"},
+  "security_performance_reviews": {"security": "PASS: per-device secret and active status are required; secrets are provisioned out of band; cross-tenant forgery fails", "performance": "Not separately required"},
+  "known_unrelated_quality_failure": "Full quality reports missing frontend Vitest/Playwright dependencies; all .NET and BIO-PHO-002 gates pass",
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "All four acceptance criteria have executable builder and independent evidence; authentication, replay idempotency, quality rejection, and real master promotion pass."}
+}

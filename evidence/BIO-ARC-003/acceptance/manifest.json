@@ -1,0 +1,143 @@
+{
+  "story_key": "BIO-ARC-003",
+  "story_title": "Define audit, evidence and domain-event envelopes",
+  "implementation_fix_commit": "64d986f3f38618d1b1c4aa2fe5b32ba597515e63",
+  "reviewed_head": "9abd05b5d39a7d63436c55ae255e068f8948c669",
+  "environment_profile": {
+    "operating_system": "macOS 26.4 (build 25E246)",
+    "kernel": "Darwin 25.4.0 arm64",
+    "node": "20.20.2",
+    "python": "3.14.3",
+    "git": "2.53.0",
+    "profile": "local offline acceptance; synthetic fixtures only"
+  },
+  "timestamp": "2026-09-21T02:07:58Z",
+  "acceptance_criteria": {
+    "BIO-ARC-003-AC01": {
+      "result": "PASS",
+      "requirement": "Audit envelope includes tenant, actor, device/workstation, action, target, reason, correlation and time.",
+      "tests": ["tests/foundation/BIO-ARC-003.test.sh", "contracts/js/audit.test.mjs", "evidence/BIO-ARC-003/codex/independent-review.sh"],
+      "evidence": ["builder/SUMMARY.md", "builder/developer-test-output.txt", "builder/contract-suite-output.txt", "codex/REREVIEW-ROUND-4.md"]
+    },
+    "BIO-ARC-003-AC02": {
+      "result": "PASS",
+      "requirement": "Domain event envelope includes id, aggregate version, aggregate, tenant, correlation/causation, occurred-at and schema version.",
+      "tests": ["tests/foundation/BIO-ARC-003.test.sh", "contracts/js/audit.test.mjs", "evidence/BIO-ARC-003/codex/independent-review.sh"],
+      "evidence": ["builder/SUMMARY.md", "builder/developer-test-output.txt", "builder/contract-suite-output.txt", "codex/REREVIEW-ROUND-4.md"],
+      "decision": "Per ADR-0001 and ADR-0003, version means aggregate_version; a bare mutable event version remains forbidden."
+    },
+    "BIO-ARC-003-AC03": {
+      "result": "PASS",
+      "requirement": "Sensitive fields are classified and redaction rules are defined.",
+      "tests": ["tests/foundation/BIO-ARC-003.test.sh", "contracts/js/audit.test.mjs", "evidence/BIO-ARC-003/codex/independent-review.sh"],
+      "evidence": ["builder/SUMMARY.md", "builder/developer-test-output.txt", "builder/contract-suite-output.txt", "codex/REVIEW.md", "codex/REREVIEW-ROUND-3.md", "codex/REREVIEW-ROUND-4.md"],
+      "closure": "QA-01 recursive fail-closed projection, QA-02 deep immutability, and QA-04 unambiguous escaped paths plus forced withholding of colliding flat/nested values are verified."
+    },
+    "BIO-ARC-003-AC04": {
+      "result": "PASS",
+      "requirement": "Events are idempotency-capable.",
+      "tests": ["tests/foundation/BIO-ARC-003.test.sh", "contracts/js/audit.test.mjs", "evidence/BIO-ARC-003/codex/independent-review.sh"],
+      "evidence": ["builder/SUMMARY.md", "builder/developer-test-output.txt", "builder/contract-suite-output.txt", "codex/REREVIEW-ROUND-4.md"],
+      "decision": "The content fingerprint excludes received_at; identical redelivery is a duplicate and reused event_id with changed content is a conflict."
+    }
+  },
+  "commands": [
+    {
+      "command": "tests/foundation/BIO-ARC-003.test.sh",
+      "result": "PASS (34/34; exit 0)",
+      "evidence": "builder/developer-test-output.txt",
+      "sha256": "dd5275758cbb4e12fb23236716403de819cc54d39d70ced4e1d90f3aa81d5ee9"
+    },
+    {
+      "command": "node --test contracts/js/",
+      "result": "PASS (185/185; exit 0)",
+      "evidence": "builder/contract-suite-output.txt",
+      "sha256": "43a33d4b930e3f144c70ffbac83693c13effcf5653030816a91949eefd235527"
+    },
+    {
+      "command": "tests/foundation/BIO-ARC-001.test.sh",
+      "result": "PASS (24/24; exit 0)",
+      "evidence": "builder/developer-test-output.txt"
+    },
+    {
+      "command": "tests/foundation/BIO-ARC-002.test.sh",
+      "result": "PASS (30/30; exit 0)",
+      "evidence": "builder/developer-test-output.txt"
+    },
+    {
+      "command": "bash evidence/BIO-ARC-003/codex/independent-review.sh",
+      "result": "PASS (10/10 independent probes; exit 0)",
+      "evidence": "codex/independent-review.sh",
+      "sha256": "f2bb9a4a84ad64277073637d2d27139c27644bc054eabcc0492f5f2c2f8d91f3"
+    },
+    {
+      "command": "scripts/quality.sh",
+      "result": "PASS (QUALITY: PASS; exit 0)",
+      "evidence": "builder/quality-output.txt",
+      "sha256": "8d10561212c6f876328450842624cb9e38f3f241013401b8dc51c3366758878b"
+    },
+    {
+      "command": "scripts/secret-scan.sh --all",
+      "result": "PASS (clean; exit 0)",
+      "evidence": "builder/secret-scan-output.txt",
+      "sha256": "98b48f0b2f0d789cde914c04c249880176c350aa22d00361913b175b0d74346d"
+    }
+  ],
+  "builder_verdict": {
+    "reviewer": "Kemi",
+    "result": "PASS",
+    "implementation_fix_commit": "64d986f3f38618d1b1c4aa2fe5b32ba597515e63",
+    "evidence_head": "9abd05b5d39a7d63436c55ae255e068f8948c669",
+    "evidence": "builder/SUMMARY.md"
+  },
+  "independent_qa_verdict_history": [
+    {
+      "reviewer": "Seyi",
+      "round": 1,
+      "result": "FAIL",
+      "reviewed_implementation_commit": "8622cd8edde9baf6d7401818d0e0dd3bcb249402",
+      "reviewed_head": "1a4d617f2cd51ecc1a07386215ca6d123cf276ef",
+      "findings": ["BIO-ARC-003-QA-01 (High)", "BIO-ARC-003-QA-02 (High)", "BIO-ARC-003-QA-03 (High)"],
+      "evidence": "codex/REVIEW.md",
+      "sha256": "93be717d8923886c458c8c049f5c4c619c6a79c767d4e56438fe74d15fc479a9"
+    },
+    {
+      "reviewer": "god",
+      "round": 2,
+      "result": "CHANGES_REQUIRED",
+      "change": "Require audit-envelope causation_id as explicitly nullable, aligned with the domain-event envelope.",
+      "fix_commit": "3da43a3b01caba3e8a5eb5a633d97593b4a4efe6",
+      "evidence": "builder/SUMMARY.md"
+    },
+    {
+      "reviewer": "Seyi",
+      "round": 3,
+      "result": "FAIL",
+      "reviewed_head": "581cdac2b0308c3f02155a5a7bb45273ead8daba",
+      "findings": ["BIO-ARC-003-QA-04 (High)"],
+      "evidence": "codex/REREVIEW-ROUND-3.md",
+      "sha256": "45b1db5f5dfd64bb7fc0784021e56939c0149fbd9d91291cbf2f70f6f3ab0975"
+    },
+    {
+      "reviewer": "Seyi",
+      "round": 4,
+      "result": "PASS",
+      "reviewed_fix_commit": "64d986f3f38618d1b1c4aa2fe5b32ba597515e63",
+      "reviewed_head": "9abd05b5d39a7d63436c55ae255e068f8948c669",
+      "evidence": "codex/REREVIEW-ROUND-4.md",
+      "sha256": "8a2c5292079396e9d95856b0bd3b0d8889d664251df34f6f1e44ecca4fe43a83"
+    }
+  ],
+  "security_verdict": "PASS",
+  "tenant_isolation_verdict": "PASS",
+  "offline_recovery_verdict": "PASS",
+  "concurrency_verdict": "PASS",
+  "regression_verdict": "PASS",
+  "performance_verdict": "NOT_APPLICABLE",
+  "screenshots": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "AC01-AC04 have objective builder and independent evidence at the reviewed head. QA-01 through QA-04 are closed, the causation_id alignment is enforced in both schemas, audit events are deeply immutable, redaction fails closed under nested and ambiguous paths, and idempotency detects content conflicts while ignoring received_at."
+  }
+}

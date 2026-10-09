@@ -1,0 +1,193 @@
+# git state — BIO-ARC-005 builder
+
+## branch
+feature/BIO-ARC-005
+
+## implementation commits
+fd63e82 BIO-ARC-005: define migration ownership and sequencing policy
+69911a6 fix(BIO-ARC-005): close QA-01/QA-02/QA-03 from Seyi's review
+bc5810c fix(BIO-ARC-005): close Round 2 QA-01/QA-02/QA-03 re-review findings
+0b80d69 fix(BIO-ARC-005): close round-3 re-review QA-01/QA-02, architecturally
+082ce3d fix(BIO-ARC-005): retire caller-choosable registryId; record QA-02 as a scope-bounded limitation
+
+## review cycle
+bab5185 BIO-ARC-005: record independent review failure (Seyi, Round 1, CHANGES_REQUIRED)
+d4dcda0 BIO-ARC-005: record builder evidence (Round 1)
+4250740 BIO-ARC-005: record Round 2 evidence (QA-01/QA-02/QA-03 closure)
+86653d9 BIO-ARC-005: record round-2 review failure (Seyi, Round 2, CHANGES_REQUIRED)
+89d97e1 BIO-ARC-005: record Round 3 evidence (Round 2 re-review closure)
+27cb617 BIO-ARC-005: record round-3 review failure (Seyi, Round 3, CHANGES_REQUIRED)
+8b224df BIO-ARC-005: record Round 4 evidence (round-3 re-review closure)
+87558d3 BIO-ARC-005: record round-4 review failure (Seyi, Round 4, CHANGES_REQUIRED)
+
+## base
+develop @ 6091355
+
+## remotes (must be empty)
+(none — no remote configured, nothing pushed)
+
+## working tree
+?? evidence/BIO-ARC-005/builder/git-state.txt (this file, being updated)
+
+## files in fd63e82 (Round 1)
+ contracts/README.md                                |    11 +-
+ contracts/js/index.mjs                             |     1 +
+ contracts/js/migrations.mjs                        |   276 +
+ contracts/js/migrations.test.mjs                   |   381 +
+ contracts/schemas/migration-proposal.schema.json   |   153 +
+ contracts/schemas/migration-record.schema.json     |    31 +
+ contracts/schemas/migration-registry.schema.json   |    14 +
+ .../ADR-0005-migration-ownership-and-sequencing.md |   238 +
+ docs/adr/README.md                                 |     1 +
+ evidence/BIO-ARC-005/builder/SUMMARY.md            |   127 +
+ .../BIO-ARC-005/builder/contract-suite-output.txt  |  1506 +
+ .../BIO-ARC-005/builder/developer-test-output.txt  | 24544 ++++++++++
+ .../BIO-ARC-005/builder/secret-scan-output.txt     |     3 +
+ scripts/quality.sh                                 |     1 +
+ tests/foundation/BIO-ARC-005.test.sh               |   148 +
+ 16 files changed, 75021 insertions(+), 1 deletion(-)
+
+## files in 69911a6 (Round 2 — QA-01/QA-02/QA-03 closure)
+ contracts/js/migrations.mjs                                | 111 ++++-
+ contracts/js/migrations.test.mjs                            | 106 +++++
+ contracts/schemas/migration-proposal.schema.json             |  17 +
+ contracts/schemas/migration-record.schema.json               |   2 +-
+ .../ADR-0005-migration-ownership-and-sequencing.md            |  79 +++-
+ evidence/BIO-ARC-005/builder/SUMMARY.md                       |  62 +++
+ evidence/BIO-ARC-005/builder/adapted-review-round2.mjs (new)  |  63 +++
+ tests/foundation/BIO-ARC-005.test.sh                          |  53 ++-
+ 7 files changed, 423 insertions(+), 27 deletions(-)
+
+## remote reproduction, Seyi's script, unmodified, post-fix (Round 2)
+$ node evidence/BIO-ARC-005/codex/independent-review.mjs
+PASS AC04 refuses assignment when attached fresh and upgrade proof hashes disagree
+PASS AC04 verifier fails closed rather than returning an assignable mismatch
+(AC02/AC03 in that script hit proof_mismatch on their own shared fixture's fabricated,
+unequal proofs before reaching their own logic — see SUMMARY.md Round 2 "fixture
+interaction" for why, and adapted-review-round2.mjs for the isolated confirmation.)
+
+## files in bc5810c (Round 3 — Round 2 re-review QA-01/QA-02/QA-03 closure)
+ contracts/README.md                                            |   9 +-
+ contracts/js/migrations.mjs                                    | 137 +++++--
+ contracts/js/migrations.test.mjs                                | 265 +++++++----
+ contracts/schemas/migration-proposal.schema.json                 |   6 +
+ .../ADR-0005-migration-ownership-and-sequencing.md                | 116 ++++-
+ evidence/BIO-ARC-005/builder/SUMMARY.md                            | ~110 +
+ evidence/BIO-ARC-005/builder/adapted-review-round2.mjs (superseded) |   9 +
+ evidence/BIO-ARC-005/builder/adapted-review-round3.mjs (new)        |  85 +++
+ tests/foundation/BIO-ARC-005.test.sh                                | ~130 +++---
+ 8 files changed, 758 insertions(+), 262 deletions(-)
+
+## remote reproduction, Seyi's script, unmodified, post-fix (Round 3)
+$ node evidence/BIO-ARC-005/codex/independent-review.mjs
+FAIL AC02 rejects two assignments made from cloned handles of the same registry snapshot: registry must be a handle from createMigrationRegistry() …
+FAIL AC04 refuses assignment when equal proof strings lack verifier provenance: assignment accepted two caller-fabricated equal strings as proof
+PASS AC04 verifier fails closed rather than returning an assignable mismatch
+FAIL AC03 breaking dependency must match the declared deprecation target: registry must be a handle from createMigrationRegistry() …
+(All four probes pass a raw { records: [] } snapshot directly; the QA-01 fix refuses any
+non-branded handle outright, which the FAIL-labelled probes above hit before reaching their
+own logic. See SUMMARY.md Round 3 "fixture interaction, disclosed", and
+adapted-review-round3.mjs below for the isolated, full confirmation.)
+
+$ node evidence/BIO-ARC-005/builder/adapted-review-round3.mjs
+PASS QA-01 (adapted) a reconstructed/deserialized snapshot cannot stand in for a real registry handle
+PASS QA-01 (adapted) reusing the SAME real handle serializes correctly across two assignments
+PASS QA-02 (adapted) refuses assignment when equal proof strings lack verifier provenance
+PASS QA-02 (adapted) accepts the real output of verifyFreshCreateMatchesUpgrade
+PASS QA-02 (adapted) verifier fails closed rather than returning an assignable mismatch
+PASS QA-03 (adapted) breaking dependency must match the declared deprecation target
+PASS QA-03 (adapted) breaking dependency assigns cleanly once target genuinely matches
+
+## final verification (Round 3)
+tests/foundation/BIO-ARC-005.test.sh   30/30 checks passed   (exit 0)
+node --test contracts/js/              315 pass, 0 fail      (exit 0)
+scripts/quality.sh                     QUALITY: PASS, 0 failures across every harness
+tracked secret scan (via quality.sh)   PASS, clean
+
+## files in 0b80d69 (Round 4 — round-3 re-review QA-01/QA-02 closure)
+ contracts/README.md                                                 |  11 +-
+ contracts/js/migrations.mjs                                         | 216 ++++++---
+ contracts/js/migrations.test.mjs                                     | 293 ++++++++-----
+ .../ADR-0005-migration-ownership-and-sequencing.md                    | 129 +++++-
+ evidence/BIO-ARC-005/builder/SUMMARY.md                                | ~130 +
+ evidence/BIO-ARC-005/builder/adapted-review-round3.mjs (superseded)    |   9 +
+ evidence/BIO-ARC-005/builder/adapted-review-round4.mjs (new)           | 105 +++++
+ tests/foundation/BIO-ARC-005.test.sh                                    | ~190 +++----
+ 7 files changed, 633 insertions(+), 343 deletions(-)
+
+## remote reproduction, Seyi's script, unmodified, post-fix (Round 4)
+$ node evidence/BIO-ARC-005/codex/independent-review.mjs
+FAIL AC02 rejects two authoritative handles minted from the same persisted registry state: registryId is required …
+FAIL AC04 refuses verifier-shaped proof values that lack verifier provenance: assignment accepted a caller-fabricated copy of the verifier output shape
+FAIL AC04 verifier fails closed rather than returning an assignable mismatch: registryId is required …
+FAIL AC03 breaking dependency must match the declared deprecation target: registryId is required …
+(All four probes call createMigrationRegistry with an array or no argument, where a
+registryId string is now required, and never supply applyUp/hashState/priorState. See
+SUMMARY.md Round 4 "fixture interaction, disclosed", and adapted-review-round4.mjs below
+for the isolated, full confirmation.)
+
+$ node evidence/BIO-ARC-005/builder/adapted-review-round4.mjs
+PASS QA-01 (adapted) rejects two authoritative handles minted for the SAME registryId
+PASS QA-02 (adapted) refuses a caller-forged, verifier-shaped proof that was never actually computed
+PASS QA-02 (adapted) verifier fails closed rather than returning an assignable mismatch
+PASS QA-03 (adapted) breaking dependency must match the declared deprecation target
+PASS QA-02 (adapted) a genuinely matching, real verifier-computed proof assigns cleanly
+
+## god's independent review (2026-09-21T15-35 and 15-45 inbox messages)
+Confirmed the same diagnosis via direct code review; proposed concrete fix shapes. QA-01
+suggestion matched this round's implementation exactly (required registryId, memoized
+module-level Map). QA-02 suggestion (WeakSet on verifyFreshCreateMatchesUpgrade's real
+return value, checked by reference identity) was considered and not used — it requires
+proposal.proofs to remain the same in-memory object across the verify/assign boundary,
+which cannot survive the JSON-file handoff ADR-0005 Decision 1.1 already models. Replied
+with full reasoning via hive outbox 2026-09-21T15-55-00-000Z-kemi-arc005-round4-response.
+
+## final verification (Round 4)
+tests/foundation/BIO-ARC-005.test.sh   32/32 checks passed   (exit 0)
+node --test contracts/js/              319 pass, 0 fail      (exit 0)
+scripts/quality.sh                     QUALITY: PASS, 0 failures across every harness
+tracked secret scan (via quality.sh)   PASS, clean
+
+## files in 082ce3d (Round 5 — retired caller-choosable registryId; QA-02 recorded as scope limitation)
+ contracts/README.md                                                |  14 +-
+ contracts/js/migrations.mjs                                        |  89 +++--
+ contracts/js/migrations.test.mjs                                    | 149 +++++---
+ .../ADR-0005-migration-ownership-and-sequencing.md                   |  92 ++++-
+ evidence/BIO-ARC-005/builder/SUMMARY.md                                | ~110 +
+ evidence/BIO-ARC-005/builder/adapted-review-round4.mjs (superseded)    |   9 +
+ evidence/BIO-ARC-005/builder/adapted-review-round5.mjs (new)           |  53 +++
+ tests/foundation/BIO-ARC-005.test.sh                                    | ~110 +++---
+ 7 files changed, 350 insertions(+), 143 deletions(-)
+
+## remote reproduction, Seyi's script, unmodified, post-fix (Round 5)
+$ node evidence/BIO-ARC-005/codex/independent-review.mjs
+SyntaxError: The requested module '../../../contracts/js/migrations.mjs' does not provide
+an export named 'createMigrationRegistry'
+(createMigrationRegistry is retired from the production surface — see SUMMARY.md Round 5
+"fixture interaction, disclosed", and adapted-review-round5.mjs below.)
+
+$ node evidence/BIO-ARC-005/builder/adapted-review-round5.mjs
+PASS QA-01 (adapted) the exact codex round-4 attack: two caller-named ids over one persisted history — no longer even expressible on the production path
+PASS QA-01 (adapted) the test-only factory cannot alias the real registry even when given the production name as text
+
+## god's independent review (2026-09-21T16-00 inbox message, act: request, requires_reply: true)
+Reversed prior "no scope question needed" on QA-02 after seeing round-4 FAIL; confirmed
+QA-01 still an implementation gap with a concrete fix (retire the id from the production
+path; keep it test-only under a separate export). Offered two options for QA-02, inviting a
+third — chose option (a): document the honest, narrower guarantee, do not build a migration
+execution engine in this story. Replied with full reasoning via hive outbox
+2026-09-21T16-20-00-000Z-kemi-arc005-round5-decision before proceeding.
+
+## a bug I found in my own first draft, before it reached evidence
+Initial implementation had `openMigrationRegistry()` and `createMigrationRegistryForTests`
+sharing ONE `Map` keyed by the id string — `createMigrationRegistryForTests('migration-core')`
+collided with the real production entry (SEQUENCING_CONFLICT_GROUP === 'migration-core'),
+reintroducing the QA-01 vulnerability one layer down. Caught by my own test asserting the
+two must never be equal (assert.notEqual failed). Fixed with two separate backing stores
+before this round's evidence or commit — never shipped in this form.
+
+## final verification (Round 5)
+tests/foundation/BIO-ARC-005.test.sh   34/34 checks passed   (exit 0)
+node --test contracts/js/              322 pass, 0 fail      (exit 0)
+scripts/quality.sh                     QUALITY: PASS, 0 failures across every harness
+tracked secret scan (via quality.sh)   PASS, clean

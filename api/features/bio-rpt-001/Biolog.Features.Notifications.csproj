@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-RPT-001 owns api/features/bio-rpt-001/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh).
+         Tenant resolution is not this project's own concern: every method that needs a
+         tenant id takes one as a plain string parameter (the same shape
+         Features.DeviceCertification.DeviceCertificationService already uses for its own
+         control-plane-vs-tenant-scope split) - api/Biolog.Api/Modules/BioRpt001Module.cs
+         resolves the real ITenantContextAccessor and passes the string down, so this
+         project never needs a gateway interface for it the way BIO-MOB-003's device lookup
+         or BIO-DEV-003's certification lookup did (those needed a whole OBJECT read back
+         across the boundary; this only ever needs an already-resolved string).
+
+         This project's own module adapter lives in api/Biolog.Api/Modules/BioRpt001Module.cs
+         from the start (never written here first), matching every prior story.
+
+         Namespace root is "Notifications": BIO-RPT-001 - "configurable notification rules
+         for email/SMS/push/Teams/webhook and future channels" - vendor/transport code per
+         channel is isolated behind Domain/INotificationChannelAdapter.cs and one adapter
+         class per channel (Adapters/**, see docs/features/bio-rpt-001/README.md). -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Applying BIO-IDN-001-QA-01's lesson from the start: the explicit, auditable seam for
+         Biolog.Api (DI registration) and this project's own test assembly. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.Notifications.Tests" />
+  </ItemGroup>
+
+</Project>

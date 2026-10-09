@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-INT-002 owns api/features/bio-int-002/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh) and no
+         ProjectReference to any other feature project - BIO-IDN-001's own PERSON create/read is
+         reached through this project's own narrow Domain/IPersonGateway.cs, and the mapping-write/
+         apply permission check through Domain/IPermissionGateway.cs - both implemented by adapters
+         in api/Biolog.Api/Modules/BioInt002Module.cs wrapping BIO-IDN-001's own already-registered
+         (internal, InternalsVisibleTo Biolog.Api) PersonService and BIO-IDN-006's own already-
+         registered PermissionService directly - the same gateway pattern every story in this
+         codebase already uses.
+
+         Namespace root is "Integrations". Two CAS-versioned/write-once aggregates -
+         ImportSourceMapping (Domain/ImportSourceMapping.cs, AC01's own versioning, AC02's own
+         master/downstream direction) and ImportBatch (Domain/ImportBatch.cs, AC03's dry-run/
+         conflict preview and AC05's idempotent apply) - plus a this-story-owned correlation table,
+         ExternalIdentityLink, that never touches BIO-IDN-001's own storage. AC04's "no silent
+         overwrite of conflicting identity evidence" is this story's central design decision - see
+         ImportBatchService's own header and docs/features/bio-int-002/README.md for the full
+         record of why conflict RESOLUTION is a disclosed, deliberate scope boundary, not a gap. -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Every aggregate's constructor and its repository are internal - the explicit, auditable
+         seam for Biolog.Api (DI registration) and this project's own test assembly. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.Integrations.Tests" />
+  </ItemGroup>
+
+</Project>

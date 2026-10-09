@@ -1,0 +1,30 @@
+On branch feature/BIO-MOB-003
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   evidence/BIO-MOB-003/builder/SUMMARY.md
+	modified:   evidence/BIO-MOB-003/builder/git-state.txt
+	modified:   evidence/BIO-MOB-003/builder/metadata.json
+	modified:   governance/stories/BIO-MOB-003.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+8ebe1da BIO-MOB-003: document device-secret provisioning as a disclosed scope boundary
+f977384 test(bio-mob-003): correct provisioning probe scope
+efb2929 audit(bio-mob-003): keep provisioning gate open
+72f66b8 review(BIO-MOB-003): pass device authentication fix
+939d465 BIO-MOB-003: record round-5 fix evidence for BIO-MOB-003-QA-01/QA-02
+01044b0 BIO-MOB-003: provision device auth on the mobile client and bind identity claims into the fingerprint
+3d85b76 audit(bio-mob-003): block unauthenticated client sync path
+96b5248 review(BIO-MOB-003): pass audit atomicity fix
+c0ac779 BIO-MOB-003: record round-4 fix evidence for the audit-before-commit ordering bug
+e8f332d BIO-MOB-003: fix audit-before-commit ordering in the version ledger
+3afb64d review(BIO-MOB-003): fail audit commit ordering
+16914da BIO-MOB-003: record acceptance-round evidence for the central intake endpoint
+a589d24 BIO-MOB-003: implement a real central offline-intake endpoint
+a3de429 audit(bio-mob-003): block unproved central sync boundary
+2eff731 review(BIO-MOB-003): pass round three fixes
+4977922 BIO-MOB-003: record round-2 fix evidence for BIO-MOB-003-FEMI-02/FEMI-03
+4db7b3b BIO-MOB-003: fix missed initial-online sync trigger and unbounded HTTP wait
+b712d2a review(BIO-MOB-003): pass independent round two review
+59391b6 BIO-MOB-003: record round-1 fix evidence for BIO-MOB-003-FEMI-01
+c3d2816 BIO-MOB-003: implement a real HttpSyncTransport and wire it into the app

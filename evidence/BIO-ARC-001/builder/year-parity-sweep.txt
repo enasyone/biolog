@@ -1,0 +1,4 @@
+swept 7440000 values in 2080ms
+divergences: 0
+years affected:  
+exit=0

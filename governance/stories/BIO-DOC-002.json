@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-DOC-002",
+  "title": "Build native MRZ detection, recognition, parsing and validation",
+  "owner": "Ifeanyi - Document Intelligence Engineer",
+  "reviewed_commit": "79316681f4d6e363d538a893f38e639ca40c06f2",
+  "required_acceptance_stages": ["builder", "adversarial", "acceptance"],
+  "requirement_ids": [
+    "BIO-DOC-002-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-DOC-002-AC01",
+      "requirement_ids": ["BIO-DOC-002-REQ-001"],
+      "text": "MRZ region can be detected from synthetic/reference images."
+    },
+    {
+      "id": "BIO-DOC-002-AC02",
+      "requirement_ids": ["BIO-DOC-002-REQ-001"],
+      "text": "TD1/TD2/TD3 and configured visa formats are parsed."
+    },
+    {
+      "id": "BIO-DOC-002-AC03",
+      "requirement_ids": ["BIO-DOC-002-REQ-001"],
+      "text": "Check digits are recalculated and reported independently."
+    },
+    {
+      "id": "BIO-DOC-002-AC04",
+      "requirement_ids": ["BIO-DOC-002-REQ-001"],
+      "text": "Raw recognition and normalized values are both preserved."
+    },
+    {
+      "id": "BIO-DOC-002-AC05",
+      "requirement_ids": ["BIO-DOC-002-REQ-001"],
+      "text": "Low-confidence/invalid results require review rather than guessed correction."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-DOC-002.test.sh",
+      "ac_ids": [
+        "BIO-DOC-002-AC01",
+        "BIO-DOC-002-AC02",
+        "BIO-DOC-002-AC03",
+        "BIO-DOC-002-AC04",
+        "BIO-DOC-002-AC05"
+      ]
+    },
+    {
+      "path": "tests/features/bio-doc-002/Biolog.Features.MrzEngine.Tests/MrzRegionDetectorTests.cs",
+      "ac_ids": ["BIO-DOC-002-AC01"]
+    },
+    {
+      "path": "tests/features/bio-doc-002/Biolog.Features.MrzEngine.Tests/MrzTd3ParserTests.cs",
+      "ac_ids": ["BIO-DOC-002-AC01", "BIO-DOC-002-AC02", "BIO-DOC-002-AC03", "BIO-DOC-002-AC04", "BIO-DOC-002-AC05"]
+    },
+    {
+      "path": "tests/features/bio-doc-002/Biolog.Features.MrzEngine.Tests/MrzTd2ParserTests.cs",
+      "ac_ids": ["BIO-DOC-002-AC02", "BIO-DOC-002-AC03"]
+    },
+    {
+      "path": "tests/features/bio-doc-002/Biolog.Features.MrzEngine.Tests/MrzTd1ParserTests.cs",
+      "ac_ids": ["BIO-DOC-002-AC02", "BIO-DOC-002-AC03"]
+    },
+    {
+      "path": "tests/features/bio-doc-002/Biolog.Features.MrzEngine.Tests/MrzVisaFormatTests.cs",
+      "ac_ids": ["BIO-DOC-002-AC02"]
+    },
+    {
+      "path": "tests/features/bio-doc-002/Biolog.Features.MrzEngine.Tests/MrzCheckDigitTests.cs",
+      "ac_ids": ["BIO-DOC-002-AC03"]
+    },
+    {
+      "path": "tests/features/bio-doc-002/Biolog.Features.MrzEngine.Tests/MrzFieldReadAdapterTests.cs",
+      "ac_ids": ["BIO-DOC-002-AC04"]
+    },
+    {
+      "path": "tests/features/bio-doc-002/Biolog.Features.MrzEngine.Tests/MrzReaderTests.cs",
+      "ac_ids": ["BIO-DOC-002-AC05"]
+    },
+    {
+      "path": "tests/features/bio-doc-002/Biolog.Features.MrzEngine.Tests/MrzGlyphFontTests.cs",
+      "ac_ids": ["BIO-DOC-002-AC01"]
+    },
+    {
+      "path": "tests/features/bio-doc-002/Biolog.Features.MrzEngine.Tests/MrzFormatRegistryTests.cs",
+      "ac_ids": ["BIO-DOC-002-AC02"]
+    },
+    {
+      "path": "tests/features/bio-doc-002/Biolog.Features.MrzEngine.Tests/MrzResultTypesAreLockedDownTests.cs",
+      "ac_ids": ["BIO-DOC-002-AC05"]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-DOC-002/builder/metadata.json",
+      "stage": "builder",
+      "ac_ids": [
+        "BIO-DOC-002-AC01",
+        "BIO-DOC-002-AC02",
+        "BIO-DOC-002-AC03",
+        "BIO-DOC-002-AC04",
+        "BIO-DOC-002-AC05"
+      ]
+    }
+  ]
+}

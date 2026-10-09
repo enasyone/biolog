@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Matches api/Biolog.Api/Biolog.Api.csproj's pinned TFM (BIO-FND-008). -->
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <!--
+    BIO-DOC-011 owns api/features/bio-doc-011/** only. No ProjectReference to
+    Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh).
+
+    One real ProjectReference: BIO-DOC-004's OcrEngine. OcrDocumentTemplate/OcrTemplateField/
+    TemplateOcrEngine/DocumentRaster/OcrGlyphFont/OcrLanguagePackRegistry are all public (no
+    InternalsVisibleTo wall, unlike BIO-DOC-006's DocumentClassificationOutcome or BIO-DOC-009's
+    AuthenticityAssessmentResult) - this story's own AC03 test-corpus runner constructs and reads
+    them directly: the field/graphic regions this editor lets a tenant draw ARE OcrTemplateField
+    values, and AC03's "test corpus must pass" is proven by actually running
+    TemplateOcrEngine.Read against synthetic corpus samples, not by trusting a caller-attested
+    boolean (docs/features/bio-doc-011/DOCUMENT-TEMPLATE-EDITOR.md "Why AC03 is a real computed
+    gate").
+
+    Deliberately NO ProjectReference to BIO-IDN-006 even though it is a declared dependency:
+    BIO-IDN-006's RoleAssignmentService/PermissionService/MakerCheckerService are internal
+    (InternalsVisibleTo scoped to Biolog.Api and its own tests only, same wall BIO-INT-001's own
+    csproj already documents for the identical situation) - this project cannot construct or call
+    them, and ADR-0006 Decision 3 forbids treating an unverifiable caller-adjacent signal as an
+    authorization decision. Tenant isolation (AC04) is satisfied through the same zero-reference
+    ICurrentTenantProvider seam every sibling feature project uses (Tenancy/ICurrentTenantProvider.cs),
+    adapted to the real Biolog.Api.Tenancy.ITenantContextAccessor in
+    api/Biolog.Api/Modules/BioDoc011Module.cs - never referenced directly. See that module file's
+    own header and the design doc's "Why no ProjectReference to BIO-IDN-006" section.
+  -->
+  <ItemGroup>
+    <ProjectReference Include="../../bio-doc-004/Biolog.Features.OcrEngine/Biolog.Features.OcrEngine.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Applying BIO-IDN-001-QA-01's lesson from the start: every aggregate's constructor and
+         its repository are internal - this grant is the explicit, auditable seam for
+         Biolog.Api (DI registration) and this project's own test assembly. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.DocumentTemplateEditor.Tests" />
+  </ItemGroup>
+
+</Project>

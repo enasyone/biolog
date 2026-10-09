@@ -1,0 +1,8 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Biolog.Features.AccessCache -> <workspace>/biolog-worktrees/BIO-ACC-003/api/features/bio-acc-003/bin/Debug/net10.0/Biolog.Features.AccessCache.dll
+  Biolog.Features.AccessCache.Tests -> <workspace>/biolog-worktrees/BIO-ACC-003/tests/features/bio-acc-003/bin/Debug/net10.0/Biolog.Features.AccessCache.Tests.dll
+Test run for <workspace>/biolog-worktrees/BIO-ACC-003/tests/features/bio-acc-003/bin/Debug/net10.0/Biolog.Features.AccessCache.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:    13, Skipped:     0, Total:    13, Duration: 271 ms - Biolog.Features.AccessCache.Tests.dll (net10.0)

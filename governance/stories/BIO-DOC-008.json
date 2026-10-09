@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-DOC-008",
+  "title": "Build evidence cross-comparison engine",
+  "owner": "Ifeanyi - Document Intelligence Engineer",
+  "reviewed_commit": "e145357fb7fdfaab2caee02293d57c6534e72ee2",
+  "required_acceptance_stages": ["builder", "adversarial", "acceptance"],
+  "requirement_ids": [
+    "BIO-DOC-008-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-DOC-008-AC01",
+      "requirement_ids": ["BIO-DOC-008-REQ-001"],
+      "text": "Comparable fields show source-by-source values and match/mismatch/unknown."
+    },
+    {
+      "id": "BIO-DOC-008-AC02",
+      "requirement_ids": ["BIO-DOC-008-REQ-001"],
+      "text": "Normalization never destroys raw evidence."
+    },
+    {
+      "id": "BIO-DOC-008-AC03",
+      "requirement_ids": ["BIO-DOC-008-REQ-001"],
+      "text": "Conflicts route to review."
+    },
+    {
+      "id": "BIO-DOC-008-AC04",
+      "requirement_ids": ["BIO-DOC-008-REQ-001"],
+      "text": "No source is silently preferred without documented policy."
+    },
+    {
+      "id": "BIO-DOC-008-AC05",
+      "requirement_ids": ["BIO-DOC-008-REQ-001"],
+      "text": "Comparison result is versioned/audited."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-DOC-008.test.sh",
+      "ac_ids": [
+        "BIO-DOC-008-AC01",
+        "BIO-DOC-008-AC02",
+        "BIO-DOC-008-AC03",
+        "BIO-DOC-008-AC04",
+        "BIO-DOC-008-AC05"
+      ]
+    },
+    {
+      "path": "tests/features/bio-doc-008/Biolog.Features.EvidenceComparison.Tests/SourceFieldValueTests.cs",
+      "ac_ids": ["BIO-DOC-008-AC01", "BIO-DOC-008-AC02"]
+    },
+    {
+      "path": "tests/features/bio-doc-008/Biolog.Features.EvidenceComparison.Tests/ComparisonEngineTests.cs",
+      "ac_ids": ["BIO-DOC-008-AC01"]
+    },
+    {
+      "path": "tests/features/bio-doc-008/Biolog.Features.EvidenceComparison.Tests/PreferredValueResolverTests.cs",
+      "ac_ids": ["BIO-DOC-008-AC04"]
+    },
+    {
+      "path": "tests/features/bio-doc-008/Biolog.Features.EvidenceComparison.Tests/CrossComparisonResultTests.cs",
+      "ac_ids": ["BIO-DOC-008-AC03", "BIO-DOC-008-AC05"]
+    },
+    {
+      "path": "tests/features/bio-doc-008/Biolog.Features.EvidenceComparison.Tests/EvidenceComparisonResultTypesAreLockedDownTests.cs",
+      "ac_ids": ["BIO-DOC-008-AC01"]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-DOC-008/builder/metadata.json",
+      "stage": "builder",
+      "ac_ids": [
+        "BIO-DOC-008-AC01",
+        "BIO-DOC-008-AC02",
+        "BIO-DOC-008-AC03",
+        "BIO-DOC-008-AC04",
+        "BIO-DOC-008-AC05"
+      ]
+    }
+  ]
+}

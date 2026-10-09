@@ -1,0 +1,9 @@
+  Determining projects to restore...
+  Restored <workspace>/biolog-worktrees/BIO-DEV-001/tests/dotnet/Biolog.UnitTests/Biolog.UnitTests.csproj (in 175 ms).
+  1 of 2 projects are up-to-date for restore.
+  Biolog.Api -> <workspace>/biolog-worktrees/BIO-DEV-001/api/Biolog.Api/bin/Debug/net10.0/Biolog.Api.dll
+  Biolog.UnitTests -> <workspace>/biolog-worktrees/BIO-DEV-001/tests/dotnet/Biolog.UnitTests/bin/Debug/net10.0/Biolog.UnitTests.dll
+Test run for <workspace>/biolog-worktrees/BIO-DEV-001/tests/dotnet/Biolog.UnitTests/bin/Debug/net10.0/Biolog.UnitTests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:   100, Skipped:     0, Total:   100, Duration: 138 ms - Biolog.UnitTests.dll (net10.0)

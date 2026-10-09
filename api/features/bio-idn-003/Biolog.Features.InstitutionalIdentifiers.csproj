@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-IDN-003 owns api/features/bio-idn-003/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh)
+         and, deliberately, no ProjectReference to api/features/bio-idn-001's project either:
+         each feature story owns exactly its own subtree and does not runtime-couple to a
+         sibling's actual store (mirrors BIO-TEN-002's and BIO-IDN-002's identical choice -
+         "Dependencies: BIO-IDN-001" in this story's metadata is build-wave/conceptual
+         sequencing, not a runtime service dependency). PersonId existence is instead proven
+         through this project's own narrow Domain/IPersonExistenceGateway.cs, applying
+         BIO-IDN-002-QA-01's lesson from the start (not after a review round) - see that
+         interface's header and docs/features/bio-idn-003/README.md.
+
+         This project's own module adapter lives in api/Biolog.Api/Modules/BioIdn003Module.cs
+         from the start (never written here first), matching every prior story.
+
+         Namespace root is "InstitutionalIdentifiers": the aggregate this project defines is
+         InstitutionalIdentifier (Domain/InstitutionalIdentifier.cs), a business identifier
+         (ADR-0001 Decision 1.6) - never a canonical ADR-0001 identifier type of its own, and
+         never the opaque credential id BIO-IDN-003-AC04 requires electronic credentials to
+         use instead (see README). -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Applying BIO-IDN-001-QA-01/BIO-IDN-002-QA-01's lesson from the start: InstitutionalIdentifier's
+         constructor and IInstitutionalIdentifierRepository/InMemoryInstitutionalIdentifierRepository
+         are internal - this grant is the explicit, auditable seam for Biolog.Api (DI
+         registration) and this project's own test assembly. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.InstitutionalIdentifiers.Tests" />
+  </ItemGroup>
+
+</Project>

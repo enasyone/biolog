@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-ATT-003 owns api/features/bio-att-003/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh)
+         and no ProjectReference to any other feature project - BIO-ATT-001's raw clock events
+         are reached only through this project's own narrow Domain/IAttendanceEventGateway.cs
+         (a view-mapped read, never the sibling's own internal AttendanceEvent type), person
+         existence through Domain/IPersonExistenceGateway.cs, and the shift/adjustment-management
+         permission checks through Domain/IPermissionGateway.cs - all three implemented by
+         adapters in api/Biolog.Api/Modules/BioAtt003Module.cs wrapping BIO-ATT-001's
+         AttendanceEventService, BIO-IDN-001's PersonService and BIO-IDN-006's PermissionService
+         directly, the same gateway pattern every identity-wave story in this codebase uses.
+
+         Namespace root is "WorkforceAttendance". This story layers shift schedules, clock-pair
+         validation and derived overtime ON TOP OF BIO-ATT-001's own raw AttendanceEvent facts -
+         it never mutates or re-captures them (AC02/AC03's own "derived, not raw-event mutation"
+         discipline, the same shape AttendanceStatusEvaluator already established for BIO-ATT-001
+         itself). -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Every aggregate's constructor and its repository are internal - the explicit, auditable
+         seam for Biolog.Api (DI registration) and this project's own test assembly. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.WorkforceAttendance.Tests" />
+  </ItemGroup>
+
+</Project>

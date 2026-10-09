@@ -1,0 +1,14 @@
+PASS  AC01: web/api/mobile/tests/infrastructure/docs/evidence all exist
+PASS  AC02: main and develop branches exist
+PASS  AC02: no remote configured
+PASS  AC03: core.hooksPath is .githooks
+PASS  AC03: pre-push hook blocks push while github_push_enabled=false
+PASS  AC03: pre-push hook allows push once github_push_enabled=true
+PASS  AC04: secret scan of tracked files is clean
+PASS  AC04: secret-scan fixture with a fabricated AWS key is rejected
+PASS  AC04/AC05 regression BIO-FND-001-QA-01: secret in a path with a space is caught by scan and validator
+PASS  AC04: no machine-specific absolute paths in tracked files
+PASS  AC05: scripts/validate-bootstrap.sh returns success
+==============================
+11/11 checks passed
+exit 0

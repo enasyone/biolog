@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-FND-001",
+  "title": "Initialise local-only repository and directory structure",
+  "owner": "Emeka - Platform & Infrastructure Engineer",
+  "requirement_ids": [
+    "BIO-FND-001-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-FND-001-AC01",
+      "requirement_ids": [
+        "BIO-FND-001-REQ-001"
+      ],
+      "text": "A fresh local directory can be initialised with the documented structure for web, API, mobile, tests, infrastructure, docs and evidence."
+    },
+    {
+      "id": "BIO-FND-001-AC02",
+      "requirement_ids": [
+        "BIO-FND-001-REQ-001"
+      ],
+      "text": "Git is initialised locally with main and develop branches and no remote configured."
+    },
+    {
+      "id": "BIO-FND-001-AC03",
+      "requirement_ids": [
+        "BIO-FND-001-REQ-001"
+      ],
+      "text": "The repository uses the provided pre-push guard and blocks push while github_push_enabled is false."
+    },
+    {
+      "id": "BIO-FND-001-AC04",
+      "requirement_ids": [
+        "BIO-FND-001-REQ-001"
+      ],
+      "text": "No secrets or machine-specific absolute paths are committed."
+    },
+    {
+      "id": "BIO-FND-001-AC05",
+      "requirement_ids": [
+        "BIO-FND-001-REQ-001"
+      ],
+      "text": "A clean bootstrap validation script returns success."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-FND-001.test.sh",
+      "ac_ids": [
+        "BIO-FND-001-AC01",
+        "BIO-FND-001-AC02",
+        "BIO-FND-001-AC03",
+        "BIO-FND-001-AC04",
+        "BIO-FND-001-AC05"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-FND-001/builder/SUMMARY.md",
+      "ac_ids": [
+        "BIO-FND-001-AC01",
+        "BIO-FND-001-AC02",
+        "BIO-FND-001-AC03",
+        "BIO-FND-001-AC04",
+        "BIO-FND-001-AC05"
+      ]
+    }
+  ]
+}

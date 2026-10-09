@@ -1,0 +1,77 @@
+{
+  "story_key": "BIO-DEV-001",
+  "title": "Implement device registry foundation",
+  "implementation_commit": "8331caf",
+  "builder_head": "54a8d20e5e902940f9abd4c387528bd7e4172d86",
+  "independent_review_commit": "a2b01ae",
+  "environment": {
+    "profile": "local acceptance; synthetic fixtures only; .NET testhost socket binding denied for acceptor replay",
+    "timestamp": "2026-09-22T00:36:46Z"
+  },
+  "acceptance_criteria": {
+    "BIO-DEV-001-AC01": {
+      "result": "PASS",
+      "tests": ["tests/foundation/BIO-DEV-001.test.sh", "Biolog.UnitTests", "Biolog.IntegrationTests"]
+    },
+    "BIO-DEV-001-AC02": {
+      "result": "PASS",
+      "tests": ["PlaintextCredentialProbe", "CredentialReferenceValidatorTests", "DeviceRegistryTests QA04"]
+    },
+    "BIO-DEV-001-AC03": {
+      "result": "PASS_CURRENT_IN_MEMORY_TIER",
+      "tests": ["CancellationAtomicityProbe", "DeviceServiceTests", "tests/foundation/BIO-DEV-001.test.sh"]
+    },
+    "BIO-DEV-001-AC04": {
+      "result": "PASS_WITH_TRACKED_BIO_TEN_002_FOLLOW_UP",
+      "tests": ["DeviceServiceTests cross-tenant cases", "DeviceRegistryTests fail-closed and injected-context paths"]
+    }
+  },
+  "commands": [
+    {"command": "bash tests/foundation/BIO-DEV-001.test.sh", "result": "PASS (47/47)"},
+    {"command": "bash tests/foundation/BIO-FND-008.test.sh", "result": "PASS (37/37, including NU1900 plus clean-summary fail-closed regression)"},
+    {"command": "python3 scripts/check-traceability.py governance/stories/BIO-DEV-001.json", "result": "PASS (4 ACs)"},
+    {"command": "dotnet run --no-restore --project evidence/BIO-DEV-001/codex/CancellationAtomicityProbe/CancellationAtomicityProbe.csproj --nologo", "result": "PASS"},
+    {"command": "dotnet run --no-restore --project evidence/BIO-DEV-001/acceptance/PlaintextCredentialProbe/PlaintextCredentialProbe.csproj --nologo", "result": "PASS BOUNDARY: InvalidCredentialReferenceException before storage (probe intentionally terminates nonzero)"},
+    {"command": "bash scripts/check-dotnet-vulnerabilities.sh api/Biolog.Api/Biolog.Api.csproj tests/dotnet/Biolog.UnitTests/Biolog.UnitTests.csproj tests/dotnet/Biolog.IntegrationTests/Biolog.IntegrationTests.csproj", "result": "PASS; live advisory data reached for all three projects"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS (built-in fallback scan; gitleaks unavailable)"},
+    {"command": "dotnet test unit and integration projects --no-restore", "result": "UNAVAILABLE in acceptor sandbox: vstest loopback SocketException; assemblies compiled before testhost abort"}
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "6d355f8299a9be698a5d18d45560ccc5f1bb162e",
+    "unit_tests": "100/100 PASS",
+    "integration_tests": "23/23 PASS",
+    "foundation_tests": "47/47 PASS",
+    "vulnerability_audit": "PASS with live advisory data"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "result": "PASS",
+    "review_commit": "a2b01ae",
+    "evidence": "evidence/BIO-DEV-001/codex/REREVIEW-ROUND6.md"
+  },
+  "category_verdicts": {
+    "functional": "PASS",
+    "security": "PASS",
+    "tenant_isolation": "PASS_WITH_TRACKED_BIO_TEN_002_FOLLOW_UP",
+    "offline_recovery": "NOT_APPLICABLE",
+    "concurrency": "PASS_CURRENT_SINGLE_PROCESS_TIER",
+    "regression": "PASS"
+  },
+  "evidence": [
+    {"path": "evidence/BIO-DEV-001/codex/REREVIEW-ROUND6.md", "sha256": "4d37b0754c5f1ba4fe65ba6e2f55ce80974af6cd588dbde6cbf388e01aa1ee4e"},
+    {"path": "evidence/BIO-DEV-001/builder/dotnet-unit-test-output.txt", "sha256": "2e9a116b5a8231efe1e4e1c41787d279b8a2b693831d6166479bf95cf85a1898"},
+    {"path": "evidence/BIO-DEV-001/builder/dotnet-integration-test-output.txt", "sha256": "806700697ef6bec26f657f214ca0aaa8db16855bb407edd3f5c8249292417416"},
+    {"path": "evidence/BIO-DEV-001/builder/dotnet-vulnerability-audit-output.txt", "sha256": "03ea023232bfd9d2440f3c9ef76b5afa2225ad433d53a7b1044bf9502d1eb5fa"}
+  ],
+  "security_performance_reviews": {
+    "security": "PASS: QA-04 plaintext storage, QA-05 stale security evidence, and QA-06 vulnerability-audit fail-open are closed",
+    "performance": "Not required for this in-memory registry foundation"
+  },
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "All four acceptance criteria have mapped evidence; independent QA and required security/regression gates pass at the delivered head, with the accepted BIO-TEN-002 and current-tier atomicity boundaries recorded."
+  }
+}

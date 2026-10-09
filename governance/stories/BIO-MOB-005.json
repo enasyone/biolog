@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-MOB-005",
+  "title": "Implement limited offline enrolment package",
+  "owner": "Busola - Mobile & Edge Engineer",
+  "reviewed_commit": "e97e9b2a394f33424c446c75c8ba57fc266a218b",
+  "required_acceptance_stages": ["builder", "adversarial", "acceptance"],
+  "requirement_ids": [
+    "BIO-MOB-005-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-MOB-005-AC01",
+      "requirement_ids": ["BIO-MOB-005-REQ-001"],
+      "text": "Tenant policy controls which enrolment fields/biometrics may be captured offline."
+    },
+    {
+      "id": "BIO-MOB-005-AC02",
+      "requirement_ids": ["BIO-MOB-005-REQ-001"],
+      "text": "Data is encrypted at rest."
+    },
+    {
+      "id": "BIO-MOB-005-AC03",
+      "requirement_ids": ["BIO-MOB-005-REQ-001"],
+      "text": "Duplicate/conflict checks re-run centrally after sync."
+    },
+    {
+      "id": "BIO-MOB-005-AC04",
+      "requirement_ids": ["BIO-MOB-005-REQ-001"],
+      "text": "Security conflicts require human resolution."
+    },
+    {
+      "id": "BIO-MOB-005-AC05",
+      "requirement_ids": ["BIO-MOB-005-REQ-001"],
+      "text": "The approved mobile surface (Flutter application) is connected through MobileService to this story's live implementation or an explicitly documented HYBRID state, and the mapped end-to-end human workflow passes without an unapproved UI redesign."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-MOB-005.test.sh",
+      "ac_ids": [
+        "BIO-MOB-005-AC01",
+        "BIO-MOB-005-AC02",
+        "BIO-MOB-005-AC03",
+        "BIO-MOB-005-AC04",
+        "BIO-MOB-005-AC05"
+      ]
+    },
+    {
+      "path": "tests/flutter/test/bio_mob_005_ac01_ac02_capture_policy_test.dart",
+      "ac_ids": ["BIO-MOB-005-AC01", "BIO-MOB-005-AC02"]
+    },
+    {
+      "path": "tests/flutter/test/bio_mob_005_ac03_ac05_sync_client_test.dart",
+      "ac_ids": ["BIO-MOB-005-AC03", "BIO-MOB-005-AC05"]
+    },
+    {
+      "path": "tests/features/bio-mob-005/EnrolmentEndpointsIntegrationTests.cs",
+      "ac_ids": [
+        "BIO-MOB-005-AC01",
+        "BIO-MOB-005-AC03",
+        "BIO-MOB-005-AC04",
+        "BIO-MOB-005-AC05"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-MOB-005/builder/metadata.json",
+      "stage": "builder",
+      "ac_ids": [
+        "BIO-MOB-005-AC01",
+        "BIO-MOB-005-AC02",
+        "BIO-MOB-005-AC03",
+        "BIO-MOB-005-AC04",
+        "BIO-MOB-005-AC05"
+      ]
+    }
+  ]
+}

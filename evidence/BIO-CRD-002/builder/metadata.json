@@ -1,0 +1,10 @@
+{
+  "story_key": "BIO-CRD-002",
+  "stage": "builder",
+  "commit_hash": "00f417dd4f6f1f4a7165e80f756273035f643e15",
+  "test_command": "bash tests/features/bio-crd-002/BIO-CRD-002.test.sh && dotnet test tests/features/bio-crd-002/Biolog.Features.CardDesigner.Tests.csproj --nologo && pnpm --dir tests/frontend test:unit && pnpm --dir tests/frontend test:e2e && dotnet test tests/dotnet/Biolog.UnitTests/Biolog.UnitTests.csproj --nologo && dotnet test tests/dotnet/Biolog.IntegrationTests/Biolog.IntegrationTests.csproj --nologo && bash scripts/check-dotnet-vulnerabilities.sh api/Biolog.Api/Biolog.Api.csproj api/features/bio-crd-002/Biolog.Features.CardDesigner.csproj tests/features/bio-crd-002/Biolog.Features.CardDesigner.Tests.csproj",
+  "result": "PASS",
+  "timestamp": "2026-09-22T22:15:00Z",
+  "reviewer": "Ngozi",
+  "data_classification": "SYNTHETIC"
+}

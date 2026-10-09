@@ -1,0 +1,10 @@
+{
+  "name": "biolog-source",
+  "version": "0.0.0",
+  "private": true,
+  "description": "BIOLOG monorepo root. Declares the pinned Node/pnpm toolchain only (BIO-FND-002); application workspaces such as web/ are scaffolded by their own stories.",
+  "packageManager": "pnpm@9.12.0",
+  "engines": {
+    "node": "20.20.2"
+  }
+}

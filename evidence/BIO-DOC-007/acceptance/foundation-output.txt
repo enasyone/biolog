@@ -1,0 +1,38 @@
+PASS  AC01 NfcAccessKeySeedMaterial (Mrz / CardAccessNumber) exists
+PASS  AC01 the seed material type has no public constructor - only the validating Create factories
+PASS  AC01 key derivation uses SHA-1 per ICAO 9303 Part 11 Appendix D.1, no external crypto package
+PASS  AC01 derived keys are parity-adjusted for DES use
+PASS  AC01 no NuGet package reference was added for cryptography
+PASS  QA-02 NfcAccessKeys returns a defensive copy from every key getter
+PASS  QA-02 NfcAccessKeys stores keys in private fields, never a directly-exposed mutable array
+PASS  AC02 ChipDataGroupId enumerates the ICAO 9303 LDS1 data groups
+PASS  AC02 IChipDataGroupTransport is the replaceable low-level transport seam
+PASS  AC02 ChipReadSession orchestrates reading through the transport abstraction, not directly
+PASS  AC02 a data group's raw bytes are hashed, never carried as a property (PII, ADR-0003 Decision 5)
+PASS  QA-03 ChipReadOutcome wraps its collections in AsReadOnly(), never exposing the caller's own list
+PASS  QA-03 PassiveAuthenticationResult wraps its collections in AsReadOnly() too
+PASS  AC03 ChipReadOutcome carries the document session id
+PASS  AC03 ChipReadOutcome carries the BIO-DOC-006 classification this read was performed for
+PASS  AC04 PassiveAuthenticationResult model exists
+PASS  AC04 certificate chain validation uses real X509Chain, no external crypto package
+PASS  AC04 data-group hash mismatches are named explicitly, not just a bare bool
+PASS  AC04 not-attempted is an explicit, distinct state from a failed attempt
+PASS  QA-01 a SOD-declared data group that was never read is named explicitly as missing
+PASS  QA-01 hashes only match when nothing declared by the SOD is missing from the read
+PASS  AC05 ChipReadOutcome's own success signal is ChipCommunicationSucceeded, not an authenticity flag
+PASS  AC05 authenticity lives in its own separate result type, not folded into ChipReadOutcome
+PASS  AC05 a read failure carries an explicit, honest reason string
+PASS  NfcAccessKeys properties are internal init, not public init
+PASS  ChipReadOutcome properties are internal init, not public init
+PASS  PassiveAuthenticationResult properties are internal init, not public init
+PASS  standing reflection-based lockdown regression test exists
+PASS  NfcReader references BIO-DOC-006's document classifier
+PASS  NfcReader does NOT reference BIO-DOC-001/002/003/004/005 directly (not declared dependencies)
+PASS  BIO-DOC-006's own project takes no dependency back on this feature (no cycle)
+PASS  no ASP.NET Core / Biolog.Api project or framework reference was added to this feature
+PASS  ADR-0001-S1.2 the frozen identifier registry was not touched by this story
+PASS  feature test project exists
+PASS  story traceability spec exists
+PASS  feature design doc exists
+----
+BIO-DOC-007 structural checks: 36 passed, 0 failed

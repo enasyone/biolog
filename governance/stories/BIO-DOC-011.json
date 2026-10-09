@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "story_key": "BIO-DOC-011",
+  "title": "Implement tenant visual document-template editor",
+  "owner": "Ifeanyi - Document Intelligence Engineer",
+  "reviewed_commit": "e2367cf960a67cf20cd510f9ae159c3b148f33e3",
+  "required_acceptance_stages": ["builder", "adversarial", "acceptance"],
+  "requirement_ids": [
+    "BIO-DOC-011-REQ-001"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "BIO-DOC-011-AC01",
+      "requirement_ids": ["BIO-DOC-011-REQ-001"],
+      "text": "Users can upload reference layout and draw named field/graphic regions."
+    },
+    {
+      "id": "BIO-DOC-011-AC02",
+      "requirement_ids": ["BIO-DOC-011-REQ-001"],
+      "text": "Template has draft/test/approval/publish lifecycle."
+    },
+    {
+      "id": "BIO-DOC-011-AC03",
+      "requirement_ids": ["BIO-DOC-011-REQ-001"],
+      "text": "Test corpus must pass before publish."
+    },
+    {
+      "id": "BIO-DOC-011-AC04",
+      "requirement_ids": ["BIO-DOC-011-REQ-001"],
+      "text": "Tenant templates cannot masquerade as official global templates."
+    },
+    {
+      "id": "BIO-DOC-011-AC05",
+      "requirement_ids": ["BIO-DOC-011-REQ-001"],
+      "text": "Published versions are immutable."
+    },
+    {
+      "id": "BIO-DOC-011-AC06",
+      "requirement_ids": ["BIO-DOC-011-REQ-001"],
+      "text": "The approved web surface (/document-verify) is connected through DocumentVerifyService to this story's live implementation or an explicitly documented HYBRID state, and the mapped end-to-end human workflow passes without an unapproved UI redesign."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/foundation/BIO-DOC-011.test.sh",
+      "ac_ids": [
+        "BIO-DOC-011-AC01",
+        "BIO-DOC-011-AC02",
+        "BIO-DOC-011-AC03",
+        "BIO-DOC-011-AC04",
+        "BIO-DOC-011-AC05",
+        "BIO-DOC-011-AC06"
+      ]
+    },
+    {
+      "path": "tests/features/bio-doc-011/Biolog.Features.DocumentTemplateEditor.Tests/DocumentTemplateDraftTests.cs",
+      "ac_ids": ["BIO-DOC-011-AC01", "BIO-DOC-011-AC02", "BIO-DOC-011-AC04", "BIO-DOC-011-AC05"]
+    },
+    {
+      "path": "tests/features/bio-doc-011/Biolog.Features.DocumentTemplateEditor.Tests/DocumentTemplateDraftServiceTests.cs",
+      "ac_ids": ["BIO-DOC-011-AC01", "BIO-DOC-011-AC03", "BIO-DOC-011-AC04", "BIO-DOC-011-AC05"]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/BIO-DOC-011/builder/metadata.json",
+      "stage": "builder",
+      "ac_ids": [
+        "BIO-DOC-011-AC01",
+        "BIO-DOC-011-AC02",
+        "BIO-DOC-011-AC03",
+        "BIO-DOC-011-AC04",
+        "BIO-DOC-011-AC05",
+        "BIO-DOC-011-AC06"
+      ]
+    }
+  ]
+}

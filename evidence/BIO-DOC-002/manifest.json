@@ -1,0 +1,43 @@
+{
+  "story_key": "BIO-DOC-002",
+  "title": "Build native MRZ detection, recognition, parsing and validation",
+  "implementation_commit": "79316681f4d6e363d538a893f38e639ca40c06f2",
+  "builder_head": "2aff977",
+  "reviewed_head": "e35fd056111e9f8bf6138a34695956c2deb3c577",
+  "environment": {"profile": "local offline acceptance; synthetic fixtures only", "timestamp": "2026-09-22T19:08:23Z"},
+  "acceptance_criteria": {
+    "BIO-DOC-002-AC01": {"result": "PASS", "evidence": ["synthetic raster detection tests", "structural suite"]},
+    "BIO-DOC-002-AC02": {"result": "PASS", "evidence": ["TD1/TD2/TD3/MRV-A/MRV-B parsing tests"]},
+    "BIO-DOC-002-AC03": {"result": "PASS", "evidence": ["ICAO literal-vector and independent check-digit tests"]},
+    "BIO-DOC-002-AC04": {"result": "PASS", "evidence": ["raw/normalized preservation and DocumentFieldEvidence adaptation tests"]},
+    "BIO-DOC-002-AC05": {"result": "PASS", "evidence": ["low-confidence, ambiguity, unrecognized-character, and invalid-check-digit review tests"]}
+  },
+  "commands": [
+    {"command": "bash tests/foundation/BIO-DOC-002.test.sh", "result": "PASS (32/32)"},
+    {"command": "dotnet Biolog.Features.MrzEngine.Tests.dll", "result": "PASS (59/59)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (20 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS"}
+  ],
+  "builder_verdict": {
+    "result": "PASS_FOR_STORY_SCOPE",
+    "commit_hash": "79316681f4d6e363d538a893f38e639ca40c06f2",
+    "feature_tests": "59/59 PASS",
+    "structural_tests": "32/32 PASS",
+    "vulnerability_audit": "PASS",
+    "full_quality": "FAIL from pre-existing missing frontend dependencies and unrelated BIO-FND-009 ObservabilityTests flake; all BIO-DOC-002 checks PASS",
+    "metadata_sha256": "bfce2610c43c2cfc0cf564197492e325302be4f381aaed948269d3d27459be7d"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "result": "PASS",
+    "review_commit": "e35fd05",
+    "evidence": "evidence/BIO-DOC-002/codex/REVIEW-Seyi-round1.md",
+    "evidence_sha256": "743fa57c0dd82854ea59233dfe7103dec2b5688d38747578dd1e9ca8236d5e03"
+  },
+  "category_verdicts": {"functional": "PASS", "security": "PASS", "tenant_isolation": "NOT_APPLICABLE_STATELESS_ENGINE", "offline_recovery": "PASS", "concurrency": "PASS_STATELESS_ENGINE", "regression": "PASS_FOR_STORY_SCOPE"},
+  "security_performance_reviews": {"security": "PASS: immutable engine-produced validation results, bounded synthetic raster input, and no network or tenant state", "performance": "Not separately required; deterministic dependency-free offline engine"},
+  "known_unrelated_quality_failures": ["tests/frontend dependencies are not installed", "pre-existing BIO-FND-009 ObservabilityTests shared StringBuilder race"],
+  "acceptance_blockers": [],
+  "final_acceptance": {"acceptor": "Chioma", "decision": "PASS", "reason": "All five acceptance criteria have executable builder and independent evidence; fresh in-process and structural replay passes. Repository-wide failures are documented pre-existing environment/unrelated defects and do not affect this stateless MRZ engine."}
+}

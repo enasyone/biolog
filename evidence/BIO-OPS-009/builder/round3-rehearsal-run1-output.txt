@@ -1,0 +1,122 @@
+=== Phase 1: bring up an isolated rehearsal stack (project biolog-ops009-rehearsal) ===
+ Network biolog-ops009-rehearsal_default Creating 
+ Volume biolog-ops009-rehearsal_mysql_tenant_asu Creating 
+ Volume biolog-ops009-rehearsal_mysql_tenant_asu Creating 
+ Volume biolog-ops009-rehearsal_mysql_control Creating 
+ Volume biolog-ops009-rehearsal_mysql_control Creating 
+ Network biolog-ops009-rehearsal_default Creating 
+ Volume biolog-ops009-rehearsal_azurite_data Creating 
+ Volume biolog-ops009-rehearsal_azurite_data Creating 
+ Volume biolog-ops009-rehearsal_azurite_data Created 
+ Volume biolog-ops009-rehearsal_azurite_data Created 
+ Volume biolog-ops009-rehearsal_mysql_control Created 
+ Volume biolog-ops009-rehearsal_mysql_control Created 
+ Volume biolog-ops009-rehearsal_mysql_tenant_asu Created 
+ Volume biolog-ops009-rehearsal_mysql_tenant_asu Created 
+ Network biolog-ops009-rehearsal_default Created 
+ Network biolog-ops009-rehearsal_default Created 
+ Container biolog-ops009-rehearsal-mysql-tenant-asu-1 Creating 
+ Container biolog-ops009-rehearsal-mysql-control-1 Creating 
+ Container biolog-ops009-rehearsal-azurite-1 Creating 
+ Container biolog-ops009-rehearsal-azurite-1 Created 
+ Container biolog-ops009-rehearsal-mysql-control-1 Created 
+ Container biolog-ops009-rehearsal-mysql-tenant-asu-1 Created 
+ Container biolog-ops009-rehearsal-mysql-tenant-asu-1 Starting 
+ Container biolog-ops009-rehearsal-mysql-control-1 Starting 
+ Container biolog-ops009-rehearsal-azurite-1 Starting 
+ Container biolog-ops009-rehearsal-mysql-tenant-asu-1 Started 
+ Container biolog-ops009-rehearsal-mysql-control-1 Started 
+ Container biolog-ops009-rehearsal-azurite-1 Started 
+disaster-recovery-rehearsal: isolated stack healthy
+=== Phase 2: seed synthetic pre-backup data ===
+mysql_exec: mysql-control attempt 1/5 failed, retrying in 3s: mysql: [Warning] Using a password on the command line interface can be insecure.
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+put-container: ops009-evidence ready (HTTP 201)
+put-blob: ops009-evidence/evidence-1.bin (95 bytes, sha256=38439154f718cacd03d903dcda2f770231d36b1f3175e670d82afa69007001ae)
+put-blob: ops009-evidence/evidence-2.bin (95 bytes, sha256=665d09c5f7579a3465a040c2ab7df212ad96fc97bbc27f454b95bd78bb716df3)
+disaster-recovery-rehearsal: seeded 2 rows (control), 3 rows (tenant-asu), 2 blobs (azurite); captured full-row pre-backup snapshots
+=== Phase 3: independent backups ===
+backup-mysql: dumping mysql-control (biolog_control) -> backups/ops009-rehearsal/20261008T065005Z/backups/mysql/mysql-control-biolog_control-20261008T065015Z.sql.gz
+mysqldump: [Warning] Using a password on the command line interface can be insecure.
+backup-mysql: mysql-control done (824 bytes, sha256 f6cdcd9dced52d6ff7eac813d25cc96970115458c987d6af4297eb15b1def9df, completed 2026-10-08T06:50:16Z)
+backup-mysql: dumping mysql-tenant-asu (biolog_asu) -> backups/ops009-rehearsal/20261008T065005Z/backups/mysql/mysql-tenant-asu-biolog_asu-20261008T065016Z.sql.gz
+mysqldump: [Warning] Using a password on the command line interface can be insecure.
+backup-mysql: mysql-tenant-asu done (823 bytes, sha256 5a5025c8ec3633ede9cf1876e64d13b474af04c43a3c150f32ab923053b93b9d, completed 2026-10-08T06:50:16Z)
+backup-mysql: 2 service(s) backed up independently into backups/ops009-rehearsal/20261008T065005Z/backups/mysql
+backup-azurite: stopping db3347114d8b6b535ca82a92063908a148e34ef3b2151077927fec441ee526ec to flush its metadata store before snapshotting
+backup-azurite: archiving volume biolog-ops009-rehearsal_azurite_data -> backups/ops009-rehearsal/20261008T065005Z/backups/azurite/azurite-20261008T065026Z.tar.gz
+backup-azurite: restarting db3347114d8b6b535ca82a92063908a148e34ef3b2151077927fec441ee526ec
+backup-azurite: done (2091 bytes, sha256 ca643cde2d9b36100ca6d21faf91b936951dc1716d2055dc8ac726cce2a55d88, completed 2026-10-08T06:50:28Z)
+=== Phase 4: simulate ongoing writes AFTER the backup (the honest RPO loss window) ===
+put-blob: ops009-evidence/evidence-3.bin (83 bytes, sha256=e62eefcdecf071153ee6a14053d85861d1fc2f7af39794557bd769743913aa98)
+disaster-recovery-rehearsal: wrote 1 more row to each MySQL db and 1 more blob, all AFTER the backup completed
+=== Phase 5: declare disaster - destroy every original container and volume ===
+ Container biolog-ops009-rehearsal-mysql-control-1 Stopping 
+ Container biolog-ops009-rehearsal-azurite-1 Stopping 
+ Container biolog-ops009-rehearsal-mysql-tenant-asu-1 Stopping 
+ Container biolog-ops009-rehearsal-mysql-tenant-asu-1 Stopped 
+ Container biolog-ops009-rehearsal-mysql-tenant-asu-1 Removing 
+ Container biolog-ops009-rehearsal-mysql-tenant-asu-1 Removed 
+ Container biolog-ops009-rehearsal-mysql-control-1 Stopped 
+ Container biolog-ops009-rehearsal-mysql-control-1 Removing 
+ Container biolog-ops009-rehearsal-mysql-control-1 Removed 
+ Container biolog-ops009-rehearsal-azurite-1 Stopped 
+ Container biolog-ops009-rehearsal-azurite-1 Removing 
+ Container biolog-ops009-rehearsal-azurite-1 Removed 
+ Network biolog-ops009-rehearsal_default Removing 
+ Volume biolog-ops009-rehearsal_mysql_tenant_asu Removing 
+ Volume biolog-ops009-rehearsal_mysql_control Removing 
+ Volume biolog-ops009-rehearsal_azurite_data Removing 
+ Volume biolog-ops009-rehearsal_mysql_control Removed 
+ Volume biolog-ops009-rehearsal_mysql_tenant_asu Removed 
+ Volume biolog-ops009-rehearsal_azurite_data Removed 
+ Network biolog-ops009-rehearsal_default Removed 
+disaster-recovery-rehearsal: original stack and its volumes are gone
+=== Phase 6: restore into brand-new containers/volumes ===
+restore-mysql: creating fresh volume ops009_rehearsal_control_restored_20261008T065005Z
+restore-mysql: starting fresh container ops009-rehearsal-control-restored (image mysql:8.4, port 48161) bound to ops009_rehearsal_control_restored_20261008T065005Z
+restore-mysql: waiting for ops009-rehearsal-control-restored to accept connections (timeout 120s)
+restore-mysql: restoring backups/ops009-rehearsal/20261008T065005Z/backups/mysql/mysql-control-biolog_control-20261008T065015Z.sql.gz into ops009-rehearsal-control-restored
+mysql: [Warning] Using a password on the command line interface can be insecure.
+restore-mysql: done - ops009-rehearsal-control-restored ready on port 48161, restore took 13s (fresh volume ops009_rehearsal_control_restored_20261008T065005Z, fresh container, never the original)
+restore-mysql: creating fresh volume ops009_rehearsal_asu_restored_20261008T065005Z
+restore-mysql: starting fresh container ops009-rehearsal-asu-restored (image mysql:8.4, port 48162) bound to ops009_rehearsal_asu_restored_20261008T065005Z
+restore-mysql: waiting for ops009-rehearsal-asu-restored to accept connections (timeout 120s)
+restore-mysql: restoring backups/ops009-rehearsal/20261008T065005Z/backups/mysql/mysql-tenant-asu-biolog_asu-20261008T065016Z.sql.gz into ops009-rehearsal-asu-restored
+mysql: [Warning] Using a password on the command line interface can be insecure.
+restore-mysql: done - ops009-rehearsal-asu-restored ready on port 48162, restore took 13s (fresh volume ops009_rehearsal_asu_restored_20261008T065005Z, fresh container, never the original)
+restore-azurite: creating fresh volume ops009_rehearsal_azurite_restored_20261008T065005Z
+restore-azurite: extracting backups/ops009-rehearsal/20261008T065005Z/backups/azurite/azurite-20261008T065026Z.tar.gz into ops009_rehearsal_azurite_restored_20261008T065005Z
+restore-azurite: starting fresh container ops009-rehearsal-azurite-restored (port 48100) bound to ops009_rehearsal_azurite_restored_20261008T065005Z
+restore-azurite: waiting for ops009-rehearsal-azurite-restored to accept connections
+restore-azurite: done - ops009-rehearsal-azurite-restored ready on port 48100, restore took 1s (fresh volume ops009_rehearsal_azurite_restored_20261008T065005Z, fresh container, never the original)
+=== Phase 7: verify restored data (full row content, and that post-backup writes are correctly absent) ===
+VERIFY PASS  mysql-control restored rows match the pre-backup snapshot exactly (full row content, not just ids; post-backup row 99 correctly absent)
+VERIFY PASS  mysql-tenant-asu restored rows match the pre-backup snapshot exactly (full row content, not just ids; post-backup row 99 correctly absent)
+VERIFY PASS  azurite restored blobs 1 and 2 match their pre-backup sha256 exactly
+VERIFY PASS  azurite post-backup blob evidence-3.bin is correctly absent from the restore
+VERIFY PASS  mysql-control observed RPO is a sane non-negative duration (12s between its backup completing and the disaster)
+VERIFY PASS  mysql-tenant-asu observed RPO is a sane non-negative duration (12s between its backup completing and the disaster)
+VERIFY PASS  azurite observed RPO is a sane non-negative duration (0s between its backup completing and the disaster)
+=== Phase 8: record observed RPO/RTO (this single local run only) ===
+disaster-recovery-rehearsal: result written to backups/ops009-rehearsal/20261008T065005Z/result.json
+{
+  "story": "BIO-OPS-009",
+  "run_id": "20261008T065005Z",
+  "disclaimer": "Observed on a single local laptop run. NOT a production SLO or capacity claim - see BIO-OPS-007 for the same disclosure pattern applied to its own local performance numbers.",
+  "post_backup_write_at": "2026-10-08T06:50:28Z",
+  "disaster_declared_at": "2026-10-08T06:50:28Z",
+  "restore_verified_at": "2026-10-08T06:51:00Z",
+  "observed_rto_seconds": 32,
+  "observed_rpo": {
+    "mysql_control": {"backup_completed_at": "2026-10-08T06:50:16Z", "rpo_seconds": 12, "lost_rows": 1, "lost_row_ids": [99]},
+    "mysql_tenant_asu": {"backup_completed_at": "2026-10-08T06:50:16Z", "rpo_seconds": 12, "lost_rows": 1, "lost_row_ids": [99]},
+    "azurite": {"backup_completed_at": "2026-10-08T06:50:28Z", "rpo_seconds": 0, "lost_blobs": 1, "lost_blob_names": ["evidence-3.bin"]}
+  },
+  "verification_failures": 0,
+  "verification_result": "PASS"
+}
+=== Phase 9: tear down (via EXIT trap) ===
+disaster-recovery-rehearsal: PASS (observed RTO 32s - see result JSON for full detail)
+disaster-recovery-rehearsal: cleaning up standalone restore containers/volumes
+disaster-recovery-rehearsal: tearing down isolated stack (project biolog-ops009-rehearsal)

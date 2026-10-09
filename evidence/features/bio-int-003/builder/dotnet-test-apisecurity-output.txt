@@ -1,0 +1,8 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Biolog.Features.ApiSecurity -> <workspace>/biolog-worktrees/BIO-INT-003/api/features/bio-int-003/bin/Debug/net10.0/Biolog.Features.ApiSecurity.dll
+  Biolog.Features.ApiSecurity.Tests -> <workspace>/biolog-worktrees/BIO-INT-003/tests/features/bio-int-003/bin/Debug/net10.0/Biolog.Features.ApiSecurity.Tests.dll
+Test run for <workspace>/biolog-worktrees/BIO-INT-003/tests/features/bio-int-003/bin/Debug/net10.0/Biolog.Features.ApiSecurity.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:    62, Skipped:     0, Total:    62, Duration: 62 ms - Biolog.Features.ApiSecurity.Tests.dll (net10.0)

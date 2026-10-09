@@ -1,0 +1,20 @@
+00:03 +100: <workspace>/biolog-worktrees/BIO-ACC-003/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: shows the offline banner when connectivity drops (AC04)
+00:03 +101: <workspace>/biolog-worktrees/BIO-ACC-003/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: shows the offline banner when connectivity drops (AC04)
+00:03 +102: <workspace>/biolog-worktrees/BIO-ACC-003/tests/flutter/test/bio_mob_001_ac01_app_boot_test.dart: shows the offline banner when connectivity drops (AC04)
+00:03 +103: <workspace>/biolog-worktrees/BIO-ACC-003/tests/flutter/test/bio_acc_003_ac01_ac02_revocation_cache_test.dart: AC01 a cached revocation entry carries only person id and revoked-at, nothing else
+00:03 +104: <workspace>/biolog-worktrees/BIO-ACC-003/tests/flutter/test/bio_acc_003_ac01_ac02_revocation_cache_test.dart: AC01/AC02 caching a delta makes isRevoked true only for the cached person
+00:03 +105: <workspace>/biolog-worktrees/BIO-ACC-003/tests/flutter/test/bio_acc_003_ac01_ac02_revocation_cache_test.dart: AC02 a second, later delta round adds to the cache without losing earlier entries
+00:03 +106: <workspace>/biolog-worktrees/BIO-ACC-003/tests/flutter/test/bio_acc_003_ac01_ac02_revocation_cache_test.dart: AC04 an empty successful poll still advances last-synced-at (proves the cache is current, not stale)
+00:03 +107: <workspace>/biolog-worktrees/BIO-ACC-003/tests/flutter/test/baseline_test.dart: baseline Flutter harness uses synthetic data
+00:03 +108: <workspace>/biolog-worktrees/BIO-ACC-003/tests/flutter/test/bio_mob_001_ac02_passphrase_vault_test.dart: generatePassphrase never returns a bundled/hardcoded value
+00:03 +109: <workspace>/biolog-worktrees/BIO-ACC-003/tests/flutter/test/bio_mob_001_ac02_passphrase_vault_test.dart: loadOrCreate mints a passphrase on first use
+00:03 +110: <workspace>/biolog-worktrees/BIO-ACC-003/tests/flutter/test/bio_mob_001_ac02_passphrase_vault_test.dart: loadOrCreate is idempotent across app restarts (same store)
+00:03 +111: <workspace>/biolog-worktrees/BIO-ACC-003/tests/flutter/test/bio_mob_001_ac02_passphrase_vault_test.dart: two installs (independent stores) never share a passphrase
+00:03 +112: <workspace>/biolog-worktrees/BIO-ACC-003/tests/flutter/test/bio_mob_003_femi01_http_sync_transport_test.dart: POSTs to the versioned offline-mutations route with the Idempotency-Key, device-auth headers and delta body
+00:03 +113: <workspace>/biolog-worktrees/BIO-ACC-003/tests/flutter/test/bio_mob_003_femi01_http_sync_transport_test.dart: a 200/201 response with no replay header is a fresh acceptance
+00:03 +114: <workspace>/biolog-worktrees/BIO-ACC-003/tests/flutter/test/bio_mob_003_femi01_http_sync_transport_test.dart: the Idempotency-Replayed response header is surfaced as a replayed acceptance
+00:03 +115: <workspace>/biolog-worktrees/BIO-ACC-003/tests/flutter/test/bio_mob_003_femi01_http_sync_transport_test.dart: a 409 concurrency_conflict problem response is a conflict carrying the server version
+00:03 +116: <workspace>/biolog-worktrees/BIO-ACC-003/tests/flutter/test/bio_mob_003_femi01_http_sync_transport_test.dart: a 5xx response throws, which SyncEngine treats as a transient failure, not success/conflict
+00:03 +117: <workspace>/biolog-worktrees/BIO-ACC-003/tests/flutter/test/bio_mob_003_femi01_http_sync_transport_test.dart: a 409 that is not a version conflict (e.g. idempotency_key_reuse) throws, not conflict
+00:03 +118: <workspace>/biolog-worktrees/BIO-ACC-003/tests/flutter/test/bio_mob_003_femi01_http_sync_transport_test.dart: no device secret is provisioned yet: upload fails fast without making an HTTP request
+00:04 +119: All tests passed!

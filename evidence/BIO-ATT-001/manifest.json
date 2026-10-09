@@ -1,0 +1,68 @@
+{
+  "story_key": "BIO-ATT-001",
+  "title": "Implement attendance event core",
+  "implementation_commit": "a4a100697dbe5bde7b59a14b783b33609ba4d0ce",
+  "reviewed_head": "0c6a9f6c2349e70932491064ec2358d6981290f0",
+  "environment": {
+    "profile": "local acceptance; synthetic fixtures only; GitHub push blocked",
+    "timestamp": "2026-09-24T03:03:02Z"
+  },
+  "acceptance_criteria": {
+    "BIO-ATT-001-AC01": {
+      "result": "PASS",
+      "evidence": ["immutable raw event captures person, source/device, location, time, mode and structured verification evidence", "person existence is checked before capture"]
+    },
+    "BIO-ATT-001-AC02": {
+      "result": "PASS",
+      "evidence": ["raw AttendanceEvent has no derived status field", "pure AttendanceStatusEvaluator recomputes status from events and current policy"]
+    },
+    "BIO-ATT-001-AC03": {
+      "result": "PASS",
+      "evidence": ["tenant/key-scoped lock precedes validation", "same-content replay returns the original event", "different-content key reuse conflicts", "20-way concurrent regression"]
+    },
+    "BIO-ATT-001-AC04": {
+      "result": "PASS",
+      "evidence": ["CAS-versioned tenant policy supports education, workforce and presence interpretations", "policy mutation requires permission and verified provenance"]
+    },
+    "BIO-ATT-001-AC05": {
+      "result": "PASS",
+      "evidence": ["existing AttendanceService live routes map to real bridge endpoints", "bridge executes real capture/evaluation logic", "approved page, ports and mock files are unchanged", "builder host-channel end-to-end evidence"]
+    }
+  },
+  "commands": [
+    {"command": "tests/features/bio-att-001/bin/Debug/net10.0/Biolog.Features.Attendance.Tests", "result": "PASS (24/24)"},
+    {"command": "bash tests/features/bio-att-001/BIO-ATT-001.test.sh", "result": "PASS (33/33)"},
+    {"command": "dotnet build api/Biolog.Api/Biolog.Api.csproj --no-restore -m:1 /nodeReuse:false", "result": "PASS (0 warnings, 0 errors)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (31 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS (built-in fallback scan clean)"}
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "a4a100697dbe5bde7b59a14b783b33609ba4d0ce",
+    "feature_tests": "24/24 PASS",
+    "integration_tests": "134/134 PASS",
+    "structural_tests": "33/33 PASS",
+    "metadata_sha256": "cab923cd91a25294a039f49bb0e55d58ee4e67d1ca94311a0f117363019ffdf4"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "result": "PASS",
+    "evidence": "evidence/features/bio-att-001/codex/REVIEW-Seyi.md",
+    "evidence_sha256": "9c3cc3f634568ec3b31e73eba775c194803bf3ec4da1098abdecfe21748607be"
+  },
+  "category_verdicts": {
+    "functional": "PASS",
+    "security": "PASS",
+    "tenant_isolation": "PASS",
+    "offline_recovery": "NOT_APPLICABLE",
+    "concurrency": "PASS",
+    "regression": "PASS"
+  },
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "All five acceptance criteria have commit-bound builder evidence, independent Seyi PASS, and successful acceptance replay; no unresolved Critical or High finding exists."
+  }
+}

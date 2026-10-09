@@ -1,0 +1,88 @@
+{
+  "story_key": "BIO-RPT-004",
+  "title": "Dashboards and operational health views",
+  "implementation_commit": "fd854cc9161e9c8a9724495fa90152e7d76ac56e",
+  "builder_head": "fd854cc9161e9c8a9724495fa90152e7d76ac56e",
+  "reviewed_head": "d4226f2f053dfb379b91a5cf8c7fbc4775e03d68",
+  "environment": {
+    "profile": "local acceptance on Darwin arm64; synthetic fixtures only",
+    "timestamp": "2026-10-06"
+  },
+  "acceptance_criteria": {
+    "BIO-RPT-004-AC01": {
+      "result": "PASS",
+      "evidence": ["tests/features/bio-rpt-004/DashboardServiceTests.cs", "tests/features/bio-rpt-004/DashboardEndpointsIntegrationTests.cs"],
+      "finding": "The service resolves tenant context server-side and the endpoint verifies cryptographic actor provenance before tenant-scoped dashboard permission and any health-source access."
+    },
+    "BIO-RPT-004-AC02": {
+      "result": "PASS",
+      "evidence": ["tests/frontend/playwright/bio-rpt-004-operational-health.spec.ts", "web/features/bio-rpt-004/OperationalHealthPanel.tsx"],
+      "finding": "Drill-down links reuse the shell's existing route permission metadata and are hidden per role."
+    },
+    "BIO-RPT-004-AC03": {
+      "result": "PASS",
+      "evidence": ["tests/features/bio-rpt-004/DashboardServiceTests.cs", "evidence/BIO-RPT-004/codex/REVIEW-Seyi-round3.md"],
+      "finding": "Panels distinguish live, stale and unavailable data; failed reads retain real last-known values and observation times or show null when no successful observation exists, never fabricated zeroes."
+    },
+    "BIO-RPT-004-AC04": {
+      "result": "PASS",
+      "evidence": ["tests/features/bio-rpt-004/DashboardServiceTests.cs", "tests/features/bio-rpt-004/BIO-RPT-004.test.sh"],
+      "finding": "DashboardService exposes no tenant-id input and tenant-keyed gateways/cache prevent cross-tenant aggregation."
+    },
+    "BIO-RPT-004-AC05": {
+      "result": "PASS_WITH_FOLLOW_UP",
+      "evidence": ["tests/frontend/playwright/bio-rpt-004-operational-health.spec.ts", "tests/frontend/playwright/bio-rpt-004-operational-health-live.spec.ts", "evidence/BIO-RPT-004/codex/REVIEW-Seyi-round3.md"],
+      "finding": "The approved dashboard surface is connected through ReportingService in an explicitly documented HYBRID state: SIMULATION proves the six-panel workflow and role-filtered drill-downs; the real LIVE path proves fail-closed 401 behavior because no browser provenance transport exists yet. A positive LIVE browser-to-API workflow must be re-verified when TD-WEB-PROVENANCE-BRIDGE lands."
+    }
+  },
+  "commands": [
+    {"command": "bash tests/features/bio-rpt-004/BIO-RPT-004.test.sh", "result": "PASS (45/45)"},
+    {"command": "cd tests/frontend && node node_modules/vitest/vitest.mjs run unit/bio-rpt-004-operational-health-mock.test.ts", "result": "PASS (7/7)"},
+    {"command": "python3 scripts/check-traceability.py --all", "result": "PASS (35 implemented stories)"},
+    {"command": "bash scripts/check-module-project-references.sh", "result": "PASS"},
+    {"command": "bash scripts/secret-scan.sh --all", "result": "PASS (clean, fallback scanner)"},
+    {"command": "dotnet build tests/features/bio-rpt-004/Biolog.Features.OperationalDashboard.Tests.csproj --no-restore --nologo -m:1 /nodeReuse:false", "result": "UNAVAILABLE in acceptance sandbox: compilation stalled without output and was stopped; exact-commit builder and reviewer evidence records a clean build and 30/30 tests"}
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "fd854cc9161e9c8a9724495fa90152e7d76ac56e",
+    "backend_tests": "30/30 PASS",
+    "structural_tests": "45/45 PASS",
+    "frontend_tests": "470/470 PASS",
+    "simulation_playwright": "7/7 PASS",
+    "metadata_sha256": "6eec2ca85c07afc73b10e3a2c537819b5b0af3f863542953da737e69cd887383"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "result": "PASS",
+    "builder_commit_reviewed": "fd854cc9161e9c8a9724495fa90152e7d76ac56e",
+    "review_commit": "d4226f2f053dfb379b91a5cf8c7fbc4775e03d68",
+    "evidence_commit": "017867fd59da04d9023ecbf1b34291994767854f",
+    "evidence": "evidence/BIO-RPT-004/codex/REVIEW-Seyi-round3.md",
+    "evidence_sha256": "b1b4ed84e4f713eebae03ebb335a970c0128165f0813216cc214028d846b97dc"
+  },
+  "category_verdicts": {
+    "functional": "PASS",
+    "security": "PASS",
+    "tenant_isolation": "PASS",
+    "offline_recovery": "PASS",
+    "concurrency": "PASS",
+    "regression": "PASS",
+    "positive_live_browser_workflow": "DEFERRED_TO_TD-WEB-PROVENANCE-BRIDGE"
+  },
+  "open_follow_up_obligations": [
+    {
+      "id": "TD-WEB-PROVENANCE-BRIDGE/BIO-RPT-004",
+      "status": "OPEN",
+      "trigger": "TD-WEB-PROVENANCE-BRIDGE ships",
+      "required_action": "Re-run BIO-RPT-004's positive LIVE browser-to-API workflow with a real provenance-bearing browser session and confirm the authenticated operational-health snapshot plus role-filtered drill-down flow succeeds end to end.",
+      "current_negative_proof": "The real LIVE adapter/backend path correctly rejects the current proof-less browser request with 401 actor_provenance_required."
+    }
+  ],
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "AC01-AC04 and the documented AC05 HYBRID boundary map to exact-commit implementation, tests, builder evidence and independent QA PASS. Fresh structural, focused frontend, traceability, module-direction and secret checks pass. Acceptance preserves an explicit open obligation to positively re-verify the LIVE browser-to-API workflow when TD-WEB-PROVENANCE-BRIDGE lands."
+  }
+}

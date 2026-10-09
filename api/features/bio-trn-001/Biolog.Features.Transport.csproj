@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- BIO-TRN-001 owns api/features/bio-trn-001/** only. No ProjectReference to
+         Biolog.Api.csproj (one-way dependency, scripts/check-module-project-references.sh) and
+         no ProjectReference to any other feature project - PersonId existence is proven through
+         this project's own narrow Domain/IPersonExistenceGateway.cs, device linkage through
+         Domain/IDeviceExistenceGateway.cs (BIO-DEV-001 lives inside Biolog.Api itself, not a
+         story-keyed feature project - this gateway is this feature's only coupling to it), and
+         the one assignment-authorization permission check through Domain/IPermissionGateway.cs,
+         all three implemented by adapters in api/Biolog.Api/Modules/BioTrn001Module.cs wrapping
+         BIO-IDN-001's PersonService, BIO-DEV-001's DeviceService and BIO-IDN-006's
+         PermissionService directly - the same gateway pattern every identity-wave story in this
+         codebase already uses.
+
+         Namespace root is "Transport". Four aggregates, all mutable CAS-versioned records with no
+         canonical identifier-registry prefix (Identifiers/CanonicalId.cs's own header):
+         RouteRecord/VehicleRecord/StopRecord (Domain/{Route,Vehicle,Stop}.cs - AC01's versioned
+         registries) and PersonAssignment (Domain/PersonAssignment.cs - AC02's validity-windowed
+         assignment, the one authorization decision this feature makes via
+         PersonAssignmentService.CreateAsync/EndAsync). AC04's expiry/effective-status is never
+         persisted - computed at read time (Domain/TransportStatusEvaluator.cs), the same
+         "refuse auto-flip, compute in effect at read time" discipline BIO-IDN-002/BIO-ATT-001/
+         BIO-VIS-001 established. -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Every aggregate's constructor and its repository are internal - the explicit, auditable
+         seam for Biolog.Api (DI registration) and this project's own test assembly. -->
+    <InternalsVisibleTo Include="Biolog.Api" />
+    <InternalsVisibleTo Include="Biolog.Features.Transport.Tests" />
+  </ItemGroup>
+
+</Project>

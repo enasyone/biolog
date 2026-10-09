@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Matches api/Biolog.Api/Biolog.Api.csproj's pinned TFM (BIO-FND-008). -->
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <!--
+    Deliberately no dependency on ASP.NET Core (no FrameworkReference, no ProjectReference to
+    Biolog.Api) and no NuGet package references. This is the provider-neutral session/evidence
+    domain model the story calls for (BIO-DOC-001): a plain, host-agnostic class library that
+    MRZ/barcode/OCR/NFC engines (BIO-DOC-002+) and the web host can both depend on, with no risk
+    of a circular project reference back from Biolog.Api (which depends on this project to wire
+    Modules/DocumentModule.cs - see docs/features/bio-doc-001/DOCUMENT-VERIFY-FOUNDATION.md).
+  -->
+
+</Project>

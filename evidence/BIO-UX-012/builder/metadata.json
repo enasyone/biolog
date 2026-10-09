@@ -1,0 +1,10 @@
+{
+  "story_key": "BIO-UX-012",
+  "stage": "builder",
+  "commit_hash": "7c33dd66e309917f431d15541a0cae3618adef26",
+  "test_command": "(cd web && ./node_modules/.bin/tsc --noEmit && ./node_modules/.bin/next build) && (cd tests/frontend && ./node_modules/.bin/vitest run) && (cd tests/frontend && BIOLOG_BASE_URL=http://localhost:3236 ./node_modules/.bin/playwright test bio-ux-012-human-test-console.spec.ts bio-ux-007-cards.spec.ts bio-ux-009-document-verify.spec.ts bio-ux-008-biometric-journeys.spec.ts bio-ux-010-operational-journeys.spec.ts)",
+  "result": "PASS",
+  "timestamp": "2026-09-23T17:15:00Z",
+  "reviewer": "Damilola",
+  "data_classification": "SYNTHETIC"
+}

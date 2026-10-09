@@ -1,0 +1,17 @@
+$ MakerChecker endpoint/service call-sites
+api/features/bio-idn-006/MakerCheckerService.cs:17:/// documented</b> - see <see cref="DecideAsync"/> and <see cref="ApprovalRequest"/>'s header.
+api/features/bio-idn-006/MakerCheckerService.cs:61:        if (!await permissionService.ActorHasPermissionAsync(tenantId, actor.Id, SensitiveActionRuleManagePermission, cancellationToken))
+api/features/bio-idn-006/MakerCheckerService.cs:63:            throw RbacError.PermissionRequired(SensitiveActionRuleManagePermission);
+api/features/bio-idn-006/MakerCheckerService.cs:93:    public async Task<ApprovalRequest> RequestApprovalAsync(
+api/features/bio-idn-006/MakerCheckerService.cs:130:    public async Task<ApprovalRequest> DecideAsync(
+api/features/bio-idn-006/Api/MakerCheckerEndpoints.cs:11:/// <see cref="DecideAsync"/>, that actor must NOT be the request's own maker (AC03's core
+api/features/bio-idn-006/Api/MakerCheckerEndpoints.cs:12:/// security property - see <c>MakerCheckerService.DecideAsync</c>).
+api/features/bio-idn-006/Api/MakerCheckerEndpoints.cs:24:        endpoints.MapPost(RequestsBasePath, RequestApprovalAsync);
+api/features/bio-idn-006/Api/MakerCheckerEndpoints.cs:26:        endpoints.MapPost($"{RequestsBasePath}/{{sequenceNumber}}/decide", DecideAsync);
+api/features/bio-idn-006/Api/MakerCheckerEndpoints.cs:32:            var actor = ActorResolver.Resolve(context.Request);
+api/features/bio-idn-006/Api/MakerCheckerEndpoints.cs:45:    private static Task RequestApprovalAsync(HttpContext context, MakerCheckerService service, string actionKey, string targetRef) =>
+api/features/bio-idn-006/Api/MakerCheckerEndpoints.cs:48:            var actor = ActorResolver.Resolve(context.Request);
+api/features/bio-idn-006/Api/MakerCheckerEndpoints.cs:51:            var created = await service.RequestApprovalAsync(actionKey, request, actor, correlationId, context.RequestAborted);
+api/features/bio-idn-006/Api/MakerCheckerEndpoints.cs:63:    private static Task DecideAsync(HttpContext context, MakerCheckerService service, string actionKey, string targetRef, int sequenceNumber) =>
+api/features/bio-idn-006/Api/MakerCheckerEndpoints.cs:66:            var actor = ActorResolver.Resolve(context.Request);
+api/features/bio-idn-006/Api/MakerCheckerEndpoints.cs:68:            var decided = await service.DecideAsync(actionKey, targetRef, sequenceNumber, request, actor, correlationId, context.RequestAborted);

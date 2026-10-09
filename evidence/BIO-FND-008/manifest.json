@@ -1,0 +1,112 @@
+{
+  "story_key": "BIO-FND-008",
+  "title": "Create ASP.NET Core API/service shell",
+  "implementation_commit": "2ceaffeea54080b42096b28b4f41f35fac28311e",
+  "reviewed_head": "7eb7b53f0a86e2c05b05a58c49960e21875322e0",
+  "environment": {
+    "profile": "local acceptance; synthetic fixtures only",
+    "timestamp": "2026-09-21T19:42:23Z",
+    "dotnet_test_replay": "Assemblies compiled; vstest execution unavailable because sandbox denied its loopback socket"
+  },
+  "acceptance_criteria": {
+    "BIO-FND-008-AC01": {
+      "result": "PASS",
+      "evidence": [
+        "evidence/BIO-FND-008/builder/dotnet-integration-test-output.txt",
+        "evidence/BIO-FND-008/acceptance/foundation-output.txt",
+        "evidence/BIO-FND-008/acceptance/integration-replay-output.txt"
+      ]
+    },
+    "BIO-FND-008-AC02": {
+      "result": "PASS",
+      "evidence": [
+        "evidence/BIO-FND-008/builder/dotnet-integration-test-output.txt",
+        "evidence/BIO-FND-008/acceptance/foundation-output.txt"
+      ]
+    },
+    "BIO-FND-008-AC03": {
+      "result": "PASS",
+      "evidence": [
+        "evidence/BIO-FND-008/builder/dotnet-integration-test-output.txt",
+        "evidence/BIO-FND-008/acceptance/vulnerability-audit-output.txt",
+        "evidence/BIO-FND-008/acceptance/independent-probes.txt"
+      ]
+    },
+    "BIO-FND-008-AC04": {
+      "result": "PASS",
+      "evidence": [
+        "evidence/BIO-FND-008/builder/dotnet-unit-test-output.txt",
+        "evidence/BIO-FND-008/acceptance/independent-probes.txt",
+        "evidence/BIO-FND-008/acceptance/foundation-output.txt"
+      ]
+    },
+    "BIO-FND-008-AC05": {
+      "result": "PASS",
+      "evidence": [
+        "evidence/BIO-FND-008/builder/dotnet-unit-test-output.txt",
+        "evidence/BIO-FND-008/acceptance/independent-probes.txt",
+        "evidence/BIO-FND-008/acceptance/foundation-output.txt"
+      ]
+    }
+  },
+  "commands": [
+    {
+      "command": "python3 evidence/BIO-FND-008/codex/independent-review.py",
+      "result": "PASS (4/4)"
+    },
+    {
+      "command": "bash tests/foundation/BIO-FND-008.test.sh",
+      "result": "PASS (35/35)"
+    },
+    {
+      "command": "bash scripts/check-dotnet-vulnerabilities.sh api/Biolog.Api/Biolog.Api.csproj",
+      "result": "PASS (no vulnerable packages)"
+    },
+    {
+      "command": "dotnet test tests/dotnet/Biolog.UnitTests/Biolog.UnitTests.csproj --no-restore --nologo",
+      "result": "UNAVAILABLE after successful compilation (vstest SocketException: Permission denied)"
+    },
+    {
+      "command": "dotnet test tests/dotnet/Biolog.IntegrationTests/Biolog.IntegrationTests.csproj --no-restore --nologo",
+      "result": "UNAVAILABLE after successful compilation (vstest SocketException: Permission denied)"
+    },
+    {
+      "command": "bash scripts/secret-scan.sh --all",
+      "result": "PASS (clean)"
+    }
+  ],
+  "builder_verdict": {
+    "result": "PASS",
+    "commit_hash": "2ceaffeea54080b42096b28b4f41f35fac28311e",
+    "unit_tests": "14/14 PASS",
+    "integration_tests": "5/5 PASS",
+    "unit_transcript_sha256": "5ced5eed762e90d69c6a80cec296d30c45db8685acdb388209801d292733162c",
+    "integration_transcript_sha256": "38884cfb16079cfdbed962d027ccdc64f3f24e67f52c8e093f7962f20eed77d4"
+  },
+  "independent_qa": {
+    "reviewer": "Seyi",
+    "initial_result": "FAIL (QA-01: vulnerable Microsoft.OpenApi 2.4.1)",
+    "round_2_result": "FAIL (QA-02: vulnerability wrapper false-success on audit failure)",
+    "final_result": "PASS",
+    "review_evidence": "evidence/BIO-FND-008/codex/REREVIEW-ROUND-3.md",
+    "review_head": "7eb7b53f0a86e2c05b05a58c49960e21875322e0"
+  },
+  "category_verdicts": {
+    "functional": "PASS",
+    "security": "PASS",
+    "tenant_isolation": "PASS",
+    "offline_recovery": "PASS",
+    "concurrency": "NOT_APPLICABLE",
+    "regression": "PASS"
+  },
+  "security_performance_reviews": {
+    "security": "Seyi PASS after QA-01/QA-02 closure; live dependency audit clean; secret scan clean",
+    "performance": "Not required for this API-shell foundation story"
+  },
+  "acceptance_blockers": [],
+  "final_acceptance": {
+    "acceptor": "Chioma",
+    "decision": "PASS",
+    "reason": "All five criteria have objective builder and independent evidence. Microsoft.OpenApi is patched at 2.12.2 and the live audit is clean. The audit wrapper fails closed on vulnerable, nonzero-command, and missing-clean-result outcomes. Acceptance replay passed independent and structural suites; .NET assemblies compiled but vstest runtime execution was accurately recorded unavailable due the same sandbox socket restriction seen by Seyi. Remediation-bound builder transcripts prove 14/14 unit and 5/5 integration tests passed."
+  }
+}
