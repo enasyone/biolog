@@ -1,0 +1,15 @@
+# BIO-OPS-010-AC06: code ownership routing.
+# This is a personal GitHub account, not an org, so there are no teams to
+# route to (see evidence/BIO-OPS-010/builder/AC06-PUBLICATION-CONTROLS-DRAFT.md,
+# which drafted placeholder @biolog/<team> handles for a future org). Every
+# rule below routes to the sole maintainer; update when a second maintainer
+# or an org structure exists.
+
+*                     @enasyone
+
+/.github/             @enasyone
+/governance/          @enasyone
+/contracts/           @enasyone
+/docs/adr/            @enasyone
+/.gitleaks.toml       @enasyone
+/scripts/             @enasyone
